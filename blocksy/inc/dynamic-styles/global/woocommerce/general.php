@@ -58,7 +58,7 @@ blocksy_output_font_css([
 		blocksy_typography_default_values([
 			'size' => '12px',
 			'variation' => 'n6',
-			'line-height' => '1.2'
+			'line-height' => '1.1'
 		])
 	),
 	'css' => $css,

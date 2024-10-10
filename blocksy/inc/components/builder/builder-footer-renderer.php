@@ -83,6 +83,8 @@ class Blocksy_Footer_Builder_Render extends Blocksy_Builder_Render {
 				]
 			);
 
+			$columns = blocksy_expand_responsive_value($columns);
+
 			if ($columns['tablet'] === 'initial') {
 				$data_stack[] = 'tablet';
 			}
@@ -102,6 +104,8 @@ class Blocksy_Footer_Builder_Render extends Blocksy_Builder_Render {
 					'mobile' => 'initial'
 				]
 			);
+
+			$columns = blocksy_expand_responsive_value($columns);
 
 			if ($columns['tablet'] === 'initial') {
 				$data_stack[] = 'tablet';
@@ -123,6 +127,8 @@ class Blocksy_Footer_Builder_Render extends Blocksy_Builder_Render {
 				]
 			);
 
+			$columns = blocksy_expand_responsive_value($columns);
+
 			if ($columns['tablet'] === 'initial') {
 				$data_stack[] = 'tablet';
 			}
@@ -142,6 +148,8 @@ class Blocksy_Footer_Builder_Render extends Blocksy_Builder_Render {
 					'mobile' => 'initial'
 				]
 			);
+
+			$columns = blocksy_expand_responsive_value($columns);
 
 			if ($columns['tablet'] === 'initial') {
 				$data_stack[] = 'tablet';
@@ -163,6 +171,8 @@ class Blocksy_Footer_Builder_Render extends Blocksy_Builder_Render {
 				]
 			);
 
+			$columns = blocksy_expand_responsive_value($columns);
+
 			if ($columns['tablet'] === 'initial') {
 				$data_stack[] = 'tablet';
 			}
@@ -174,16 +184,18 @@ class Blocksy_Footer_Builder_Render extends Blocksy_Builder_Render {
 
 		$data_grid = [];
 
-		if (! in_array('tablet', $data_stack)) {
-			$data_grid[] = 'md';
-		}
+		if ($count > 1) {
+			if (! in_array('tablet', $data_stack)) {
+				$data_grid[] = 'md';
+			}
 
-		if (! in_array('mobile', $data_stack)) {
-			$data_grid[] = 'sm';
-		}
+			if (! in_array('mobile', $data_stack)) {
+				$data_grid[] = 'sm';
+			}
 
-		if (! empty($data_grid)) {
-			$data_grid = ['data-columns-divider' => implode(':', $data_grid)];
+			if (! empty($data_grid)) {
+				$data_grid = ['data-columns-divider' => implode(':', $data_grid)];
+			}
 		}
 
 		$container_class = 'ct-container';

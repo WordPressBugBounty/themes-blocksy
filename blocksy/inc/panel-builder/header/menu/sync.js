@@ -1,16 +1,58 @@
-import { typographyOption } from '../../../../static/js/customizer/sync/variables/typography'
 import ctEvents from 'ct-events'
+
+import { typographyOption } from '../../../../static/js/customizer/sync/variables/typography'
 import { updateAndSaveEl } from '../../../../static/js/customizer/sync'
-import { responsiveClassesFor } from '../../../../static/js/customizer/sync/helpers'
 import {
 	getRootSelectorFor,
 	assembleSelector,
 	withKeys,
 	mutateSelector,
+	getSkipRuleKeyword,
 } from '../../../../static/js/customizer/sync/helpers'
 
 export const handleMenuVariables = ({ itemId, values }) => {
 	const header_menu_type = values.header_menu_type || 'type-1'
+
+	const allSkipped = {
+		default: {
+			color: getSkipRuleKeyword('DEFAULT'),
+		},
+		hover: {
+			color: getSkipRuleKeyword('DEFAULT'),
+		},
+		active: {
+			color: getSkipRuleKeyword('DEFAULT'),
+		},
+		'hover-type-3': {
+			color: getSkipRuleKeyword('DEFAULT'),
+		},
+		'active-type-3': {
+			color: getSkipRuleKeyword('DEFAULT'),
+		},
+	}
+
+	const valuesDefaults = {
+		menuFontColor: {
+			default: { color: 'var(--theme-text-color)' },
+			hover: {
+				color: getSkipRuleKeyword('DEFAULT'),
+			},
+			active: {
+				color: getSkipRuleKeyword('DEFAULT'),
+			},
+			'hover-type-3': { color: '#ffffff' },
+			'active-type-3': {
+				color: getSkipRuleKeyword('DEFAULT'),
+			},
+		},
+
+		transparentMenuFontColor: allSkipped,
+		stickyMenuFontColor: allSkipped,
+	}
+
+	const extractKeyWithDefault = (key) => (values) => {
+		return values[key] || valuesDefaults[key]
+	}
 
 	const menuFontColor = [
 		{
@@ -25,7 +67,7 @@ export const handleMenuVariables = ({ itemId, values }) => {
 			type: 'color:default',
 
 			fullValue: true,
-			extractValue: ({ menuFontColor }) => menuFontColor,
+			extractValue: extractKeyWithDefault('menuFontColor'),
 		},
 
 		{
@@ -43,7 +85,7 @@ export const handleMenuVariables = ({ itemId, values }) => {
 					: 'color:hover',
 
 			fullValue: true,
-			extractValue: ({ menuFontColor }) => menuFontColor,
+			extractValue: extractKeyWithDefault('menuFontColor'),
 		},
 
 		{
@@ -61,7 +103,7 @@ export const handleMenuVariables = ({ itemId, values }) => {
 					: 'color:active',
 
 			fullValue: true,
-			extractValue: ({ menuFontColor }) => menuFontColor,
+			extractValue: extractKeyWithDefault('menuFontColor'),
 		},
 	]
 
@@ -82,8 +124,7 @@ export const handleMenuVariables = ({ itemId, values }) => {
 			type: 'color:default',
 
 			fullValue: true,
-			extractValue: ({ transparentMenuFontColor }) =>
-				transparentMenuFontColor,
+			extractValue: extractKeyWithDefault('transparentMenuFontColor'),
 		},
 
 		{
@@ -105,8 +146,7 @@ export const handleMenuVariables = ({ itemId, values }) => {
 					: 'color:hover',
 
 			fullValue: true,
-			extractValue: ({ transparentMenuFontColor }) =>
-				transparentMenuFontColor,
+			extractValue: extractKeyWithDefault('transparentMenuFontColor'),
 		},
 
 		{
@@ -128,8 +168,7 @@ export const handleMenuVariables = ({ itemId, values }) => {
 					: 'color:active',
 
 			fullValue: true,
-			extractValue: ({ transparentMenuFontColor }) =>
-				transparentMenuFontColor,
+			extractValue: extractKeyWithDefault('transparentMenuFontColor'),
 		},
 	]
 
@@ -150,7 +189,8 @@ export const handleMenuVariables = ({ itemId, values }) => {
 			type: 'color:default',
 
 			fullValue: true,
-			extractValue: ({ stickyMenuFontColor }) => stickyMenuFontColor,
+
+			extractValue: extractKeyWithDefault('stickyMenuFontColor'),
 		},
 
 		{
@@ -172,7 +212,7 @@ export const handleMenuVariables = ({ itemId, values }) => {
 					: 'color:hover',
 
 			fullValue: true,
-			extractValue: ({ stickyMenuFontColor }) => stickyMenuFontColor,
+			extractValue: extractKeyWithDefault('stickyMenuFontColor'),
 		},
 
 		{
@@ -194,7 +234,8 @@ export const handleMenuVariables = ({ itemId, values }) => {
 					: 'color:active',
 
 			fullValue: true,
-			extractValue: ({ stickyMenuFontColor }) => stickyMenuFontColor,
+
+			extractValue: extractKeyWithDefault('stickyMenuFontColor'),
 		},
 	]
 

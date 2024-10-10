@@ -322,6 +322,8 @@ $contentEdgeSpacing = blocksy_get_theme_mod('contentEdgeSpacing', [
 	'mobile' => 6,
 ]);
 
+$contentEdgeSpacing = blocksy_expand_responsive_value($contentEdgeSpacing);
+
 $contentEdgeSpacing['desktop'] = 100 - intval($contentEdgeSpacing['desktop']) * 2;
 $contentEdgeSpacing['tablet'] = 100 - intval($contentEdgeSpacing['tablet']) * 2;
 $contentEdgeSpacing['mobile'] = 100 - intval($contentEdgeSpacing['mobile']) * 2;

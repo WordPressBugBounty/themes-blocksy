@@ -1,7 +1,5 @@
 import $ from 'jquery'
 
-var currentTask
-
 function singleProductAddToCart(wrapper) {
 	if (!$) return
 
@@ -61,11 +59,11 @@ function singleProductAddToCart(wrapper) {
 		}, {}),
 	])
 
-	const url = new URL(formUrl)
+	const url = new URL(ct_localizations.ajax_url)
 
 	const searchParams = new URLSearchParams(url.search)
 
-	searchParams.set('blocksy_add_to_cart', 'yes')
+	searchParams.append('action', 'blocksy_add_to_cart')
 
 	if (window.ct_customizer_localizations) {
 		searchParams.set('wp_customize', 'on')
@@ -75,23 +73,30 @@ function singleProductAddToCart(wrapper) {
 
 	formUrl = url.toString()
 
-	currentTask = fetch(formUrl, {
+	fetch(formUrl, {
 		method: formMethod,
 		body: formData,
+
 		/*
 		cache: false,
 		contentType: false,
 		processData: false,
         */
 	})
-		.then((r) => r.text())
-		.then((addToCartData, textStatus, jqXHR) => {
-			const div = document.createElement('div')
+		.then((r) => r.json())
+		.then(({ success, data }) => {
+			if (!success) {
+				return
+			}
 
-			div.innerHTML = addToCartData
+			const { notices, fragments, cart_hash } = data
 
 			const errorSelector =
 				'.woocommerce-error, .wc-block-components-notice-banner.is-error'
+
+			const div = document.createElement('div')
+
+			div.innerHTML = notices
 
 			let error = div.querySelector(errorSelector)
 
@@ -111,21 +116,11 @@ function singleProductAddToCart(wrapper) {
 				return
 			}
 
-			const maybeFragmentsTemplate = div.querySelector(
-				'#blocksy-woo-add-to-cart-fragments'
-			)
-
-			if (maybeFragmentsTemplate) {
-				const fragmentsData = JSON.parse(
-					maybeFragmentsTemplate.textContent
-				)
-
-				$(document.body).trigger('added_to_cart', [
-					fragmentsData.fragments,
-					fragmentsData.cart_hash,
-					button,
-				])
-			}
+			$(document.body).trigger('added_to_cart', [
+				fragments,
+				cart_hash,
+				button,
+			])
 
 			if (form.closest('.quick-view-modal').length) {
 				form.closest('.quick-view-modal')

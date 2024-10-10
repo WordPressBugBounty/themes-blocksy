@@ -10,23 +10,29 @@ class Blocksy_Header_Builder_Render extends Blocksy_Builder_Render {
 		$middle_row = $this->get_item_data_for('middle-row');
 		$bottom_row = $this->get_item_data_for('bottom-row');
 
-		$top_row_height = blocksy_akg('headerRowHeight', $top_row, [
-			'mobile' => 50,
-			'tablet' => 50,
-			'desktop' => 50,
-		]);
+		$top_row_height = blocksy_expand_responsive_value(
+			blocksy_akg('headerRowHeight', $top_row, [
+				'mobile' => 50,
+				'tablet' => 50,
+				'desktop' => 50,
+			])
+		);
 
-		$middle_row_height = blocksy_akg('headerRowHeight', $middle_row, [
-			'mobile' => 70,
-			'tablet' => 70,
-			'desktop' => 120,
-		]);
+		$middle_row_height = blocksy_expand_responsive_value(
+			blocksy_akg('headerRowHeight', $middle_row, [
+				'mobile' => 70,
+				'tablet' => 70,
+				'desktop' => 120,
+			])
+		);
 
-		$bottom_row_height = blocksy_akg('headerRowHeight', $bottom_row, [
-			'mobile' => 80,
-			'tablet' => 80,
-			'desktop' => 80,
-		]);
+		$bottom_row_height = blocksy_expand_responsive_value(
+			blocksy_akg('headerRowHeight', $bottom_row, [
+				'mobile' => 80,
+				'tablet' => 80,
+				'desktop' => 80,
+			])
+		);
 
 		if ($sticky_height) {
 			if (

@@ -7,13 +7,17 @@ class SearchModifications {
 
 	private $filters = [
 		[
-			'action' => 'rest_post_query',
+			'action' => 'rest_post_search_query',
 			'priority' => 999,
 			'args' => 2
 		],
 
 		[
 			'action' => 'pre_get_posts'
+		],
+
+		[
+			'action' => 'rest_api_init'
 		]
 	];
 
@@ -21,47 +25,43 @@ class SearchModifications {
 		$this->attach_hooks();
 	}
 
-	public function rest_post_query($args, $request) {
-		if (
-			isset($request['post_type'])
-			&&
-			(strpos($request['post_type'], 'ct_forced') !== false)
-		) {
-			$post_type = explode(
-				':',
-				str_replace('ct_forced_', '', $request['post_type'])
-			);
-
-			if ($post_type[0] === 'any') {
-				$post_type = blocksy_manager()->post_types->get_all();
-			}
-
-			$args = [
-				'posts_per_page' => $args['posts_per_page'],
-				'post_type' => $post_type,
-				'paged' => 1,
-				's' => isset($args['s']) ? $args['s'] : '',
-			];
+	public function rest_api_init() {
+		if (! isset($_GET['ct_live_search']) || $_GET['ct_live_search'] !== 'true') {
+			return;
 		}
 
-		if (
-			isset($request['post_type'])
-			&&
-			(strpos($request['post_type'], 'ct_cpt') !== false)
-		) {
-			$next_args = [
-				'posts_per_page' => $args['posts_per_page'],
-				'post_type' => blocksy_manager()->post_types->get_all([
-					'exclude_built_in' => true,
-				]),
-				'paged' => 1
-			];
+		register_rest_field('search-result', 'ct_featured_media', [
+			'get_callback' => function ($post, $field_name, $request) {
+				$image_id = get_post_thumbnail_id($post['id']);
 
-			if (isset($args['s'])) {
-				$next_args['s'] = $args['s'];
+				$image = get_post($image_id);
+
+				if (! $image) {
+					return null;
+				}
+
+				$controller = new \WP_REST_Attachments_Controller('attachment');
+
+				$attachment = $controller->prepare_item_for_response(
+					$image,
+					$request
+				);
+
+				return $attachment->data;
 			}
+		]);
 
-			$args = $next_args;
+		do_action('blocksy:rest_api:live_search:fields');
+	}
+
+	public function rest_post_search_query($args, $request) {
+		// Patch WP_Query args for search only when it's a live search
+		if (
+			! isset($_GET['ct_live_search'])
+			||
+			$_GET['ct_live_search'] !== 'true'
+		) {
+			return $args;
 		}
 
 		if (
@@ -129,22 +129,27 @@ class SearchModifications {
 			}
 		}
 
-		$tax_query = isset($args['tax_query']) && is_array($args['tax_query']) ? $args['tax_query'] : [];
+		$tax_query = [];
+
+		if (isset($args['tax_query']) && is_array($args['tax_query'])) {
+			$tax_query = $args['tax_query'];
+		}
 
 		if (
 			isset($request['ct_tax_query'])
 			&&
-			!empty($request['ct_tax_query'])
+			! empty($request['ct_tax_query'])
 		) {
 			$tax_params = explode(':', $request['ct_tax_query']);
+
 			$tax_query[] = [
 				'relation' => 'AND',
-				array(
+				[
 					'taxonomy' => $tax_params[0],
 					'field' => 'id',
 					'terms' => $tax_params[1],
 					'operator' => 'IN',
-				),
+				]
 			];
 		}
 

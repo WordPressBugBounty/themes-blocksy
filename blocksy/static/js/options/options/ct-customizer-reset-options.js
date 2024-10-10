@@ -57,8 +57,7 @@ const CustomizerResetOptions = ({ value, option, onChange }) => {
 										{
 											wp_customize: 'on',
 											action: 'ct_customizer_reset',
-											nonce:
-												ct_customizer_localizations.customizer_reset_none,
+											nonce: ct_customizer_localizations.customizer_reset_none,
 										},
 										() => {
 											wp.customize

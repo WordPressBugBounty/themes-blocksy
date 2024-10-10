@@ -103,6 +103,8 @@ if (
 		]
 	);
 
+	$parallax_value = blocksy_expand_responsive_value($parallax_value);
+
 	if ($parallax_value['desktop']) {
 		$parallax_result[] = 'desktop';
 	}

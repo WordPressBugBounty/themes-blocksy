@@ -34,26 +34,29 @@ add_action(
 	4, 4
 );
 
-add_action('woocommerce_post_class', function ($classes) {
-	if (! blocksy_manager()->screen->is_product()) {
+
+add_filter(
+	'blocksy:woocommerce:single-product:post-class',
+	function($classes) {
+		if (! blocksy_manager()->screen->is_product()) {
+			return $classes;
+		}
+
+		global $blocksy_is_quick_view;
+		global $product;
+
+		if (
+			! $blocksy_is_quick_view
+			&&
+			// Integration with Custom Product Boxes plugin
+			$product->get_type() !== 'wdm_bundle_product'
+		) {
+			$classes[] = 'ct-default-gallery';
+		}
+	
 		return $classes;
 	}
-
-	global $blocksy_is_quick_view;
-
-	global $product;
-
-	if (
-		! $blocksy_is_quick_view
-		&&
-		// Integration with Custom Product Boxes plugin
-		$product->get_type() !== 'wdm_bundle_product'
-	) {
-		$classes[] = 'ct-default-gallery';
-	}
-
-	return $classes;
-});
+);
 
 add_filter(
 	'woocommerce_post_class',

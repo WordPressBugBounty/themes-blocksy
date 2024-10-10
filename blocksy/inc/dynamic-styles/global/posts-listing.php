@@ -291,7 +291,6 @@ if ($card_type === 'boxed' || $card_type === 'cover') {
 		'yes'
 	);
 
-
 	$image_border_radius = [];
 
 	foreach ($devices as $device) {

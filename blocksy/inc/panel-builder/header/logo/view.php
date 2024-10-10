@@ -144,11 +144,25 @@ if ($custom_logo_id) {
 		$custom_logo_attr['alt'] = get_bloginfo('name', 'display');
 	}
 
+	$has_custom_mobile_logo = $panel_type === 'footer' && isset($default_logo['mobile']) && isset($default_logo['desktop']) &&  $default_logo['mobile'] !== $default_logo['desktop'];
+	$footer_mobile_logo_html = '';
+
 	$image_logo_html = wp_get_attachment_image(
 		$custom_logo_id,
 		'full',
 		false,
-		$custom_logo_attr
+		array_merge(
+			$custom_logo_attr,
+			$has_custom_mobile_logo ? [
+				'class' => trim(
+					implode(' ', [
+						$custom_logo_attr['class'],
+						'ct-hidden-sm',
+						'ct-hidden-md'
+					])
+				)
+			] : []
+		)
 	);
 
 	$inline_svg_logos = blocksy_akg('inline_svg_logos', $atts, 'no');
@@ -233,6 +247,25 @@ if ($custom_logo_id) {
 		$aria_label = 'aria-label="' . esc_attr($aria_label) . '"';
 	}
 
+	if ($has_custom_mobile_logo) {
+		$footer_mobile_logo_html = wp_get_attachment_image(
+			$default_logo['mobile'],
+			'full',
+			false,
+			array_merge(
+				$custom_logo_attr,
+				[
+					'class' => trim(
+						implode(' ', [
+							$custom_logo_attr['class'],
+							'ct-hidden-lg'
+						])
+					)
+				]
+			)
+		);
+	}
+
 	/**
 	 * If the alt attribute is not empty, there's no need to explicitly pass
 	 * it because wp_get_attachment_image() already adds the alt attribute.
@@ -243,7 +276,7 @@ if ($custom_logo_id) {
 			apply_filters('blocksy:' . $panel_type . ':logo:url', home_url('/'))
 		),
 		$aria_label,
-		$image_logo_html
+		$image_logo_html . $footer_mobile_logo_html,
 	);
 }
 
@@ -289,6 +322,7 @@ if (
 }
 
 $wrapper_class = 'site-branding';
+
 
 $wrapper_class = trim($wrapper_class . ' ' . blocksy_default_akg(
 	'header_logo_class',

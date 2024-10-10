@@ -75,11 +75,7 @@ test('it properly mutates a desktop value', () => {
 
 			device: 'desktop',
 		})
-	).toStrictEqual({
-		desktop: 1,
-		tablet: 1,
-		mobile: 1,
-	})
+	).toStrictEqual(1)
 })
 
 test('it properly mutates a tablet value', () => {
@@ -266,4 +262,18 @@ test('it properly mutates a tablet value with skipped tablet', () => {
 
 		__changed: ['mobile'],
 	})
+})
+
+it('it doesnt promote plain value into responsive one if not needed', () => {
+	expect(
+		mutateResponsiveValueWithScalar({
+			scalarValue: 1,
+
+			responsiveValue: {
+				desktop: 2,
+				tablet: 2,
+				mobile: 2,
+			},
+		})
+	).toStrictEqual(1)
 })

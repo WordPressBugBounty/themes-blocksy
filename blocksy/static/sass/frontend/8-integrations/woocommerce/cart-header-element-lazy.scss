@@ -44,7 +44,7 @@
 			--theme-button-font-weight: 600;
 			--theme-button-letter-spacing: 0.05em;
 			--theme-button-text-transform: uppercase;
-			
+
 			--theme-button-padding: 0 10px;
 			--theme-button-min-height: 45px;
 			--theme-button-shadow: none;
@@ -53,19 +53,21 @@
 	}
 
 	// placement
-	@include media-breakpoint-down(xs) {
-		display: none;
+	// @include media-breakpoint-down(xs) {
+		// display: none;
+	// }
+
+	// @include media-breakpoint-up(sm) {
+
+	&[data-placement='left'] {
+		right: -20px;
 	}
 
-	@include media-breakpoint-up(sm) {
-		&[data-placement='left'] {
-			right: -20px;
-		}
-
-		&[data-placement='right'] {
-			left: -20px;
-		}
+	&[data-placement='right'] {
+		left: -20px;
 	}
+
+	// }
 
 	// bridge
 	&:before {

@@ -17,14 +17,92 @@ class DefaultValuesCleaner {
 			}
 
 			if (isset($mod_value['desktop'])) {
-				set_theme_mod(
-					$mod_name,
-					$this->clean_responsive_value($mod_value)
-				);
+				$cleaned_value = $this->clean_responsive_value($mod_value);
+
+				if ($cleaned_value['changed']) {
+					set_theme_mod($mod_name, $cleaned_value['value']);
+				}
 			}
 		}
 
 		blocksy_manager()->db->wipe_cache();
+	}
+
+	public function clean_whole_customizer_recursively() {
+		$all_mods = get_theme_mods();
+
+		$theme_slug = get_option('stylesheet');
+
+		$option_name = "theme_mods_$theme_slug";
+
+		$mods = get_option($option_name, '__empty__');
+
+		if ($mods === '__empty__' || ! is_array($mods)) {
+			return;
+		}
+
+		$new_mods = [];
+
+		$change_count = 0;
+
+		foreach ($mods as $mod_name => $mod_value) {
+			$cleaned_value = $this->clean_value_recursively($mod_value);
+
+			if ($cleaned_value['changed']) {
+				$new_mods[$mod_name] = $cleaned_value['value'];
+				$change_count++;
+			} else {
+				$new_mods[$mod_name] = $mod_value;
+			}
+		}
+
+		if ($change_count > 0) {
+			update_option($option_name, $new_mods);
+		}
+	}
+
+	public function clean_value_recursively($value) {
+		if (! is_array($value)) {
+			return [
+				'value' => $value,
+				'changed' => false
+			];
+		}
+
+		if ($this->is_responsive_value($value)) {
+			return $this->clean_responsive_value($value);
+		}
+
+		$result = [];
+
+		$changed = false;
+
+		foreach ($value as $key => $mod_value) {
+			if ($this->is_responsive_value($mod_value)) {
+				$clean_result = $this->clean_responsive_value($mod_value);
+
+				if ($clean_result['changed']) {
+					$changed = true;
+				}
+
+				$result[$key] = $clean_result['value'];
+
+				continue;
+			}
+
+			$clean_result = $this->clean_value_recursively($mod_value);
+
+			$result[$key] = $clean_result['value'];
+
+			if ($clean_result['changed']) {
+				$changed = true;
+			}
+		}
+
+		return [
+			'value' => $result,
+			'changed' => $changed
+		];
 	}
 
 	public function clean_header() {
@@ -163,8 +241,13 @@ class DefaultValuesCleaner {
 			}
 
 			if ($item_value != $collected[$item_key]['value']) {
-				$new_item[$item_key] = $this->clean_responsive_value($item_value);
-				$item_changed = true;
+				$clean_result = $this->clean_responsive_value($item_value);
+
+				if ($clean_result['changed']) {
+					$item_changed = true;
+				}
+
+				$new_item[$item_key] = $clean_result['value'];
 			}
 		}
 
@@ -183,15 +266,19 @@ class DefaultValuesCleaner {
 
 	private function clean_responsive_value($value) {
 		if (! is_array($value) || ! isset($value['desktop'])) {
-			return $value;
+			return [
+				'value' => $value,
+				'changed' => false
+			];
 		}
 
-		$allowed_keys = [
+		$device_keys = [
 			'desktop',
 			'tablet',
-			'mobile',
-			'__changed'
+			'mobile'
 		];
+
+		$allowed_keys = array_merge($device_keys, ['__changed']);
 
 		$new_value = [];
 
@@ -201,6 +288,48 @@ class DefaultValuesCleaner {
 			}
 		}
 
-		return $new_value;
+		$equal_to_all = false;
+
+		if (isset($new_value['tablet']) && isset($new_value['mobile'])) {
+			$equal_to_all = $this->deep_compare(
+				$new_value['desktop'],
+				$new_value['tablet']
+			);
+
+			$equal_to_all = $this->deep_compare(
+				$new_value['desktop'],
+				$new_value['mobile']
+			);
+		}
+
+		if ($equal_to_all) {
+			return [
+				'value' => $new_value['desktop'],
+				'changed' => true
+			];
+		}
+
+		return [
+			'value' => $new_value,
+			'changed' => ! $this->deep_compare($new_value, $value)
+		];
+	}
+
+	private function is_responsive_value($value) {
+		return (
+			isset($value['desktop'])
+			&&
+			// Header placements also has a `desktop` key but is not a
+			// responsive value, so it should be skipped.
+			(
+				! isset($value['mode'])
+				||
+				$value['mode'] !== 'placements'
+			)
+		);
+	}
+
+	private function deep_compare($a, $b) {
+		return $a == $b;
 	}
 }

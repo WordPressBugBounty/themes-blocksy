@@ -185,6 +185,7 @@
 	grid-column-gap: 20px;
 	grid-row-gap: 1.5em;
 	--theme-content-spacing: 0;
+	--theme-link-initial-color: var(--theme-text-color);
 
 	@include media-breakpoint-up(md) {
 		grid-template-columns: repeat(2, 1fr);
@@ -200,10 +201,6 @@
 		[class*='comment-form-field-input'] {
 			--grid-column: span 1;
 		}
-	}
-
-	a {
-		--theme-link-initial-color: var(--theme-text-color);
 	}
 
 	.logged-in-as,

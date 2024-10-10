@@ -203,16 +203,17 @@ function blocksy_output_product_toolbar() {
 
 $action_to_hook = 'wp';
 
-if (
-	wp_doing_ajax()
-	||
-	(
-		isset($_GET['action'])
-		&&
-		$_GET['action'] === 'elementor'
-	)
-) {
+if (wp_doing_ajax()) {
 	$action_to_hook = 'init';
+}
+
+// Need to remove actions a little later when loaded in Elementor editor
+if (
+	isset($_GET['action'])
+	&&
+	$_GET['action'] === 'elementor'
+) {
+	$action_to_hook = 'elementor/editor/init';
 }
 
 add_action($action_to_hook, function () {

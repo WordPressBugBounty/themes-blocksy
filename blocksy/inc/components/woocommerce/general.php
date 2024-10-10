@@ -48,6 +48,14 @@ add_filter('woocommerce_quantity_input_args', function ($args, $product) {
 	global $blocksy_quantity_args;
 	$blocksy_quantity_args = $args;
 
+	if (! isset($blocksy_quantity_args['min_value'])) {
+		$blocksy_quantity_args['min_value'] = 0;
+	}
+
+	if (! isset($blocksy_quantity_args['max_value'])) {
+		$blocksy_quantity_args['max_value'] = $product->get_max_purchase_quantity();
+	}
+
 	$blocksy_quantity_args['min_value'] = max($blocksy_quantity_args['min_value'], 0);
 	$blocksy_quantity_args['max_value'] = 0 < $blocksy_quantity_args['max_value'] ? $blocksy_quantity_args['max_value'] : '';
 

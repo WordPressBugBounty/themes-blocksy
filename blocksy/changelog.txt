@@ -1,3 +1,25 @@
+2.0.72: 2024-10-10
+- Improvement: AJAX single product add to cart - speed improvements
+- Improvement: Convert share box network switches in to addable box for better organization
+- Improvement: Ensure global styles are correctly outputted in customizer mode
+- Improvement: Make sure customizer reset option applies to "Product Catalogue" options too
+- Improvement: Make sure products shortcode is displayed correctly in Elementor edit mode
+
+2.0.71: 2024-10-04
+- Improvement: Responsive value correct migration
+
+2.0.70: 2024-10-03
+- Improvement: Correctly define min/max bounds for product quantity input
+- Improvement: Correctly display cart dropdown on touch devices
+- Improvement: Menu header element live preview sync issue when changing hover types
+- Improvement: Smarter and more optimized options saving in customizer
+
+2.0.69: 2024-09-26
+- Improvement: Better compatibility with Svea Checkout plugin
+- Improvement: Footer divider remains set for tablet/mobile views if number of columns is set to one column
+- Improvement: Use native REST API search endpoint for live results retrieval
+- Fix: Footer logo - per device image selection does not work properly
+
 2.0.68: 2024-09-19
 - Improvement: Custom post types - improve handling of multiple non-hierarchical taxonomies
 - Improvement: Newsletter block correctly maintain container width when placed inside a footer column

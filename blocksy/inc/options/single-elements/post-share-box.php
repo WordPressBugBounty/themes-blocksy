@@ -38,6 +38,10 @@ if (! isset($general_tab_end)) {
 	$general_tab_end = [];
 }
 
+if (! isset($has_share_box_wrapper_attr)) {
+	$has_share_box_wrapper_attr = false;
+}
+
 if (! isset($has_bottom_share_box_spacing)) {
 	$has_bottom_share_box_spacing = true;
 }
@@ -57,6 +61,99 @@ if (! isset($has_forced_icons_spacing)) {
 if (! isset($display_style)) {
 	$display_style = 'panel';
 }
+
+$networks_options = [
+	$prefix . 'share_networks' => [
+		'type' => 'ct-layers',
+		'itemClass' => $has_share_box_wrapper_attr ? 'ct-inner-layer' : '',
+		'label' => __('Share Networks', 'blocksy-companion'),
+		'manageable' => true,
+		'value' => [
+			[
+				'id' => 'facebook',
+				'enabled' => true,
+			],
+			[
+				'id' => 'twitter',
+				'enabled' => true,
+			],
+			[
+				'id' => 'pinterest',
+				'enabled' => true,
+			],
+			[
+				'id' => 'linkedin',
+				'enabled' => true,
+			]
+		],
+		'settings' => [
+			'facebook' => [
+				'id' => 'facebook',
+				'label' => __('Facebook', 'blocksy'),
+			],
+			'twitter' => [
+				'id' => 'twitter',
+				'label' => __('X (Twitter)', 'blocksy'),
+			],
+			'pinterest' => [
+				'id' => 'pinterest',
+				'label' => __('Pinterest', 'blocksy'),
+			],
+			'linkedin' => [
+				'id' => 'linkedin',
+				'label' => __('LinkedIn', 'blocksy'),
+			],
+			'reddit' => [
+				'id' => 'reddit',
+				'label' => __('Reddit', 'blocksy'),
+			],
+			'hacker_news' => [
+				'id' => 'hacker_news',
+				'label' => __('Hacker News', 'blocksy'),
+			],
+			'vk' => [
+				'id' => 'vk',
+				'label' => __('VKontakte', 'blocksy'),
+			],
+			'ok' => [
+				'id' => 'ok',
+				'label' => __('Odnoklassniki', 'blocksy'),
+			],
+			'telegram' => [
+				'id' => 'telegram',
+				'label' => __('Telegram', 'blocksy'),
+			],
+			'viber' => [
+				'id' => 'viber',
+				'label' => __('Viber', 'blocksy'),
+			],
+			'whatsapp' => [
+				'id' => 'whatsapp',
+				'label' => __('WhatsApp', 'blocksy'),
+			],
+			'flipboard' => [
+				'id' => 'flipboard',
+				'label' => __('Flipboard', 'blocksy'),
+			],
+			'line' => [
+				'id' => 'line',
+				'label' => __('Line', 'blocksy'),
+			],
+			'threads' => [
+				'id' => 'threads',
+				'label' => __('Threads', 'blocksy'),
+			],
+			'email' => [
+				'id' => 'email',
+				'label' => __('Email', 'blocksy'),
+			],
+			'clipboard' => [
+				'id' => 'clipboard',
+				'label' => __('Copy to Clipboard', 'blocksy'),
+			],
+		],
+	],
+];
 
 $general_tab_options = array_merge(
 	[
@@ -165,169 +262,10 @@ $general_tab_options = array_merge(
 		],
 
 		blocksy_rand_md5() => [
-			'type' => 'ct-title',
-			'label' => __( 'Share Networks', 'blocksy' ),
+			'type' => 'ct-divider',
 		],
 
-		$prefix . 'share_facebook' => [
-			'label' => __( 'Facebook', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'yes',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_twitter' => [
-			'label' => __( 'X (Twitter)', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'yes',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_pinterest' => [
-			'label' => __( 'Pinterest', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'yes',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_linkedin' => [
-			'label' => __( 'LinkedIn', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'yes',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_reddit' => [
-			'label' => __( 'Reddit', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			])
-		],
-
-		$prefix . 'share_hacker_news' => [
-			'label' => __( 'Hacker News', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_vk' => [
-			'label' => __( 'VKontakte', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_ok' => [
-			'label' => __( 'Odnoklassniki', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_telegram' => [
-			'label' => __( 'Telegram', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_viber' => [
-			'label' => __( 'Viber', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_whatsapp' => [
-			'label' => __( 'WhatsApp', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_flipboard' => [
-			'label' => __( 'Flipboard', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_line' => [
-			'label' => __( 'Line', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_threads' => [
-			'label' => __( 'Threads', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_email' => [
-			'label' => __( 'Email', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
-
-		$prefix . 'share_clipboard' => [
-			'label' => __( 'Copy to Clipboard', 'blocksy' ),
-			'type' => 'ct-switch',
-			'value' => 'no',
-			'sync' => blocksy_sync_whole_page([
-				'prefix' => $sync_prefix,
-				'loader_selector' => '.ct-share-box'
-			]),
-		],
+		$networks_options,
 
 		blocksy_rand_md5() => [
 			'type' => 'ct-divider',
@@ -751,3 +689,6 @@ if ($display_style === 'design_only') {
 	$options = $design_tab_options;
 }
 
+if ($display_style === 'networks_only') {
+	$options = $networks_options;
+}

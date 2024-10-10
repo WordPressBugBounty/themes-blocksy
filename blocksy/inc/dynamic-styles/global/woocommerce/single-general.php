@@ -119,6 +119,8 @@ $related_columns = blocksy_get_theme_mod('woo_product_related_cards_columns', [
 	'desktop' => 4,
 ]);
 
+$related_columns = blocksy_expand_responsive_value($related_columns);
+
 $related_columns['desktop'] = 'CT_CSS_SKIP_RULE';
 $related_columns['tablet'] = 'repeat(' . $related_columns['tablet'] . ', minmax(0, 1fr))';
 $related_columns['mobile'] = 'repeat(' . $related_columns['mobile'] . ', minmax(0, 1fr))';

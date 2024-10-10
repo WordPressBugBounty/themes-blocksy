@@ -15,3 +15,9 @@ add_filter(
 		return $inline_exclusions_list;
 	}
 );
+
+add_filter('rocket_lrc_exclusions', function($exclusions) {
+	$exclusions[] = 'class="ct-drawer-canvas" data-location="end"';
+	return $exclusions;
+});
+

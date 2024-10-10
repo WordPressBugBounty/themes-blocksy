@@ -5,6 +5,8 @@ namespace Blocksy;
 class WooCommerceAddToCart {
 	use WordPressActionsManager;
 
+	private $finalize_action_name = '';
+
 	private $handled_product_ids = [];
 
 	private $actions = [
@@ -48,7 +50,31 @@ class WooCommerceAddToCart {
 			);
 		}
 
-		add_action('wp_footer', [$this, 'wp_footer']);
+		add_action('wp_ajax_blocksy_add_to_cart', [$this, 'blocksy_add_to_cart']);
+		add_action('wp_ajax_nopriv_blocksy_add_to_cart', [$this, 'blocksy_add_to_cart']);
+	}
+
+	public function blocksy_add_to_cart() {
+		ob_start();
+		wc_print_notices();
+		$notices = ob_get_clean();
+
+		ob_start();
+		woocommerce_mini_cart();
+		$mini_cart = ob_get_clean();
+
+		$data = [
+			'notices' => $notices,
+			'fragments' => apply_filters(
+				'woocommerce_add_to_cart_fragments',
+				[
+					'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $mini_cart . '</div>',
+				]
+			),
+			'cart_hash' => WC()->cart->get_cart_hash()
+		];
+
+		wp_send_json_success($data);
 	}
 
 	private function product_was_handled($product) {
@@ -83,6 +109,33 @@ class WooCommerceAddToCart {
 				'woocommerce_after_add_to_cart_button'
 			]
 		]);
+	}
+
+	public function finalize_add_to_cart() {
+		global $product;
+
+		if ($this->product_was_handled($product)) {
+			return;
+		}
+
+		if (! $product) {
+			return;
+		}
+
+		// On single product pages we know for sure that there's only one
+		// product that needs handling. On other pages or during AJAX requests,
+		// we need to make sure that we don't handle the same product twice.
+		if (blocksy_manager()->screen->is_product()) {
+			$this->detach_hooks();
+		} else {
+			$this->handled_product_ids[] = $product->get_id();
+		}
+
+		remove_action(
+			$this->finalize_action_name,
+			[$this, 'finalize_add_to_cart'],
+			50
+		);
 	}
 
 	public function woocommerce_before_add_to_cart_form() {
@@ -187,14 +240,6 @@ class WooCommerceAddToCart {
 
 		echo '</div>';
 
-		// On single product pages we know for sure that there's only one
-		// product that needs handling. On other pages or during AJAX requests,
-		// we need to make sure that we don't handle the same product twice.
-		if (blocksy_manager()->screen->is_product()) {
-			$this->detach_hooks();
-		} else {
-			$this->handled_product_ids[] = $product->get_id();
-		}
 	}
 
 	public function woocommerce_post_class($classes) {
@@ -204,6 +249,11 @@ class WooCommerceAddToCart {
 		if ($this->product_was_handled($product)) {
 			return $classes;
 		}
+
+		$classes = apply_filters(
+			'blocksy:woocommerce:single-product:post-class',
+			$classes
+		);
 
 		$default_product_layout = blocksy_get_woo_single_layout_defaults();
 
@@ -223,8 +273,6 @@ class WooCommerceAddToCart {
 			! $product
 			||
 			$product->is_type('external')
-			||
-			$woocommerce_loop['name'] === 'related'
 			||
 			(
 				! blocksy_manager()->screen->is_product()
@@ -248,6 +296,15 @@ class WooCommerceAddToCart {
 			$classes[] = 'ct-ajax-add-to-cart';
 		}
 
+		// https://github.com/woocommerce/woocommerce/blob/701d9341dde6fa8861684fb161cdca9ec94a7a4d/plugins/woocommerce/includes/wc-template-functions.php#L1784
+		$this->finalize_action_name = 'woocommerce_' . $product->get_type() . '_add_to_cart';
+
+		add_action(
+			$this->finalize_action_name,
+			[$this, 'finalize_add_to_cart'],
+			50
+		);
+
 		return $classes;
 	}
 
@@ -259,31 +316,6 @@ class WooCommerceAddToCart {
 		];
 
 		return in_array($product->get_type(), $allowed_custom_product_types);
-	}
-
-	public function wp_footer() {
-		if (! isset($_REQUEST['blocksy_add_to_cart'])) {
-			return;
-		}
-
-		ob_start();
-		woocommerce_mini_cart();
-		$mini_cart = ob_get_clean();
-
-		$data = array(
-			'fragments' => apply_filters(
-				'woocommerce_add_to_cart_fragments',
-				array(
-					'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $mini_cart . '</div>',
-				)
-			),
-			'cart_hash' => WC()->cart->get_cart_hash(),
-		);
-
-		echo blocksy_html_tag('script', [
-			'type' => 'application/json',
-			'id' => 'blocksy-woo-add-to-cart-fragments',
-		], json_encode($data));
 	}
 }
 

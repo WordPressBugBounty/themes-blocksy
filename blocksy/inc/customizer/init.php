@@ -335,51 +335,57 @@ add_action(
 	function () {
 		global $wp_customize;
 
-		if ( ! $wp_customize ) {
+		if (! $wp_customize) {
 			return;
 		}
 
-		if ( ! $wp_customize->is_preview() ) {
+		if (! $wp_customize->is_preview()) {
 			wp_send_json_error();
 		}
 
-		if ( ! check_ajax_referer( 'ct-customizer-reset', 'nonce', false ) ) {
-			wp_send_json_error( 'nonce' );
+		if (! check_ajax_referer('ct-customizer-reset', 'nonce', false)) {
+			wp_send_json_error('nonce');
 		}
 
 		$settings = $wp_customize->settings();
 
 		foreach ($settings as $single_setting) {
-			if ('theme_mod' !== $single_setting->type) {
-				if (
-					$single_setting->id === 'woocommerce_thumbnail_cropping_custom_height'
-					||
-					$single_setting->id === 'woocommerce_thumbnail_cropping_custom_width'
-					||
-					$single_setting->id === 'woocommerce_thumbnail_cropping'
-					||
-					$single_setting->id === 'woocommerce_thumbnail_image_width'
-					||
-					$single_setting->id === 'woocommerce_archive_thumbnail_cropping_custom_height'
-					||
-					$single_setting->id === 'woocommerce_archive_thumbnail_cropping_custom_width'
-					||
-					$single_setting->id === 'woocommerce_archive_thumbnail_cropping'
-					||
-					$single_setting->id === 'woocommerce_archive_thumbnail_image_width'
-					||
-					$single_setting->id === 'woocommerce_catalog_columns'
-					||
-					$single_setting->id === 'woocommerce_catalog_rows'
-				) {
-					delete_option($single_setting->id);
-				}
-
+			if ('theme_mod' === $single_setting->type) {
 				continue;
 			}
 
-			remove_theme_mod( $single_setting->id );
+			if (
+				$single_setting->id === 'woocommerce_thumbnail_cropping_custom_height'
+				||
+				$single_setting->id === 'woocommerce_thumbnail_cropping_custom_width'
+				||
+				$single_setting->id === 'woocommerce_thumbnail_cropping'
+				||
+				$single_setting->id === 'woocommerce_thumbnail_image_width'
+				||
+				$single_setting->id === 'woocommerce_archive_thumbnail_cropping_custom_height'
+				||
+				$single_setting->id === 'woocommerce_archive_thumbnail_cropping_custom_width'
+				||
+				$single_setting->id === 'woocommerce_archive_thumbnail_cropping'
+				||
+				$single_setting->id === 'woocommerce_archive_thumbnail_image_width'
+				||
+				$single_setting->id === 'woocommerce_catalog_columns'
+				||
+				$single_setting->id === 'woocommerce_catalog_rows'
+				||
+				$single_setting->id === 'woocommerce_shop_page_display'
+				||
+				$single_setting->id === 'woocommerce_category_archive_display'
+				||
+				$single_setting->id === 'woocommerce_default_catalog_orderby'
+			) {
+				delete_option($single_setting->id);
+			}
 		}
+
+		remove_theme_mods();
 
 		update_option('blocksy_custom_palettes', []);
 		do_action('blocksy:dynamic-css:refresh-caches');

@@ -9,8 +9,6 @@ function blocksy_has_product_specific_layer($layer_id = '', $args = []) {
 		return false;
 	}
 
-	$prefix = blocksy_manager()->screen->get_prefix();
-
 	if ($args['respect_post_type']) {
 		$post_type = get_post_type();
 
@@ -26,10 +24,7 @@ function blocksy_has_product_specific_layer($layer_id = '', $args = []) {
 		$default_product_layout
 	);
 
-	$layout = blocksy_normalize_layout(
-		$layout,
-		$default_product_layout
-	);
+	$layout = blocksy_normalize_layout($layout, $default_product_layout);
 
 	$product_view_type = blocksy_get_product_view_type();
 

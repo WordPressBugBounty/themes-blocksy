@@ -59,6 +59,7 @@ foreach ($woo_single_layout as $layer) {
 		'product_actions' => '.entry-summary-items > .ct-product-additional-actions',
 		'product_countdown' => '.entry-summary-items > .ct-product-sale-countdown',
 		'product_stock_scarcity' => '.entry-summary-items > .ct-product-stock-scarcity',
+		'product_waitlist' => '.entry-summary-items > .ct-product-waitlist',
 	];
 
 	$spacing_default = 10;
@@ -75,6 +76,8 @@ foreach ($woo_single_layout as $layer) {
 		$layer['id'] === 'product_actions'
 		||
 		$layer['id'] === 'product_countdown'
+		||
+		$layer['id'] === 'product_waitlist'
 	) {
 		$spacing_default = 35;
 	}
@@ -321,7 +324,7 @@ blocksy_output_font_css([
 	'css' => $css,
 	'tablet_css' => $tablet_css,
 	'mobile_css' => $mobile_css,
-	'selector' => '.product-entry-wrapper .price'
+	'selector' => '.entry-summary .price'
 ]);
 
 blocksy_output_colors([
@@ -332,7 +335,7 @@ blocksy_output_colors([
 	'css' => $css,
 	'variables' => [
 		'default' => [
-			'selector' => '.product-entry-wrapper .price',
+			'selector' => '.entry-summary .price',
 			'variable' => 'theme-text-color'
 		],
 	],

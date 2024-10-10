@@ -156,7 +156,7 @@ foreach ($woo_card_layout as $layer) {
 			]
 		)) {
 			$id = substr(isset($layer["__id"]) ? $layer["__id"] : 'default', 0, 6);
-	
+
 			blocksy_output_responsive([
 				'css' => $css,
 				'tablet_css' => $tablet_css,
@@ -166,7 +166,7 @@ foreach ($woo_card_layout as $layer) {
 				'value' => $spacing,
 				'unit' => 'px'
 			]);
-		
+
 		}
 	}
 }
@@ -178,6 +178,8 @@ $shop_columns = blocksy_get_theme_mod('blocksy_woo_columns', [
 	'tablet' => 3,
 	'mobile' => 1,
 ]);
+
+$shop_columns = blocksy_expand_responsive_value($shop_columns);
 
 $shop_columns['desktop'] = get_option('woocommerce_catalog_columns', 4);
 $shop_columns['desktop'] = 'CT_CSS_SKIP_RULE';

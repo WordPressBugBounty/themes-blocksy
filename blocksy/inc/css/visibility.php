@@ -22,17 +22,19 @@ if (! function_exists('blocksy_visibility_classes')) {
 			]
 		);
 
+		$data = blocksy_expand_responsive_value($data);
+
 		$classes = [];
 
-		if (isset($data['mobile']) && !$data['mobile']) {
+		if (isset($data['mobile']) && ! $data['mobile']) {
 			$classes[] = 'ct-hidden-sm';
 		}
 
-		if (isset($data['tablet']) && !$data['tablet']) {
+		if (isset($data['tablet']) && ! $data['tablet']) {
 			$classes[] = 'ct-hidden-md';
 		}
 
-		if (isset($data['desktop']) && !$data['desktop']) {
+		if (isset($data['desktop']) && ! $data['desktop']) {
 			$classes[] = 'ct-hidden-lg';
 		}
 
@@ -88,6 +90,8 @@ if (! function_exists('blocksy_output_responsive_switch')) {
 				'skip_when' => 'all_enabled'
 			]
 		);
+
+		$args['value'] = blocksy_expand_responsive_value($args['value']);
 
 		blocksy_assert_args(
 			$args,

@@ -9,24 +9,19 @@ export const getWooArchiveVariablesFor = () => ({
 		v.map((layer) => {
 			let selectorsMap = {
 				product_image: '[data-products] .product figure',
-				product_title:
-					'[data-products] .product .woocommerce-loop-product__title',
+				product_title: '[data-products] .product .woocommerce-loop-product__title',
 				product_price: '[data-products] .product .price',
 				product_rating: '[data-products] .product .star-rating',
 				// product_meta: '[data-products] .product .entry-meta',
 				product_desc: '[data-products] .product .entry-excerpt',
-				product_add_to_cart:
-					'[data-products] .product .ct-woo-card-actions',
-				product_add_to_cart_and_price:
-					'[data-products] .product .ct-woo-card-actions',
+				product_add_to_cart: '[data-products] .product .ct-woo-card-actions',
+				product_add_to_cart_and_price: '[data-products] .product .ct-woo-card-actions',
 
 				// companion
 				product_brands: '[data-products] .product .ct-product-brands',
-				product_swatches:
-					'[data-products] .product .ct-card-variation-swatches',
+				product_swatches: '[data-products] .product .ct-card-variation-swatches',
 				product_sku: '[data-products] .product .ct-product-sku',
-				product_stock_scarcity:
-					'[data-products] .product .ct-product-stock-scarcity',
+				product_stock_scarcity: '[data-products] .product .ct-product-stock-scarcity',
 			}
 
 			if (selectorsMap[layer.id]) {

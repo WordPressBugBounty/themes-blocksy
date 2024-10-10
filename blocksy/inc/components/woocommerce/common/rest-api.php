@@ -1,23 +1,7 @@
 <?php
 
-add_action('rest_api_init', function () {
-	if (! function_exists('is_shop')) {
-		return;
-	}
-
-	if (
-		! isset($_GET['post_type'])
-		||
-		(
-			! str_contains($_GET['post_type'], 'product')
-			&&
-			$_GET['post_type'] !== 'ct_forced_any'
-		)
-	) {
-		return;
-	}
-
-	register_rest_field('post', 'placeholder_image', array(
+add_action('blocksy:rest_api:live_search:fields', function () {
+	register_rest_field('search-result', 'placeholder_image', [
 		'get_callback' => function ($post, $field_name, $request) {
 			if ($post['type'] !== 'product') {
 				return null;
@@ -25,16 +9,16 @@ add_action('rest_api_init', function () {
 
 			return wc_placeholder_img_src('thumbnail');
 		}
-	));
+	]);
 
 	if (
 		isset($_GET['product_price'])
 		&&
 		$_GET['product_price'] === 'true'
 	) {
-		register_rest_field('post', 'product_price', array(
+		register_rest_field('search-result', 'product_price', array(
 			'get_callback' => function ($post, $field_name, $request) {
-				if ($post['type'] !== 'product') {
+				if ($post['subtype'] !== 'product') {
 					return 0;
 				}
 
@@ -126,9 +110,9 @@ add_action('rest_api_init', function () {
 		&&
 		$_GET['product_status'] === 'true'
 	) {
-		register_rest_field('post', 'product_status', array(
+		register_rest_field('search-result', 'product_status', array(
 			'get_callback' => function ($post, $field_name, $request) {
-				if ($post['type'] !== 'product') {
+				if ($post['subtype'] !== 'product') {
 					return null;
 				}
 
@@ -146,3 +130,4 @@ add_action('rest_api_init', function () {
 		));
 	}
 });
+

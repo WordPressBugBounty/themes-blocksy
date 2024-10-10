@@ -12,7 +12,7 @@ function blocksy_assert_args($args, $fields = []) {
 		if (
 			! isset($args[$single_field])
 			||
-			!$args[$single_field]
+			! $args[$single_field]
 		) {
 			throw new Error($single_field . ' missing in args!');
 		}

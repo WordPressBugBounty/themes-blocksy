@@ -319,11 +319,11 @@ const loadSingleEntryPoint = ({
 					el.addEventListener(
 						'click',
 						(event) => {
-							// iOS devices will prevent the click by default, no need
-							// to prevent it manually
-							if (!isIosDevice()) {
-								event.preventDefault()
-							}
+							// Previously, iOS devices were handling such
+							// behavior out of the box, but now it is
+							// mandatory to prevent the default behavior of the
+							// click event even there.
+							event.preventDefault()
 
 							if (mouseOverState === true) {
 								return

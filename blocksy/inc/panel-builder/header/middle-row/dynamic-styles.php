@@ -25,6 +25,8 @@ if (empty($default_background)) {
 // Row height
 $headerRowHeight = blocksy_akg('headerRowHeight', $atts, $default_height);
 
+$headerRowHeight = blocksy_expand_responsive_value($headerRowHeight);
+
 blocksy_output_responsive([
 	'css' => $css,
 	'tablet_css' => $tablet_css,

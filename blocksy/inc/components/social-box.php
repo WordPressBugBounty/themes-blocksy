@@ -1017,165 +1017,6 @@ if (! function_exists('blocksy_get_social_metadata')) {
 	}
 }
 
-if (! function_exists('blocksy_get_social_share_items')) {
-	function blocksy_get_social_share_items($args = []) {
-		$args = wp_parse_args(
-			$args,
-			[
-				'strategy' => [
-					'strategy' => 'customizer',
-					'prefix' => blocksy_manager()->screen->get_prefix()
-				]
-			]
-		);
-
-		return [
-			[
-				'id' => 'facebook',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_facebook',
-					$args['strategy'],
-					'yes'
-				) === 'yes'
-			],
-
-			[
-				'id' => 'twitter',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_twitter',
-					$args['strategy'],
-					'yes'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'pinterest',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_pinterest',
-					$args['strategy'],
-					'yes'
-				) === 'yes'
-			],
-
-			[
-				'id' => 'linkedin',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_linkedin',
-					$args['strategy'],
-					'yes'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'reddit',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_reddit',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'hacker_news',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_hacker_news',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'vk',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_vk',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'ok',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_ok',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'telegram',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_telegram',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'viber',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_viber',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'whatsapp',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_whatsapp',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'flipboard',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_flipboard',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'email',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_email',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'line',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_line',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'threads',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_threads',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-
-			[
-				'id' => 'clipboard',
-				'enabled' => blocksy_akg_or_customizer(
-					'share_clipboard',
-					$args['strategy'],
-					'no'
-				) === 'yes',
-			],
-		];
-	}
-}
 
 if (! function_exists('blocksy_get_social_box')) {
 function blocksy_get_social_box($args = []) {
@@ -1221,9 +1062,28 @@ function blocksy_get_social_box($args = []) {
 	);
 
 	if ($args['type'] === 'share') {
-		$args['socials'] = blocksy_get_social_share_items([
-			'strategy' => $args['strategy']
-		]);
+		$args['socials'] = blocksy_akg_or_customizer(
+			'share_networks',
+			$args['strategy'],
+			[
+				[
+					'id' => 'facebook',
+					'enabled' => true,
+				],
+				[
+					'id' => 'twitter',
+					'enabled' => true,
+				],
+				[
+					'id' => 'pinterest',
+					'enabled' => true,
+				],
+				[
+					'id' => 'linkedin',
+					'enabled' => true,
+				]
+			]
+		);
 	}
 
 	if ($args['socials'] === null) {

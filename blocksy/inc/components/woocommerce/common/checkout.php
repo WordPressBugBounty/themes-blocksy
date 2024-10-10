@@ -71,6 +71,11 @@ class WooCommerceCheckout {
 			$ct_skip_checkout = true;
 		}, 10, 1);
 
+		add_action('woocommerce_sco_before_checkout_page', function() {
+			global $ct_skip_checkout;
+			$ct_skip_checkout = true;
+		});
+
 		add_action('wp', function () {
 			if (! $this->has_custom_checkout()) {
 				return;

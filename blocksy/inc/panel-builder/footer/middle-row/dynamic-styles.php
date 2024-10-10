@@ -257,6 +257,8 @@ $footerRowTopDivider = blocksy_akg(
 	$footerRowTopDividerDefault
 );
 
+$footerRowTopDivider = blocksy_expand_responsive_value($footerRowTopDivider);
+
 if (isset($footerRowTopDivider['desktop']) || is_customize_preview()) {
 	blocksy_output_border([
 		'css' => $css,
@@ -346,7 +348,6 @@ if (isset($footerRowBottomDivider['desktop']) || is_customize_preview()) {
 	]);
 }
 
-
 // Row background
 if (empty($default_background)) {
 	$default_background = blocksy_background_default_value([
@@ -368,7 +369,6 @@ blocksy_output_background_css([
 	),
 	'responsive' => true
 ]);
-
 
 $count = count($primary_item['columns']);
 
@@ -417,6 +417,8 @@ if ($count === 6) {
 		'mobile' => 'initial'
 	]);
 }
+
+$gridTemplate = blocksy_expand_responsive_value($gridTemplate);
 
 $css->put(
 	blocksy_assemble_selector(blocksy_mutate_selector([

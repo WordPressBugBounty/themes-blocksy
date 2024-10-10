@@ -534,16 +534,18 @@ export const handleRowOptions = ({
 
 	let dataGrid = []
 
-	if (stack.indexOf('tablet') === -1) {
-		dataGrid.push('md')
-	}
+	if (parseInt(values.items_per_row, 10) > 1) {
+		if (stack.indexOf('tablet') === -1) {
+			dataGrid.push('md')
+		}
 
-	if (stack.indexOf('mobile') === -1) {
-		dataGrid.push('sm')
-	}
+		if (stack.indexOf('mobile') === -1) {
+			dataGrid.push('sm')
+		}
 
-	if (dataGrid.length > 0) {
-		el.firstElementChild.dataset.columnsDivider = dataGrid.join(':')
+		if (dataGrid.length > 0) {
+			el.firstElementChild.dataset.columnsDivider = dataGrid.join(':')
+		}
 	}
 }
 

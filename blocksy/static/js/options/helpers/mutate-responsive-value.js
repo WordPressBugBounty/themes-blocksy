@@ -1,3 +1,5 @@
+import deepEqual from 'deep-equal'
+
 export const getKeysToMutate = (args = {}) => {
 	args = {
 		changedKeys: [],
@@ -32,13 +34,15 @@ export const getKeysToMutate = (args = {}) => {
 		.map(({ device }) => device)
 }
 
+const allDevices = ['desktop', 'tablet', 'mobile']
+
 export const mutateResponsiveValueWithScalar = (args = {}) => {
 	args = {
 		scalarValue: '__empty__',
 		responsiveValue: '__empty__',
 
 		device: 'desktop',
-		devices: ['desktop', 'tablet', 'mobile'],
+		devices: allDevices,
 
 		...args,
 	}
@@ -81,6 +85,14 @@ export const mutateResponsiveValueWithScalar = (args = {}) => {
 
 	if (changedKeys.length > 0) {
 		result.__changed = [...new Set(changedKeys)]
+	}
+
+	const allDevicesSame = allDevices.every((device) =>
+		deepEqual(result[device], result[allDevices[0]])
+	)
+
+	if (allDevicesSame) {
+		return result[args.devices[0]]
 	}
 
 	return result

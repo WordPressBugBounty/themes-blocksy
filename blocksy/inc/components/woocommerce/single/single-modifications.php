@@ -427,14 +427,18 @@ if (! function_exists('blocksy_woo_single_product_after_main_content')) {
 }
 
 add_filter('woocommerce_output_related_products_args', function ($args) {
-	$columns = intval(blocksy_get_theme_mod(
-		'woo_product_related_cards_columns',
-		[
-			'desktop' => 4,
-			'tablet' => 3,
-			'mobile' => 1
-		]
-	)['desktop']);
+	$columns = intval(
+		blocksy_expand_responsive_value(
+			blocksy_get_theme_mod(
+				'woo_product_related_cards_columns',
+				[
+					'desktop' => 4,
+					'tablet' => 3,
+					'mobile' => 1
+				]
+			)
+		)['desktop']
+	);
 
 	$args['columns'] = $columns;
 	$args['posts_per_page'] = $columns * intval(blocksy_get_theme_mod(
@@ -446,14 +450,18 @@ add_filter('woocommerce_output_related_products_args', function ($args) {
 }, 10);
 
 add_filter('woocommerce_upsell_display_args', function ($args) {
-	$columns = intval(blocksy_get_theme_mod(
-		'woo_product_related_cards_columns',
-		[
-			'desktop' => 4,
-			'tablet' => 3,
-			'mobile' => 1
-		]
-	)['desktop']);
+	$columns = intval(
+		blocksy_expand_responsive_value(
+			blocksy_get_theme_mod(
+				'woo_product_related_cards_columns',
+				[
+					'desktop' => 4,
+					'tablet' => 3,
+					'mobile' => 1
+				]
+			)
+		)['desktop']
+	);
 
 	$args['columns'] = $columns;
 	$args['posts_per_page'] = $columns * intval(blocksy_get_theme_mod(
@@ -465,14 +473,18 @@ add_filter('woocommerce_upsell_display_args', function ($args) {
 }, 10);
 
 add_filter('woocommerce_upsells_columns', function ($columns) {
-	return intval(blocksy_get_theme_mod(
-		'woo_product_related_cards_columns',
-		[
-			'desktop' => 4,
-			'tablet' => 3,
-			'mobile' => 1
-		]
-	)['desktop']);
+	return intval(
+		blocksy_expand_responsive_value(
+			blocksy_get_theme_mod(
+				'woo_product_related_cards_columns',
+				[
+					'desktop' => 4,
+					'tablet' => 3,
+					'mobile' => 1
+				]
+			)
+		)['desktop']
+	);
 });
 
 add_filter('comment_class', function ($classes, $class, $comment_id, $comment) {

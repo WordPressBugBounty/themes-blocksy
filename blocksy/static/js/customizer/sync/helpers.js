@@ -4,6 +4,10 @@ import {
 	getOriginalId,
 } from '../panels-builder/placements/helpers'
 
+export const getSkipRuleKeyword = (suffix = '') => {
+	return `CT_CSS_SKIP_RULE${suffix}`
+}
+
 export const assembleSelector = (selector) =>
 	Array.isArray(selector) ? selector.join(' ') : selector
 
