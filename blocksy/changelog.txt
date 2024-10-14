@@ -1,3 +1,7 @@
+2.0.73: 2024-10-11
+- Improvement: Better handling of responsive values in multiple places
+- Improvement: Make sure "updated date" custom format is translatable via WPML
+
 2.0.72: 2024-10-10
 - Improvement: AJAX single product add to cart - speed improvements
 - Improvement: Convert share box network switches in to addable box for better organization

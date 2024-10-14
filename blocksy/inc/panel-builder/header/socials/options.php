@@ -142,12 +142,11 @@ $options = [
 				'design' => 'block',
 				'allow_empty' => true,
 				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => [
+				'value' => blocksy_default_responsive_value([
 					'desktop' => false,
 					'tablet' => false,
 					'mobile' => false,
-				],
-
+				]),
 				'choices' => blocksy_ordered_keys([
 					'desktop' => __( 'Desktop', 'blocksy' ),
 					'tablet' => __( 'Tablet', 'blocksy' ),
@@ -170,11 +169,10 @@ $options = [
 						'design' => 'block',
 						'setting' => [ 'transport' => 'postMessage' ],
 						'allow_empty' => true,
-						'value' => [
+						'value' => blocksy_default_responsive_value([
 							'tablet' => true,
 							'mobile' => true,
-						],
-
+						]),
 						'choices' => blocksy_ordered_keys([
 							'tablet' => __( 'Tablet', 'blocksy' ),
 							'mobile' => __( 'Mobile', 'blocksy' ),

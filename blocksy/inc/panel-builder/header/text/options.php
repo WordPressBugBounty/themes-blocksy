@@ -113,11 +113,11 @@ $options = [
 					'design' => 'block',
 					'divider' => 'top',
 					'sync' => 'live',
-					'value' => [
+					'value' => blocksy_default_responsive_value([
 						'desktop' => true,
 						'tablet' => true,
 						'mobile' => true,
-					],
+					]),
 					'choices' => blocksy_ordered_keys([
 						'desktop' => __( 'Desktop', 'blocksy' ),
 						'tablet' => __( 'Tablet', 'blocksy' ),
@@ -444,11 +444,10 @@ if ($panel_type === 'header') {
 				'design' => 'block',
 				'setting' => [ 'transport' => 'postMessage' ],
 				'allow_empty' => true,
-				'value' => [
+				'value' => blocksy_default_responsive_value([
 					'tablet' => true,
 					'mobile' => true,
-				],
-
+				]),
 				'choices' => blocksy_ordered_keys([
 					'tablet' => __( 'Tablet', 'blocksy' ),
 					'mobile' => __( 'Mobile', 'blocksy' ),

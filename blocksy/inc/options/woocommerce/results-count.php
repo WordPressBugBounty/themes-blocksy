@@ -24,11 +24,11 @@ $options = [
 						'divider' => 'top',
 						'setting' => ['transport' => 'postMessage'],
 						'allow_empty' => true,
-						'value' => [
+						'value' => blocksy_default_responsive_value([
 							'desktop' => true,
 							'tablet' => true,
 							'mobile' => false,
-						],
+						]),
 
 						'choices' => blocksy_ordered_keys([
 							'desktop' => __( 'Desktop', 'blocksy' ),

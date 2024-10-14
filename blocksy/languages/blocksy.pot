@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-10 16:58+0000\n"
+"POT-Creation-Date: 2024-10-11 18:32+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -29,7 +29,7 @@ msgid "One comment"
 msgstr ""
 
 #. translators: % refers to the number of comments, when more than 1
-#: comments.php:49, inc/components/post-meta.php:499
+#: comments.php:49, inc/components/post-meta.php:505
 msgid "% Comments"
 msgstr ""
 
@@ -239,8 +239,8 @@ msgstr ""
 #: woocommerce/product-searchform.php:28, inc/classes/screen-manager.php:212,
 #: inc/components/builder/header-elements.php:196,
 #: inc/panel-builder/header/search/config.php:4,
-#: inc/panel-builder/header/search/options.php:110,
-#: inc/panel-builder/header/search/options.php:423,
+#: inc/panel-builder/header/search/options.php:109,
+#: inc/panel-builder/header/search/options.php:422,
 #: inc/panel-builder/header/search/view.php:28
 msgid "Search"
 msgstr ""
@@ -333,7 +333,7 @@ msgstr ""
 #: inc/components/breadcrumbs.php:41, inc/components/hero/elements.php:201,
 #: inc/options/general/breadcrumbs.php:104,
 #: inc/options/general/page-title.php:119,
-#: inc/options/general/page-title.php:362
+#: inc/options/general/page-title.php:360
 #: admin/dashboard/static/js/Navigation.js:21
 msgid "Home"
 msgstr ""
@@ -366,7 +366,7 @@ msgstr ""
 #: inc/components/menus.php:527, inc/helpers/cpt.php:35,
 #: inc/options/general/back-to-top.php:37,
 #: inc/options/general/breadcrumbs.php:12, inc/options/general/meta.php:163,
-#: inc/options/general/meta.php:372, inc/options/general/page-title.php:732,
+#: inc/options/general/meta.php:372, inc/options/general/page-title.php:728,
 #: inc/options/single-elements/featured-image.php:81,
 #: inc/options/single-elements/post-nav.php:41,
 #: inc/options/single-elements/related-posts.php:145,
@@ -378,8 +378,8 @@ msgstr ""
 #: inc/panel-builder/footer/options.php:12,
 #: inc/options/woocommerce/general/product-badges.php:90,
 #: inc/panel-builder/footer/middle-row/options.php:435,
-#: inc/panel-builder/footer/middle-row/options.php:628,
-#: inc/panel-builder/footer/middle-row/options.php:669,
+#: inc/panel-builder/footer/middle-row/options.php:626,
+#: inc/panel-builder/footer/middle-row/options.php:667,
 #: inc/panel-builder/header/button/options.php:17,
 #: inc/panel-builder/header/button/options.php:37,
 #: inc/panel-builder/header/menu/options.php:84,
@@ -419,37 +419,37 @@ msgstr ""
 msgid "Posts by %s"
 msgstr ""
 
-#: inc/components/post-meta.php:189, inc/components/post-meta.php:769,
+#: inc/components/post-meta.php:189, inc/components/post-meta.php:775,
 #: inc/options/general/meta.php:236
 #: static/js/customizer/sync/helpers/entry-meta.js:71
 msgid "By"
 msgstr ""
 
-#: inc/components/post-meta.php:199, inc/components/post-meta.php:777,
-#: inc/components/post-meta.php:785, inc/options/general/meta.php:290,
+#: inc/components/post-meta.php:199, inc/components/post-meta.php:783,
+#: inc/components/post-meta.php:791, inc/options/general/meta.php:290,
 #: inc/options/general/meta.php:327
 #: static/js/customizer/sync/helpers/entry-meta.js:93
 msgid "On"
 msgstr ""
 
-#: inc/components/post-meta.php:207, inc/components/post-meta.php:793,
+#: inc/components/post-meta.php:207, inc/components/post-meta.php:799,
 #: inc/options/general/meta.php:388
 #: static/js/customizer/sync/helpers/entry-meta.js:107
 msgid "In"
 msgstr ""
 
 #. translators: text for one review
-#: inc/components/post-meta.php:497
+#: inc/components/post-meta.php:503
 msgid "1 Comment"
 msgstr ""
 
 #. translators: text for one review
-#: inc/components/post-meta.php:503
+#: inc/components/post-meta.php:509
 msgid "1 Review"
 msgstr ""
 
 #. translators: % refers to the number of reviews, when more than 1
-#: inc/components/post-meta.php:505
+#: inc/components/post-meta.php:511
 msgid "% Reviews"
 msgstr ""
 
@@ -583,8 +583,8 @@ msgstr ""
 #: inc/options/general/back-to-top.php:26,
 #: inc/options/general/breadcrumbs.php:48, inc/options/general/buttons.php:19,
 #: inc/options/general/comments-single.php:25,
-#: inc/options/general/page-title.php:1304,
-#: inc/options/general/page-title.php:1374,
+#: inc/options/general/page-title.php:1299,
+#: inc/options/general/page-title.php:1369,
 #: inc/options/general/pagination.php:24,
 #: inc/options/general/posts-listing.php:29,
 #: inc/options/general/posts-listing.php:1466,
@@ -598,7 +598,7 @@ msgstr ""
 #: inc/options/single-elements/author-box.php:21,
 #: inc/options/single-elements/featured-image.php:21,
 #: inc/options/single-elements/post-nav.php:29,
-#: inc/options/single-elements/post-share-box.php:633,
+#: inc/options/single-elements/post-share-box.php:631,
 #: inc/options/single-elements/post-tags.php:68,
 #: inc/options/single-elements/related-posts.php:29,
 #: inc/options/woocommerce/archive-main.php:48,
@@ -625,7 +625,7 @@ msgstr ""
 #: inc/panel-builder/footer/widget-area-1/options.php:9,
 #: inc/panel-builder/header/button/options.php:5,
 #: inc/panel-builder/header/cart/options.php:11,
-#: inc/panel-builder/header/cart/options.php:576,
+#: inc/panel-builder/header/cart/options.php:575,
 #: inc/panel-builder/header/logo/options.php:5,
 #: inc/panel-builder/header/menu/options.php:34,
 #: inc/panel-builder/header/menu/options.php:590,
@@ -634,7 +634,7 @@ msgstr ""
 #: inc/panel-builder/header/offcanvas/options.php:5,
 #: inc/panel-builder/header/offcanvas-logo/options.php:6,
 #: inc/panel-builder/header/search/options.php:42,
-#: inc/panel-builder/header/search/options.php:414,
+#: inc/panel-builder/header/search/options.php:413,
 #: inc/panel-builder/header/socials/options.php:5,
 #: inc/panel-builder/header/text/options.php:5,
 #: inc/panel-builder/header/trigger/options.php:5
@@ -829,8 +829,8 @@ msgid "Advanced Search"
 msgstr ""
 
 #: inc/components/blocks/blocks-fallback.php:40,
-#: inc/options/single-elements/post-share-box.php:648,
-#: inc/options/single-elements/post-share-box.php:664
+#: inc/options/single-elements/post-share-box.php:646,
+#: inc/options/single-elements/post-share-box.php:662
 msgid "Share Box"
 msgstr ""
 
@@ -853,7 +853,7 @@ msgstr ""
 #: inc/components/builder/header-elements.php:132,
 #: inc/panel-builder/footer/menu/config.php:4,
 #: inc/panel-builder/header/offcanvas/options.php:111,
-#: inc/panel-builder/header/trigger/options.php:135,
+#: inc/panel-builder/header/trigger/options.php:134,
 #: inc/panel-builder/header/trigger/view.php:11
 msgid "Menu"
 msgstr ""
@@ -952,13 +952,13 @@ msgstr ""
 
 #: inc/components/single/single-helpers.php:410,
 #: inc/components/single/single-helpers.php:546,
-#: inc/options/general/page-title.php:544
+#: inc/options/general/page-title.php:540
 msgid "Articles"
 msgstr ""
 
 #: inc/components/single/single-helpers.php:414,
 #: inc/options/general/comments-single.php:15,
-#: inc/options/general/meta.php:270, inc/options/general/page-title.php:545
+#: inc/options/general/meta.php:270, inc/options/general/page-title.php:541
 msgid "Comments"
 msgstr ""
 
@@ -1002,9 +1002,9 @@ msgid "Icon Source"
 msgstr ""
 
 #: inc/options/general/back-to-top.php:38, inc/options/general/meta.php:164,
-#: inc/options/general/page-title.php:751,
-#: inc/options/general/page-title.php:1346,
-#: inc/options/general/page-title.php:1387,
+#: inc/options/general/page-title.php:747,
+#: inc/options/general/page-title.php:1341,
+#: inc/options/general/page-title.php:1382,
 #: inc/options/general/posts-listing.php:450, inc/options/meta/default.php:95,
 #: inc/options/meta/default.php:126, inc/options/meta/page.php:80,
 #: inc/options/meta/page.php:111, inc/options/meta/post.php:76,
@@ -1119,10 +1119,10 @@ msgstr ""
 #: inc/options/single-elements/post-share-box.php:292,
 #: inc/options/woocommerce/single-product-layers.php:354,
 #: inc/panel-builder/header/cart/options.php:65,
-#: inc/panel-builder/header/cart/options.php:1064,
+#: inc/panel-builder/header/cart/options.php:1063,
 #: inc/panel-builder/header/offcanvas/options.php:240,
 #: inc/panel-builder/header/search/options.php:51,
-#: inc/panel-builder/header/search/options.php:702,
+#: inc/panel-builder/header/search/options.php:701,
 #: inc/panel-builder/header/trigger/options.php:38
 msgid "Icon Size"
 msgstr ""
@@ -1141,7 +1141,7 @@ msgstr ""
 
 #: inc/options/general/back-to-top.php:197,
 #: inc/options/general/page-title.php:302,
-#: inc/options/general/page-title.php:503,
+#: inc/options/general/page-title.php:501,
 #: inc/options/single-elements/author-box.php:213,
 #: inc/options/single-elements/post-share-box.php:417,
 #: inc/options/single-elements/post-tags.php:140,
@@ -1151,157 +1151,157 @@ msgstr ""
 msgid "Visibility"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:209,
-#: inc/options/general/page-title.php:313,
-#: inc/options/general/page-title.php:514,
-#: inc/options/general/page-title.php:815,
+#: inc/options/general/back-to-top.php:207,
+#: inc/options/general/page-title.php:311,
+#: inc/options/general/page-title.php:510,
+#: inc/options/general/page-title.php:810,
 #: inc/options/general/pagination.php:85,
-#: inc/options/general/pagination.php:104, inc/options/general/sidebar.php:247,
-#: inc/options/single-elements/author-box.php:225,
-#: inc/options/single-elements/featured-image.php:128,
-#: inc/options/single-elements/post-nav.php:121,
-#: inc/options/single-elements/post-nav.php:141,
-#: inc/options/single-elements/post-nav.php:159,
-#: inc/options/single-elements/post-share-box.php:429,
-#: inc/options/single-elements/post-tags.php:153,
-#: inc/options/single-elements/related-posts.php:478,
-#: inc/options/woocommerce/products-sorting.php:29,
-#: inc/options/woocommerce/related-upsells.php:89,
-#: inc/options/woocommerce/related-upsells.php:113,
+#: inc/options/general/pagination.php:104, inc/options/general/sidebar.php:245,
+#: inc/options/single-elements/author-box.php:223,
+#: inc/options/single-elements/featured-image.php:126,
+#: inc/options/single-elements/post-nav.php:120,
+#: inc/options/single-elements/post-nav.php:139,
+#: inc/options/single-elements/post-nav.php:156,
+#: inc/options/single-elements/post-share-box.php:427,
+#: inc/options/single-elements/post-tags.php:151,
+#: inc/options/single-elements/related-posts.php:476,
+#: inc/options/woocommerce/products-sorting.php:28,
+#: inc/options/woocommerce/related-upsells.php:87,
+#: inc/options/woocommerce/related-upsells.php:109,
 #: inc/options/woocommerce/results-count.php:34,
-#: inc/panel-builder/footer/options.php:53,
-#: inc/components/woocommerce/single/additional-actions-layer.php:97,
-#: inc/panel-builder/footer/copyright/options.php:79,
-#: inc/panel-builder/footer/menu/options.php:137,
-#: inc/panel-builder/footer/middle-row/options.php:454,
-#: inc/panel-builder/footer/socials/options.php:198,
-#: inc/panel-builder/footer/socials/options.php:217,
-#: inc/panel-builder/header/button/options.php:258,
-#: inc/panel-builder/header/cart/options.php:96,
-#: inc/panel-builder/header/logo/options.php:182,
-#: inc/panel-builder/header/logo/options.php:229,
-#: inc/panel-builder/header/logo/options.php:369,
-#: inc/panel-builder/header/search/options.php:74,
-#: inc/panel-builder/header/socials/options.php:152,
+#: inc/panel-builder/footer/options.php:51,
+#: inc/components/woocommerce/single/additional-actions-layer.php:96,
+#: inc/panel-builder/footer/copyright/options.php:77,
+#: inc/panel-builder/footer/menu/options.php:135,
+#: inc/panel-builder/footer/middle-row/options.php:452,
+#: inc/panel-builder/footer/socials/options.php:197,
+#: inc/panel-builder/footer/socials/options.php:215,
+#: inc/panel-builder/header/button/options.php:257,
+#: inc/panel-builder/header/cart/options.php:95,
+#: inc/panel-builder/header/logo/options.php:179,
+#: inc/panel-builder/header/logo/options.php:224,
+#: inc/panel-builder/header/logo/options.php:364,
+#: inc/panel-builder/header/search/options.php:73,
+#: inc/panel-builder/header/socials/options.php:151,
 #: inc/panel-builder/header/text/options.php:122,
-#: inc/panel-builder/header/trigger/options.php:99
+#: inc/panel-builder/header/trigger/options.php:98
 msgid "Desktop"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:210,
-#: inc/options/general/page-title.php:314,
-#: inc/options/general/page-title.php:515,
-#: inc/options/general/page-title.php:816,
+#: inc/options/general/back-to-top.php:208,
+#: inc/options/general/page-title.php:312,
+#: inc/options/general/page-title.php:511,
+#: inc/options/general/page-title.php:811,
 #: inc/options/general/pagination.php:86,
-#: inc/options/general/pagination.php:105, inc/options/general/sidebar.php:248,
-#: inc/options/single-elements/author-box.php:226,
-#: inc/options/single-elements/featured-image.php:129,
-#: inc/options/single-elements/post-nav.php:122,
-#: inc/options/single-elements/post-nav.php:142,
-#: inc/options/single-elements/post-nav.php:160,
-#: inc/options/single-elements/post-share-box.php:430,
-#: inc/options/single-elements/post-tags.php:154,
-#: inc/options/single-elements/related-posts.php:479,
-#: inc/options/woocommerce/products-sorting.php:30,
-#: inc/options/woocommerce/related-upsells.php:90,
-#: inc/options/woocommerce/related-upsells.php:114,
+#: inc/options/general/pagination.php:105, inc/options/general/sidebar.php:246,
+#: inc/options/single-elements/author-box.php:224,
+#: inc/options/single-elements/featured-image.php:127,
+#: inc/options/single-elements/post-nav.php:121,
+#: inc/options/single-elements/post-nav.php:140,
+#: inc/options/single-elements/post-nav.php:157,
+#: inc/options/single-elements/post-share-box.php:428,
+#: inc/options/single-elements/post-tags.php:152,
+#: inc/options/single-elements/related-posts.php:477,
+#: inc/options/woocommerce/products-sorting.php:29,
+#: inc/options/woocommerce/related-upsells.php:88,
+#: inc/options/woocommerce/related-upsells.php:110,
 #: inc/options/woocommerce/results-count.php:35,
-#: inc/panel-builder/footer/options.php:54,
-#: inc/components/woocommerce/single/additional-actions-layer.php:98,
-#: inc/panel-builder/footer/copyright/options.php:80,
-#: inc/panel-builder/footer/menu/options.php:138,
-#: inc/panel-builder/footer/middle-row/options.php:455,
-#: inc/panel-builder/footer/socials/options.php:199,
-#: inc/panel-builder/footer/socials/options.php:218,
-#: inc/panel-builder/header/button/options.php:202,
-#: inc/panel-builder/header/button/options.php:259,
-#: inc/panel-builder/header/cart/options.php:97,
-#: inc/panel-builder/header/cart/options.php:1128,
-#: inc/panel-builder/header/logo/options.php:183,
-#: inc/panel-builder/header/logo/options.php:230,
-#: inc/panel-builder/header/logo/options.php:370,
+#: inc/panel-builder/footer/options.php:52,
+#: inc/components/woocommerce/single/additional-actions-layer.php:97,
+#: inc/panel-builder/footer/copyright/options.php:78,
+#: inc/panel-builder/footer/menu/options.php:136,
+#: inc/panel-builder/footer/middle-row/options.php:453,
+#: inc/panel-builder/footer/socials/options.php:198,
+#: inc/panel-builder/footer/socials/options.php:216,
+#: inc/panel-builder/header/button/options.php:201,
+#: inc/panel-builder/header/button/options.php:258,
+#: inc/panel-builder/header/cart/options.php:96,
+#: inc/panel-builder/header/cart/options.php:1126,
+#: inc/panel-builder/header/logo/options.php:180,
+#: inc/panel-builder/header/logo/options.php:225,
+#: inc/panel-builder/header/logo/options.php:365,
 #: inc/panel-builder/header/middle-row/options.php:127,
-#: inc/panel-builder/header/mobile-menu/options.php:173,
-#: inc/panel-builder/header/search/options.php:75,
-#: inc/panel-builder/header/search/options.php:865,
-#: inc/panel-builder/header/socials/options.php:153,
-#: inc/panel-builder/header/socials/options.php:179,
+#: inc/panel-builder/header/mobile-menu/options.php:172,
+#: inc/panel-builder/header/search/options.php:74,
+#: inc/panel-builder/header/search/options.php:863,
+#: inc/panel-builder/header/socials/options.php:152,
+#: inc/panel-builder/header/socials/options.php:177,
 #: inc/panel-builder/header/text/options.php:123,
-#: inc/panel-builder/header/text/options.php:453,
-#: inc/panel-builder/header/trigger/options.php:100,
-#: inc/panel-builder/header/trigger/options.php:632
+#: inc/panel-builder/header/text/options.php:452,
+#: inc/panel-builder/header/trigger/options.php:99,
+#: inc/panel-builder/header/trigger/options.php:630
 msgid "Tablet"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:211,
-#: inc/options/general/page-title.php:315,
-#: inc/options/general/page-title.php:516,
-#: inc/options/general/page-title.php:817,
+#: inc/options/general/back-to-top.php:209,
+#: inc/options/general/page-title.php:313,
+#: inc/options/general/page-title.php:512,
+#: inc/options/general/page-title.php:812,
 #: inc/options/general/pagination.php:87,
-#: inc/options/general/pagination.php:106, inc/options/general/sidebar.php:249,
-#: inc/options/single-elements/author-box.php:227,
-#: inc/options/single-elements/featured-image.php:130,
-#: inc/options/single-elements/post-nav.php:123,
-#: inc/options/single-elements/post-nav.php:143,
-#: inc/options/single-elements/post-nav.php:161,
-#: inc/options/single-elements/post-share-box.php:431,
-#: inc/options/single-elements/post-tags.php:155,
-#: inc/options/single-elements/related-posts.php:480,
-#: inc/options/woocommerce/products-sorting.php:31,
-#: inc/options/woocommerce/related-upsells.php:91,
-#: inc/options/woocommerce/related-upsells.php:115,
+#: inc/options/general/pagination.php:106, inc/options/general/sidebar.php:247,
+#: inc/options/single-elements/author-box.php:225,
+#: inc/options/single-elements/featured-image.php:128,
+#: inc/options/single-elements/post-nav.php:122,
+#: inc/options/single-elements/post-nav.php:141,
+#: inc/options/single-elements/post-nav.php:158,
+#: inc/options/single-elements/post-share-box.php:429,
+#: inc/options/single-elements/post-tags.php:153,
+#: inc/options/single-elements/related-posts.php:478,
+#: inc/options/woocommerce/products-sorting.php:30,
+#: inc/options/woocommerce/related-upsells.php:89,
+#: inc/options/woocommerce/related-upsells.php:111,
 #: inc/options/woocommerce/results-count.php:36,
-#: inc/panel-builder/footer/options.php:55,
-#: inc/components/woocommerce/single/additional-actions-layer.php:99,
-#: inc/panel-builder/footer/copyright/options.php:81,
-#: inc/panel-builder/footer/menu/options.php:139,
-#: inc/panel-builder/footer/middle-row/options.php:456,
-#: inc/panel-builder/footer/socials/options.php:200,
-#: inc/panel-builder/footer/socials/options.php:219,
-#: inc/panel-builder/header/button/options.php:203,
-#: inc/panel-builder/header/button/options.php:260,
-#: inc/panel-builder/header/cart/options.php:98,
-#: inc/panel-builder/header/cart/options.php:1129,
-#: inc/panel-builder/header/logo/options.php:184,
-#: inc/panel-builder/header/logo/options.php:231,
-#: inc/panel-builder/header/logo/options.php:371,
+#: inc/panel-builder/footer/options.php:53,
+#: inc/components/woocommerce/single/additional-actions-layer.php:98,
+#: inc/panel-builder/footer/copyright/options.php:79,
+#: inc/panel-builder/footer/menu/options.php:137,
+#: inc/panel-builder/footer/middle-row/options.php:454,
+#: inc/panel-builder/footer/socials/options.php:199,
+#: inc/panel-builder/footer/socials/options.php:217,
+#: inc/panel-builder/header/button/options.php:202,
+#: inc/panel-builder/header/button/options.php:259,
+#: inc/panel-builder/header/cart/options.php:97,
+#: inc/panel-builder/header/cart/options.php:1127,
+#: inc/panel-builder/header/logo/options.php:181,
+#: inc/panel-builder/header/logo/options.php:226,
+#: inc/panel-builder/header/logo/options.php:366,
 #: inc/panel-builder/header/middle-row/options.php:128,
-#: inc/panel-builder/header/mobile-menu/options.php:174,
-#: inc/panel-builder/header/search/options.php:76,
-#: inc/panel-builder/header/search/options.php:866,
-#: inc/panel-builder/header/socials/options.php:154,
-#: inc/panel-builder/header/socials/options.php:180,
+#: inc/panel-builder/header/mobile-menu/options.php:173,
+#: inc/panel-builder/header/search/options.php:75,
+#: inc/panel-builder/header/search/options.php:864,
+#: inc/panel-builder/header/socials/options.php:153,
+#: inc/panel-builder/header/socials/options.php:178,
 #: inc/panel-builder/header/text/options.php:124,
-#: inc/panel-builder/header/text/options.php:454,
-#: inc/panel-builder/header/trigger/options.php:101,
-#: inc/panel-builder/header/trigger/options.php:633
+#: inc/panel-builder/header/text/options.php:453,
+#: inc/panel-builder/header/trigger/options.php:100,
+#: inc/panel-builder/header/trigger/options.php:631
 msgid "Mobile"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:219,
+#: inc/options/general/back-to-top.php:217,
 #: inc/options/general/breadcrumbs.php:175, inc/options/general/buttons.php:45,
 #: inc/options/general/comments-single.php:141,
-#: inc/options/general/page-title.php:1310,
-#: inc/options/general/page-title.php:1401,
+#: inc/options/general/page-title.php:1305,
+#: inc/options/general/page-title.php:1396,
 #: inc/options/general/pagination.php:133,
 #: inc/options/general/posts-listing.php:813,
 #: inc/options/general/posts-listing.php:1680,
-#: inc/options/general/sidebar.php:271,
+#: inc/options/general/sidebar.php:269,
 #: inc/options/integrations/tutorlms-archive.php:39,
 #: inc/options/integrations/tutorlms-single.php:219,
 #: inc/options/meta/default.php:176, inc/options/meta/page.php:160,
 #: inc/options/meta/post.php:159, inc/options/pages/page.php:35,
 #: inc/options/posts/custom-post-type-single.php:51,
 #: inc/options/posts/post.php:26,
-#: inc/options/single-elements/author-box.php:235,
-#: inc/options/single-elements/featured-image.php:140,
-#: inc/options/single-elements/post-nav.php:169,
-#: inc/options/single-elements/post-share-box.php:639,
-#: inc/options/single-elements/post-tags.php:163,
-#: inc/options/single-elements/related-posts.php:488,
+#: inc/options/single-elements/author-box.php:233,
+#: inc/options/single-elements/featured-image.php:138,
+#: inc/options/single-elements/post-nav.php:166,
+#: inc/options/single-elements/post-share-box.php:637,
+#: inc/options/single-elements/post-tags.php:161,
+#: inc/options/single-elements/related-posts.php:486,
 #: inc/options/woocommerce/archive-main.php:166,
 #: inc/options/woocommerce/card-product-elements.php:687,
-#: inc/options/woocommerce/related-upsells.php:123,
+#: inc/options/woocommerce/related-upsells.php:119,
 #: inc/options/woocommerce/results-count.php:44,
 #: inc/options/woocommerce/single-main.php:61,
 #: inc/options/woocommerce/single-product-elements.php:129,
@@ -1316,51 +1316,51 @@ msgstr ""
 #: inc/options/woocommerce/general/product-badges.php:182,
 #: inc/options/woocommerce/general/quantity-input.php:61,
 #: inc/options/woocommerce/general/store-notice.php:56,
-#: inc/panel-builder/footer/copyright/options.php:89,
-#: inc/panel-builder/footer/menu/options.php:147,
-#: inc/panel-builder/footer/middle-row/options.php:464,
-#: inc/panel-builder/footer/socials/options.php:227,
+#: inc/panel-builder/footer/copyright/options.php:87,
+#: inc/panel-builder/footer/menu/options.php:145,
+#: inc/panel-builder/footer/middle-row/options.php:462,
+#: inc/panel-builder/footer/socials/options.php:225,
 #: inc/panel-builder/footer/widget-area-1/options.php:57,
-#: inc/panel-builder/header/button/options.php:313,
-#: inc/panel-builder/header/cart/options.php:146,
-#: inc/panel-builder/header/cart/options.php:704,
-#: inc/panel-builder/header/logo/options.php:406,
+#: inc/panel-builder/header/button/options.php:312,
+#: inc/panel-builder/header/cart/options.php:145,
+#: inc/panel-builder/header/cart/options.php:703,
+#: inc/panel-builder/header/logo/options.php:401,
 #: inc/panel-builder/header/menu/options.php:152,
 #: inc/panel-builder/header/menu/options.php:730,
 #: inc/panel-builder/header/middle-row/options.php:139,
-#: inc/panel-builder/header/mobile-menu/options.php:186,
+#: inc/panel-builder/header/mobile-menu/options.php:185,
 #: inc/panel-builder/header/offcanvas/options.php:121,
 #: inc/panel-builder/header/offcanvas-logo/options.php:71,
-#: inc/panel-builder/header/search/options.php:123,
-#: inc/panel-builder/header/search/options.php:505,
-#: inc/panel-builder/header/socials/options.php:191,
+#: inc/panel-builder/header/search/options.php:122,
+#: inc/panel-builder/header/search/options.php:504,
+#: inc/panel-builder/header/socials/options.php:189,
 #: inc/panel-builder/header/text/options.php:150,
-#: inc/panel-builder/header/trigger/options.php:148
+#: inc/panel-builder/header/trigger/options.php:147
 msgid "Design"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:224,
+#: inc/options/general/back-to-top.php:222,
 #: inc/options/woocommerce/card-product-elements.php:79,
-#: inc/panel-builder/header/cart/options.php:298,
-#: inc/panel-builder/header/cart/options.php:326,
-#: inc/panel-builder/header/cart/options.php:356,
-#: inc/panel-builder/header/cart/options.php:385,
-#: inc/panel-builder/header/cart/options.php:954,
+#: inc/panel-builder/header/cart/options.php:297,
+#: inc/panel-builder/header/cart/options.php:325,
+#: inc/panel-builder/header/cart/options.php:355,
+#: inc/panel-builder/header/cart/options.php:384,
+#: inc/panel-builder/header/cart/options.php:953,
 #: inc/panel-builder/header/offcanvas/options.php:251,
-#: inc/panel-builder/header/search/options.php:276,
-#: inc/panel-builder/header/search/options.php:303,
-#: inc/panel-builder/header/search/options.php:335,
-#: inc/panel-builder/header/search/options.php:365,
-#: inc/panel-builder/header/search/options.php:713,
-#: inc/panel-builder/header/trigger/options.php:301,
-#: inc/panel-builder/header/trigger/options.php:330,
-#: inc/panel-builder/header/trigger/options.php:361,
-#: inc/panel-builder/header/trigger/options.php:390
+#: inc/panel-builder/header/search/options.php:275,
+#: inc/panel-builder/header/search/options.php:302,
+#: inc/panel-builder/header/search/options.php:334,
+#: inc/panel-builder/header/search/options.php:364,
+#: inc/panel-builder/header/search/options.php:712,
+#: inc/panel-builder/header/trigger/options.php:300,
+#: inc/panel-builder/header/trigger/options.php:329,
+#: inc/panel-builder/header/trigger/options.php:360,
+#: inc/panel-builder/header/trigger/options.php:389
 msgid "Icon Color"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:241,
-#: inc/options/general/back-to-top.php:270, inc/options/general/buttons.php:68,
+#: inc/options/general/back-to-top.php:239,
+#: inc/options/general/back-to-top.php:268, inc/options/general/buttons.php:68,
 #: inc/options/general/buttons.php:98, inc/options/general/colors.php:526,
 #: inc/options/general/colors.php:551, inc/options/general/colors.php:606,
 #: inc/options/general/colors.php:628, inc/options/general/colors.php:649,
@@ -1374,13 +1374,13 @@ msgstr ""
 #: inc/options/general/form-elements.php:219,
 #: inc/options/general/form-elements.php:262,
 #: inc/options/general/form-elements.php:292,
-#: inc/options/general/general.php:65, inc/options/general/page-title.php:876,
-#: inc/options/general/page-title.php:961,
-#: inc/options/general/page-title.php:997,
-#: inc/options/general/page-title.php:1028,
-#: inc/options/general/page-title.php:1090,
-#: inc/options/general/page-title.php:1125,
-#: inc/options/general/page-title.php:1156,
+#: inc/options/general/general.php:65, inc/options/general/page-title.php:871,
+#: inc/options/general/page-title.php:956,
+#: inc/options/general/page-title.php:992,
+#: inc/options/general/page-title.php:1023,
+#: inc/options/general/page-title.php:1085,
+#: inc/options/general/page-title.php:1120,
+#: inc/options/general/page-title.php:1151,
 #: inc/options/general/pagination.php:212,
 #: inc/options/general/pagination.php:242,
 #: inc/options/general/posts-listing.php:855,
@@ -1392,25 +1392,25 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1132,
 #: inc/options/general/posts-listing.php:1178,
 #: inc/options/general/posts-listing.php:1220,
-#: inc/options/general/sidebar.php:299, inc/options/general/sidebar.php:400,
+#: inc/options/general/sidebar.php:297, inc/options/general/sidebar.php:398,
 #: inc/options/integrations/tutorlms-single.php:30,
 #: inc/options/integrations/tutorlms-single.php:69,
 #: inc/options/integrations/tutorlms-single.php:114,
 #: inc/options/integrations/tutorlms-single.php:154,
 #: inc/options/integrations/tutorlms-single.php:176,
-#: inc/options/single-elements/author-box.php:261,
-#: inc/options/single-elements/author-box.php:366,
-#: inc/options/single-elements/author-box.php:399,
-#: inc/options/single-elements/author-box.php:438,
-#: inc/options/single-elements/post-nav.php:189,
-#: inc/options/single-elements/post-share-box.php:465,
-#: inc/options/single-elements/post-share-box.php:529,
-#: inc/options/single-elements/post-share-box.php:588,
-#: inc/options/single-elements/post-share-box.php:617,
-#: inc/options/single-elements/post-tags.php:189,
-#: inc/options/single-elements/related-posts.php:511,
-#: inc/options/single-elements/related-posts.php:573,
-#: inc/options/single-elements/related-posts.php:641,
+#: inc/options/single-elements/author-box.php:259,
+#: inc/options/single-elements/author-box.php:364,
+#: inc/options/single-elements/author-box.php:397,
+#: inc/options/single-elements/author-box.php:436,
+#: inc/options/single-elements/post-nav.php:186,
+#: inc/options/single-elements/post-share-box.php:463,
+#: inc/options/single-elements/post-share-box.php:527,
+#: inc/options/single-elements/post-share-box.php:586,
+#: inc/options/single-elements/post-share-box.php:615,
+#: inc/options/single-elements/post-tags.php:187,
+#: inc/options/single-elements/related-posts.php:509,
+#: inc/options/single-elements/related-posts.php:571,
+#: inc/options/single-elements/related-posts.php:639,
 #: inc/options/woocommerce/card-product-elements.php:102,
 #: inc/options/woocommerce/card-product-elements.php:113,
 #: inc/options/woocommerce/card-product-elements.php:149,
@@ -1426,7 +1426,7 @@ msgstr ""
 #: inc/options/woocommerce/card-product-elements.php:1098,
 #: inc/options/woocommerce/card-product-elements.php:1142,
 #: inc/options/woocommerce/card-product-elements.php:1176,
-#: inc/options/woocommerce/related-upsells.php:152,
+#: inc/options/woocommerce/related-upsells.php:148,
 #: inc/options/woocommerce/results-count.php:74,
 #: inc/options/woocommerce/single-product-elements.php:162,
 #: inc/options/woocommerce/single-product-elements.php:203,
@@ -1464,45 +1464,45 @@ msgstr ""
 #: inc/options/woocommerce/general/quantity-input.php:124,
 #: inc/options/woocommerce/general/store-notice.php:76,
 #: inc/options/woocommerce/general/store-notice.php:97,
-#: inc/panel-builder/footer/copyright/options.php:127,
-#: inc/panel-builder/footer/menu/options.php:185,
-#: inc/panel-builder/footer/middle-row/options.php:496,
-#: inc/panel-builder/footer/socials/options.php:275,
-#: inc/panel-builder/footer/socials/options.php:314,
-#: inc/panel-builder/footer/socials/options.php:363,
+#: inc/panel-builder/footer/copyright/options.php:125,
+#: inc/panel-builder/footer/menu/options.php:183,
+#: inc/panel-builder/footer/middle-row/options.php:494,
+#: inc/panel-builder/footer/socials/options.php:273,
+#: inc/panel-builder/footer/socials/options.php:312,
+#: inc/panel-builder/footer/socials/options.php:361,
 #: inc/panel-builder/footer/widget-area-1/options.php:84,
-#: inc/panel-builder/header/button/options.php:380,
-#: inc/panel-builder/header/button/options.php:394,
-#: inc/panel-builder/header/button/options.php:432,
-#: inc/panel-builder/header/button/options.php:444,
-#: inc/panel-builder/header/button/options.php:482,
-#: inc/panel-builder/header/button/options.php:494,
-#: inc/panel-builder/header/button/options.php:580,
-#: inc/panel-builder/header/button/options.php:592,
-#: inc/panel-builder/header/button/options.php:630,
-#: inc/panel-builder/header/button/options.php:642,
-#: inc/panel-builder/header/button/options.php:680,
-#: inc/panel-builder/header/button/options.php:692,
-#: inc/panel-builder/header/button/options.php:758,
-#: inc/panel-builder/header/button/options.php:788,
-#: inc/panel-builder/header/button/options.php:816,
-#: inc/panel-builder/header/cart/options.php:217,
-#: inc/panel-builder/header/cart/options.php:248,
-#: inc/panel-builder/header/cart/options.php:277,
-#: inc/panel-builder/header/cart/options.php:343,
-#: inc/panel-builder/header/cart/options.php:373,
-#: inc/panel-builder/header/cart/options.php:402,
-#: inc/panel-builder/header/cart/options.php:766,
-#: inc/panel-builder/header/cart/options.php:787,
-#: inc/panel-builder/header/cart/options.php:972,
-#: inc/panel-builder/header/cart/options.php:1007,
-#: inc/panel-builder/header/cart/options.php:1047,
-#: inc/panel-builder/header/logo/options.php:475,
-#: inc/panel-builder/header/logo/options.php:506,
-#: inc/panel-builder/header/logo/options.php:536,
-#: inc/panel-builder/header/logo/options.php:617,
-#: inc/panel-builder/header/logo/options.php:639,
-#: inc/panel-builder/header/logo/options.php:660,
+#: inc/panel-builder/header/button/options.php:379,
+#: inc/panel-builder/header/button/options.php:393,
+#: inc/panel-builder/header/button/options.php:431,
+#: inc/panel-builder/header/button/options.php:443,
+#: inc/panel-builder/header/button/options.php:481,
+#: inc/panel-builder/header/button/options.php:493,
+#: inc/panel-builder/header/button/options.php:579,
+#: inc/panel-builder/header/button/options.php:591,
+#: inc/panel-builder/header/button/options.php:629,
+#: inc/panel-builder/header/button/options.php:641,
+#: inc/panel-builder/header/button/options.php:679,
+#: inc/panel-builder/header/button/options.php:691,
+#: inc/panel-builder/header/button/options.php:757,
+#: inc/panel-builder/header/button/options.php:787,
+#: inc/panel-builder/header/button/options.php:815,
+#: inc/panel-builder/header/cart/options.php:216,
+#: inc/panel-builder/header/cart/options.php:247,
+#: inc/panel-builder/header/cart/options.php:276,
+#: inc/panel-builder/header/cart/options.php:342,
+#: inc/panel-builder/header/cart/options.php:372,
+#: inc/panel-builder/header/cart/options.php:401,
+#: inc/panel-builder/header/cart/options.php:765,
+#: inc/panel-builder/header/cart/options.php:786,
+#: inc/panel-builder/header/cart/options.php:971,
+#: inc/panel-builder/header/cart/options.php:1006,
+#: inc/panel-builder/header/cart/options.php:1046,
+#: inc/panel-builder/header/logo/options.php:470,
+#: inc/panel-builder/header/logo/options.php:501,
+#: inc/panel-builder/header/logo/options.php:531,
+#: inc/panel-builder/header/logo/options.php:612,
+#: inc/panel-builder/header/logo/options.php:634,
+#: inc/panel-builder/header/logo/options.php:655,
 #: inc/panel-builder/header/menu/options.php:233,
 #: inc/panel-builder/header/menu/options.php:296,
 #: inc/panel-builder/header/menu/options.php:358,
@@ -1512,46 +1512,46 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:952,
 #: inc/panel-builder/header/menu/options.php:984,
 #: inc/panel-builder/header/menu/options.php:1014,
-#: inc/panel-builder/header/mobile-menu/options.php:226,
-#: inc/panel-builder/header/mobile-menu/options.php:273,
-#: inc/panel-builder/header/mobile-menu/options.php:398,
-#: inc/panel-builder/header/mobile-menu/options.php:438,
-#: inc/panel-builder/header/mobile-menu/options.php:477,
+#: inc/panel-builder/header/mobile-menu/options.php:225,
+#: inc/panel-builder/header/mobile-menu/options.php:272,
+#: inc/panel-builder/header/mobile-menu/options.php:397,
+#: inc/panel-builder/header/mobile-menu/options.php:437,
+#: inc/panel-builder/header/mobile-menu/options.php:476,
 #: inc/panel-builder/header/offcanvas/options.php:270,
 #: inc/panel-builder/header/offcanvas/options.php:308,
 #: inc/panel-builder/header/offcanvas/options.php:349,
-#: inc/panel-builder/header/search/options.php:195,
-#: inc/panel-builder/header/search/options.php:226,
-#: inc/panel-builder/header/search/options.php:255,
-#: inc/panel-builder/header/search/options.php:321,
-#: inc/panel-builder/header/search/options.php:353,
-#: inc/panel-builder/header/search/options.php:383,
-#: inc/panel-builder/header/search/options.php:539,
-#: inc/panel-builder/header/search/options.php:569,
-#: inc/panel-builder/header/search/options.php:599,
-#: inc/panel-builder/header/search/options.php:629,
-#: inc/panel-builder/header/search/options.php:658,
-#: inc/panel-builder/header/search/options.php:731,
-#: inc/panel-builder/header/search/options.php:767,
-#: inc/panel-builder/header/search/options.php:806,
-#: inc/panel-builder/header/socials/options.php:269,
-#: inc/panel-builder/header/socials/options.php:300,
-#: inc/panel-builder/header/socials/options.php:329,
-#: inc/panel-builder/header/socials/options.php:398,
-#: inc/panel-builder/header/socials/options.php:431,
-#: inc/panel-builder/header/socials/options.php:462,
-#: inc/panel-builder/header/socials/options.php:551,
-#: inc/panel-builder/header/socials/options.php:590,
-#: inc/panel-builder/header/socials/options.php:629,
-#: inc/panel-builder/header/trigger/options.php:220,
-#: inc/panel-builder/header/trigger/options.php:251,
-#: inc/panel-builder/header/trigger/options.php:280,
-#: inc/panel-builder/header/trigger/options.php:347,
-#: inc/panel-builder/header/trigger/options.php:378,
-#: inc/panel-builder/header/trigger/options.php:407,
-#: inc/panel-builder/header/trigger/options.php:490,
-#: inc/panel-builder/header/trigger/options.php:530,
-#: inc/panel-builder/header/trigger/options.php:568
+#: inc/panel-builder/header/search/options.php:194,
+#: inc/panel-builder/header/search/options.php:225,
+#: inc/panel-builder/header/search/options.php:254,
+#: inc/panel-builder/header/search/options.php:320,
+#: inc/panel-builder/header/search/options.php:352,
+#: inc/panel-builder/header/search/options.php:382,
+#: inc/panel-builder/header/search/options.php:538,
+#: inc/panel-builder/header/search/options.php:568,
+#: inc/panel-builder/header/search/options.php:598,
+#: inc/panel-builder/header/search/options.php:628,
+#: inc/panel-builder/header/search/options.php:657,
+#: inc/panel-builder/header/search/options.php:730,
+#: inc/panel-builder/header/search/options.php:766,
+#: inc/panel-builder/header/search/options.php:805,
+#: inc/panel-builder/header/socials/options.php:267,
+#: inc/panel-builder/header/socials/options.php:298,
+#: inc/panel-builder/header/socials/options.php:327,
+#: inc/panel-builder/header/socials/options.php:396,
+#: inc/panel-builder/header/socials/options.php:429,
+#: inc/panel-builder/header/socials/options.php:460,
+#: inc/panel-builder/header/socials/options.php:549,
+#: inc/panel-builder/header/socials/options.php:588,
+#: inc/panel-builder/header/socials/options.php:627,
+#: inc/panel-builder/header/trigger/options.php:219,
+#: inc/panel-builder/header/trigger/options.php:250,
+#: inc/panel-builder/header/trigger/options.php:279,
+#: inc/panel-builder/header/trigger/options.php:346,
+#: inc/panel-builder/header/trigger/options.php:377,
+#: inc/panel-builder/header/trigger/options.php:406,
+#: inc/panel-builder/header/trigger/options.php:489,
+#: inc/panel-builder/header/trigger/options.php:529,
+#: inc/panel-builder/header/trigger/options.php:567
 #: static/js/options/options/background/BackgroundModal.js:154
 #: static/js/options/options/background/ImagePicker.js:190
 #: static/js/options/options/background/PatternPicker.js:170
@@ -1559,15 +1559,15 @@ msgstr ""
 msgid "Initial"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:246,
-#: inc/options/general/back-to-top.php:276, inc/options/general/buttons.php:73,
+#: inc/options/general/back-to-top.php:244,
+#: inc/options/general/back-to-top.php:274, inc/options/general/buttons.php:73,
 #: inc/options/general/buttons.php:103, inc/options/general/colors.php:556,
 #: inc/options/general/comments-single.php:168,
-#: inc/options/general/page-title.php:967,
-#: inc/options/general/page-title.php:1003,
-#: inc/options/general/page-title.php:1034,
-#: inc/options/general/page-title.php:1131,
-#: inc/options/general/page-title.php:1162,
+#: inc/options/general/page-title.php:962,
+#: inc/options/general/page-title.php:998,
+#: inc/options/general/page-title.php:1029,
+#: inc/options/general/page-title.php:1126,
+#: inc/options/general/page-title.php:1157,
 #: inc/options/general/pagination.php:218,
 #: inc/options/general/pagination.php:248,
 #: inc/options/general/posts-listing.php:885,
@@ -1580,15 +1580,15 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1226,
 #: inc/options/integrations/tutorlms-single.php:75,
 #: inc/options/integrations/tutorlms-single.php:120,
-#: inc/options/single-elements/author-box.php:372,
-#: inc/options/single-elements/author-box.php:405,
-#: inc/options/single-elements/post-nav.php:194,
-#: inc/options/single-elements/post-nav.php:214,
-#: inc/options/single-elements/post-share-box.php:535,
-#: inc/options/single-elements/post-share-box.php:593,
-#: inc/options/single-elements/post-share-box.php:622,
-#: inc/options/single-elements/related-posts.php:607,
-#: inc/options/single-elements/related-posts.php:647,
+#: inc/options/single-elements/author-box.php:370,
+#: inc/options/single-elements/author-box.php:403,
+#: inc/options/single-elements/post-nav.php:191,
+#: inc/options/single-elements/post-nav.php:211,
+#: inc/options/single-elements/post-share-box.php:533,
+#: inc/options/single-elements/post-share-box.php:591,
+#: inc/options/single-elements/post-share-box.php:620,
+#: inc/options/single-elements/related-posts.php:605,
+#: inc/options/single-elements/related-posts.php:645,
 #: inc/options/woocommerce/card-product-elements.php:765,
 #: inc/options/woocommerce/card-product-elements.php:910,
 #: inc/options/woocommerce/card-product-elements.php:948,
@@ -1618,37 +1618,37 @@ msgstr ""
 #: inc/options/woocommerce/general/messages.php:352,
 #: inc/options/woocommerce/general/quantity-input.php:89,
 #: inc/options/woocommerce/general/quantity-input.php:130,
-#: inc/panel-builder/footer/menu/options.php:190,
-#: inc/panel-builder/footer/socials/options.php:281,
-#: inc/panel-builder/footer/socials/options.php:320,
-#: inc/panel-builder/footer/socials/options.php:368,
-#: inc/panel-builder/header/button/options.php:387,
-#: inc/panel-builder/header/button/options.php:400,
-#: inc/panel-builder/header/button/options.php:438,
-#: inc/panel-builder/header/button/options.php:450,
-#: inc/panel-builder/header/button/options.php:488,
-#: inc/panel-builder/header/button/options.php:500,
-#: inc/panel-builder/header/button/options.php:586,
-#: inc/panel-builder/header/button/options.php:598,
-#: inc/panel-builder/header/button/options.php:636,
-#: inc/panel-builder/header/button/options.php:648,
-#: inc/panel-builder/header/button/options.php:686,
-#: inc/panel-builder/header/button/options.php:698,
-#: inc/panel-builder/header/button/options.php:764,
-#: inc/panel-builder/header/button/options.php:793,
-#: inc/panel-builder/header/button/options.php:821,
-#: inc/panel-builder/header/cart/options.php:223,
-#: inc/panel-builder/header/cart/options.php:253,
-#: inc/panel-builder/header/cart/options.php:282,
-#: inc/panel-builder/header/cart/options.php:348,
-#: inc/panel-builder/header/cart/options.php:378,
-#: inc/panel-builder/header/cart/options.php:407,
-#: inc/panel-builder/header/cart/options.php:977,
-#: inc/panel-builder/header/cart/options.php:1013,
-#: inc/panel-builder/header/cart/options.php:1053,
-#: inc/panel-builder/header/logo/options.php:480,
-#: inc/panel-builder/header/logo/options.php:511,
-#: inc/panel-builder/header/logo/options.php:541,
+#: inc/panel-builder/footer/menu/options.php:188,
+#: inc/panel-builder/footer/socials/options.php:279,
+#: inc/panel-builder/footer/socials/options.php:318,
+#: inc/panel-builder/footer/socials/options.php:366,
+#: inc/panel-builder/header/button/options.php:386,
+#: inc/panel-builder/header/button/options.php:399,
+#: inc/panel-builder/header/button/options.php:437,
+#: inc/panel-builder/header/button/options.php:449,
+#: inc/panel-builder/header/button/options.php:487,
+#: inc/panel-builder/header/button/options.php:499,
+#: inc/panel-builder/header/button/options.php:585,
+#: inc/panel-builder/header/button/options.php:597,
+#: inc/panel-builder/header/button/options.php:635,
+#: inc/panel-builder/header/button/options.php:647,
+#: inc/panel-builder/header/button/options.php:685,
+#: inc/panel-builder/header/button/options.php:697,
+#: inc/panel-builder/header/button/options.php:763,
+#: inc/panel-builder/header/button/options.php:792,
+#: inc/panel-builder/header/button/options.php:820,
+#: inc/panel-builder/header/cart/options.php:222,
+#: inc/panel-builder/header/cart/options.php:252,
+#: inc/panel-builder/header/cart/options.php:281,
+#: inc/panel-builder/header/cart/options.php:347,
+#: inc/panel-builder/header/cart/options.php:377,
+#: inc/panel-builder/header/cart/options.php:406,
+#: inc/panel-builder/header/cart/options.php:976,
+#: inc/panel-builder/header/cart/options.php:1012,
+#: inc/panel-builder/header/cart/options.php:1052,
+#: inc/panel-builder/header/logo/options.php:475,
+#: inc/panel-builder/header/logo/options.php:506,
+#: inc/panel-builder/header/logo/options.php:536,
 #: inc/panel-builder/header/menu/options.php:238,
 #: inc/panel-builder/header/menu/options.php:252,
 #: inc/panel-builder/header/menu/options.php:301,
@@ -1662,60 +1662,60 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:808,
 #: inc/panel-builder/header/menu/options.php:848,
 #: inc/panel-builder/header/menu/options.php:887,
-#: inc/panel-builder/header/mobile-menu/options.php:231,
-#: inc/panel-builder/header/mobile-menu/options.php:278,
-#: inc/panel-builder/header/mobile-menu/options.php:403,
-#: inc/panel-builder/header/mobile-menu/options.php:443,
-#: inc/panel-builder/header/mobile-menu/options.php:482,
+#: inc/panel-builder/header/mobile-menu/options.php:230,
+#: inc/panel-builder/header/mobile-menu/options.php:277,
+#: inc/panel-builder/header/mobile-menu/options.php:402,
+#: inc/panel-builder/header/mobile-menu/options.php:442,
+#: inc/panel-builder/header/mobile-menu/options.php:481,
 #: inc/panel-builder/header/offcanvas/options.php:276,
 #: inc/panel-builder/header/offcanvas/options.php:314,
 #: inc/panel-builder/header/offcanvas/options.php:355,
-#: inc/panel-builder/header/search/options.php:201,
-#: inc/panel-builder/header/search/options.php:231,
-#: inc/panel-builder/header/search/options.php:260,
-#: inc/panel-builder/header/search/options.php:327,
-#: inc/panel-builder/header/search/options.php:358,
-#: inc/panel-builder/header/search/options.php:388,
-#: inc/panel-builder/header/search/options.php:544,
-#: inc/panel-builder/header/search/options.php:634,
-#: inc/panel-builder/header/search/options.php:663,
-#: inc/panel-builder/header/search/options.php:737,
-#: inc/panel-builder/header/search/options.php:773,
-#: inc/panel-builder/header/search/options.php:812,
-#: inc/panel-builder/header/socials/options.php:275,
-#: inc/panel-builder/header/socials/options.php:305,
-#: inc/panel-builder/header/socials/options.php:334,
-#: inc/panel-builder/header/socials/options.php:404,
-#: inc/panel-builder/header/socials/options.php:436,
-#: inc/panel-builder/header/socials/options.php:467,
-#: inc/panel-builder/header/socials/options.php:556,
-#: inc/panel-builder/header/socials/options.php:595,
-#: inc/panel-builder/header/socials/options.php:634,
-#: inc/panel-builder/header/trigger/options.php:226,
-#: inc/panel-builder/header/trigger/options.php:256,
-#: inc/panel-builder/header/trigger/options.php:285,
-#: inc/panel-builder/header/trigger/options.php:353,
-#: inc/panel-builder/header/trigger/options.php:383,
-#: inc/panel-builder/header/trigger/options.php:412,
-#: inc/panel-builder/header/trigger/options.php:496,
-#: inc/panel-builder/header/trigger/options.php:535,
-#: inc/panel-builder/header/trigger/options.php:573
+#: inc/panel-builder/header/search/options.php:200,
+#: inc/panel-builder/header/search/options.php:230,
+#: inc/panel-builder/header/search/options.php:259,
+#: inc/panel-builder/header/search/options.php:326,
+#: inc/panel-builder/header/search/options.php:357,
+#: inc/panel-builder/header/search/options.php:387,
+#: inc/panel-builder/header/search/options.php:543,
+#: inc/panel-builder/header/search/options.php:633,
+#: inc/panel-builder/header/search/options.php:662,
+#: inc/panel-builder/header/search/options.php:736,
+#: inc/panel-builder/header/search/options.php:772,
+#: inc/panel-builder/header/search/options.php:811,
+#: inc/panel-builder/header/socials/options.php:273,
+#: inc/panel-builder/header/socials/options.php:303,
+#: inc/panel-builder/header/socials/options.php:332,
+#: inc/panel-builder/header/socials/options.php:402,
+#: inc/panel-builder/header/socials/options.php:434,
+#: inc/panel-builder/header/socials/options.php:465,
+#: inc/panel-builder/header/socials/options.php:554,
+#: inc/panel-builder/header/socials/options.php:593,
+#: inc/panel-builder/header/socials/options.php:632,
+#: inc/panel-builder/header/trigger/options.php:225,
+#: inc/panel-builder/header/trigger/options.php:255,
+#: inc/panel-builder/header/trigger/options.php:284,
+#: inc/panel-builder/header/trigger/options.php:352,
+#: inc/panel-builder/header/trigger/options.php:382,
+#: inc/panel-builder/header/trigger/options.php:411,
+#: inc/panel-builder/header/trigger/options.php:495,
+#: inc/panel-builder/header/trigger/options.php:534,
+#: inc/panel-builder/header/trigger/options.php:572
 #: static/js/options/options/ct-border.js:115
 msgid "Hover"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:253
+#: inc/options/general/back-to-top.php:251
 msgid "Shape Background Color"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:289
+#: inc/options/general/back-to-top.php:287
 msgid "Shape Border Radius"
 msgstr ""
 
-#: inc/options/general/back-to-top.php:306,
-#: inc/options/general/sidebar.php:463,
-#: inc/options/single-elements/author-box.php:473,
-#: inc/panel-builder/footer/options.php:65,
+#: inc/options/general/back-to-top.php:304,
+#: inc/options/general/sidebar.php:461,
+#: inc/options/single-elements/author-box.php:471,
+#: inc/panel-builder/footer/options.php:63,
 #: inc/panel-builder/header/middle-row/options.php:493,
 #: inc/panel-builder/header/middle-row/options.php:520,
 #: inc/panel-builder/header/middle-row/options.php:538,
@@ -1749,15 +1749,15 @@ msgstr ""
 
 #: inc/options/general/breadcrumbs.php:87,
 #: inc/options/general/breadcrumbs.php:214, inc/options/general/colors.php:581,
-#: inc/options/general/page-title.php:1209,
+#: inc/options/general/page-title.php:1204,
 #: inc/options/general/posts-listing.php:506,
-#: inc/options/single-elements/author-box.php:322,
+#: inc/options/single-elements/author-box.php:320,
 #: inc/options/woocommerce/single-product-elements.php:250,
 #: inc/options/woocommerce/general/product-badges.php:216,
 #: inc/options/woocommerce/general/product-badges.php:247,
-#: inc/panel-builder/header/cart/options.php:476,
-#: inc/panel-builder/header/cart/options.php:507,
-#: inc/panel-builder/header/cart/options.php:537
+#: inc/panel-builder/header/cart/options.php:475,
+#: inc/panel-builder/header/cart/options.php:506,
+#: inc/panel-builder/header/cart/options.php:536
 msgid "Text"
 msgstr ""
 
@@ -1786,27 +1786,27 @@ msgid "Shop Page in Breadcrumbs"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:181,
-#: inc/options/general/page-title.php:1180,
+#: inc/options/general/page-title.php:1175,
 #: inc/options/woocommerce/single-product-elements.php:221
 msgid "Breadcrumbs Font"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:193,
-#: inc/options/general/page-title.php:1188,
+#: inc/options/general/page-title.php:1183,
 #: inc/options/woocommerce/single-product-elements.php:229
 msgid "Breadcrumbs Font Color"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:220,
-#: inc/options/general/page-title.php:1215,
-#: inc/options/general/sidebar.php:369,
-#: inc/options/single-elements/author-box.php:328,
+#: inc/options/general/page-title.php:1210,
+#: inc/options/general/sidebar.php:367,
+#: inc/options/single-elements/author-box.php:326,
 #: inc/options/woocommerce/single-product-elements.php:256,
-#: inc/panel-builder/footer/copyright/options.php:133,
-#: inc/panel-builder/footer/middle-row/options.php:567,
+#: inc/panel-builder/footer/copyright/options.php:131,
+#: inc/panel-builder/footer/middle-row/options.php:565,
 #: inc/panel-builder/footer/widget-area-1/options.php:89,
-#: inc/panel-builder/header/cart/options.php:739,
-#: inc/panel-builder/header/cart/options.php:851,
+#: inc/panel-builder/header/cart/options.php:738,
+#: inc/panel-builder/header/cart/options.php:850,
 #: inc/panel-builder/header/text/options.php:223,
 #: inc/panel-builder/header/text/options.php:264,
 #: inc/panel-builder/header/text/options.php:303
@@ -1814,15 +1814,15 @@ msgid "Link Initial"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:226,
-#: inc/options/general/page-title.php:1221,
-#: inc/options/general/sidebar.php:374,
-#: inc/options/single-elements/author-box.php:334,
+#: inc/options/general/page-title.php:1216,
+#: inc/options/general/sidebar.php:372,
+#: inc/options/single-elements/author-box.php:332,
 #: inc/options/woocommerce/single-product-elements.php:262,
-#: inc/panel-builder/footer/copyright/options.php:139,
-#: inc/panel-builder/footer/middle-row/options.php:573,
+#: inc/panel-builder/footer/copyright/options.php:137,
+#: inc/panel-builder/footer/middle-row/options.php:571,
 #: inc/panel-builder/footer/widget-area-1/options.php:94,
-#: inc/panel-builder/header/cart/options.php:745,
-#: inc/panel-builder/header/cart/options.php:856,
+#: inc/panel-builder/header/cart/options.php:744,
+#: inc/panel-builder/header/cart/options.php:855,
 #: inc/panel-builder/header/text/options.php:229,
 #: inc/panel-builder/header/text/options.php:269,
 #: inc/panel-builder/header/text/options.php:308
@@ -1852,7 +1852,7 @@ msgstr ""
 #: inc/options/general/form-elements.php:40,
 #: inc/options/general/form-elements.php:246,
 #: inc/options/general/pagination.php:196,
-#: inc/options/single-elements/post-nav.php:174,
+#: inc/options/single-elements/post-nav.php:171,
 #: inc/options/woocommerce/card-product-elements.php:713,
 #: inc/options/woocommerce/card-product-elements.php:793,
 #: inc/options/woocommerce/card-product-elements.php:837,
@@ -1861,14 +1861,14 @@ msgstr ""
 #: inc/options/woocommerce/card-product-elements.php:1049,
 #: inc/options/woocommerce/results-count.php:61,
 #: inc/options/woocommerce/single-product-tabs.php:199,
-#: inc/panel-builder/footer/copyright/options.php:105,
-#: inc/panel-builder/footer/menu/options.php:164,
-#: inc/panel-builder/footer/socials/options.php:258,
+#: inc/panel-builder/footer/copyright/options.php:103,
+#: inc/panel-builder/footer/menu/options.php:162,
+#: inc/panel-builder/footer/socials/options.php:256,
 #: inc/panel-builder/footer/widget-area-1/options.php:62,
-#: inc/panel-builder/header/cart/options.php:200,
-#: inc/panel-builder/header/cart/options.php:231,
-#: inc/panel-builder/header/cart/options.php:260,
-#: inc/panel-builder/header/cart/options.php:714,
+#: inc/panel-builder/header/cart/options.php:199,
+#: inc/panel-builder/header/cart/options.php:230,
+#: inc/panel-builder/header/cart/options.php:259,
+#: inc/panel-builder/header/cart/options.php:713,
 #: inc/panel-builder/header/menu/options.php:175,
 #: inc/panel-builder/header/menu/options.php:204,
 #: inc/panel-builder/header/menu/options.php:267,
@@ -1877,68 +1877,68 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:781,
 #: inc/panel-builder/header/menu/options.php:822,
 #: inc/panel-builder/header/menu/options.php:861,
-#: inc/panel-builder/header/mobile-menu/options.php:206,
-#: inc/panel-builder/header/mobile-menu/options.php:348,
-#: inc/panel-builder/header/mobile-menu/options.php:377,
-#: inc/panel-builder/header/mobile-menu/options.php:417,
-#: inc/panel-builder/header/mobile-menu/options.php:456,
-#: inc/panel-builder/header/search/options.php:178,
-#: inc/panel-builder/header/search/options.php:209,
-#: inc/panel-builder/header/search/options.php:238,
-#: inc/panel-builder/header/search/options.php:521,
-#: inc/panel-builder/header/socials/options.php:252,
-#: inc/panel-builder/header/socials/options.php:283,
-#: inc/panel-builder/header/socials/options.php:312,
+#: inc/panel-builder/header/mobile-menu/options.php:205,
+#: inc/panel-builder/header/mobile-menu/options.php:347,
+#: inc/panel-builder/header/mobile-menu/options.php:376,
+#: inc/panel-builder/header/mobile-menu/options.php:416,
+#: inc/panel-builder/header/mobile-menu/options.php:455,
+#: inc/panel-builder/header/search/options.php:177,
+#: inc/panel-builder/header/search/options.php:208,
+#: inc/panel-builder/header/search/options.php:237,
+#: inc/panel-builder/header/search/options.php:520,
+#: inc/panel-builder/header/socials/options.php:250,
+#: inc/panel-builder/header/socials/options.php:281,
+#: inc/panel-builder/header/socials/options.php:310,
 #: inc/panel-builder/header/text/options.php:166,
 #: inc/panel-builder/header/text/options.php:195,
 #: inc/panel-builder/header/text/options.php:237,
 #: inc/panel-builder/header/text/options.php:276,
-#: inc/panel-builder/header/trigger/options.php:203,
-#: inc/panel-builder/header/trigger/options.php:234,
-#: inc/panel-builder/header/trigger/options.php:263
+#: inc/panel-builder/header/trigger/options.php:202,
+#: inc/panel-builder/header/trigger/options.php:233,
+#: inc/panel-builder/header/trigger/options.php:262
 msgid "Font Color"
 msgstr ""
 
 #: inc/options/general/buttons.php:80,
 #: inc/options/general/form-elements.php:119,
 #: inc/options/general/form-elements.php:276,
-#: inc/options/general/sidebar.php:387,
-#: inc/options/single-elements/author-box.php:456,
-#: inc/options/single-elements/post-share-box.php:600,
+#: inc/options/general/sidebar.php:385,
+#: inc/options/single-elements/author-box.php:454,
+#: inc/options/single-elements/post-share-box.php:598,
 #: inc/options/woocommerce/card-product-elements.php:126,
 #: inc/options/woocommerce/card-product-elements.php:1081,
 #: inc/options/woocommerce/general/messages.php:53,
 #: inc/options/woocommerce/general/messages.php:169,
 #: inc/options/woocommerce/general/messages.php:283,
-#: inc/panel-builder/header/cart/options.php:773,
-#: inc/panel-builder/header/cart/options.php:1029,
+#: inc/panel-builder/header/cart/options.php:772,
+#: inc/panel-builder/header/cart/options.php:1028,
 #: inc/panel-builder/header/menu/options.php:400,
 #: inc/panel-builder/header/menu/options.php:441,
 #: inc/panel-builder/header/menu/options.php:480,
 #: inc/panel-builder/header/menu/options.php:518,
 #: inc/panel-builder/header/offcanvas/options.php:330,
-#: inc/panel-builder/header/search/options.php:789,
-#: inc/panel-builder/header/trigger/options.php:428,
-#: inc/panel-builder/header/trigger/options.php:470,
-#: inc/panel-builder/header/trigger/options.php:510,
-#: inc/panel-builder/header/trigger/options.php:548
+#: inc/panel-builder/header/search/options.php:788,
+#: inc/panel-builder/header/trigger/options.php:427,
+#: inc/panel-builder/header/trigger/options.php:469,
+#: inc/panel-builder/header/trigger/options.php:509,
+#: inc/panel-builder/header/trigger/options.php:547
 #: static/js/options/options/background/BackgroundModal.js:144
 msgid "Background Color"
 msgstr ""
 
-#: inc/options/general/buttons.php:110, inc/options/general/sidebar.php:416,
-#: inc/options/single-elements/author-box.php:492,
-#: inc/options/single-elements/post-share-box.php:545,
+#: inc/options/general/buttons.php:110, inc/options/general/sidebar.php:414,
+#: inc/options/single-elements/author-box.php:490,
+#: inc/options/single-elements/post-share-box.php:543,
 #: inc/options/woocommerce/single-product-tabs.php:324,
-#: inc/panel-builder/header/cart/options.php:947,
+#: inc/panel-builder/header/cart/options.php:946,
 #: inc/panel-builder/header/mobile-menu/options.php:85,
 #: inc/panel-builder/header/offcanvas/options.php:233,
-#: inc/panel-builder/header/search/options.php:695
+#: inc/panel-builder/header/search/options.php:694
 msgid "Border"
 msgstr ""
 
 #: inc/options/general/buttons.php:130,
-#: inc/panel-builder/header/button/options.php:842
+#: inc/panel-builder/header/button/options.php:841
 msgid "Padding"
 msgstr ""
 
@@ -1946,18 +1946,18 @@ msgstr ""
 #: inc/options/general/form-elements.php:185,
 #: inc/options/general/pagination.php:281,
 #: inc/options/general/posts-listing.php:1435,
-#: inc/options/general/sidebar.php:482,
-#: inc/options/single-elements/author-box.php:508,
-#: inc/options/single-elements/featured-image.php:145,
-#: inc/options/single-elements/post-tags.php:225,
+#: inc/options/general/sidebar.php:480,
+#: inc/options/single-elements/author-box.php:506,
+#: inc/options/single-elements/featured-image.php:143,
+#: inc/options/single-elements/post-tags.php:223,
 #: inc/options/woocommerce/single-product-gallery.php:277,
 #: inc/options/woocommerce/single-product-gallery.php:372,
-#: inc/panel-builder/header/button/options.php:835,
-#: inc/panel-builder/header/cart/options.php:1080,
+#: inc/panel-builder/header/button/options.php:834,
+#: inc/panel-builder/header/cart/options.php:1079,
 #: inc/panel-builder/header/middle-row/options.php:581,
 #: inc/panel-builder/header/offcanvas/options.php:371,
-#: inc/panel-builder/header/search/options.php:828,
-#: inc/panel-builder/header/trigger/options.php:588
+#: inc/panel-builder/header/search/options.php:827,
+#: inc/panel-builder/header/trigger/options.php:587
 msgid "Border Radius"
 msgstr ""
 
@@ -1995,16 +1995,16 @@ msgstr ""
 #: inc/options/woocommerce/single-product-tabs.php:319,
 #: inc/options/woocommerce/general/product-badges.php:222,
 #: inc/options/woocommerce/general/product-badges.php:252,
-#: inc/panel-builder/header/cart/options.php:470,
-#: inc/panel-builder/header/cart/options.php:502,
-#: inc/panel-builder/header/cart/options.php:532,
-#: inc/panel-builder/header/cart/options.php:948,
+#: inc/panel-builder/header/cart/options.php:469,
+#: inc/panel-builder/header/cart/options.php:501,
+#: inc/panel-builder/header/cart/options.php:531,
+#: inc/panel-builder/header/cart/options.php:947,
 #: inc/panel-builder/header/middle-row/options.php:145,
 #: inc/panel-builder/header/middle-row/options.php:172,
 #: inc/panel-builder/header/middle-row/options.php:181,
 #: inc/panel-builder/header/middle-row/options.php:196,
 #: inc/panel-builder/header/offcanvas/options.php:234,
-#: inc/panel-builder/header/search/options.php:696
+#: inc/panel-builder/header/search/options.php:695
 msgid "Background"
 msgstr ""
 
@@ -2101,7 +2101,7 @@ msgid "Container Structure"
 msgstr ""
 
 #: inc/options/general/comments-single.php:109,
-#: inc/options/general/page-title.php:733,
+#: inc/options/general/page-title.php:729,
 #: inc/options/single-elements/related-posts.php:438
 msgid "Narrow"
 msgstr ""
@@ -2117,9 +2117,9 @@ msgid "Container Max Width"
 msgstr ""
 
 #: inc/options/general/comments-single.php:181,
-#: inc/options/general/page-title.php:1270,
-#: inc/options/single-elements/related-posts.php:690,
-#: inc/panel-builder/footer/options.php:91
+#: inc/options/general/page-title.php:1265,
+#: inc/options/single-elements/related-posts.php:688,
+#: inc/panel-builder/footer/options.php:89
 msgid "Container Background"
 msgstr ""
 
@@ -2132,7 +2132,7 @@ msgid "Content Spacing"
 msgstr ""
 
 #: inc/options/general/content-elements.php:25,
-#: inc/options/general/page-title.php:752,
+#: inc/options/general/page-title.php:748,
 #: inc/options/general/posts-listing.php:349,
 #: inc/options/woocommerce/card-product-elements.php:341,
 #: inc/panel-builder/footer/socials/options.php:109,
@@ -2226,8 +2226,8 @@ msgstr ""
 #: inc/options/general/form-elements.php:63,
 #: inc/options/general/form-elements.php:107,
 #: inc/options/general/form-elements.php:140,
-#: inc/panel-builder/header/search/options.php:574,
-#: inc/panel-builder/header/search/options.php:604
+#: inc/panel-builder/header/search/options.php:573,
+#: inc/panel-builder/header/search/options.php:603
 msgid "Focus"
 msgstr ""
 
@@ -2241,15 +2241,15 @@ msgid "Input & Textarea"
 msgstr ""
 
 #: inc/options/general/form-elements.php:86,
-#: inc/options/single-elements/author-box.php:423,
+#: inc/options/single-elements/author-box.php:421,
 #: inc/options/woocommerce/single-product-tabs.php:245,
-#: inc/panel-builder/header/cart/options.php:989,
+#: inc/panel-builder/header/cart/options.php:988,
 #: inc/panel-builder/header/offcanvas/options.php:289,
-#: inc/panel-builder/header/search/options.php:750,
-#: inc/panel-builder/header/trigger/options.php:424,
-#: inc/panel-builder/header/trigger/options.php:466,
-#: inc/panel-builder/header/trigger/options.php:506,
-#: inc/panel-builder/header/trigger/options.php:544
+#: inc/panel-builder/header/search/options.php:749,
+#: inc/panel-builder/header/trigger/options.php:423,
+#: inc/panel-builder/header/trigger/options.php:465,
+#: inc/panel-builder/header/trigger/options.php:505,
+#: inc/panel-builder/header/trigger/options.php:543
 msgid "Border Color"
 msgstr ""
 
@@ -2277,7 +2277,7 @@ msgstr ""
 #: inc/options/woocommerce/general/account-page.php:101,
 #: inc/options/woocommerce/general/account-page.php:131,
 #: inc/options/woocommerce/general/star-rating.php:36,
-#: inc/panel-builder/footer/menu/options.php:196,
+#: inc/panel-builder/footer/menu/options.php:194,
 #: inc/panel-builder/header/menu/options.php:245,
 #: inc/panel-builder/header/menu/options.php:258,
 #: inc/panel-builder/header/menu/options.php:307,
@@ -2290,11 +2290,11 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:814,
 #: inc/panel-builder/header/menu/options.php:853,
 #: inc/panel-builder/header/menu/options.php:892,
-#: inc/panel-builder/header/mobile-menu/options.php:237,
-#: inc/panel-builder/header/mobile-menu/options.php:284,
-#: inc/panel-builder/header/mobile-menu/options.php:409,
-#: inc/panel-builder/header/mobile-menu/options.php:448,
-#: inc/panel-builder/header/mobile-menu/options.php:487
+#: inc/panel-builder/header/mobile-menu/options.php:236,
+#: inc/panel-builder/header/mobile-menu/options.php:283,
+#: inc/panel-builder/header/mobile-menu/options.php:408,
+#: inc/panel-builder/header/mobile-menu/options.php:447,
+#: inc/panel-builder/header/mobile-menu/options.php:486
 msgid "Active"
 msgstr ""
 
@@ -2390,7 +2390,7 @@ msgstr ""
 msgid "Date format %sinstructions%s."
 msgstr ""
 
-#: inc/options/general/meta.php:193, inc/options/general/page-title.php:536
+#: inc/options/general/meta.php:193, inc/options/general/page-title.php:532
 msgid "Meta Elements"
 msgstr ""
 
@@ -2398,7 +2398,7 @@ msgstr ""
 msgid "Author Avatar"
 msgstr ""
 
-#: inc/options/general/meta.php:215, inc/options/general/page-title.php:401,
+#: inc/options/general/meta.php:215, inc/options/general/page-title.php:399,
 #: inc/options/woocommerce/general/account-page.php:39
 msgid "Avatar Size"
 msgstr ""
@@ -2460,12 +2460,12 @@ msgstr ""
 #: inc/options/general/meta.php:438, inc/options/general/posts-listing.php:66,
 #: inc/options/general/posts-listing.php:495,
 #: inc/options/general/posts-listing.php:1482,
-#: inc/panel-builder/header/cart/options.php:946,
+#: inc/panel-builder/header/cart/options.php:945,
 #: inc/panel-builder/header/menu/options.php:640,
 #: inc/panel-builder/header/menu/options.php:670,
 #: inc/panel-builder/header/mobile-menu/options.php:84,
 #: inc/panel-builder/header/offcanvas/options.php:232,
-#: inc/panel-builder/header/search/options.php:694,
+#: inc/panel-builder/header/search/options.php:693,
 #: inc/panel-builder/header/trigger/options.php:57
 msgid "Simple"
 msgstr ""
@@ -2480,7 +2480,7 @@ msgstr ""
 
 #: inc/options/general/meta.php:447,
 #: inc/panel-builder/header/menu/options.php:1030,
-#: inc/panel-builder/header/mobile-menu/options.php:292
+#: inc/panel-builder/header/mobile-menu/options.php:291
 msgid "Items Divider"
 msgstr ""
 
@@ -2489,7 +2489,7 @@ msgid "none"
 msgstr ""
 
 #: inc/options/general/page-title.php:15,
-#: inc/options/general/page-title.php:1378, inc/options/meta/page.php:8,
+#: inc/options/general/page-title.php:1373, inc/options/meta/page.php:8,
 #: inc/options/pages/author-page.php:25, inc/options/pages/page.php:99,
 #: inc/options/pages/search-page.php:25, inc/options/posts/blog.php:31,
 #: inc/options/posts/categories.php:18,
@@ -2529,19 +2529,19 @@ msgid "Elements"
 msgstr ""
 
 #: inc/options/general/page-title.php:287,
-#: inc/options/general/page-title.php:424,
-#: inc/options/general/page-title.php:489,
-#: inc/options/general/page-title.php:575,
-#: inc/options/general/page-title.php:598
+#: inc/options/general/page-title.php:422,
+#: inc/options/general/page-title.php:487,
+#: inc/options/general/page-title.php:571,
+#: inc/options/general/page-title.php:594
 msgid "Top Spacing"
 msgstr ""
 
-#: inc/options/general/page-title.php:327
+#: inc/options/general/page-title.php:325
 msgid "Name & Avatar"
 msgstr ""
 
-#: inc/options/general/page-title.php:327,
-#: inc/options/general/page-title.php:360,
+#: inc/options/general/page-title.php:325,
+#: inc/options/general/page-title.php:358,
 #: inc/options/general/posts-listing.php:221,
 #: inc/options/woocommerce/card-product-elements.php:388,
 #: inc/options/woocommerce/card-product-elements.php:699,
@@ -2553,48 +2553,48 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: inc/options/general/page-title.php:331
+#: inc/options/general/page-title.php:329
 msgid "Heading tag"
 msgstr ""
 
-#: inc/options/general/page-title.php:374
+#: inc/options/general/page-title.php:372
 msgid "Archive Label"
 msgstr ""
 
-#: inc/options/general/page-title.php:388
+#: inc/options/general/page-title.php:386
 msgid "Author avatar"
 msgstr ""
 
-#: inc/options/general/page-title.php:469,
+#: inc/options/general/page-title.php:467,
 #: inc/panel-builder/header/text/options.php:37
 msgid "Max Width"
 msgstr ""
 
-#: inc/options/general/page-title.php:528
+#: inc/options/general/page-title.php:524
 msgid "Author Meta"
 msgstr ""
 
-#: inc/options/general/page-title.php:528,
+#: inc/options/general/page-title.php:524,
 #: inc/options/general/posts-listing.php:539
 msgid "Post Meta"
 msgstr ""
 
-#: inc/options/general/page-title.php:543
+#: inc/options/general/page-title.php:539
 msgid "Joined Date"
 msgstr ""
 
-#: inc/options/general/page-title.php:591
+#: inc/options/general/page-title.php:587
 msgid "Social Channels"
 msgstr ""
 
-#: inc/options/general/page-title.php:613,
+#: inc/options/general/page-title.php:609,
 #: inc/options/single-elements/author-box.php:160,
 #: inc/panel-builder/footer/socials/options.php:52,
 #: inc/panel-builder/header/socials/options.php:52
 msgid "Open links in new tab"
 msgstr ""
 
-#: inc/options/general/page-title.php:619,
+#: inc/options/general/page-title.php:615,
 #: inc/options/single-elements/author-box.php:177,
 #: inc/options/single-elements/post-share-box.php:282,
 #: inc/panel-builder/footer/socials/options.php:59,
@@ -2602,69 +2602,69 @@ msgstr ""
 msgid "Set links to nofollow"
 msgstr ""
 
-#: inc/options/general/page-title.php:638,
-#: inc/options/general/page-title.php:678,
+#: inc/options/general/page-title.php:634,
+#: inc/options/general/page-title.php:674,
 #: inc/options/general/posts-listing.php:739,
 #: inc/options/woocommerce/single-product-tabs.php:60,
 #: inc/panel-builder/footer/copyright/options.php:31,
 #: inc/panel-builder/footer/menu/options.php:84,
 #: inc/panel-builder/footer/socials/options.php:152,
 #: inc/panel-builder/footer/widget-area-1/options.php:23,
-#: inc/panel-builder/header/button/options.php:214,
-#: inc/panel-builder/header/logo/options.php:326,
+#: inc/panel-builder/header/button/options.php:213,
+#: inc/panel-builder/header/logo/options.php:321,
 #: inc/panel-builder/header/mobile-menu/options.php:143,
 #: inc/panel-builder/header/offcanvas/options.php:79,
 #: inc/panel-builder/header/text/options.php:78
 msgid "Horizontal Alignment"
 msgstr ""
 
-#: inc/options/general/page-title.php:657
+#: inc/options/general/page-title.php:653
 msgid "Container Bottom Spacing"
 msgstr ""
 
-#: inc/options/general/page-title.php:694,
+#: inc/options/general/page-title.php:690,
 #: inc/options/general/posts-listing.php:792,
 #: inc/panel-builder/footer/copyright/options.php:47,
 #: inc/panel-builder/footer/menu/options.php:105,
 #: inc/panel-builder/footer/middle-row/options.php:411,
 #: inc/panel-builder/footer/socials/options.php:169,
 #: inc/panel-builder/footer/widget-area-1/options.php:39,
-#: inc/panel-builder/header/button/options.php:231,
-#: inc/panel-builder/header/logo/options.php:342,
+#: inc/panel-builder/header/button/options.php:230,
+#: inc/panel-builder/header/logo/options.php:337,
 #: inc/panel-builder/header/offcanvas/options.php:63,
 #: inc/panel-builder/header/text/options.php:95
 msgid "Vertical Alignment"
 msgstr ""
 
-#: inc/options/general/page-title.php:725,
+#: inc/options/general/page-title.php:721,
 #: inc/options/woocommerce/single-product-gallery.php:87,
 #: inc/panel-builder/footer/middle-row/options.php:427
 msgid "Container Width"
 msgstr ""
 
-#: inc/options/general/page-title.php:742
+#: inc/options/general/page-title.php:738
 msgid "Container Background Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:749
+#: inc/options/general/page-title.php:745
 msgid "Featured"
 msgstr ""
 
-#: inc/options/general/page-title.php:766
+#: inc/options/general/page-title.php:762
 msgid "Custom Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:771
+#: inc/options/general/page-title.php:767
 #: static/js/options/options/background/ImagePicker.js:27
 msgid "Select Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:772
+#: inc/options/general/page-title.php:768
 #: static/js/options/options/background/ImagePicker.js:28
 msgid "Change Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:788,
+#: inc/options/general/page-title.php:784,
 #: inc/options/general/posts-listing.php:327,
 #: inc/options/single-elements/featured-image.php:36,
 #: inc/options/single-elements/post-nav.php:89,
@@ -2673,113 +2673,113 @@ msgstr ""
 #: inc/options/woocommerce/single-product-gallery.php:113,
 #: inc/options/woocommerce/single-product-gallery.php:338,
 #: inc/options/woocommerce/general/cart-page.php:40,
-#: inc/panel-builder/header/cart/options.php:690
+#: inc/panel-builder/header/cart/options.php:689
 msgid "Image Size"
 msgstr ""
 
-#: inc/options/general/page-title.php:801
+#: inc/options/general/page-title.php:797
 msgid "Image Parallax Effect"
 msgstr ""
 
-#: inc/options/general/page-title.php:802
+#: inc/options/general/page-title.php:798
 msgid "Choose for which devices you want to enable the parallax effect."
 msgstr ""
 
-#: inc/options/general/page-title.php:828
+#: inc/options/general/page-title.php:823
 msgid "Container Min Height"
 msgstr ""
 
-#: inc/options/general/page-title.php:854,
+#: inc/options/general/page-title.php:849,
 #: inc/options/general/posts-listing.php:825,
 #: inc/options/integrations/tutorlms-single.php:8,
 #: inc/options/woocommerce/single-product-elements.php:141
 msgid "Title Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:863,
+#: inc/options/general/page-title.php:858,
 #: inc/options/general/posts-listing.php:838,
 #: inc/options/integrations/tutorlms-single.php:17,
 #: inc/options/woocommerce/single-product-elements.php:149
 msgid "Title Font Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:931,
+#: inc/options/general/page-title.php:926,
 #: inc/options/general/posts-listing.php:943
 msgid "Meta Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:944,
+#: inc/options/general/page-title.php:939,
 #: inc/options/general/posts-listing.php:957
 msgid "Meta Font Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:979
+#: inc/options/general/page-title.php:974
 msgid "Meta Button Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:1011,
+#: inc/options/general/page-title.php:1006,
 #: inc/options/general/posts-listing.php:1024
 msgid "Meta Button Background"
 msgstr ""
 
-#: inc/options/general/page-title.php:1061,
+#: inc/options/general/page-title.php:1056,
 #: inc/options/general/posts-listing.php:908
 msgid "Excerpt Font"
 msgstr ""
 
 #. translators: %s entity of font
-#: inc/options/general/page-title.php:1063
+#: inc/options/general/page-title.php:1058
 msgid "%s Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:1073
+#: inc/options/general/page-title.php:1068
 msgid "Excerpt Font Color"
 msgstr ""
 
 #. translators: %s entity of font color
-#: inc/options/general/page-title.php:1075
+#: inc/options/general/page-title.php:1070
 msgid "%s Font Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1107,
-#: inc/options/single-elements/author-box.php:347,
+#: inc/options/general/page-title.php:1102,
+#: inc/options/single-elements/author-box.php:345,
 #: inc/options/single-elements/post-share-box.php:190,
-#: inc/options/single-elements/post-share-box.php:511,
-#: inc/options/single-elements/post-share-box.php:571,
+#: inc/options/single-elements/post-share-box.php:509,
+#: inc/options/single-elements/post-share-box.php:569,
 #: inc/options/woocommerce/single-product-layers.php:366,
 #: inc/panel-builder/footer/socials/options.php:89,
-#: inc/panel-builder/footer/socials/options.php:295,
+#: inc/panel-builder/footer/socials/options.php:293,
 #: inc/panel-builder/header/socials/options.php:88,
-#: inc/panel-builder/header/socials/options.php:346,
-#: inc/panel-builder/header/socials/options.php:379,
-#: inc/panel-builder/header/socials/options.php:412,
-#: inc/panel-builder/header/socials/options.php:443
+#: inc/panel-builder/header/socials/options.php:344,
+#: inc/panel-builder/header/socials/options.php:377,
+#: inc/panel-builder/header/socials/options.php:410,
+#: inc/panel-builder/header/socials/options.php:441
 msgid "Icons Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1139,
-#: inc/options/single-elements/author-box.php:380,
-#: inc/panel-builder/footer/socials/options.php:337,
-#: inc/panel-builder/header/socials/options.php:479,
-#: inc/panel-builder/header/socials/options.php:525,
-#: inc/panel-builder/header/socials/options.php:564,
-#: inc/panel-builder/header/socials/options.php:603
+#: inc/options/general/page-title.php:1134,
+#: inc/options/single-elements/author-box.php:378,
+#: inc/panel-builder/footer/socials/options.php:335,
+#: inc/panel-builder/header/socials/options.php:477,
+#: inc/panel-builder/header/socials/options.php:523,
+#: inc/panel-builder/header/socials/options.php:562,
+#: inc/panel-builder/header/socials/options.php:601
 msgid "Icons Background Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1250
+#: inc/options/general/page-title.php:1245
 #: static/js/options/options/background/ImagePicker.js:184
 msgid "Image Overlay Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1285,
-#: inc/panel-builder/footer/options.php:112,
-#: inc/panel-builder/footer/options.php:129
+#: inc/options/general/page-title.php:1280,
+#: inc/panel-builder/footer/options.php:110,
+#: inc/panel-builder/footer/options.php:127
 msgid "Container Padding"
 msgstr ""
 
-#: inc/options/general/page-title.php:1345,
-#: inc/options/general/page-title.php:1386, inc/options/meta/default.php:94,
+#: inc/options/general/page-title.php:1340,
+#: inc/options/general/page-title.php:1381, inc/options/meta/default.php:94,
 #: inc/options/meta/default.php:125, inc/options/meta/page.php:79,
 #: inc/options/meta/page.php:110, inc/options/meta/post.php:75,
 #: inc/options/meta/post.php:109,
@@ -2791,8 +2791,8 @@ msgstr ""
 msgid "Inherit"
 msgstr ""
 
-#: inc/options/general/page-title.php:1347,
-#: inc/options/general/page-title.php:1388,
+#: inc/options/general/page-title.php:1342,
+#: inc/options/general/page-title.php:1383,
 #: inc/options/general/posts-listing.php:1663,
 #: inc/options/meta/default.php:157, inc/options/meta/page.php:142,
 #: inc/options/meta/post.php:141,
@@ -2802,11 +2802,11 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: inc/options/general/page-title.php:1358
+#: inc/options/general/page-title.php:1353
 msgid "By default these options are inherited from Customizer options."
 msgstr ""
 
-#: inc/options/general/page-title.php:1418
+#: inc/options/general/page-title.php:1413
 msgid ""
 "Options will appear here only if you will set Custom in Page Title option."
 msgstr ""
@@ -2846,12 +2846,12 @@ msgstr ""
 msgid "Pagination Top Spacing"
 msgstr ""
 
-#: inc/options/general/pagination.php:165, inc/options/general/sidebar.php:363,
-#: inc/panel-builder/footer/middle-row/options.php:561,
-#: inc/panel-builder/header/cart/options.php:734,
-#: inc/panel-builder/header/cart/options.php:815,
-#: inc/panel-builder/header/cart/options.php:845,
-#: inc/panel-builder/header/cart/options.php:878,
+#: inc/options/general/pagination.php:165, inc/options/general/sidebar.php:361,
+#: inc/panel-builder/footer/middle-row/options.php:559,
+#: inc/panel-builder/header/cart/options.php:733,
+#: inc/panel-builder/header/cart/options.php:814,
+#: inc/panel-builder/header/cart/options.php:844,
+#: inc/panel-builder/header/cart/options.php:877,
 #: inc/panel-builder/header/offcanvas/options.php:213,
 #: inc/panel-builder/header/text/options.php:217,
 #: inc/panel-builder/header/text/options.php:259,
@@ -2869,16 +2869,16 @@ msgstr ""
 
 #: inc/options/general/pagination.php:226,
 #: inc/options/general/posts-listing.php:1203,
-#: inc/panel-builder/header/button/options.php:713,
-#: inc/panel-builder/header/button/options.php:742,
-#: inc/panel-builder/header/button/options.php:772,
-#: inc/panel-builder/header/button/options.php:800
+#: inc/panel-builder/header/button/options.php:712,
+#: inc/panel-builder/header/button/options.php:741,
+#: inc/panel-builder/header/button/options.php:771,
+#: inc/panel-builder/header/button/options.php:799
 msgid "Button Color"
 msgstr ""
 
 #: inc/options/general/pagination.php:266,
 #: inc/options/general/posts-listing.php:586,
-#: inc/options/general/sidebar.php:440,
+#: inc/options/general/sidebar.php:438,
 #: inc/options/woocommerce/single-product-elements.php:506,
 #: inc/options/woocommerce/single-product-layers.php:224
 msgid "Divider"
@@ -2983,7 +2983,7 @@ msgstr ""
 #: inc/options/woocommerce/single-product-layers.php:288,
 #: inc/options/woocommerce/single-product-layers.php:381,
 #: inc/options/woocommerce/single-product-layers.php:444,
-#: inc/components/woocommerce/single/additional-actions-layer.php:104,
+#: inc/components/woocommerce/single/additional-actions-layer.php:103,
 #: inc/components/woocommerce/single/single-modifications.php:96
 msgid "Bottom Spacing"
 msgstr ""
@@ -3000,7 +3000,7 @@ msgstr ""
 #: inc/options/woocommerce/card-product-elements.php:299,
 #: inc/options/woocommerce/single-product-gallery.php:101,
 #: inc/options/woocommerce/general/cart-page.php:29,
-#: inc/panel-builder/header/cart/options.php:682
+#: inc/panel-builder/header/cart/options.php:681
 msgid "Image Ratio"
 msgstr ""
 
@@ -3257,7 +3257,7 @@ msgstr ""
 
 #: inc/options/general/sidebar.php:91,
 #: inc/options/single-elements/author-box.php:196,
-#: inc/options/single-elements/related-posts.php:678
+#: inc/options/single-elements/related-posts.php:676
 msgid "Container Inner Spacing"
 msgstr ""
 
@@ -3301,45 +3301,45 @@ msgstr ""
 msgid "Sidebar Visibility"
 msgstr ""
 
-#: inc/options/general/sidebar.php:254
+#: inc/options/general/sidebar.php:252
 msgid "Mobile Sidebar Position"
 msgstr ""
 
-#: inc/options/general/sidebar.php:261,
+#: inc/options/general/sidebar.php:259,
 #: inc/options/single-elements/post-share-box.php:219,
 #: inc/options/woocommerce/general/store-notice.php:47,
-#: inc/panel-builder/header/logo/options.php:286
+#: inc/panel-builder/header/logo/options.php:281
 #: static/js/options/options/ct-spacing/input.js:109
 msgid "Top"
 msgstr ""
 
-#: inc/options/general/sidebar.php:262,
+#: inc/options/general/sidebar.php:260,
 #: inc/options/single-elements/post-share-box.php:220,
 #: inc/options/woocommerce/general/store-notice.php:48,
-#: inc/panel-builder/header/cart/options.php:125,
-#: inc/panel-builder/header/search/options.php:101,
-#: inc/panel-builder/header/trigger/options.php:126
+#: inc/panel-builder/header/cart/options.php:124,
+#: inc/panel-builder/header/search/options.php:100,
+#: inc/panel-builder/header/trigger/options.php:125
 #: static/js/options/options/ct-spacing/input.js:110
 msgid "Bottom"
 msgstr ""
 
-#: inc/options/general/sidebar.php:277,
-#: inc/panel-builder/footer/middle-row/options.php:474
+#: inc/options/general/sidebar.php:275,
+#: inc/panel-builder/footer/middle-row/options.php:472
 msgid "Widgets Title Font"
 msgstr ""
 
-#: inc/options/general/sidebar.php:285,
-#: inc/panel-builder/footer/middle-row/options.php:482
+#: inc/options/general/sidebar.php:283,
+#: inc/panel-builder/footer/middle-row/options.php:480
 msgid "Widgets Title Font Color"
 msgstr ""
 
-#: inc/options/general/sidebar.php:332,
-#: inc/panel-builder/footer/middle-row/options.php:530
+#: inc/options/general/sidebar.php:330,
+#: inc/panel-builder/footer/middle-row/options.php:528
 msgid "Widgets Font"
 msgstr ""
 
-#: inc/options/general/sidebar.php:341,
-#: inc/panel-builder/footer/middle-row/options.php:539
+#: inc/options/general/sidebar.php:339,
+#: inc/panel-builder/footer/middle-row/options.php:537
 msgid "Widgets Font Color"
 msgstr ""
 
@@ -3556,7 +3556,7 @@ msgid ""
 msgstr ""
 
 #: inc/options/pages/search-page.php:17,
-#: inc/panel-builder/header/search/options.php:410
+#: inc/panel-builder/header/search/options.php:409
 msgid "Search Results"
 msgstr ""
 
@@ -3572,12 +3572,12 @@ msgid "Live results"
 msgstr ""
 
 #: inc/options/pages/search-page.php:104,
-#: inc/panel-builder/header/search/options.php:451
+#: inc/panel-builder/header/search/options.php:450
 msgid "Live Results Product Price"
 msgstr ""
 
 #: inc/options/pages/search-page.php:111,
-#: inc/panel-builder/header/search/options.php:459
+#: inc/panel-builder/header/search/options.php:458
 msgid "Live Results Product Status"
 msgstr ""
 
@@ -3623,19 +3623,19 @@ msgstr ""
 msgid "You can set the author social channels %shere%s."
 msgstr ""
 
-#: inc/options/single-elements/author-box.php:241
+#: inc/options/single-elements/author-box.php:239
 msgid "Author Name Font"
 msgstr ""
 
-#: inc/options/single-elements/author-box.php:247
+#: inc/options/single-elements/author-box.php:245
 msgid "Author Name Font Color"
 msgstr ""
 
-#: inc/options/single-elements/author-box.php:294
+#: inc/options/single-elements/author-box.php:292
 msgid "Author Bio Font"
 msgstr ""
 
-#: inc/options/single-elements/author-box.php:300
+#: inc/options/single-elements/author-box.php:298
 msgid "Author Bio Font Color"
 msgstr ""
 
@@ -3684,19 +3684,19 @@ msgstr ""
 msgid "Container Spacing"
 msgstr ""
 
-#: inc/options/single-elements/post-nav.php:128
+#: inc/options/single-elements/post-nav.php:127
 msgid "Title Visibility"
 msgstr ""
 
-#: inc/options/single-elements/post-nav.php:148
+#: inc/options/single-elements/post-nav.php:146
 msgid "Module Visibility"
 msgstr ""
 
-#: inc/options/single-elements/post-nav.php:202
+#: inc/options/single-elements/post-nav.php:199
 msgid "Thumbnail Overlay Color"
 msgstr ""
 
-#: inc/options/single-elements/post-nav.php:222
+#: inc/options/single-elements/post-nav.php:219
 msgid "Thumbnail Border Radius"
 msgstr ""
 
@@ -3795,21 +3795,21 @@ msgstr ""
 #: inc/options/single-elements/post-share-box.php:395,
 #: inc/options/single-elements/post-tags.php:124,
 #: inc/options/woocommerce/card-product-elements.php:627,
-#: inc/panel-builder/header/logo/options.php:304,
+#: inc/panel-builder/header/logo/options.php:299,
 #: inc/panel-builder/header/text/options.php:57
 msgid "Content Alignment"
 msgstr ""
 
-#: inc/options/single-elements/post-share-box.php:444,
-#: inc/options/single-elements/post-tags.php:169,
-#: inc/options/single-elements/related-posts.php:494,
-#: inc/options/woocommerce/related-upsells.php:130
+#: inc/options/single-elements/post-share-box.php:442,
+#: inc/options/single-elements/post-tags.php:167,
+#: inc/options/single-elements/related-posts.php:492,
+#: inc/options/woocommerce/related-upsells.php:126
 msgid "Module Title Font"
 msgstr ""
 
-#: inc/options/single-elements/post-share-box.php:453,
-#: inc/options/single-elements/post-tags.php:178,
-#: inc/options/single-elements/related-posts.php:500
+#: inc/options/single-elements/post-share-box.php:451,
+#: inc/options/single-elements/post-tags.php:176,
+#: inc/options/single-elements/related-posts.php:498
 msgid "Module Title Font Color"
 msgstr ""
 
@@ -3864,23 +3864,23 @@ msgstr ""
 msgid "After Comments"
 msgstr ""
 
-#: inc/options/single-elements/related-posts.php:548
+#: inc/options/single-elements/related-posts.php:546
 msgid "Posts Title Font"
 msgstr ""
 
-#: inc/options/single-elements/related-posts.php:557
+#: inc/options/single-elements/related-posts.php:555
 msgid "Posts Title Font Color"
 msgstr ""
 
-#: inc/options/single-elements/related-posts.php:616
+#: inc/options/single-elements/related-posts.php:614
 msgid "Posts Meta Font"
 msgstr ""
 
-#: inc/options/single-elements/related-posts.php:625
+#: inc/options/single-elements/related-posts.php:623
 msgid "Posts Meta Font Color"
 msgstr ""
 
-#: inc/options/single-elements/related-posts.php:655,
+#: inc/options/single-elements/related-posts.php:653,
 #: inc/options/woocommerce/card-product-elements.php:1211
 msgid "Image Border Radius"
 msgstr ""
@@ -4089,13 +4089,13 @@ msgstr ""
 #: inc/options/woocommerce/card-product-elements.php:1005,
 #: inc/options/woocommerce/results-count.php:50,
 #: inc/options/woocommerce/single-product-tabs.php:188,
-#: inc/panel-builder/footer/copyright/options.php:95,
-#: inc/panel-builder/footer/menu/options.php:153,
+#: inc/panel-builder/footer/copyright/options.php:93,
+#: inc/panel-builder/footer/menu/options.php:151,
 #: inc/panel-builder/header/menu/options.php:158,
 #: inc/panel-builder/header/menu/options.php:736,
-#: inc/panel-builder/header/mobile-menu/options.php:197,
-#: inc/panel-builder/header/mobile-menu/options.php:330,
-#: inc/panel-builder/header/search/options.php:511,
+#: inc/panel-builder/header/mobile-menu/options.php:196,
+#: inc/panel-builder/header/mobile-menu/options.php:329,
+#: inc/panel-builder/header/search/options.php:510,
 #: inc/panel-builder/header/text/options.php:156
 msgid "Font"
 msgstr ""
@@ -4132,11 +4132,11 @@ msgstr ""
 msgid "Related Products Visibility"
 msgstr ""
 
-#: inc/options/woocommerce/related-upsells.php:100
+#: inc/options/woocommerce/related-upsells.php:98
 msgid "Upsell Products Visibility"
 msgstr ""
 
-#: inc/options/woocommerce/related-upsells.php:138
+#: inc/options/woocommerce/related-upsells.php:134
 msgid "Module Title Color"
 msgstr ""
 
@@ -4210,7 +4210,7 @@ msgid "Container Border"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-elements.php:589,
-#: inc/panel-builder/footer/options.php:157
+#: inc/panel-builder/footer/options.php:155
 msgid "Container Border Radius"
 msgstr ""
 
@@ -4412,8 +4412,8 @@ msgstr ""
 
 #: inc/panel-builder/footer/options.php:14,
 #: inc/panel-builder/footer/middle-row/options.php:436,
-#: inc/panel-builder/footer/middle-row/options.php:629,
-#: inc/panel-builder/footer/middle-row/options.php:670,
+#: inc/panel-builder/footer/middle-row/options.php:627,
+#: inc/panel-builder/footer/middle-row/options.php:668,
 #: inc/panel-builder/header/middle-row/options.php:43,
 #: inc/panel-builder/header/middle-row/options.php:374,
 #: inc/panel-builder/header/middle-row/options.php:481
@@ -4428,11 +4428,11 @@ msgstr ""
 msgid "Enable reveal effect on"
 msgstr ""
 
-#: inc/panel-builder/footer/options.php:43
+#: inc/panel-builder/footer/options.php:39
 msgid "Enables a nice reveal effect as you scroll down."
 msgstr ""
 
-#: inc/panel-builder/footer/options.php:103
+#: inc/panel-builder/footer/options.php:101
 msgid ""
 "Please note, you can also change the background color for each row "
 "individually."
@@ -4729,7 +4729,7 @@ msgid "Out of Stock Badge"
 msgstr ""
 
 #: inc/options/woocommerce/general/quantity-input.php:13,
-#: inc/panel-builder/header/cart/options.php:671
+#: inc/panel-builder/header/cart/options.php:670
 msgid "Quantity Input"
 msgstr ""
 
@@ -4796,33 +4796,33 @@ msgstr ""
 
 #: inc/panel-builder/footer/copyright/options.php:67,
 #: inc/panel-builder/footer/menu/options.php:124,
-#: inc/panel-builder/footer/socials/options.php:205,
+#: inc/panel-builder/footer/socials/options.php:204,
 #: inc/panel-builder/header/button/options.php:191,
-#: inc/panel-builder/header/button/options.php:247,
-#: inc/panel-builder/header/cart/options.php:1117,
-#: inc/panel-builder/header/logo/options.php:358,
+#: inc/panel-builder/header/button/options.php:246,
+#: inc/panel-builder/header/cart/options.php:1116,
+#: inc/panel-builder/header/logo/options.php:353,
 #: inc/panel-builder/header/mobile-menu/options.php:161,
-#: inc/panel-builder/header/search/options.php:854,
-#: inc/panel-builder/header/socials/options.php:168,
+#: inc/panel-builder/header/search/options.php:853,
+#: inc/panel-builder/header/socials/options.php:167,
 #: inc/panel-builder/header/text/options.php:111,
 #: inc/panel-builder/header/text/options.php:442,
-#: inc/panel-builder/header/trigger/options.php:620
+#: inc/panel-builder/header/trigger/options.php:619
 msgid "Element Visibility"
 msgstr ""
 
-#: inc/panel-builder/footer/copyright/options.php:147,
-#: inc/panel-builder/footer/menu/options.php:204,
-#: inc/panel-builder/footer/socials/options.php:378,
+#: inc/panel-builder/footer/copyright/options.php:145,
+#: inc/panel-builder/footer/menu/options.php:202,
+#: inc/panel-builder/footer/socials/options.php:376,
 #: inc/panel-builder/footer/widget-area-1/options.php:116,
-#: inc/panel-builder/header/button/options.php:850,
-#: inc/panel-builder/header/cart/options.php:547,
-#: inc/panel-builder/header/logo/options.php:677,
+#: inc/panel-builder/header/button/options.php:849,
+#: inc/panel-builder/header/cart/options.php:546,
+#: inc/panel-builder/header/logo/options.php:672,
 #: inc/panel-builder/header/menu/options.php:570,
-#: inc/panel-builder/header/mobile-menu/options.php:498,
+#: inc/panel-builder/header/mobile-menu/options.php:497,
 #: inc/panel-builder/header/offcanvas-logo/options.php:76,
-#: inc/panel-builder/header/socials/options.php:644,
+#: inc/panel-builder/header/socials/options.php:642,
 #: inc/panel-builder/header/text/options.php:419,
-#: inc/panel-builder/header/trigger/options.php:603
+#: inc/panel-builder/header/trigger/options.php:602
 msgid "Margin"
 msgstr ""
 
@@ -4923,29 +4923,29 @@ msgstr ""
 msgid "Row Visibility"
 msgstr ""
 
-#: inc/panel-builder/footer/middle-row/options.php:587
+#: inc/panel-builder/footer/middle-row/options.php:585
 msgid "Row Background"
 msgstr ""
 
-#: inc/panel-builder/footer/middle-row/options.php:600
+#: inc/panel-builder/footer/middle-row/options.php:598
 msgid "Row Top Divider"
 msgstr ""
 
-#: inc/panel-builder/footer/middle-row/options.php:620,
+#: inc/panel-builder/footer/middle-row/options.php:618,
 #: inc/panel-builder/header/middle-row/options.php:365
 msgid "Top Border Width"
 msgstr ""
 
-#: inc/panel-builder/footer/middle-row/options.php:641
+#: inc/panel-builder/footer/middle-row/options.php:639
 msgid "Row Bottom Divider"
 msgstr ""
 
-#: inc/panel-builder/footer/middle-row/options.php:661,
+#: inc/panel-builder/footer/middle-row/options.php:659,
 #: inc/panel-builder/header/middle-row/options.php:472
 msgid "Bottom Border Width"
 msgstr ""
 
-#: inc/panel-builder/footer/middle-row/options.php:687
+#: inc/panel-builder/footer/middle-row/options.php:685
 msgid "Columns Divider"
 msgstr ""
 
@@ -4981,18 +4981,18 @@ msgstr ""
 msgid "Solid"
 msgstr ""
 
-#: inc/panel-builder/footer/socials/options.php:248,
-#: inc/panel-builder/header/search/options.php:139,
-#: inc/panel-builder/header/socials/options.php:208,
-#: inc/panel-builder/header/trigger/options.php:164
+#: inc/panel-builder/footer/socials/options.php:246,
+#: inc/panel-builder/header/search/options.php:138,
+#: inc/panel-builder/header/socials/options.php:206,
+#: inc/panel-builder/header/trigger/options.php:163
 msgid "Label Font"
 msgstr ""
 
-#: inc/panel-builder/footer/socials/options.php:341,
-#: inc/panel-builder/header/socials/options.php:483,
-#: inc/panel-builder/header/socials/options.php:529,
-#: inc/panel-builder/header/socials/options.php:568,
-#: inc/panel-builder/header/socials/options.php:607
+#: inc/panel-builder/footer/socials/options.php:339,
+#: inc/panel-builder/header/socials/options.php:481,
+#: inc/panel-builder/header/socials/options.php:527,
+#: inc/panel-builder/header/socials/options.php:566,
+#: inc/panel-builder/header/socials/options.php:605
 msgid "Icons Border Color"
 msgstr ""
 
@@ -5046,9 +5046,9 @@ msgstr ""
 
 #: inc/panel-builder/header/button/options.php:46,
 #: inc/panel-builder/header/button/options.php:66,
-#: inc/panel-builder/header/cart/options.php:130,
-#: inc/panel-builder/header/search/options.php:106,
-#: inc/panel-builder/header/trigger/options.php:131
+#: inc/panel-builder/header/cart/options.php:129,
+#: inc/panel-builder/header/search/options.php:105,
+#: inc/panel-builder/header/trigger/options.php:130
 msgid "Label Text"
 msgstr ""
 
@@ -5108,64 +5108,64 @@ msgstr ""
 msgid "Create Popup"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:267,
+#: inc/panel-builder/header/button/options.php:266,
 #: inc/panel-builder/header/text/options.php:131
 msgid "User Visibility"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:277,
+#: inc/panel-builder/header/button/options.php:276,
 #: inc/panel-builder/header/text/options.php:141
 msgid "Logged In"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:278,
+#: inc/panel-builder/header/button/options.php:277,
 #: inc/panel-builder/header/text/options.php:142
 msgid "Logged Out"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:285,
-#: inc/panel-builder/header/logo/options.php:378
+#: inc/panel-builder/header/button/options.php:284,
+#: inc/panel-builder/header/logo/options.php:373
 msgid "CSS Class"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:290,
-#: inc/panel-builder/header/logo/options.php:383
+#: inc/panel-builder/header/button/options.php:289,
+#: inc/panel-builder/header/logo/options.php:378
 msgid "Separate multiple classes with spaces."
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:294,
-#: inc/panel-builder/header/logo/options.php:387
+#: inc/panel-builder/header/button/options.php:293,
+#: inc/panel-builder/header/logo/options.php:382
 msgid "Custom Aria Label"
 msgstr ""
 
 #. translators: placeholder here means the actual URL.
-#: inc/panel-builder/header/button/options.php:301,
-#: inc/panel-builder/header/logo/options.php:394
+#: inc/panel-builder/header/button/options.php:300,
+#: inc/panel-builder/header/logo/options.php:389
 msgid "Add a custom %saria label%s attribute."
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:319
+#: inc/panel-builder/header/button/options.php:318
 msgid "Label Text Font"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:326,
-#: inc/panel-builder/header/button/options.php:356,
-#: inc/panel-builder/header/button/options.php:408,
-#: inc/panel-builder/header/button/options.php:458,
-#: inc/panel-builder/header/button/options.php:556,
-#: inc/panel-builder/header/button/options.php:606,
-#: inc/panel-builder/header/button/options.php:656
+#: inc/panel-builder/header/button/options.php:325,
+#: inc/panel-builder/header/button/options.php:355,
+#: inc/panel-builder/header/button/options.php:407,
+#: inc/panel-builder/header/button/options.php:457,
+#: inc/panel-builder/header/button/options.php:555,
+#: inc/panel-builder/header/button/options.php:605,
+#: inc/panel-builder/header/button/options.php:655
 msgid "Label Text Color"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:332,
-#: inc/panel-builder/header/button/options.php:532,
-#: inc/panel-builder/header/button/options.php:718,
-#: inc/panel-builder/header/cart/options.php:177,
-#: inc/panel-builder/header/cart/options.php:303,
-#: inc/panel-builder/header/cart/options.php:424,
-#: inc/panel-builder/header/logo/options.php:433,
-#: inc/panel-builder/header/logo/options.php:579,
+#: inc/panel-builder/header/button/options.php:331,
+#: inc/panel-builder/header/button/options.php:531,
+#: inc/panel-builder/header/button/options.php:717,
+#: inc/panel-builder/header/cart/options.php:176,
+#: inc/panel-builder/header/cart/options.php:302,
+#: inc/panel-builder/header/cart/options.php:423,
+#: inc/panel-builder/header/logo/options.php:428,
+#: inc/panel-builder/header/logo/options.php:574,
 #: inc/panel-builder/header/menu/options.php:180,
 #: inc/panel-builder/header/menu/options.php:409,
 #: inc/panel-builder/header/menu/options.php:757,
@@ -5175,28 +5175,28 @@ msgstr ""
 #: inc/panel-builder/header/middle-row/options.php:285,
 #: inc/panel-builder/header/middle-row/options.php:392,
 #: inc/panel-builder/header/middle-row/options.php:498,
-#: inc/panel-builder/header/mobile-menu/options.php:353,
-#: inc/panel-builder/header/search/options.php:155,
-#: inc/panel-builder/header/search/options.php:281,
-#: inc/panel-builder/header/socials/options.php:224,
-#: inc/panel-builder/header/socials/options.php:352,
-#: inc/panel-builder/header/socials/options.php:492,
+#: inc/panel-builder/header/mobile-menu/options.php:352,
+#: inc/panel-builder/header/search/options.php:154,
+#: inc/panel-builder/header/search/options.php:280,
+#: inc/panel-builder/header/socials/options.php:222,
+#: inc/panel-builder/header/socials/options.php:350,
+#: inc/panel-builder/header/socials/options.php:490,
 #: inc/panel-builder/header/text/options.php:171,
 #: inc/panel-builder/header/text/options.php:324,
-#: inc/panel-builder/header/trigger/options.php:180,
-#: inc/panel-builder/header/trigger/options.php:306,
-#: inc/panel-builder/header/trigger/options.php:437
+#: inc/panel-builder/header/trigger/options.php:179,
+#: inc/panel-builder/header/trigger/options.php:305,
+#: inc/panel-builder/header/trigger/options.php:436
 msgid "Default State"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:337,
-#: inc/panel-builder/header/button/options.php:537,
-#: inc/panel-builder/header/button/options.php:723,
-#: inc/panel-builder/header/cart/options.php:182,
-#: inc/panel-builder/header/cart/options.php:308,
-#: inc/panel-builder/header/cart/options.php:432,
-#: inc/panel-builder/header/logo/options.php:438,
-#: inc/panel-builder/header/logo/options.php:584,
+#: inc/panel-builder/header/button/options.php:336,
+#: inc/panel-builder/header/button/options.php:536,
+#: inc/panel-builder/header/button/options.php:722,
+#: inc/panel-builder/header/cart/options.php:181,
+#: inc/panel-builder/header/cart/options.php:307,
+#: inc/panel-builder/header/cart/options.php:431,
+#: inc/panel-builder/header/logo/options.php:433,
+#: inc/panel-builder/header/logo/options.php:579,
 #: inc/panel-builder/header/menu/options.php:185,
 #: inc/panel-builder/header/menu/options.php:415,
 #: inc/panel-builder/header/menu/options.php:762,
@@ -5206,28 +5206,28 @@ msgstr ""
 #: inc/panel-builder/header/middle-row/options.php:290,
 #: inc/panel-builder/header/middle-row/options.php:397,
 #: inc/panel-builder/header/middle-row/options.php:503,
-#: inc/panel-builder/header/mobile-menu/options.php:358,
-#: inc/panel-builder/header/search/options.php:160,
-#: inc/panel-builder/header/search/options.php:286,
-#: inc/panel-builder/header/socials/options.php:232,
-#: inc/panel-builder/header/socials/options.php:358,
-#: inc/panel-builder/header/socials/options.php:501,
+#: inc/panel-builder/header/mobile-menu/options.php:357,
+#: inc/panel-builder/header/search/options.php:159,
+#: inc/panel-builder/header/search/options.php:285,
+#: inc/panel-builder/header/socials/options.php:230,
+#: inc/panel-builder/header/socials/options.php:356,
+#: inc/panel-builder/header/socials/options.php:499,
 #: inc/panel-builder/header/text/options.php:176,
 #: inc/panel-builder/header/text/options.php:329,
-#: inc/panel-builder/header/trigger/options.php:185,
-#: inc/panel-builder/header/trigger/options.php:311,
-#: inc/panel-builder/header/trigger/options.php:443
+#: inc/panel-builder/header/trigger/options.php:184,
+#: inc/panel-builder/header/trigger/options.php:310,
+#: inc/panel-builder/header/trigger/options.php:442
 msgid "Transparent State"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:346,
-#: inc/panel-builder/header/button/options.php:546,
-#: inc/panel-builder/header/button/options.php:732,
-#: inc/panel-builder/header/cart/options.php:191,
-#: inc/panel-builder/header/cart/options.php:317,
-#: inc/panel-builder/header/cart/options.php:442,
-#: inc/panel-builder/header/logo/options.php:447,
-#: inc/panel-builder/header/logo/options.php:593,
+#: inc/panel-builder/header/button/options.php:345,
+#: inc/panel-builder/header/button/options.php:545,
+#: inc/panel-builder/header/button/options.php:731,
+#: inc/panel-builder/header/cart/options.php:190,
+#: inc/panel-builder/header/cart/options.php:316,
+#: inc/panel-builder/header/cart/options.php:441,
+#: inc/panel-builder/header/logo/options.php:442,
+#: inc/panel-builder/header/logo/options.php:588,
 #: inc/panel-builder/header/menu/options.php:194,
 #: inc/panel-builder/header/menu/options.php:425,
 #: inc/panel-builder/header/menu/options.php:771,
@@ -5237,25 +5237,25 @@ msgstr ""
 #: inc/panel-builder/header/middle-row/options.php:298,
 #: inc/panel-builder/header/middle-row/options.php:405,
 #: inc/panel-builder/header/middle-row/options.php:511,
-#: inc/panel-builder/header/mobile-menu/options.php:367,
-#: inc/panel-builder/header/search/options.php:169,
-#: inc/panel-builder/header/search/options.php:294,
-#: inc/panel-builder/header/socials/options.php:242,
-#: inc/panel-builder/header/socials/options.php:368,
-#: inc/panel-builder/header/socials/options.php:512,
+#: inc/panel-builder/header/mobile-menu/options.php:366,
+#: inc/panel-builder/header/search/options.php:168,
+#: inc/panel-builder/header/search/options.php:293,
+#: inc/panel-builder/header/socials/options.php:240,
+#: inc/panel-builder/header/socials/options.php:366,
+#: inc/panel-builder/header/socials/options.php:510,
 #: inc/panel-builder/header/text/options.php:185,
 #: inc/panel-builder/header/text/options.php:338,
-#: inc/panel-builder/header/trigger/options.php:194,
-#: inc/panel-builder/header/trigger/options.php:320,
-#: inc/panel-builder/header/trigger/options.php:453
+#: inc/panel-builder/header/trigger/options.php:193,
+#: inc/panel-builder/header/trigger/options.php:319,
+#: inc/panel-builder/header/trigger/options.php:452
 msgid "Sticky State"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:517
+#: inc/panel-builder/header/button/options.php:516
 msgid "Secondary Label Text Font"
 msgstr ""
 
-#: inc/panel-builder/header/button/options.php:526
+#: inc/panel-builder/header/button/options.php:525
 msgid "Secondary Label Text Color"
 msgstr ""
 
@@ -5272,135 +5272,135 @@ msgstr ""
 msgid "Icon Badge"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:114,
-#: inc/panel-builder/header/search/options.php:92,
-#: inc/panel-builder/header/trigger/options.php:117
+#: inc/panel-builder/header/cart/options.php:113,
+#: inc/panel-builder/header/search/options.php:91,
+#: inc/panel-builder/header/trigger/options.php:116
 msgid "Label Position"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:123,
-#: inc/panel-builder/header/logo/options.php:284,
-#: inc/panel-builder/header/search/options.php:99,
-#: inc/panel-builder/header/trigger/options.php:124
+#: inc/panel-builder/header/cart/options.php:122,
+#: inc/panel-builder/header/logo/options.php:279,
+#: inc/panel-builder/header/search/options.php:98,
+#: inc/panel-builder/header/trigger/options.php:123
 #: static/js/options/options/ct-spacing/input.js:111
 msgid "Left"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:124,
-#: inc/panel-builder/header/logo/options.php:285,
-#: inc/panel-builder/header/search/options.php:100,
-#: inc/panel-builder/header/trigger/options.php:125
+#: inc/panel-builder/header/cart/options.php:123,
+#: inc/panel-builder/header/logo/options.php:280,
+#: inc/panel-builder/header/search/options.php:99,
+#: inc/panel-builder/header/trigger/options.php:124
 #: static/js/options/options/ct-spacing/input.js:112
 msgid "Right"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:161
+#: inc/panel-builder/header/cart/options.php:160
 msgid "Cart Total Font"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:172
+#: inc/panel-builder/header/cart/options.php:171
 msgid "Cart Total Font Color"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:418,
-#: inc/panel-builder/header/cart/options.php:453,
-#: inc/panel-builder/header/cart/options.php:484,
-#: inc/panel-builder/header/cart/options.php:514
+#: inc/panel-builder/header/cart/options.php:417,
+#: inc/panel-builder/header/cart/options.php:452,
+#: inc/panel-builder/header/cart/options.php:483,
+#: inc/panel-builder/header/cart/options.php:513
 msgid "Badge Color"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:563
+#: inc/panel-builder/header/cart/options.php:562
 msgid "Cart Drawer"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:581
+#: inc/panel-builder/header/cart/options.php:580
 msgid "Cart Drawer Type"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:592
+#: inc/panel-builder/header/cart/options.php:591
 msgid "Dropdown"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:597
+#: inc/panel-builder/header/cart/options.php:596
 msgid "Off Canvas"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:607
+#: inc/panel-builder/header/cart/options.php:606
 msgid "Dropdown Top Offset"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:623,
+#: inc/panel-builder/header/cart/options.php:622,
 #: inc/panel-builder/header/offcanvas/options.php:39
 msgid "Panel Width"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:638,
+#: inc/panel-builder/header/cart/options.php:637,
 #: inc/panel-builder/header/offcanvas/options.php:27
 msgid "Reveal From"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:646,
+#: inc/panel-builder/header/cart/options.php:645,
 #: inc/panel-builder/header/offcanvas/options.php:33
 msgid "Left Side"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:647,
+#: inc/panel-builder/header/cart/options.php:646,
 #: inc/panel-builder/header/offcanvas/options.php:34
 msgid "Right Side"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:652
+#: inc/panel-builder/header/cart/options.php:651
 msgid "Open Cart Automatically On"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:659
+#: inc/panel-builder/header/cart/options.php:658
 msgid "Automatically open the cart drawer after a product is added to cart."
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:665
+#: inc/panel-builder/header/cart/options.php:664
 msgid "Archive Page"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:666
+#: inc/panel-builder/header/cart/options.php:665
 msgid "Product Page"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:675
+#: inc/panel-builder/header/cart/options.php:674
 msgid "Display the quantity input field inside the off-canvas cart panel."
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:753,
-#: inc/panel-builder/header/cart/options.php:864
+#: inc/panel-builder/header/cart/options.php:752,
+#: inc/panel-builder/header/cart/options.php:863
 msgid "Subtotal Font Color"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:802,
+#: inc/panel-builder/header/cart/options.php:801,
 #: inc/panel-builder/header/offcanvas/options.php:199
 msgid "Panel Heading Font Color"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:823
+#: inc/panel-builder/header/cart/options.php:822
 msgid "Products Font Color"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:886,
+#: inc/panel-builder/header/cart/options.php:885,
 #: inc/panel-builder/header/offcanvas/options.php:126
 msgid "Panel Background"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:902,
+#: inc/panel-builder/header/cart/options.php:901,
 #: inc/panel-builder/header/offcanvas/options.php:146
 msgid "Panel Backdrop"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:918,
+#: inc/panel-builder/header/cart/options.php:917,
 #: inc/panel-builder/header/offcanvas/options.php:172
 msgid "Panel Shadow"
 msgstr ""
 
-#: inc/panel-builder/header/cart/options.php:937,
+#: inc/panel-builder/header/cart/options.php:936,
 #: inc/panel-builder/header/offcanvas/options.php:223,
-#: inc/panel-builder/header/search/options.php:685
+#: inc/panel-builder/header/search/options.php:684
 msgid "Close Button Type"
 msgstr ""
 
@@ -5433,7 +5433,7 @@ msgid "Sticky State Shrink"
 msgstr ""
 
 #: inc/panel-builder/header/logo/options.php:148,
-#: inc/panel-builder/header/logo/options.php:417
+#: inc/panel-builder/header/logo/options.php:412
 msgid "Site Title"
 msgstr ""
 
@@ -5441,38 +5441,38 @@ msgstr ""
 msgid "Site Title Visibility"
 msgstr ""
 
-#: inc/panel-builder/header/logo/options.php:196
+#: inc/panel-builder/header/logo/options.php:193
 msgid "Site Tagline"
 msgstr ""
 
-#: inc/panel-builder/header/logo/options.php:216
+#: inc/panel-builder/header/logo/options.php:213
 msgid "Site Tagline Visibility"
 msgstr ""
 
-#: inc/panel-builder/header/logo/options.php:246,
+#: inc/panel-builder/header/logo/options.php:241,
 #: inc/panel-builder/header/offcanvas-logo/options.php:60
 msgid "Inline SVG File"
 msgstr ""
 
-#: inc/panel-builder/header/logo/options.php:275
+#: inc/panel-builder/header/logo/options.php:270
 msgid "Logo Image Position"
 msgstr ""
 
-#: inc/panel-builder/header/logo/options.php:428,
-#: inc/panel-builder/header/logo/options.php:457,
-#: inc/panel-builder/header/logo/options.php:488,
-#: inc/panel-builder/header/logo/options.php:518
+#: inc/panel-builder/header/logo/options.php:423,
+#: inc/panel-builder/header/logo/options.php:452,
+#: inc/panel-builder/header/logo/options.php:483,
+#: inc/panel-builder/header/logo/options.php:513
 msgid "Site Title Color"
 msgstr ""
 
-#: inc/panel-builder/header/logo/options.php:564
+#: inc/panel-builder/header/logo/options.php:559
 msgid "Site Tagline Font"
 msgstr ""
 
-#: inc/panel-builder/header/logo/options.php:574,
-#: inc/panel-builder/header/logo/options.php:603,
-#: inc/panel-builder/header/logo/options.php:625,
-#: inc/panel-builder/header/logo/options.php:646
+#: inc/panel-builder/header/logo/options.php:569,
+#: inc/panel-builder/header/logo/options.php:598,
+#: inc/panel-builder/header/logo/options.php:620,
+#: inc/panel-builder/header/logo/options.php:641
 msgid "Site Tagline Color"
 msgstr ""
 
@@ -5685,15 +5685,15 @@ msgstr ""
 msgid "Items Vertical Spacing"
 msgstr ""
 
-#: inc/panel-builder/header/mobile-menu/options.php:246
+#: inc/panel-builder/header/mobile-menu/options.php:245
 msgid "Dropdown Font"
 msgstr ""
 
-#: inc/panel-builder/header/mobile-menu/options.php:253
+#: inc/panel-builder/header/mobile-menu/options.php:252
 msgid "Dropdown Font Color"
 msgstr ""
 
-#: inc/panel-builder/header/mobile-menu/options.php:307
+#: inc/panel-builder/header/mobile-menu/options.php:306
 msgid "Container Margin"
 msgstr ""
 
@@ -5721,61 +5721,61 @@ msgstr ""
 msgid "Off Canvas Logo"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:150,
-#: inc/panel-builder/header/socials/options.php:219,
-#: inc/panel-builder/header/trigger/options.php:175
+#: inc/panel-builder/header/search/options.php:149,
+#: inc/panel-builder/header/socials/options.php:217,
+#: inc/panel-builder/header/trigger/options.php:174
 msgid "Label Font Color"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:397
+#: inc/panel-builder/header/search/options.php:396
 msgid "Icon Margin"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:420
+#: inc/panel-builder/header/search/options.php:419
 msgid "Placeholder Text"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:428
+#: inc/panel-builder/header/search/options.php:427
 msgid "Live Results"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:439
+#: inc/panel-builder/header/search/options.php:438
 msgid "Live Results Images"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:474
+#: inc/panel-builder/header/search/options.php:473
 msgid "Search Through Criteria"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:475
+#: inc/panel-builder/header/search/options.php:474
 msgid "Chose in which post types do you want to perform searches."
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:493
+#: inc/panel-builder/header/search/options.php:492
 msgid "Search Through Taxonomies"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:497
+#: inc/panel-builder/header/search/options.php:496
 msgid "Search through taxonomies from selected custom post types."
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:552
+#: inc/panel-builder/header/search/options.php:551
 msgid "Input Font Color"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:581
+#: inc/panel-builder/header/search/options.php:580
 msgid "Input Border Color"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:612
+#: inc/panel-builder/header/search/options.php:611
 msgid "Search Icon Color"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:641
+#: inc/panel-builder/header/search/options.php:640
 msgid "Search Button Color"
 msgstr ""
 
-#: inc/panel-builder/header/search/options.php:670
+#: inc/panel-builder/header/search/options.php:669
 msgid "Modal Background"
 msgstr ""
 
@@ -5817,9 +5817,9 @@ msgstr ""
 msgid "Trigger"
 msgstr ""
 
-#: inc/panel-builder/header/trigger/options.php:464,
-#: inc/panel-builder/header/trigger/options.php:504,
-#: inc/panel-builder/header/trigger/options.php:542
+#: inc/panel-builder/header/trigger/options.php:463,
+#: inc/panel-builder/header/trigger/options.php:503,
+#: inc/panel-builder/header/trigger/options.php:541
 msgid "Trigger Border Color"
 msgstr ""
 

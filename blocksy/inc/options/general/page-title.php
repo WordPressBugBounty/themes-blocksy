@@ -302,13 +302,11 @@ $when_enabled_general_settings = [
 							'label' => __( 'Visibility', 'blocksy' ),
 							'type' => 'ct-visibility',
 							'design' => 'block',
-
-							'value' => [
+							'value' => blocksy_default_responsive_value([
 								'desktop' => true,
 								'tablet' => true,
 								'mobile' => true,
-							],
-
+							]),
 							'choices' => blocksy_ordered_keys([
 								'desktop' => __( 'Desktop', 'blocksy' ),
 								'tablet' => __( 'Tablet', 'blocksy' ),
@@ -503,13 +501,11 @@ $when_enabled_general_settings = [
 							'label' => __( 'Visibility', 'blocksy' ),
 							'type' => 'ct-visibility',
 							'design' => 'block',
-
-							'value' => [
+							'value' => blocksy_default_responsive_value([
 								'desktop' => true,
 								'tablet' => true,
 								'mobile' => false,
-							],
-
+							]),
 							'choices' => blocksy_ordered_keys([
 								'desktop' => __( 'Desktop', 'blocksy' ),
 								'tablet' => __( 'Tablet', 'blocksy' ),
@@ -805,12 +801,11 @@ $when_enabled_general_settings = [
 							'divider' => 'top',
 							'allow_empty' => true,
 							'sync' => 'live',
-							'value' => [
+							'value' => blocksy_default_responsive_value([
 								'desktop' => false,
 								'tablet' => false,
 								'mobile' => false,
-							],
-
+							]),
 							'choices' => blocksy_ordered_keys([
 								'desktop' => __( 'Desktop', 'blocksy' ),
 								'tablet' => __( 'Tablet', 'blocksy' ),

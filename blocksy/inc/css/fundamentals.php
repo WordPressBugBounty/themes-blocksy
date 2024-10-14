@@ -1,5 +1,53 @@
 <?php
 
+// Function to get proper default value for a responsive value.
+// [
+//   'desktop' => 'value',
+//   'tablet' => 'value',
+//   'mobile' => 'value',
+// ] => 'value'
+//
+// 'value' => 'value'
+//
+// [
+//   'desktop' => 'value',
+//   'tablet' => 'value',
+//   'mobile' => 'value1',
+// ] => [
+//   'desktop' => 'value',
+//   'tablet' => 'value',
+//   'mobile' => 'value1',
+// ]
+function blocksy_default_responsive_value($value) {
+	if (
+		// If is just plain array
+		is_array($value) && ! isset($value['desktop'])
+		&&
+		// If it's scalar value
+		! is_array($value)
+	) {
+		return $value;
+	}
+
+	if (
+		isset($value['desktop'])
+		&&
+		isset($value['tablet'])
+		&&
+		isset($value['mobile'])
+	) {
+		if (
+			$value['desktop'] == $value['tablet']
+			&&
+			$value['desktop'] == $value['mobile']
+		) {
+			return $value['desktop'];
+		}
+	}
+
+	return $value;
+}
+
 if (! function_exists('blocksy_expand_responsive_value')) {
 	function blocksy_expand_responsive_value($value, $is_responsive = true) {
 		if (is_array($value) && isset($value['desktop'])) {

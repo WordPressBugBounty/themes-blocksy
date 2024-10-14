@@ -111,12 +111,11 @@ $options = [
 						'sync' => 'live',
 						'divider' => 'bottom',
 						'allow_empty' => true,
-						'value' => [
+						'value' => blocksy_default_responsive_value([
 							'desktop' => true,
 							'tablet' => true,
 							'mobile' => true,
-						],
-
+						]),
 						'choices' => blocksy_ordered_keys([
 							'desktop' => __( 'Desktop', 'blocksy' ),
 							'tablet' => __( 'Tablet', 'blocksy' ),
@@ -131,12 +130,11 @@ $options = [
 						'sync' => 'live',
 						'divider' => 'bottom',
 						'allow_empty' => true,
-						'value' => [
+						'value' => blocksy_default_responsive_value([
 							'desktop' => true,
 							'tablet' => true,
 							'mobile' => false,
-						],
-
+						]),
 						'choices' => blocksy_ordered_keys([
 							'desktop' => __( 'Desktop', 'blocksy' ),
 							'tablet' => __( 'Tablet', 'blocksy' ),
@@ -149,12 +147,11 @@ $options = [
 						'type' => 'ct-visibility',
 						'design' => 'block',
 						'sync' => 'live',
-						'value' => [
+						'value' => blocksy_default_responsive_value([
 							'desktop' => true,
 							'tablet' => true,
 							'mobile' => true,
-						],
-
+						]),
 						'choices' => blocksy_ordered_keys([
 							'desktop' => __( 'Desktop', 'blocksy' ),
 							'tablet' => __( 'Tablet', 'blocksy' ),

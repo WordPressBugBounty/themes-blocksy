@@ -163,7 +163,7 @@ if (! function_exists('blocksy_action_button')) {
 		$content = $attributes['content'];
 
 		if ( $attributes['icon_position'] === 'start' ) {
-			$content = $content . $icon;
+			$content = $icon . $content;
 		} else {
 			$content .= $icon;
 		}

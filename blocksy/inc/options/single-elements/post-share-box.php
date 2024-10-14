@@ -418,13 +418,11 @@ $general_tab_options = array_merge(
 			'type' => $has_share_items_visibility ? 'ct-visibility' : 'hidden',
 			'design' => 'block',
 			'sync' => 'live',
-
-			'value' => [
+			'value' => blocksy_default_responsive_value([
 				'desktop' => true,
 				'tablet' => true,
 				'mobile' => false,
-			],
-
+			]),
 			'choices' => blocksy_ordered_keys([
 				'desktop' => __( 'Desktop', 'blocksy' ),
 				'tablet' => __( 'Tablet', 'blocksy' ),

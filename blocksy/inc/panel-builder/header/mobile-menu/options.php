@@ -164,11 +164,10 @@ $options = [
 						'divider' => 'top:full',
 						'setting' => [ 'transport' => 'postMessage' ],
 						'allow_empty' => true,
-						'value' => [
+						'value' => blocksy_default_responsive_value([
 							'tablet' => true,
 							'mobile' => true,
-						],
-
+						]),
 						'choices' => blocksy_ordered_keys([
 							'tablet' => __( 'Tablet', 'blocksy' ),
 							'mobile' => __( 'Mobile', 'blocksy' ),

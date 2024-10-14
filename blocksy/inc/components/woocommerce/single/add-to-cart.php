@@ -263,7 +263,6 @@ class WooCommerceAddToCart {
 		);
 
 		if (
-
 			(
 				function_exists('blocksy_has_product_specific_layer')
 				&&

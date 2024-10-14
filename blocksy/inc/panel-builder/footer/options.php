@@ -36,19 +36,17 @@ $options = [
 
 	'has_reveal_effect' => [
 		'label' => __( 'Enable reveal effect on', 'blocksy' ),
+		'desc' => __('Enables a nice reveal effect as you scroll down.', 'blocksy'),
 		'type' => 'ct-visibility',
 		'design' => 'block',
 		'divider' => 'top:full',
 		'allow_empty' => true,
-		'desc' => __('Enables a nice reveal effect as you scroll down.', 'blocksy'),
 		'setting' => ['transport' => 'postMessage'],
-
-		'value' => [
+		'value' => blocksy_default_responsive_value([
 			'desktop' => false,
 			'tablet' => false,
 			'mobile' => false,
-		],
-
+		]),
 		'choices' => blocksy_ordered_keys([
 			'desktop' => __('Desktop', 'blocksy'),
 			'tablet' => __('Tablet', 'blocksy'),

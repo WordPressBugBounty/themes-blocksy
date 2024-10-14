@@ -377,7 +377,10 @@ if (! function_exists('blocksy_post_meta')) {
 							echo '<span>' . esc_html($meta_label) . '</span>';
 						}
 
-						$date_format = $single_meta['date_format'];
+						$date_format = $args['prefix'] ? blocksy_translate_dynamic(
+							$single_meta['date_format'],
+							$args['prefix'] . '_' . $single_meta['id'] . '_date_format'
+						) : $single_meta['date_format'];
 
 						if ($single_meta['date_format_source'] === 'default') {
 							$date_format = $default_date_format;
@@ -440,7 +443,10 @@ if (! function_exists('blocksy_post_meta')) {
 							echo '<span>' . esc_html($meta_label) . '</span>';
 						}
 
-						$date_format = $single_meta['date_format'];
+						$date_format = $args['prefix'] ? blocksy_translate_dynamic(
+							$single_meta['date_format'],
+							$args['prefix'] . '_' . $single_meta['id'] . '_date_format'
+						) : $single_meta['date_format'];
 
 						if ($single_meta['date_format_source'] === 'default') {
 							$date_format = $default_date_format;

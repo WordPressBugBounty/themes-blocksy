@@ -321,6 +321,15 @@ class DbVersioning {
 					$obj->migrate();
 					$obj->migrate_compare_table_layers();
 				}
+			],
+
+			[
+				'version' => '2.0.73',
+				'cb' => function () {
+					$obj = new DbVersioning\V2073();
+
+					$obj->migrate();
+				}
 			]
 		];
 	}
