@@ -1,3 +1,6 @@
+2.0.75: 2024-10-24
+- Fix: Correctly load assets in the frontend
+
 2.0.74: 2024-10-24
 - Improvement: Better compatibility with ReviewX plugin
 - Improvement: Better compatibility with WPC Buy Now Button for WooCommerce plugin
