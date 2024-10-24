@@ -14,10 +14,10 @@
 		border-bottom: var(--entry-divider);
 	}
 
-	.ct-ghost {
-		margin: 0;
-		flex: 1 0 auto;
-	}
+	// .ct-ghost {
+	// 	margin: 0;
+	// 	flex: 1 0 auto;
+	// }
 }
 
 // elements spacing
@@ -75,5 +75,19 @@
 	.entry-card {
 		padding-bottom: var(--grid-columns-gap, 30px);
 		border-bottom: var(--card-border, none);
+	}
+}
+
+
+// align to bottom speciffic elements
+.entries:not([data-cards="cover"]) {
+
+	:is(.entry-button, .entry-meta, .ct-media-container) {
+
+		&:last-child:not(:only-child) {
+
+			--card-element-margin-start: auto;
+			margin-top: var(--card-element-margin-start);
+		}		
 	}
 }

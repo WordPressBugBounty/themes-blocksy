@@ -24,7 +24,11 @@ export const mount = (el, { event }) => {
 
 	if (el.dataset.network === 'clipboard') {
 		event.preventDefault()
-		const text = window.location.href
+
+		const text =
+			el.href.indexOf('wish_list_id') !== -1
+				? el.href
+				: window.location.href
 
 		const tooltip = el.querySelector('.ct-tooltip')
 		let initialText = ''

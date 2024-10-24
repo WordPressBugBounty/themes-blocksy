@@ -10,6 +10,7 @@ $options = [
 					'label' => __( 'Logo', 'blocksy' ),
 					'type' => 'ct-image-uploader',
 					'value' => blocksy_get_theme_mod('custom_logo', ''),
+					'revertDefaultValue' => '',
 					'inline_value' => true,
 					'responsive' => [
 						'tablet' => 'skip'

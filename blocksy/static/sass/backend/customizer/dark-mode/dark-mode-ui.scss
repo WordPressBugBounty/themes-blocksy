@@ -110,17 +110,23 @@
 		}
 
 		.control-section {
-			> h3 {
+
+			> h3.accordion-section-title {
 				color: lighten($background, 80%);
 
-				&:focus {
-					background-color: $background_light !important;
-				}
-			}
 
-			&:hover {
-				> h3.accordion-section-title {
-					background-color: $background_light !important;
+				&:not(:has(.accordion-trigger)) {
+
+					&:hover, &:focus {
+						background-color: $background_light;
+					}
+				}
+
+				&:has(.accordion-trigger) .accordion-trigger {
+
+					&:hover, &:focus {
+						background-color: $background_light;
+					}
 				}
 			}
 		}

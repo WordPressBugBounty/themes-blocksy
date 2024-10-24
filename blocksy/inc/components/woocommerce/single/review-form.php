@@ -2,6 +2,10 @@
 
 if (! function_exists('blocksy_product_review_comment_form_args')) {
 	function blocksy_product_review_comment_form_args($comment_form) {
+		if (! isset($comment_form['comment_field'])) {
+			$comment_form['comment_field'] = '';
+		}
+		
 		$comment_form['comment_field'] = str_replace(
 			'comment-form-comment',
 			'comment-form-field-textarea',

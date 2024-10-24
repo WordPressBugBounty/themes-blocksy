@@ -254,9 +254,13 @@ class Blocksy_Static_Css_Files {
 					)
 					||
 					(
-						function_exists('is_woocommerce')
-						&&
-						is_woocommerce()
+						(
+							function_exists('is_woocommerce')
+							&&
+							is_woocommerce()
+							||
+							has_shortcode($post->post_content, 'products')
+						)
 						&&
 						isset($woo_extra_settings['features']['added-to-cart-popup'])
 						&&

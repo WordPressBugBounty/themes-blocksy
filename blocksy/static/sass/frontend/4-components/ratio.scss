@@ -18,6 +18,10 @@
 
 	picture {
 		display: inline-flex;
+
+		img {
+			aspect-ratio: inherit;
+		}
 	}
 }
 

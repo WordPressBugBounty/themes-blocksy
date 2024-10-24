@@ -430,53 +430,63 @@ class WooCommerceSingle {
 		foreach ($items as $key => $item) {
 			$icon = '<svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm6.2 9.5-7.6 7.6c-.4.4-1.1.4-1.5 0l-3.3-3.3c-.4-.4-.4-1.1 0-1.5.4-.4 1.1-.4 1.5 0l2.5 2.5L16.7 8c.4-.4 1.1-.4 1.5 0 .4.4.4 1.1 0 1.5z"/></svg>';
 
-			if ($item['enabled']) {
-				$out .= '<li>';
-
-				$icon = blocksy_html_tag(
-					'span',
-					[
-						'class' => 'ct-icon-container'
-					],
-					$icon
-				);
-
-				if (
-					function_exists('blc_get_icon')
+			if (
+				! $item['enabled']
+				||
+				(
+					empty($item['item_title'])
 					&&
-					isset($item['icon_source'])
-					&&
-					$item['icon_source'] === 'custom'
-				) {
-					$icon = blc_get_icon(
-						[
-							'icon_descriptor' => blocksy_akg('icon', $item, [
-								'icon' => "blc blc-user"
-							])
-						]
-					);
-				}
-
-				$item_i18n_id_prefix = 'single_product:additional_info_item:' . $item['id'];
-
-				if (isset($item['__id'])) {
-					$item_i18n_id_prefix = 'single_product:additional_info_item:' . $item['__id'];
-				}
-
-				$out .= $icon;
-
-				$out .= blocksy_html_tag(
-					'span',
-					[
-						'class' => 'ct-label'
-					],
-					blocksy_translate_dynamic(
-						$item['item_title'],
-						$item_i18n_id_prefix . ':item_title'
-					)
-				);
-				$out .= '</li>';
+					! is_customize_preview()
+				)
+			) {
+				continue;
 			}
+
+			$out .= '<li>';
+
+			$icon = blocksy_html_tag(
+				'span',
+				[
+					'class' => 'ct-icon-container'
+				],
+				$icon
+			);
+
+			if (
+				function_exists('blc_get_icon')
+				&&
+				isset($item['icon_source'])
+				&&
+				$item['icon_source'] === 'custom'
+			) {
+				$icon = blc_get_icon(
+					[
+						'icon_descriptor' => blocksy_akg('icon', $item, [
+							'icon' => "fas fa-check"
+						])
+					]
+				);
+			}
+
+			$item_i18n_id_prefix = 'single_product:additional_info_item:' . $item['id'];
+
+			if (isset($item['__id'])) {
+				$item_i18n_id_prefix = 'single_product:additional_info_item:' . $item['__id'];
+			}
+
+			$out .= $icon;
+
+			$out .= blocksy_html_tag(
+				'span',
+				[
+					'class' => 'ct-label'
+				],
+				do_shortcode(blocksy_translate_dynamic(
+					$item['item_title'],
+					$item_i18n_id_prefix . ':item_title'
+				))
+			);
+			$out .= '</li>';
 		}
 
 		$out .= '</ul>';

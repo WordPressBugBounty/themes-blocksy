@@ -58,6 +58,8 @@ class WooCommerce {
 	public $single = null;
 	public $checkout = null;
 
+	private $default_variation_cache = [];
+
 	public function __construct() {
 		new WooCommerceBoot();
 
@@ -66,6 +68,70 @@ class WooCommerce {
 		$this->single = new WooCommerceSingle();
 
 		$this->checkout = new WooCommerceCheckout();
+	}
+
+	public function retrieve_product_default_variation($product, $object = true) {
+		if (isset($this->default_variation_cache[$product->get_id()])) {
+			$cached_variation_id = $this->default_variation_cache[$product->get_id()];
+
+			if ($object && $cached_variation_id) {
+				return wc_get_product($cached_variation_id);
+			}
+
+			return $cached_variation_id;
+		}
+
+		$maybe_variation = null;
+
+		$default_attributes = $product->get_default_attributes();
+		$variation_attributes = $product->get_variation_attributes();
+
+		if (count($default_attributes) === count($variation_attributes)) {
+			$prefixed_slugs = array_map(function($pa_name) {
+				return 'attribute_'. sanitize_title($pa_name);
+			}, array_keys($default_attributes));
+
+			$default_attributes = array_combine($prefixed_slugs, $default_attributes);
+
+			$maybe_get_variation = (new \WC_Product_Data_Store_CPT())->find_matching_product_variation(
+				$product,
+				$default_attributes
+			);
+
+			if ($maybe_get_variation) {
+				$maybe_variation = $maybe_get_variation;
+			}
+		}
+
+		$has_some_matching_get_param = false;
+
+		foreach ($variation_attributes as $attribute_name => $attribute_values) {
+			if (isset($_GET['attribute_' . $attribute_name])) {
+				$has_some_matching_get_param = true;
+				break;
+			}
+		}
+
+		if ($has_some_matching_get_param) {
+			$maybe_get_variation = (new \WC_Product_Data_Store_CPT())->find_matching_product_variation(
+				$product,
+				$_GET
+			);
+
+			if ($maybe_get_variation) {
+				$maybe_variation = $maybe_get_variation;
+			}
+		}
+
+		// Persist only ID in the cache, no need to waste memory on full
+		// object which are already cached by Woo.
+		$this->default_variation_cache[$product->get_id()] = $maybe_variation;
+
+		if ($object && $maybe_variation) {
+			return wc_get_product($maybe_variation);
+		}
+
+		return $maybe_variation;
 	}
 }
 

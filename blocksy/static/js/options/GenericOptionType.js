@@ -374,7 +374,13 @@ const GenericOptionType = ({
 				<button
 					type="button"
 					disabled={deepEqual(
-						computeOptionValue(option.value, { option, values }),
+						Object.keys(option).indexOf('revertDefaultValue') > -1
+							? option.revertDefaultValue
+							: computeOptionValue(option.value, {
+									option,
+									values,
+							  }),
+
 						renderingConfig.getValueForRevert
 							? renderingConfig.getValueForRevert({
 									value,
@@ -389,6 +395,15 @@ const GenericOptionType = ({
 					)}
 					className="ct-revert"
 					onClick={() => {
+						let revertValue = option.value
+
+						if (
+							Object.keys(option).indexOf('revertDefaultValue') >
+							-1
+						) {
+							revertValue = option.revertDefaultValue
+						}
+
 						if (childComponentRef && childComponentRef.current) {
 							childComponentRef.current.handleOptionRevert()
 						}
@@ -402,7 +417,7 @@ const GenericOptionType = ({
 							})
 						}
 
-						onChangeWithMobileBridge(option.value)
+						onChangeWithMobileBridge(revertValue)
 					}}>
 					<svg fill="currentColor" viewBox="0 0 35 35">
 						<path d="M17.5,26L17.5,26C12.8,26,9,22.2,9,17.5v0C9,12.8,12.8,9,17.5,9h0c4.7,0,8.5,3.8,8.5,8.5v0C26,22.2,22.2,26,17.5,26z" />

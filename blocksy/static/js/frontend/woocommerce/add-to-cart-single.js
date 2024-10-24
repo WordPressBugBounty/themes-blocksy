@@ -1,11 +1,12 @@
 import $ from 'jquery'
 
-function singleProductAddToCart(wrapper) {
+function singleProductAddToCart(wrapper, event) {
 	if (!$) return
 
 	var form = wrapper.closest('form')
 
-	var button = form.find('.single_add_to_cart_button')
+	var button = form.find(event.submitter)
+
 	var formUrl = $(form)[0].action
 
 	if (typeof formUrl !== 'string') {
@@ -59,11 +60,11 @@ function singleProductAddToCart(wrapper) {
 		}, {}),
 	])
 
-	const url = new URL(ct_localizations.ajax_url)
+	const url = new URL(formUrl)
 
 	const searchParams = new URLSearchParams(url.search)
 
-	searchParams.append('action', 'blocksy_add_to_cart')
+	searchParams.append('blocksy_add_to_cart', 'yes')
 
 	if (window.ct_customizer_localizations) {
 		searchParams.set('wp_customize', 'on')
@@ -142,5 +143,6 @@ export const mount = (el, { event }) => {
 	}
 
 	ctEvents.trigger('ct:header:update')
-	singleProductAddToCart($(el))
+
+	singleProductAddToCart($(el), event)
 }

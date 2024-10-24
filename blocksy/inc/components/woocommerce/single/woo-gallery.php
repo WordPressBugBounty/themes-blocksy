@@ -53,7 +53,7 @@ add_filter(
 		) {
 			$classes[] = 'ct-default-gallery';
 		}
-	
+
 		return $classes;
 	}
 );
@@ -74,9 +74,9 @@ function blocksy_woo_single_post_class($classes, $product) {
 		$has_gallery = count($product->get_gallery_image_ids()) > 0;
 
 		if ($product->get_type() === 'variable') {
-			$maybe_current_variation = blocksy_retrieve_product_default_variation(
-				$product
-			);
+			$maybe_current_variation = blocksy_manager()
+				->woocommerce
+				->retrieve_product_default_variation($product);
 
 			if ($maybe_current_variation) {
 				$post_id = $maybe_current_variation->get_id();
@@ -143,69 +143,6 @@ function blocksy_woo_single_post_class($classes, $product) {
 	return $classes;
 }
 
-function blocksy_retrieve_product_default_variation($product, $object = true) {
-	$should_use_ajax_variations = (
-		count($product->get_children()) > apply_filters(
-			'woocommerce_ajax_variation_threshold',
-			30,
-			$product
-		)
-	);
-
-	if ($should_use_ajax_variations) {
-		return null;
-	}
-
-	$maybe_variation = null;
-
-	$default_attributes = $product->get_default_attributes();
-
-	if (count($default_attributes) === count($product->get_variation_attributes())) {
-		$prefixed_slugs = array_map(function($pa_name) {
-			return 'attribute_'. sanitize_title($pa_name);
-		}, array_keys($default_attributes));
-
-		$default_attributes = array_combine($prefixed_slugs, $default_attributes);
-
-		$maybe_variation = (new \WC_Product_Data_Store_CPT())->find_matching_product_variation(
-			$product,
-			$default_attributes
-		);
-	}
-
-	$has_some_matching_get_param = false;
-
-	foreach ($product->get_variation_attributes() as $attribute_name => $attribute_values) {
-		if (isset($_GET['attribute_' . $attribute_name])) {
-			$has_some_matching_get_param = true;
-			break;
-		}
-	}
-
-	if ($has_some_matching_get_param) {
-		$maybe_get_variation = (new \WC_Product_Data_Store_CPT())->find_matching_product_variation(
-			$product,
-			$_GET
-		);
-
-		if ($maybe_get_variation) {
-			$maybe_variation = $maybe_get_variation;
-		}
-	}
-
-	$current_variation = null;
-
-	if ($maybe_variation) {
-		$current_variation = wc_get_product($maybe_variation);
-	}
-
-	if (! $object && $current_variation) {
-		return $current_variation->get_id();
-	}
-
-	return $current_variation;
-}
-
 function blocksy_get_product_view_type() {
 	return apply_filters(
 		'blocksy:woocommerce:product-single:view-type',
@@ -213,3 +150,9 @@ function blocksy_get_product_view_type() {
 	);
 }
 
+// Only for backwards compatibility with Companion <= 2.0.73
+function blocksy_retrieve_product_default_variation($product, $object = true) {
+	return blocksy_manager()
+		->woocommerce
+		->retrieve_product_default_variation($product, $object);
+}

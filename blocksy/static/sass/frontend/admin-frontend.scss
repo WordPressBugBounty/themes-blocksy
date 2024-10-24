@@ -89,6 +89,12 @@ body [data-customize-hide] {
 // Customizer shortcuts
 [data-shortcut] {
 	position: relative;
+
+	// disable shortcuts on mega menu container
+	// over wise it will break the preview in customizer because of "postion: relative"
+	&:has([class*='ct-mega-menu']) {
+		position: initial;
+	}
 }
 
 .ct-customizer-shortcut {

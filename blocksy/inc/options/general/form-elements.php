@@ -15,118 +15,148 @@ $options = [
 		'setting' => [ 'transport' => 'postMessage' ],
 		'inner-options' => [
 
-			'forms_type' => [
-				'label' => false,
-				'type' => 'ct-image-picker',
-				'value' => 'classic-forms',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'switchDeviceOnChange' => 'desktop',
-				'choices' => [
-
-					'classic-forms' => [
-						'src'   => blocksy_image_picker_url( 'forms-type-1.svg' ),
-						'title' => __( 'Classic', 'blocksy' ),
-					],
-
-					'modern-forms' => [
-						'src'   => blocksy_image_picker_url( 'forms-type-2.svg' ),
-						'title' => __( 'Modern', 'blocksy' ),
-					],
-
-				],
-			],
-
-			'formTextColor' => [
-				'label' => __( 'Font Color', 'blocksy' ),
-				'type'  => 'ct-color-picker',
-				'design' => 'inline',
-				'divider' => 'top',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-
-					'focus' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
-
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-						'inherit' => 'var(--theme-text-color)'
-					],
-
-					[
-						'title' => __( 'Focus', 'blocksy' ),
-						'id' => 'focus',
-						'inherit' => 'var(--theme-text-color)'
-					],
-				],
-			],
-
-			'formFontSize' => [
-				'label' => __( 'Font Size', 'blocksy' ),
-				'type' => 'ct-number',
-				'design' => 'inline',
-				'value' => 16,
-				'min' => 5,
-				'max' => 50,
-				'setting' => [ 'transport' => 'postMessage' ],
-			],
-
 			blocksy_rand_md5() => [
-				'type' => 'ct-title',
-				'label' => __( 'Input & Textarea', 'blocksy' ),
-			],
-
-			'formBorderColor' => [
-				'label' => __( 'Border Color', 'blocksy' ),
-				'type'  => 'ct-color-picker',
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => [
-					'default' => [
-						'color' => 'var(--theme-border-color)',
-					],
-
-					'focus' => [
-						'color' => 'var(--theme-palette-color-1)',
-					],
-				],
-
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-					],
-
-					[
-						'title' => __( 'Focus', 'blocksy' ),
-						'id' => 'focus',
-					],
-				],
-			],
-
-			blocksy_rand_md5() => [
-				'type' => 'ct-condition',
-				'condition' => [ 'forms_type' => 'classic-forms' ],
+				'title' => __( 'General', 'blocksy' ),
+				'type' => 'tab',
 				'options' => [
 
-					'formBackgroundColor' => [
-						'label' => __( 'Background Color', 'blocksy' ),
+					'forms_type' => [
+						'label' => false,
+						'type' => 'ct-image-picker',
+						'value' => 'classic-forms',
+						'setting' => [ 'transport' => 'postMessage' ],
+						'switchDeviceOnChange' => 'desktop',
+						'choices' => [
+
+							'classic-forms' => [
+								'src'   => blocksy_image_picker_url( 'forms-type-1.svg' ),
+								'title' => __( 'Classic', 'blocksy' ),
+							],
+
+							'modern-forms' => [
+								'src'   => blocksy_image_picker_url( 'forms-type-2.svg' ),
+								'title' => __( 'Modern', 'blocksy' ),
+							],
+
+						],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-title',
+						'label' => __( 'Input & Textarea', 'blocksy' ),
+					],
+
+					'formBorderSize' => [
+						'label' => __( 'Border Size', 'blocksy' ),
+						'type' => 'ct-number',
+						'design' => 'inline',
+						'value' => 1,
+						'min' => 1,
+						'max' => 5,
+						'setting' => [ 'transport' => 'postMessage' ],
+					],
+
+					'formInputHeight' => [
+						'label' => __( 'Input Height', 'blocksy' ),
+						'type' => 'ct-number',
+						'design' => 'inline',
+						'value' => 40,
+						'min' => 20,
+						'max' => 80,
+						'setting' => [ 'transport' => 'postMessage' ],
+					],
+
+					'formTextAreaHeight' => [
+						'label' => __( 'Textarea Height', 'blocksy' ),
+						'type' => 'ct-number',
+						'design' => 'inline',
+						'value' => 170,
+						'min' => 50,
+						'max' => 250,
+						'setting' => [ 'transport' => 'postMessage' ],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'forms_type' => 'classic-forms' ],
+						'options' => [
+
+							'formFieldBorderRadius' => [
+								'label' => __( 'Border Radius', 'blocksy' ),
+								'type' => 'ct-number',
+								'design' => 'inline',
+								'value' => 3,
+								'min' => 0,
+								'max' => 200,
+								'setting' => [ 'transport' => 'postMessage' ],
+							],
+
+						],
+					],
+
+				],
+			],
+
+			blocksy_rand_md5() => [
+				'title' => __( 'Design', 'blocksy' ),
+				'type' => 'tab',
+				'options' => [
+
+					'form_font' => [
+						'type' => 'ct-typography',
+						'label' => __( 'Font', 'blocksy' ),
+						'isDefault' => true,
+						'value' => blocksy_typography_default_values([]),
+						'setting' => [ 'transport' => 'postMessage' ],
+					],
+
+					'formTextColor' => [
+						'label' => __( 'Font Color', 'blocksy' ),
 						'type'  => 'ct-color-picker',
 						'design' => 'inline',
 						'setting' => [ 'transport' => 'postMessage' ],
 						'value' => [
 							'default' => [
-								'color' => Blocksy_Css_Injector::get_skip_rule_keyword(),
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
 							],
 
 							'focus' => [
-								'color' => Blocksy_Css_Injector::get_skip_rule_keyword(),
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
+						],
+
+						'pickers' => [
+							[
+								'title' => __( 'Initial', 'blocksy' ),
+								'id' => 'default',
+								'inherit' => 'var(--theme-text-color)'
+							],
+
+							[
+								'title' => __( 'Focus', 'blocksy' ),
+								'id' => 'focus',
+								'inherit' => 'var(--theme-text-color)'
+							],
+						],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-title',
+						'label' => __( 'Input & Textarea', 'blocksy' ),
+					],
+
+					'formBorderColor' => [
+						'label' => __( 'Border Color', 'blocksy' ),
+						'type'  => 'ct-color-picker',
+						'design' => 'inline',
+						'setting' => [ 'transport' => 'postMessage' ],
+						'value' => [
+							'default' => [
+								'color' => 'var(--theme-border-color)',
+							],
+
+							'focus' => [
+								'color' => 'var(--theme-palette-color-1)',
 							],
 						],
 
@@ -143,162 +173,150 @@ $options = [
 						],
 					],
 
-				],
-			],
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'forms_type' => 'classic-forms' ],
+						'options' => [
 
-			'formBorderSize' => [
-				'label' => __( 'Border Size', 'blocksy' ),
-				'type' => 'ct-number',
-				'design' => 'inline',
-				'value' => 1,
-				'min' => 1,
-				'max' => 5,
-				'setting' => [ 'transport' => 'postMessage' ],
-			],
+							'formBackgroundColor' => [
+								'label' => __( 'Background Color', 'blocksy' ),
+								'type'  => 'ct-color-picker',
+								'design' => 'inline',
+								'setting' => [ 'transport' => 'postMessage' ],
+								'value' => [
+									'default' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword(),
+									],
 
-			'formInputHeight' => [
-				'label' => __( 'Input Height', 'blocksy' ),
-				'type' => 'ct-number',
-				'design' => 'inline',
-				'value' => 40,
-				'min' => 20,
-				'max' => 80,
-				'setting' => [ 'transport' => 'postMessage' ],
-			],
+									'focus' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword(),
+									],
+								],
 
-			'formTextAreaHeight' => [
-				'label' => __( 'Textarea Height', 'blocksy' ),
-				'type' => 'ct-number',
-				'design' => 'inline',
-				'value' => 170,
-				'min' => 50,
-				'max' => 250,
-				'setting' => [ 'transport' => 'postMessage' ],
-			],
+								'pickers' => [
+									[
+										'title' => __( 'Initial', 'blocksy' ),
+										'id' => 'default',
+									],
 
-			blocksy_rand_md5() => [
-				'type' => 'ct-condition',
-				'condition' => [ 'forms_type' => 'classic-forms' ],
-				'options' => [
+									[
+										'title' => __( 'Focus', 'blocksy' ),
+										'id' => 'focus',
+									],
+								],
+							],
 
-					'formFieldBorderRadius' => [
-						'label' => __( 'Border Radius', 'blocksy' ),
-						'type' => 'ct-number',
+						],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-title',
+						'label' => __( 'Radio & Checkbox', 'blocksy' ),
+					],
+
+					'radioCheckboxColor' => [
+						'label' => __( 'Colors', 'blocksy' ),
+						'type'  => 'ct-color-picker',
 						'design' => 'inline',
-						'value' => 3,
-						'min' => 0,
-						'max' => 200,
 						'setting' => [ 'transport' => 'postMessage' ],
+						'value' => [
+							'default' => [
+								'color' => 'var(--theme-border-color)',
+							],
+
+							'accent' => [
+								'color' => 'var(--theme-palette-color-1)',
+							],
+						],
+
+						'pickers' => [
+							[
+								'title' => __( 'Initial', 'blocksy' ),
+								'id' => 'default',
+							],
+
+							[
+								'title' => __( 'Active', 'blocksy' ),
+								'id' => 'accent',
+							],
+						],
 					],
 
-				],
-			],
+					// 'checkboxBorderRadius' => [
+					// 	'label' => __( 'Checkbox Border Radius', 'blocksy' ),
+					// 	'type' => 'ct-number',
+					// 	'design' => 'inline',
+					// 	'value' => 3,
+					// 	'min' => 0,
+					// 	'max' => 10,
+					// 	'setting' => [ 'transport' => 'postMessage' ],
+					// ],
 
-			blocksy_rand_md5() => [
-				'type' => 'ct-title',
-				'label' => __( 'Radio & Checkbox', 'blocksy' ),
-			],
-
-			'radioCheckboxColor' => [
-				'label' => __( 'Colors', 'blocksy' ),
-				'type'  => 'ct-color-picker',
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => [
-					'default' => [
-						'color' => 'var(--theme-border-color)',
+					blocksy_rand_md5() => [
+						'type' => 'ct-title',
+						'label' => __( 'Select Dropdown', 'blocksy' ),
 					],
 
-					'accent' => [
-						'color' => 'var(--theme-palette-color-1)',
-					],
-				],
+					'formSelectFontColor' => [
+						'label' => __( 'Font Color', 'blocksy' ),
+						'type'  => 'ct-color-picker',
+						'design' => 'inline',
+						'setting' => [ 'transport' => 'postMessage' ],
+						'value' => [
+							'default' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-					],
+							'active' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
+						],
 
-					[
-						'title' => __( 'Active', 'blocksy' ),
-						'id' => 'accent',
-					],
-				],
-			],
+						'pickers' => [
+							[
+								'title' => __( 'Initial', 'blocksy' ),
+								'id' => 'default',
+								'inherit' => 'var(--theme-text-color)'
+							],
 
-			'checkboxBorderRadius' => [
-				'label' => __( 'Checkbox Border Radius', 'blocksy' ),
-				'type' => 'ct-number',
-				'design' => 'inline',
-				'value' => 3,
-				'min' => 0,
-				'max' => 10,
-				'setting' => [ 'transport' => 'postMessage' ],
-			],
-
-			blocksy_rand_md5() => [
-				'type' => 'ct-title',
-				'label' => __( 'Select Dropdown', 'blocksy' ),
-			],
-
-			'formSelectFontColor' => [
-				'label' => __( 'Font Color', 'blocksy' ),
-				'type'  => 'ct-color-picker',
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							[
+								'title' => __( 'Active', 'blocksy' ),
+								'id' => 'active',
+								'inherit' => '#ffffff'
+							],
+						],
 					],
 
-					'active' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
+					'formSelectBackgroundColor' => [
+						'label' => __( 'Background Color', 'blocksy' ),
+						'type'  => 'ct-color-picker',
+						'design' => 'inline',
+						'setting' => [ 'transport' => 'postMessage' ],
+						'value' => [
+							'default' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-						'inherit' => 'var(--theme-text-color)'
-					],
+							'active' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
+						],
 
-					[
-						'title' => __( 'Active', 'blocksy' ),
-						'id' => 'active',
-						'inherit' => '#ffffff'
-					],
-				],
-			],
+						'pickers' => [
+							[
+								'title' => __( 'Initial', 'blocksy' ),
+								'id' => 'default',
+								'inherit' => '#ffffff'
+							],
 
-			'formSelectBackgroundColor' => [
-				'label' => __( 'Background Color', 'blocksy' ),
-				'type'  => 'ct-color-picker',
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-
-					'active' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
-
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-						'inherit' => '#ffffff'
+							[
+								'title' => __( 'Active', 'blocksy' ),
+								'id' => 'active',
+								'inherit' => 'var(--theme-palette-color-1)'
+							],
+						],
 					],
 
-					[
-						'title' => __( 'Active', 'blocksy' ),
-						'id' => 'active',
-						'inherit' => 'var(--theme-palette-color-1)'
-					],
 				],
 			],
 		]

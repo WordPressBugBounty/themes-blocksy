@@ -1,4 +1,5 @@
 import { withKeys, mapValue } from '../helpers'
+import { typographyOption } from './typography'
 
 export const getFormsVariablesFor = () => ({
 	forms_type: [
@@ -67,6 +68,12 @@ export const getFormsVariablesFor = () => ({
 	],
 
 	// general
+	...typographyOption({
+		id: 'form_font',
+		selector: ':root',
+		prefix: 'form',
+	}),
+
 	formTextColor: [
 		{
 			selector: ':root',
@@ -80,12 +87,6 @@ export const getFormsVariablesFor = () => ({
 			type: 'color:focus',
 		},
 	],
-
-	formFontSize: {
-		selector: ':root',
-		variable: 'theme-form-font-size',
-		unit: 'px',
-	},
 
 	formBackgroundColor: [
 		{
@@ -177,9 +178,9 @@ export const getFormsVariablesFor = () => ({
 		},
 	],
 
-	checkboxBorderRadius: {
-		selector: ':root',
-		variable: 'theme-form-checkbox-border-radius',
-		unit: 'px',
-	},
+	// checkboxBorderRadius: {
+	// 	selector: ':root',
+	// 	variable: 'theme-form-checkbox-border-radius',
+	// 	unit: 'px',
+	// },
 })

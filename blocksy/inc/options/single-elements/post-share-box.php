@@ -264,9 +264,11 @@ $general_tab_options = array_merge(
 		blocksy_rand_md5() => [
 			'type' => 'ct-divider',
 		],
+	],
 
 		$networks_options,
 
+	[
 		blocksy_rand_md5() => [
 			'type' => 'ct-divider',
 		],
@@ -281,7 +283,6 @@ $general_tab_options = array_merge(
 			'type'  => 'ct-switch',
 			'label' => __( 'Set links to nofollow', 'blocksy' ),
 			'value' => 'yes',
-			'divider' => 'top',
 		],
 
 		blocksy_rand_md5() => [
@@ -410,9 +411,6 @@ $general_tab_options = array_merge(
 			],
 		],
 
-	],
-
-	[
 		$prefix . 'share_box_visibility' => [
 			'label' => __( 'Visibility', 'blocksy' ),
 			'type' => $has_share_items_visibility ? 'ct-visibility' : 'hidden',

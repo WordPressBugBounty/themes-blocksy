@@ -72,7 +72,7 @@ $additional_info_options = [
 							'label' => __('Icon', 'blocksy'),
 							'design' => 'inline',
 							'value' => [
-								'icon' => 'blc blc-user' // change defaults
+								'icon' => 'fas fa-check'
 							]
 						]
 					]

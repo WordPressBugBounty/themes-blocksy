@@ -25,6 +25,19 @@ if ($forms_type === 'classic-forms') {
 }
 
 // general
+blocksy_output_font_css([
+	'font_value' => blocksy_get_theme_mod(
+		'form_font',
+		blocksy_typography_default_values([])
+	),
+	'css' => $css,
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+	'selector' => ':root',
+	'prefix' => 'form'
+]);
+
+
 blocksy_output_colors([
 	'value' => blocksy_get_theme_mod('formTextColor'),
 	'default' => [
@@ -44,12 +57,6 @@ blocksy_output_colors([
 		],
 	],
 ]);
-
-$formFontSize = blocksy_get_theme_mod('formFontSize', 16);
-
-if ($formFontSize !== 16) {
-	$css->put(':root', '--theme-form-font-size: ' . $formFontSize . 'px');
-}
 
 blocksy_output_colors([
 	'value' => blocksy_get_theme_mod('formBackgroundColor'),
@@ -193,8 +200,8 @@ blocksy_output_colors([
 	],
 ]);
 
-$checkboxBorderRadius = blocksy_get_theme_mod('checkboxBorderRadius', 3);
+// $checkboxBorderRadius = blocksy_get_theme_mod('checkboxBorderRadius', 3);
 
-if ($checkboxBorderRadius !== 3) {
-	$css->put( ':root', '--theme-form-checkbox-border-radius: ' . $checkboxBorderRadius . 'px' );
-}
+// if ($checkboxBorderRadius !== 3) {
+// 	$css->put( ':root', '--theme-form-checkbox-border-radius: ' . $checkboxBorderRadius . 'px' );
+// }

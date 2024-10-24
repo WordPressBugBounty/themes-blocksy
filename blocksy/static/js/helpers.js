@@ -376,6 +376,16 @@ const loadSingleEntryPoint = ({
 				el.hasLazyLoadSubmitListener = true
 
 				el.addEventListener('submit', (event) => {
+					if (
+						event.submitter &&
+						triggerDescriptor.ignoreSubmitter &&
+						triggerDescriptor.ignoreSubmitter.find((selector) =>
+							event.submitter.matches(selector)
+						)
+					) {
+						return
+					}
+
 					event.preventDefault()
 					load().then((arg) => mount({ ...arg, event, el }))
 				})

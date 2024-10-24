@@ -996,6 +996,10 @@ if (! function_exists('blocksy_get_social_metadata')) {
 				'clipboard' => '#'
 			];
 
+			if (! empty($args['custom_url'])) {
+				$social_urls['clipboard'] = $args['custom_url'];
+			}
+
 			if (isset($social_urls[$args['social']])) {
 				$single_metadata['url'] = str_replace(
 					'{url}',

@@ -77,6 +77,8 @@ add_action(
 					'tag_name' => 'form',
 					'class_name' => 'woocommerce-ordering',
 				])
+				&&
+				doing_action('woocommerce_before_shop_loop')
 			) {
 				$classes = blocksy_visibility_classes(
 					blocksy_get_theme_mod(
@@ -91,7 +93,6 @@ add_action(
 						'output' => 'array',
 					]
 				);
-
 
 				foreach ($classes as $class) {
 					$reader->add_class($class);

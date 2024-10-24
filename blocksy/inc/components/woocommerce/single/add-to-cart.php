@@ -50,11 +50,18 @@ class WooCommerceAddToCart {
 			);
 		}
 
-		add_action('wp_ajax_blocksy_add_to_cart', [$this, 'blocksy_add_to_cart']);
-		add_action('wp_ajax_nopriv_blocksy_add_to_cart', [$this, 'blocksy_add_to_cart']);
+		// Make sure we process response exactly same way as Woo does. In the
+		// exact point of time.
+		//
+		// https://github.com/woocommerce/woocommerce/blob/9f26128dc2a223d5b9e5482e6a41b5052bfc91c4/plugins/woocommerce/includes/class-wc-ajax.php#L30
+		add_action('template_redirect', [$this, 'do_wc_ajax'], 0);
 	}
 
-	public function blocksy_add_to_cart() {
+	public function do_wc_ajax() {
+		if (! isset($_REQUEST['blocksy_add_to_cart'])) {
+			return;
+		}
+
 		ob_start();
 		wc_print_notices();
 		$notices = ob_get_clean();

@@ -11,7 +11,7 @@ span.select2-container {
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
-			font-size: var(--theme-form-font-size, 15px);
+			// font-size: var(--theme-form-font-size, 15px);
 			color: var(--theme-form-text-initial-color, var(--theme-text-color));
 			padding: var(--has-classic-forms, var(--theme-form-field-padding, 0 15px));
 		}
@@ -74,7 +74,7 @@ span.select2-container {
 // dropdown
 span.select2-dropdown {
 	color: var(--form-field-select-initial-color, var(--theme-text-color));
-	font-size: var(--theme-form-font-size, 15px);
+	// font-size: var(--theme-form-font-size, 15px);
 	background-color: var(--theme-form-select-background-initial-color, #fff);
 	border-radius: var(--has-classic-forms, var(--theme-form-field-border-radius, 3px));
 	border: var(--theme-form-field-border-width, 1px) var(--theme-form-field-border-style, solid) var(--theme-form-field-border-initial-color);

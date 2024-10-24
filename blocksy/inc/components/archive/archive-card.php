@@ -487,19 +487,19 @@ if (! function_exists('blocksy_render_archive_card')) {
 				$single_component['__id'] = '';
 			}
 
-			if (
-				$enabled_components_count > 1
-				&&
-				$card_type !== 'cover'
-				&&
-				$last_enabled_component === $single_component['id'] . $single_component['__id'] && (
-					strpos($last_enabled_component, 'post_meta') !== false
-					||
-					strpos($last_enabled_component, 'featured_image') !== false
-				)
-			) {
-				echo '<div class="ct-ghost"></div>';
-			}
+			// if (
+			// 	$enabled_components_count > 1
+			// 	&&
+			// 	$card_type !== 'cover'
+			// 	&&
+			// 	$last_enabled_component === $single_component['id'] . $single_component['__id'] && (
+			// 		strpos($last_enabled_component, 'post_meta') !== false
+			// 		||
+			// 		strpos($last_enabled_component, 'featured_image') !== false
+			// 	)
+			// ) {
+			// 	echo '<div class="ct-ghost"></div>';
+			// }
 
 			/**
 			 * Note to code reviewers: This line doesn't need to be escaped.

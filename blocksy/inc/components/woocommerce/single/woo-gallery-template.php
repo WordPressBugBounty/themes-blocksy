@@ -26,9 +26,9 @@ if (
 	&&
 	! $skip_default_variation
 ) {
-	$maybe_current_variation = blocksy_retrieve_product_default_variation(
-		$product
-	);
+	$maybe_current_variation = blocksy_manager()
+		->woocommerce
+		->retrieve_product_default_variation($product);
 
 	if ($maybe_current_variation) {
 		$blocksy_current_variation = $maybe_current_variation;

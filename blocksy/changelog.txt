@@ -1,3 +1,15 @@
+2.0.74: 2024-10-24
+- Improvement: Better compatibility with ReviewX plugin
+- Improvement: Better compatibility with WPC Buy Now Button for WooCommerce plugin
+- Improvement: Customizer form elements - add typography option
+- Improvement: Do not apply archive CSS to "Catalogue Sorting" block
+- Improvement: Header logo element - make sure the reset option works correctly
+- Improvement: Improve customizer UI styles for WordPress 6.7
+- Improvement: Make sure footer menu element overflows text on more than one line when needed
+- Improvement: Output plain excerpt in open graph data
+- Improvement: Posts navigation image rendering issue in Safari when Imagify plugin replaces `img` with `picture` tag
+- Fix: Cart header element redirects to cart page on mobile after backing out of it
+
 2.0.73: 2024-10-11
 - Improvement: Better handling of responsive values in multiple places
 - Improvement: Make sure "updated date" custom format is translatable via WPML

@@ -56,11 +56,16 @@ export const wooEntryPoints = [
 	{
 		els: () => [...document.querySelectorAll('.ct-ajax-add-to-cart .cart')],
 		load: () => import('./add-to-cart-single'),
-		trigger: ['submit'],
+		trigger: [
+			{
+				id: 'submit',
+				ignoreSubmitter: ['button[name]:not([name="add-to-cart"])'],
+			},
+		],
 	},
 
 	{
-		els: '.ct-header-cart, .ajax_add_to_cart, .ct-ajax-add-to-cart',
+		els: '.ct-header-cart > .ct-cart-item, .ajax_add_to_cart, .ct-ajax-add-to-cart',
 		load: () => import('./mini-cart'),
 		events: ['ct:header:update'],
 		trigger: ['hover-with-touch'],

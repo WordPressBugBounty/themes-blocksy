@@ -1,23 +1,11 @@
 select,
 textarea,
-input[type='url'],
-input[type='tel'],
-input[type='text'],
-input[type='time'],
-input[type='date'],
-input[type='datetime'],
-input[type='datetime-local'],
-input[type='email'],
-input[type='number'],
-input[type='search'],
-input[type='password'],
+input:is([type='url'], [type='tel'], [type='text'], [type='time'], [type='date'], [type='datetime'], [type='datetime-local'], [type='email'], [type='number'], [type='search'], [type='password']),
 fieldset .wc-stripe-elements-field,
 .ff-inherit-theme-style .ff-el-form-control:not([size]):not([multiple]) {
 	appearance: none;
 	width: var(--has-width, var(--theme-form-field-width, 100%));
 	height: var(--has-height, var(--theme-form-field-height, 40px));
-	font-family: inherit;
-	font-size: var(--theme-form-font-size, 16px);
 	color: var(--theme-form-text-initial-color, var(--theme-text-color));
 	padding: var(--has-classic-forms, var(--theme-form-field-padding, 0 15px));
 	border-width: var(--theme-form-field-border-width, 1px);

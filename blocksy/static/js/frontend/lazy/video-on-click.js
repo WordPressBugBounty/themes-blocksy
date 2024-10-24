@@ -240,9 +240,10 @@ export const mount = (el, { event }) => {
 		const cb = () => {
 			;[
 				...document.querySelectorAll(
-					'.ct-media-container[data-media-id]'
+					'.ct-media-container[data-media-id], .ct-dynamic-media[data-media-id]'
 				),
 			].map((el) => {
+				console.log(el)
 				processInitialAutoplayFor(el)
 			})
 		}
@@ -251,7 +252,7 @@ export const mount = (el, { event }) => {
 			cb()
 		})
 
-        cb()
+		cb()
 
 		return
 	}
