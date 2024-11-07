@@ -131,14 +131,14 @@ $overridable_card_options = [
 						[
 							'prefix' => $prefix,
 							'id' => $prefix . 'archive_order_meta_first',
-							'loader_selector' => '.entry-meta:1',
+							'loader_selector' => '.entries .entry-meta:1',
 							'container_inclusive' => false
 						],
 
 						[
 							'prefix' => $prefix,
 							'id' => $prefix . 'archive_order_meta_second',
-							'loader_selector' => '.entry-meta:2',
+							'loader_selector' => '.entries .entry-meta:2',
 							'container_inclusive' => false
 						],
 					],
@@ -1585,7 +1585,7 @@ $options = [
 						'responsive' => true,
 						'hasGroupRevertButton' => true,
 						'options' => [
-							
+
 							$prefix . 'columns' => [
 								'label' => false,
 								'desc' => __( 'Number of columns', 'blocksy' ),

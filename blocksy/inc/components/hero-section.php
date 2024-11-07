@@ -218,19 +218,7 @@ if (! function_exists('blocksy_output_hero_section')) {
 			return '';
 		}
 
-		$post_id = null;
-
-		if (is_home() && !is_front_page()) {
-			$post_id = get_option('page_for_posts');
-		}
-
-		if (function_exists('is_shop') && is_shop()) {
-			$post_id = get_option('woocommerce_shop_page_id');
-		}
-
-		if (is_singular('tribe_events') && function_exists('tribe_get_event')) {
-			$post_id = get_queried_object()->ID;
-		}
+		$post_id = blocksy_get_special_post_id();
 
 		$elements = $args['elements'];
 

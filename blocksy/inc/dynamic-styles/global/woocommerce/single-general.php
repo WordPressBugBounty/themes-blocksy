@@ -145,7 +145,7 @@ blocksy_output_font_css([
 	'css' => $css,
 	'tablet_css' => $tablet_css,
 	'mobile_css' => $mobile_css,
-	'selector' => '.related > h2, .up-sells > h2',
+	'selector' => '.related .ct-module-title, .up-sells .ct-module-title',
 ]);
 
 blocksy_output_colors([
@@ -158,7 +158,7 @@ blocksy_output_colors([
 	'mobile_css' => $mobile_css,
 	'variables' => [
 		'default' => [
-			'selector' => '.related > h2, .up-sells > h2',
+			'selector' => '.related .ct-module-title, .up-sells .ct-module-title',
 			'variable' => 'theme-heading-color'
 		],
 	],

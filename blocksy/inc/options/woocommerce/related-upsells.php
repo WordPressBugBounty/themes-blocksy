@@ -72,6 +72,31 @@ $options = [
 						]
 					],
 
+					'woo_product_related_label_tag' => [
+						'label' => __( 'Module Title Tag', 'blocksy-companion' ),
+						'type' => 'ct-select',
+						'value' => 'h2',
+						'view' => 'text',
+						'design' => 'inline',
+						'divider' => 'bottom:full',
+						'choices' => blocksy_ordered_keys(
+							[
+								'h1' => 'H1',
+								'h2' => 'H2',
+								'h3' => 'H3',
+								'h4' => 'H4',
+								'h5' => 'H5',
+								'h6' => 'H6',
+								'p' => 'p',
+								'span' => 'span',
+							]
+						),
+						'sync' => blocksy_sync_whole_page([
+							'prefix' => 'product',
+							'loader_selector' => '[class*="post"] .products .ct-module-title'
+						]),
+					],
+
 					'related_products_visibility' => [
 						'label' => __('Related Products Visibility', 'blocksy'),
 						'type' => 'ct-visibility',
@@ -133,8 +158,7 @@ $options = [
 						'related_upsells_heading_font_color' => [
 							'label' => __( 'Module Title Color', 'blocksy' ),
 							'type'  => 'ct-color-picker',
-							'design' => 'block:right',
-							'responsive' => true,
+							'design' => 'inline',
 							'sync' => 'live',
 							'divider' => 'bottom',
 							'value' => [
@@ -142,12 +166,39 @@ $options = [
 									'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
 								],
 							],
-
 							'pickers' => [
 								[
 									'title' => __( 'Initial', 'blocksy' ),
 									'id' => 'default',
-									'inherit' => 'var(--theme-heading-2-color, var(--theme-headings-color))'
+									'inherit' => [
+										'var(--theme-heading-1-color, var(--theme-headings-color))' => [
+											'woo_product_related_label_tag' => 'h1'
+										],
+
+										'var(--theme-heading-2-color, var(--theme-headings-color))' => [
+											'woo_product_related_label_tag' => 'h2'
+										],
+
+										'var(--theme-heading-3-color, var(--theme-headings-color))' => [
+											'woo_product_related_label_tag' => 'h3'
+										],
+
+										'var(--theme-heading-4-color, var(--theme-headings-color))' => [
+											'woo_product_related_label_tag' => 'h4'
+										],
+
+										'var(--theme-heading-5-color, var(--theme-headings-color))' => [
+											'woo_product_related_label_tag' => 'h5'
+										],
+
+										'var(--theme-heading-6-color, var(--theme-headings-color))' => [
+											'woo_product_related_label_tag' => 'h6'
+										],
+
+										'var(--theme-text-color)' => [
+											'woo_product_related_label_tag' => 'span|p'
+										],
+									]
 								],
 							],
 						],

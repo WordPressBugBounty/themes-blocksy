@@ -1,8 +1,13 @@
 import {
 	applyPrefixFor,
-	handleResponsiveSwitch,
+	watchOptionsWithPrefix,
+	getOptionFor,
 	getPrefixFor,
+	disableTransitionsStart,
+	disableTransitionsEnd,
+	setRatioFor,
 } from '../../helpers'
+import { renderSingleEntryMeta } from '../../helpers/entry-meta'
 import { handleBackgroundOptionFor } from '../../variables/background'
 import { typographyOption } from '../../variables/typography'
 import { getSingleShareBoxVariables } from './share-box'
@@ -137,7 +142,6 @@ export const getSingleElementsVariables = () => ({
 		responsive: true,
 	},
 
-
 	// post tags
 	[`${prefix}_post_tags_alignment`]: {
 		selector: applyPrefixFor('.entry-tags', prefix),
@@ -162,6 +166,43 @@ export const getSingleElementsVariables = () => ({
 		type: 'spacing',
 		variable: 'theme-border-radius',
 		responsive: true,
+	},
+
+
+	// posts navigation
+	[`${prefix}_post_nav_spacing`]: {
+		selector: applyPrefixFor('.post-navigation', prefix),
+		variable: 'margin',
+		responsive: true,
+		unit: '',
+	},
+
+	[`${prefix}_posts_nav_font_color`]: [
+		{
+			selector: applyPrefixFor('.post-navigation', prefix),
+			variable: 'theme-link-initial-color',
+			type: 'color:default',
+		},
+
+		{
+			selector: applyPrefixFor('.post-navigation', prefix),
+			variable: 'theme-link-hover-color',
+			type: 'color:hover',
+		},
+	],
+
+	[`${prefix}_posts_nav_image_overlay_color`]: {
+		selector: applyPrefixFor('.post-navigation', prefix),
+		variable: 'image-overlay-color',
+
+		type: 'color:hover',
+	},
+
+	[`${prefix}_posts_nav_image_border_radius`]: {
+		selector: applyPrefixFor('.post-navigation figure', prefix),
+		type: 'spacing',
+		variable: 'theme-border-radius',
+		// responsive: true,
 	},
 
 
@@ -198,18 +239,27 @@ export const getSingleElementsVariables = () => ({
 
 	...typographyOption({
 		id: `${prefix}_related_posts_link_font`,
-		selector: applyPrefixFor('.ct-related-posts .related-entry-title', prefix),
+		selector: applyPrefixFor(
+			'.ct-related-posts .related-entry-title',
+			prefix
+		),
 	}),
 
 	[`${prefix}_related_posts_link_color`]: [
 		{
-			selector: applyPrefixFor('.ct-related-posts .related-entry-title', prefix),
+			selector: applyPrefixFor(
+				'.ct-related-posts .related-entry-title',
+				prefix
+			),
 			variable: 'theme-heading-color',
 			type: 'color:default',
 		},
 
 		{
-			selector: applyPrefixFor('.ct-related-posts .related-entry-title', prefix),
+			selector: applyPrefixFor(
+				'.ct-related-posts .related-entry-title',
+				prefix
+			),
 			variable: 'theme-link-hover-color',
 			type: 'color:hover',
 		},
@@ -260,17 +310,22 @@ export const getSingleElementsVariables = () => ({
 				const responsive = maybePromoteScalarValueIntoResponsive(val)
 
 				return {
-					desktop: `repeat(${responsive.desktop}, 1fr)`,
-					tablet: `repeat(${responsive.tablet}, 1fr)`,
-					mobile: `repeat(${responsive.mobile}, 1fr)`,
+					desktop: `repeat(${responsive.desktop}, minmax(0, 1fr))`,
+					tablet: `repeat(${responsive.tablet}, minmax(0, 1fr))`,
+					mobile: `repeat(${responsive.mobile}, minmax(0, 1fr))`,
 				}
 			},
 		},
 	],
 
+
+	// related posts slider
 	[`${prefix}_related_posts_slideshow_columns`]: [
 		{
-			selector: applyPrefixFor('.ct-related-posts .flexy-container', prefix),
+			selector: applyPrefixFor(
+				'.ct-related-posts .flexy-container',
+				prefix
+			),
 			variable: 'grid-columns-width',
 			responsive: true,
 			extractValue: (val) => {
@@ -303,40 +358,224 @@ export const getSingleElementsVariables = () => ({
 			},
 		},
 	],
+})
 
-	// posts navigation
-	[`${prefix}_post_nav_spacing`]: {
-		selector: applyPrefixFor('.post-navigation', prefix),
-		variable: 'margin',
-		responsive: true,
-		unit: '',
+watchOptionsWithPrefix({
+	getPrefix: () => prefix,
+	getOptionsForPrefix: ({ prefix }) => [`${prefix}_related_order`],
+
+	render: ({ id }) => {
+		if (id === `${prefix}_related_order`) {
+			const relatedItemsEl = document.querySelectorAll(
+				'.ct-related-posts-items'
+			)
+
+			disableTransitionsStart(relatedItemsEl)
+
+			disableTransitionsEnd(relatedItemsEl)
+
+			let relatedOrder = getOptionFor('related_order', prefix)
+			disableTransitionsStart(relatedItemsEl)
+
+			let allItemsToOutput = relatedOrder.filter(
+				({ enabled }) => !!enabled
+			)
+
+			allItemsToOutput.map((component, index) => {
+				;[
+					...document.querySelectorAll(
+						'.ct-related-posts-items > article'
+					),
+				].map((article) => {
+					let image = article.querySelector('.ct-media-container')
+
+					if (component.id === 'featured_image' && image) {
+						setRatioFor({
+							ratio: component.thumb_ratio,
+							el: image,
+						})
+					}
+
+					if (component.id === 'post_meta') {
+						let moreDefaults = {}
+						let el = article.querySelectorAll('.entry-meta')
+
+						if (
+							relatedOrder.filter(({ id }) => id === 'post_meta')
+								.length > 1
+						) {
+							if (
+								relatedOrder
+									.filter(({ id }) => id === 'post_meta')
+									.map(({ __id }) => __id)
+									.indexOf(component.__id) === 0
+							) {
+								moreDefaults = {
+									meta_elements: [
+										{
+											id: 'categories',
+											enabled: true,
+										},
+									],
+								}
+
+								el = el[0]
+							}
+
+							if (
+								relatedOrder
+									.filter(({ id }) => id === 'post_meta')
+									.map(({ __id }) => __id)
+									.indexOf(component.__id) === 1
+							) {
+								moreDefaults = {
+									meta_elements: [
+										{
+											id: 'author',
+											enabled: true,
+										},
+
+										{
+											id: 'post_date',
+											enabled: true,
+										},
+
+										{
+											id: 'comments',
+											enabled: true,
+										},
+									],
+								}
+
+								if (el.length > 1) {
+									el = el[1]
+								}
+							}
+						}
+
+						if (el.length === 1) {
+							el = el[0]
+						}
+
+						renderSingleEntryMeta({
+							el,
+							...moreDefaults,
+							...component,
+						})
+					}
+				})
+			})
+
+			disableTransitionsEnd(relatedItemsEl)
+		}
 	},
+})
 
-	[`${prefix}_posts_nav_font_color`]: [
-		{
-			selector: applyPrefixFor('.post-navigation', prefix),
-			variable: 'theme-link-initial-color',
-			type: 'color:default',
-		},
+export const getPostRelatedVariables = () => ({
+	[`${prefix}_related_order`]: (v) => {
+		let variables = []
 
-		{
-			selector: applyPrefixFor('.post-navigation', prefix),
-			variable: 'theme-link-hover-color',
-			type: 'color:hover',
-		},
-	],
+		v.map((layer) => {
+			// bottom spacing
+			let selectorsMap = {
+				title: '.ct-related-posts .related-entry-title',
+				featured_image: '.ct-related-posts .ct-media-container',
+			}
 
-	[`${prefix}_posts_nav_image_overlay_color`]: {
-		selector: applyPrefixFor('.post-navigation', prefix),
-		variable: 'image-overlay-color',
+			if (selectorsMap[layer.id]) {
+				variables = [
+					...variables,
+					{
+						selector: applyPrefixFor(
+							selectorsMap[layer.id],
+							prefix
+						),
+						variable: 'card-element-spacing',
+						responsive: true,
+						unit: 'px',
+						extractValue: () => {
+							let defaultValue = 20
 
-		type: 'color:hover',
-	},
+							if (layer.id === 'title') {
+								defaultValue = 5
+							}
 
-	[`${prefix}_posts_nav_image_border_radius`]: {
-		selector: applyPrefixFor('.post-navigation figure', prefix),
-		type: 'spacing',
-		variable: 'theme-border-radius',
-		// responsive: true,
+							return layer.spacing || defaultValue
+						},
+					},
+				]
+			}
+
+			if (layer.id === 'post_meta') {
+				variables = [
+					...variables,
+					{
+						selector: applyPrefixFor(
+							`.ct-related-posts .entry-meta[data-id="${(
+								layer?.__id || 'default'
+							).slice(0, 6)}"]`,
+							prefix
+						),
+						variable: 'card-element-spacing',
+						responsive: true,
+						unit: 'px',
+						extractValue: () => {
+							return layer.spacing || 20
+						},
+					},
+				]
+			}
+
+			if (layer.id === 'content-block') {
+				variables = [
+					...variables,
+					{
+						selector: applyPrefixFor(
+							`.ct-related-posts .ct-entry-content-block[data-id="${
+								layer?.__id || 'default'
+							}"]`,
+							prefix
+						),
+						variable: 'card-element-spacing',
+						responsive: true,
+						unit: 'px',
+						extractValue: () => {
+							return layer.spacing || 20
+						},
+					},
+				]
+			}
+
+			if (
+				[
+					'acf_field',
+					'metabox_field',
+					'toolset_field',
+					'jetengine_field',
+					'custom_field',
+					'pods_field',
+				].includes(layer.id)
+			) {
+				variables = [
+					...variables,
+					{
+						selector: applyPrefixFor(
+							`.ct-related-posts .ct-dynamic-data-layer[data-field*=":${(
+								layer?.__id || 'default'
+							).slice(0, 6)}"]`,
+							prefix
+						),
+						variable: 'card-element-spacing',
+						responsive: true,
+						unit: 'px',
+						extractValue: () => {
+							return layer.spacing || 20
+						},
+					},
+				]
+			}
+		})
+
+		return [...variables]
 	},
 })

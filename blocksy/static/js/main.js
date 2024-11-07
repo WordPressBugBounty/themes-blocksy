@@ -75,7 +75,9 @@ let allFrontendEntryPoints = [
 
 	{
 		els: [
-			...(document.querySelector('.ct-header-cart > .ct-cart-content')
+			...(document.querySelector(
+				'.ct-header-cart > .ct-cart-content:not([data-count="0"])'
+			)
 				? ['.ct-header-cart > .ct-cart-item']
 				: []),
 			'.ct-language-switcher > .ct-active-language',

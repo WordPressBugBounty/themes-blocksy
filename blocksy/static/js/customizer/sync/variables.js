@@ -9,7 +9,10 @@ import { getCommentsVariables } from './comments'
 
 import { getSingleContentVariablesFor } from './single/structure'
 
-import { getSingleElementsVariables } from './variables/single/related-posts'
+import {
+	getPostRelatedVariables,
+	getSingleElementsVariables,
+} from './variables/single/related-posts'
 
 import { updateVariableInStyleTags } from 'customizer-sync-helpers'
 import { makeVariablesWithCondition } from './helpers/variables-with-conditions'
@@ -54,6 +57,8 @@ const getAllVariables = () => {
 
 			// Page Hero
 			...getHeroVariables(),
+
+			...getPostRelatedVariables(),
 
 			...getPostListingVariables(),
 			...getPaginationVariables(),

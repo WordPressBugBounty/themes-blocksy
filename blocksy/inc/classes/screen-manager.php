@@ -613,16 +613,10 @@ if (! function_exists('blocksy_is_page')) {
 		if ($result) {
 			$post_id = strval(get_the_ID());
 
-			if (is_home() && ! is_front_page()) {
-				$post_id = get_option('page_for_posts');
-			}
+			$maybe_special_post_id = blocksy_get_special_post_id();
 
-			if (function_exists('is_shop') && is_shop()) {
-				$post_id = get_option('woocommerce_shop_page_id');
-			}
-
-			if (get_post_type($post_id) !== 'page') {
-				$post_id = get_queried_object_id();
+			if ($maybe_special_post_id !== null) {
+				$post_id = $maybe_special_post_id;
 			}
 
 			$static_result = $post_id;
@@ -637,4 +631,38 @@ if (! function_exists('blocksy_is_page')) {
 		$static_result = false;
 		return false;
 	}
+}
+
+// global | local
+function blocksy_get_special_post_id($context = 'global') {
+	$special_post_id = null;
+
+	if (is_home() && ! is_front_page()) {
+		$special_post_id = get_option('page_for_posts');
+	}
+
+	if (function_exists('is_shop') && is_shop()) {
+		$special_post_id = get_option('woocommerce_shop_page_id');
+	}
+
+	if ($context === 'global' && get_post_type(get_the_ID()) !== 'page') {
+		$special_post_id = get_queried_object_id();
+	}
+
+	// This happens for Tribe Events, in case when a page is used as a template
+	// and the global post is the page itself. In that case, the queried object
+	// is still the real post.
+	if (
+		get_post_type() === 'page'
+		&&
+		get_post_type(get_queried_object_id()) !== 'page'
+	) {
+		$special_post_id = get_queried_object_id();
+	}
+
+	if ($special_post_id !== null) {
+		return intval($special_post_id);
+	}
+
+	return $special_post_id;
 }

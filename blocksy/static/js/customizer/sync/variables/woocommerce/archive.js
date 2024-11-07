@@ -58,7 +58,7 @@ export const getWooArchiveVariablesFor = () => ({
 						responsive: true,
 						unit: 'px',
 						extractValue: () => {
-							return layer.brand_logo_size || 100
+							return layer.brand_logo_size || 60
 						},
 					},
 

@@ -164,7 +164,7 @@ class Blocksy_Manager {
 			return $template;
 		}, 900000000);
 
-		add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts'], 50);
+		add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts'], 10);
 
 		add_action(
 			'wp_head',

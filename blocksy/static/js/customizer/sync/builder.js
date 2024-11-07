@@ -260,15 +260,22 @@ wp.customize.bind('preview-ready', () => {
 					$(placement.container)
 						.find(loader_selector)
 						.toArray()
-						.filter(
-							(el) =>
-								$(el.parentNode)
-									.find(loader_selector)
-									.toArray()
-									.indexOf(el) +
-									1 ===
-								parseInt(index, 10)
-						)
+						.filter((el) => {
+							let loaderSelector = loader_selector
+
+							if (loaderSelector.indexOf(' ') > -1) {
+								loaderSelector = loaderSelector
+									.split(' ')
+									.reverse()[0]
+							}
+
+							const foundIndex = $(el.parentNode)
+								.find(loaderSelector)
+								.toArray()
+								.indexOf(el)
+
+							return foundIndex + 1 === parseInt(index, 10)
+						})
 						.map((el) =>
 							el.classList.add('customize-partial-refreshing')
 						)

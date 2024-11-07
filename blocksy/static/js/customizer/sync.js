@@ -114,3 +114,23 @@ export {
 export { responsiveClassesFor, setRatioFor } from './sync/helpers'
 export { typographyOption } from './sync/variables/typography'
 export { maybePromoteScalarValueIntoResponsive } from 'customizer-sync-helpers/dist/promote-into-responsive'
+
+export const triggerCustomizerAutosave = (callback = () => {}) => {
+	wp.customize.preview.send('ct-trigger-autosave')
+
+	let executed = false
+
+	const cb = () => {
+		if (executed) {
+			return
+		}
+
+		executed = true
+
+		callback()
+
+		wp.customize.preview.unbind('ct-trigger-autosave-done', cb)
+	}
+
+	wp.customize.preview.bind('ct-trigger-autosave-done', cb)
+}

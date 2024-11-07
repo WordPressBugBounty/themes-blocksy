@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { Flexy, adjustContainerHeightFor } from 'flexy'
+import { Flexy } from 'flexy'
 import ctEvents from 'ct-events'
 import { getCurrentScreen } from '../frontend/helpers/current-screen'
 
@@ -16,7 +16,6 @@ export const mount = (sliderEl, args) => {
 
 	let leftArrow = sliderEl.querySelector('.flexy .flexy-arrow-prev')
 	let rightArrow = sliderEl.querySelector('.flexy .flexy-arrow-next')
-
 
 	const maybeSuggested = sliderEl.closest('.ct-suggested-products')
 
@@ -113,7 +112,5 @@ ctEvents.on('ct:flexy:update-height', () => {
 		if (!el.flexy) {
 			return
 		}
-
-		adjustContainerHeightFor(el.flexy)
 	})
 })

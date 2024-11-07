@@ -339,6 +339,24 @@ class DbVersioning {
 
 					$obj->migrate();
 				}
+			],
+
+			[
+				'version' => '2.0.75',
+				'cb' => function () {
+					$obj = new DbVersioning\V2075();
+
+					$obj->migrate();
+				}
+			],
+
+			[
+				'version' => '2.0.76',
+				'cb' => function () {
+					$obj = new DbVersioning\V2076();
+
+					$obj->migrate();
+				}
 			]
 		];
 	}

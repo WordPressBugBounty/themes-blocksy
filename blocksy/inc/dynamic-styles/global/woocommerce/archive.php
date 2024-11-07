@@ -89,9 +89,9 @@ foreach ($woo_card_layout as $layer) {
 		}
 
 		if ($layer['id'] === 'product_brands') {
-			$brand_logo_size = blocksy_akg('brand_logo_size', $layer, 100);
+			$brand_logo_size = blocksy_akg('brand_logo_size', $layer, 60);
 
-			if ($brand_logo_size !== 100) {
+			if ($brand_logo_size !== 60) {
 				blocksy_output_responsive([
 					'css' => $css,
 					'tablet_css' => $tablet_css,

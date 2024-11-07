@@ -545,6 +545,7 @@ require get_template_directory() . '/inc/components/single/content-helpers.php';
 require get_template_directory() . '/inc/components/single/excerpt.php';
 require get_template_directory() . '/inc/components/single/page-elements.php';
 require get_template_directory() . '/inc/components/single/comments.php';
+require get_template_directory() . '/inc/components/single/related-posts.php';
 
 require get_template_directory() . '/inc/components/menus.php';
 require get_template_directory() . '/inc/components/post-meta.php';
@@ -586,6 +587,7 @@ require get_template_directory() . '/inc/integrations/bbpress.php';
 require get_template_directory() . '/inc/integrations/fluent-forms.php';
 require get_template_directory() . '/inc/integrations/coauthors.php';
 require get_template_directory() . '/inc/integrations/disqus.php';
+require get_template_directory() . '/inc/integrations/secupress.php';
 
 if (function_exists('get_rocket_cdn_url')) {
 	require get_template_directory() . '/inc/integrations/wprocket.php';

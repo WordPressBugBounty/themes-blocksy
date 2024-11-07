@@ -1,3 +1,11 @@
+2.0.76: 2024-11-07
+- Improvement: Better integration with Svea Checkout plugin
+- Improvement: Header cart element - improve tap interaction on touch devices
+- Improvement: Make sure Elementor color palette options are not created when the plugin is not active
+- Improvement: Related posts module - transform card elements in to layers for better organization
+- Improvement: Related products/upsells - option to change module title wrapper tag
+- Improvement: Safer check for shortcodes in current post when enqueueing CSS
+
 2.0.75: 2024-10-24
 - Fix: Correctly load assets in the frontend
 

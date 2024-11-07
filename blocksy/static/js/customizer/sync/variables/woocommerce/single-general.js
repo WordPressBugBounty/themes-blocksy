@@ -66,11 +66,11 @@ export const getWooSingleGeneralVariablesFor = () => ({
 	// related & upsells
 	...typographyOption({
 		id: 'related_upsells_heading_font',
-		selector: '.related > h2, .up-sells > h2',
+		selector: '.related .ct-module-title, .up-sells .ct-module-title',
 	}),
 
 	related_upsells_heading_font_color: {
-		selector: '.related > h2, .up-sells > h2',
+		selector: '.related .ct-module-title, .up-sells .ct-module-title',
 		variable: 'theme-heading-color',
 		type: 'color',
 	},

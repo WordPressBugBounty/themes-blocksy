@@ -59,6 +59,11 @@ class WooCommerceCheckout {
 				global $ct_skip_checkout;
 				$ct_skip_checkout = true;
 			});
+
+			if (class_exists('Svea_Checkout_For_Woocommerce\Template_Handler')) {
+				global $ct_skip_checkout;
+				$ct_skip_checkout = true;
+			}
 		}, 10, 1);
 
 		add_action('wpfunnels/before_gb_checkout_form', function($widget) {

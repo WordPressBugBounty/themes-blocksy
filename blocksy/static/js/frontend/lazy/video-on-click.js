@@ -243,7 +243,6 @@ export const mount = (el, { event }) => {
 					'.ct-media-container[data-media-id], .ct-dynamic-media[data-media-id]'
 				),
 			].map((el) => {
-				console.log(el)
 				processInitialAutoplayFor(el)
 			})
 		}

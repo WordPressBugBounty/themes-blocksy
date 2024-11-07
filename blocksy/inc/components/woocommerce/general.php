@@ -309,6 +309,10 @@ add_action(
 				);
 			}
 
+			$woo_product_related_label_tag = blocksy_get_theme_mod('woo_product_related_label_tag', 'h2');
+
+			$upsells = preg_replace('/<h2>(.*?)<\/h2>/', '<' . $woo_product_related_label_tag . ' class="ct-module-title">$1</' . $woo_product_related_label_tag . '>', $upsells);
+
 			echo str_replace(
 				'class="up-sells upsells products"',
 				blocksy_attr_to_html($other_attr) . 'class="up-sells upsells products ' . trim(
@@ -352,6 +356,10 @@ add_action(
 				);
 			}
 
+			$woo_product_related_label_tag = blocksy_get_theme_mod('woo_product_related_label_tag', 'h2');
+
+			$related = preg_replace('/<h2>(.*?)<\/h2>/', '<' . $woo_product_related_label_tag . ' class="ct-module-title">$1</' . $woo_product_related_label_tag . '>', $related);
+			
 			echo str_replace(
 				'class="related products"',
 				blocksy_attr_to_html($other_attr) . 'class="related products ' . trim(

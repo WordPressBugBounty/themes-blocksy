@@ -744,9 +744,9 @@ if (
 	));
 
 	$columns_for_output = [
-		'desktop' => 'repeat(' . $grid_columns['desktop'] . ', 1fr)',
-		'tablet' => 'repeat(' . $grid_columns['tablet'] . ', 1fr)',
-		'mobile' => 'repeat(' . $grid_columns['mobile'] . ', 1fr)'
+		'desktop' => 'repeat(' . $grid_columns['desktop'] . ', minmax(0, 1fr))',
+		'tablet' => 'repeat(' . $grid_columns['tablet'] . ', minmax(0, 1fr))',
+		'mobile' => 'repeat(' . $grid_columns['mobile'] . ', minmax(0, 1fr))'
 	];
 
 	blocksy_output_responsive([
@@ -761,4 +761,115 @@ if (
 		'value' => $columns_for_output,
 		'unit' => ''
 	]);
+
+
+	// related posts layers
+	foreach (blocksy_get_theme_mod($prefix . '_related_order', []) as $layer) {
+		if (! $layer['enabled']) {
+			continue;
+		}
+
+		// bottom spacing
+		$selectors_map = [
+			'title' => '.ct-related-posts .related-entry-title',
+			'featured_image' => '.ct-related-posts .ct-media-container',
+		];
+	
+		$spacing_default = 20;
+	
+		if ($layer['id'] === 'title') {
+			$spacing_default = 5;
+		}
+	
+		$spacing = blocksy_akg('spacing', $layer, $spacing_default);
+	
+		if (
+			isset($selectors_map[$layer['id']])
+			&&
+			(
+				intval($spacing) !== $spacing_default
+				||
+				$spacing_default === 5
+			)
+		) {
+			blocksy_output_responsive([
+				'css' => $css,
+				'tablet_css' => $tablet_css,
+				'mobile_css' => $mobile_css,
+				'selector' => blocksy_prefix_selector(
+					$selectors_map[$layer['id']],
+					$prefix
+				),
+				'variableName' => 'card-element-spacing',
+				'value' => $spacing
+			]);
+		}
+		
+		if ($layer['id'] === 'post_meta') {
+			$id = substr(isset($layer["__id"]) ? $layer["__id"] : 'default', 0, 6);
+	
+			if ($spacing !== 20) {
+				blocksy_output_responsive([
+					'css' => $css,
+					'tablet_css' => $tablet_css,
+					'mobile_css' => $mobile_css,
+					'selector' => blocksy_prefix_selector(
+						'.ct-related-posts .entry-meta[data-id="' . $id . '"]',
+						$prefix
+					),
+					'variableName' => 'card-element-spacing',
+					'value' => $spacing,
+					'unit' => 'px'
+				]);
+			}
+		}
+	
+		if ($layer['id'] === 'content-block') {
+			$id = isset($layer["__id"]) ? $layer["__id"] : 'default';
+	
+			if ($spacing !== 20) {
+				blocksy_output_responsive([
+					'css' => $css,
+					'tablet_css' => $tablet_css,
+					'mobile_css' => $mobile_css,
+					'selector' => blocksy_prefix_selector(
+						'.ct-related-posts .ct-entry-content-block[data-id="' . $id . '"]',
+						$prefix
+					),
+					'variableName' => 'card-element-spacing',
+					'value' => $spacing,
+					'unit' => 'px'
+				]);
+			}
+		}
+	
+		if (in_array(
+			$layer['id'],
+			[
+				'acf_field',
+				'metabox_field',
+				'toolset_field',
+				'jetengine_field',
+				'custom_field',
+				'pods_field',
+			]
+		)) {
+			$id = substr(isset($layer["__id"]) ? $layer["__id"] : 'default', 0, 6);
+	
+			if ($spacing !== 20) {
+				blocksy_output_responsive([
+					'css' => $css,
+					'tablet_css' => $tablet_css,
+					'mobile_css' => $mobile_css,
+					'selector' => blocksy_prefix_selector(
+						'.ct-related-posts .ct-dynamic-data-layer[data-field*=":' . $id . '"]',
+						$prefix
+					),
+					'variableName' => 'card-element-spacing',
+					'value' => $spacing,
+					'unit' => 'px'
+				]);
+			}
+		}
+	}
 }

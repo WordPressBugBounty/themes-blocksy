@@ -76,6 +76,17 @@ if (! function_exists('blocksy_display_posts_pagination')) {
 			$args['current_page'] = $args['query']->get('paged');
 			$args['total_pages'] = $args['query']->max_num_pages;
 
+			$offset = $args['query']->get('offset');
+
+			if ($offset) {
+				$totalPosts = $args['query']->found_posts;
+				$currentPage = $args['query']->get('paged');
+				$postsPerPage = $args['query']->get('posts_per_page');
+				$offsetAdjustment = $offset - ($currentPage - 1) * $postsPerPage;
+
+				$args['total_pages'] = ceil(($totalPosts - $offsetAdjustment) / $postsPerPage);
+			}
+
 			if (! $args['current_page']) {
 				$args['current_page'] = 1;
 			}

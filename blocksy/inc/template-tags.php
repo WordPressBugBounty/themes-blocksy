@@ -13,7 +13,7 @@
  * @param string $tag HTML tag.
  */
 if (! function_exists('blocksy_entry_title')) {
-	function blocksy_entry_title( $tag = 'h2', $has_link = true ) {
+	function blocksy_entry_title( $tag = 'h2', $has_link = true, $classes = ['entry-title'] ) {
 		if (empty(get_the_title())) {
 			return '';
 		}
@@ -34,7 +34,7 @@ if (! function_exists('blocksy_entry_title')) {
 		return blocksy_html_tag(
 			esc_attr($tag),
 			[
-				'class' => 'entry-title'
+				'class' => esc_attr(implode(' ', $classes))
 			],
 			$title
 		);
@@ -567,6 +567,36 @@ function blocksy_related_posts($location = null) {
 		'data-layout' => "grid"
 	];
 
+	$related_order = blocksy_get_theme_mod(
+		$prefix . '_related_order',
+		[
+			[
+				'id' => 'featured_image',
+				'enabled' => true
+			]
+		]
+	);
+
+	foreach ($related_order as $related_layer) {
+		if (
+			! $related_layer['enabled']
+			||
+			$related_layer['id'] !== 'featured_image'
+		) {
+			continue;
+		}
+
+		$hover_effect = blocksy_akg(
+			'image_hover_effect',
+			$related_layer,
+			'none'
+		);
+
+		if ($hover_effect !== 'none') {
+			$container_attributes['data-hover'] = $hover_effect;
+		}
+	}
+
 	$container_attributes = apply_filters(
 		'blocksy:related-posts:container-attributes',
 		$container_attributes
@@ -611,88 +641,16 @@ function blocksy_related_posts($location = null) {
 			<?php while ($query->have_posts()) { ?>
 				<?php $query->the_post(); ?>
 
-				<article <?php echo blocksy_attr_to_html($item_attributes); ?> <?php echo blocksy_schema_org_definitions('creative_work:related_posts') ?>>
-					<?php
-						do_action('blocksy:single:related_posts:card:top');
-
-						if (
-							get_post_thumbnail_id()
-							&&
-							blocksy_get_theme_mod(
-								$prefix . '_has_related_featured_image',
-								'yes'
-							) === 'yes'
-						) {
-							do_action('blocksy:single:related_posts:featured_image:before');
-
-							$featured_image_has_link = blocksy_get_theme_mod(
-								$prefix . '_related_featured_image_has_link',
-								'yes'
-							) === 'yes';
-
-							echo blocksy_media(
-								[
-									'attachment_id' => get_post_thumbnail_id(),
-									'post_id' => get_the_ID(),
-									'ratio' => blocksy_get_theme_mod(
-										$prefix . '_related_featured_image_ratio',
-										'16/9'
-									),
-									'tag_name' => $featured_image_has_link ? 'a' : 'figure',
-									'size' => blocksy_get_theme_mod(
-										$prefix . '_related_featured_image_size',
-										'medium'
-									),
-									'html_atts' => $featured_image_has_link ? [
-										'href' => esc_url(get_permalink()),
-										'aria-label' => wp_strip_all_tags( get_the_title() ),
-										'tabindex' => "-1"
-									] : [],
-									'lazyload' => blocksy_get_theme_mod(
-										'has_lazy_load_related_posts_image',
-										'yes'
-									) === 'yes'
-								]
-							);
-
-							do_action('blocksy:single:related_posts:featured_image:after');
-						}
-					?>
-
-					<?php if (! empty(get_the_title())) {
-
-						$title = get_the_title();
-
-						if (blocksy_get_theme_mod($prefix . '_related_featured_title_has_link', 'yes') === 'yes') {
-							$title = blocksy_html_tag(
-								'a',
-								[
-									'href' => esc_url(get_permalink()),
-									'rel' => 'bookmark',
-									'itemprop' => 'url'
-								],
-								$title
-							);
-						}
-
-						echo blocksy_html_tag(
-							$posts_title_tag,
-							[
-								'class' => 'related-entry-title',
-								'itemprop' => 'name'
-							],
-							$title
-						);
-					} ?>
-
-					<?php
-						echo blocksy_post_meta($meta_elements, [
-							'meta_divider' => 'slash'
-						]);
-
-						do_action('blocksy:single:related_posts:card:bottom');
-					?>
-				</article>
+				<?php
+					blocksy_render_related_card(
+						[
+							'item_attributes' => $item_attributes,
+							'meta_elements' => $meta_elements,
+							'posts_title_tag' => $posts_title_tag
+						]
+					);
+				?>
+				
 			<?php } ?>
 			</div>
 
