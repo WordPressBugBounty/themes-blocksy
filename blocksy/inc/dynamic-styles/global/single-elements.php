@@ -711,6 +711,47 @@ if (
 		],
 	]);
 
+	blocksy_output_colors([
+		'value' => blocksy_get_theme_mod($prefix . '_related_meta_button_type_font_colors'),
+		'default' => [
+			'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+			'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+		],
+		'css' => $css,
+		'variables' => [
+			'default' => [
+				'selector' => blocksy_prefix_selector('.ct-related-posts [data-type="pill"]', $prefix),
+				'variable' => 'theme-button-text-initial-color'
+			],
+
+			'hover' => [
+				'selector' => blocksy_prefix_selector('.ct-related-posts [data-type="pill"]', $prefix),
+				'variable' => 'theme-button-text-hover-color'
+			],
+		],
+	]);
+
+	blocksy_output_colors([
+		'value' => blocksy_get_theme_mod($prefix . '_related_meta_button_type_background_colors'),
+		'default' => [
+			'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+			'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+		],
+		'css' => $css,
+		'variables' => [
+			'default' => [
+				'selector' => blocksy_prefix_selector('.ct-related-posts [data-type="pill"]', $prefix),
+				'variable' => 'theme-button-background-initial-color'
+			],
+
+			'hover' => [
+				'selector' => blocksy_prefix_selector('.ct-related-posts [data-type="pill"]', $prefix),
+				'variable' => 'theme-button-background-hover-color'
+			],
+		],
+	]);
+
+
 	blocksy_output_spacing([
 		'css' => $css,
 		'tablet_css' => $tablet_css,

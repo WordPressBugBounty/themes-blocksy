@@ -33,7 +33,8 @@
 
 // advanced posts & taxonomies
 .wp-block-blocksy-query,
-.wp-block-blocksy-tax-query {
+.wp-block-blocksy-tax-query,
+.wp-block-blocksy-content-block {
 	box-sizing: border-box;
 
 	a {
@@ -48,16 +49,35 @@
 	}
 
 	.components-placeholder__label {
-		font-size: 20px;
+		font-size: 18px;
+		font-weight: 500;
 	}
 
 	.components-placeholder__fieldset {
 		text-align: center;
 		justify-content: center;
+		margin: 0;
+		padding: 0;
+		border: none;
+		box-sizing: border-box;
 
 		.components-placeholder__instructions {
 			margin-bottom: 2em;
 		}
+	}
+
+	.ct-content-block-select {
+		width: 100%;
+		max-width: 350px;
+	}
+}
+
+.ct-components-panel__row-full-width {
+	align-items: stretch;
+	flex-direction: column;
+
+	.components-button {
+		justify-content: center;
 	}
 }
 

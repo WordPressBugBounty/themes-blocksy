@@ -197,9 +197,19 @@ const GenericOptionType = ({
 			wp.customize &&
 			wp.customize.previewer
 		) {
-			const ids = (
+			let ids = (
 				Array.isArray(option.sync) ? option.sync : [option.sync]
 			).map((sync) => sync.id || option.id)
+
+			if (ids.length > 1) {
+				const maybeMainSync = (
+					Array.isArray(option.sync) ? option.sync : [option.sync]
+				).find(({ id }) => (id || option.id) === option.id)
+
+				if (maybeMainSync) {
+					ids = [option.id]
+				}
+			}
 
 			wp.customize.previewer.send('ct:sync:refresh_partial', {
 				id: ids,

@@ -284,6 +284,34 @@ export const getSingleElementsVariables = () => ({
 		},
 	],
 
+	[`${prefix}_related_meta_button_type_font_colors`]: [
+		{
+			selector: applyPrefixFor('.ct-related-posts [data-type="pill"]', prefix),
+			variable: 'theme-button-text-initial-color',
+			type: 'color:default',
+		},
+
+		{
+			selector: applyPrefixFor('.ct-related-posts [data-type="pill"]', prefix),
+			variable: 'theme-button-text-hover-color',
+			type: 'color:hover',
+		},
+	],
+
+	[`${prefix}_related_meta_button_type_background_colors`]: [
+		{
+			selector: applyPrefixFor('.ct-related-posts [data-type="pill"]', prefix),
+			variable: 'theme-button-background-initial-color',
+			type: 'color:default',
+		},
+
+		{
+			selector: applyPrefixFor('.ct-related-posts [data-type="pill"]', prefix),
+			variable: 'theme-button-background-hover-color',
+			type: 'color:hover',
+		},
+	],
+
 	[`${prefix}_related_thumb_radius`]: {
 		selector: applyPrefixFor(
 			'.ct-related-posts .ct-media-container',

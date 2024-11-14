@@ -613,7 +613,9 @@ if (! function_exists('blocksy_is_page')) {
 		if ($result) {
 			$post_id = strval(get_the_ID());
 
-			$maybe_special_post_id = blocksy_get_special_post_id();
+			$maybe_special_post_id = blocksy_get_special_post_id([
+				'search_pages' => true
+			]);
 
 			if ($maybe_special_post_id !== null) {
 				$post_id = $maybe_special_post_id;
@@ -633,29 +635,59 @@ if (! function_exists('blocksy_is_page')) {
 	}
 }
 
-// global | local
-function blocksy_get_special_post_id($context = 'global') {
+function blocksy_get_special_post_id($args = []) {
+	$args = wp_parse_args($args, [
+		'search_pages' => false,
+
+		// 'global' | 'local'
+		'context' => 'global'
+	]);
+
 	$special_post_id = null;
 
-	if (is_home() && ! is_front_page()) {
+	if ($args['context'] === 'global' && is_home() && ! is_front_page()) {
 		$special_post_id = get_option('page_for_posts');
 	}
 
-	if (function_exists('is_shop') && is_shop()) {
+	if (
+		$args['context'] === 'global'
+		&&
+		function_exists('is_shop')
+		&&
+		is_shop()
+	) {
 		$special_post_id = get_option('woocommerce_shop_page_id');
 	}
 
-	if ($context === 'global' && get_post_type(get_the_ID()) !== 'page') {
+	// Sometimes, a page is a page even if the global post is replaced
+	// temporarily with something else. In that case, we need to check the
+	// queried object to see if it's a page.
+	//
+	// This should NOT happen in situations where we care about the actual
+	// global post, like in the case of a single post template or a dynamic
+	// data block.
+	if (
+		$args['search_pages']
+		&&
+		get_post_type(get_the_ID()) !== 'page'
+		&&
+		get_post_type(get_queried_object_id()) === 'page'
+	) {
 		$special_post_id = get_queried_object_id();
 	}
 
 	// This happens for Tribe Events, in case when a page is used as a template
 	// and the global post is the page itself. In that case, the queried object
 	// is still the real post.
+	//
+	// If current page uses a fake page for the global post, we need to check
+	// the queried object to see if it's a page.
 	if (
-		get_post_type() === 'page'
+		intval(get_the_ID()) === 0
 		&&
-		get_post_type(get_queried_object_id()) !== 'page'
+		intval(get_queried_object_id()) !== intval(get_the_ID())
+		// &&
+		// get_post_type() === 'page'
 	) {
 		$special_post_id = get_queried_object_id();
 	}

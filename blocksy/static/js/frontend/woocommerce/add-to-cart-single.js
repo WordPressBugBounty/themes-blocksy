@@ -61,9 +61,7 @@ function singleProductAddToCart(wrapper, event) {
 	])
 
 	const url = new URL(formUrl)
-
 	const searchParams = new URLSearchParams(url.search)
-
 	searchParams.append('blocksy_add_to_cart', 'yes')
 
 	if (window.ct_customizer_localizations) {

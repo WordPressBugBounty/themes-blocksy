@@ -784,6 +784,26 @@ if ($card_type === 'simple') {
 			blocksy_spacing_value()
 		)
 	]);
+
+	blocksy_output_box_shadow([
+		'css' => $css,
+		'tablet_css' => $tablet_css,
+		'mobile_css' => $mobile_css,
+		'selector' => blocksy_prefix_selector('.entry-card .ct-media-container', $prefix),
+		'value' => blocksy_get_theme_mod($prefix . '_cardThumbShadow', blocksy_box_shadow_value([
+			'enable' => false,
+			'h_offset' => 0,
+			'v_offset' => 12,
+			'blur' => 18,
+			'spread' => -6,
+			'inset' => false,
+			'color' => [
+				'color' => 'rgba(34, 56, 101, 0.04)',
+			],
+		])),
+		'variableName' => 'theme-image-shadow',
+		'responsive' => true
+	]);
 }
 
 blocksy_output_background_css([

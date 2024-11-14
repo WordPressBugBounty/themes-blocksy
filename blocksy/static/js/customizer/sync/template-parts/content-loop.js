@@ -648,6 +648,13 @@ export const getPostListingVariables = () => ({
 		]
 	),
 
+	[`${prefix}_cardThumbShadow`]: {
+		selector: applyPrefixFor('.entry-card .ct-media-container', prefix),
+		type: 'box-shadow',
+		variable: 'theme-image-shadow',
+		responsive: true,
+	},
+
 	[`${prefix}_cardsGap`]: {
 		selector: applyPrefixFor('.entries', prefix),
 		variable: 'grid-columns-gap',

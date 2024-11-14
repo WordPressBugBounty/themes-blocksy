@@ -1,3 +1,11 @@
+2.0.77: 2024-11-14
+- Improvement: Archive cards add shadow option to image element when card is not boxed
+- Improvement: Better check for anchor animation module from Elementor
+- Improvement: Better detection of current page URL when using TranslatePress pro
+- Improvement: Better detection of current post in Dynamic Data block and Page/Post hero section
+- Improvement: Better integration with WordPress 6.7
+- Improvement: Update WooCommerce mini cart template to the latest version
+
 2.0.76: 2024-11-07
 - Improvement: Better integration with Svea Checkout plugin
 - Improvement: Header cart element - improve tap interaction on touch devices

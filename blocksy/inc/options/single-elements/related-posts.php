@@ -489,7 +489,7 @@ $options = [
 									]
 								],
 							],
-						], trim($prefix, '_')),
+						], trim($prefix, '_'), $prefix . 'related_order_skip'),
 					],
 
 					blocksy_rand_md5() => [
@@ -799,6 +799,76 @@ $options = [
 							],
 
 						],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-has-meta-category-button',
+						'optionId' => $prefix . 'related_order',
+						'options' => [
+
+							$prefix . 'related_meta_button_type_font_colors' => [
+								'label' => __( 'Meta Button Font Color', 'blocksy' ),
+								'type'  => 'ct-color-picker',
+								'design' => 'inline',
+								'divider' => 'top',
+								'noColor' => [ 'background' => 'var(--theme-text-color)'],
+								'sync' => 'live',
+								'value' => [
+									'default' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+
+									'hover' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+								],
+
+								'pickers' => [
+									[
+										'title' => __( 'Initial', 'blocksy' ),
+										'id' => 'default',
+										'inherit' => 'var(--theme-button-text-initial-color)'
+									],
+
+									[
+										'title' => __( 'Hover', 'blocksy' ),
+										'id' => 'hover',
+										'inherit' => 'var(--theme-button-text-hover-color)'
+									],
+								],
+							],
+
+							$prefix . 'related_meta_button_type_background_colors' => [
+								'label' => __( 'Meta Button Background', 'blocksy' ),
+								'type'  => 'ct-color-picker',
+								'design' => 'inline',
+								'noColor' => [ 'background' => 'var(--theme-text-color)'],
+								'sync' => 'live',
+								'value' => [
+									'default' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+
+									'hover' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+								],
+
+								'pickers' => [
+									[
+										'title' => __( 'Initial', 'blocksy' ),
+										'id' => 'default',
+										'inherit' => 'var(--theme-button-background-initial-color)'
+									],
+
+									[
+										'title' => __( 'Hover', 'blocksy' ),
+										'id' => 'hover',
+										'inherit' => 'var(--theme-button-background-hover-color)'
+									],
+								],
+							],
+						]
 					],
 
 					blocksy_rand_md5() => [

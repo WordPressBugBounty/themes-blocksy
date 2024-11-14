@@ -1,7 +1,11 @@
 import ctEvents from 'ct-events'
 
 export const mount = () => {
-	if (!window.elementorFrontend) {
+	if (
+		!window.elementorFrontend ||
+		!window.elementorFrontend.utils ||
+		!window.elementorFrontend.utils.anchors
+	) {
 		return
 	}
 

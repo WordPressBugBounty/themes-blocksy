@@ -1,6 +1,7 @@
 .entry-card {
 
 	.ct-media-container {
+		box-shadow: var(--theme-image-shadow);
 		border-radius: var(--theme-image-border-radius, var(--theme-border-radius, 0px));
 	}
 

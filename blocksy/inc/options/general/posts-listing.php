@@ -603,8 +603,7 @@ $overridable_card_options = [
 							]
 						]
 					],
-				], trim($prefix, '_')),
-
+				], trim($prefix, '_'), $prefix . 'archive_order_skip'),
 			],
 
 			$has_card_matching_template ? [] : [
@@ -1251,6 +1250,25 @@ $overridable_card_options = [
 							'sync' => 'live',
 							'value' => blocksy_spacing_value(),
 							'responsive' => true
+						],
+
+						$prefix . 'cardThumbShadow' => [
+							'label' => __( 'Featured Image Shadow', 'blocksy' ),
+							'type' => 'ct-box-shadow',
+							'sync' => 'live',
+							'responsive' => true,
+							'divider' => 'top',
+							'value' => blocksy_box_shadow_value([
+								'enable' => false,
+								'h_offset' => 0,
+								'v_offset' => 12,
+								'blur' => 18,
+								'spread' => -6,
+								'inset' => false,
+								'color' => [
+									'color' => 'rgba(34, 56, 101, 0.04)',
+								],
+							])
 						],
 
 						$prefix . 'cardDivider' => [

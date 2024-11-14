@@ -278,7 +278,15 @@ function blocksy_current_url() {
 		//Remove end slash
 		$url = rtrim($split[0], '/');
 
-		$url .= '/' . ltrim(blocksy_akg('REQUEST_URI', $_SERVER, ''), '/');
+		$request_uri = blocksy_akg('REQUEST_URI', $_SERVER, '');
+
+		$request_uri = apply_filters(
+			'blocksy:current-url:request-uri',
+			$request_uri
+		);
+
+		$url .= '/' . ltrim($request_uri, '/');
+
 		$url = set_url_scheme('//' . $url); // https fix
 	}
 

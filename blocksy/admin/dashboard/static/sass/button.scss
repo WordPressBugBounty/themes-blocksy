@@ -3,8 +3,8 @@
 	align-items: center;
 	justify-content: center;
 	gap: 7px;
-	height: var(--ui-button-height, 35px);
-	padding: 0 var(--ui-button-padding, 15px);
+	min-height: var(--ui-button-height, 35px);
+	padding: 5px var(--ui-button-padding, 15px);
 	font-size: var(--ui-button-font-size, 13px);
 	font-weight: 500;
 	outline: none;
