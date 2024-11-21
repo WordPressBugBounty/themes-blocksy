@@ -30,7 +30,7 @@ $options = [
 						blocksy_get_options('single-elements/structure', [
 							'default_structure' => 'type-4',
 							'prefix' => 'tribe_events_single',
-						]),
+						])
 					],
 				],
 

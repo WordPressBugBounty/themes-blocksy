@@ -90,7 +90,7 @@ if (! function_exists('blc_get_contacts_output')) {
 
 				foreach ($args['data'] as $single_layer) {
 			?>
-				<?php 
+				<?php
 					if (! $single_layer['enabled']) {
 						continue;
 					}
@@ -165,7 +165,7 @@ if (! function_exists('blc_get_contacts_output')) {
 
 						if ($with_link) {
 							$icon_link_attr = [
-								'href' => do_shortcode($link),
+								'href' => do_shortcode(esc_url($link)),
 								'class' => 'ct-icon-container',
 								'aria-label' => blocksy_akg('title', $single_layer, '') . ' ' . $content
 							];
@@ -208,7 +208,7 @@ if (! function_exists('blc_get_contacts_output')) {
 							<?php if (! empty($content)) { ?>
 								<span class="contact-text">
 									<?php if (! empty($link)) { ?>
-										<a href="<?php echo do_shortcode($link) ?>" <?php echo $link_attr ?>>
+										<a href="<?php echo do_shortcode(esc_url($link)) ?>" <?php echo $link_attr ?>>
 									<?php } ?>
 
 									<?php echo $content; ?>

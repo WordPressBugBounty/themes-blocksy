@@ -4,7 +4,16 @@ if (! function_exists('blocksy_has_comments')) {
 	function blocksy_has_comments() {
 		$prefix = blocksy_manager()->screen->get_prefix();
 
-		$has_comments = blocksy_get_theme_mod($prefix . '_has_comments', 'yes');
+		$default = 'yes';
+
+		if ($prefix === 'tribe_events_single') {
+			$default = 'no';
+		}
+
+		$has_comments = blocksy_get_theme_mod(
+			$prefix . '_has_comments',
+			$default
+		);
 
 		if ($has_comments === 'yes') {
 			return comments_open() || get_comments_number();
@@ -29,8 +38,6 @@ function blocksy_display_page_elements($location = null) {
 		) !== 'yes'
 	);
 
-	$has_comments = blocksy_get_theme_mod($prefix . '_has_comments', 'yes');
-
 	$related_posts_location = blocksy_get_theme_mod(
 		$prefix . '_related_posts_containment',
 		'separated'
@@ -38,7 +45,7 @@ function blocksy_display_page_elements($location = null) {
 
 	$comments_location = null;
 
-	if ($has_comments === 'yes') {
+	if (blocksy_has_comments()) {
 		$comments_location = blocksy_get_theme_mod(
 			$prefix . '_comments_containment',
 			'separated'
@@ -80,13 +87,7 @@ function blocksy_display_page_elements($location = null) {
 		$container_class = 'ct-container-narrow';
 	}
 
-	if (
-		$has_comments === 'yes'
-		&&
-		$comments_location === $location
-		&&
-		(comments_open() || get_comments_number())
-	) {
+	if ($comments_location === $location) {
 		if ($location === 'separated') {
 			echo '<div class="ct-comments-container">';
 			echo '<div class="' . $container_class . '">';

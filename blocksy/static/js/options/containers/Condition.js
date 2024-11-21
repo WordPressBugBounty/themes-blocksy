@@ -157,9 +157,13 @@ const Condition = ({
 					const hasSvg = ids.some((id) => {
 						const attachmentIds = [
 							...new Set(
-								Object.values(
-									valueForCondition[id] || {}
-								).filter((value) => typeof value === 'number')
+								typeof valueForCondition[id] === 'number'
+									? [valueForCondition[id]]
+									: Object.values(
+											valueForCondition[id] || {}
+									  ).filter(
+											(value) => typeof value === 'number'
+									  )
 							),
 						]
 
@@ -167,6 +171,11 @@ const Condition = ({
 							const attachment = wp.media
 								.attachment(attachmentId)
 								.toJSON()
+
+							console.log(
+								attachment,
+								attachment?.url?.match(/\.svg$/)
+							)
 
 							if (attachment && attachment.url) {
 								return attachment.url.match(/\.svg$/)

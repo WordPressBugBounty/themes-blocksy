@@ -201,6 +201,19 @@ if (! function_exists('blocksy_get_social_metadata')) {
 				'
 			],
 
+			'bluesky' => [
+				'name' => 'Bluesky',
+				'icon' => '
+					<svg
+					width="20px"
+					height="20px"
+					viewBox="0 0 20 20"
+					aria-hidden="true">
+						<path d="M4.3 2.4C6.6 4.1 9.1 7.6 10 9.5v5c0-.1 0 0-.1.3-.5 1.4-2.3 6.8-6.5 2.5C1.2 15 2.2 12.7 6.3 12c-2.3.4-4.9-.3-5.6-2.8C.5 8.5.1 3.9.1 3.3 0 .1 2.7 1.1 4.3 2.4Zm11.4 0c-2.3 1.7-4.8 5.2-5.7 7.1v5c0-.1 0 0 .1.3.5 1.4 2.3 6.8 6.5 2.5 2.2-2.3 1.2-4.6-2.9-5.3 2.3.4 4.9-.3 5.6-2.8.2-.7.6-5.3.6-5.9 0-3.1-2.7-2.1-4.3-.9Z"/>
+					</svg>
+				'
+			],
+
 			'instagram' => [
 				'name' => 'Instagram',
 				'icon' => '
@@ -1147,6 +1160,7 @@ function blocksy_get_social_box($args = []) {
 		'foursquare' => '#f84a7a',
 		'yelp' => '#ca252a',
 		'twitter' => '#000000',
+		'bluesky' => '#1A7EFB',
 		'instagram' => '#ed1376',
 		'threads' => '#101010',
 		'pinterest' => '#ea575a',
@@ -1606,6 +1620,10 @@ if (! function_exists('blocksy_get_social_networks_list')) {
 
 			'twitter' => [
 				'label' => 'X (Twitter)',
+			],
+
+			'bluesky' => [
+				'label' => 'Bluesky',
 			],
 
 			'unsplash' => [

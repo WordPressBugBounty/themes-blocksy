@@ -1,3 +1,11 @@
+2.0.78: 2024-11-21
+- Improvement: Correctly escape links in the contacts module
+- Improvement: Footer menu item - make sure direction option is correctly updated in customizer preview
+- Improvement: Header logo element - make sure "Inline SVG" option is displayed when there an SVG logo is uploaded
+- Improvement: Properly respect container max width for Elementor classic (old) sections
+- Improvement: Social channels - add Bluesky social network
+- Improvement: Tribe Events - Correct logic for comments in single event page
+
 2.0.77: 2024-11-14
 - Improvement: Archive cards add shadow option to image element when card is not boxed
 - Improvement: Better check for anchor animation module from Elementor

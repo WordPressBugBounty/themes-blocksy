@@ -122,10 +122,13 @@ export const handleMenuVariables = ({ itemId }) => ({
 		responsive: true,
 		unit: '',
 		extractValue: (val) => {
+			const { desktop, tablet, mobile } =
+				maybePromoteScalarValueIntoResponsive(val || 'horizontal')
+
 			return {
-				desktop: val.desktop === 'vertical' ? '100%' : 'initial',
-				tablet: val.tablet === 'vertical' ? '100%' : 'initial',
-				mobile: val.mobile === 'vertical' ? '100%' : 'initial',
+				desktop: desktop === 'vertical' ? '100%' : 'initial',
+				tablet: tablet === 'vertical' ? '100%' : 'initial',
+				mobile: mobile === 'vertical' ? '100%' : 'initial',
 			}
 		},
 	},
