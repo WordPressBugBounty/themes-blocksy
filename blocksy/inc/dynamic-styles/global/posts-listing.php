@@ -178,7 +178,7 @@ blocksy_output_colors([
 
 
 // simple card
-if ($card_type === 'simple') {
+if ($structure === 'simple' && $card_type === 'simple' ) {
 	blocksy_output_border([
 		'css' => $css,
 		'selector' => blocksy_prefix_selector('[data-cards="simple"] .entry-card', $prefix),

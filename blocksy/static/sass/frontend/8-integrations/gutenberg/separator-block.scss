@@ -2,14 +2,20 @@
 	border: none;
 	color: var(--theme-form-field-border-initial-color);
 
-	&:not(.is-style-wide):not(.is-style-dots) {
-		--theme-block-max-width: 100px;
+	// &:not(.is-style-wide):not(.is-style-dots) {
+	// 	--theme-block-max-width: 100px;
 
-		// max width when placed inside a container
-		max-width: var(--theme-default-editor, var(--theme-block-max-width));
+	// 	// max width when placed inside a container
+	// 	max-width: var(--theme-default-editor, var(--theme-block-max-width));
+	// }
+
+
+	&:not(:where(.is-style-wide, .is-style-dots, .alignfull, .alignwide)) {
+		--theme-block-max-width: 100px;
 	}
 
 	&:not(.is-style-dots) {
 		height: 2px;
 	}
+
 }

@@ -330,6 +330,36 @@ if (! function_exists('blocksy_translate_dynamic')) {
 	}
 }
 
+function blocksy_translate_post_id($post_id, $args = []) {
+	$args = wp_parse_args($args, [
+		'use_wpml_default_language_woo' => false
+	]);
+
+	$language = null;
+
+	if ($args['use_wpml_default_language_woo']) {
+		global $sitepress, $woocommerce_wpml;
+
+		if (
+			$sitepress
+			&&
+			$woocommerce_wpml
+		) {
+			$language = $sitepress->get_default_language();
+		}
+	}
+
+	$post_type = get_post_type($post_id);
+
+	return apply_filters(
+		'wpml_object_id',
+		$post_id,
+		$post_type,
+		true,
+		$language
+	);
+}
+
 function blocksy_safe_sprintf($format, ...$args) {
 	$result = $format;
 

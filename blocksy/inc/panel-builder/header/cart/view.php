@@ -25,6 +25,10 @@ $has_only_cart = false;
 $has_only_totals = false;
 $has_only_count = false;
 
+if (blocksy_default_akg('has_empty_cart', $atts, 'yes') === 'yes') {
+	$attr['data-cart'] = 'hide-empty';
+}
+
 if (isset($render_args['only_item'])) {
 	$has_only_item = $render_args['only_item'];
 }
@@ -317,7 +321,7 @@ if ($has_only_count) {
 ?>
 
 <div
-	class="<?php echo esc_attr($class) ?>"
+	class="<?php echo esc_attr(trim($class)) ?>"
 	<?php echo blocksy_attr_to_html($attr) ?>>
 
 	<?php

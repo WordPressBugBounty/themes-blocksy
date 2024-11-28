@@ -23,29 +23,14 @@ add_filter(
 			return $result;
 		}
 
-		$post_id = $variation->get_id();
-
-		global $sitepress, $woocommerce_wpml;
-
-		if (
-			$sitepress
-			&&
-			$woocommerce_wpml
-		) {
-			$post_id = apply_filters('wpml_object_id', $variation->get_id(), 'product_variation', TRUE, $sitepress->get_default_language());
-		}
-
-		$variation_values = get_post_meta($post_id, 'blocksy_post_meta_options');
-
-		if (empty($variation_values)) {
-			$variation_values = [[]];
-		}
-
-		if (! $variation_values[0]) {
-			$variation_values[0] = [];
-		}
-
-		$variation_values = $variation_values[0];
+		$variation_values = blocksy_get_post_options(
+			blocksy_translate_post_id(
+				$variation->get_id(),
+				[
+					'use_wpml_default_language_woo' => true
+				]
+			)
+		);
 
 		$original_image = wc_get_product_attachment_props(
 			$product->get_image_id()
@@ -160,7 +145,7 @@ function blocksy_get_product_view_for_variation() {
 		foreach ($images_ids as $image_id) {
 			$image_data = wc_get_product_attachment_props($image_id);
 			$image_data['id'] = $image_id;
-	
+
 			$images[] = $image_data;
 		}
 

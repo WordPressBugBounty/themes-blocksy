@@ -86,8 +86,6 @@ wp.customize('product_gallery_ratio', (val) =>
 		const article = document.querySelector('.ct-product-gallery-container')
 
 		;[...article.querySelectorAll('.ct-media-container')].map((el) => {
-			ctEvents.trigger('ct:flexy:update-height')
-
 			setRatioFor({
 				ratio: to,
 				el,

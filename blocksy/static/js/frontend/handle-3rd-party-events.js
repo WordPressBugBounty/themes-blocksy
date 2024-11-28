@@ -38,6 +38,7 @@ if ($) {
 		'jet-filter-content-rendered',
 		'yith_infs_added_elem',
 		'yith-wcan-ajax-filtered',
+		'ywraq_table_reloaded',
 		'sf:ajaxfinish',
 		'ddwcpoRenderVariation',
 	].map((event) => {

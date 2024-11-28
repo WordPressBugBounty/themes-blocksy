@@ -10,7 +10,7 @@
 		}
 
 		// https://github.com/sergiu-radu/blocksy/issues/3940
-		&:has(.ct-newsletter-subscribe-block) {
+		&:has(.ct-newsletter-subscribe-block, .wp-block-separator) {
 			width: 100%;
 		}
 	}

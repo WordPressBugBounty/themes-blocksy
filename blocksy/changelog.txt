@@ -1,3 +1,12 @@
+2.0.79: 2024-11-28
+- Improvement: Better integration with YITH Request a Quote Pro plugin and Custom Quantity input
+- Improvement: Core separator block CSS improvements
+- Improvement: Header cart element - add option to hide cart icon if no products are added to cart
+- Improvement: Improve logic for archives card output
+- Improvement: Make sure shortcode support for "link" field in "Contacts" block works properly
+- Improvement: Upgrade React dependencies to latest version to improve stability
+- Fix: Fixed small issue where shop catalogue mode was not displaying correctly
+
 2.0.78: 2024-11-21
 - Improvement: Correctly escape links in the contacts module
 - Improvement: Footer menu item - make sure direction option is correctly updated in customizer preview

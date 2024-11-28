@@ -5,6 +5,12 @@ require get_template_directory() . '/admin/helpers/meta-boxes.php';
 require get_template_directory() . '/admin/helpers/options-logic.php';
 require get_template_directory() . '/admin/helpers/inline-svgs.php';
 
+function blocksy_backend_dynamic_styles_urls() {
+	return [
+		'flexy' => get_template_directory_uri() . '/static/bundle/flexy.min.css'
+	];
+}
+
 // Temporary work-around until this issue is fixed:
 // https://github.com/WordPress/gutenberg/issues/53509
 function blocksy_add_early_inline_style_in_gutenberg($cb) {

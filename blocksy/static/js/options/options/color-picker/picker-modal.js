@@ -12,6 +12,8 @@ import ColorPickerIris from './color-picker-iris.js'
 import classnames from 'classnames'
 import { sprintf, __ } from 'ct-i18n'
 
+import { animated } from 'react-spring'
+
 import { nullifyTransforms } from '../../helpers/usePopoverMaker'
 import { getComputedStyleValue } from './utils.js'
 
@@ -146,7 +148,7 @@ const PickerModal = ({
 
 	return (
 		<Fragment>
-			<div
+			<animated.div
 				tabIndex="0"
 				className={classnames(
 					`ct-color-picker-modal`,
@@ -201,7 +203,7 @@ const PickerModal = ({
 						))}
 					</div>
 				)}
-			</div>
+			</animated.div>
 		</Fragment>
 	)
 }

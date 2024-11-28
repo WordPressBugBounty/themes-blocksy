@@ -260,6 +260,21 @@ class Blocksy_Static_Css_Files {
 								&&
 								has_shortcode($post->post_content, 'product_page')
 							)
+							||
+							(
+								$post
+								&&
+								(
+									has_block('blocksy/query', $post->post_content)
+									||
+									has_block('blocksy/tax-query', $post->post_content)
+								)
+								&&
+								strpos(
+									$post->post_content,
+									'"has_slideshow":"yes"'
+								) !== false
+							)
 						)
 					)
 					||

@@ -110,6 +110,8 @@ function blocksy_output_css_vars($args = []) {
 			'tablet_css' => null,
 			'mobile_css' => null,
 
+			// string or array
+			// array is used for responsive selector
 			'selector' => null,
 
 			'desktop_selector_prefix' => '',
@@ -117,6 +119,8 @@ function blocksy_output_css_vars($args = []) {
 			'mobile_selector_prefix' => '',
 
 			'variableName' => null,
+
+			// custom-property | property
 			'variableType' => 'custom-property',
 
 			'value' => null,
@@ -171,22 +175,45 @@ function blocksy_output_css_vars($args = []) {
 		$value['mobile'] = '"' . $value['mobile'] . '"';
 	}
 
+	$responsive_selector = blocksy_expand_responsive_value($args['selector']);
+
+	if (! empty($args['desktop_selector_prefix'])) {
+		$responsive_selector['desktop'] = implode(' ', [
+			$args['desktop_selector_prefix'],
+			$responsive_selector['desktop']
+		]);
+	}
+
+	if (! empty($args['tablet_selector_prefix'])) {
+		$responsive_selector['tablet'] = implode(' ', [
+			$args['tablet_selector_prefix'],
+			$responsive_selector['tablet']
+		]);
+	}
+
+	if (! empty($args['mobile_selector_prefix'])) {
+		$responsive_selector['mobile'] = implode(' ', [
+			$args['mobile_selector_prefix'],
+			$responsive_selector['mobile']
+		]);
+	}
+
 	$args['css']->put(
-		empty($args['desktop_selector_prefix']) ? $args['selector'] : (
-			$args['desktop_selector_prefix'] . ' ' . $args['selector']
-		),
+		$responsive_selector['desktop'],
 		$args['variableName'] . ': ' . $value['desktop'] . $args['value_suffix']
 	);
 
 	if (
 		$args['responsive']
 		&&
-		$value['tablet'] !== $value['desktop']
+		(
+			$value['tablet'] !== $value['desktop']
+			||
+			$responsive_selector['desktop'] !== $responsive_selector['tablet']
+		)
 	) {
 		$args['tablet_css']->put(
-			empty($args['tablet_selector_prefix']) ? $args['selector'] : (
-				$args['tablet_selector_prefix'] . ' ' . $args['selector']
-			),
+			$responsive_selector['tablet'],
 			$args['variableName'] . ': ' . $value['tablet'] . $args['value_suffix']
 		);
 	}
@@ -194,12 +221,14 @@ function blocksy_output_css_vars($args = []) {
 	if (
 		$args['responsive']
 		&&
-		$value['tablet'] !== $value['mobile']
+		(
+			$value['tablet'] !== $value['mobile']
+			||
+			$responsive_selector['tablet'] !== $responsive_selector['mobile']
+		)
 	) {
 		$args['mobile_css']->put(
-			empty($args['mobile_selector_prefix']) ? $args['selector'] : (
-				$args['mobile_selector_prefix'] . ' ' . $args['selector']
-			),
+			$responsive_selector['mobile'],
 			$args['variableName'] . ': ' . $value['mobile'] . $args['value_suffix']
 		);
 	}

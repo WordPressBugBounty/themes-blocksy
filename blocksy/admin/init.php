@@ -196,7 +196,8 @@ add_action(
 				'gutenberg_metaboxes_data' => apply_filters(
 					'blocksy:gutenberg-metaboxes-data',
 					[]
-				)
+				),
+				'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls()
 			]
 		);
 	},

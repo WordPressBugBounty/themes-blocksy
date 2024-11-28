@@ -13,7 +13,6 @@ function blocksy_flexy($args = []) {
 
 		'pills_count' => 0,
 
-		'first_item_class' => '',
 		'items_container_class' => '',
 		'class' => '',
 
@@ -83,11 +82,7 @@ function blocksy_flexy($args = []) {
 				}
 			}
 
-			$class = '';
-
-			if ($index === 0 && $args['first_item_class']) {
-				$class = $args['first_item_class'];
-			}
+			$class = 'flexy-item';
 
 			$slide_args = [
 				'display_video' => true,
@@ -115,18 +110,8 @@ function blocksy_flexy($args = []) {
 				);
 			}
 
-			$slide_wrapper_attr = [];
-
 			if (! empty($class)) {
 				$slide_wrapper_attr['class'] = $class;
-			}
-
-			if (
-				( $args['images_ratio'] === 'original' || is_customize_preview() )
-				&&
-				$index === (intval($args['active_index']) - 1)
-			) {
-				$slide_wrapper_attr['data-item'] = 'initial';
 			}
 
 			$args['items'] .= blocksy_html_tag(
@@ -180,13 +165,11 @@ function blocksy_flexy($args = []) {
 
 	$container_attr = trim($container_attr);
 
-	$dynamic_height_output = '';
-
-	if ($args['images_ratio'] === 'original' || is_customize_preview()) {
-		$dynamic_height_output = 'data-height="dynamic"';
-	}
-
 	$class = trim('flexy-container ' . $args['class']);
+
+	$args['items_container_class'] = trim(
+		'flexy-items ' . $args['items_container_class']
+	);
 
 	?>
 
@@ -196,8 +179,7 @@ function blocksy_flexy($args = []) {
 		<div class="flexy">
 			<div class="flexy-view" data-flexy-view="<?php echo $slider_view ?>">
 				<div
-					class="flexy-items <?php echo $args['items_container_class'] ?>"
-					<?php echo $dynamic_height_output ?>>
+					class="<?php echo $args['items_container_class'] ?>">
 					<?php echo $args['items']; ?>
 				</div>
 			</div>

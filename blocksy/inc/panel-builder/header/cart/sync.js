@@ -588,6 +588,12 @@ ctEvents.on('ct:header:sync:item:cart', ({ optionId, optionValue, values }) => {
 		})
 	}
 
+	if (optionId === 'has_empty_cart') {
+		updateAndSaveEl(selector, (el) => {
+			el.dataset.cart = optionValue === 'yes' ? 'hide-empty' : ''
+		})
+	}
+
 	if (optionId === 'cart_total_label') {
 		updateAndSaveEl(selector, (el) => {
 			;[...el.querySelectorAll('.ct-label')].map((label) => {

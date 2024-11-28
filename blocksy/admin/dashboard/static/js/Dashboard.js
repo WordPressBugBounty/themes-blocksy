@@ -11,7 +11,7 @@ import {
 	createHistory,
 } from '@reach/router'
 import ctEvents from 'ct-events'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 
 window.ctDashboardLocalizations.DashboardContext = DashboardContext
 
@@ -22,21 +22,23 @@ import Changelog from './screens/Changelog'
 import windowHashSource from './window-hash-source'
 
 let history = createHistory(windowHashSource())
-/*
-ctEvents.on('ct:dashboard:routes', r =>
-	r.push({
-		Component: () => <div key="test">hello</div>,
-		path: '/test'
-	})
-)
-*/
+
+let previousLocation = {
+	pathname: location.hash.replace('#', '') || '/',
+}
+
+history.listen(({ location }) => {
+	setTimeout(() => {
+		previousLocation = location
+	}, 10)
+})
 
 const SpringRouter = ({ children }) => {
 	const transitionRef = useRef()
 
 	return (
 		<Location>
-			{({ location, navigate, history, ...rest }) => {
+			{({ location, navigate, ...rest }) => {
 				const nonAnimatedChildren = (location) => (
 					<Router
 						primary={false}
@@ -48,50 +50,38 @@ const SpringRouter = ({ children }) => {
 
 				return (
 					<Transition
-						ref={(r) => {
-							transitionRef.current = r
-						}}
 						items={location}
 						initial={null}
-						immediate={(location.state || {}).hasNoChange}
 						keys={(location) => location.pathname}
 						from={{ opacity: 0 }}
 						enter={[{ opacity: 1 }]}
 						leave={[{ opacity: 0 }]}
 						config={(key, phase) => {
+							const isImmediate =
+								previousLocation &&
+								previousLocation.pathname.indexOf(
+									'extensions'
+								) > -1 &&
+								location.pathname.indexOf('extensions') > -1
+
 							return phase === 'leave'
 								? {
-										duration: 300,
+										duration: isImmediate ? 0 : 300,
 								  }
 								: {
-										delay: 300,
-										duration: 300,
+										delay: isImmediate ? 0 : 300,
+										duration: isImmediate ? 0 : 300,
 								  }
 						}}>
-						{(location, state, i) => {
-							if (
-								(location.state || {}).hasNoChange &&
-								transitionRef.current.state.transitions
-									.length === 2 &&
-								transitionRef.current.state.transitions.every(
-									(t) =>
-										t.item.pathname.indexOf('extensions') >
-										-1
-								)
-							) {
-								return () => nonAnimatedChildren(location)
-							}
-
-							return (props) => {
-								return (
-									<animated.div
-										style={{
-											...props,
-										}}>
-										{nonAnimatedChildren(location)}
-									</animated.div>
-								)
-							}
+						{(props, location) => {
+							return (
+								<animated.div
+									style={{
+										...props,
+									}}>
+									{nonAnimatedChildren(location)}
+								</animated.div>
+							)
 						}}
 					</Transition>
 				)

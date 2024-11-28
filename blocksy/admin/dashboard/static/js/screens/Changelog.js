@@ -2,7 +2,7 @@ import { createElement, useState, useEffect } from '@wordpress/element'
 import { dateI18n } from '@wordpress/date'
 import { __, sprintf } from 'ct-i18n'
 import classnames from 'classnames'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 
 const encodedStr = (rawStr) =>
 	rawStr.replace(/[\u00A0-\u9999<>\&]/g, (i) => '&#' + i.charCodeAt(0) + ';')
@@ -151,9 +151,9 @@ export default () => {
 								duration: 300,
 						  }
 				}}>
-				{(isLoading) => {
+				{(props, isLoading) => {
 					if (isLoading) {
-						return (props) => (
+						return (
 							<animated.p
 								className="ct-loading-text"
 								style={props}>
@@ -192,7 +192,8 @@ export default () => {
 							</animated.p>
 						)
 					}
-					return (props) => (
+
+					return (
 						<animated.div style={props}>
 							<div
 								className={classnames('changelog-info', {

@@ -5,8 +5,9 @@
 @import '../../../../../static/sass/frontend/4-components/pagination.scss';
 @import '../../../../../static/sass/frontend/6-layout/entries/main.scss';
 
-.ct-posts-block {
+@import '../../../../../static/sass/frontend/5-modules/blocks/query-loop.scss';
 
+.ct-posts-block {
 	p {
 		margin-top: 0;
 
@@ -16,7 +17,7 @@
 	}
 
 	.ct-media-container {
-
+		
 		.ct-video-indicator {
 			position: absolute;
 			inset: 0;

@@ -67,7 +67,7 @@ export { default as Select } from './options/options/ct-select'
 export { default as OutsideClickHandler } from './options/options/react-outside-click-handler'
 export { default as DateTimePicker } from './options/options/date-time-picker'
 
-export { Transition, animated } from 'react-spring/renderprops'
+export { Transition, animated } from 'react-spring'
 export { default as bezierEasing } from 'bezier-easing'
 export { default as usePopoverMaker } from './options/helpers/usePopoverMaker'
 
@@ -75,6 +75,8 @@ export { default as ToolsWithOptionsPanel } from './editor/components/ToolsWithO
 
 // gutenberg blocks
 export { default as ColorsPanel } from './editor/components/ColorsPanel'
+
+export * as syncHelpers from 'customizer-sync-helpers'
 
 export {
 	getAttributesFromOptions,
@@ -90,4 +92,8 @@ export const onDocumentLoaded = (cb) => {
 	} else {
 		document.addEventListener('DOMContentLoaded', cb, false)
 	}
+}
+
+export const mountFlexy = (sliderEl, args) => {
+	return import('./frontend/flexy')
 }

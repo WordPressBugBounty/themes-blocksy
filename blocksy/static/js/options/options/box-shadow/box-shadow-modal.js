@@ -1,5 +1,5 @@
 import { createElement, createPortal } from '@wordpress/element'
-import { Transition } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import bezierEasing from 'bezier-easing'
 import classnames from 'classnames'
 import GenericOptionType from '../../GenericOptionType'
@@ -77,10 +77,9 @@ const BoxShadowModal = ({
 								opacity: 1,
 						  }
 				}>
-				{(isPicking) =>
-					(isPicking || '').split(':')[0] === picker.id &&
-					((props) => (
-						<div
+				{(props, isPicking) =>
+					(isPicking || '').split(':')[0] === picker.id && (
+						<animated.div
 							style={{ ...props, ...styles }}
 							{...popoverProps}
 							className="ct-option-modal ct-box-shadow-modal"
@@ -234,8 +233,8 @@ const BoxShadowModal = ({
 									</li>
 								</ul>
 							)}
-						</div>
-					))
+						</animated.div>
+					)
 				}
 			</Transition>,
 			document.body

@@ -52,12 +52,17 @@ blocksy_theme_get_dynamic_styles([
 	'selector' => $selector
 ]);
 
+global $wp_customize;
+
 if (
 	function_exists('get_current_screen')
 	&&
 	get_current_screen()
 	&&
 	get_current_screen()->is_block_editor()
+	||
+	// Allow styles in customizer for the widget area blocks
+	$wp_customize
 ) {
 	if (get_current_screen()->base === 'post') {
 		blocksy_theme_get_dynamic_styles([

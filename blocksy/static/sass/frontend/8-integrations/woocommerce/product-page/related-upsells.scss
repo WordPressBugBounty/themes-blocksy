@@ -9,18 +9,12 @@
 	}
 
 
+	// slider type
 	:where(.related, .up-sells) {
 
-		// slider type
-		.flexy-container [data-products] {
-			gap: 0;
-			margin-inline: calc(var(--grid-columns-gap, 30px) / -2);
-
-			.flexy-item {
-				flex: 0 0 var(--grid-columns-width, 25%);
-				width: var(--grid-columns-width, 25%);
-				padding-inline: calc(var(--grid-columns-gap, 30px) / 2);
-			}
+		.flexy-items {
+			--flexy-items-gap: var(--grid-columns-gap, 30px);
+			--flexy-item-width: var(--grid-columns-width);
 
 			.product {
 				height: 100%;

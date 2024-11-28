@@ -9,7 +9,7 @@ import {
 } from '@wordpress/element'
 import { maybeTransformUnorderedChoices } from '../helpers/parse-choices.js'
 import classnames from 'classnames'
-import { Transition } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import bezierEasing from 'bezier-easing'
 import OutsideClickHandler from './react-outside-click-handler'
 import { __ } from 'ct-i18n'
@@ -131,10 +131,9 @@ const VisibilityModal = ({ option, value, onChange }) => {
 										opacity: 1,
 								  }
 						}>
-						{(isPicking) =>
-							isPicking &&
-							((props) => (
-								<div
+						{(props, isPicking) =>
+							isPicking && (
+								<animated.div
 									style={props}
 									className="ct-box-shadow-modal"
 									onClick={(e) => {
@@ -154,8 +153,8 @@ const VisibilityModal = ({ option, value, onChange }) => {
 										value={value}
 										onChange={onChange}
 									/>
-								</div>
-							))
+								</animated.div>
+							)
 						}
 					</Transition>,
 					el.current.closest('.ct-labeled-group-item')

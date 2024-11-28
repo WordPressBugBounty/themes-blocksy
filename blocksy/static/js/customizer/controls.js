@@ -163,7 +163,7 @@ export { default as DateTimePicker } from '../options/options/date-time-picker'
 
 export { default as OutsideClickHandler } from '../options/options/react-outside-click-handler'
 
-export { Transition, animated } from 'react-spring/renderprops'
+export { Transition, animated } from 'react-spring'
 export { default as bezierEasing } from 'bezier-easing'
 export { default as usePopoverMaker } from '../options/helpers/usePopoverMaker'
 
@@ -174,6 +174,8 @@ export {
 } from '../editor/utils'
 
 export { getColorsDefaults } from '../editor/utils/colors'
+
+export * as syncHelpers from 'customizer-sync-helpers'
 
 /**
  * Expose builder values

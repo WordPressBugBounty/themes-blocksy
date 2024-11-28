@@ -387,6 +387,8 @@ if (! function_exists('blocksy_render_archive_card')) {
 					}
 				}
 
+				$id = substr(isset($single_component["__id"]) ? $single_component["__id"] : 'default', 0, 6);
+
 				$output = blocksy_post_meta(
 					blocksy_akg(
 						'meta_elements',
@@ -398,18 +400,20 @@ if (! function_exists('blocksy_render_archive_card')) {
 						'meta_divider' => blocksy_akg('meta_divider', $single_component, 'slash'),
 						'has_term_class' => $has_term_accent_color === 'yes',
 						'attr' => [
-							'data-id' => substr($single_component['__id'], 0, 6)
+							'data-id' => $id
 						]
 					]
 				);
 			}
 
 			if ('divider' === $single_component['id']) {
+				$id = substr(isset($single_component["__id"]) ? $single_component["__id"] : 'default', 0, 6);
+
 				$output = blocksy_html_tag(
 					'div',
 					[
 						'class' => 'entry-divider',
-						'data-id' => substr($single_component['__id'], 0, 6)
+						'data-id' => $id
 					],
 					''
 				);

@@ -30,7 +30,7 @@
 }
 
 [data-flexy*='no'][data-wrap*='viewport'] {
-	
+
 	.flexy-items > * {
 		order: 2;
 		transform: translate3d(-100%, 0, 0);
@@ -41,27 +41,41 @@
 	}
 }
 
-[data-flexy='no'] [data-height='dynamic'] > *:not([data-item='initial']) {
-	height: 1px;
-}
-
 .flexy-items {
 	display: flex;
+	gap: 0;
 	will-change: transform, max-height;
+	margin-inline: calc(var(--flexy-items-gap, 0px) / -2);
 
 	> * {
 		cursor: grab;
-	}
-
-	&[data-height='dynamic'] {
-		max-height: var(--sliderHeight, initial);
-		transition: max-height 0.2s ease;
+		flex: 0 0 var(--flexy-item-width, 100%);
+		max-width: var(--flexy-item-width, 100%);
+		padding-inline: calc(var(--flexy-items-gap, 0px) / 2);
 	}
 }
 
-.flexy-items > * {
-	flex: 0 0 100%;
-	max-width: 100%;
+// Dont allow items to be higher than the container while moving
+[data-flexy-moving] {
+	.flexy-items {
+		align-items: start;
+
+		.flexy-item {
+			transition: min-height 0.2s ease;
+			min-height: var(--flexy-view-height);
+		}
+	}
+}
+
+.flexy-view {
+	height: var(--flexy-view-height, initial);
+	transition: height 0.2s ease;
+}
+
+[data-flexy=""]:not([data-flexy-moving]) {
+	.flexy-items > *:not(.flexy-item-is-visible) {
+		height: 1px;
+	}
 }
 
 // Disable click event while dragging
@@ -72,6 +86,8 @@
 		pointer-events: none;
 	}
 }
+
+
 
 // Flexy view
 [data-flexy-view='boxed'] {
@@ -107,7 +123,7 @@
 	max-width: 180px;
 	margin-top: 30px;
 	margin-inline: auto;
-	
+
 	ol:not([data-flexy]),
 	ol[data-flexy*="paused"] {
 		--pills-horizontal-alignment: center;

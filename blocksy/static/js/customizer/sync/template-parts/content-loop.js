@@ -264,7 +264,9 @@ export const getPostListingVariables = () => ({
 					...typographyOption({
 						id: 'test',
 						selector: applyPrefixFor(
-							`[data-field*="${layer.__id.substring(0, 6)}"]`,
+							`[data-field*="${(
+								layer.__id || 'default'
+							).substring(0, 6)}"]`,
 							prefix
 						),
 						extractValue: (value) => {
@@ -280,7 +282,9 @@ export const getPostListingVariables = () => ({
 
 					{
 						selector: applyPrefixFor(
-							`[data-field*="${layer.__id.substring(0, 6)}"]`,
+							`[data-field*="${(
+								layer.__id || 'default'
+							).substring(0, 6)}"]`,
 							prefix
 						),
 						variable: 'theme-text-color',
@@ -292,7 +296,9 @@ export const getPostListingVariables = () => ({
 
 					{
 						selector: applyPrefixFor(
-							`[data-field*="${layer.__id.substring(0, 6)}"]`,
+							`[data-field*="${(
+								layer.__id || 'default'
+							).substring(0, 6)}"]`,
 							prefix
 						),
 						variable: 'theme-link-hover-color',

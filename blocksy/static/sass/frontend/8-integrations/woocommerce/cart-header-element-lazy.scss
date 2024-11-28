@@ -1,6 +1,5 @@
 @import '../../1-helpers/functions.scss';
 
-
 // dropdown type
 .ct-cart-content {
 	width: 310px;
@@ -53,12 +52,6 @@
 	}
 
 	// placement
-	// @include media-breakpoint-down(xs) {
-		// display: none;
-	// }
-
-	// @include media-breakpoint-up(sm) {
-
 	&[data-placement='left'] {
 		right: -20px;
 	}
@@ -66,8 +59,6 @@
 	&[data-placement='right'] {
 		left: -20px;
 	}
-
-	// }
 
 	// bridge
 	&:before {

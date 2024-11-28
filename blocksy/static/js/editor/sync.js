@@ -60,6 +60,7 @@ export const handleMetaboxValueChange = (optionId, optionValue) => {
 				mobileMQ: '(max-width: 370px)',
 
 				cacheId: 'background',
+
 				initialStyleTagsDescriptor: [{ style: maybeStyle }],
 			})
 		}

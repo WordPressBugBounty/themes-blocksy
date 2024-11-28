@@ -8,7 +8,7 @@ import {
 import { __ } from 'ct-i18n'
 import classnames from 'classnames'
 import SinglePremiumPlugin from '../components/SinglePremiumPlugin'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import SubmitSupport from '../components/SubmitSupport'
 
 let plugins_status_cache = null
@@ -78,9 +78,9 @@ const RecommendedPlugins = () => {
 								duration: 300,
 						  }
 				}}>
-				{(isLoading) => {
+				{(props, isLoading) => {
 					if (isLoading) {
-						return (props) => (
+						return (
 							<animated.p
 								style={props}
 								className="ct-loading-text">
@@ -120,7 +120,7 @@ const RecommendedPlugins = () => {
 						)
 					}
 
-					return (props) => (
+					return (
 						<animated.div style={props}>
 							{plugins.length > 0 && (
 								<Fragment>

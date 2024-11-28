@@ -1251,6 +1251,16 @@ $overridable_card_options = [
 							'value' => blocksy_spacing_value(),
 							'responsive' => true
 						],
+					],
+				],
+
+				blocksy_rand_md5() =>  [
+					'type' => 'ct-condition',
+					'condition' => [
+						$prefix . 'structure' => 'simple',
+						$prefix . 'card_type' => 'simple',
+					],
+					'options' => [
 
 						$prefix . 'cardThumbShadow' => [
 							'label' => __( 'Featured Image Shadow', 'blocksy' ),

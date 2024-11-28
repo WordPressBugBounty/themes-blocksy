@@ -20,7 +20,7 @@ import $ from 'jquery'
 
 import bezierEasing from 'bezier-easing'
 
-import { Transition, animated } from '@react-spring/web'
+import { Transition, animated } from 'react-spring'
 
 import FontsList from './FontsList'
 import VariationsList from './VariationsList'

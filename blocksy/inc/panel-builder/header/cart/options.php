@@ -138,6 +138,14 @@ $options = [
 				],
 			],
 
+			'has_empty_cart' => [
+				'label' => __( 'Hide Empty Cart', 'blocksy' ),
+				'type' => 'ct-switch',
+				'value' => 'no',
+				'divider' => 'top',
+				'setting' => [ 'transport' => 'postMessage' ],
+			],
+
 		],
 	],
 

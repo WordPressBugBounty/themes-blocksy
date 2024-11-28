@@ -20,6 +20,46 @@ blocksy_output_spacing([
 	)
 ]);
 
+$gallery_columns = blocksy_expand_responsive_value(apply_filters(
+	'blocksy:woocommerce:single-product:gallery:columns',
+	[
+		'desktop' => 1,
+		'tablet' => 1,
+		'mobile' => 1
+	]
+));
+
+$gallery_columns_selectors = [
+	'desktop' => '',
+	'tablet' => '',
+	'mobile' => ''
+];
+
+foreach ($gallery_columns_selectors as $device => $selector) {
+	$gallery_columns_selectors[$device] = blocksy_assemble_selector(
+		blocksy_mutate_selector([
+			'selector' => blocksy_mutate_selector([
+				'selector' => ['.woocommerce-product-gallery'],
+				'operation' => 'suffix',
+				'to_add' => '[data-flexy="no"]'
+			]),
+			'operation' => 'suffix',
+			'to_add' => '.flexy-item:nth-child(n + ' . (intval($gallery_columns[$device]) + 1) . ')'
+		])
+	);
+}
+
+blocksy_output_responsive([
+	'css' => $css,
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+
+	'selector' => $gallery_columns_selectors,
+
+	'variableName' => 'height',
+	'variableType' => 'property',
+	'value' => '1'
+]);
 
 // thumbnails
 $product_thumbs_spacing = blocksy_get_theme_mod( 'product_thumbs_spacing', '15px' );

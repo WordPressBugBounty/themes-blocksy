@@ -359,7 +359,7 @@ add_action(
 			$woo_product_related_label_tag = blocksy_get_theme_mod('woo_product_related_label_tag', 'h2');
 
 			$related = preg_replace('/<h2>(.*?)<\/h2>/', '<' . $woo_product_related_label_tag . ' class="ct-module-title">$1</' . $woo_product_related_label_tag . '>', $related);
-			
+
 			echo str_replace(
 				'class="related products"',
 				blocksy_attr_to_html($other_attr) . 'class="related products ' . trim(
@@ -407,27 +407,14 @@ if (! function_exists('blocksy_product_get_gallery_images')) {
 		if ($product->post_type === 'product_variation') {
 			$variation_main_image = $product->get_image_id();
 
-			$post_id = $product->get_id();
-
-			global $sitepress, $woocommerce_wpml;
-
-			if ($sitepress && $woocommerce_wpml) {
-				$post_id = apply_filters(
-					'wpml_object_id',
+			$variation_values = blocksy_get_post_options(
+				blocksy_translate_post_id(
 					$product->get_id(),
-					'product_variation',
-					true,
-					$sitepress->get_default_language()
-				);
-			}
-
-			$variation_values = get_post_meta($post_id, 'blocksy_post_meta_options');
-
-			if (empty($variation_values)) {
-				$variation_values = [[]];
-			}
-
-			$variation_values = $variation_values[0];
+					[
+						'use_wpml_default_language_woo' => true
+					]
+				)
+			);
 
 			$variation_gallery_images = blocksy_akg('images', $variation_values, []);
 			$gallery_source = blocksy_akg('gallery_source', $variation_values, 'default');

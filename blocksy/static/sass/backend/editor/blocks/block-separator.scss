@@ -3,8 +3,8 @@
 	margin-inline: auto;
 	color: var(--theme-form-field-border-initial-color);
 
-	&:not(.is-style-wide):not(.is-style-dots) {
-		max-width: 100px;
+	&:not(:where(.is-style-wide, .is-style-dots, .alignfull, .alignwide)) {
+		max-width: 100px !important;
 	}
 
 	&:not(.is-style-dots) {

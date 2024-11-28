@@ -5,7 +5,7 @@ import {
 	useRef,
 	createRef,
 } from '@wordpress/element'
-import { Transition } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import bezierEasing from 'bezier-easing'
 import classnames from 'classnames'
 import GenericOptionType from '../../GenericOptionType'
@@ -42,10 +42,9 @@ const RatioModal = ({
 					transform: 'scale3d(0.95, 0.95, 1)',
 					opacity: 0,
 				}}>
-				{(isPicking) =>
-					isPicking &&
-					((props) => (
-						<div
+				{(props, isPicking) =>
+					isPicking && (
+						<animated.div
 							style={props}
 							className="ct-ratio-modal"
 							onClick={(e) => {
@@ -61,8 +60,8 @@ const RatioModal = ({
 								e.nativeEvent.stopPropagation()
 							}}>
 							{renderContent && renderContent()}
-						</div>
-					))
+						</animated.div>
+					)
 				}
 			</Transition>,
 			el.current.closest('.ct-single-palette')

@@ -9,7 +9,7 @@ import {
 import classnames from 'classnames'
 import { __ } from 'ct-i18n'
 
-import { animated } from '@react-spring/web'
+import { animated } from 'react-spring'
 
 import GenericOptionType from '../../GenericOptionType'
 

@@ -18,7 +18,7 @@ import { maybePromoteScalarValueIntoResponsive } from '../../customizer/componen
 
 import usePopoverMaker from '../helpers/usePopoverMaker'
 
-import { Transition } from '@react-spring/web'
+import { Transition } from 'react-spring'
 import bezierEasing from 'bezier-easing'
 
 import { __ } from 'ct-i18n'

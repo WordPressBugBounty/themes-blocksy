@@ -470,7 +470,7 @@ add_action(
 				'name' => esc_html__( 'Main Sidebar', 'blocksy' ),
 				'id' => 'sidebar-1',
 				'description' => esc_html__( 'Add widgets here.', 'blocksy' ),
-				'before_widget' => '<div class="ct-widget %2$s" id="%1$s">',
+				'before_widget' => '<div class="ct-widget is-layout-flow %2$s" id="%1$s">',
 				'after_widget' => '</div>',
 				'before_title' => '<' . $sidebar_title_tag . ' class="widget-title">',
 				'after_title' => '</' . $sidebar_title_tag . '>',
@@ -486,7 +486,7 @@ add_action(
 				[
 					'id' => 'ct-footer-sidebar-' . $i,
 					'name' => esc_html__('Footer Widget Area ', 'blocksy') . $i,
-					'before_widget' => '<div class="ct-widget %2$s" id="%1$s">',
+					'before_widget' => '<div class="ct-widget is-layout-flow %2$s" id="%1$s">',
 					'after_widget' => '</div>',
 					'before_title' => '<' . $sidebar_title_tag . ' class="widget-title">',
 					'after_title' => '</' . $sidebar_title_tag . '>',

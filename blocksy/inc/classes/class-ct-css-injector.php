@@ -82,6 +82,55 @@ class Blocksy_Css_Injector {
 		return $content;
 	}
 
+	public function get_wp_style_engine_rules($args = []) {
+		$args = wp_parse_args(
+			$args,
+			[
+				'device' => 'desktop'
+			]
+		);
+
+		$media_queries = [
+			'tablet' => '@media (max-width: 999.98px)',
+			'mobile' => '@media (max-width: 689.98px)'
+		];
+
+		$rules = [];
+
+		foreach ($this->attr as $selector => $lines) {
+			$declarations = [];
+
+			foreach ($lines as $line) {
+				$line = trim($line);
+
+				if (! $line) {
+					continue;
+				}
+
+				$parts = explode(':', $line);
+
+				if (count($parts) <= 1) {
+					continue;
+				}
+
+				$declarations[trim($parts[0])] = trim($parts[1]);
+			}
+
+			$rule = [
+				'selector' => $selector,
+				'declarations' => $declarations
+			];
+
+			if (isset($media_queries[$args['device']])) {
+				$rule['rules_group'] = $media_queries[$args['device']];
+			}
+
+			$rules[] = $rule;
+		}
+
+		return $rules;
+	}
+
 	/**
 	 * Add new line in CSS structure.
 	 *
@@ -141,9 +190,7 @@ class Blocksy_Css_Injector {
 			if (! is_array($preliminary_rules)) {
 				$rules = explode(';', $preliminary_rules);
 			} else {
-				/**
-				 * Support nested rules.
-				 */
+				// Support nested rules.
 				foreach ($preliminary_rules as $maybe_rule) {
 					$current_rules = explode(';', $maybe_rule);
 

@@ -16,8 +16,6 @@ import ColorPalettesModal from './color-palettes/ColorPalettesModal'
 
 import usePopoverMaker from '../helpers/usePopoverMaker'
 import OutsideClickHandler from './react-outside-click-handler'
-
-import { Transition } from '@react-spring/web'
 import bezierEasing from 'bezier-easing'
 
 import Overlay from '../../customizer/components/Overlay'

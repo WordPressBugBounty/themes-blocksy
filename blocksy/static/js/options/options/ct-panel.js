@@ -11,7 +11,7 @@ import OptionsPanel from '../../options/OptionsPanel'
 import Switch from './ct-switch'
 import { PanelContext } from '../components/PanelLevel'
 
-import { Transition, animated } from '@react-spring/web'
+import { Transition, animated } from 'react-spring'
 
 export const PanelMetaWrapper = ({ id, option, getActualOption, value }) => {
 	const { panelsState, panelsHelpers, panelsDispatch, containerRef } =

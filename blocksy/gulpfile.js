@@ -578,7 +578,7 @@ var options = {
 		'@babel/plugin-transform-parameters',
 	],
 
-    modulesToCompileWithBabel: [
+	modulesToCompileWithBabel: [
 		'@wordpress/element',
 		'flexy',
 		'@wordpress/components',

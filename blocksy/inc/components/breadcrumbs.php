@@ -33,7 +33,7 @@ class BreadcrumbsBuilder {
 		if (blocksy_get_theme_mod('breadcrumb_home_item', 'text') === 'icon') {
 			$home_icon = '<svg class="ct-home-icon" width="15" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12,0L0.4,10.5h3.2V20h6.3v-6.3h4.2V20h6.3v-9.5h3.2L12,0z"/></svg>';
 		}
-				
+
 		$return = [
 			0 => [
 				'name' => blocksy_get_theme_mod(
@@ -299,11 +299,9 @@ class BreadcrumbsBuilder {
 			blocksy_get_theme_mod('breadcrumb_shop_item', 'no') === 'yes'
 		) {
 			$permalinks = wc_get_permalink_structure();
-			$shop_page_id = apply_filters(
-				'wpml_object_id',
-				wc_get_page_id('shop'),
-				'page'
-			);
+
+			$shop_page_id = blocksy_translate_post_id(wc_get_page_id('shop'));
+
 			$shop_page = get_post($shop_page_id);
 
 			$shop_page_for_matching = $shop_page;

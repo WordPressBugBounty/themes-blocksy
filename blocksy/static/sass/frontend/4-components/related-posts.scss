@@ -3,7 +3,7 @@
 }
 
 .ct-related-posts {
-	
+
 	.ct-module-title {
 		text-align: var(--horizontal-alignment);
 	}
@@ -28,14 +28,9 @@
 		--theme-link-initial-color: initial;
 	}
 
-	// slider type
+	// slider
 	.flexy-items {
-		margin-inline: calc(var(--grid-columns-gap, 30px) / -2);
-
-		.flexy-item {
-			flex: 0 0 var(--grid-columns-width, 25%);
-			width: var(--grid-columns-width, 25%);
-			padding-inline: calc(var(--grid-columns-gap, 30px) / 2);
-		}	
+		--flexy-items-gap: var(--grid-columns-gap, 30px);
+		--flexy-item-width: var(--grid-columns-width);
 	}
 }

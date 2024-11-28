@@ -1,4 +1,5 @@
-article > .entry-content {
+// article > .entry-content {
+:is(.is-layout-flow, .is-layout-constrained) {
 
 	> * {
 		margin-inline: var(--theme-default-editor, auto);

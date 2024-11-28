@@ -1,9 +1,9 @@
-[class*="ct-attachment"],
+[class*='ct-attachment'],
 .editor-post-featured-image__container,
-[class*="acf-admin"] #set-post-thumbnail,
+[class*='acf-admin'] #set-post-thumbnail,
 .woocommerce-admin-page #set-post-thumbnail,
-.woocommerce-admin-page #product_images_container {
-
+.woocommerce-admin-page #product_images_container,
+.post-type-product.block-editor-page #product_images_container {
 	ul.actions {
 		display: flex !important;
 		padding: 0 !important;
@@ -15,8 +15,8 @@
 		border-radius: 3px;
 		background: #fff;
 		opacity: 0;
-		box-shadow: inset 0px 0px 0px 1px var(--optionBorderColor, #ddd), 
-					0 2px 5px rgba(0, 0, 0, 0.02);
+		box-shadow: inset 0px 0px 0px 1px var(--optionBorderColor, #ddd),
+			0 2px 5px rgba(0, 0, 0, 0.02);
 
 		li {
 			display: flex;
@@ -74,54 +74,49 @@
 
 		.edit-button {
 			&:before {
-				content: "\f464";
+				content: '\f464';
 			}
 		}
 
 		.delete,
 		.remove-button {
 			&:before {
-				content: "\f335" !important;
+				content: '\f335' !important;
 			}
 		}
 
 		.ct-media-video-modal-trigger {
-
 			.ct-loader-path {
 				visibility: hidden;
 			}
 
 			&.loading {
-
 				.ct-play-path {
 					visibility: hidden;
 				}
 
 				.ct-loader-path {
 					visibility: visible;
-				}				
+				}
 			}
 		}
 	}
 }
 
-
-
-[class*="ct-attachment"] .thumbnail,
+[class*='ct-attachment'] .thumbnail,
 .editor-post-featured-image__container,
-[class*="acf-admin"] #set-post-thumbnail,
+[class*='acf-admin'] #set-post-thumbnail,
 .woocommerce-admin-page #set-post-thumbnail,
-.woocommerce-admin-page #product_images_container ul li {
-
+.woocommerce-admin-page #product_images_container ul li,
+.post-type-product.block-editor-page #product_images_container ul li {
 	&:hover {
-
 		ul.actions {
 			opacity: 1;
 		}
 	}
 }
 
-[class*="acf-admin"] #set-post-thumbnail,
+[class*='acf-admin'] #set-post-thumbnail,
 .woocommerce-admin-page #set-post-thumbnail {
 	position: relative;
 }

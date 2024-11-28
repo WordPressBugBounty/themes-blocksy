@@ -6,7 +6,7 @@ import {
 	createRef,
 } from '@wordpress/element'
 import PickerModal, { getNoColorPropFor } from './picker-modal'
-import { Transition } from 'react-spring/renderprops'
+import { Transition } from 'react-spring'
 import bezierEasing from 'bezier-easing'
 import classnames from 'classnames'
 import { __ } from 'ct-i18n'
@@ -197,9 +197,8 @@ const SinglePicker = ({
 								opacity: 1,
 						  }
 				}>
-				{(isPicking) =>
-					(isPicking || '').split(':')[0] === picker.id &&
-					((props) => (
+				{(props, isPicking) =>
+					(isPicking || '').split(':')[0] === picker.id && (
 						<PickerModal
 							style={{
 								...props,
@@ -229,7 +228,7 @@ const SinglePicker = ({
 							}
 							appendToBody={appendToBody}
 						/>
-					))
+					)
 				}
 			</Transition>,
 			appendToBody

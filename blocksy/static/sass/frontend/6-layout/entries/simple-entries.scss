@@ -1,11 +1,8 @@
 [data-archive="default"][data-layout="simple"] {
+
 	article {
 		display: flex;
 		gap: var(--card-inner-spacing, 30px);
-
-		&:not(:last-child) {
-			margin-bottom: var(--grid-columns-gap, 30px);
-		}
 
 		@include media-breakpoint-down (sm) {
 			flex-direction: column;
@@ -32,8 +29,22 @@
 		}
 	}
 
+	// apply spacing and border only when slider is not enabled
+	> article {
+		border-bottom: var(--card-border, none);
+		padding-bottom: var(--grid-columns-gap, 30px);
+
+		&:not(:last-child) {
+			margin-bottom: var(--grid-columns-gap, 30px);
+		}
+	}
+
+
+	// boxed card type
 	&[data-cards="boxed"] {
+
 		.entry-card .boundless-image {
+
 			@include media-breakpoint-up (md) {
 				width: 100%;
 				margin-bottom: calc(var(--card-inner-spacing, 30px) * -1);

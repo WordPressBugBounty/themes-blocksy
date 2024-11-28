@@ -523,6 +523,9 @@ const GenericOptionType = ({
 		const { className: optionClassName, ...optionAdditionalWrapperAttr } =
 			option.wrapperAttr || {}
 
+		const { class: sectionClassNameStr, ...sectionAttr } =
+			option.sectionAttr || {}
+
 		return (
 			<Fragment>
 				<div
@@ -589,7 +592,7 @@ const GenericOptionType = ({
 						!isOptionResponsiveFor(option)) && (
 						<Fragment>
 							<section
-								{...(option.sectionAttr || {})}
+								{...sectionAttr}
 								className={classnames(
 									{
 										'ct-responsive-container':
@@ -601,7 +604,7 @@ const GenericOptionType = ({
 										design: actualDesignType,
 										option,
 									}),
-									(option.sectionAttr || {}).class || ''
+									sectionClassNameStr || ''
 								)}>
 								{isOptionResponsiveFor(option, {
 									ignoreHidden: true,

@@ -9,7 +9,7 @@ import {
 import classnames from 'classnames'
 import { getDefaultFonts } from './default-data'
 import { humanizeVariations, findSelectedFontFamily } from './helpers'
-import { animated } from '@react-spring/web'
+import { animated } from 'react-spring'
 
 const VariationsList = ({ option, value, onChange, typographyList, props }) => {
 	const selectedFontFamily = findSelectedFontFamily(
