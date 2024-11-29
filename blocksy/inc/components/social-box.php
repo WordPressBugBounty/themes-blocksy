@@ -943,6 +943,19 @@ if (! function_exists('blocksy_get_social_metadata')) {
 					</svg>
 				'
 			],
+
+			'bluesky' => [
+				'name' => __( 'Bluesky', 'blocksy' ),
+				'icon' => '
+					<svg
+					width="20"
+					height="20"
+					viewBox="0 0 20 20"
+					aria-hidden="true">
+						<path d="M4.3 2.4C6.6 4.1 9.1 7.6 10 9.5v5c0-.1 0 0-.1.3-.5 1.4-2.3 6.8-6.5 2.5C1.2 15 2.2 12.7 6.3 12c-2.3.4-4.9-.3-5.6-2.8C.5 8.5.1 3.9.1 3.3 0 .1 2.7 1.1 4.3 2.4Zm11.4 0c-2.3 1.7-4.8 5.2-5.7 7.1v5c0-.1 0 0 .1.3.5 1.4 2.3 6.8 6.5 2.5 2.2-2.3 1.2-4.6-2.9-5.3 2.3.4 4.9-.3 5.6-2.8.2-.7.6-5.3.6-5.9 0-3.1-2.7-2.1-4.3-.9Z"/>
+					</svg>
+				'
+			]
 		];
 
 		foreach (blocksy_get_dynamic_social_networks() as $dynamic_network) {
@@ -1006,6 +1019,7 @@ if (! function_exists('blocksy_get_social_metadata')) {
 				'email' => 'mailto:?subject={text}&body={url}',
 				'line' => 'https://social-plugins.line.me/lineit/share?url={url}&text={text}',
 				'threads' => 'https://threads.net/intent/post?text={url}',
+				'bluesky' => 'https://bsky.app/intent/compose?text={url}',
 				'clipboard' => '#'
 			];
 
@@ -1209,7 +1223,7 @@ function blocksy_get_social_box($args = []) {
 		'wordpress' => '#1074a8',
 		'hacker_news' => '#fd6721',
 		'ok' => '#eb7e2f',
-		'flipboard' => '#c40812',	
+		'flipboard' => '#c40812',
 		'clipboard' => '#2c3e50',
 	];
 

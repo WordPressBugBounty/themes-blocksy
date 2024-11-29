@@ -15,7 +15,11 @@ ctEvents.on(
 		variableDescriptors['socials'] = ({ fullItemId, itemId }) => ({
 			socialsIconSize: {
 				selector: assembleSelector(
-					getRootSelectorFor({ itemId, panelType: 'footer' })
+					getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType: 'footer',
+					})
 				),
 				variable: 'theme-icon-size',
 				responsive: true,
@@ -24,7 +28,11 @@ ctEvents.on(
 
 			socialsIconSpacing: {
 				selector: assembleSelector(
-					getRootSelectorFor({ itemId, panelType: 'footer' })
+					getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType: 'footer',
+					})
 				),
 				variable: 'items-spacing',
 				responsive: true,
@@ -36,6 +44,7 @@ ctEvents.on(
 					mutateSelector({
 						selector: getRootSelectorFor({
 							itemId,
+							fullItemId,
 							panelType: 'footer',
 						}),
 						operation: 'replace-last',
@@ -53,6 +62,7 @@ ctEvents.on(
 				selector: assembleSelector(
 					mutateSelector({
 						selector: getRootSelectorFor({
+							fullItemId,
 							itemId,
 							panelType: 'footer',
 						}),
@@ -74,6 +84,7 @@ ctEvents.on(
 					mutateSelector({
 						selector: getRootSelectorFor({
 							itemId,
+							fullItemId,
 							panelType: 'footer',
 						}),
 						operation: 'suffix',
@@ -88,6 +99,7 @@ ctEvents.on(
 						mutateSelector({
 							selector: getRootSelectorFor({
 								itemId,
+								fullItemId,
 								panelType: 'footer',
 							}),
 							operation: 'suffix',
@@ -104,6 +116,7 @@ ctEvents.on(
 						mutateSelector({
 							selector: getRootSelectorFor({
 								itemId,
+								fullItemId,
 								panelType: 'footer',
 							}),
 							operation: 'suffix',
@@ -122,6 +135,7 @@ ctEvents.on(
 						mutateSelector({
 							selector: getRootSelectorFor({
 								itemId,
+								fullItemId,
 								panelType: 'footer',
 							}),
 							operation: 'suffix',
@@ -138,6 +152,7 @@ ctEvents.on(
 						mutateSelector({
 							selector: getRootSelectorFor({
 								itemId,
+								fullItemId,
 								panelType: 'footer',
 							}),
 							operation: 'suffix',
@@ -156,6 +171,7 @@ ctEvents.on(
 						mutateSelector({
 							selector: getRootSelectorFor({
 								itemId,
+								fullItemId,
 								panelType: 'footer',
 							}),
 							operation: 'suffix',
@@ -172,6 +188,7 @@ ctEvents.on(
 						mutateSelector({
 							selector: getRootSelectorFor({
 								itemId,
+								fullItemId,
 								panelType: 'footer',
 							}),
 							operation: 'suffix',
@@ -186,7 +203,11 @@ ctEvents.on(
 
 			footerSocialsMargin: {
 				selector: assembleSelector(
-					getRootSelectorFor({ itemId, panelType: 'footer' })
+					getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType: 'footer',
+					})
 				),
 				type: 'spacing',
 				variable: 'margin',
@@ -196,7 +217,11 @@ ctEvents.on(
 
 			footer_socials_direction: {
 				selector: assembleSelector(
-					getRootSelectorFor({ itemId, panelType: 'footer' })
+					getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType: 'footer',
+					})
 				),
 				variable: 'items-direction',
 				responsive: true,

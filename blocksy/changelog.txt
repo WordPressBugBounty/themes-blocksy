@@ -1,3 +1,11 @@
+2.0.80: 2024-11-29
+- Improvement: Add Bluesky network to share box module
+- Improvement: Improved logic for displaying responsive values in visibility options
+- Improvement: Make sure all styles are applied in Customizer live preview for cloned header elements
+- Improvement: Make sure the WooCommerce checkout block doesn't shift it's position
+- Fix: Header cart - make sure the new "hide cart when empty" option has the right default
+- Fix: Mobile menu arrow down chevron is affected by Advanced Menu icon size
+
 2.0.79: 2024-11-28
 - Improvement: Better integration with YITH Request a Quote Pro plugin and Custom Quantity input
 - Improvement: Core separator block CSS improvements

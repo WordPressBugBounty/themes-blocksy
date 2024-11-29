@@ -1,4 +1,4 @@
-import { isString, isObject, isNumber } from './primitive-types'
+import { isString, isObject, isNumber, isBoolean } from './primitive-types'
 
 export const getFirstLevelOptions = (options, hasInnerOptions = true) => {
 	const { __CT_KEYS_ORDER__, ...rest } = options
@@ -73,7 +73,8 @@ export const getValueFromInput = (
 				if (Object.keys(values).indexOf(currentOptionId) > -1) {
 					if (
 						isString(values[currentOptionId]) ||
-						isNumber(values[currentOptionId])
+						isNumber(values[currentOptionId]) ||
+						isBoolean(values[currentOptionId])
 					) {
 						actualValue = values[currentOptionId]
 					}

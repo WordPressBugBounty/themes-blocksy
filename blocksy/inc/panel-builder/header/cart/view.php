@@ -25,7 +25,7 @@ $has_only_cart = false;
 $has_only_totals = false;
 $has_only_count = false;
 
-if (blocksy_default_akg('has_empty_cart', $atts, 'yes') === 'yes') {
+if (blocksy_default_akg('has_empty_cart', $atts, 'no') === 'yes') {
 	$attr['data-cart'] = 'hide-empty';
 }
 

@@ -11,14 +11,18 @@ import {
 
 const getVariables = ({ itemId, fullItemId, panelType }) => ({
 	cta_button_icon_size: {
-		selector: assembleSelector(getRootSelectorFor({ itemId, panelType })),
+		selector: assembleSelector(
+			getRootSelectorFor({ itemId, fullItemId, panelType })
+		),
 		variable: 'theme-icon-size',
 		responsive: true,
 		unit: 'px',
 	},
 
 	headerCtaRadius: {
-		selector: assembleSelector(getRootSelectorFor({ itemId, panelType })),
+		selector: assembleSelector(
+			getRootSelectorFor({ itemId, fullItemId, panelType })
+		),
 		type: 'spacing',
 		variable: 'theme-button-border-radius',
 		responsive: true,
@@ -27,7 +31,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 	headerCtaPadding: {
 		selector: assembleSelector(
 			mutateSelector({
-				selector: getRootSelectorFor({ itemId, panelType }),
+				selector: getRootSelectorFor({ itemId, fullItemId, panelType }),
 				operation: 'suffix',
 				to_add: 'a',
 			})
@@ -38,7 +42,9 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 	},
 
 	headerCtaMargin: {
-		selector: assembleSelector(getRootSelectorFor({ itemId, panelType })),
+		selector: assembleSelector(
+			getRootSelectorFor({ itemId, fullItemId, panelType })
+		),
 		type: 'spacing',
 		variable: 'margin',
 		responsive: true,
@@ -50,7 +56,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		prefix: 'button',
 		selector: assembleSelector(
 			mutateSelector({
-				selector: getRootSelectorFor({ itemId, panelType }),
+				selector: getRootSelectorFor({ itemId, fullItemId, panelType }),
 				operation: 'suffix',
 				to_add: '[class*="ct-button"]',
 			})
@@ -60,7 +66,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 	header_button_text_horizontal_alignment: {
 		selector: assembleSelector(
 			mutateSelector({
-				selector: getRootSelectorFor({ itemId, panelType }),
+				selector: getRootSelectorFor({ itemId, fullItemId, panelType }),
 				operation: 'suffix',
 				to_add: '.ct-button-text',
 			})
@@ -75,7 +81,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		prefix: 'button',
 		selector: assembleSelector(
 			mutateSelector({
-				selector: getRootSelectorFor({ itemId, panelType }),
+				selector: getRootSelectorFor({ itemId, fullItemId, panelType }),
 				operation: 'suffix',
 				to_add: '.ct-button-secondary-text',
 			})
@@ -87,7 +93,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button',
 				})
@@ -100,7 +110,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button',
 				})
@@ -113,7 +127,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button-ghost',
 				})
@@ -126,7 +144,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button-ghost',
 				})
@@ -141,7 +163,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button .ct-button-secondary-text',
 				})
@@ -154,7 +180,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button .ct-button-secondary-text',
 				})
@@ -167,7 +197,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button-ghost .ct-button-secondary-text',
 				})
@@ -180,7 +214,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'suffix',
 					to_add: '.ct-button-ghost .ct-button-secondary-text',
 				})
@@ -194,7 +232,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 	headerButtonForeground: [
 		{
 			selector: assembleSelector(
-				getRootSelectorFor({ itemId, panelType })
+				getRootSelectorFor({ itemId, fullItemId, panelType })
 			),
 			variable: 'theme-button-background-initial-color',
 			type: 'color:default',
@@ -203,7 +241,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 
 		{
 			selector: assembleSelector(
-				getRootSelectorFor({ itemId, panelType })
+				getRootSelectorFor({ itemId, fullItemId, panelType })
 			),
 			variable: 'theme-button-background-hover-color',
 			type: 'color:hover',
@@ -217,7 +255,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button',
 					}),
@@ -235,7 +277,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button',
 					}),
@@ -253,7 +299,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost',
 					}),
@@ -271,7 +321,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost',
 					}),
@@ -291,7 +345,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button .ct-button-secondary-text',
 					}),
@@ -309,7 +367,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button .ct-button-secondary-text',
 					}),
@@ -327,7 +389,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost .ct-button-secondary-text',
 					}),
@@ -345,7 +411,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost .ct-button-secondary-text',
 					}),
@@ -364,7 +434,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'between',
 					to_add: '[data-transparent-row="yes"]',
 				})
@@ -378,7 +452,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'between',
 					to_add: '[data-transparent-row="yes"]',
 				})
@@ -396,7 +474,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button',
 					}),
@@ -413,7 +495,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button',
 					}),
@@ -430,7 +516,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost',
 					}),
@@ -447,7 +537,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost',
 					}),
@@ -466,7 +560,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button .ct-button-secondary-text',
 					}),
@@ -483,7 +581,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button .ct-button-secondary-text',
 					}),
@@ -500,7 +602,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost .ct-button-secondary-text',
 					}),
@@ -517,7 +623,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			selector: assembleSelector(
 				mutateSelector({
 					selector: mutateSelector({
-						selector: getRootSelectorFor({ itemId, panelType }),
+						selector: getRootSelectorFor({
+							itemId,
+							fullItemId,
+							panelType,
+						}),
 						operation: 'suffix',
 						to_add: '.ct-button-ghost .ct-button-secondary-text',
 					}),
@@ -535,7 +645,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'between',
 					to_add: '[data-sticky*="yes"]',
 				})
@@ -548,7 +662,11 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		{
 			selector: assembleSelector(
 				mutateSelector({
-					selector: getRootSelectorFor({ itemId, panelType }),
+					selector: getRootSelectorFor({
+						itemId,
+						fullItemId,
+						panelType,
+					}),
 					operation: 'between',
 					to_add: '[data-sticky*="yes"]',
 				})
@@ -565,6 +683,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			mutateSelector({
 				selector: getRootSelectorFor({
 					itemId,
+					fullItemId,
 					panelType: 'footer',
 				}),
 				operation: 'replace-last',
@@ -581,6 +700,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 			mutateSelector({
 				selector: getRootSelectorFor({
 					itemId,
+					fullItemId,
 					panelType: 'footer',
 				}),
 				operation: 'replace-last',
@@ -596,8 +716,9 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 ctEvents.on(
 	'ct:header:sync:collect-variable-descriptors',
 	(variableDescriptors) => {
-		variableDescriptors['button'] = ({ itemId, fullItemId }) =>
-			getVariables({ itemId, fullItemId, panelType: 'header' })
+		variableDescriptors['button'] = ({ itemId, fullItemId }) => {
+			return getVariables({ itemId, fullItemId, panelType: 'header' })
+		}
 	}
 )
 
@@ -641,7 +762,9 @@ ctEvents.on(
 		if (optionId === 'header_button_text') {
 			updateAndSaveEl(selector, (el) => {
 				if (el.querySelector('.ct-button-secondary-text')) {
-					const maybeSmallTag = el.querySelector('.ct-button-secondary-text')
+					const maybeSmallTag = el.querySelector(
+						'.ct-button-secondary-text'
+					)
 
 					el.querySelector('.ct-button-text').innerHTML =
 						optionValue + maybeSmallTag.outerHTML
@@ -665,7 +788,8 @@ ctEvents.on(
 
 		if (optionId === 'header_button_secondary_text') {
 			updateAndSaveEl(selector, (el) => {
-				el.querySelector('.ct-button-secondary-text').innerHTML = optionValue
+				el.querySelector('.ct-button-secondary-text').innerHTML =
+					optionValue
 			})
 		}
 

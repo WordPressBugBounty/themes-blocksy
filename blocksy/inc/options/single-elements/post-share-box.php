@@ -147,6 +147,10 @@ $networks_options = [
 				'id' => 'email',
 				'label' => __('Email', 'blocksy'),
 			],
+			'bluesky' => [
+				'id' => 'bsky',
+				'label' => __('Bluesky', 'blocksy'),
+			],
 			'clipboard' => [
 				'id' => 'clipboard',
 				'label' => __('Copy to Clipboard', 'blocksy'),

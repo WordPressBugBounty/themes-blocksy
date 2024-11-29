@@ -8,7 +8,7 @@ import {
 	getColumnSelectorFor,
 } from '../../../../static/js/customizer/sync/helpers'
 
-const getVariables = ({ itemId, fullItemId, panelType }) => ({
+const getVariables = ({ itemId, panelType }) => ({
 	off_canvas_logo_max_height: {
 		selector: assembleSelector(getRootSelectorFor({ itemId, panelType })),
 		variable: 'logo-max-height',
