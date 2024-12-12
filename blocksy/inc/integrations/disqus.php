@@ -14,7 +14,7 @@ add_action('dsq_before_comments', function() {
 		'separated'
 	) === 'contained'
 	) {
-		$html_atts['class'] .= ' ct-constrained-width';
+		$html_atts['class'] .= ' is-width-constrained';
 	}
 
 	echo '<div ' . blocksy_attr_to_html($html_atts) . '>';

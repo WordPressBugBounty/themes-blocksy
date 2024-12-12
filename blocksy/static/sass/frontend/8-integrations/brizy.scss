@@ -1,7 +1,8 @@
 .entry-content {
 	> #brz-ed-root,
 	> .brz-root__container {
-		--theme-default-editor: var(--false);
+		width: initial;
+		max-width: initial;
 	}
 }
 

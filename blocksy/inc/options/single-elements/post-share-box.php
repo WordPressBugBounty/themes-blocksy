@@ -66,7 +66,7 @@ $networks_options = [
 	$prefix . 'share_networks' => [
 		'type' => 'ct-layers',
 		'itemClass' => $has_share_box_wrapper_attr ? 'ct-inner-layer' : '',
-		'label' => __('Share Networks', 'blocksy-companion'),
+		'label' => __('Share Networks', 'blocksy'),
 		'manageable' => true,
 		'value' => [
 			[

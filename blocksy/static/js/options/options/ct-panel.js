@@ -118,6 +118,15 @@ export const PanelMetaWrapper = ({ id, option, getActualOption, value }) => {
 					return
 				}
 
+				if (option.panelSecondLevel) {
+					panelsHelpers.openSecondLevel({
+						secondLevelTitleLabel: option.label,
+						secondLevelOptions: option['inner-options'],
+					})
+
+					return
+				}
+
 				if (target.closest('.ct-tmp-panel-wrapper')) {
 					return
 				}
@@ -261,7 +270,20 @@ const PanelContainer = ({ option, id, onChange, getValues, onChangeFor }) => {
 											</h3>
 										</div>
 
-										<div className="customizer-panel-content"></div>
+										<div className="customizer-panel-content">
+											{panelsState.secondLevelOptions && (
+												<OptionsPanel
+													purpose="customizer"
+													onChange={(key, val) =>
+														onChangeFor(key, val)
+													}
+													options={
+														panelsState.secondLevelOptions
+													}
+													value={getValues()}
+												/>
+											)}
+										</div>
 									</div>
 								)}
 							</animated.div>

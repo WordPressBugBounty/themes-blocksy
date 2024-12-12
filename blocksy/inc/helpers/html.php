@@ -1,19 +1,23 @@
 <?php
 
 function blocksy_safe_antispambot($string_with_email) {
-	$has_mail_to_prefix = strpos($string_with_email, 'mailto:') !== false;
+	$mail_parts = wp_parse_url($string_with_email);
 
-	$result = antispambot(str_replace(
-		'mailto:',
-		'',
-		$string_with_email
-	));
+	$mail_parts['path'] = antispambot($mail_parts['path']);
 
-	if ($has_mail_to_prefix) {
-		$result = 'mailto:' . $result;
+	$result = [];
+
+	if (! empty($mail_parts['scheme'])) {
+		$result[] = $mail_parts['scheme'] . ':';
 	}
 
-	return $result;
+	$result[] = $mail_parts['path'];
+
+	if (! empty($mail_parts['query'])) {
+		$result[] = '?' . $mail_parts['query'];
+	}
+
+	return implode('', $result);
 }
 
 /**

@@ -295,7 +295,7 @@ add_action(
 			$visibility_classes = '';
 
 			if (blocksy_manager()->screen->uses_woo_default_template()) {
-				$constrained_class = 'ct-constrained-width';
+				$constrained_class = 'is-width-constrained';
 
 				$visibility_classes = blocksy_visibility_classes(
 					blocksy_get_theme_mod(
@@ -342,7 +342,7 @@ add_action(
 			$visibility_classes = '';
 
 			if (blocksy_manager()->screen->uses_woo_default_template()) {
-				$constrained_class = 'ct-constrained-width';
+				$constrained_class = 'is-width-constrained';
 
 				$visibility_classes = blocksy_visibility_classes(
 					blocksy_get_theme_mod(

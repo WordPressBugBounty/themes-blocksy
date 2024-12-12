@@ -74,7 +74,7 @@ let allFrontendEntryPoints = [
 	},
 
 	{
-		els: [
+		els: () => [
 			...(document.querySelector(
 				'.ct-header-cart > .ct-cart-content:not([data-count="0"])'
 			)

@@ -19,16 +19,18 @@
 [class*="ct-container"] > article {
 	--has-background: var(--has-boxed);
 	--has-boxed-structure: var(--has-boxed);
+	
 	--wp--style--global--content-size: var(--theme-block-max-width);
 	--wp--style--global--wide-size: var(--theme-block-wide-max-width);
+
 	
 	border: var(--has-boxed, var(--theme-boxed-content-border));
 	padding: var(--has-boxed, var(--theme-boxed-content-spacing));
-	border-radius: var(--has-boxed, var(--theme-boxed-content-border-radius));
 	box-shadow: var(--has-boxed, var(--theme-boxed-content-box-shadow));
+	border-radius: var(--has-boxed, var(--theme-boxed-content-border-radius));
 
-	margin-left: var(--has-boxed-structure, auto);
-	margin-right: var(--has-boxed-structure, auto);
+
+	margin-inline: var(--has-boxed-structure, auto);
 	width: var(--has-boxed-structure, var(--theme-container-width));
 	max-width: var(--has-boxed-structure, var(--theme-boxed-content-max-width));
 }

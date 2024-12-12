@@ -1,3 +1,9 @@
+.woocommerce-notices-wrapper {
+	margin-inline: auto;
+	width: var(--theme-container-width);
+	max-width: var(--theme-block-max-width);
+}
+
 .woocommerce-info, 
 .woocommerce-error, 
 .woocommerce-message,

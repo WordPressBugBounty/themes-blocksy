@@ -321,6 +321,8 @@ $footerRowBottomDivider = blocksy_akg(
 	$footerRowBottomDividerDefault
 );
 
+$footerRowBottomDivider = blocksy_expand_responsive_value($footerRowBottomDivider);
+
 if (isset($footerRowBottomDivider['desktop']) || is_customize_preview()) {
 	blocksy_output_border([
 		'css' => $css,

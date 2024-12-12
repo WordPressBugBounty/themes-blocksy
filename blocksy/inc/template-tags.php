@@ -261,7 +261,7 @@ function blocksy_post_navigation() {
 		]
 	));
 
-	$container_class = 'post-navigation ct-constrained-width';
+	$container_class = 'post-navigation is-width-constrained';
 
 	$container_class .= ' ' . blocksy_visibility_classes(blocksy_get_theme_mod(
 		$prefix . '_post_nav_visibility',
@@ -544,7 +544,7 @@ function blocksy_related_posts($location = null) {
 
 	if ($location !== 'separated') {
 		$boxed_container_class = trim(
-			$boxed_container_class . ' ct-constrained-width ' . $related_visibility
+			$boxed_container_class . ' is-width-constrained ' . $related_visibility
 		);
 	}
 

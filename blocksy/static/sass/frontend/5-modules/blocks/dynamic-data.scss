@@ -8,41 +8,37 @@
 // dynamic media
 .ct-dynamic-media {
 	display: flex;
-	overflow: hidden;
-	position: relative;
 
-	// img {
-	// 	aspect-ratio: inherit;
-	// }
+	.ct-dynamic-media-inner {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		will-change: transform;
 
-	@media (hover: hover) {
-
-		&[data-hover] img {
-			transition: transform 0.5s ease;
-		}
-
-		&[data-hover="zoom-in"] {
-
-			&:hover img {
-				transform: scale(1.1);
-			}
-		}
-
-		&[data-hover="zoom-out"] {
-
-			img {
-				transform: scale(1.1);
+		@media (hover: hover) {
+			&[data-hover] img {
+				transition: transform 0.5s ease;
 			}
 
-			&:hover img {
-				transform: scale(1.0);
+			&[data-hover="zoom-in"] {
+
+				&:hover img {
+					transform: scale(1.1);
+				}
+			}
+
+			&[data-hover="zoom-out"] {
+
+				img {
+					transform: scale(1.1);
+				}
+
+				&:hover img {
+					transform: scale(1.0);
+				}
 			}
 		}
-	}
-
-	// border
-	&[style*="border-width"] {
-		border-style: solid;
 	}
 }
 

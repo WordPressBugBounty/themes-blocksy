@@ -163,7 +163,9 @@
 	&[data-flexy*="no"] {
 
 		.flexy > [class*='flexy-arrow'] {
-			display: none;
+			@media (any-hover: hover) {
+				visibility: hidden;
+			}
 		}
 	}
 }
@@ -174,7 +176,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: 0;
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
@@ -182,12 +183,17 @@
 	color: var(--flexy-nav-arrow-color, var(--theme-text-color));
 	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.03);
 	background: var(--flexy-nav-background-color, #fff);
-	transform: rotate(var(--rotate, 0)) translateX(var(--translate-x, 0));
 	transition: all 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-	&:hover {
+	svg {
+		pointer-events: none;
+	}
 
-		@media (any-hover: hover) {
+	@media (any-hover: hover) {
+		opacity: 0;
+		transform: rotate(var(--rotate, 0)) translateX(var(--translate-x, 0));
+		
+		&:hover {
 			color: var(--flexy-nav-arrow-hover-color, #fff);
 			background: var(--flexy-nav-background-hover-color, var(--theme-palette-color-1));
 		}
@@ -204,24 +210,22 @@
 	--translate-x: 10px;
 }
 
-[class*='flexy']:hover > [class*='flexy-arrow'] {
 
-	@media (any-hover: hover) {
-		opacity: 1;
-		--translate-x: 0;
-	}
+
+[class*='flexy']:hover > [class*='flexy-arrow'] {
+	opacity: 1;
+	--translate-x: 0;
 }
+
 
 .flexy-pills {
 	--flexy-nav-arrow-top-offset: calc(50% - 20px + var(--thumbs-spacing, 15px) / 2);
 
-	ol {
-		&:not([data-flexy]),
-		&[data-flexy*='no'] {
 
-			~ [class*='arrow'] {
-				display: none;
-			}
+	ol:is(:not([data-flexy]), [data-flexy*='paused']) {
+
+		~ [class*='arrow'] {
+			visibility: hidden;
 		}
 	}
 }

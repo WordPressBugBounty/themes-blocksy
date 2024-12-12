@@ -47,7 +47,7 @@ if ( ! empty( $product_tabs ) ) : ?>
 					'woocommerce-Tabs-panel',
 					'woocommerce-Tabs-panel--' . esc_attr($key),
 					'panel',
-					'entry-content is-layout-flow',
+					'entry-content is-layout-constrained',
 					'wc-tab'
 				];
 

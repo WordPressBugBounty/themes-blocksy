@@ -35,7 +35,7 @@ if (blocksy_get_theme_mod(
 	'separated'
 ) === 'contained'
 ) {
-	$html_atts['class'] .= ' ct-constrained-width';
+	$html_atts['class'] .= ' is-width-constrained';
 }
 
 ?>

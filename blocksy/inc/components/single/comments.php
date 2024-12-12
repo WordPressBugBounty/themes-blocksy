@@ -251,7 +251,7 @@ function blocksy_custom_comment_template($comment, $args, $depth) {
 								],
 								blocksy_schema_org_definitions('publish_date', [
 									'array' => true
-								]),
+								])
 							),
 							blocksy_safe_sprintf(
 								/* translators: 1: date, 2: time */

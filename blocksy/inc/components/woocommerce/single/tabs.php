@@ -14,7 +14,7 @@ if ( !function_exists('blocksy_custom_accordion_tabs') ) {
 				<?php foreach ( $tabs as $key => $tab ) : ?>
 					<div class="ct-accordion-tab">
 						<button
-							class="ct-accordion-heading ct-constrained-width ct-expandable-trigger"
+							class="ct-accordion-heading ct-expandable-trigger is-width-constrained"
 							data-target="#tab-<?php echo esc_attr( $key ); ?>"
 							aria-expanded="<?php echo $is_open && !$index ? "true" : "false" ?>"
 							<?php echo $additional_attr; ?>
@@ -28,7 +28,7 @@ if ( !function_exists('blocksy_custom_accordion_tabs') ) {
 						</button>
 
 						<article id="tab-<?php echo esc_attr( $key ); ?>" aria-hidden="<?php echo $is_open && !$index ? "false" : "true" ?>" data-behaviour="drop-down">
-							<div class="entry-content is-layout-flow">
+							<div class="entry-content is-layout-constrained">
 								<?php
 									if (isset($tab['callback'])) {
 										call_user_func( $tab['callback'], $key, $tab );
@@ -55,7 +55,7 @@ if ( !function_exists('blocksy_custom_simple_tabs') ) {
 			<div class="woocommerce-tabs wc-tabs-wrapper">
 				<article>
 					<?php foreach ( $tabs as $key => $tab ) : ?>
-						<div id="tab-<?php echo esc_attr( $key ); ?>" class="entry-content is-layout-flow">
+						<div id="tab-<?php echo esc_attr( $key ); ?>" class="entry-content is-layout-constrained">
 							<?php call_user_func( $tab['callback'], $key, $tab ); ?>
 						</div>
 					<?php endforeach; ?>
@@ -113,7 +113,7 @@ if (! function_exists('woocommerce_output_product_data_tabs')) {
 
 		$result = str_replace(
 			'"tabs wc-tabs',
-			'"tabs wc-tabs ct-constrained-width',
+			'"tabs wc-tabs is-width-constrained',
 			$result
 		);
 

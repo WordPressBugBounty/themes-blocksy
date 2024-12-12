@@ -137,7 +137,13 @@ function blocksy_single_content($content = null) {
 	$share_box2_location = blocksy_get_theme_mod($prefix . '_share_box2_location', 'right');
 	$share_box2_colors = blocksy_get_theme_mod($prefix . '_share_box2_colors', 'custom');
 
-	$content_class = 'entry-content is-layout-flow';
+	$gutenberg_layout_class = "is-layout-constrained";
+
+	if (blocksy_sidebar_position() !== 'none') {
+		$gutenberg_layout_class = "is-layout-flow";
+	}
+
+	$content_class = 'entry-content ' . $gutenberg_layout_class;
 
 	ob_start();
 
@@ -185,7 +191,7 @@ function blocksy_single_content($content = null) {
 				 * Function blocksy_get_social_share_box() used here escapes the value properly.
 				 */
 				echo blocksy_get_social_share_box([
-					'root_class' => 'ct-constrained-width',
+					'root_class' => 'is-width-constrained',
 					'html_atts' => [ 'data-location' => 'top'],
 					'links_wrapper_attr' => $share_box_type === 'type-2' ? [
 						'data-color' => $share_box2_colors
@@ -278,13 +284,13 @@ function blocksy_single_content($content = null) {
 					'',
 					'',
 					null,
-					'post-edit-link ct-constrained-width'
+					'post-edit-link is-width-constrained'
 				);
 			}
 
 			wp_link_pages(
 				[
-					'before' => '<div class="page-links ct-constrained-width"><span class="post-pages-label">' . esc_html__( 'Pages', 'blocksy' ) . '</span>',
+					'before' => '<div class="page-links is-width-constrained"><span class="post-pages-label">' . esc_html__( 'Pages', 'blocksy' ) . '</span>',
 					'after'  => '</div>',
 				]
 			);
@@ -294,7 +300,7 @@ function blocksy_single_content($content = null) {
 
 		<?php if ($has_post_tags) { ?>
 			<?php
-				$class = 'entry-tags ct-constrained-width';
+				$class = 'entry-tags is-width-constrained';
 
 				$class .= ' ' . blocksy_visibility_classes(blocksy_get_theme_mod(
 					$prefix . '_post_tags_visibility',
@@ -364,16 +370,12 @@ function blocksy_single_content($content = null) {
 					);
 				}
 
-				$deep_link_args = blocksy_generic_get_deep_link(
-					[
-						'prefix' => $prefix,
-						'suffix' => $prefix . '_has_post_tags',
-						'shortcut' => 'border',
-						'return' => 'array'
-					]
-				);
-
-
+				$deep_link_args = blocksy_generic_get_deep_link([
+					'prefix' => $prefix,
+					'suffix' => $prefix . '_has_post_tags',
+					'shortcut' => 'border',
+					'return' => 'array'
+				]);
 
 				/**
 				 * Note to code reviewers: This line doesn't need to be escaped.
@@ -428,7 +430,7 @@ function blocksy_single_content($content = null) {
 				 * Function blocksy_get_social_share_box() used here escapes the value properly.
 				 */
 				echo blocksy_get_social_share_box([
-					'root_class' => 'ct-constrained-width',
+					'root_class' => 'is-width-constrained',
 					'html_atts' => ['data-location' => 'bottom'],
 					'links_wrapper_attr' => $share_box_type === 'type-2' ? [
 						'data-color' => $share_box2_colors

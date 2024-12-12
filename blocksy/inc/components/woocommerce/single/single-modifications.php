@@ -304,7 +304,7 @@ add_action(
 		global $blocksy_single_product_summary_buffering_started;
 		$blocksy_single_product_summary_buffering_started = true;
 
-		echo '<div class="product-entry-wrapper ct-constrained-width">';
+		echo '<div class="product-entry-wrapper is-width-constrained">';
 		ob_start();
 	},
 	1

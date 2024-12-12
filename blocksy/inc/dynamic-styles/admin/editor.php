@@ -30,6 +30,24 @@ $page_structure = blocksy_default_akg(
 $maybe_matching_template = null;
 $content_block_atts = null;
 
+$has_content_block_structure = 'no';
+$template_type = null;
+
+if ($post_type === 'ct_content_block') {
+	$default_content_block_structure = 'yes';
+	$template_type = get_post_meta($post_id, 'template_type', true);
+
+	if ($template_type === 'hook' || $template_type === 'popup') {
+		$default_content_block_structure = 'no';
+	}
+
+	$has_content_block_structure = blocksy_akg(
+		'has_content_block_structure',
+		$post_atts,
+		$default_content_block_structure
+	);
+}
+
 if (function_exists('blc_get_content_block_that_matches')) {
 	$maybe_matching_template = blc_get_content_block_that_matches([
 		'template_type' => 'single',
@@ -58,11 +76,13 @@ if ($page_structure === 'default') {
 }
 
 if ($post_type === 'ct_content_block') {
-	$page_structure = blocksy_default_akg(
-		'content_block_structure',
-		$post_atts,
-		'type-4'
-	);
+	if ($has_content_block_structure === 'yes') {
+		$page_structure = blocksy_default_akg(
+			'content_block_structure',
+			$post_atts,
+			'type-4'
+		);
+	}
 }
 
 if ($page_structure === 'type-4') {
@@ -115,20 +135,7 @@ $has_boxed = blocksy_akg_or_customizer(
 );
 
 if ($post_type === 'ct_content_block') {
-	$template_type = get_post_meta($post_id, 'template_type', true);
 	$template_subtype = blocksy_akg('template_subtype', $post_atts, 'card');
-
-	$default_content_block_structure = 'yes';
-
-	if ($template_type === 'hook' || $template_type === 'popup') {
-		$default_content_block_structure = 'no';
-	}
-
-	$has_content_block_structure = blocksy_akg(
-		'has_content_block_structure',
-		$post_atts,
-		$default_content_block_structure
-	);
 
 	if (
 		$has_content_block_structure !== 'yes'

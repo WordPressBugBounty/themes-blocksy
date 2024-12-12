@@ -60,8 +60,25 @@ class Blocksy_Translations_Manager {
 
 	public function get_all_translation_keys() {
 		$builder_keys = Blocksy_Manager::instance()->builder->translation_keys();
+		$all_cpt = blocksy_manager()->post_types->get_all([
+			'exclude_built_in' => true,
+			'exclude_woo' => true
+		]);
 
-		foreach (['blog', 'categories', 'search', 'author'] as $prefix) {
+		$all_cpt_archive_keys = [];
+		$all_cpt_single_keys = [];
+
+		foreach ($all_cpt as $cpt) {
+			$all_cpt_archive_keys[] = $cpt . '_archive';
+			$all_cpt_single_keys[] = $cpt . '_single';
+		}
+
+		foreach (
+			array_merge(
+				['blog', 'categories', 'search', 'author'],
+				$all_cpt_archive_keys
+			) as $prefix
+		) {
 			$archive_order = blocksy_get_theme_mod($prefix . '_archive_order', null);
 
 			if (! $archive_order) {
@@ -85,7 +102,12 @@ class Blocksy_Translations_Manager {
 			}
 		}
 
-		foreach (['blog', 'single_blog_post', 'single_page'] as $prefix) {
+		foreach (
+			array_merge(
+				['blog', 'single_blog_post', 'single_page'],
+				$all_cpt_single_keys
+			) as $prefix
+			) {
 			$hero_elements = blocksy_get_theme_mod($prefix . '_hero_elements', null);
 
 			if (! $hero_elements) {

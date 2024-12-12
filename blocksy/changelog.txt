@@ -1,3 +1,11 @@
+2.0.81: 2024-12-12
+- Improvement: Contacts element - correctly escape email addresses with query strings
+- Improvement: Custom post types - make sure archive cards "Read More" button text is translatable
+- Improvement: Header HTML element - smarter sanitize of HTML output in combination with shortcodes
+- Improvement: Header mini cart - better handling for popper trigger
+- Improvement: Make sure the text domain is applied correctly for all translatable strings
+- Improvement: Proper output of footer bottom divider CSS
+
 2.0.80: 2024-11-29
 - Improvement: Add Bluesky network to share box module
 - Improvement: Improved logic for displaying responsive values in visibility options

@@ -440,7 +440,7 @@ function blocksy_author_box() {
 		'yes'
 	) === 'yes';
 
-	$class = 'author-box ct-constrained-width';
+	$class = 'author-box is-width-constrained';
 
 	$class .= ' ' . blocksy_visibility_classes(blocksy_get_theme_mod(
 		$prefix . '_author_box_visibility',

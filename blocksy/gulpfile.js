@@ -289,12 +289,12 @@ var options = {
 			// header: buildProcess.headerFor(false, data),
 		},
 
-		{
-			input: 'static/sass/frontend/8-integrations/vc.scss',
-			output: 'static/bundle',
-			filename: 'vc.min',
-			// header: buildProcess.headerFor(false, data),
-		},
+		// {
+		// 	input: 'static/sass/frontend/8-integrations/vc.scss',
+		// 	output: 'static/bundle',
+		// 	filename: 'vc.min',
+		// 	// header: buildProcess.headerFor(false, data),
+		// },
 
 		{
 			input: 'static/sass/frontend/8-integrations/cf-7.scss',

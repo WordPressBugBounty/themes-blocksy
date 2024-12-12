@@ -186,7 +186,7 @@ $options = [
 					[
 						'product_badge_font' => [
 							'type' => 'ct-typography',
-							'label' => __( 'Font', 'blocksy-companion' ),
+							'label' => __( 'Font', 'blocksy' ),
 							'value' => blocksy_typography_default_values([
 								'size' => '12px',
 								'variation' => 'n6',

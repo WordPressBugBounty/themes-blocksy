@@ -75,7 +75,20 @@ const panelsReducer = (state, action) => {
 
 		return {
 			...state,
+
 			currentLevel: 2,
+
+			...(action.secondLevelOptions
+				? {
+						secondLevelOptions: action.secondLevelOptions,
+				  }
+				: {}),
+
+			...(action.secondLevelTitleLabel
+				? {
+						secondLevelTitleLabel: action.secondLevelTitleLabel,
+				  }
+				: {}),
 		}
 	}
 
@@ -191,9 +204,10 @@ const PanelLevel = ({
 									'[id="customize-theme-controls"]'
 							  ),
 
-					openSecondLevel: () => {
+					openSecondLevel: (args) => {
 						panelsDispatch({
 							type: 'PANEL_OPEN_SECOND_LEVEL',
+							...args,
 						})
 					},
 

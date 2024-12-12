@@ -30,7 +30,7 @@ class WooCommerceSingle {
 
 			return str_replace(
 				'post-password-form"',
-				'post-password-form ct-constrained-width"',
+				'post-password-form is-width-constrained"',
 				$output
 			);
 		}, 10, 2);

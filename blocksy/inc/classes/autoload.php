@@ -15,6 +15,7 @@ class ThemeAutoloader {
 	 */
 	private static function get_classes_map() {
 		return apply_filters('blocksy_theme_autoloader_classes_map', [
+			'RaiiPattern' => 'inc/classes/raii.php',
 			'WordPressActionsManager' => 'inc/classes/trait-wordpress-actions-manager.php',
 
 			'SearchModifications' => 'inc/components/search.php',

@@ -246,7 +246,7 @@ if (! function_exists('blocksy_output_hero_section')) {
 		];
 
 		if ($type === 'type-1') {
-			$attr['class'] .= ' ct-constrained-width';
+			$attr['class'] .= ' is-width-constrained';
 		}
 
 		if (

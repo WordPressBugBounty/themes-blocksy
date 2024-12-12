@@ -36,6 +36,9 @@ export const mount = (sliderEl, args) => {
 		rightArrow = maybeSuggested.querySelector('.ct-arrow-next')
 	}
 
+	const isPillsDragEvent =
+		args.event && args.event.target.closest('.flexy-pills > * > *')
+
 	const inst = new Flexy(
 		() => {
 			const sliderEl = getScalarOrCallback(originalSliderEl)
@@ -51,7 +54,9 @@ export const mount = (sliderEl, args) => {
 			flexyAttributeEl: originalSliderEl,
 			elementsThatDoNotStartDrag: ['.twentytwenty-handle'],
 
-			...(args.event ? { initialDragEvent: args.event } : {}),
+			...(args.event && !isPillsDragEvent
+				? { initialDragEvent: args.event }
+				: {}),
 
 			autoplay:
 				Object.keys(sliderEl.dataset).indexOf('autoplay') > -1 &&
@@ -114,11 +119,14 @@ export const mount = (sliderEl, args) => {
 					? 'viewport'
 					: 'container',
 
+			...(args.event && isPillsDragEvent
+				? { initialDragEvent: args.event }
+				: {}),
+
 			leftArrow:
 				maybePillsSlider.parentNode.querySelector('.flexy-arrow-prev'),
 			rightArrow:
 				maybePillsSlider.parentNode.querySelector('.flexy-arrow-next'),
-			hasDragAndDrop: false,
 
 			...(maybePillsSlider.closest('.thumbs-left') &&
 			getCurrentScreen({ withTablet: true }) !== 'mobile'

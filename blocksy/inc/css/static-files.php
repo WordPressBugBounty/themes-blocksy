@@ -327,12 +327,12 @@ class Blocksy_Static_Css_Files {
 				'enabled' => class_exists('ET_Builder_Plugin')
 			],
 
-			[
-				'id' => 'ct-vc-styles',
-				'url' => '/static/bundle/vc.min.css',
-				'deps' => ['ct-main-styles'],
-				'enabled' => defined('VCV_Version')
-			],
+			// [
+			// 	'id' => 'ct-vc-styles',
+			// 	'url' => '/static/bundle/vc.min.css',
+			// 	'deps' => ['ct-main-styles'],
+			// 	'enabled' => defined('VCV_Version')
+			// ],
 
 			[
 				'id' => 'ct-cf-7-styles',

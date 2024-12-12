@@ -347,7 +347,9 @@ export const mount = (formEl, args = {}) => {
 				}
 
 				if (isIosDevice()) {
-					window.scrollTo(0, 0)
+					if (options.mode === 'modal') {
+						window.scrollTo(0, 0)
+					}
 				}
 			}
 

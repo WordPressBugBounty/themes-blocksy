@@ -97,7 +97,14 @@ const loadVideoOrIframeViaAjax = (el) => {
 		const div = document.createElement('div')
 		div.innerHTML = data.html
 		const insertVideo = div.firstChild
-		el.insertAdjacentElement('beforeend', insertVideo)
+		if (el.querySelector('.ct-dynamic-media-inner')) {
+			el.querySelector('.ct-dynamic-media-inner').insertAdjacentElement(
+				'beforeend',
+				insertVideo
+			)
+		} else {
+			el.insertAdjacentElement('beforeend', insertVideo)
+		}
 
 		const videoOrIframe = el.querySelector('video,iframe')
 		const flexyContainer = videoOrIframe.closest(

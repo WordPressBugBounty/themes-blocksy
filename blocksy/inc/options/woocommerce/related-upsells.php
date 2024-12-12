@@ -73,7 +73,7 @@ $options = [
 					],
 
 					'woo_product_related_label_tag' => [
-						'label' => __( 'Module Title Tag', 'blocksy-companion' ),
+						'label' => __( 'Module Title Tag', 'blocksy' ),
 						'type' => 'ct-select',
 						'value' => 'h2',
 						'view' => 'text',

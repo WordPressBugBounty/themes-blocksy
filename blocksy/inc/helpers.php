@@ -7,6 +7,16 @@
  * @package Blocksy
  */
 
+// Usage:
+//
+// $raii = blocksy_raii(function() { /* destruct code */ });
+//
+// When the $raii object goes out of scope, the callback will be called
+// automatically.
+function blocksy_raii($callback) {
+	return new \Blocksy\RaiiPattern($callback);
+}
+
 function blocksy_assert_args($args, $fields = []) {
 	foreach ($fields as $single_field) {
 		if (
@@ -386,15 +396,17 @@ function blocksy_utf8_decode($s) {
 }
 
 function blocksy_output_html_safely($html) {
-	$html = do_shortcode($html);
-
-	if (current_user_can('unfiltered_html')) {
-		return $html;
-	}
-
 	// Just drop scripts from the html content, if user doesnt have
 	// unfiltered_html capability.
-	return preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
+	//
+	// Should happen BEFORE do_shortcode() as shortcodes can contain inline
+	// scripts but we should leave those in place, since those come from trusted
+	// places.
+	if (! current_user_can('unfiltered_html')) {
+		$html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
+	}
+
+	return do_shortcode($html);
 
 	// Dont use wp_filter_post_kses() as it is very unstable as far as slashes go.
 	// Just call wp_kses() directly.
