@@ -1,4 +1,16 @@
-// .ct-control-gutenberg,
+.block-editor-block-inspector__tabs {
+
+	// hide color or typography options if dynamic data block is type "image"
+	&:has([data-field-type="image:default"]) .color-block-support-panel {
+		display: none !important;
+	}
+
+	&:has([data-field-type*="image"]) .typography-block-support-panel {
+		display: none !important;
+	}
+}
+
+
 .components-base-control {
 
 	--ui-accent-color: #1e1e1e;

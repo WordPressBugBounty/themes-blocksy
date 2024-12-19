@@ -1,19 +1,24 @@
-import { createElement, useState, useRef, useContext } from '@wordpress/element'
+import { createElement, useState, useRef } from '@wordpress/element'
 import OutsideClickHandler from './react-outside-click-handler'
 import classnames from 'classnames'
 import SingleColorPicker from './color-picker/single-picker'
 import { __ } from 'ct-i18n'
-import BoxShadowModal from './box-shadow/box-shadow-modal'
+import BoxShadowModal from './box-shadow/modal'
 
-const clamp = (min, max, value) => Math.max(min, Math.min(max, value))
+import { useSpringModal } from '../helpers/useSpringModal'
 
 const BoxShadow = ({ value, option, onChange }) => {
-	const [{ isPicking, isTransitioning }, setAnimationState] = useState({
-		isPicking: null,
-		isTransitioning: null,
-	})
+	// null | color | opts
+	const [currentView, setCurrentView] = useState(null)
 
-	const [focusedComponent, setFocusedComponent] = useState(null)
+	const [colorPickerEl, setColorPickerEl] = useState(null)
+
+	const { modalOpen, modalStyles, openModal, closeModal } = useSpringModal({
+		onClosed: () => {
+			setCurrentView(null)
+			setColorPickerEl(null)
+		},
+	})
 
 	const el = useRef()
 	const colorPicker = useRef()
@@ -25,40 +30,30 @@ const BoxShadow = ({ value, option, onChange }) => {
 
 	const containerRef = useRef()
 	const modalRef = useRef()
-	const shadowModalRef = useRef()
 
 	return (
 		<div ref={el} className={classnames('ct-box-shadow')}>
 			<OutsideClickHandler
 				useCapture={false}
-				disabled={!isPicking}
+				disabled={!modalOpen}
 				className="ct-box-shadow-values"
-				additionalRefs={[colorPicker, modalRef, shadowModalRef]}
+				additionalRefs={[colorPicker, modalRef]}
 				onOutsideClick={(e) => {
-					if (!isPicking) {
-						return
-					}
-
-					setAnimationState({
-						isTransitioning: isPicking.split(':')[0],
-						isPicking: null,
-					})
+					closeModal()
 				}}
 				wrapperProps={{
 					ref: containerRef,
 					onClick: (e) => {
 						e.preventDefault()
 
-						let futureIsPicking = isPicking
-							? isPicking.split(':')[0] === 'opts'
-								? null
-								: `opts:${isPicking.split(':')[0]}`
-							: 'opts'
+						if (modalOpen) {
+							closeModal()
+							return
+						}
 
-						setAnimationState({
-							isTransitioning: 'opts',
-							isPicking: futureIsPicking,
-						})
+						setCurrentView('opts')
+
+						openModal()
 					},
 				}}>
 				<span>
@@ -85,26 +80,23 @@ const BoxShadow = ({ value, option, onChange }) => {
 							},
 						],
 					}}
-					isPicking={isPicking}
-					isTransitioning={isTransitioning}
 					modalRef={modalRef}
 					containerRef={containerRef}
-					onPickingChange={(isPicking) => {
+					onPickingChange={(el) => {
 						if (!value.enable) {
 							return
 						}
 
-						setAnimationState({
-							isTransitioning: 'default',
-							isPicking,
-						})
+						if (modalOpen) {
+							closeModal()
+							return
+						}
+
+						setCurrentView('color')
+						setColorPickerEl(el)
+
+						openModal()
 					}}
-					stopTransitioning={() =>
-						setAnimationState({
-							isPicking,
-							isTransitioning: false,
-						})
-					}
 					onChange={(colorValue) =>
 						onChange({
 							...value,
@@ -115,43 +107,22 @@ const BoxShadow = ({ value, option, onChange }) => {
 				/>
 			)}
 
-			<BoxShadowModal
-				el={el}
-				modalRef={shadowModalRef}
-				value={value}
-				onChange={(value) =>
-					onChange({
-						...value,
-						inherit: false,
-					})
-				}
-				option={option}
-				isPicking={isPicking}
-				isTransitioning={isTransitioning}
-				hOffsetRef={hOffsetRef}
-				vOffsetRef={vOffsetRef}
-				blurRef={blurRef}
-				spreadRef={spreadRef}
-				picker={{
-					id: 'opts',
-				}}
-				onPickingChange={(isPicking) => {
-					if (!value.enable) {
-						return
-					}
-
-					setAnimationState({
-						isTransitioning: 'opts',
-						isPicking,
-					})
-				}}
-				stopTransitioning={() =>
-					setAnimationState({
-						isPicking,
-						isTransitioning: false,
-					})
-				}
-			/>
+			{modalOpen && (
+				<BoxShadowModal
+					currentView={currentView}
+					modalStyles={modalStyles}
+					option={option}
+					value={value}
+					onChange={onChange}
+					modalRef={modalRef}
+					el={el}
+					colorPickerEl={colorPickerEl}
+					colorPicker={{
+						id: 'default',
+						title: 'Initial',
+					}}
+				/>
+			)}
 		</div>
 	)
 }

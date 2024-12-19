@@ -6,8 +6,6 @@ import {
 	createRef,
 } from '@wordpress/element'
 import PickerModal, { getNoColorPropFor } from './picker-modal'
-import { Transition } from 'react-spring'
-import bezierEasing from 'bezier-easing'
 import classnames from 'classnames'
 import { __ } from 'ct-i18n'
 import { normalizeCondition, matchValuesWithCondition } from 'match-conditions'
@@ -46,7 +44,7 @@ const computePickerTitle = ({ picker, value, values }) => {
 	return picker.title
 }
 
-const resolveInherit = (picker, option, values, device) => {
+export const resolveInherit = (picker, option, values, device) => {
 	if (typeof picker.inherit === 'string') {
 		if (picker.inherit.indexOf('self') > -1) {
 			const currentValue =
@@ -115,9 +113,6 @@ const SinglePicker = ({
 	onChange,
 	picker,
 
-	onPickingChange,
-	stopTransitioning,
-
 	onOutsideClick,
 
 	innerRef,
@@ -125,22 +120,14 @@ const SinglePicker = ({
 	containerRef,
 	modalRef,
 
-	isTransitioning,
-	isPicking,
+	onPickingChange,
+	modalOpen,
+
 	values,
 
 	device,
 }) => {
 	const el = useRef()
-
-	const { appendToBody = true } = option
-
-	const { refreshPopover, styles, popoverProps } = usePopoverMaker({
-		contentRef: modalRef,
-		ref: el || {},
-		defaultHeight: 379,
-		shouldCalculate: !option.inline_modal || appendToBody,
-	})
 
 	if (option.inline_modal) {
 		return (
@@ -155,93 +142,11 @@ const SinglePicker = ({
 		)
 	}
 
-	let modal = null
-
-	if (
-		isTransitioning === picker.id ||
-		(isPicking || '').split(':')[0] === picker.id
-	) {
-		modal = createPortal(
-			<Transition
-				items={isPicking}
-				onRest={() => stopTransitioning()}
-				config={{
-					duration: 100,
-					easing: bezierEasing(0.25, 0.1, 0.25, 1.0),
-				}}
-				from={
-					(isPicking || '').indexOf(':') === -1
-						? {
-								transform: 'scale3d(0.95, 0.95, 1)',
-								opacity: 0,
-						  }
-						: { opacity: 1 }
-				}
-				enter={
-					(isPicking || '').indexOf(':') === -1
-						? {
-								transform: 'scale3d(1, 1, 1)',
-								opacity: 1,
-						  }
-						: {
-								opacity: 1,
-						  }
-				}
-				leave={
-					(isPicking || '').indexOf(':') === -1
-						? {
-								transform: 'scale3d(0.95, 0.95, 1)',
-								opacity: 0,
-						  }
-						: {
-								opacity: 1,
-						  }
-				}>
-				{(props, isPicking) =>
-					(isPicking || '').split(':')[0] === picker.id && (
-						<PickerModal
-							style={{
-								...props,
-								...(appendToBody ? styles : {}),
-							}}
-							option={option}
-							onChange={onChange}
-							picker={picker}
-							value={value}
-							el={el}
-							inheritValue={
-								picker.inherit
-									? resolveInherit(
-											picker,
-											option,
-											values,
-											device
-									  ).background
-									: ''
-							}
-							wrapperProps={
-								appendToBody
-									? popoverProps
-									: {
-											ref: modalRef,
-									  }
-							}
-							appendToBody={appendToBody}
-						/>
-					)
-				}
-			</Transition>,
-			appendToBody
-				? document.body
-				: el.current.closest('section').parentNode
-		)
-	}
-
 	return (
 		<OutsideClickHandler
 			useCapture={false}
 			display="inline-block"
-			disabled={!isPicking}
+			disabled={!modalOpen}
 			wrapperProps={{
 				ref: (instance) => {
 					el.current = instance
@@ -281,17 +186,10 @@ const SinglePicker = ({
 						if (option.skipModal) {
 							return
 						}
+
 						e.stopPropagation()
 
-						refreshPopover()
-
-						let futureIsPicking = isPicking
-							? isPicking.split(':')[0] === picker.id
-								? null
-								: `${picker.id}:${isPicking.split(':')[0]}`
-							: picker.id
-
-						onPickingChange(futureIsPicking)
+						onPickingChange(el)
 					}}
 					data-tooltip-reveal="top"
 					style={
@@ -332,7 +230,6 @@ const SinglePicker = ({
 				option.afterPill({
 					picker,
 				})}
-			{modal}
 		</OutsideClickHandler>
 	)
 }

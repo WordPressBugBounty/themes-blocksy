@@ -2,6 +2,14 @@ import { useMemo, useRef, useState, useEffect } from '@wordpress/element'
 import classnames from 'classnames'
 import { __ } from 'ct-i18n'
 
+// TODO: Rework this to use useLayoutEffect here.
+// Also, always compute layout first, animate a bit later.
+//
+// Need to get rid of all the <Transition> components and use useSpring directly
+// instead.
+//
+// This way nullifyTransforms() will not be needed anymore.
+
 export function nullifyTransforms(el) {
 	const parseTransform = (el) =>
 		window

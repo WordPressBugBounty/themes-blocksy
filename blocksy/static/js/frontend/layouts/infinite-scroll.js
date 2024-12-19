@@ -78,7 +78,9 @@ export const mount = (paginationContainer) => {
 		.find(
 			(c) =>
 				c.classList.contains('products') ||
-				c.classList.contains('entries')
+				c.classList.contains('entries') ||
+				c.classList.contains('ct-query-template-grid') ||
+				c.classList.contains('ct-query-template-default')
 		)
 
 	if (!paginationContainer) {
@@ -186,7 +188,11 @@ function getAppendSelectorFor(layoutEl, args = {}) {
 	if (layoutEl.closest('.wp-block-blocksy-query')) {
 		return `.wp-block-blocksy-query[data-id="${
 			layoutEl.closest('.wp-block-blocksy-query').dataset.id
-		}"] ${args.toAppend === 'default' ? '.entries > *' : args.toAppend}`
+		}"] ${
+			args.toAppend === 'default'
+				? '.ct-query-template-grid > *, .ct-query-template-default > *'
+				: args.toAppend
+		}`
 	}
 
 	if (layoutEl.classList.contains('products')) {

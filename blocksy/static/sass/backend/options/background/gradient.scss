@@ -1,20 +1,15 @@
 .ct-gradient-tab {
 
-	> .components-spacer {
-		margin: 0;
+	> .components-flex {
 		padding: var(--cpm-pv) var(--cpm-ph);
 	}
 
-	.components-custom-gradient-picker__gradient-bar {
-		position: relative;
-		z-index: 1;
-	}
-
 	.components-custom-gradient-picker__ui-line {
+		
 		.components-input-control__input {
 			border: none !important;
-			padding-inline-start: 16px !important;
-			padding-inline-end: 8px !important;
+			padding-inline-start: 12px !important;
+			padding-inline-end: 4px !important;
 		}
 	}
 

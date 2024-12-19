@@ -163,10 +163,7 @@ if ($has_taxonomy_filter) {
 	foreach ($allowed_post_types as $post_type) {
 		$terms_els = [];
 
-		$taxonomy_names = get_taxonomies([
-			'object_type' => [$post_type],
-			'hierarchical' => true
-		]);
+		$taxonomy_names = get_object_taxonomies($post_type);
 
 		if ( ! count($taxonomy_names) ) {
 			continue;
@@ -175,7 +172,11 @@ if ($has_taxonomy_filter) {
 		$has_taxonomy_children = blocksy_akg('has_taxonomy_children', $args, true);
 
 		foreach ($taxonomy_names as $tax) {
-			if ( in_array($tax, $skip_tax) ) {
+			if (
+				in_array($tax, $skip_tax)
+				||
+				! is_taxonomy_hierarchical($tax)
+			) {
 				continue;
 			}
 

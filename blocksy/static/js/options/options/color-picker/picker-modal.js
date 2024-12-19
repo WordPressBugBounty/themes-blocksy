@@ -147,64 +147,59 @@ const PickerModal = ({
 	)
 
 	return (
-		<Fragment>
-			<animated.div
-				tabIndex="0"
-				className={classnames(
-					`ct-color-picker-modal`,
-					{
-						'ct-option-modal': !inline_modal && appendToBody,
-					},
-					option.modalClassName
-				)}
-				style={{
-					...arrowLeft,
-					...(style ? style : {}),
+		<animated.div
+			tabIndex="0"
+			className={classnames(
+				`ct-color-picker-modal`,
+				{
+					'ct-option-modal': !inline_modal && appendToBody,
+				},
+				option.modalClassName
+			)}
+			style={{
+				...arrowLeft,
+				...(style ? style : {}),
+			}}
+			{...wrapperProps}>
+			<ColorPickerIris
+				onChange={(v) => onChange(v)}
+				option={option}
+				picker={picker}
+				value={{
+					...value,
+					color: getValueForPicker.color,
 				}}
-				{...wrapperProps}>
-				<ColorPickerIris
-					onChange={(v) => onChange(v)}
-					option={option}
-					picker={picker}
-					value={{
-						...value,
-						color: getValueForPicker.color,
-					}}
-				/>
+			/>
 
-				{!option.predefined && (
-					<div className="ct-color-picker-palette">
-						{(palettesRef.current || []).map((color) => (
-							<span
-								key={color}
-								style={{
-									background: `var(--${color})`,
-								}}
-								className={classnames({
-									active: valueToCheck === `var(--${color})`,
-								})}
-								data-tooltip-reveal="top"
-								onClick={() =>
-									onChange({
-										...value,
-										color: `var(--${color})`,
-									})
-								}>
-								<i className="ct-tooltip">
-									{sprintf(
-										__('Color %s', 'blocksy'),
-										color.replace(
-											'theme-palette-color-',
-											''
-										)
-									)}
-								</i>
-							</span>
-						))}
-					</div>
-				)}
-			</animated.div>
-		</Fragment>
+			{!option.predefined && (
+				<div className="ct-color-picker-palette">
+					{(palettesRef.current || []).map((color) => (
+						<span
+							key={color}
+							style={{
+								background: `var(--${color})`,
+							}}
+							className={classnames({
+								active: valueToCheck === `var(--${color})`,
+							})}
+							data-tooltip-reveal="top"
+							onClick={() =>
+								onChange({
+									...value,
+									color: `var(--${color})`,
+								})
+							}>
+							<i className="ct-tooltip">
+								{sprintf(
+									__('Color %s', 'blocksy'),
+									color.replace('theme-palette-color-', '')
+								)}
+							</i>
+						</span>
+					))}
+				</div>
+			)}
+		</animated.div>
 	)
 }
 

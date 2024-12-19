@@ -1,3 +1,10 @@
+2.0.82: 2024-12-20
+- Improvement: Advanced Posts - make sure "load more" pagination works properly in all cases
+- Improvement: Contacts element - safer obfuscation of specific email addresses
+- Improvement: Customizer color picker - better calculate and render the popover position
+- Improvement: Customizer gradient picker - improve gradient panel spacing
+- Improvement: Search live results - ignore searching draft/private products when searching by SKU
+
 2.0.81: 2024-12-12
 - Improvement: Contacts element - correctly escape email addresses with query strings
 - Improvement: Custom post types - make sure archive cards "Read More" button text is translatable

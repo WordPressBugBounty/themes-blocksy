@@ -3,6 +3,17 @@
 function blocksy_safe_antispambot($string_with_email) {
 	$mail_parts = wp_parse_url($string_with_email);
 
+	// No reason in trying to obfuscate if there is no email passed in the
+	// mailto: link.
+	//
+	// This is a valid mailto: link without email. Sometimes, the user wants
+	// to only prefill the subject or body of the email via the link.
+	//
+	// Example: mailto:?subject=Hello%20world
+	if (! isset($mail_parts['path'])) {
+		return $string_with_email;
+	}
+
 	$mail_parts['path'] = antispambot($mail_parts['path']);
 
 	$result = [];

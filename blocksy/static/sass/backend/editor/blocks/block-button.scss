@@ -42,9 +42,12 @@
 
 	.wp-element-button {
 		padding: var(--theme-button-padding);
-		color: var(--theme-button-background-initial-color);
 		border: 2px solid;
 		border-color: var(--theme-button-background-initial-color);
+
+		&:not(.has-text-color) {
+			color: var(--theme-button-background-initial-color);
+		}
 
 		&:hover {
 			color: var(--theme-button-text-hover-color);
