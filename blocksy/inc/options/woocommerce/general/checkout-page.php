@@ -222,6 +222,7 @@ $options = [
 						'divider' => 'top',
 						'setting' => [ 'transport' => 'postMessage' ],
 						'value' => blocksy_spacing_value(),
+						'min' => 0,
 						'responsive' => true
 					],
 
@@ -249,6 +250,7 @@ $options = [
 								'bottom' => '25px',
 							]),
 						],
+						'min' => 0,
 						'responsive' => true,
 						'sync' => 'live',
 					],

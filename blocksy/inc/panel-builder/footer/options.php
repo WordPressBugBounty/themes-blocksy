@@ -148,6 +148,7 @@ $options = [
 						'bottom' => '0vw',
 					]),
 				],
+				'min' => 0,
 				'responsive' => true
 			],
 
@@ -157,6 +158,7 @@ $options = [
 				'divider' => 'top',
 				'setting' => [ 'transport' => 'postMessage' ],
 				'value' => blocksy_spacing_value(),
+				'min' => 0,
 				'responsive' => true
 			],
 

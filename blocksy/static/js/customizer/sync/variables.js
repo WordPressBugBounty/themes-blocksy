@@ -260,6 +260,7 @@ const getAllVariables = () => {
 				type: 'spacing',
 				variable: 'theme-button-border-radius',
 				responsive: true,
+				emptyValue: 3,
 			},
 
 			buttonPadding: {
@@ -481,7 +482,7 @@ const getAllVariables = () => {
 				selector: '.ct-back-to-top',
 				type: 'spacing',
 				variable: 'theme-border-radius',
-				// responsive: true,
+				emptyValue: 2,
 			},
 
 			topButtonShadow: {

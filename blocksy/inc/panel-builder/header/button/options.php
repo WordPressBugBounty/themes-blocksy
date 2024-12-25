@@ -834,6 +834,7 @@ $options = [
 				'label' => __( 'Border Radius', 'blocksy' ),
 				'type' => 'ct-spacing',
 				'value' => blocksy_spacing_value(),
+				'min' => 0,
 				'responsive' => true
 			],
 
@@ -842,6 +843,7 @@ $options = [
 				'type' => 'ct-spacing',
 				'divider' => 'top',
 				'value' => blocksy_spacing_value(),
+				'min' => 0,
 				'responsive' => true
 			],
 

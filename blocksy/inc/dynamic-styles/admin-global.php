@@ -118,13 +118,9 @@ if (
 		'selector' => ':root',
 		'property' => 'theme-button-border-radius',
 		'value' => blocksy_get_theme_mod( 'buttonRadius',
-			blocksy_spacing_value([
-				'top' => '3px',
-				'left' => '3px',
-				'right' => '3px',
-				'bottom' => '3px',
-			])
-		)
+			blocksy_spacing_value()
+		),
+		'empty_value' => 3,
 	]);
 
 	blocksy_output_spacing([

@@ -133,5 +133,6 @@ blocksy_output_spacing([
 	'value' => blocksy_get_theme_mod(
 		$prefix . '_pagination_border_radius',
 		blocksy_spacing_value()
-	)
+	),
+	'empty_value' => 4,
 ]);

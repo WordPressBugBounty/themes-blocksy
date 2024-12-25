@@ -12,6 +12,8 @@ import { isIosDevice } from '../helpers/is-ios-device'
 
 import { loadStyle } from '../../helpers'
 
+import { getScalarOrCallback } from '../helpers/get-scalar-or-callback'
+
 const store = {}
 
 const cachedFetch = (url) =>
@@ -171,10 +173,13 @@ const loadVideoWithStyles = (el) => {
 }
 
 ctEvents.on('blocksy:frontend:flexy:slide-change', ({ instance, payload }) => {
-	;[...instance.sliderContainer.querySelectorAll('video,iframe')].map(
+	const sliderContainer = getScalarOrCallback(instance.sliderContainer)
+
+	;[...sliderContainer.querySelectorAll('video,iframe')].map(
 		(videoOrIframe) => pauseVideo(videoOrIframe)
 	)
-	const currentSlide = instance.sliderContainer.children[
+
+	const currentSlide = sliderContainer.children[
 		payload.currentIndex
 	].querySelector(
 		'.ct-media-container[data-media-id], .ct-dynamic-media[data-media-id]'

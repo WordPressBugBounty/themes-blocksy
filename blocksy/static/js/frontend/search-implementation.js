@@ -296,6 +296,7 @@ export const mount = (formEl, args = {}) => {
 						{totalAmountOfPosts > options.perPage ? (
 							<a
 								className="ct-search-more"
+								role="option"
 								{...{
 									href: ct_localizations.search_url.replace(
 										/QUERY_STRING/,

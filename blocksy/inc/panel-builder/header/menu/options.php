@@ -560,7 +560,8 @@ $options = [
 						'type' => 'ct-spacing',
 						'divider' => 'top',
 						'setting' => [ 'transport' => 'postMessage' ],
-						'value' => blocksy_spacing_value()
+						'value' => blocksy_spacing_value(),
+						'min' => 0,
 					],
 
 				],
@@ -571,10 +572,12 @@ $options = [
 				'type' => 'ct-spacing',
 				'divider' => 'top',
 				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => blocksy_spacing_value([
-					'top' => 'auto',
-					'bottom' => 'auto',
-				]),
+				'value' => blocksy_spacing_value(
+					// [
+					// 	'top' => 'auto',
+					// 	'bottom' => 'auto',
+					// ]
+				),
 				// 'responsive' => true
 			],
 
@@ -1069,7 +1072,7 @@ $options = [
 					'right' => '0px',
 					'bottom' => '2px',
 				]),
-				// 'responsive' => true
+				'min' => 0,
 			],
 
 		],

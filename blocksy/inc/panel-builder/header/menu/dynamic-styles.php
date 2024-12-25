@@ -626,10 +626,12 @@ blocksy_output_spacing([
 	'important' => true,
 	'value' => blocksy_default_akg(
 		'headerMenuMargin', $atts,
-		blocksy_spacing_value([
-			'top' => 'auto',
-			'bottom' => 'auto',
-		])
+		blocksy_spacing_value(
+			// [
+			// 	'top' => 'auto',
+			// 	'bottom' => 'auto',
+			// ]
+		)
 	)
 ]);
 

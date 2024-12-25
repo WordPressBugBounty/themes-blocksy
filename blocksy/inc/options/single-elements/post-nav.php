@@ -223,6 +223,7 @@ $options = [
 						'inputAttr' => [
 							'placeholder' => '100'
 						],
+						'min' => 0,
 						'sync' => 'live',
 					],
 

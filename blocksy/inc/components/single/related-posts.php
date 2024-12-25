@@ -143,14 +143,6 @@ if (! function_exists('blocksy_render_related_card')) {
 			'display_video' => blocksy_default_akg('has_related_video_thumbnail', $featured_image_settings, 'no') === 'yes'
 		];
 
-		if (
-			$has_title_link
-			&&
-			$featured_image_has_link
-		) {
-			$featured_image_args['html_atts']['tabindex'] = '-1';
-		}
-
 		$outputs = null;
 
 		$card_content_classes = get_post_class('entry-card');

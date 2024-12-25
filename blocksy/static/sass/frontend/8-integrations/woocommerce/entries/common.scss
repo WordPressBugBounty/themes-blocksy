@@ -24,7 +24,7 @@
 		width: 100%;
 
 		.ct-media-container {
-			border-radius: var(--theme-border-radius);
+			border-radius: var(--theme-border-radius, 3px);
 		}
 	}
 

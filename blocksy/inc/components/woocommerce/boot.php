@@ -105,5 +105,23 @@ class WooCommerceBoot {
 				);
 			}
 		);
+
+		add_filter(
+			'woocommerce_get_block_types',
+			[$this, 'allow_product_collection_block_in_widgets'],
+			100
+		);
+	}
+
+	// Load WooCommerce Product Collection block inside Widgets page
+	// Remove when we will release our Advanced Products block
+	public function allow_product_collection_block_in_widgets($block_types) {
+		global $pagenow;
+
+		if (in_array($pagenow, ['widgets.php'], true)) {
+			$block_types[] = 'ProductCollection';
+		}
+
+		return $block_types;
 	}
 }

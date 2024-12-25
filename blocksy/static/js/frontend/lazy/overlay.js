@@ -40,6 +40,10 @@ const showOffcanvas = (initialSettings) => {
 		trigger.setAttribute('aria-expanded', 'true')
 	})
 
+	if (settings.shouldBeInert) {
+		settings.container.inert = false
+	}
+
 	if (settings.focus) {
 		setTimeout(() => {
 			const maybeInput = settings.container.querySelector('input')
@@ -191,6 +195,10 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 		...args,
 	}
 
+	if (settings.shouldBeInert) {
+		settings.container.inert = true
+	}
+
 	if (!document.body.hasAttribute('data-panel')) {
 		settings.container.classList.remove('active')
 		settings.onClose()
@@ -285,6 +293,9 @@ export const handleClick = (e, settings) => {
 		isModal: false,
 		computeScrollContainer: null,
 		closeWhenLinkInside: false,
+
+		shouldBeInert: !!settings.container.inert,
+
 		handleContainerClick: (event) => {
 			const isPanelHeadContent = event.target.closest('.ct-panel-actions')
 			let isInsidePanelContent = event.target.closest('.ct-panel-content')

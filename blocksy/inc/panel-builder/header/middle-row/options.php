@@ -583,6 +583,7 @@ $options = [
 						'sync' => 'live',
 						'divider' => 'top: full',
 						'value' => blocksy_spacing_value(),
+						'min' => 0,
 						'responsive' => true
 					],
 				],

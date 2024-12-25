@@ -569,7 +569,8 @@ if (
 		'value' => blocksy_get_theme_mod(
 			$prefix . '_posts_nav_image_border_radius',
 			blocksy_spacing_value()
-		)
+		),
+		'empty_value' => 100,
 	]);
 }
 

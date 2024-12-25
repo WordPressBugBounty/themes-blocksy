@@ -34,7 +34,25 @@ const SpacingInput = ({ value, option, onChange, currentUnit }) => {
 		)
 	}
 
-	const handleChange = (futureValue, sideIndex) => {
+	const handleChange = (futureValue, args = {}) => {
+		args = {
+			sideIndex: 0,
+			shouldClamp: false,
+			...args,
+		}
+
+		let clampedValue = futureValue
+
+		if (args.shouldClamp) {
+			if (Object.keys(option).includes('min')) {
+				clampedValue = Math.max(option.min, clampedValue)
+			}
+
+			if (Object.keys(option).includes('max')) {
+				clampedValue = Math.min(option.max, clampedValue)
+			}
+		}
+
 		if (value.state === SPACING_STATE_LINKED) {
 			onChange({
 				...value,
@@ -45,7 +63,7 @@ const SpacingInput = ({ value, option, onChange, currentUnit }) => {
 
 					return {
 						...v,
-						value: futureValue,
+						value: clampedValue,
 						unit: currentUnit,
 					}
 				}),
@@ -57,10 +75,10 @@ const SpacingInput = ({ value, option, onChange, currentUnit }) => {
 		onChange({
 			...value,
 			values: value.values.map((v, i) => {
-				if (i === sideIndex) {
+				if (i === args.sideIndex) {
 					return {
 						...v,
-						value: futureValue,
+						value: clampedValue,
 						unit: currentUnit,
 					}
 				}
@@ -83,7 +101,21 @@ const SpacingInput = ({ value, option, onChange, currentUnit }) => {
 								: value.values[index].value
 						}
 						onChange={({ target: { value: inputValue } }) => {
-							handleChange(inputValue, index)
+							handleChange(inputValue, {
+								sideIndex: index,
+							})
+						}}
+						onBlur={() => {
+							let finalValue = value.values[index].value
+
+							if (finalValue === 'auto') {
+								return
+							}
+
+							handleChange(finalValue, {
+								sideIndex: index,
+								shouldClamp: true,
+							})
 						}}
 						className={cls({
 							inactive: value.values[index].value === 'auto',
@@ -98,7 +130,14 @@ const SpacingInput = ({ value, option, onChange, currentUnit }) => {
 						{...getNumericKeyboardEvents({
 							value: value.values[index].value,
 							onChange: (inputValue) => {
-								handleChange(inputValue, index)
+								if (value.values[index].value === '') {
+									return
+								}
+
+								handleChange(inputValue, {
+									sideIndex: index,
+									shouldClamp: true,
+								})
 							},
 						})}
 					/>

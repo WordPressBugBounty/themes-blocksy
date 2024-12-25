@@ -20,7 +20,9 @@ if (! function_exists('blocksy_output_drawer_canvas')) {
 
 				$default_footer_elements[] = $elements->render_offcanvas();
 			}
+		}
 
+		if ($location === 'end') {
 			if (blocksy_get_theme_mod('has_back_top', 'no') === 'yes') {
 				ob_start();
 				blocksy_output_back_to_top_link();

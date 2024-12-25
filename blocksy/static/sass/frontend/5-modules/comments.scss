@@ -235,6 +235,7 @@
 			height: var(--has-classic-forms, var(--theme-form-field-height, 40px));
 			padding: var(--has-classic-forms, var(--theme-form-field-padding, 0 15px));
 			transition: opacity 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+						visibility 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955),
 						inset-inline-start 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 		}
 
@@ -248,6 +249,7 @@
 
 			label {
 				opacity: 0;
+				visibility: hidden;
 				inset-inline-start: 20px;
 			}
 		}

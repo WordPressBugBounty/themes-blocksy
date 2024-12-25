@@ -22,9 +22,20 @@ $menu_args = [];
 
 $menu = blocksy_default_akg('menu', $atts, 'blocksy_location');
 
+$menu_object = null;
+
 if ($menu === 'blocksy_location') {
+	$theme_locations = get_nav_menu_locations();
+
+	$menu_object = wp_get_nav_menu_object('');
+
+	if (isset($theme_locations[$location])) {
+		$menu_object = get_term($theme_locations[$location], 'nav_menu');
+	}
 } else {
 	$menu_args['menu'] = $menu;
+
+	$menu_object = wp_get_nav_menu_object($menu);
 }
 
 $menu_args['child_indicator_wrapper'] = 'yes';
@@ -80,12 +91,19 @@ if (strpos($menu_output, 'sub-menu')) {
 	$class .= ' has-submenu';
 }
 
+$aria_label = '';
+
+if ($menu_object && isset($menu_object->name)) {
+	$aria_label = 'aria-label="' . esc_attr($menu_object->name) . '"';
+}
+
 ?>
 
 <nav
 	class="<?php echo $class ?>"
 	<?php echo blocksy_attr_to_html($attr) ?>
-	aria-label="<?php echo __('Off Canvas Menu', 'blocksy')?>">
+	<?php echo $aria_label ?>>
+
 	<?php echo $menu_output ?>
 </nav>
 

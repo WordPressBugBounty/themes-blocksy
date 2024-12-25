@@ -175,6 +175,7 @@ export const getWooArchiveVariablesFor = () => ({
 		selector: '[data-products] .product',
 		type: 'spacing',
 		variable: 'theme-border-radius',
+		emptyValue: 3,
 		responsive: true,
 	},
 

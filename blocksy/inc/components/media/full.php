@@ -203,7 +203,6 @@ if (! function_exists('blocksy_media')) {
 
 				unset($args['html_atts']['href']);
 				unset($args['html_atts']['aria-label']);
-				unset($args['html_atts']['tabindex']);
 
 				if ($args['display_video'] !== 'pill') {
 					$args['html_atts']['data-media-id'] = $args['attachment_id'];

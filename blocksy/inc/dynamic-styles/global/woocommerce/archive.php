@@ -237,13 +237,9 @@ blocksy_output_spacing([
 	'selector' => '[data-products] .product',
 	'property' => 'theme-border-radius',
 	'value' => blocksy_get_theme_mod( 'cardProductRadius',
-		blocksy_spacing_value([
-			'top' => '3px',
-			'left' => '3px',
-			'right' => '3px',
-			'bottom' => '3px',
-		])
-	)
+		blocksy_spacing_value()
+	),
+	'empty_value' => 3,
 ]);
 
 

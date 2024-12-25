@@ -267,14 +267,11 @@ blocksy_output_spacing([
 	'mobile_css' => $mobile_css,
 	'selector' => ':root',
 	'property' => 'theme-button-border-radius',
-	'value' => blocksy_get_theme_mod( 'buttonRadius',
-		blocksy_spacing_value([
-			'top' => '3px',
-			'left' => '3px',
-			'right' => '3px',
-			'bottom' => '3px',
-		])
-	)
+	'value' => blocksy_get_theme_mod(
+		'buttonRadius',
+		blocksy_spacing_value()
+	),
+	'empty_value' => 3,
 ]);
 
 blocksy_output_spacing([
@@ -670,13 +667,9 @@ if ($has_back_top === 'yes') {
 			'property' => 'theme-border-radius',
 			'value' => blocksy_get_theme_mod(
 				'topButtonRadius',
-				blocksy_spacing_value([
-					'top' => '2px',
-					'left' => '2px',
-					'right' => '2px',
-					'bottom' => '2px',
-				])
-			)
+				blocksy_spacing_value()
+			),
+			'empty_value' => 2,
 		]);
 	}
 

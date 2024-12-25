@@ -1219,12 +1219,11 @@ $options = [
 							'type' => 'ct-spacing',
 							'divider' => 'top:full',
 							'setting' => [ 'transport' => 'postMessage' ],
-							'value' => blocksy_spacing_value([
-								'top' => '3px',
-								'left' => '3px',
-								'right' => '3px',
-								'bottom' => '3px',
-							]),
+							'value' => blocksy_spacing_value(),
+							'inputAttr' => [
+								'placeholder' => '3'
+							],
+							'min' => 0,
 							'responsive' => true
 						],
 					]

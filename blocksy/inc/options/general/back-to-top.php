@@ -288,13 +288,11 @@ $options = [
 								'type' => 'ct-spacing',
 								'divider' => 'top',
 								'setting' => [ 'transport' => 'postMessage' ],
-								'value' => blocksy_spacing_value([
-									'top' => '2px',
-									'left' => '2px',
-									'right' => '2px',
-									'bottom' => '2px',
-								]),
-								// 'responsive' => true
+								'value' => blocksy_spacing_value(),
+								'inputAttr' => [
+									'placeholder' => '2'
+								],
+								'min' => 0,
 							],
 
 						],

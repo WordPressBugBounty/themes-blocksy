@@ -55,13 +55,24 @@ $dropdown_items_type = blocksy_default_akg('dropdown_items_type', $atts, 'simple
 
 $dropdown_output = 'data-dropdown="' . $dropdown_animation . ':' . $dropdown_items_type . '"';
 
-
 $menu = blocksy_default_akg('menu', $atts, 'blocksy_location');
+
+$menu_object = null;
 
 if ($menu === 'blocksy_location') {
 	$menu_args['theme_location'] = $location;
+
+	$theme_locations = get_nav_menu_locations();
+
+	$menu_object = wp_get_nav_menu_object('');
+
+	if (isset($theme_locations[$location])) {
+		$menu_object = get_term($theme_locations[$location], 'nav_menu');
+	}
 } else {
 	$menu_args['menu'] = $menu;
+
+	$menu_object = wp_get_nav_menu_object($menu);
 }
 
 ob_start();
@@ -109,6 +120,12 @@ if (
 	$responsive_output = '';
 }
 
+$aria_label = '';
+
+if ($menu_object && isset($menu_object->name)) {
+	$aria_label = 'aria-label="' . esc_attr($menu_object->name) . '"';
+}
+
 ?>
 
 <nav
@@ -120,7 +137,7 @@ if (
 	<?php echo $stretch_output ?>
 	<?php echo wp_kses_post($responsive_output) ?>
 	<?php echo blocksy_schema_org_definitions('navigation') ?>
-	aria-label="<?php echo __('Header Menu', 'blocksy')?>">
+	<?php echo $aria_label ?>>
 
 	<?php echo $menu_content; ?>
 </nav>

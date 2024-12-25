@@ -153,6 +153,6 @@ export const getPaginationVariables = () => ({
 		selector: applyPrefixFor('.ct-pagination', prefix),
 		type: 'spacing',
 		variable: 'theme-border-radius',
-		// responsive: true,
+		emptyValue: 4,
 	},
 })

@@ -231,14 +231,6 @@ if (! function_exists('blocksy_render_archive_card')) {
 			$featured_image_args['ratio'] = 'original';
 		}
 
-		if (
-			$has_title
-			&&
-			$has_link
-		) {
-			$featured_image_args['html_atts']['tabindex'] = '-1';
-		}
-
 		$featured_image_args['class'] = '';
 
 		if (

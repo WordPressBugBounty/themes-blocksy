@@ -1,3 +1,8 @@
+2.0.83: 2024-12-25
+- Improvement: Button border radius - smarter CSS output
+- Improvement: Minor accessibility improvements
+- Improvement: Single product gallery - better direction logic for RTL mode
+
 2.0.82: 2024-12-20
 - Improvement: Advanced Posts - make sure "load more" pagination works properly in all cases
 - Improvement: Contacts element - safer obfuscation of specific email addresses

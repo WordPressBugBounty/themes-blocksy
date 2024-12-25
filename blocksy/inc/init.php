@@ -516,6 +516,7 @@ require get_template_directory() . '/inc/classes/blocksy-blocks-parser.php';
 require get_template_directory() . '/inc/components/global-attrs.php';
 require get_template_directory() . '/inc/components/vertical-spacing.php';
 require get_template_directory() . '/inc/components/customizer-builder.php';
+require get_template_directory() . '/inc/components/skip-to-content-link.php';
 
 require get_template_directory() . '/inc/components/emoji-scripts.php';
 require get_template_directory() . '/inc/schema-org.php';

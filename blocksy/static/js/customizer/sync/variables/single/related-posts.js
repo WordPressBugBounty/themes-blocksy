@@ -202,7 +202,7 @@ export const getSingleElementsVariables = () => ({
 		selector: applyPrefixFor('.post-navigation figure', prefix),
 		type: 'spacing',
 		variable: 'theme-border-radius',
-		// responsive: true,
+		emptyValue: 100,
 	},
 
 

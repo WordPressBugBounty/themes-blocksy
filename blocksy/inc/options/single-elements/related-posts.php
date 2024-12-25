@@ -886,6 +886,7 @@ $options = [
 								'inputAttr' => [
 									'placeholder' => '5'
 								],
+								'min' => 0,
 								'responsive' => true,
 								'sync' => 'live',
 							],

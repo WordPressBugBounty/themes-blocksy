@@ -30,11 +30,10 @@ const maybeCreateMoreItemsFor = (nav, onDone) => {
 	moreContainer.classList.add('more-items-container')
 	moreContainer.classList.add('animated-submenu-block')
 	moreContainer.classList.add('menu-item')
-	moreContainer.role = 'none'
 
 	moreContainer.insertAdjacentHTML(
 		'afterbegin',
-		`<a href="#" class="ct-menu-link" role="menuitem">
+		`<a href="#" class="ct-menu-link">
       ${ct_localizations.more_text}
       <span class="ct-toggle-dropdown-desktop">
         <svg class="ct-icon" width="8" height="8" viewBox="0 0 15 15">
@@ -42,8 +41,8 @@ const maybeCreateMoreItemsFor = (nav, onDone) => {
         </svg>
       </span>
     </a>
-    <button class="ct-toggle-dropdown-desktop-ghost" aria-expanded="false" aria-label="${ct_localizations.expand_submenu}" role="menuitem"></button>
-    <ul class="sub-menu" role="menu"></ul>`
+    <button class="ct-toggle-dropdown-desktop-ghost" aria-expanded="false" aria-label="${ct_localizations.expand_submenu}"></button>
+    <ul class="sub-menu"></ul>`
 	)
 
 	getNavRootEl(nav).appendChild(moreContainer)
