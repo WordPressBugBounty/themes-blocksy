@@ -1152,6 +1152,14 @@ $options = [
 
 							],
 						],
+					],
+
+					$card_additional_actions_design_options,
+
+					[
+						blocksy_rand_md5() => [
+							'type' => 'ct-divider',
+						],
 
 						blocksy_rand_md5() => [
 							'type' => 'ct-condition',
@@ -1162,8 +1170,8 @@ $options = [
 									'label' => __( 'Card Background Color', 'blocksy' ),
 									'type'  => 'ct-color-picker',
 									'design' => 'block:right',
+									'divider' => 'bottom',
 									'responsive' => true,
-									'divider' => 'top:full',
 									'setting' => [ 'transport' => 'postMessage' ],
 									'value' => [
 										'default' => [
@@ -1184,7 +1192,7 @@ $options = [
 									'label' => __( 'Card Shadow', 'blocksy' ),
 									'type' => 'ct-box-shadow',
 									'responsive' => true,
-									'divider' => 'top',
+									'divider' => 'bottom',
 									'setting' => [ 'transport' => 'postMessage' ],
 									'value' => blocksy_box_shadow_value([
 										'enable' => true,
@@ -1199,13 +1207,25 @@ $options = [
 									])
 								],
 
+								'cardProductBorder' => [
+									'label' => __( 'Card Border', 'blocksy' ),
+									'type' => 'ct-border',
+									'design' => 'block',
+									'sync' => 'live',
+									'divider' => 'bottom',
+									'responsive' => true,
+									'value' => [
+										'width' => 1,
+										'style' => 'none',
+										'color' => [
+											'color' => 'rgba(0, 0, 0, 0.05)',
+										],
+									]
+								],
+
 							],
 						],
-					],
 
-					$card_additional_actions_design_options,
-
-					[
 						'cardProductRadius' => [
 							'label' => [
 								__('Image Border Radius', 'blocksy') => [
@@ -1217,7 +1237,6 @@ $options = [
 								]
 							],
 							'type' => 'ct-spacing',
-							'divider' => 'top:full',
 							'setting' => [ 'transport' => 'postMessage' ],
 							'value' => blocksy_spacing_value(),
 							'inputAttr' => [

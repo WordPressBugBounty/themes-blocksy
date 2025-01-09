@@ -619,6 +619,24 @@ if ($shop_cards_type === 'type-2') {
 		])),
 		'responsive' => true
 	]);
+
+	blocksy_output_border([
+		'css' => $css,
+		'tablet_css' => $tablet_css,
+		'mobile_css' => $mobile_css,
+		'selector' => '[data-products="type-2"]',
+		'variableName' => 'card-border',
+		'value' => blocksy_get_theme_mod('cardProductBorder'),
+		'default' => [
+			'width' => 1,
+			'style' => 'none',
+			'color' => [
+				'color' => 'rgba(0, 0, 0, 0.05)',
+			],
+		],
+		'responsive' => true,
+		'skip_none' => true
+	]);
 }
 
 

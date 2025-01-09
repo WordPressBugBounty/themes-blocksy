@@ -103,10 +103,22 @@ export const mount = (paginationContainer) => {
 			toAppend: '.ct-pagination',
 		}) || '.ct-pagination'
 
+	const nextEl = paginationContainer.querySelector('.next')
+
+	let pathParam = `${paginationSelector} .next`
+
+	if (nextEl && nextEl.href && nextEl.href.indexOf('paged=') > -1) {
+		const parsedHref = new URL(nextEl.href)
+
+		parsedHref.searchParams.set('paged', '{{#}}')
+
+		pathParam = decodeURIComponent(parsedHref.toString())
+	}
+
 	let inf = new InfiniteScroll(layoutEl, {
 		// debug: true,
 		checkLastPage: `${paginationSelector} .next`,
-		path: `${paginationSelector} .next`,
+		path: pathParam,
 		append: getAppendSelectorFor(layoutEl),
 		button:
 			paginationType === 'load_more'
@@ -190,7 +202,7 @@ function getAppendSelectorFor(layoutEl, args = {}) {
 			layoutEl.closest('.wp-block-blocksy-query').dataset.id
 		}"] ${
 			args.toAppend === 'default'
-				? '.ct-query-template-grid > *, .ct-query-template-default > *'
+				? '[class*="ct-query-template"] > *, .entries > *'
 				: args.toAppend
 		}`
 	}

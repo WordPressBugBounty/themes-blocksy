@@ -383,6 +383,13 @@ export const getWooArchiveVariablesFor = () => ({
 		responsive: true,
 	},
 
+	cardProductBorder: {
+		selector: '[data-products="type-2"]',
+		variable: 'card-border',
+		type: 'border',
+		responsive: true,
+	},
+
 	// csrds type 1 and type 3
 	shop_cards_alignment: [
 		{

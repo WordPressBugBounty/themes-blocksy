@@ -179,10 +179,48 @@
 		}
 	}
 
-	.ct-option-color-value,
+	.ct-gutenberg-color-picker .ct-option-color-value,
+	.ct-gutenberg-color-picker .ct-option-color-variable,
 	.ct-color-picker-palette,
 	.ct-image-tab > *:not(:last-child) {
 		border-color: $border;
+	}
+
+	.ct-color-picker-palette span.active {
+		box-shadow: none;
+
+		&:before {
+			display: none;;
+		}
+	}
+
+	.ct-gradient-tab {
+
+		.components-custom-gradient-picker__type-picker,
+		.components-angle-picker-control__input-field {
+
+			.components-input-control__label {
+				color: lighten($background, 65%);
+			}
+
+			.components-input-control__container {
+				color: $light;
+				background: $background_light;
+
+				.components-input-control__backdrop {
+					border-color: $border !important;
+					box-shadow: none !important;
+				}
+			}
+		}
+
+		.components-angle-picker-control__angle-circle {
+			border-color: $border;
+
+			.components-angle-picker-control__angle-circle-indicator {
+				background: var(--ui-accent-color);
+			}
+		}
 	}
 
 
@@ -402,6 +440,11 @@
 		}
 	}
 
+	.ct-box-shadow-modal > *:not(:last-child),
+	.shadow-sliders > section:not(:last-child) {
+		border-color: var(--optionBorderColor);
+	}
+
 
 	// ratio picker
 	.ct-ratio-preview {
@@ -521,17 +564,24 @@
 
 	// option modal tabs
 	.ct-modal-tabs {
-		li {
-			color: lighten($background, 30%);
-			border-bottom-color: lighten($border, 5%);
 
-			&.active,
-			&:hover {
-				color: lighten($background, 60%);
-			}
+		li {
+			border-bottom-color: $border;
 
 			&:not(:last-child) {
-				border-right-color: lighten($border, 5%);
+				border-right-color: $border;
+			}
+
+			&:not(.active) {
+				color: lighten($background, 30%);
+
+				&:hover {
+					color: lighten($background, 60%);
+				}
+			}
+
+			&.active {
+				color: lighten($background, 60%);
 			}
 		}
 	}

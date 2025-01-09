@@ -3,7 +3,7 @@
 	color: var(--theme-form-field-border-initial-color);
 
 	&:not(:where(.is-style-wide, .is-style-dots, .alignfull, .alignwide)) {
-		--theme-block-max-width: 100px;
+		max-width: 100px;
 	}
 
 	&:not(.is-style-dots) {

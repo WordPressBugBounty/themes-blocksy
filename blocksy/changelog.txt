@@ -1,3 +1,12 @@
+2.0.84: 2025-01-09
+- Improvement: Bad text contrast in Customizer dark mode for pop-overs with tabs
+- Improvement: Customizer live preview does not update correctly for "Content Area Vertical Spacing" for page title type 2
+- Improvement: Footer columns - make sure columns are properly rendered when the child container has an extra long width
+- Improvement: Make sure load more/infinite pagination works properly with plain permalinks
+- Fix: Advanced Posts block - load more/infinite loading pagination breaks when "Inherit from Customiser" option is set
+- Fix: Separator block displays the "wide" alignment even if it's set to "default"
+- Fix: Widgets screen breaks in some certain cases when inserting blocks
+
 2.0.83: 2024-12-25
 - Improvement: Button border radius - smarter CSS output
 - Improvement: Minor accessibility improvements

@@ -282,7 +282,9 @@ function blocksy_get_image_video_component($media_id, $args = []) {
 			$id = explode('?', $video_data['url'])[1];
 			$id = str_replace('v=', '', array_reverse(explode('/', $id))[0]);
 
-			$additional_parmas['playlist'] = $id;
+			if (strpos($video_data['url'], 'youtube.com/shorts/') === false) {
+				$additional_parmas['playlist'] = $id;
+			}
 		}
 
 		$additional_parmas = array_merge($additional_parmas, [

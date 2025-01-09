@@ -70,7 +70,7 @@
 	}
 
 	.ct-slider:before {
-		background: #e3e6e8;
+		background: var(--backgroundColor, #e3e6e8);
 	}
 }
 

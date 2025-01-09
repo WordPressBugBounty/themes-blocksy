@@ -118,8 +118,21 @@ class WooCommerceBoot {
 	public function allow_product_collection_block_in_widgets($block_types) {
 		global $pagenow;
 
-		if (in_array($pagenow, ['widgets.php'], true)) {
-			$block_types[] = 'ProductCollection';
+		if (in_array($pagenow, ['widgets.php', 'customize.php'], true)) {
+			if (class_exists('Automattic\WooCommerce\Blocks\BlockTypes\ProductCollection\Controller')) {
+				$block_types[] = 'ProductCollection\Controller';
+				$block_types[] = 'ProductCollection\NoResults';
+			} else {
+				$block_types[] = 'ProductCollection';
+			}
+
+			// Enqueued to allow registering atomic Woo blocks, like
+			// woocommerce/product-image, woocommerce/product-price, etc.
+			//
+			// These atomic blocks are referenced in the inner blocks template
+			// of the ProductCollection block and cause errors in block editor
+			// if not present.
+			$block_types[] = 'AllProducts';
 		}
 
 		return $block_types;

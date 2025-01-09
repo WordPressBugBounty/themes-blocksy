@@ -1,4 +1,4 @@
-# Copyright (C) 2024 blocksy
+# Copyright (C) 2025 blocksy
 # This file is distributed under the same license as the blocksy package.
 #, fuzzy
 msgid ""
@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-25 19:55+0000\n"
+"POT-Creation-Date: 2025-01-09 16:55+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -380,8 +380,8 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:84,
 #: inc/panel-builder/header/menu/options.php:670,
 #: inc/panel-builder/header/middle-row/options.php:41,
-#: inc/panel-builder/header/middle-row/options.php:373,
-#: inc/panel-builder/header/middle-row/options.php:480
+#: inc/panel-builder/header/middle-row/options.php:382,
+#: inc/panel-builder/header/middle-row/options.php:489
 #: static/js/backend/woo-variation.js:46
 #: static/js/options/components/InputWithValidCssExpression.js:9
 #: static/js/options/options/typography/helpers.js:122
@@ -1233,7 +1233,7 @@ msgstr ""
 #: inc/panel-builder/header/logo/options.php:181,
 #: inc/panel-builder/header/logo/options.php:226,
 #: inc/panel-builder/header/logo/options.php:366,
-#: inc/panel-builder/header/middle-row/options.php:127,
+#: inc/panel-builder/header/middle-row/options.php:136,
 #: inc/panel-builder/header/mobile-menu/options.php:172,
 #: inc/panel-builder/header/search/options.php:74,
 #: inc/panel-builder/header/search/options.php:863,
@@ -1278,7 +1278,7 @@ msgstr ""
 #: inc/panel-builder/header/logo/options.php:182,
 #: inc/panel-builder/header/logo/options.php:227,
 #: inc/panel-builder/header/logo/options.php:367,
-#: inc/panel-builder/header/middle-row/options.php:128,
+#: inc/panel-builder/header/middle-row/options.php:137,
 #: inc/panel-builder/header/mobile-menu/options.php:173,
 #: inc/panel-builder/header/search/options.php:75,
 #: inc/panel-builder/header/search/options.php:864,
@@ -1341,7 +1341,7 @@ msgstr ""
 #: inc/panel-builder/header/logo/options.php:402,
 #: inc/panel-builder/header/menu/options.php:152,
 #: inc/panel-builder/header/menu/options.php:733,
-#: inc/panel-builder/header/middle-row/options.php:139,
+#: inc/panel-builder/header/middle-row/options.php:148,
 #: inc/panel-builder/header/mobile-menu/options.php:185,
 #: inc/panel-builder/header/offcanvas/options.php:121,
 #: inc/panel-builder/header/offcanvas-logo/options.php:71,
@@ -1441,7 +1441,7 @@ msgstr ""
 #: inc/options/woocommerce/card-product-elements.php:1067,
 #: inc/options/woocommerce/card-product-elements.php:1098,
 #: inc/options/woocommerce/card-product-elements.php:1142,
-#: inc/options/woocommerce/card-product-elements.php:1176,
+#: inc/options/woocommerce/card-product-elements.php:1184,
 #: inc/options/woocommerce/related-upsells.php:171,
 #: inc/options/woocommerce/results-count.php:74,
 #: inc/options/woocommerce/single-product-elements.php:162,
@@ -1734,10 +1734,10 @@ msgstr ""
 #: inc/options/general/sidebar.php:461,
 #: inc/options/single-elements/author-box.php:471,
 #: inc/panel-builder/footer/options.php:63,
-#: inc/panel-builder/header/middle-row/options.php:493,
-#: inc/panel-builder/header/middle-row/options.php:520,
-#: inc/panel-builder/header/middle-row/options.php:538,
-#: inc/panel-builder/header/middle-row/options.php:556
+#: inc/panel-builder/header/middle-row/options.php:502,
+#: inc/panel-builder/header/middle-row/options.php:529,
+#: inc/panel-builder/header/middle-row/options.php:547,
+#: inc/panel-builder/header/middle-row/options.php:565
 msgid "Shadow"
 msgstr ""
 
@@ -1973,7 +1973,7 @@ msgstr ""
 #: inc/options/woocommerce/single-product-gallery.php:373,
 #: inc/panel-builder/header/button/options.php:834,
 #: inc/panel-builder/header/cart/options.php:1087,
-#: inc/panel-builder/header/middle-row/options.php:581,
+#: inc/panel-builder/header/middle-row/options.php:590,
 #: inc/panel-builder/header/offcanvas/options.php:371,
 #: inc/panel-builder/header/search/options.php:827,
 #: inc/panel-builder/header/trigger/options.php:587
@@ -2018,10 +2018,10 @@ msgstr ""
 #: inc/panel-builder/header/cart/options.php:509,
 #: inc/panel-builder/header/cart/options.php:539,
 #: inc/panel-builder/header/cart/options.php:955,
-#: inc/panel-builder/header/middle-row/options.php:145,
-#: inc/panel-builder/header/middle-row/options.php:172,
+#: inc/panel-builder/header/middle-row/options.php:154,
 #: inc/panel-builder/header/middle-row/options.php:181,
-#: inc/panel-builder/header/middle-row/options.php:196,
+#: inc/panel-builder/header/middle-row/options.php:190,
+#: inc/panel-builder/header/middle-row/options.php:205,
 #: inc/panel-builder/header/offcanvas/options.php:234,
 #: inc/panel-builder/header/search/options.php:695
 msgid "Background"
@@ -3162,16 +3162,17 @@ msgid "Card Overlay Color"
 msgstr ""
 
 #: inc/options/general/posts-listing.php:1413,
-#: inc/options/woocommerce/card-product-elements.php:1162
+#: inc/options/woocommerce/card-product-elements.php:1170
 msgid "Card Background Color"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1429
+#: inc/options/general/posts-listing.php:1429,
+#: inc/options/woocommerce/card-product-elements.php:1211
 msgid "Card Border"
 msgstr ""
 
 #: inc/options/general/posts-listing.php:1445,
-#: inc/options/woocommerce/card-product-elements.php:1184
+#: inc/options/woocommerce/card-product-elements.php:1192
 msgid "Card Shadow"
 msgstr ""
 
@@ -3931,7 +3932,7 @@ msgid "Posts Meta Font Color"
 msgstr ""
 
 #: inc/options/single-elements/related-posts.php:882,
-#: inc/options/woocommerce/card-product-elements.php:1211
+#: inc/options/woocommerce/card-product-elements.php:1231
 msgid "Image Border Radius"
 msgstr ""
 
@@ -4144,7 +4145,7 @@ msgstr ""
 msgid "Button Text Color"
 msgstr ""
 
-#: inc/options/woocommerce/card-product-elements.php:1215
+#: inc/options/woocommerce/card-product-elements.php:1235
 msgid "Card Border Radius"
 msgstr ""
 
@@ -4443,8 +4444,8 @@ msgstr ""
 #: inc/panel-builder/footer/middle-row/options.php:627,
 #: inc/panel-builder/footer/middle-row/options.php:668,
 #: inc/panel-builder/header/middle-row/options.php:43,
-#: inc/panel-builder/header/middle-row/options.php:374,
-#: inc/panel-builder/header/middle-row/options.php:481
+#: inc/panel-builder/header/middle-row/options.php:383,
+#: inc/panel-builder/header/middle-row/options.php:490
 msgid "Full Width"
 msgstr ""
 
@@ -4947,7 +4948,7 @@ msgid "Row Vertical Spacing"
 msgstr ""
 
 #: inc/panel-builder/footer/middle-row/options.php:441,
-#: inc/panel-builder/header/middle-row/options.php:117
+#: inc/panel-builder/header/middle-row/options.php:126
 msgid "Row Visibility"
 msgstr ""
 
@@ -4960,7 +4961,7 @@ msgid "Row Top Divider"
 msgstr ""
 
 #: inc/panel-builder/footer/middle-row/options.php:618,
-#: inc/panel-builder/header/middle-row/options.php:365
+#: inc/panel-builder/header/middle-row/options.php:374
 msgid "Top Border Width"
 msgstr ""
 
@@ -4969,7 +4970,7 @@ msgid "Row Bottom Divider"
 msgstr ""
 
 #: inc/panel-builder/footer/middle-row/options.php:659,
-#: inc/panel-builder/header/middle-row/options.php:472
+#: inc/panel-builder/header/middle-row/options.php:481
 msgid "Bottom Border Width"
 msgstr ""
 
@@ -5198,11 +5199,11 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:409,
 #: inc/panel-builder/header/menu/options.php:760,
 #: inc/panel-builder/header/menu/options.php:913,
-#: inc/panel-builder/header/middle-row/options.php:150,
-#: inc/panel-builder/header/middle-row/options.php:218,
-#: inc/panel-builder/header/middle-row/options.php:285,
-#: inc/panel-builder/header/middle-row/options.php:392,
-#: inc/panel-builder/header/middle-row/options.php:498,
+#: inc/panel-builder/header/middle-row/options.php:159,
+#: inc/panel-builder/header/middle-row/options.php:227,
+#: inc/panel-builder/header/middle-row/options.php:294,
+#: inc/panel-builder/header/middle-row/options.php:401,
+#: inc/panel-builder/header/middle-row/options.php:507,
 #: inc/panel-builder/header/mobile-menu/options.php:352,
 #: inc/panel-builder/header/search/options.php:154,
 #: inc/panel-builder/header/search/options.php:280,
@@ -5229,11 +5230,11 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:415,
 #: inc/panel-builder/header/menu/options.php:765,
 #: inc/panel-builder/header/menu/options.php:918,
-#: inc/panel-builder/header/middle-row/options.php:155,
-#: inc/panel-builder/header/middle-row/options.php:223,
-#: inc/panel-builder/header/middle-row/options.php:290,
-#: inc/panel-builder/header/middle-row/options.php:397,
-#: inc/panel-builder/header/middle-row/options.php:503,
+#: inc/panel-builder/header/middle-row/options.php:164,
+#: inc/panel-builder/header/middle-row/options.php:232,
+#: inc/panel-builder/header/middle-row/options.php:299,
+#: inc/panel-builder/header/middle-row/options.php:406,
+#: inc/panel-builder/header/middle-row/options.php:512,
 #: inc/panel-builder/header/mobile-menu/options.php:357,
 #: inc/panel-builder/header/search/options.php:159,
 #: inc/panel-builder/header/search/options.php:285,
@@ -5260,11 +5261,11 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:425,
 #: inc/panel-builder/header/menu/options.php:774,
 #: inc/panel-builder/header/menu/options.php:927,
-#: inc/panel-builder/header/middle-row/options.php:163,
-#: inc/panel-builder/header/middle-row/options.php:231,
-#: inc/panel-builder/header/middle-row/options.php:298,
-#: inc/panel-builder/header/middle-row/options.php:405,
-#: inc/panel-builder/header/middle-row/options.php:511,
+#: inc/panel-builder/header/middle-row/options.php:172,
+#: inc/panel-builder/header/middle-row/options.php:240,
+#: inc/panel-builder/header/middle-row/options.php:307,
+#: inc/panel-builder/header/middle-row/options.php:414,
+#: inc/panel-builder/header/middle-row/options.php:520,
 #: inc/panel-builder/header/mobile-menu/options.php:366,
 #: inc/panel-builder/header/search/options.php:168,
 #: inc/panel-builder/header/search/options.php:293,
@@ -5656,36 +5657,36 @@ msgstr ""
 msgid "Row Min Height"
 msgstr ""
 
-#: inc/panel-builder/header/middle-row/options.php:62
+#: inc/panel-builder/header/middle-row/options.php:69
 msgid "Sticky State Row Shrink"
 msgstr ""
 
-#: inc/panel-builder/header/middle-row/options.php:79
+#: inc/panel-builder/header/middle-row/options.php:88
 msgid "Row Max Height"
 msgstr ""
 
-#: inc/panel-builder/header/middle-row/options.php:100
+#: inc/panel-builder/header/middle-row/options.php:109
 msgid "Render Empty Row"
 msgstr ""
 
-#: inc/panel-builder/header/middle-row/options.php:213,
-#: inc/panel-builder/header/middle-row/options.php:240,
-#: inc/panel-builder/header/middle-row/options.php:250,
-#: inc/panel-builder/header/middle-row/options.php:260
+#: inc/panel-builder/header/middle-row/options.php:222,
+#: inc/panel-builder/header/middle-row/options.php:249,
+#: inc/panel-builder/header/middle-row/options.php:259,
+#: inc/panel-builder/header/middle-row/options.php:269
 msgid "Backdrop Blur"
 msgstr ""
 
-#: inc/panel-builder/header/middle-row/options.php:280,
-#: inc/panel-builder/header/middle-row/options.php:307,
-#: inc/panel-builder/header/middle-row/options.php:321,
-#: inc/panel-builder/header/middle-row/options.php:336
+#: inc/panel-builder/header/middle-row/options.php:289,
+#: inc/panel-builder/header/middle-row/options.php:316,
+#: inc/panel-builder/header/middle-row/options.php:330,
+#: inc/panel-builder/header/middle-row/options.php:345
 msgid "Top Border"
 msgstr ""
 
-#: inc/panel-builder/header/middle-row/options.php:387,
-#: inc/panel-builder/header/middle-row/options.php:414,
-#: inc/panel-builder/header/middle-row/options.php:429,
-#: inc/panel-builder/header/middle-row/options.php:444
+#: inc/panel-builder/header/middle-row/options.php:396,
+#: inc/panel-builder/header/middle-row/options.php:423,
+#: inc/panel-builder/header/middle-row/options.php:438,
+#: inc/panel-builder/header/middle-row/options.php:453
 msgid "Bottom Border"
 msgstr ""
 

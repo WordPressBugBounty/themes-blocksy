@@ -58,15 +58,24 @@ $options = [
 				'setting' => [ 'transport' => 'postMessage' ],
 			],
 
-			'has_sticky_shrink' => [
-				'label' => __( 'Sticky State Row Shrink', 'blocksy' ),
-				'type' => 'ct-switch',
-				'type' => $has_shrink ? 'ct-switch' : 'hidden',
-				'value' => 'no',
-				'divider' => 'top',
 
-				'sync' => [
-					'id' => 'header_placements_1'
+			blocksy_rand_md5() => [
+				'type' => 'ct-condition',
+				'condition' => [
+					'builderSettings/has_sticky_header' => 'yes'
+				],
+				'options' => [
+					'has_sticky_shrink' => [
+						'label' => __( 'Sticky State Row Shrink', 'blocksy' ),
+						'type' => 'ct-switch',
+						'type' => $has_shrink ? 'ct-switch' : 'hidden',
+						'value' => 'no',
+						'divider' => 'top',
+
+						'sync' => [
+							'id' => 'header_placements_1'
+						]
+					],
 				]
 			],
 

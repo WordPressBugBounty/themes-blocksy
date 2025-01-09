@@ -29,7 +29,7 @@ watchOptionsWithPrefix({
 			return
 		}
 
-		let el = document.querySelector('.site-main > div')
+		let el = document.querySelector('.site-main > [class*="ct-container"]')
 
 		if (!el) {
 			return
