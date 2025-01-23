@@ -69,22 +69,39 @@ add_action(
 	10, 2
 );
 
-add_action(
-	'ss_after_setup_task',
-	function () {
-		\Simply_Static\Setup_Task::add_additional_files_to_db(
-			get_template_directory() . '/static/bundle'
-		);
+// old version
+// add_action(
+// 	'ss_after_setup_task',
+// 	function () {
+// 		\Simply_Static\Setup_Task::add_additional_files_to_db(
+// 			get_template_directory() . '/static/bundle'
+// 		);
+
+// 		if (defined('BLOCKSY_PATH')) {
+// 			\Simply_Static\Setup_Task::add_additional_files_to_db(
+// 				BLOCKSY_PATH . '/static/bundle'
+// 			);
+
+// 			\Simply_Static\Setup_Task::add_additional_files_to_db(
+// 				BLOCKSY_PATH . '/framework/premium/static/bundle'
+// 			);
+// 		}
+// 	}
+// );
+
+// new version
+add_filter(
+	'ss_additional_files',
+	function ($additional_files) {
+		$additional_files[] = get_template_directory() . '/static/bundle';
 
 		if (defined('BLOCKSY_PATH')) {
-			\Simply_Static\Setup_Task::add_additional_files_to_db(
-				BLOCKSY_PATH . '/static/bundle'
-			);
-
-			\Simply_Static\Setup_Task::add_additional_files_to_db(
-				BLOCKSY_PATH . '/framework/premium/static/bundle'
-			);
+			$additional_files[] = BLOCKSY_PATH . '/static/bundle';
+			$additional_files[] = BLOCKSY_PATH . '/framework/premium/static/bundle';
 		}
+
+		return $additional_files;
 	}
 );
+
 

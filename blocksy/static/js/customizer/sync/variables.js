@@ -528,6 +528,20 @@ const getAllVariables = () => {
 					type: 'color:hover',
 				},
 			],
+
+			breadcrumbs_home_icon_size: {
+				selector: '.ct-breadcrumbs .ct-home-icon',
+				variable: 'theme-icon-size',
+				responsive: true,
+				unit: 'px',
+			},
+
+			breadcrumbs_separator_size: {
+				selector: '.ct-breadcrumbs .ct-separator-custom',
+				variable: 'theme-icon-size',
+				responsive: true,
+				unit: 'px',
+			},
 		},
 	}
 

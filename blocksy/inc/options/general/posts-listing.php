@@ -361,9 +361,9 @@ $overridable_card_options = [
 
 								[
 									(
-										function_exists('blc_fs')
+										function_exists('blc_site_has_feature')
 										&&
-										blc_fs()->can_use_premium_code()
+										blc_site_has_feature('base_pro')
 									) ? [
 										'has_archive_video_thumbnail' => [
 											'label' => __( 'Video Thumbnail', 'blocksy' ),

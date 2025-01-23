@@ -201,4 +201,28 @@ Visibility.hiddenResponsive = true
 
 Visibility.ControlEnd = () => <div className="ct-visibility-modal-wrapper" />
 
+Visibility.renderingConfig = {
+	getValueForRevert: ({ value }) => {
+		if (typeof value === 'object') {
+			if (
+				value.desktop &&
+				value.desktop === value.tablet &&
+				value.tablet === value.mobile
+			) {
+				return true
+			}
+
+			if (
+				!value.desktop &&
+				value.desktop === value.tablet &&
+				value.tablet === value.mobile
+			) {
+				return false
+			}
+		}
+
+		return value
+	},
+}
+
 export default Visibility

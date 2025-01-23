@@ -45,6 +45,25 @@ $options = [
 				'setting' => [ 'transport' => 'postMessage' ],
 			],
 
+			'trigger_icon_visibility' => [
+				'label' => __('Icon Visibility', 'blocksy-companion'),
+				'type' => 'ct-visibility',
+				'design' => 'block',
+				'divider' => 'top',
+				'allow_empty' => true,
+				'value' => blocksy_default_responsive_value([
+					'desktop' => true,
+					'tablet' => true,
+					'mobile' => true,
+				]),
+
+				'choices' => blocksy_ordered_keys([
+					'desktop' => __('Desktop', 'blocksy-companion'),
+					'tablet' => __('Tablet', 'blocksy-companion'),
+					'mobile' => __('Mobile', 'blocksy-companion'),
+				]),
+			],
+
 			'trigger_design' => [
 				'type' => 'ct-radio',
 				'label' => __( 'Style', 'blocksy' ),

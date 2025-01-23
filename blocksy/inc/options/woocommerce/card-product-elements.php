@@ -26,7 +26,7 @@ $card_additional_actions_options = apply_filters(
 					]
 				]
 			],
-	
+
 			blocksy_rand_md5() => [
 				'type' => 'ct-condition',
 				'condition' => [
@@ -272,7 +272,7 @@ $options = [
 									'prefix' => 'woo_categories',
 									'loader_selector' => '[data-products] > li'
 								]),
-								
+
 								blocksy_sync_whole_page([
 									'id' => 'woo_card_layout_meta',
 									'prefix' => 'woo_categories',
@@ -353,9 +353,9 @@ $options = [
 											],
 
 											(
-												function_exists('blc_fs')
+												function_exists('blc_site_has_feature')
 												&&
-												blc_fs()->can_use_premium_code()
+												blc_site_has_feature('base_pro')
 											) ? [
 												'has_archive_video_thumbnail' => [
 													'label' => __( 'Video Thumbnail', 'blocksy' ),

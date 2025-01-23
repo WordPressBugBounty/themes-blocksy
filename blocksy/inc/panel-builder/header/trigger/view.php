@@ -36,6 +36,17 @@ $trigger_label_alignment = blocksy_expand_responsive_value(
 	blocksy_akg('trigger_label_alignment', $atts, 'right')
 );
 
+$trigger_class = trim(
+	'ct-icon ' .
+	blocksy_visibility_classes(
+		blocksy_akg('trigger_icon_visibility', $atts, [
+			'desktop' => true,
+			'tablet' => true,
+			'mobile' => true,
+		])
+	)
+);
+
 ?>
 
 <button
@@ -49,7 +60,7 @@ $trigger_label_alignment = blocksy_expand_responsive_value(
 	<span class="<?php echo $label_class ?>"><?php echo $trigger_label ?></span>
 
 	<svg
-		class="ct-icon"
+		class="<?php echo esc_attr($trigger_class) ?>"
 		width="18" height="14" viewBox="0 0 18 14"
 		aria-hidden="true"
 		data-type="<?php echo esc_attr($trigger_type) ?>">

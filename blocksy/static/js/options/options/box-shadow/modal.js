@@ -37,6 +37,12 @@ const BoxShadowModal = (props) => {
 		view = (
 			<BoxShadowOptions
 				{...props}
+				onChange={(newValue) => {
+					onChange({
+						...newValue,
+						inherit: false
+					})
+				}}
 				style={{
 					...styles,
 

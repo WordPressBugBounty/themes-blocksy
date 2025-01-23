@@ -316,7 +316,7 @@ export const handleResponsiveSwitch = ({
 export const responsiveClassesFor = (data, el) => {
 	el.classList.remove('ct-hidden-sm', 'ct-hidden-md', 'ct-hidden-lg')
 
-	if (typeof data !== 'object') {
+	if (typeof data === 'string') {
 		if (!wp.customize(data)) return
 
 		data = wp.customize(data)() || {
@@ -324,6 +324,10 @@ export const responsiveClassesFor = (data, el) => {
 			tablet: true,
 			desktop: true,
 		}
+	}
+
+	if (data === true) {
+		return
 	}
 
 	if (!data.mobile) {

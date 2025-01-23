@@ -1,5 +1,7 @@
 <?php
 
+$is_pro = function_exists('blc_site_has_feature') && blc_site_has_feature();
+
 // Color palette
 $paletteDefaults = [];
 $paletteVariables = [];
@@ -748,3 +750,33 @@ blocksy_output_colors([
 		],
 	],
 ]);
+
+if($is_pro) {
+
+	$breadcrumbs_home_icon_size = blocksy_get_theme_mod('breadcrumbs_home_icon_size', 15);
+
+	if ($breadcrumbs_home_icon_size !== 15) {
+		blocksy_output_responsive([
+			'css' => $css,
+			'tablet_css' => $tablet_css,
+			'mobile_css' => $mobile_css,
+			'selector' => '.ct-breadcrumbs .ct-home-icon',
+			'variableName' => 'theme-icon-size',
+			'value' => $breadcrumbs_home_icon_size
+		]);
+	}
+
+
+	$breadcrumb_separator_icon_source = blocksy_get_theme_mod('breadcrumb_separator_icon_source', 'default');
+
+	if($breadcrumb_separator_icon_source === 'custom') {
+		blocksy_output_responsive([
+			'css' => $css,
+			'tablet_css' => $tablet_css,
+			'mobile_css' => $mobile_css,
+			'selector' => '.ct-breadcrumbs .ct-separator-custom',
+			'variableName' => 'theme-icon-size',
+			'value' => blocksy_get_theme_mod('breadcrumbs_separator_size', 8),
+		]);
+	}
+}

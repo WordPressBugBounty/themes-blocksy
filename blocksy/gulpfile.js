@@ -10,6 +10,7 @@ const data = require('./package.json')
 
 const wpExternals = {
 	'@wordpress/element': 'window.wp.element',
+	'@wordpress/editor': 'window.wp.editor',
 	'@wordpress/is-shallow-equal': 'window.wp.isShallowEqual',
 	'@wordpress/media-utils': 'window.wp.mediaUtils',
 	'@wordpress/keyboard-shortcuts': 'window.wp.keyboardShortcuts',

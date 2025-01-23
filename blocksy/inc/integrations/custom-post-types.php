@@ -96,6 +96,7 @@ class CustomPostTypes {
 
 				// elementor
 				'elementor_library',
+				'e-floating-buttons',
 
 				// brizy
 				'brizy_template',

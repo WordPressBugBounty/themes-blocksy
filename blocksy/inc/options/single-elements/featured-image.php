@@ -23,7 +23,7 @@ $options = [
 				'options' => [
 
 					[
-						
+
 						$prefix . 'featured_image_ratio' => [
 							'label' => __( 'Image Ratio', 'blocksy' ),
 							'type' => 'ct-ratio',
@@ -31,7 +31,7 @@ $options = [
 							'value' => 'original',
 							'sync' => 'live',
 						],
-	
+
 						$prefix . 'featured_image_size' => [
 							'label' => __('Image Size', 'blocksy'),
 							'type' => 'ct-select',
@@ -44,13 +44,13 @@ $options = [
 							]),
 							'choices' => blocksy_ordered_keys(blocksy_get_all_image_sizes())
 						],
-						
+
 					],
 
 					(
-						function_exists('blc_fs')
+						function_exists('blc_site_has_feature')
 						&&
-						blc_fs()->can_use_premium_code()
+						blc_site_has_feature('base_pro')
 					) ? [
 						$prefix . 'video_thumbnail' => [
 							'label' => __( 'Video Thumbnail', 'blocksy' ),

@@ -16,12 +16,15 @@
 	color: var(--theme-text-color);
 	margin-bottom: 0;
 
-	@include media-breakpoint-up(lg) {
-		white-space: nowrap;
-	}
-
 	&:not(:only-child) {
 		margin-top: 0.3em;
+	}
+}
+
+.ct-header .site-description {
+	
+	@include media-breakpoint-up(lg) {
+		white-space: nowrap;
 	}
 }
 

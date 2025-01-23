@@ -10,14 +10,14 @@
 		align-items: center;
 		vertical-align: middle;
 
-		.ct-separator {
+		[class*="ct-separator"] {
 			margin: 0 8px;
 		}
 	}
 
 	.ct-home-icon {
-		position: relative;
-		top: -0.15em;
-		vertical-align: middle;
+		display: flex;
+		top: -0.1em;
+		fill: currentColor;
 	}
 }

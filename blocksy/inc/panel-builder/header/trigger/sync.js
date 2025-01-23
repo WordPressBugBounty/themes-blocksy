@@ -352,6 +352,14 @@ ctEvents.on(
 			})
 		}
 
+		if (optionId === 'trigger_icon_visibility') {
+			updateAndSaveEl(selector, (el) => {
+				;[...el.querySelectorAll('.ct-icon')].map((icon) => {
+					responsiveClassesFor(optionValue, icon)
+				})
+			})
+		}
+
 		if (optionId === 'trigger_label_alignment') {
 			updateAndSaveEl(
 				selector,

@@ -107,45 +107,48 @@ const replaceFirstImage = ({ container, image }) => {
 			}
 		})
 
-		if ($.fn.zoom) {
-			if (
-				(window.wp &&
-					wp.customize &&
-					wp.customize('has_product_single_zoom') &&
-					wp.customize('has_product_single_zoom')() === 'yes') ||
-				!window.wp ||
-				!wp.customize
-			) {
-				const rect = imgContainer.getBoundingClientRect()
-
+		setTimeout(() => {
+			if ($.fn.zoom) {
 				if (
-					parseFloat(imgContainer.getAttribute('data-width')) >
-					imgContainer
-						.closest('.woocommerce-product-gallery')
-						.getBoundingClientRect().width
+					(window.wp &&
+						wp.customize &&
+						wp.customize('has_product_single_zoom') &&
+						wp.customize('has_product_single_zoom')() === 'yes') ||
+					!window.wp ||
+					!wp.customize
 				) {
-					$(imgContainer).zoom({
-						url: imgContainer.href,
-						touch: false,
-						duration: 50,
+					const rect = imgContainer.getBoundingClientRect()
 
-						...(rect.width >
-							parseFloat(imgContainer.dataset.width) ||
-						rect.height > parseFloat(imgContainer.dataset.height)
-							? {
-									magnify: 2,
-							  }
-							: {}),
+					if (
+						parseFloat(imgContainer.getAttribute('data-width')) >
+						imgContainer
+							.closest('.woocommerce-product-gallery')
+							.getBoundingClientRect().width
+					) {
+						$(imgContainer).zoom({
+							url: imgContainer.href || imgContainer.dataset.src,
+							touch: false,
+							duration: 50,
 
-						...(isTouchDevice()
-							? {
-									on: 'toggle',
-							  }
-							: {}),
-					})
+							...(rect.width >
+								parseFloat(imgContainer.dataset.width) ||
+							rect.height >
+								parseFloat(imgContainer.dataset.height)
+								? {
+										magnify: 2,
+								  }
+								: {}),
+
+							...(isTouchDevice()
+								? {
+										on: 'toggle',
+								  }
+								: {}),
+						})
+					}
 				}
 			}
-		}
+		}, 5)
 	})
 }
 

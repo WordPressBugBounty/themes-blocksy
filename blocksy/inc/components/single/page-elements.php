@@ -126,6 +126,9 @@ if (! function_exists('blocksy_action_button')) {
 			[
 				'button_html_attributes' => [],
 				'icon' => '',
+				'icon_html_attributes' => [
+					'class' => ''
+				],
 				'icon_position' => 'start', // start | end
 				'content' => '',
 				'done_state' => false,
@@ -153,9 +156,12 @@ if (! function_exists('blocksy_action_button')) {
 
 		$icon = blocksy_html_tag(
 			'span',
-			[
-				'class' => 'ct-icon-container'
-			],
+			array_merge(
+				$attributes['icon_html_attributes'],
+				[
+					'class' => 'ct-icon-container' . ($attributes['icon_html_attributes']['class'] ? ' ' . $attributes['icon_html_attributes']['class'] : '')
+				]
+			),
 			$attributes['icon'] .
 			$loading_icon .
 			($attributes['done_state'] ? $done_icon : '')

@@ -230,6 +230,18 @@ if (! empty($aria_label)) {
 		$aria_label
 	);
 }
+
+$icon_classes = [
+	'ct-icon-container',
+	blocksy_visibility_classes(
+		blocksy_akg('cart_icon_visibility', $atts, [
+			'desktop' => true,
+			'tablet' => true,
+			'mobile' => true,
+		])
+	)
+];
+
 ?>
 
 <a class="<?php echo $item_class ?>"
@@ -252,7 +264,7 @@ if (! empty($aria_label)) {
 		);
 	?>
 
-	<span class="ct-icon-container">
+	<span class="<?php echo esc_attr(implode(' ', $icon_classes)) ?>">
 		<?php
 			echo $count_output;
 

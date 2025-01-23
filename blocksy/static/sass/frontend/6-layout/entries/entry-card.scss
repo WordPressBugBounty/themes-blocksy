@@ -5,19 +5,14 @@
 		--theme-link-initial-color: initial;
 	}
 
-	.entry-meta {
-		color: var(--theme-text-color);
-		--theme-link-initial-color: var(--theme-text-color);
-	}
+	// .entry-meta {
+	// 	color: var(--theme-text-color);
+	// 	--theme-link-initial-color: var(--theme-text-color);
+	// }
 
 	.entry-divider {
 		border-bottom: var(--entry-divider);
 	}
-
-	// .ct-ghost {
-	// 	margin: 0;
-	// 	flex: 1 0 auto;
-	// }
 }
 
 // elements spacing

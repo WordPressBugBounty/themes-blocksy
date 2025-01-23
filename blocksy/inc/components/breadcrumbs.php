@@ -31,7 +31,20 @@ class BreadcrumbsBuilder {
 		$home_icon = '';
 
 		if (blocksy_get_theme_mod('breadcrumb_home_item', 'text') === 'icon') {
-			$home_icon = '<svg class="ct-home-icon" width="15" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12,0L0.4,10.5h3.2V20h6.3v-6.3h4.2V20h6.3v-9.5h3.2L12,0z"/></svg>';
+			$home_icon = '<svg class="ct-icon ct-home-icon" width="15" height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7.5 1 0 7.8h2.1v6.1h4.1V9.8h2.7v4.1H13V7.8h2.1L7.5 1Z"/></svg>';
+
+			if (function_exists('blc_get_icon')) {		
+				$home_icon = blc_get_icon([
+					'icon_descriptor' => blocksy_get_theme_mod(
+						'breadcrumb_home_icon',
+						['icon' => 'blc blc-home-alt']
+					),
+					'icon_container' => false,
+					'icon_html_atts' => [
+						'class' => 'ct-icon ct-home-icon',
+					]
+				]);
+			}
 		}
 
 		$return = [
@@ -742,6 +755,26 @@ class BreadcrumbsBuilder {
 		$separator = $separators[
 			blocksy_get_theme_mod('breadcrumb_separator', 'type-1')
 		];
+
+		if (function_exists('blc_get_icon')) {
+			$icon_source = blocksy_get_theme_mod(
+				'breadcrumb_separator_icon_source',
+				'default'
+			);
+	
+			if ($icon_source === 'custom') {
+				$separator = blc_get_icon([
+					'icon_descriptor' => blocksy_get_theme_mod(
+						'breadcrumb_custom_separator',
+						['icon' => 'blc blc-arrow-right']
+					),
+					'icon_container' => false,
+					'icon_html_atts' => [
+						'class' => 'ct-icon ct-separator-custom',
+					]
+				]);
+			}
+		}
 
 		if (count($items) < 1) {
 			return '';

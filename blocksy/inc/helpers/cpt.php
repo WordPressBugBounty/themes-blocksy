@@ -5,13 +5,6 @@ function blocksy_get_taxonomies_for_cpt($post_type, $args = []) {
 		'return_empty' => false
 	]);
 
-	if ($post_type === 'post') {
-		return [
-			'category' => __('Category', 'blocksy'),
-			'post_tag' => __('Tag', 'blocksy')
-		];
-	}
-
 	if ($post_type === 'product') {
 		return [
 			'product_cat' => __('Category', 'blocksy'),

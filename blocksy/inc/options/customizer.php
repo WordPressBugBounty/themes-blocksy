@@ -37,7 +37,7 @@ $pro_title = [
 	]
 ];
 
-if (function_exists('blc_fs') && blc_fs()->can_use_premium_code()) {
+if (function_exists('blc_site_has_feature') && blc_site_has_feature('base_pro')) {
 	$pro_title = [];
 }
 

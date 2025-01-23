@@ -13,7 +13,7 @@ $source_options = [
 ];
 
 $is_shop = class_exists( 'woocommerce' );
-
+$is_pro = function_exists('blc_site_has_feature') && blc_site_has_feature();
 
 if (function_exists('rank_math_the_breadcrumbs')) {
 	ob_start();
@@ -49,40 +49,100 @@ $breadcrumbs_options = [
 		'type' => 'tab',
 		'options' => [
 
-			'breadcrumb_separator' => [
-				'label' => __('Separator', 'blocksy'),
-				'type' => 'ct-image-picker',
-				'value' => 'type-1',
-				'attr' => [ 'data-columns' => '3' ],
-				'divider' => 'bottom',
-				'choices' => [
-
-					'type-1' => [
-						'src'   => blocksy_image_picker_file( 'breadcrumb-sep-1' ),
-						'title' => __( 'Type 1', 'blocksy' ),
+			$is_pro ? [
+				'breadcrumb_separator_icon_source' => [
+					'label' => __('Separator Icon Source', 'blocksy'),
+					'type' => 'ct-radio',
+					'value' => 'default',
+					'view' => 'text',
+					'design' => 'block',
+					'divider' => 'bottom',
+					'choices' => [
+						'default' => __('Default', 'blocksy'),
+						'custom' => __('Custom', 'blocksy'),
 					],
+					'sync' => blocksy_sync_whole_page([
+						'loader_selector' => '.ct-breadcrumbs'
+					]),
+				],
+			] : [],
 
-					'type-2' => [
-						'src'   => blocksy_image_picker_file( 'breadcrumb-sep-2' ),
-						'title' => __( 'Type 2', 'blocksy' ),
+			blocksy_rand_md5() => [
+				'type' => 'ct-condition',
+				'condition' => $is_pro
+					? [
+						'breadcrumb_separator_icon_source' => 'default',
+					]
+					: [
+						'breadcrumb_separator_icon_source' => '! not_existing',
 					],
+				'options' => [
+					'breadcrumb_separator' => [
+						'label' => __('Separator Icon', 'blocksy'),
+						'type' => 'ct-image-picker',
+						'value' => 'type-1',
+						'attr' => [ 'data-columns' => '3' ],
+						'choices' => [
+							'type-1' => [
+								'src'   => blocksy_image_picker_file( 'breadcrumb-sep-1' ),
+								'title' => __( 'Type 1', 'blocksy' ),
+							],
 
-					'type-3' => [
-						'src'   => blocksy_image_picker_file( 'breadcrumb-sep-3' ),
-						'title' => __( 'Type 3', 'blocksy' ),
+							'type-2' => [
+								'src'   => blocksy_image_picker_file( 'breadcrumb-sep-2' ),
+								'title' => __( 'Type 2', 'blocksy' ),
+							],
+
+							'type-3' => [
+								'src'   => blocksy_image_picker_file( 'breadcrumb-sep-3' ),
+								'title' => __( 'Type 3', 'blocksy' ),
+							],
+						],
+						'sync' => blocksy_sync_whole_page([
+							'loader_selector' => '.ct-breadcrumbs'
+						]),
 					],
 				],
-
-				'sync' => blocksy_sync_whole_page([
-					'loader_selector' => '.ct-breadcrumbs'
-				]),
 			],
+
+			$is_pro ? [
+				blocksy_rand_md5() => [
+					'type' => 'ct-condition',
+					'condition' => ['breadcrumb_separator_icon_source' => 'custom'],
+					'options' => [
+	
+						'breadcrumb_custom_separator' => [
+							'type' => 'icon-picker',
+							'label' => __('Icon', 'blocksy'),
+							'design' => 'inline',
+							'value' => [
+								'icon' => 'blc blc-arrow-right',
+							],
+							'sync' => blocksy_sync_whole_page([
+								'loader_selector' => '.ct-breadcrumbs'
+							]),
+						],
+	
+						'breadcrumbs_separator_size' => [
+							'label' => __( 'Icon Size', 'blocksy' ),
+							'type' => 'ct-slider',
+							'min' => 5,
+							'max' => 50,
+							'value' => 8,
+							'responsive' => true,
+							'divider' => 'top',
+							'setting' => [ 'transport' => 'postMessage' ],
+						],
+					],
+				],
+			] : [],
 
 			'breadcrumb_home_item' => [
 				'label' => __('Home Item', 'blocksy'),
 				'type' => 'ct-radio',
 				'value' => 'text',
 				'view' => 'text',
+				'divider' => 'top:full',
 				'choices' => [
 					'text' => __('Text', 'blocksy'),
 					'icon' => __('Icon', 'blocksy'),
@@ -108,6 +168,40 @@ $breadcrumbs_options = [
 					],
 
 				],
+			],
+
+			blocksy_rand_md5() => [
+				'type' => 'ct-condition',
+				'condition' => [ 'breadcrumb_home_item' => 'icon' ],
+				'options' => $is_pro ? [
+
+					'breadcrumb_home_icon' => [
+						'type' => 'icon-picker',
+						'label' => __(
+							'Icon',
+							'blocksy'
+						),
+						'design' => 'inline',
+						'divider' => 'top',
+						'value' => [
+							'icon' => 'blc blc-home-alt',
+						],
+						'sync' => blocksy_sync_whole_page([
+							'loader_selector' => '.ct-breadcrumbs'
+						]),
+					],
+
+					'breadcrumbs_home_icon_size' => [
+						'label' => __( 'Icon Size', 'blocksy' ),
+						'type' => 'ct-slider',
+						'min' => 5,
+						'max' => 50,
+						'value' => 15,
+						'responsive' => true,
+						'divider' => 'top',
+						'setting' => [ 'transport' => 'postMessage' ],
+					],
+				] : []
 			],
 
 			'breadcrumb_page_title' => [

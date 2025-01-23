@@ -6,7 +6,7 @@ import {
 	useState,
 } from '@wordpress/element'
 import { registerPlugin, withPluginContext } from '@wordpress/plugins'
-import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/edit-post'
+import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor'
 import { select, withSelect, withDispatch } from '@wordpress/data'
 import { compose } from '@wordpress/compose'
 import { IconButton, Button } from '@wordpress/components'

@@ -16,6 +16,10 @@ function blocksy_woocommerce_has_flexy_view() {
 		$_REQUEST['action'] === 'woocommerce_load_variations'
 	);
 
+	if (isset($_REQUEST['wc-ajax']) && $_REQUEST['wc-ajax'] === 'get_variation') {
+		$is_variations_action = true;
+	}
+
 	if (
 		(
 			blocksy_manager()->screen->is_product()

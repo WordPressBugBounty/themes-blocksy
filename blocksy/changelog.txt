@@ -1,3 +1,14 @@
+2.0.85: 2025-01-23
+- Improvement: Better integration with latest version of Simply Static plugin
+- Improvement: Footer logo - make sure tagline doesn't go outside of bounds if it's too long
+- Improvement: Header elements - add icon visibility option
+- Improvement: Make sure custom taxonomies can be selected for Related Posts criteria
+- Improvement: Make sure customizer reset functionality works properly in visibility option
+- Improvement: Paragraph background - change `:is()` pseudo selector to `:where()` for a lower specificity
+- Improvement: Update WooCommerce `tabs.php` template to the latest version
+- Improvement: WooCommerce cart and checkout blocks - make sure select fields are correctly styled
+- Fix: Make sure color picker swatch doesn't go out of bounds when located in popovers
+
 2.0.84: 2025-01-09
 - Improvement: Bad text contrast in Customizer dark mode for pop-overs with tabs
 - Improvement: Customizer live preview does not update correctly for "Content Area Vertical Spacing" for page title type 2

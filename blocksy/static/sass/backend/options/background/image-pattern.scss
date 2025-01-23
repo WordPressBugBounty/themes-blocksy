@@ -10,10 +10,11 @@
 	}
 
 	.ct-color-picker-modal {
+		grid-column: 1/-1;
 		position: relative;
 		margin-inline: calc(var(--cpm-ph) * -1);
-		border-radius: 0;
-		opacity: 1 !important;
+		// border-radius: 0;
+		// opacity: 1 !important;
 		transform: none !important;
 		transition: none !important;
 	}

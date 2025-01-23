@@ -96,9 +96,9 @@ $options = [
 				'header_button_open' => [
 					'label' => __('Click Behavior', 'blocksy'),
 					'type' => (
-						function_exists('blc_fs')
+						function_exists('blc_site_has_feature')
 						&&
-						blc_fs()->can_use_premium_code()
+						blc_site_has_feature('base_pro')
 					) ? 'ct-select' : 'hidden',
 					'value' => 'link',
 					'view' => 'text',

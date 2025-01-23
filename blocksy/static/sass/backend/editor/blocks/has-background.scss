@@ -1,7 +1,12 @@
-.has-background {
+// .has-background {
 
-	&:is(p, .wp-block-group) {
-		padding: 30px;
-		box-sizing: border-box;
-	}
+// 	&:is(p, .wp-block-group) {
+// 		padding: 30px;
+// 		box-sizing: border-box;
+// 	}
+// }
+
+:root :where(p.has-background, .wp-block-group.has-background) {
+	padding: 30px;
+	box-sizing: border-box;
 }

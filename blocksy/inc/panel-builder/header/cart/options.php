@@ -71,6 +71,25 @@ $options = [
 				'setting' => [ 'transport' => 'postMessage' ],
 			],
 
+			'cart_icon_visibility' => [
+				'label' => __('Icon Visibility', 'blocksy'),
+				'type' => 'ct-visibility',
+				'design' => 'block',
+				'divider' => 'top',
+				'allow_empty' => true,
+				'value' => blocksy_default_responsive_value([
+					'desktop' => true,
+					'tablet' => true,
+					'mobile' => true,
+				]),
+
+				'choices' => blocksy_ordered_keys([
+					'desktop' => __('Desktop', 'blocksy'),
+					'tablet' => __('Tablet', 'blocksy'),
+					'mobile' => __('Mobile', 'blocksy'),
+				]),
+			],
+
 			'has_cart_badge' => [
 				'label' => __( 'Icon Badge', 'blocksy' ),
 				'type' => 'ct-switch',
@@ -83,7 +102,7 @@ $options = [
 				'label' => __( 'Label Visibility', 'blocksy' ),
 				'type' => 'ct-visibility',
 				'design' => 'block',
-				'divider' => 'top',
+				'divider' => 'top:full',
 				'allow_empty' => true,
 				'setting' => [ 'transport' => 'postMessage' ],
 				'value' => blocksy_default_responsive_value([

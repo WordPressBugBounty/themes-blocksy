@@ -1,6 +1,6 @@
 <?php
 
-$is_pro = function_exists('blc_fs') && blc_fs()->can_use_premium_code();
+$is_pro = function_exists('blc_site_has_feature') && blc_site_has_feature('base_pro');
 
 $cpt_choices = [
 	'post' => __('Posts', 'blocksy'),
@@ -57,11 +57,30 @@ $options = [
 				'setting' => [ 'transport' => 'postMessage' ],
 			],
 
+			'search_icon_visibility' => [
+				'label' => __('Icon Visibility', 'blocksy-companion'),
+				'type' => 'ct-visibility',
+				'design' => 'block',
+				'divider' => 'top',
+				'allow_empty' => true,
+				'value' => blocksy_default_responsive_value([
+					'desktop' => true,
+					'tablet' => true,
+					'mobile' => true,
+				]),
+
+				'choices' => blocksy_ordered_keys([
+					'desktop' => __('Desktop', 'blocksy-companion'),
+					'tablet' => __('Tablet', 'blocksy-companion'),
+					'mobile' => __('Mobile', 'blocksy-companion'),
+				]),
+			],
+
 			'search_label_visibility' => [
 				'label' => __( 'Label Visibility', 'blocksy' ),
 				'type' => 'ct-visibility',
 				'design' => 'block',
-				'divider' => 'top',
+				'divider' => 'top:full',
 				'allow_empty' => true,
 				'setting' => [ 'transport' => 'postMessage' ],
 				'value' => blocksy_default_responsive_value([

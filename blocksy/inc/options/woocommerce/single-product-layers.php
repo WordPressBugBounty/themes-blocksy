@@ -1,6 +1,6 @@
 <?php
 
-$is_pro = function_exists('blc_fs') && blc_fs()->can_use_premium_code();
+$is_pro = function_exists('blc_site_has_feature') && blc_site_has_feature('base_pro');
 
 $payment_method_options = [
 	'item_visa' => [

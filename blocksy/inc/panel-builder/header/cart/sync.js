@@ -588,6 +588,14 @@ ctEvents.on('ct:header:sync:item:cart', ({ optionId, optionValue, values }) => {
 		})
 	}
 
+	if (optionId === 'cart_icon_visibility') {
+		updateAndSaveEl(selector, (el) => {
+			;[...el.querySelectorAll('.ct-icon-container')].map((el) => {
+				responsiveClassesFor(optionValue, el)
+			})
+		})
+	}
+
 	if (optionId === 'has_empty_cart') {
 		updateAndSaveEl(selector, (el) => {
 			el.dataset.cart = optionValue === 'yes' ? 'hide-empty' : ''

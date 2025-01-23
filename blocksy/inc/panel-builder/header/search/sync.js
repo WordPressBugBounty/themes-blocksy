@@ -470,6 +470,14 @@ ctEvents.on('ct:header:sync:item:search', ({ optionId, optionValue }) => {
 		})
 	}
 
+	if (optionId === 'search_icon_visibility') {
+		updateAndSaveEl(selector, (el) => {
+			;[...el.querySelectorAll('.ct-icon')].map((icon) => {
+				responsiveClassesFor(optionValue, icon)
+			})
+		})
+	}
+
 	if (optionId === 'search_label_position') {
 		updateAndSaveEl(
 			selector,
