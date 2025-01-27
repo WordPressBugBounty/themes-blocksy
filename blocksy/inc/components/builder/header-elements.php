@@ -244,7 +244,26 @@ class Blocksy_Header_Builder_Elements {
 			$post_type[] = $single_post_type;
 		}
 
-		if (count(array_keys($search_through)) === count($post_type)) {
+		// All subtypes used in the REST API Post Search Handler.
+		// wp-includes/rest-api/search/class-wp-rest-post-search-handler.php
+		$rest_api_all_subtypes = array_diff(
+			array_values(
+				get_post_types(
+					[
+						'public' => true,
+						'show_in_rest' => true
+					],
+					'names'
+				)
+			),
+			['attachment']
+		);
+
+		if (
+			count(array_keys($search_through)) === count($post_type)
+			&&
+			count($post_type) === count($rest_api_all_subtypes)
+		) {
 			$post_type = [];
 		}
 

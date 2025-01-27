@@ -1,3 +1,6 @@
+2.0.86: 2025-01-27
+- Improvement: Search module - better logic for subtype in Rest API
+
 2.0.85: 2025-01-23
 - Improvement: Better integration with latest version of Simply Static plugin
 - Improvement: Footer logo - make sure tagline doesn't go outside of bounds if it's too long
