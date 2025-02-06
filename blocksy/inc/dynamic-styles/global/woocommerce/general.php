@@ -561,6 +561,18 @@ blocksy_output_spacing([
 	)
 ]);
 
+blocksy_output_spacing([
+	'css' => $css,
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+	'selector' => '.ct-checkout-cart-item',
+	'property' => 'theme-border-radius',
+	'value' => blocksy_get_theme_mod( 'checkout_product_image_border_radius',
+		blocksy_spacing_value()
+	),
+	'empty_value' => 3,
+]);
+
 
 // woo listing top
 blocksy_output_font_css([

@@ -255,6 +255,27 @@ $options = [
 						'sync' => 'live',
 					],
 
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'blocksy_has_image_toggle' => 'yes' ],
+						'options' => [
+
+							'checkout_product_image_border_radius' => [
+								'label' => __( 'Image Border Radius', 'blocksy' ),
+								'type' => 'ct-spacing',
+								'divider' => 'top',
+								'setting' => [ 'transport' => 'postMessage' ],
+								'value' => blocksy_spacing_value(),
+								'inputAttr' => [
+									'placeholder' => '3'
+								],
+								'min' => 0,
+								'responsive' => true
+							],
+
+						],
+					],
+
 				],
 			],
 		],

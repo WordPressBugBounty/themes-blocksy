@@ -265,7 +265,6 @@ class Blocksy_Manager {
 					)
 				),
 
-
 				'search_lazy' => add_query_arg(
 					'ver',
 					$theme->get('Version'),
@@ -309,6 +308,10 @@ class Blocksy_Manager {
 		]);
 
 		foreach ($data['dynamic_styles_selectors'] as $dynamic_style_index => $dynamic_style) {
+			if (strpos($dynamic_style['url'], 'ver=') !== false) {
+				continue;
+			}
+
 			$data['dynamic_styles_selectors'][$dynamic_style_index]['url'] = add_query_arg(
 				'ver',
 				$theme->get('Version'),

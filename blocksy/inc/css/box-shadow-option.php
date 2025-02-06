@@ -1,12 +1,14 @@
 <?php
 
 function blocksy_compute_box_shadow_var_for($value, $should_skip_output = true) {
+	if (isset($value['inherit']) && $value['inherit']) {
+		return 'CT_CSS_SKIP_RULE';
+	}
+
 	if (
 		! isset($value['enable'])
 		||
 		! $value['enable']
-		||
-		(isset($value['inherit']) && $value['inherit'])
 	) {
 		return 'none';
 	}

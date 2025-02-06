@@ -442,12 +442,12 @@ $overridable_card_options = [
 							'label' => __('Excerpt', 'blocksy'),
 							'options' => [
 								'excerpt_source' => [
-									'label' => __('Excerpt Type', 'blocksy'),
+									'label' => false,
 									'type' => 'ct-radio',
 									'value' => 'excerpt',
 									'view' => 'text',
 									'choices' => [
-										'excerpt' => __('Custom', 'blocksy'),
+										'excerpt' => __('Default', 'blocksy'),
 										'full' => __('Full Post', 'blocksy'),
 									],
 								],

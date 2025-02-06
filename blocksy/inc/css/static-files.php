@@ -57,6 +57,109 @@ class Blocksy_Static_Css_Files {
 			'features' => []
 		]);
 
+		$render = new \Blocksy_Header_Builder_Render();
+
+		$is_woocommmerce = function_exists('is_woocommerce') && is_woocommerce();
+
+		$should_load_flexy_styles = (
+			is_singular('blc-product-review')
+			||
+			(
+				is_singular()
+				&&
+				(
+					blocksy_get_theme_mod($prefix . '_related_posts_slideshow') === 'slider'
+					||
+					is_customize_preview()
+					||
+					(
+						$post
+						&&
+						has_shortcode(
+							$post->post_content,
+							'blocksy_posts'
+						)
+						&&
+						strpos(
+							$post->post_content,
+							'view="slider"'
+						) !== false
+					)
+					||
+					(
+						$post
+						&&
+						has_shortcode($post->post_content, 'product_page')
+					)
+					||
+					(
+						$post
+						&&
+						(
+							has_block('blocksy/query', $post->post_content)
+							||
+							has_block('blocksy/tax-query', $post->post_content)
+						)
+						&&
+						strpos(
+							$post->post_content,
+							'"has_slideshow":"yes"'
+						) !== false
+					)
+				)
+			)
+		);
+
+		if (function_exists('is_woocommerce') && ! $should_load_flexy_styles) {
+			$should_load_flexy_styles = (
+				$should_load_flexy_styles
+				||
+				blocksy_manager()->screen->is_product()
+			);
+
+			$should_load_flexy_styles = (
+				$should_load_flexy_styles
+				||
+				(
+					(
+						is_woocommerce()
+						||
+						(
+							$post
+							&&
+							has_shortcode($post->post_content, 'products')
+						)
+					)
+					&&
+					isset($woo_extra_settings['features']['added-to-cart-popup'])
+					&&
+					$woo_extra_settings['features']['added-to-cart-popup']
+					&&
+					blocksy_get_theme_mod('cart_popup_suggested_products', 'yes') === 'yes'
+				)
+			);
+
+			$should_load_flexy_styles = (
+				$should_load_flexy_styles
+				||
+				(
+					is_checkout()
+					&&
+					blocksy_get_theme_mod('checkout_suggested_products', 'yes') === 'yes'
+				)
+			);
+
+			$should_load_flexy_styles = (
+				$should_load_flexy_styles
+				||
+				(
+					$render->contains_item('cart')
+					&&
+					blocksy_get_theme_mod('mini_cart_suggested_products', 'yes') === 'yes'
+				)
+			);
+		}
+
 		return [
 			[
 				'id' => 'ct-main-styles',
@@ -224,78 +327,7 @@ class Blocksy_Static_Css_Files {
 				'id' => 'ct-flexy-styles',
 				'url' => '/static/bundle/flexy.min.css',
 				'deps' => ['ct-main-styles'],
-				'enabled' => (
-					(
-						function_exists('is_woocommerce')
-						&&
-						blocksy_manager()->screen->is_product()
-					)
-					||
-					is_singular('blc-product-review')
-					||
-					(
-						is_singular()
-						&&
-						(
-							blocksy_get_theme_mod($prefix . '_related_posts_slideshow') === 'slider'
-							||
-							is_customize_preview()
-							||
-							(
-								$post
-								&&
-								has_shortcode(
-									$post->post_content,
-									'blocksy_posts'
-								)
-								&&
-								strpos(
-									$post->post_content,
-									'view="slider"'
-								) !== false
-							)
-							||
-							(
-								$post
-								&&
-								has_shortcode($post->post_content, 'product_page')
-							)
-							||
-							(
-								$post
-								&&
-								(
-									has_block('blocksy/query', $post->post_content)
-									||
-									has_block('blocksy/tax-query', $post->post_content)
-								)
-								&&
-								strpos(
-									$post->post_content,
-									'"has_slideshow":"yes"'
-								) !== false
-							)
-						)
-					)
-					||
-					(
-						(
-							function_exists('is_woocommerce')
-							&&
-							is_woocommerce()
-							||
-							(
-								$post
-								&&
-								has_shortcode($post->post_content, 'products')
-							)
-						)
-						&&
-						isset($woo_extra_settings['features']['added-to-cart-popup'])
-						&&
-						$woo_extra_settings['features']['added-to-cart-popup']
-					)
-				)
+				'enabled' => $should_load_flexy_styles
 			],
 
 			// Integrations

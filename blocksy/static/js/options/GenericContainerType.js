@@ -1,10 +1,13 @@
 import { createElement, Fragment } from '@wordpress/element'
+
 import Condition from './containers/Condition'
 import Tabs from './containers/Tabs'
 import Group from './containers/Group'
 import LabeledGroup from './containers/LabeledGroup'
 import HasMetaCategoryButton from './containers/ct-has-meta-category-button'
 import Accordion from './containers/Accordion'
+
+import MigrateValues from './containers/MigrateValues'
 
 const GenericContainerType = ({
 	value,
@@ -39,6 +42,10 @@ const GenericContainerType = ({
 
 	if (renderingChunk[0].type === 'ct-labeled-group') {
 		Container = LabeledGroup
+	}
+
+	if (renderingChunk[0].type === 'ct-migrate-values') {
+		Container = MigrateValues
 	}
 
 	if (Container) {

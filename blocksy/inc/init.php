@@ -499,6 +499,7 @@ add_action(
 require get_template_directory() . '/inc/manager.php';
 
 require get_template_directory() . '/inc/helpers.php';
+require get_template_directory() . '/inc/helpers/options.php';
 require get_template_directory() . '/inc/helpers/layout.php';
 require get_template_directory() . '/inc/helpers/html.php';
 require get_template_directory() . '/inc/helpers/db.php';

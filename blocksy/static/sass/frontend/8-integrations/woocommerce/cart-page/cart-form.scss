@@ -1,13 +1,9 @@
 .ct-woocommerce-cart-form {
 	display: grid;
-
-	@include media-breakpoint-down (md) {
-		grid-row-gap: 50px;
-	}
+	gap: 40px;
 
 	@include media-breakpoint-up (lg) {
 		grid-template-columns: 2fr 1fr;
-		grid-column-gap: 50px;
 	}
 
 	.woocommerce-cart-form table {

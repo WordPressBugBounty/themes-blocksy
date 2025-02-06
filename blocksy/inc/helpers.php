@@ -51,7 +51,7 @@ function blocksy_sync_whole_page($args = []) {
 	);
 }
 
-function blocksy_get_with_percentage( $id, $value ) {
+function blocksy_get_with_percentage($id, $value) {
 	$val = blocksy_get_theme_mod($id, $value);
 
 	if (strpos($value, '%') !== false && is_numeric($val)) {
@@ -118,112 +118,6 @@ function blocksy_get_variables_from_file(
 	}
 
 	return $_extract_variables;
-}
-
-/**
- * Extract a key from an array with defaults.
- *
- * @param string       $keys 'a/b/c' path.
- * @param array|object $array_or_object array to extract from.
- * @param null|mixed   $default_value defualt value.
- *
- * Keep function_exists() check for some time because Blocksy Companion 1.9
- * framework/helpers/blocksy-integration.php declares it again.
- */
-if (! function_exists('blocksy_default_akg')) {
-	function blocksy_default_akg($keys, $array_or_object, $default_value) {
-		return blocksy_akg($keys, $array_or_object, $default_value);
-	}
-}
-
-/**
- * Recursively find a key's value in array
- *
- * @param string       $keys 'a/b/c' path.
- * @param array|object $array_or_object array to extract from.
- * @param null|mixed   $default_value defualt value.
- *
- * @return null|mixed
- */
-if (! function_exists('blocksy_akg')) {
-	function blocksy_akg($keys, $array_or_object, $default_value = null) {
-		if (! is_array($keys)) {
-			$keys = explode('/', (string) $keys);
-		}
-
-		$array_or_object = $array_or_object;
-		$key_or_property = array_shift($keys);
-
-		if (is_null($key_or_property)) {
-			return $default_value;
-		}
-
-		$is_object = is_object($array_or_object);
-
-		if ($is_object) {
-			if (! property_exists($array_or_object, $key_or_property)) {
-				return $default_value;
-			}
-		} else {
-			if (! is_array($array_or_object) || ! array_key_exists($key_or_property, $array_or_object)) {
-				return $default_value;
-			}
-		}
-
-		if (isset($keys[0])) { // not used count() for performance reasons.
-			if ($is_object) {
-				return blocksy_akg($keys, $array_or_object->{$key_or_property}, $default_value);
-			} else {
-				return blocksy_akg($keys, $array_or_object[$key_or_property], $default_value);
-			}
-		} else {
-			if ($is_object) {
-				return $array_or_object->{$key_or_property};
-			} else {
-				return $array_or_object[ $key_or_property ];
-			}
-		}
-	}
-}
-
-function blocksy_akg_or_customizer($key, $source, $default = null) {
-	$source = wp_parse_args(
-		$source,
-		[
-			'prefix' => '',
-
-			// customizer | array
-			'strategy' => 'customizer',
-		]
-	);
-
-	if ($source['strategy'] !== 'customizer' && !is_array($source['strategy'])) {
-		throw new Error(
-			'strategy wrong value provided. Array or customizer is required.'
-		);
-	}
-
-	if (! empty($source['prefix'])) {
-		$source['prefix'] .= '_';
-	}
-
-	if ($source['strategy'] === 'customizer') {
-		return blocksy_get_theme_mod($source['prefix'] . $key, $default);
-	}
-
-	return blocksy_akg($source['prefix'] . $key, $source['strategy'], $default);
-}
-
-/**
- * Generate a random ID.
- *
- * Keep function_exists() check for some time because Blocksy Companion 1.9
- * framework/helpers/blocksy-integration.php declares it again.
- */
-if (! function_exists('blocksy_rand_md5')) {
-	function blocksy_rand_md5() {
-		return md5(time() . '-' . uniqid(wp_rand(), true) . '-' . wp_rand());
-	}
 }
 
 /**
@@ -357,42 +251,6 @@ if (! function_exists('blocksy_debug')) {
 			error_log($message . ': ' . print_r($object, true));
 		}
 	}
-}
-
-// Deprecated.
-//
-// This function is no longer needed. Use StringHelpers class instead.
-// Keeping it for few more releases to avoid updates crashes.
-//
-// Ref: https://php.watch/versions/8.2/utf8_encode-utf8_decode-deprecated
-//
-// To be removed in March 2024.
-function blocksy_utf8_decode($s) {
-	$len = \strlen($s);
-
-	for ($i = 0, $j = 0; $i < $len; ++$i, ++$j) {
-		switch ($s[$i] & "\xF0") {
-		case "\xC0":
-		case "\xD0":
-			$c = (\ord($s[$i] & "\x1F") << 6) | \ord($s[++$i] & "\x3F");
-			$s[$j] = $c < 256 ? \chr($c) : '?';
-			break;
-
-		case "\xF0":
-			++$i;
-			// no break
-
-		case "\xE0":
-			$s[$j] = '?';
-			$i += 2;
-			break;
-
-		default:
-			$s[$j] = $s[$i];
-		}
-	}
-
-	return substr($s, 0, $j);
 }
 
 function blocksy_output_html_safely($html) {

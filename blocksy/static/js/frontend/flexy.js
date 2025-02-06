@@ -2,6 +2,7 @@ import $ from 'jquery'
 import { Flexy } from 'flexy'
 import ctEvents from 'ct-events'
 import { getCurrentScreen } from '../frontend/helpers/current-screen'
+import { isTouchDevice } from '../frontend/helpers/is-touch-device'
 
 import { pauseVideo, maybePlayAutoplayedVideo } from './helpers/video'
 
@@ -13,6 +14,7 @@ export const mount = (sliderEl, args) => {
 	args = {
 		event: null,
 		flexyOptions: {},
+
 		...args,
 	}
 
@@ -29,7 +31,7 @@ export const mount = (sliderEl, args) => {
 	let leftArrow = sliderEl.querySelector('.flexy .flexy-arrow-prev')
 	let rightArrow = sliderEl.querySelector('.flexy .flexy-arrow-next')
 
-	const maybeSuggested = sliderEl.closest('.ct-suggested-products')
+	const maybeSuggested = sliderEl.closest('[class*="ct-suggested-products"]')
 
 	if (maybeSuggested) {
 		leftArrow = maybeSuggested.querySelector('.ct-arrow-prev')
@@ -37,7 +39,24 @@ export const mount = (sliderEl, args) => {
 	}
 
 	const isPillsDragEvent =
-		args.event && args.event.target.closest('.flexy-pills > * > *')
+		args.event &&
+		args.event.type === 'touchstart' &&
+		args.event.target.closest('.flexy-pills > * > *')
+
+	// On touch devices, if the mount occured on a click on a pill, simulate
+	// the click again.
+	if (
+		args.event &&
+		args.event.type === 'mouseover' &&
+		args.event.target.closest('.flexy-pills > * > *') &&
+		isTouchDevice()
+	) {
+		const pill = args.event.target.closest('.flexy-pills > * > *')
+
+		setTimeout(() => {
+			pill.click()
+		})
+	}
 
 	const inst = new Flexy(
 		() => {
@@ -54,7 +73,9 @@ export const mount = (sliderEl, args) => {
 			flexyAttributeEl: originalSliderEl,
 			elementsThatDoNotStartDrag: ['.twentytwenty-handle'],
 
-			...(args.event && !isPillsDragEvent
+			...(args.event &&
+			args.event.type === 'touchstart' &&
+			!isPillsDragEvent
 				? { initialDragEvent: args.event }
 				: {}),
 
@@ -119,7 +140,9 @@ export const mount = (sliderEl, args) => {
 					? 'viewport'
 					: 'container',
 
-			...(args.event && isPillsDragEvent
+			...(args.event &&
+			args.event.type === 'touchstart' &&
+			isPillsDragEvent
 				? { initialDragEvent: args.event }
 				: {}),
 

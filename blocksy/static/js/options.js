@@ -7,6 +7,10 @@ import { initAllWooVariations } from './backend/woo-variation'
 import { initTaxonomies } from './backend/taxonomies'
 import { initAllWooAttributesOptions } from './backend/woo-attributes'
 
+import { mountCoreBlocksFix } from './editor/utils/fix-core-blocks-registration'
+
+mountCoreBlocksFix()
+
 if ($ && $.fn) {
 	$(document).on('widget-added', (event, widget) => {
 		initWidget(widget[0])

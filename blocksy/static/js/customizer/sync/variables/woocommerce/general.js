@@ -323,6 +323,14 @@ export const getWooGeneralVariablesFor = () => ({
 		unit: '',
 	},
 
+	checkout_product_image_border_radius: {
+		selector: '.ct-checkout-cart-item',
+		type: 'spacing',
+		variable: 'theme-border-radius',
+		emptyValue: 3,
+		responsive: true,
+	},
+
 	// woo listing top
 	shop_results_count_color: {
 		selector: '.woo-listing-top .woocommerce-result-count',

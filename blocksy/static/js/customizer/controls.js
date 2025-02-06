@@ -21,6 +21,9 @@ import ctEvents from 'ct-events'
 import ProOverlay from './components/ProOverlay'
 
 import WidgetArea from './options/ct-widget-area'
+import { mountCoreBlocksFix } from '../editor/utils/fix-core-blocks-registration'
+
+mountCoreBlocksFix()
 
 ctEvents.on('blocksy:options:register', (opts) => {
 	opts['ct-widget-area'] = WidgetArea

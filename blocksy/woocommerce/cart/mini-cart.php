@@ -110,6 +110,8 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 		?>
 	</ul>
 
+	<?php do_action( 'blocksy:pro:woo-extra:offcanvas:minicart:list:after' ); ?>
+	
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_totals' ); ?>
 
 	<p class="woocommerce-mini-cart__total total">

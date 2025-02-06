@@ -27,6 +27,8 @@ import { SVG, Path } from '@wordpress/primitives'
 
 import { getCurrentDevice } from './customizer/components/useDeviceManager'
 
+console.log('here editor me')
+
 export const dropIframeBodyTransition = () => {
 	const maybeIframe = document.querySelector('iframe[name="editor-canvas"]')
 

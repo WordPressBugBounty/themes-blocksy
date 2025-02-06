@@ -28,8 +28,7 @@
 		}
 	}
 
-	.woocommerce-loop-product__title,
-	.woocommerce-loop-category__title {
+	:where(.woocommerce-loop-product__title, .woocommerce-loop-category__title) {
 		--theme-content-spacing: 0;
 		--theme-link-initial-color: initial;
 	}
@@ -47,7 +46,7 @@
 }
 
 
-.ct-woo-card-extra,
+.ct-woo-card-extra, 
 .ct-woo-card-actions {
 	--theme-button-shadow: none;
 	--theme-button-transform: none;

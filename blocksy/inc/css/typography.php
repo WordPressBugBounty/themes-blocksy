@@ -29,14 +29,20 @@ if (! function_exists('blocksy_output_font_css')) {
 		$args['css']->process_matching_typography($args['font_value']);
 
 		if ($args['font_value']['family'] === 'System Default') {
-			$args['font_value']['family'] = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
+			$args['font_value']['family'] = "var(--theme-font-stack-default)";
 		} else {
 			$fonts_manager = new \Blocksy\FontsManager();
 
-			if (! in_array(
-				$args['font_value']['family'],
-				$fonts_manager->get_system_fonts(true)
-			) && $args['font_value']['family'] !== 'Default') {
+			if (
+				! in_array(
+					$args['font_value']['family'],
+					$fonts_manager->get_system_fonts(true)
+				)
+				&&
+				$args['font_value']['family'] !== 'Default'
+				&&
+				strpos($args['font_value']['family'], 'var(--') === false
+			) {
 				if (
 					$args['font_value']['family'] !== 'Default'
 					&&

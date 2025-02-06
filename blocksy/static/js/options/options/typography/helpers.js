@@ -97,6 +97,15 @@ export const humanizeVariations = (variation) => {
 }
 
 export const familyForDisplay = (family) => {
+	if (family.indexOf('var(--theme-font-stack-') === 0) {
+		return family
+			.replace('var(--theme-font-stack-', '')
+			.replace(')', '')
+			.split('-')
+			.map((s) => s.replace(/^[a-z]/, (m) => m.toUpperCase()))
+			.join(' ')
+	}
+
 	if (family.indexOf('ct_font') === 0) {
 		return family
 			.replace('ct_font_', '')

@@ -256,7 +256,9 @@ const loadSingleEntryPoint = ({
 										}
 									)
 								} else {
-									el.forcedMount()
+									el.forcedMount({
+										event,
+									})
 								}
 							},
 							{ once: true, passive: true }

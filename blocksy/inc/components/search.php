@@ -34,6 +34,10 @@ class SearchModifications {
 			'get_callback' => function ($post, $field_name, $request) {
 				$image_id = get_post_thumbnail_id($post['id']);
 
+				if (! $image_id) {
+					return null;
+				}
+
 				$image = get_post($image_id);
 
 				if (! $image) {

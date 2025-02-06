@@ -1,13 +1,13 @@
 .ct-woocommerce-checkout {
 	display: grid;
+	gap: 35px;
 
 	@include media-breakpoint-down (md) {
-		grid-row-gap: 40px;
+		grid-template-columns: minmax(0, 1fr);
 	}
 
 	@include media-breakpoint-up (lg) {
-		grid-template-columns: repeat(2, 1fr);
-		grid-column-gap: 35px;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 
 		> .woocommerce-error,
 		> .woocommerce-NoticeGroup {

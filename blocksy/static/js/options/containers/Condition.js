@@ -11,6 +11,7 @@ const Condition = ({
 	renderingChunk,
 	value,
 	onChange,
+	onChangeMultiple,
 	purpose,
 	parentValue,
 	hasRevertButton,
@@ -220,6 +221,7 @@ const Condition = ({
 				purpose={purpose}
 				key={conditionOption.id}
 				onChange={onChange}
+				onChangeMultiple={onChangeMultiple}
 				options={conditionOption.options}
 				value={value}
 				hasRevertButton={hasRevertButton}

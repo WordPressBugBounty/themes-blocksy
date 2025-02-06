@@ -38,6 +38,7 @@ const Group = ({
 			<OptionsPanel
 				purpose={purpose}
 				onChange={onChange}
+				onChangeMultiple={onChangeMultiple}
 				options={options}
 				value={value}
 				hasRevertButton={hasGroupRevertButton ? false : hasRevertButton}

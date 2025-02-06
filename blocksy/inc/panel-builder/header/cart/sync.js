@@ -555,6 +555,14 @@ ctEvents.on(
 				unit: 'px',
 			},
 
+			mini_cart_image_radius: {
+				selector: '.woocommerce-mini-cart',
+				type: 'spacing',
+				variable: 'theme-border-radius',
+				emptyValue: 3,
+				responsive: true,
+			},
+
 			headerCartMargin: {
 				selector: assembleSelector(getRootSelectorFor({ itemId })),
 				type: 'spacing',

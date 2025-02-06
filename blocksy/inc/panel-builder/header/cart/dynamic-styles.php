@@ -791,6 +791,19 @@ if ($cart_drawer_type === 'offcanvas' || is_customize_preview()) {
 	}
 }
 
+// Image border radius
+blocksy_output_spacing([
+	'css' => $css,
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+	'selector' => '.woocommerce-mini-cart',
+	'property' => 'theme-border-radius',
+	'value' => blocksy_default_akg('mini_cart_image_radius', $atts,
+		blocksy_spacing_value(),
+	),
+	'empty_value' => 3,
+]);
+
 
 // Margin
 blocksy_output_spacing([

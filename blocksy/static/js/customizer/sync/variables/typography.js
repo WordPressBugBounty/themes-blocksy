@@ -146,7 +146,7 @@ export const typographyOption = ({
 				}
 
 				if (value.family === 'System Default') {
-					return "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
+					return 'var(--theme-font-stack-default)'
 				}
 
 				if (systemFonts.indexOf(value.family) > -1) {

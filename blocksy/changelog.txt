@@ -1,3 +1,7 @@
+2.0.87: 2025-02-06
+- Fix: Live Search shows featured images on posts that do not have a featured image
+- Fix: Single product gallery thumbnails require a double tap the first time the page is loaded on mobile
+
 2.0.86: 2025-01-27
 - Improvement: Search module - better logic for subtype in Rest API
 

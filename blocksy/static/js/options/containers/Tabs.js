@@ -5,12 +5,12 @@ import { normalizeCondition, matchValuesWithCondition } from 'match-conditions'
 
 export default class Tabs extends Component {
 	state = {
-		currentTab: 0
+		currentTab: 0,
 	}
 
 	render() {
 		const filteredTabs = this.props.renderingChunk.filter(
-			singleTab =>
+			(singleTab) =>
 				!singleTab.condition ||
 				matchValuesWithCondition(
 					normalizeCondition(singleTab.condition),
@@ -32,7 +32,7 @@ export default class Tabs extends Component {
 									this.setState({ currentTab: index })
 								}
 								className={classnames({
-									active: index === this.state.currentTab
+									active: index === this.state.currentTab,
 								})}>
 								{singleTab.title
 									? singleTab.title
@@ -46,6 +46,7 @@ export default class Tabs extends Component {
 						purpose={this.props.purpose}
 						key={currentTab.id}
 						onChange={(key, val) => this.props.onChange(key, val)}
+						onChangeMultiple={this.props.onChangeMultiple}
 						options={currentTab.options}
 						value={this.props.value}
 					/>
