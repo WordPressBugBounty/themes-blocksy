@@ -132,6 +132,7 @@ if (! function_exists('blocksy_action_button')) {
 				'icon_position' => 'start', // start | end
 				'content' => '',
 				'done_state' => false,
+				'html_tag' => 'a'
 			]
 		);
 
@@ -176,7 +177,7 @@ if (! function_exists('blocksy_action_button')) {
 		}
 
 		return blocksy_html_tag(
-			'a',
+			$attributes['html_tag'],
 			array_merge(
 				$attributes['button_html_attributes'],
 				[

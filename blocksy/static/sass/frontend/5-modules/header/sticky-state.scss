@@ -2,7 +2,10 @@
 [data-sticky*='fixed'] {
 	position: fixed;
 	z-index: 5;
-	top: calc(var(--admin-bar, 0px) + var(--theme-frame-size, 0px) + var(--header-sticky-offset, 0px));
+	top: calc(
+		var(--admin-bar, 0px) + var(--theme-frame-size, 0px) +
+			var(--header-sticky-offset, 0px)
+	);
 	left: var(--theme-frame-size, 0px);
 	right: calc(var(--theme-frame-size, 0px) + var(--scrollbar-width, 0px));
 }
@@ -13,7 +16,8 @@
 	}
 
 	&[data-sticky*='yes-end'] {
-		transition: transform 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+		transition: transform var(--header-sticky-animation-speed, 0.2s)
+			cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	}
 
 	&[data-sticky*='yes-hide-start'] {
@@ -22,7 +26,8 @@
 
 	&[data-sticky*='yes-hide-end'] {
 		transform: translateY(-100%);
-		transition: transform 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+		transition: transform var(--header-sticky-animation-speed, 0.2s)
+			cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	}
 }
 
@@ -32,7 +37,8 @@
 	}
 
 	&[data-sticky*='yes-end'] {
-		transition: opacity 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+		transition: opacity var(--header-sticky-animation-speed, 0.2s)
+			cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	}
 
 	&[data-sticky*='yes-hide-start'] {
@@ -41,17 +47,21 @@
 
 	&[data-sticky*='yes-hide-end'] {
 		opacity: 0;
-		transition: opacity 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+		transition: opacity var(--header-sticky-animation-speed, 0.2s)
+			cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	}
 }
 
 // sticky transitions
 [data-sticky],
 [data-sticky] [data-row],
-[data-sticky] [data-row*="boxed"] > div {
-	transition: box-shadow 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-				backdrop-filter 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-				background-color 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+[data-sticky] [data-row*='boxed'] > div {
+	transition: box-shadow var(--header-sticky-animation-speed, 0.2s)
+			cubic-bezier(0.455, 0.03, 0.515, 0.955),
+		backdrop-filter var(--header-sticky-animation-speed, 0.2s)
+			cubic-bezier(0.455, 0.03, 0.515, 0.955),
+		background-color var(--header-sticky-animation-speed, 0.2s)
+			cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 [data-sticky] {

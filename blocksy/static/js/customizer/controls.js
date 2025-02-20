@@ -1,7 +1,7 @@
 import './public-path'
 import {
 	createElement,
-	render,
+	createRoot,
 	unmountComponentAtNode,
 } from '@wordpress/element'
 import { defineCustomizerControl } from './controls/utils.js'
@@ -54,14 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	setTimeout(() => {
 		if (document.querySelector('.ct-onboarding-button')) {
-			render(
+			const root = createRoot(
+				document.querySelector('.ct-onboarding-button')
+			)
+			root.render(
 				<ProOverlay
 					username={
 						document.querySelector('.ct-onboarding-button button')
 							.dataset.username
 					}
-				/>,
-				document.querySelector('.ct-onboarding-button')
+				/>
 			)
 		}
 	}, 50)
@@ -104,16 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
 							// block | inline
 							let design = 'none'
 
-							render(
+							const root = createRoot(control.container[0])
+							root.render(
 								<MyChildComponent
 									id={control.id}
 									onChange={(v) => control.setting.set(v)}
 									value={control.setting.get()}
 									option={control.params.option}>
 									{(props) => <ChildComponent {...props} />}
-								</MyChildComponent>,
-
-								control.container[0]
+								</MyChildComponent>
 							)
 
 							return

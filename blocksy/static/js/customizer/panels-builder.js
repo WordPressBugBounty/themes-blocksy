@@ -1,21 +1,21 @@
-import { render, createElement } from '@wordpress/element'
+import { createElement } from '@wordpress/element'
 
-const getDocument = x =>
+const getDocument = (x) =>
 	x.document || x.contentDocument || x.contentWindow.document
 
 const buildersMaps = {
 	header: {
 		panelType: 'header',
-		customizerFieldKey: 'header_placements'
+		customizerFieldKey: 'header_placements',
 	},
 
 	footer: {
 		panelType: 'footer',
-		customizerFieldKey: 'footer_placements'
-	}
+		customizerFieldKey: 'footer_placements',
+	},
 }
 
-const openBuilderFor = key => {
+const openBuilderFor = (key) => {
 	document.querySelector('.ct-panel-builder').dataset.builder =
 		buildersMaps[key].panelType
 
@@ -26,7 +26,7 @@ const openBuilderFor = key => {
 	}
 }
 
-const closeBuilderFor = key => {
+const closeBuilderFor = (key) => {
 	document
 		.querySelector('.wp-full-overlay')
 		.classList.remove('ct-show-builder')
@@ -39,11 +39,11 @@ export const initBuilder = () => {
 
 	document.querySelector('.wp-full-overlay').appendChild(root)
 
-	Object.keys(buildersMaps).map(singleKey =>
+	Object.keys(buildersMaps).map((singleKey) =>
 		(wp.customize.panel(singleKey)
 			? wp.customize.panel
-			: wp.customize.section)(singleKey, section =>
-			section.expanded.bind(value =>
+			: wp.customize.section)(singleKey, (section) =>
+			section.expanded.bind((value) =>
 				value ? openBuilderFor(singleKey) : closeBuilderFor(singleKey)
 			)
 		)

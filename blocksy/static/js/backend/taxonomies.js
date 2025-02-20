@@ -6,7 +6,7 @@ import {
 	createElement,
 	createPortal,
 	useEffect,
-	render,
+	createRoot,
 } from '@wordpress/element'
 
 import $ from 'jquery'
@@ -100,7 +100,8 @@ export const initTaxonomies = () => {
 		tbody = maybeTable.querySelector('tbody')
 	}
 
-	render(
+	const root = createRoot(maybeTaxonomyField.parentNode)
+	root.render(
 		<TaxonomyRoot
 			input_name={maybeTaxonomyField.name}
 			options={options}
@@ -112,7 +113,6 @@ export const initTaxonomies = () => {
 				false
 			)}
 			purpose={purpose}
-		/>,
-		maybeTaxonomyField.parentNode
+		/>
 	)
 }

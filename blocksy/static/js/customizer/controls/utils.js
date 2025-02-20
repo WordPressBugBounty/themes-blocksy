@@ -1,6 +1,6 @@
 import {
 	createElement,
-	render,
+	createRoot,
 	unmountComponentAtNode,
 } from '@wordpress/element'
 import classnames from 'classnames'
@@ -165,7 +165,8 @@ export const defineCustomizerControl = (type, Component) =>
 				// return
 			}
 
-			render(
+			const root = createRoot(this.container[0])
+			root.render(
 				OptionMetaWrapper ? (
 					<OptionMetaWrapper
 						option={this.params.option}
@@ -174,8 +175,7 @@ export const defineCustomizerControl = (type, Component) =>
 					/>
 				) : (
 					getActualOption()
-				),
-				this.container[0]
+				)
 			)
 		},
 

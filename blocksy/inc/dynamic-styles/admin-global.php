@@ -4,19 +4,19 @@ if (! isset($selector)) {
 	$selector = ':root';
 }
 
-$max_site_width = blocksy_get_theme_mod( 'maxSiteWidth', 1290 );
+$max_site_width = blocksy_get_theme_mod('maxSiteWidth', 1290);
 $css->put(
 	':root',
 	'--theme-normal-container-max-width: ' . $max_site_width . 'px'
 );
 
-$narrowContainerWidth = blocksy_get_theme_mod( 'narrowContainerWidth', 750 );
+$narrowContainerWidth = blocksy_get_theme_mod('narrowContainerWidth', 750);
 $css->put(
 	':root',
 	'--theme-narrow-container-max-width: ' . $narrowContainerWidth . 'px'
 );
 
-$wideOffset = blocksy_get_theme_mod( 'wideOffset', 130 );
+$wideOffset = blocksy_get_theme_mod('wideOffset', 130);
 $css->put(
 	':root',
 	'--theme-wide-offset: ' . $wideOffset . 'px'

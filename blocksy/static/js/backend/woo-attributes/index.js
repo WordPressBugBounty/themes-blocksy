@@ -1,4 +1,4 @@
-import { createElement, render } from '@wordpress/element'
+import { createElement, createRoot } from '@wordpress/element'
 import ManageAttributeOption from './ManageAttributeOption'
 
 export const collectAttributes = () => {
@@ -70,14 +70,14 @@ const initWooVariation = (variationWrapper) => {
 
 	variationWrapper.closest('.options_group').innerHtml = ''
 
-	render(
+	const root = createRoot(variationWrapper.closest('.options_group'))
+	root.render(
 		<ManageAttributeOption
 			options={options}
 			initialValue={initialValue}
 			input_id={input.id}
 			input_name={input.name}
-		/>,
-		variationWrapper.closest('.options_group')
+		/>
 	)
 }
 

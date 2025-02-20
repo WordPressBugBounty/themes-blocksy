@@ -175,6 +175,17 @@ export const mount = (el, { event: mountEvent }) => {
 	}
 
 	const renderPhotoswipe = ({ onlyZoom = false } = {}) => {
+		let isZoomEnabledInCustomizer = true
+
+		if (
+			window.wp &&
+			wp.customize &&
+			wp.customize('has_product_single_zoom')
+		) {
+			isZoomEnabledInCustomizer =
+				wp.customize('has_product_single_zoom')() === 'yes'
+		}
+
 		let maybeTrigger = [
 			...document.querySelectorAll(
 				'.woocommerce-product-gallery .woocommerce-product-gallery__trigger'
@@ -189,13 +200,7 @@ export const mount = (el, { event: mountEvent }) => {
 			.filter((el) => !el.closest('.flexy-pills'))
 			.map((el) => {
 				if (
-					((window.wp &&
-						wp.customize &&
-						wp.customize('has_product_single_lightbox') &&
-						wp.customize('has_product_single_lightbox')() ===
-							'yes') ||
-						!window.wp ||
-						!window.wp.customize) &&
+					isZoomEnabledInCustomizer &&
 					!onlyZoom &&
 					!el.matches('[data-media-id]')
 				) {
@@ -233,15 +238,7 @@ export const mount = (el, { event: mountEvent }) => {
 				}
 
 				if ($.fn.zoom) {
-					if (
-						(window.wp &&
-							wp.customize &&
-							wp.customize('has_product_single_zoom') &&
-							wp.customize('has_product_single_zoom')() ===
-								'yes') ||
-						!window.wp ||
-						!window.wp.customize
-					) {
+					if (isZoomEnabledInCustomizer) {
 						const rect = el.getBoundingClientRect()
 
 						if (el.closest('.elementor-section-wrap')) {
@@ -288,14 +285,7 @@ export const mount = (el, { event: mountEvent }) => {
 			})
 
 		if ($.fn.zoom) {
-			if (
-				(window.wp &&
-					wp.customize &&
-					wp.customize('has_product_single_zoom') &&
-					wp.customize('has_product_single_zoom')() === 'yes') ||
-				!window.wp ||
-				!window.wp.customize
-			) {
+			if (isZoomEnabledInCustomizer) {
 				setTimeout(() => {
 					if (!mountEvent) {
 						return

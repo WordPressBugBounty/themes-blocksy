@@ -249,23 +249,28 @@ function blocksy_single_content($content = null) {
 				}
 			} else {
 				?>
-					<figure class="entry-attachment wp-block-image">
+					<figure class="wp-block-image">
 						<?php
 							echo blocksy_media([
 								'attachment_id' => get_the_ID(),
 								'post_id' => get_the_ID(),
 								'size' => 'full',
-								'tag_name' => 'a',
+								'tag_name' => 'figure',
 								'ratio' => 'original',
-								'html_atts' => [
-									'href' => wp_get_attachment_url(get_the_ID())
-								]
-							]);
+							]);							
 						?>
 
-						<figcaption class="wp-caption-text"><?php the_excerpt(); ?></figcaption>
+						<figcaption class="wp-caption-text">
+							<?php
+								echo wp_kses_post(wp_get_attachment_caption(get_post_thumbnail_id()));
+								
+							?>
+						</figcaption>
 					</figure>
 				<?php
+					remove_filter('the_content', 'prepend_attachment');
+					the_content(); 
+					add_filter('the_content', 'prepend_attachment');
 			}
 
 			?>

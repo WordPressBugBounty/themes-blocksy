@@ -32,7 +32,7 @@
 			bottom: 15px;
 		}
 
-		a {
+		:is(a, button) {
 			justify-content: center;
 			padding: 5px;
 			border-radius: 0;

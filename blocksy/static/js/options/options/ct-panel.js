@@ -150,6 +150,7 @@ const PanelContainer = ({ option, id, onChange, getValues, onChangeFor }) => {
 		panelsState,
 		panelsHelpers,
 		containerRef,
+		panelSecondLevelSprings,
 	} = useContext(PanelContext)
 
 	return containerRef.current &&
@@ -205,10 +206,18 @@ const PanelContainer = ({ option, id, onChange, getValues, onChangeFor }) => {
 							].map((el) => el.parentNode.removeChild(el))
 						}
 					}}>
-					{(props, isOpen) =>
-						isOpen && (
+					{(props, isOpen) => {
+						if (!isOpen) {
+							return null
+						}
+
+						return (
 							<animated.div
-								style={props}
+								style={
+									panelsState.currentLevel === 2
+										? panelSecondLevelSprings
+										: props
+								}
 								className={classnames(
 									'ct-customizer-panel ct-options-container',
 									{
@@ -288,7 +297,7 @@ const PanelContainer = ({ option, id, onChange, getValues, onChangeFor }) => {
 								)}
 							</animated.div>
 						)
-					}
+					}}
 				</Transition>,
 				panelsHelpers
 					.getWrapperParent()

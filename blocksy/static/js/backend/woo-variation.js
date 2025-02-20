@@ -1,4 +1,4 @@
-import { createElement, render } from '@wordpress/element'
+import { createElement, createRoot } from '@wordpress/element'
 import OptionsRoot from '../options/OptionsRoot'
 import { getValueFromInput } from '../options/helpers/get-value-from-input'
 import $ from 'jquery'
@@ -82,7 +82,8 @@ export const initWooVariation = (variationWrapper) => {
 			  },
 	}
 
-	render(
+	const root = createRoot(div)
+	root.render(
 		<OptionsRoot
 			options={options}
 			value={getValueFromInput(
@@ -94,8 +95,7 @@ export const initWooVariation = (variationWrapper) => {
 			input_id={input.id}
 			input_name={input.name}
 			hasRevertButton={false}
-		/>,
-		div
+		/>
 	)
 }
 

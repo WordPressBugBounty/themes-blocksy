@@ -73,6 +73,6 @@ body[data-panel] {
 	display: flex;
 	flex-direction: column;
 	align-items: var(--horizontal-alignment, flex-start);
-	overflow-y: var(--overflow, auto);
+	overflow-y: auto;
 	padding: var(--panel-padding, 35px);
 }

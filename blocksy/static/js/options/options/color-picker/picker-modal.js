@@ -63,6 +63,39 @@ const getComputedColorValue = (color) => {
 	}
 }
 
+const localizedData = (
+	window.ct_customizer_localizations || window.ct_localizations
+).current_palette
+
+const getPalleteColorLabel = (color) => {
+	const colorKey = color.replace('theme-palette-color-', '')
+
+	if (wp && wp.customize && wp.customize('colorPalette')) {
+		const pallete = wp.customize('colorPalette')()
+
+		if (pallete?.[`color${colorKey}`]) {
+			return (
+				pallete[`color${colorKey}`]?.title ||
+				sprintf(__('Color %s', 'blocksy'), colorKey)
+			)
+		}
+	}
+
+	if (localizedData) {
+		const colorData = Object.values(localizedData).find(
+			({ variable }) => variable === color
+		)
+
+		if (colorData) {
+			return colorData.title
+		}
+	}
+
+	return sprintf(__('Color %s', 'blocksy'), colorKey)
+}
+
+// Object.keys(wp.customize('colorPalette')()
+
 const PickerModal = ({
 	containerRef,
 	el,
@@ -80,9 +113,7 @@ const PickerModal = ({
 
 	useEffect(() => {
 		if (!palettesRef.current) {
-			palettesRef.current = (
-				window.ct_customizer_localizations || window.ct_localizations
-			).current_palette.map((c) =>
+			palettesRef.current = Object.keys(localizedData).map((c) =>
 				c.replace('color', 'theme-palette-color-')
 			)
 
@@ -190,10 +221,7 @@ const PickerModal = ({
 								})
 							}>
 							<i className="ct-tooltip">
-								{sprintf(
-									__('Color %s', 'blocksy'),
-									color.replace('theme-palette-color-', '')
-								)}
+								{getPalleteColorLabel(color)}
 							</i>
 						</span>
 					))}

@@ -165,9 +165,8 @@ add_action(
 			[
 				'conditions_override' => blocksy_manager()->get_conditions_overrides(),
 				'theme_version' => $theme->get('Version'),
-				'current_palette' => array_keys(
-					blocksy_manager()->colors->get_color_palette()
-				),
+				'current_palette' => blocksy_manager()->colors->get_color_palette(),
+				'test' => blocksy_manager()->colors->get_color_palette(),
 				'gradients' => $gradients,
 				'is_dev_mode' => !! (
 					defined('BLOCKSY_DEVELOPMENT_MODE')

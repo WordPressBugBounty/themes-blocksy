@@ -1,5 +1,4 @@
 .ct-gutenberg-color-picker {
-
 	.components-color-picker {
 		width: 100%;
 		box-sizing: border-box;
@@ -53,7 +52,6 @@
 
 		// color mode picker
 		> * {
-
 			&:last-child {
 				margin: 20px calc(var(--cpm-ph) * -1) 0 calc(var(--cpm-ph) * -1);
 				padding: 20px var(--cpm-ph) 1px var(--cpm-ph);
@@ -63,6 +61,7 @@
 	}
 
 	.ct-option-color-value,
+	.ct-option-color-name,
 	.ct-option-color-variable {
 		display: flex;
 		position: relative;
@@ -86,7 +85,6 @@
 	}
 
 	.ct-option-color-variable {
-
 		input {
 			cursor: initial;
 		}

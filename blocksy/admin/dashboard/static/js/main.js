@@ -1,4 +1,4 @@
-import { createElement, render } from '@wordpress/element'
+import { createElement, createRoot } from '@wordpress/element'
 import Dashboard from './Dashboard'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	if (document.getElementById('ct-dashboard')) {
-		render(<Dashboard />, document.getElementById('ct-dashboard'))
+		const root = createRoot(document.getElementById('ct-dashboard'))
+		root.render(<Dashboard />)
 	}
 })

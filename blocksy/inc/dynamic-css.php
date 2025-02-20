@@ -414,6 +414,16 @@ class ThemeDynamicCss {
 			'chunk' => 'admin'
 		]);
 
+		do_action(
+			'blocksy:global-dynamic-css:enqueue:admin',
+			[
+				'context' => 'inline',
+				'css' => $css,
+				'tablet_css' => $tablet_css,
+				'mobile_css' => $mobile_css
+			]
+		);
+
 		$all_global_css = trim($css->build_css_structure());
 		$all_tablet_css = trim($tablet_css->build_css_structure());
 		$all_mobile_css = trim($mobile_css->build_css_structure());

@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-06 16:37+0000\n"
+"POT-Creation-Date: 2025-02-20 19:05+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -275,8 +275,11 @@ msgid ""
 "other awesome features"
 msgstr ""
 
-#: inc/classes/colors.php:112
-msgid "Palette Color %s"
+#: inc/classes/colors.php:107
+#: static/js/options/options/color-palettes/EditColorName.js:12
+#: static/js/options/options/color-palettes/PalettePreview.js:190
+#: static/js/options/options/color-picker/picker-modal.js:94
+msgid "Color %s"
 msgstr ""
 
 #: inc/classes/screen-manager.php:209, inc/components/breadcrumbs.php:416,
@@ -307,7 +310,7 @@ msgid "Posts"
 msgstr ""
 
 #: inc/classes/screen-manager.php:248, inc/options/customizer.php:133,
-#: inc/components/single/content-helpers.php:293,
+#: inc/components/single/content-helpers.php:298,
 #: inc/panel-builder/header/search/options.php:7
 msgid "Pages"
 msgstr ""
@@ -578,7 +581,7 @@ msgid "Full Width Section"
 msgstr ""
 
 #: inc/options/customizer.php:33
-#: static/js/customizer/components/ProOverlay.js:69
+#: static/js/customizer/components/ProOverlay.js:68
 msgid "View Pro Features"
 msgstr ""
 
@@ -953,11 +956,11 @@ msgid "Your comment is awaiting moderation."
 msgstr ""
 
 #. translators: 1: span opening 2: Post title 3: span closing.
-#: inc/components/single/content-helpers.php:279
+#: inc/components/single/content-helpers.php:284
 msgid "Edit%1$s \"%2$s\"%3$s"
 msgstr ""
 
-#: inc/components/single/content-helpers.php:346,
+#: inc/components/single/content-helpers.php:351,
 #: inc/options/single-elements/post-tags.php:52
 msgid "Tags"
 msgstr ""
@@ -6147,19 +6150,19 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:202
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:196
 msgid "Save changes"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:209
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:203
 msgid "Are you sure you want to reset it to default setting?"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:218
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:212
 msgid "Reset to default"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:226
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:220
 msgid ""
 "Please add some attributes in the Attributes tab to generate variations and "
 "save this product first."
@@ -6173,17 +6176,17 @@ msgstr ""
 msgid "Custom Image Gallery"
 msgstr ""
 
-#: static/js/customizer/components/ProOverlay.js:50
+#: static/js/customizer/components/ProOverlay.js:49
 msgid "Hello %s"
 msgstr ""
 
-#: static/js/customizer/components/ProOverlay.js:53
+#: static/js/customizer/components/ProOverlay.js:52
 msgid ""
 "Upgrade to the Pro version and get instant access to all premium extensions, "
 "features and future updates."
 msgstr ""
 
-#: static/js/customizer/components/ProOverlay.js:79
+#: static/js/customizer/components/ProOverlay.js:78
 msgid "Upgrade Now"
 msgstr ""
 
@@ -6476,7 +6479,7 @@ msgstr ""
 msgid "Go to plugins"
 msgstr ""
 
-#: static/js/editor.js:165
+#: static/js/editor.js:163
 msgid "%s Page Settings"
 msgstr ""
 
@@ -6683,20 +6686,15 @@ msgstr ""
 msgid "No custom palettes yet."
 msgstr ""
 
-#: static/js/options/options/color-palettes/PalettePreview.js:157
-#: static/js/options/options/color-picker/color-picker-iris.js:69
+#: static/js/options/options/color-palettes/PalettePreview.js:170
+#: static/js/options/options/color-picker/color-picker-iris.js:67
 msgid "Copied"
 msgstr ""
 
-#: static/js/options/options/color-palettes/PalettePreview.js:161
-#: static/js/options/options/color-picker/color-picker-iris.js:70
+#: static/js/options/options/color-palettes/PalettePreview.js:174
+#: static/js/options/options/color-picker/color-picker-iris.js:68
 #: static/js/options/options/ct-customize-section-title-actions.js:282
 msgid "Copy"
-msgstr ""
-
-#: static/js/options/options/color-palettes/PalettePreview.js:175
-#: static/js/options/options/color-picker/picker-modal.js:194
-msgid "Color %s"
 msgstr ""
 
 #: static/js/options/options/color-palettes/PredefinedPalettes.js:30

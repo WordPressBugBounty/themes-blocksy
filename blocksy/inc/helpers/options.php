@@ -134,7 +134,6 @@ function blocksy_migrate_values($values, $args = []) {
 					$new_value['popup_custom_close_button_selector'] = $new_value['aditional_close_button_click_selector'];
 				}
 
-
 				if (isset($new_value['popup_additional_close_submit_delay'])) {
 					$new_value['popup_custom_close_action_delay'] = $new_value['popup_additional_close_submit_delay'];
 				}

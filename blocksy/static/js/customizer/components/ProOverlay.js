@@ -1,6 +1,5 @@
 import {
 	useState,
-	render,
 	createElement,
 	Component,
 	Fragment,

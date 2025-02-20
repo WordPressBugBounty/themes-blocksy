@@ -16,6 +16,10 @@ import {
 } from '../../customizer/preview-events'
 import ctEvents from 'ct-events'
 
+import bezierEasing from 'bezier-easing'
+
+import { useSpring } from 'react-spring'
+
 export const PanelContext = createContext({
 	titlePrefix: '',
 	isOpen: false,
@@ -132,6 +136,19 @@ const PanelLevel = ({
 		isTransitioning: false,
 	})
 
+	const [panelSecondLevelSprings, panelSecondLevelAnimationApi] = useSpring(
+		() => ({
+			from: {
+				x: '0%',
+			},
+
+			config: {
+				duration: 180,
+				easing: bezierEasing(0.645, 0.045, 0.355, 1),
+			},
+		})
+	)
+
 	useEffect(() => {
 		ctEvents.on('ct-deep-link-start', (location) => {
 			const [_, panelId] = location.split(':')
@@ -168,6 +185,7 @@ const PanelLevel = ({
 				id,
 				containerRef,
 				panelsState,
+				panelSecondLevelSprings,
 				panelsDispatch,
 				panelsHelpers: {
 					isOpenFor: (panelId) =>
@@ -186,6 +204,20 @@ const PanelLevel = ({
 						}),
 
 					close: () => {
+						if (panelsState.currentLevel === 2) {
+							panelSecondLevelAnimationApi.start({
+								x: '0%',
+
+								onRest: () => {
+									panelsDispatch({
+										type: 'PANEL_CLOSE',
+									})
+								},
+							})
+
+							return
+						}
+
 						panelsDispatch({
 							type: 'PANEL_CLOSE',
 						})
@@ -208,6 +240,10 @@ const PanelLevel = ({
 						panelsDispatch({
 							type: 'PANEL_OPEN_SECOND_LEVEL',
 							...args,
+						})
+
+						panelSecondLevelAnimationApi.start({
+							x: '-50%',
 						})
 					},
 

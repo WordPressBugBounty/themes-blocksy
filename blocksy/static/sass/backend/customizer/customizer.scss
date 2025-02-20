@@ -126,6 +126,8 @@ $customizer-width: 320px;
 					transition: inherit;
 
 					&:hover, &:focus {
+						outline: none;
+						box-shadow: none;
 						color: var(--ui-accent-color);
 						background: rgba(255, 255, 255, 0.7);
 					}

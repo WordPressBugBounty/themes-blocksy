@@ -111,6 +111,33 @@ class WooCommerceBoot {
 			[$this, 'allow_product_collection_block_in_widgets'],
 			100
 		);
+
+		add_action('enqueue_block_editor_assets', function () {
+			$screen = get_current_screen();
+
+			$relevant_screens = ['customize', 'widgets'];
+
+			if (
+				! $screen
+				||
+				! in_array($screen->id, $relevant_screens)
+			) {
+				return;
+			}
+
+			$wp_scripts = wp_scripts();
+
+			$wp_scripts->remove('wp-edit-post');
+
+			foreach ($wp_scripts->registered as $script) {
+				foreach ($script->deps as $dep) {
+					if ($dep === 'wp-edit-post') {
+						$wp_scripts->remove($script->handle);
+						break;
+					}
+				}
+			}
+		}, PHP_INT_MAX);
 	}
 
 	// Load WooCommerce Product Collection block inside Widgets page

@@ -1,3 +1,14 @@
+2.0.88: 2025-02-20
+- Improvement: Add option to change the sticky header slide down and fade effect animation speed
+- Improvement: Color palettes - add possibility to rename colors
+- Improvement: Correctly mount components root for React 18
+- Improvement: Customizer import - make sure the CSS file gents generated properly
+- Improvement: Ensure page with non existing taxonomy is treated as a regular 404 page
+- Improvement: Ensure wp-edit-post script doesn't get loaded in the Widgets or Customizer screens to avoid issues with widgets editor
+- Improvement: Media attachment pages - make sure description HTML formatting is correctly applied
+- Improvement: Single product gallery - make sure the "zoom effect" works properly when Dokan plugin is active
+- Fix: Header menu - make sure "Stretch Menu" option works fine in combination with "Collapse Non Fitting Items" option
+
 2.0.87: 2025-02-06
 - Fix: Live Search shows featured images on posts that do not have a featured image
 - Fix: Single product gallery thumbnails require a double tap the first time the page is loaded on mobile

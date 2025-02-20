@@ -1,12 +1,6 @@
 import $ from 'jquery'
 
-import {
-	useState,
-	Fragment,
-	createElement,
-	useRef,
-	render,
-} from '@wordpress/element'
+import { useState, Fragment, createElement, useRef } from '@wordpress/element'
 import { __ } from 'ct-i18n'
 import OptionsPanel from '../../options/OptionsPanel'
 import { getValueFromInput } from '../../options/helpers/get-value-from-input'

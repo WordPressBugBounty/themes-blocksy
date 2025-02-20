@@ -50,6 +50,19 @@ if (isset($has_sticky_header) && $has_sticky_header) {
 	$atts = $current_section['settings'];
 
 	$sticky_offset = blocksy_akg('sticky_offset', $atts, '0');
+	$animation_speed = blocksy_akg('sticky_animation_speed', $atts, '0.2');
+
+	if ($animation_speed !== '0.2') {
+		blocksy_output_responsive([
+			'css' => $css,
+			'tablet_css' => $tablet_css,
+			'mobile_css' => $mobile_css,
+			'selector' => blocksy_assemble_selector($root_selector),
+			'variableName' => 'header-sticky-animation-speed',
+			'value' => $animation_speed,
+			'unit' => 's'
+		]);
+	}
 
 	if ($sticky_offset !== '0') {
 		blocksy_output_responsive([

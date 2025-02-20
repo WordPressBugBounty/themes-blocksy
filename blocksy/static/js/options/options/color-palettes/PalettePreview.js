@@ -6,6 +6,7 @@ import classnames from 'classnames'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import EditVariableName from './EditVariableName'
+import EditColorName from './EditColorName'
 
 const PalettePreview = ({
 	renderBefore = () => null,
@@ -116,6 +117,18 @@ const PalettePreview = ({
 								)
 							},
 
+							colorName: ({ picker }) => {
+								return (
+									<div className="ct-option-color-name">
+										<EditColorName
+											currentPalette={currentPalette}
+											picker={picker}
+											onChange={onChange}
+										/>
+									</div>
+								)
+							},
+
 							colorVariableName: ({ picker }) => {
 								return (
 									<div className="ct-option-color-variable">
@@ -171,10 +184,12 @@ const PalettePreview = ({
 							pickers: Object.keys(currentPalette)
 								.filter((k) => k.indexOf('color') === 0)
 								.map((key, index) => ({
-									title: sprintf(
-										__('Color %s', 'blocksy'),
-										key.replace('color', '')
-									),
+									title:
+										currentPalette[key]?.title ||
+										sprintf(
+											__('Color %s', 'blocksy'),
+											key.replace('color', '')
+										),
 									variableName:
 										'theme-palette-color-' +
 										key.replace('color', ''),

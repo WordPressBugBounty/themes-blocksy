@@ -1,4 +1,4 @@
-import { createElement, render } from '@wordpress/element'
+import { createElement, createRoot } from '@wordpress/element'
 import OptionsRoot from './OptionsRoot.js'
 import { getValueFromInput } from './helpers/get-value-from-input'
 import $ from 'jquery'
@@ -15,7 +15,8 @@ export const initAllPanels = () =>
 		$(singleTarget).on('remove', () => setTimeout(() => initAllPanels()))
 		$(singleTarget).on('remove', () => () => initAllPanels())
 
-		render(
+		const root = createRoot(singleTarget)
+		root.render(
 			<OptionsRoot
 				options={JSON.parse(
 					singleTarget.firstElementChild.dataset.ctOptions
@@ -35,7 +36,6 @@ export const initAllPanels = () =>
 						'disableReverseButton'
 					) === -1
 				}
-			/>,
-			singleTarget
+			/>
 		)
 	})

@@ -54,7 +54,7 @@ add_action('init', function () {
 
 				$palettes[$key] = [
 					'id' => $key,
-					'title' => 'Theme ' . $paletteValue['title'],
+					'title' => $paletteValue['title'],
 					'value' => 'var(--' . $paletteValue['variable'] . ')'
 				];
 			}
@@ -97,7 +97,7 @@ add_action('init', function () {
 
 					$data['colors'][$key] = [
 						'id' => $key,
-						'title' => 'Theme ' . $paletteValue['title'],
+						'title' => $paletteValue['title'],
 						'value' => $paletteValue['color']
 					];
 				}

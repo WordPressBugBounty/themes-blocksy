@@ -18,11 +18,7 @@ const ColorPickerIris = ({
 }) => {
 	const [copied, setCopied] = useState(false)
 
-
-	const calculatedColor = useMemo(
-		() => getComputedStyleValue(color),
-		[color]
-	)
+	const calculatedColor = useMemo(() => getComputedStyleValue(color), [color])
 
 	return (
 		<div className="ct-gutenberg-color-picker">
@@ -33,6 +29,8 @@ const ColorPickerIris = ({
 					onChange({ ...value, color: normalizeColor(color) })
 				}}
 			/>
+
+			{option.colorName && option.colorName({ picker })}
 
 			<div className="ct-option-color-value">
 				<InputWithValidCssExpression

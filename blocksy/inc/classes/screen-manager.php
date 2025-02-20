@@ -402,10 +402,12 @@ class Blocksy_Screen_Manager {
 		) {
 			$post_type = blocksy_manager()->post_types->is_supported_post_type();
 
-			if ($post_type) {
-				$actual_prefix = $post_type . '_archive';
-			} else {
-				$actual_prefix = 'categories';
+			if (get_queried_object_id()) {
+				if ($post_type) {
+					$actual_prefix = $post_type . '_archive';
+				} else {
+					$actual_prefix = 'categories';
+				}
 			}
 		}
 

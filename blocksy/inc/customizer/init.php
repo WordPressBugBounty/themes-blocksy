@@ -302,9 +302,7 @@ add_action(
 					'dismissed-blocksy_google_fonts_notice',
 					'no'
 				) === 'yes',
-				'current_palette' => array_keys(
-					blocksy_manager()->colors->get_color_palette()
-				),
+				'current_palette' => blocksy_manager()->colors->get_color_palette(),
 				'gutenberg_blocks_data' => apply_filters(
 					'blocksy:gutenberg-blocks-data',
 					[]

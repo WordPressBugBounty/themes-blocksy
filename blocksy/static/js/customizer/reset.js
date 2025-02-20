@@ -1,4 +1,4 @@
-import { render, createElement, Component, Fragment } from '@wordpress/element'
+import { createElement, Component, Fragment } from '@wordpress/element'
 import { onDocumentLoaded } from '../helpers'
 import { __ } from 'ct-i18n'
 

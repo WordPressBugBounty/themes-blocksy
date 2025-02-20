@@ -82,7 +82,9 @@ const MigrateValues = ({
 		)
 
 		if (migratedValueDescriptor.didChange) {
-			onChangeMultiple(migratedValueDescriptor.value)
+			onChangeMultiple(migratedValueDescriptor.value, {
+				deleteNonExistent: true,
+			})
 		}
 	}, [])
 

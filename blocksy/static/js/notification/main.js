@@ -1,10 +1,11 @@
-import { createElement, render } from '@wordpress/element'
+import { createElement, createRoot } from '@wordpress/element'
 import Notification from './Notification'
 import $ from 'jquery'
 
 export const mount = (el) => {
 	if (el.querySelector('.notice-blocksy-plugin-root')) {
-		render(
+		const root = createRoot(el.querySelector('.notice-blocksy-plugin-root'))
+		root.render(
 			<Notification
 				initialStatus={
 					el.querySelector('.notice-blocksy-plugin-root').dataset
@@ -20,8 +21,7 @@ export const mount = (el) => {
 				pluginLink={
 					el.querySelector('.notice-blocksy-plugin-root').dataset.link
 				}
-			/>,
-			el.querySelector('.notice-blocksy-plugin-root')
+			/>
 		)
 	}
 

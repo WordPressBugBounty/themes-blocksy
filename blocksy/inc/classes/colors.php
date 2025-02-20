@@ -103,15 +103,21 @@ class Colors {
 				$value = $args['default'][$key];
 			}
 
+			$title = blocksy_safe_sprintf(
+				__('Color %s', 'blocksy'),
+				str_replace('color', '', $key)
+			);
+
+			if (isset($value['title'])) {
+				$title = $value['title'];
+			}
+
 			$result[$key] = [
 				'id' => $key,
 				'slug' => 'palette-color-' . str_replace('color', '', $key),
 				'color' => $value['color'],
 				'variable' => $variableName,
-				'title' => blocksy_safe_sprintf(
-					__('Palette Color %s', 'blocksy'),
-					str_replace('color', '', $key)
-				)
+				'title' => $title
 			];
 		}
 
