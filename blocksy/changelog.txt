@@ -1,3 +1,6 @@
+2.0.89: 2025-02-20
+- Improvement: General fixes and improvements
+
 2.0.88: 2025-02-20
 - Improvement: Add option to change the sticky header slide down and fade effect animation speed
 - Improvement: Color palettes - add possibility to rename colors
