@@ -1,9 +1,5 @@
 import './public-path'
-import {
-	createElement,
-	createRoot,
-	unmountComponentAtNode,
-} from '@wordpress/element'
+import { createElement, createRoot } from '@wordpress/element'
 import { defineCustomizerControl } from './controls/utils.js'
 import { listenToChanges } from './customizer-color-scheme.js'
 import './preview-events'
@@ -98,6 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					? wp.customize.panel
 					: wp.customize.section)(control.section(), (section) => {
 					section.expanded.bind((value) => {
+						const root = createRoot(control.container[0])
+
 						if (value) {
 							const ChildComponent = Options
 
@@ -106,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
 							// block | inline
 							let design = 'none'
 
-							const root = createRoot(control.container[0])
 							root.render(
 								<MyChildComponent
 									id={control.id}
@@ -121,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 
 						setTimeout(() => {
-							unmountComponentAtNode(control.container[0])
+							root.unmount()
 						}, 500)
 					})
 				})

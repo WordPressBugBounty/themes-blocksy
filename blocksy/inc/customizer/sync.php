@@ -262,12 +262,12 @@ function blocksy_replace_current_template() {
 		preg_match('/<main id="main".*?\\>/s', $content, $result);
 
 		$without_header = preg_split('/<main id="main".*?\\>/s', $content)[1];
-		$without_footer = preg_split(
-			'/<footer id="footer".*?\\>/s',
-			$without_header
-		)[0];
 
-		return $result[0] . $without_footer . '</main>';
+		$without_footer = explode('</main>', $without_header);
+
+		array_pop($without_footer);
+
+		return $result[0] . implode('</main>', $without_footer) . '</main>';
 	}
 
 	return '';

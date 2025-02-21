@@ -1,3 +1,9 @@
+2.0.90: 2025-02-21
+- Improvement: Better detection of full page selective refresh in Customizer
+- Improvement: CPT archives don't get customizer styles correctly
+- Improvement: Correctly un-mount components in Customizer options for new React 18 version
+- Improvement: Flexy slider dynamic height calculation take border into consideration
+
 2.0.89: 2025-02-20
 - Improvement: General fixes and improvements
 

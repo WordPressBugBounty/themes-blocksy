@@ -402,12 +402,18 @@ class Blocksy_Screen_Manager {
 		) {
 			$post_type = blocksy_manager()->post_types->is_supported_post_type();
 
-			if (get_queried_object_id()) {
-				if ($post_type) {
-					$actual_prefix = $post_type . '_archive';
-				} else {
-					$actual_prefix = 'categories';
+			$prefix_for_post_type = 'categories';
+
+			if ($post_type) {
+				$prefix_for_post_type = $post_type . '_archive';
+			}
+
+			if (is_tax() || is_category() || is_tag()) {
+				if (get_queried_object_id()) {
+					$actual_prefix = $prefix_for_post_type;
 				}
+			} else {
+				$actual_prefix = $prefix_for_post_type;
 			}
 		}
 
