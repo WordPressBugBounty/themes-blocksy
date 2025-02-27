@@ -7,18 +7,4 @@
 			margin-bottom: 30px;	
 		}
 	}
-
-
-	// slider type
-	:where(.related, .up-sells) {
-
-		.flexy-items {
-			--flexy-items-gap: var(--grid-columns-gap, 30px);
-			--flexy-item-width: var(--grid-columns-width);
-
-			.product {
-				height: 100%;
-			}
-		}
-	}
 }

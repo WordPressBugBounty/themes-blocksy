@@ -160,6 +160,10 @@ class WooCommerceBoot {
 			// of the ProductCollection block and cause errors in block editor
 			// if not present.
 			$block_types[] = 'AllProducts';
+
+			// Enqueued to fix issue with ProductTemplate block in the inner block
+			// template of the ProductCollection block.
+			$block_types[] = 'ProductTemplate';
 		}
 
 		return $block_types;

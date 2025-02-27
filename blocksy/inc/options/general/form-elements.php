@@ -105,7 +105,6 @@ $options = [
 						'form_font' => [
 							'type' => 'ct-typography',
 							'label' => __( 'Font', 'blocksy' ),
-							'isDefault' => true,
 							'value' => blocksy_typography_default_values([]),
 							'setting' => [ 'transport' => 'postMessage' ],
 						],

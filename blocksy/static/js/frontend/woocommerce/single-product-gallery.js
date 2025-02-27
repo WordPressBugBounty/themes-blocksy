@@ -415,11 +415,11 @@ export const mount = (el, { event: mountEvent }) => {
 
 				if (
 					document.querySelector(
-						'.single-product .flexy-items .ct-media-container'
+						'.single-product .product .flexy-items .ct-media-container'
 					)
 				) {
 					let pills = document.querySelector(
-						'.single-product .flexy-pills'
+						'.single-product .product .flexy-pills'
 					)
 
 					let activeIndex = Array.from(
@@ -432,7 +432,7 @@ export const mount = (el, { event: mountEvent }) => {
 					if (isGalleryEnabled) {
 						openPhotoswipeFor(
 							document.querySelector(
-								'.single-product .flexy-items'
+								'.single-product .product .flexy-items'
 							).children[activeIndex].firstElementChild,
 
 							activeIndex

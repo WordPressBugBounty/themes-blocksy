@@ -28,16 +28,14 @@
 		padding-inline-end: 1.5em;
 	}
 
+	// other
 	p {
-		margin-top: 0;
-
-		&:last-of-type {
+		&:last-child {
 			margin-bottom: 0;
 		}
 	}
 
 	cite {
-		margin-top: 15px;
 		font-size: 14px;
 	}
 }

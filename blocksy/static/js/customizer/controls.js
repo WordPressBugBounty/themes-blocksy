@@ -94,7 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					? wp.customize.panel
 					: wp.customize.section)(control.section(), (section) => {
 					section.expanded.bind((value) => {
-						const root = createRoot(control.container[0])
+						let root = control.container[0].__reactRoot
+
+						if (!root) {
+							control.container[0].__reactRoot = createRoot(
+								control.container[0]
+							)
+							root = control.container[0].__reactRoot
+						}
 
 						if (value) {
 							const ChildComponent = Options
@@ -119,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 						setTimeout(() => {
 							root.unmount()
+
+							control.container[0].__reactRoot = null
 						}, 500)
 					})
 				})

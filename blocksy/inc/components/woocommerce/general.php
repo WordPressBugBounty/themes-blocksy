@@ -278,13 +278,18 @@ add_action(
 		if ($template_name === 'single-product/up-sells.php') {
 			$upsells = ob_get_clean();
 
+			$woocommerce_related_products_slideshow = blocksy_get_theme_mod(
+				'woocommerce_related_products_slideshow',
+				'default'
+			);
+
 			$other_attr = [];
 
-			if ( is_customize_preview() ) {
+			if (is_customize_preview()) {
 				$other_attr['data-shortcut'] = 'border:outside';
 				$other_attr['data-shortcut-location'] = blocksy_first_level_deep_link('woo_categories');
 
-				if ( is_single() ) {
+				if (is_single()) {
 					$prefix = blocksy_manager()->screen->get_prefix();
 
 					$other_attr['data-shortcut-location'] = blocksy_first_level_deep_link($prefix) . ':woo_has_related_upsells';
@@ -294,30 +299,51 @@ add_action(
 			$constrained_class = '';
 			$visibility_classes = '';
 
-			if (blocksy_manager()->screen->uses_woo_default_template()) {
-				$constrained_class = 'is-width-constrained';
+			$upsells_class = [
+				'up-sells',
+				'upsells',
+				'products'
+			];
 
-				$visibility_classes = blocksy_visibility_classes(
-					blocksy_get_theme_mod(
-						'upsell_products_visibility',
+			if ($woocommerce_related_products_slideshow === 'slider') {
+				$upsells_class[] = 'is-layout-slider';
+			}
+
+			if (blocksy_manager()->screen->uses_woo_default_template()) {
+				$upsells_class[] = 'is-width-constrained';
+
+				$upsells_class = array_merge(
+					$upsells_class,
+					blocksy_visibility_classes(
+						blocksy_get_theme_mod(
+							'upsell_products_visibility',
+							[
+								'desktop' => true,
+								'tablet' => false,
+								'mobile' => false,
+							]
+						),
+
 						[
-							'desktop' => true,
-							'tablet' => false,
-							'mobile' => false,
+							'output' => 'array'
 						]
 					)
 				);
 			}
 
+			$other_attr['class'] = implode(' ', $upsells_class);
+
 			$woo_product_related_label_tag = blocksy_get_theme_mod('woo_product_related_label_tag', 'h2');
 
-			$upsells = preg_replace('/<h2>(.*?)<\/h2>/', '<' . $woo_product_related_label_tag . ' class="ct-module-title">$1</' . $woo_product_related_label_tag . '>', $upsells);
+			$upsells = preg_replace(
+				'/<h2>(.*?)<\/h2>/',
+				'<' . $woo_product_related_label_tag . ' class="ct-module-title">$1</' . $woo_product_related_label_tag . '>',
+				$upsells
+			);
 
 			echo str_replace(
 				'class="up-sells upsells products"',
-				blocksy_attr_to_html($other_attr) . 'class="up-sells upsells products ' . trim(
-					$constrained_class . ' ' . $visibility_classes
-				) . '"',
+				blocksy_attr_to_html($other_attr),
 				$upsells
 			);
 		}
@@ -325,13 +351,18 @@ add_action(
 		if ($template_name === 'single-product/related.php') {
 			$related = ob_get_clean();
 
+			$woocommerce_related_products_slideshow = blocksy_get_theme_mod(
+				'woocommerce_related_products_slideshow',
+				'default'
+			);
+
 			$other_attr = [];
 
-			if ( is_customize_preview() ) {
+			if (is_customize_preview()) {
 				$other_attr['data-shortcut'] = 'border:outside';
 				$other_attr['data-shortcut-location'] = blocksy_first_level_deep_link('woo_categories');
 
-				if ( is_single() ) {
+				if (is_single()) {
 					$prefix = blocksy_manager()->screen->get_prefix();
 
 					$other_attr['data-shortcut-location'] = blocksy_first_level_deep_link($prefix) . ':woo_has_related_upsells';
@@ -341,30 +372,53 @@ add_action(
 			$constrained_class = '';
 			$visibility_classes = '';
 
-			if (blocksy_manager()->screen->uses_woo_default_template()) {
-				$constrained_class = 'is-width-constrained';
+			$related_class = [
+				'related',
+				'products'
+			];
 
-				$visibility_classes = blocksy_visibility_classes(
-					blocksy_get_theme_mod(
-						'related_products_visibility',
+			if ($woocommerce_related_products_slideshow === 'slider') {
+				$related_class[] = 'is-layout-slider';
+			}
+
+			if (blocksy_manager()->screen->uses_woo_default_template()) {
+				$related_class[] = 'is-width-constrained';
+
+				$related_class = array_merge(
+					$related_class,
+					blocksy_visibility_classes(
+						blocksy_get_theme_mod(
+							'related_products_visibility',
+							[
+								'desktop' => true,
+								'tablet' => false,
+								'mobile' => false,
+							]
+						),
+
 						[
-							'desktop' => true,
-							'tablet' => false,
-							'mobile' => false,
+							'output' => 'array'
 						]
 					)
 				);
 			}
 
-			$woo_product_related_label_tag = blocksy_get_theme_mod('woo_product_related_label_tag', 'h2');
+			$other_attr['class'] = implode(' ', $related_class);
 
-			$related = preg_replace('/<h2>(.*?)<\/h2>/', '<' . $woo_product_related_label_tag . ' class="ct-module-title">$1</' . $woo_product_related_label_tag . '>', $related);
+			$woo_product_related_label_tag = blocksy_get_theme_mod(
+				'woo_product_related_label_tag',
+				'h2'
+			);
+
+			$related = preg_replace(
+				'/<h2>(.*?)<\/h2>/',
+				'<' . $woo_product_related_label_tag . ' class="ct-module-title">$1</' . $woo_product_related_label_tag . '>',
+				$related
+			);
 
 			echo str_replace(
 				'class="related products"',
-				blocksy_attr_to_html($other_attr) . 'class="related products ' . trim(
-					$constrained_class . ' ' . $visibility_classes
-				) . '"',
+				blocksy_attr_to_html($other_attr),
 				$related
 			);
 		}

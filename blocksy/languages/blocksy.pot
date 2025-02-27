@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-21 16:07+0000\n"
+"POT-Creation-Date: 2025-02-27 17:32+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Next %s"
 msgstr ""
 
-#: inc/template-tags.php:510, inc/options/single-elements/related-posts.php:19,
+#: inc/template-tags.php:517, inc/options/single-elements/related-posts.php:19,
 #: inc/options/single-elements/related-posts.php:168
 msgid "Related Posts"
 msgstr ""
@@ -656,7 +656,7 @@ msgstr ""
 msgid "Sidebar"
 msgstr ""
 
-#: inc/options/customizer.php:79, inc/options/general/form-elements.php:218,
+#: inc/options/customizer.php:79, inc/options/general/form-elements.php:217,
 #: inc/options/general/pagination.php:145
 msgid "Colors"
 msgstr ""
@@ -1394,12 +1394,12 @@ msgstr ""
 #: inc/options/general/colors.php:715, inc/options/general/colors.php:737,
 #: inc/options/general/colors.php:759,
 #: inc/options/general/comments-single.php:162,
-#: inc/options/general/form-elements.php:130,
-#: inc/options/general/form-elements.php:165,
-#: inc/options/general/form-elements.php:198,
-#: inc/options/general/form-elements.php:234,
-#: inc/options/general/form-elements.php:280,
-#: inc/options/general/form-elements.php:310,
+#: inc/options/general/form-elements.php:129,
+#: inc/options/general/form-elements.php:164,
+#: inc/options/general/form-elements.php:197,
+#: inc/options/general/form-elements.php:233,
+#: inc/options/general/form-elements.php:279,
+#: inc/options/general/form-elements.php:309,
 #: inc/options/general/general.php:65, inc/options/general/page-title.php:871,
 #: inc/options/general/page-title.php:956,
 #: inc/options/general/page-title.php:992,
@@ -1884,8 +1884,8 @@ msgstr ""
 
 #: inc/options/general/buttons.php:50,
 #: inc/options/general/comments-single.php:146,
-#: inc/options/general/form-elements.php:114,
-#: inc/options/general/form-elements.php:264,
+#: inc/options/general/form-elements.php:113,
+#: inc/options/general/form-elements.php:263,
 #: inc/options/general/pagination.php:196,
 #: inc/options/single-elements/post-nav.php:171,
 #: inc/options/woocommerce/card-product-elements.php:713,
@@ -1935,8 +1935,8 @@ msgid "Font Color"
 msgstr ""
 
 #: inc/options/general/buttons.php:80,
-#: inc/options/general/form-elements.php:182,
-#: inc/options/general/form-elements.php:294,
+#: inc/options/general/form-elements.php:181,
+#: inc/options/general/form-elements.php:293,
 #: inc/options/general/sidebar.php:385,
 #: inc/options/single-elements/author-box.php:454,
 #: inc/options/single-elements/post-share-box.php:600,
@@ -2260,7 +2260,7 @@ msgid "Modern"
 msgstr ""
 
 #: inc/options/general/form-elements.php:46,
-#: inc/options/general/form-elements.php:145
+#: inc/options/general/form-elements.php:144
 msgid "Form Fields"
 msgstr ""
 
@@ -2297,15 +2297,15 @@ msgstr ""
 msgid "Font"
 msgstr ""
 
-#: inc/options/general/form-elements.php:136,
-#: inc/options/general/form-elements.php:170,
-#: inc/options/general/form-elements.php:203,
+#: inc/options/general/form-elements.php:135,
+#: inc/options/general/form-elements.php:169,
+#: inc/options/general/form-elements.php:202,
 #: inc/panel-builder/header/search/options.php:592,
 #: inc/panel-builder/header/search/options.php:622
 msgid "Focus"
 msgstr ""
 
-#: inc/options/general/form-elements.php:149,
+#: inc/options/general/form-elements.php:148,
 #: inc/options/single-elements/author-box.php:421,
 #: inc/options/woocommerce/single-product-tabs.php:245,
 #: inc/panel-builder/header/cart/options.php:1035,
@@ -2318,13 +2318,13 @@ msgstr ""
 msgid "Border Color"
 msgstr ""
 
-#: inc/options/general/form-elements.php:214
+#: inc/options/general/form-elements.php:213
 msgid "Radio & Checkbox"
 msgstr ""
 
-#: inc/options/general/form-elements.php:239,
-#: inc/options/general/form-elements.php:286,
-#: inc/options/general/form-elements.php:316,
+#: inc/options/general/form-elements.php:238,
+#: inc/options/general/form-elements.php:285,
+#: inc/options/general/form-elements.php:315,
 #: inc/options/woocommerce/single-product-tabs.php:231,
 #: inc/options/woocommerce/single-product-tabs.php:287,
 #: inc/options/woocommerce/general/account-page.php:101,
@@ -2351,7 +2351,7 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: inc/options/general/form-elements.php:260
+#: inc/options/general/form-elements.php:259
 msgid "Select Dropdown"
 msgstr ""
 
@@ -6502,7 +6502,7 @@ msgstr ""
 msgid "Download Blocksy Companion"
 msgstr ""
 
-#: static/js/options/GenericOptionType.js:583
+#: static/js/options/GenericOptionType.js:587
 msgid "Option can't be edited for current device"
 msgstr ""
 

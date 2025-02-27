@@ -1,3 +1,16 @@
+2.0.91: 2025-02-27
+- Improvement: Better check for responsive customizer previewed device in options from post meta
+- Improvement: Better integration between LiteSpeed and responsive desktop menu functionality
+- Improvement: Make sure label for the search header element is translatable
+- Improvement: Media attachment description better formatting
+- Improvement: New lines are ignored in manually entered excerpts
+- Improvement: Properly output footer row grid styles on tablet and mobile devices
+- Improvement: Safer management of react root
+- Fix: Fix widgets error when WooCommerce 9.7.0 is active
+- Fix: Form elements typography - make sure "Font Weight" option works fine even if the font is set to default value
+- Fix: WooCommerce checkout page - fix coupon code input height when buttons have a big padding
+- Fix: WooCommerce default gallery - make sure lightbox assets are correctly loaded on mobile devices
+
 2.0.90: 2025-02-21
 - Improvement: Better detection of full page selective refresh in Customizer
 - Improvement: CPT archives don't get customizer styles correctly

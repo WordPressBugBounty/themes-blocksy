@@ -229,3 +229,22 @@
 		}
 	}
 }
+
+// slider layout
+.is-layout-slider {
+
+	.flexy-items {
+		--flexy-items-gap: var(--grid-columns-gap, 30px);
+		--flexy-item-width: var(--grid-columns-width);
+	}
+
+	.flexy-item {
+		display: flex;
+
+		// don not remove this width
+		// https://creativethemes.slack.com/archives/GTG15AXAQ/p1732721539849779
+		> * {
+			width: 100%;
+		}
+	}
+}

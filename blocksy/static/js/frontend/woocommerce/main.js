@@ -15,7 +15,7 @@ function isTouchDevice() {
 
 export const wooEntryPoints = [
 	{
-		els: 'body.single-product .woocommerce-product-gallery',
+		els: 'body.single-product .woocommerce-product-gallery:has(.ct-product-gallery-container)',
 		load: () => import('./single-product-gallery'),
 		trigger: [
 			{

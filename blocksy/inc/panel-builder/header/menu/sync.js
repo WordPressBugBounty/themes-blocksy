@@ -48,6 +48,13 @@ export const handleMenuVariables = ({ itemId, values }) => {
 
 		transparentMenuFontColor: allSkipped,
 		stickyMenuFontColor: allSkipped,
+		headerDropdownDivider: {
+			width: 1,
+			style: 'dashed',
+			color: {
+				color: 'rgba(255, 255, 255, 0.1)',
+			},
+		},
 	}
 
 	const extractKeyWithDefault = (key) => (values) => {
@@ -364,9 +371,9 @@ export const handleMenuVariables = ({ itemId, values }) => {
 						})
 					),
 					fullValue: true,
-					extractValue: ({ headerDropdownDivider }) => {
-						return headerDropdownDivider
-					},
+					extractValue: extractKeyWithDefault(
+						'headerDropdownDivider'
+					),
 					variable: 'dropdown-divider',
 					type: 'border',
 				},
@@ -380,13 +387,14 @@ export const handleMenuVariables = ({ itemId, values }) => {
 						})
 					),
 					fullValue: true,
-					extractValue: ({
-						dropdown_items_type,
-						headerDropdownDivider,
-					}) => {
+					extractValue: ({ dropdown_items_type }) => {
 						if (dropdown_items_type !== 'padded') {
 							return 'CT_CSS_SKIP_RULE'
 						}
+
+						const headerDropdownDivider = extractKeyWithDefault(
+							'headerDropdownDivider'
+						)(values)
 
 						return headerDropdownDivider['style'] !== 'none'
 							? '1'

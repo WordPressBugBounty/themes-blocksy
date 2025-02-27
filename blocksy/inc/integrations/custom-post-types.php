@@ -147,7 +147,6 @@ class CustomPostTypes {
 				'atbdp_orders',
 				'at_biz_dir',
 				'gspbstylebook',
-				'testimonial',
 				'frm_display',
 				'e-landing-page',
 				'pgc_simply_gallery',

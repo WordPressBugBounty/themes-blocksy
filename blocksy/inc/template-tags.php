@@ -187,7 +187,7 @@ if (! function_exists('blocksy_entry_excerpt')) {
 			[
 				'class' => esc_attr($args['class'])
 			],
-			$excerpt_additions . do_shortcode($excerpt)
+			wpautop($excerpt_additions . do_shortcode($excerpt))
 		);
 	}
 }
@@ -417,8 +417,16 @@ function blocksy_related_posts($location = null) {
 	$prefix = blocksy_manager()->screen->get_prefix();
 	$per_page = intval(blocksy_get_theme_mod($prefix . '_related_posts_count', 3));
 
-	if (blocksy_get_theme_mod($prefix . '_related_posts_slideshow', 'default') === 'slider') {
-		$per_page = intval(blocksy_get_theme_mod($prefix . '_related_posts_slideshow_number_of_items', 6));
+	$related_posts_slideshow = blocksy_get_theme_mod(
+		$prefix . '_related_posts_slideshow',
+		'default'
+	);
+
+	if ($related_posts_slideshow === 'slider') {
+		$per_page = intval(blocksy_get_theme_mod(
+			$prefix . '_related_posts_slideshow_number_of_items',
+			6
+		));
 	}
 
 	$post_type = get_post_type($post);
@@ -427,7 +435,6 @@ function blocksy_related_posts($location = null) {
 		$prefix . '_related_criteria',
 		array_keys(blocksy_get_taxonomies_for_cpt($post_type))[0]
 	);
-
 
 	$all_taxonomy_ids = [];
 
@@ -540,13 +547,18 @@ function blocksy_related_posts($location = null) {
 		'ct-related-posts-container' . ' ' . $related_visibility
 	);
 
-	$boxed_container_class = 'ct-related-posts';
+	$boxed_container_class = ['ct-related-posts'];
 
 	if ($location !== 'separated') {
-		$boxed_container_class = trim(
-			$boxed_container_class . ' is-width-constrained ' . $related_visibility
-		);
+		$boxed_container_class[] = 'is-width-constrained';
+		$boxed_container_class[] = $related_visibility;
 	}
+
+	if ($related_posts_slideshow === 'slider') {
+		$boxed_container_class[] = 'is-layout-slider';
+	}
+
+	$boxed_container_class = implode(' ', $boxed_container_class);
 
 	if (! $query->have_posts()) {
 		wp_reset_postdata();
@@ -642,15 +654,13 @@ function blocksy_related_posts($location = null) {
 				<?php $query->the_post(); ?>
 
 				<?php
-					blocksy_render_related_card(
-						[
-							'item_attributes' => $item_attributes,
-							'meta_elements' => $meta_elements,
-							'posts_title_tag' => $posts_title_tag
-						]
-					);
+					blocksy_render_related_card([
+						'item_attributes' => $item_attributes,
+						'meta_elements' => $meta_elements,
+						'posts_title_tag' => $posts_title_tag
+					]);
 				?>
-				
+
 			<?php } ?>
 			</div>
 

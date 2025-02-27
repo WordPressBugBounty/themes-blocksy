@@ -422,6 +422,16 @@ if ($count === 6) {
 
 $gridTemplate = blocksy_expand_responsive_value($gridTemplate);
 
+$mobile_possible_choices = ['initial', 'repeat(2, 1fr)'];
+
+if (! in_array($gridTemplate['tablet'], $mobile_possible_choices)) {
+	$gridTemplate['tablet'] = $mobile_possible_choices[0];
+}
+
+if (! in_array($gridTemplate['mobile'], $mobile_possible_choices)) {
+	$gridTemplate['mobile'] = $mobile_possible_choices[0];
+}
+
 $css->put(
 	blocksy_assemble_selector(blocksy_mutate_selector([
 		'selector' => $root_selector,

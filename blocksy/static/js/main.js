@@ -205,6 +205,18 @@ const initOverlayTrigger = () => {
 	})
 }
 
+const mountIntegrations = (integrations) => {
+	if (integrations.length > 0) {
+		Promise.all(
+			integrations
+				.filter(({ check }) => check())
+				.map(({ promise }) => promise())
+		).then((integrations) => {
+			integrations.map(({ mount }) => mount())
+		})
+	}
+}
+
 onDocumentLoaded(() => {
 	document.body.addEventListener(
 		'mouseover',
@@ -265,6 +277,20 @@ onDocumentLoaded(() => {
 	setTimeout(() => {
 		initOverlayTrigger()
 	})
+
+	mountIntegrations([
+		{
+			promise: () => import('./frontend/integration/litespeed'),
+			check: () =>
+				!![...document.childNodes].find((c) => {
+					if (c.nodeType !== 8) {
+						return false
+					}
+
+					return c.nodeValue.toLowerCase().includes('litespeed')
+				}),
+		},
+	])
 })
 
 let isPageLoad = true
@@ -282,7 +308,7 @@ ctEvents.on('blocksy:frontend:init', () => {
 	if (isPageLoad) {
 		isPageLoad = false
 	} else {
-		let integrations = [
+		mountIntegrations([
 			{
 				promise: () => import('./frontend/integration/stackable'),
 				check: () => true,
@@ -307,15 +333,7 @@ ctEvents.on('blocksy:frontend:init', () => {
 				promise: () => import('./frontend/integration/elementor'),
 				check: () => !!window.elementorFrontend,
 			},
-		]
-
-		Promise.all(
-			integrations
-				.filter(({ check }) => check())
-				.map(({ promise }) => promise())
-		).then((integrations) => {
-			integrations.map(({ mount }) => mount())
-		})
+		])
 	}
 })
 

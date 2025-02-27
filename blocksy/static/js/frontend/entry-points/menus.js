@@ -27,6 +27,7 @@ export const menuEntryPoints = [
 			),
 		],
 		load: () => import('../header/responsive-desktop-menu'),
+		events: ['ct:header:responsive-menu:refresh'],
 		condition: () => {
 			if (getCurrentScreen() !== 'desktop') {
 				return false

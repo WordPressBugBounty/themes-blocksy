@@ -75,12 +75,16 @@ export const useDeviceManager = (args = {}) => {
 	}
 
 	useEffect(() => {
-		if (!wp.customize) return
-		setTimeout(() => wp.customize.previewedDevice.bind(listener), 1000)
+		setTimeout(() => {
+			if (wp.customize && wp.customize.previewedDevice) {
+				wp.customize.previewedDevice.bind(listener)
+			}
+		}, 1000)
 
 		return () => {
-			if (!wp.customize) return
-			wp.customize.previewedDevice.unbind(listener)
+			if (wp.customize && wp.customize.previewedDevice) {
+				wp.customize.previewedDevice.unbind(listener)
+			}
 		}
 	}, [])
 
@@ -92,7 +96,10 @@ export const useDeviceManager = (args = {}) => {
 			: currentView,
 		(device) => {
 			setCurrentView(device)
-			wp.customize && wp.customize.previewedDevice.set(device)
+
+			if (wp.customize && wp.customize.previewedDevice) {
+				wp.customize.previewedDevice.set(device)
+			}
 		},
 	]
 }

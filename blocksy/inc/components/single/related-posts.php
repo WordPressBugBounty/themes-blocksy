@@ -11,19 +11,26 @@ if (! function_exists('blocksy_render_related_card')) {
 				])
 			]
 		);
-		
+
 		$card_render = apply_filters(
 			'blocksy:posts-listing:cards:custom-output',
 			null,
 			$args['prefix']
 		);
 
+		$related_item_attr = [
+			'id' => 'post-' . get_the_ID(),
+			'class' => implode(' ', get_post_class())
+		];
+
 		$entry_open = '<article ';
 		$entry_open .= blocksy_attr_to_html($args['item_attributes']) . ' ';
 		$entry_open .= blocksy_schema_org_definitions('creative_work:related_posts');
 		$entry_open .= '>';
 
-		$entry_close = '</article>';
+		$entry_open .= '<div ' . blocksy_attr_to_html($related_item_attr) . '>';
+
+		$entry_close = '</div></article>';
 
 		if ($card_render) {
 			echo $entry_open;
@@ -58,7 +65,7 @@ if (! function_exists('blocksy_render_related_card')) {
 								'id' => 'post_date',
 								'enabled' => true,
 							],
-			
+
 							[
 								'id' => 'comments',
 								'enabled' => true,
@@ -150,27 +157,27 @@ if (! function_exists('blocksy_render_related_card')) {
 		echo $entry_open;
 
 		do_action('blocksy:single:related_posts:card:top');
-		
+
 		foreach ($related_order as $single_component) {
 			if (! $single_component['enabled']) {
 				continue;
 			}
 
 			$output = '';
-			
+
 			if ('post_meta' === $single_component['id']) {
 				$post_meta_default = blocksy_post_meta_defaults([
 					[
 						'id' => 'post_date',
 						'enabled' => true,
 					],
-	
+
 					[
 						'id' => 'comments',
 						'enabled' => true,
 					],
 				]);
-				
+
 				$total_metas = [];
 
 				foreach ($related_order as $nested_single_component) {
@@ -178,7 +185,7 @@ if (! function_exists('blocksy_render_related_card')) {
 						$total_metas[] = $nested_single_component;
 					}
 				}
-				
+
 				$has_term_accent_color = 'yes';
 
 				foreach (blocksy_akg('meta_elements', $single_component, $post_meta_default) as $meta_element) {

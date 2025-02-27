@@ -28,6 +28,11 @@ $search_label = blocksy_expand_responsive_value(
 	blocksy_default_akg('search_label', $atts, __('Search', 'blocksy'))
 )[$device];
 
+$search_label = blocksy_translate_dynamic(
+	$search_label,
+	$panel_type . ':' . $section_id . ':' . $item_id . ':search_label'
+);
+
 $search_label_position = blocksy_expand_responsive_value(
 	blocksy_akg('search_label_position', $atts, 'left')
 );

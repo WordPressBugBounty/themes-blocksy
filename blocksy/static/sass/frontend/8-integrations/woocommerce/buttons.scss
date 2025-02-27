@@ -4,8 +4,8 @@
 
 	&:after {
 		content: '';
-		width: 16px;
-		height: 16px;
+		width: var(--theme-button-spinner-size, 16px);
+		height: var(--theme-button-spinner-size, 16px);
 		background-color: currentColor;
 		animation: spin 1s linear infinite;
 

@@ -1,4 +1,4 @@
-.wp-block-quote {
+blockquote {
 
 	// style
 	&:not(.is-style-plain) {
@@ -28,14 +28,12 @@
 
 	// other
 	p {
-		&:last-of-type {
+		&:last-child {
 			margin-bottom: 0;
 		}
 	}
 
 	cite {
-		display: block;
-		margin-top: 15px;
 		font-size: 14px;
 	}
 }

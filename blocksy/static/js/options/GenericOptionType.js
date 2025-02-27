@@ -106,7 +106,10 @@ const GenericOptionType = ({
 	const setDevice = (device) => {
 		ctEvents.trigger('ct:options:device:update', { device })
 		setInnerDevice(device)
-		wp.customize && wp.customize.previewedDevice.set(device)
+
+		if (wp.customize && wp.customize.previewedDevice) {
+			wp.customize.previewedDevice.set(device)
+		}
 
 		if (
 			wp.data &&
@@ -136,7 +139,7 @@ const GenericOptionType = ({
 			}
 		}
 
-		if (wp.customize) {
+		if (wp.customize && wp.customize.previewedDevice) {
 			setTimeout(() => wp.customize.previewedDevice.bind(listener), 1000)
 		}
 
@@ -151,7 +154,7 @@ const GenericOptionType = ({
 				}
 			}
 
-			if (wp.customize) {
+			if (wp.customize && wp.customize.previewedDevice) {
 				wp.customize.previewedDevice.unbind(listener)
 			}
 
@@ -377,7 +380,6 @@ const GenericOptionType = ({
 		return (
 			((option.type !== 'ct-image-picker' &&
 				option.type !== 'ct-layers' &&
-				option.type !== 'ct-panel' &&
 				hasRevertButton &&
 				!option.disableRevertButton) ||
 				option.forcedRevertButton) && (
@@ -404,7 +406,9 @@ const GenericOptionType = ({
 							  })
 					)}
 					className="ct-revert"
-					onClick={() => {
+					onClick={(e) => {
+						e.stopPropagation()
+
 						let revertValue = option.value
 
 						if (
