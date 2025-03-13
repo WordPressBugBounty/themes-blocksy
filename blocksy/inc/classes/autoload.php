@@ -49,6 +49,7 @@ class ThemeAutoloader {
 			'DbVersioning\\V2075' => 'inc/classes/db-versioning/v2-0-75.php',
 			'DbVersioning\\V2076' => 'inc/classes/db-versioning/v2-0-76.php',
 			'DbVersioning\\V2087' => 'inc/classes/db-versioning/v2-0-87.php',
+			'DbVersioning\\V2092' => 'inc/classes/db-versioning/v2-0-92.php',
 
 			'DbVersioning\\DefaultValuesCleaner' => 'inc/classes/db-versioning/utils/db-default-values-cleaner.php',
 
@@ -94,6 +95,9 @@ class ThemeAutoloader {
 			 * No namespace
 			 */
 			'_Blocksy_Css_Injector' => 'inc/classes/class-ct-css-injector.php',
+
+			'WooImportExport' => 'inc/classes/woo-import-export.php',
+			'WooVariationImagesImportExport' => 'inc/classes/woo-variation-images-import-export.php',
 		]);
 	}
 

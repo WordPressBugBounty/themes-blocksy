@@ -151,6 +151,16 @@ if (! function_exists('blocksy_media')) {
 					unset($args['img_atts']['title']);
 				}
 
+				$alt = get_post_meta(
+					$args['attachment_id'],
+					'_wp_attachment_image_alt',
+					true
+				);
+
+				if (empty($alt)) {
+					$args['img_atts']['alt'] = get_post_field('post_title', $post->ID);
+				}
+
 				$attachment = get_post($args['attachment_id']);
 
 				if ($args['include_original_image_size']) {

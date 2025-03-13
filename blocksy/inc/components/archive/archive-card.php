@@ -18,7 +18,7 @@ if (! function_exists('blocksy_render_archive_card')) {
 			blocksy_manager()->screen->process_allowed_prefixes(
 				$args['prefix'],
 				[
-					'allowed_prefixes' => ['blog'],
+					'allowed_prefixes' => ['blog', 'search'],
 					'default_prefix' => 'blog'
 				]
 			) . '_has_posts_reveal',
@@ -287,7 +287,7 @@ if (! function_exists('blocksy_render_archive_card')) {
 			blocksy_manager()->screen->process_allowed_prefixes(
 				$args['prefix'],
 				[
-					'allowed_prefixes' => ['blog'],
+					'allowed_prefixes' => ['blog', 'search'],
 					'default_prefix' => 'blog'
 				]
 			) . '_has_posts_reveal',

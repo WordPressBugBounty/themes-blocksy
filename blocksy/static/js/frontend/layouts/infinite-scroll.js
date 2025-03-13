@@ -198,11 +198,13 @@ function getAppendSelectorFor(layoutEl, args = {}) {
 	}
 
 	if (layoutEl.closest('.wp-block-blocksy-query')) {
-		return `.wp-block-blocksy-query[data-id="${
+		const prefix = `.wp-block-blocksy-query[data-id="${
 			layoutEl.closest('.wp-block-blocksy-query').dataset.id
-		}"] ${
+		}"]`
+
+		return `${prefix} ${
 			args.toAppend === 'default'
-				? '[class*="ct-query-template"] > *, .entries > *'
+				? `[class*="ct-query-template"] > *, ${prefix} .entries > *`
 				: args.toAppend
 		}`
 	}

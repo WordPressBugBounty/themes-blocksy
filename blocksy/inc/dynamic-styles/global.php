@@ -65,7 +65,10 @@ blocksy_theme_get_dynamic_styles([
 	'context' => $context,
 	'chunk' => 'global',
 	'prefixes' => blocksy_manager()->screen->get_archive_prefixes([
-		'has_woocommerce' => true
+		'has_woocommerce' => true,
+		'has_search' => true,
+		'has_author' => true,
+		'has_categories' => true
 	])
 ]);
 

@@ -17,6 +17,10 @@ $posts_listing_options = blocksy_get_options('general/posts-listing', [
 	'title' => __('Search Results', 'blocksy')
 ]);
 
+$pagination_options = blocksy_get_options('general/pagination', [
+	'prefix' => 'search',
+]);
+
 $inner_options = [
 	blocksy_manager()->get_prefix_title_actions([
 		'prefix' => 'search',
@@ -57,7 +61,7 @@ $inner_options = [
 
 			[
 				'title' => __('Pagination', 'blocksy'),
-				'options' => [],
+				'options' => $pagination_options,
 				'sources' => blocksy_manager()
 					->screen
 					->get_archive_prefixes_with_human_labels([
@@ -82,6 +86,8 @@ $inner_options = [
 	blocksy_get_options('general/sidebar-particular', [
 		'prefix' => 'search'
 	]),
+
+	$pagination_options,
 
 	[
 		blocksy_rand_md5() => [
@@ -116,8 +122,11 @@ $inner_options = [
 
 			] : []
 		],
+	],
 
-	]
+	blocksy_get_options('general/cards-reveal-effect', [
+		'prefix' => 'search'
+	])
 ];
 
 if (

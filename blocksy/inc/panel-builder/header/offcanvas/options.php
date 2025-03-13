@@ -114,6 +114,39 @@ $options = [
 				],
 			],
 
+			blocksy_rand_md5() => [
+				'type' => 'ct-condition',
+				'condition' => [ 'offcanvas_behavior' => 'panel' ],
+				'options' => [
+
+					'has_offcanvas_offset' => [
+						'label' => __( 'Panel Offset', 'blocksy' ),
+						'type' => 'ct-switch',
+						'value' => 'no',
+						'divider' => 'top:full',
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'has_offcanvas_offset' => 'yes' ],
+						'options' => [
+
+							'offcanvas_offset' => [
+								'label' => __( 'Offset', 'blocksy' ),
+								'type' => 'ct-slider',
+								'value' => 20,
+								'min' => 10,
+								'max' => 100,
+								'responsive' => true,
+								'setting' => [ 'transport' => 'postMessage' ],
+							],
+
+						],
+					],
+
+				],
+			],
+
 		],
 	],
 
@@ -187,8 +220,32 @@ $options = [
 						])
 					],
 
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'has_offcanvas_offset' => 'yes'],
+						'options' => [
+
+							'offcanvas_panel_radius' => [
+								'label' => __( 'Panel Border Radius', 'blocksy' ),
+								'type' => 'ct-spacing',
+								'divider' => 'top',
+								'setting' => [ 'transport' => 'postMessage' ],
+								'value' => blocksy_spacing_value([
+									'top' => '10px',
+									'left' => '10px',
+									'right' => '10px',
+									'bottom' => '10px',
+								]),
+								'min' => 0,
+								'responsive' => true
+							],
+
+						],
+					],
+
 				],
 			],
+
 
 			blocksy_rand_md5() => [
 				'type' => 'ct-condition',

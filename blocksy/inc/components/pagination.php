@@ -19,6 +19,7 @@ if (! function_exists('blocksy_display_posts_pagination')) {
 		$allowed_prefixes_args = [
 			'allowed_prefixes' => [
 				'blog',
+				'search',
 				'woo_categories'
 			],
 			'default_prefix' => 'blog'

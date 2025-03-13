@@ -326,7 +326,7 @@ export const responsiveClassesFor = (data, el) => {
 		}
 	}
 
-	if (data === true) {
+	if (data === true || typeof data === 'undefined') {
 		return
 	}
 

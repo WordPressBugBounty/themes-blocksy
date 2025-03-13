@@ -377,6 +377,10 @@ const GenericOptionType = ({
 			computeOptionValue = (o, { option, values }) => o
 		}
 
+		if (option.type === 'ct-panel' && !option.switch) {
+			return null
+		}
+
 		return (
 			((option.type !== 'ct-image-picker' &&
 				option.type !== 'ct-layers' &&

@@ -163,17 +163,22 @@ class Blocksy_Screen_Manager {
 	}
 
 	public function get_archive_prefixes($args = []) {
-		$result = ['blog'];
-
 		$args = wp_parse_args(
 			$args,
 			[
+				'has_blog' => true,
 				'has_woocommerce' => false,
 				'has_categories' => false,
 				'has_author' => false,
 				'has_search' => false
 			]
 		);
+
+		$result = [];
+
+		if ($args['has_blog']) {
+			$result[] = 'blog';
+		}
 
 		if ($args['has_categories']) {
 			$result[] = 'categories';

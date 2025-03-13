@@ -68,6 +68,9 @@ class WooCommerce {
 		$this->single = new WooCommerceSingle();
 
 		$this->checkout = new WooCommerceCheckout();
+
+		new WooImportExport();
+		new WooVariationImagesImportExport();
 	}
 
 	public function retrieve_product_default_variation($product, $object = true) {
@@ -105,10 +108,12 @@ class WooCommerce {
 
 		$has_some_matching_get_param = false;
 
-		foreach ($variation_attributes as $attribute_name => $attribute_values) {
-			if (isset($_GET['attribute_' . $attribute_name])) {
-				$has_some_matching_get_param = true;
-				break;
+		if (get_queried_object_id() === $product->get_id()) {
+			foreach ($variation_attributes as $attribute_name => $attribute_values) {
+				if (isset($_GET['attribute_' . $attribute_name])) {
+					$has_some_matching_get_param = true;
+					break;
+				}
 			}
 		}
 

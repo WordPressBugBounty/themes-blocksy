@@ -46,7 +46,7 @@ $options = [
 			],
 
 			'trigger_icon_visibility' => [
-				'label' => __('Icon Visibility', 'blocksy-companion'),
+				'label' => __('Icon Visibility', 'blocksy'),
 				'type' => 'ct-visibility',
 				'design' => 'block',
 				'divider' => 'top',
@@ -58,9 +58,9 @@ $options = [
 				]),
 
 				'choices' => blocksy_ordered_keys([
-					'desktop' => __('Desktop', 'blocksy-companion'),
-					'tablet' => __('Tablet', 'blocksy-companion'),
-					'mobile' => __('Mobile', 'blocksy-companion'),
+					'desktop' => __('Desktop', 'blocksy'),
+					'tablet' => __('Tablet', 'blocksy'),
+					'mobile' => __('Mobile', 'blocksy'),
 				]),
 			],
 

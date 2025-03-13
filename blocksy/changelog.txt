@@ -1,3 +1,11 @@
+2.0.92: 2025-03-13
+- Improvement: Add pagination options for search archive
+- Improvement: Add product name to the product gallery images as a fallback for accessibility reasons
+- Improvement: Added off-canvas offset option
+- Improvement: Better output for off-canvas panel width on small devices
+- Improvement: Safer generation of the responsive classes in customizer to avoid issues in some certain situations
+- Fix: Related Posts - make sure bottom spacing is applied properly on all elements
+
 2.0.91: 2025-02-27
 - Improvement: Better check for responsive customizer previewed device in options from post meta
 - Improvement: Better integration between LiteSpeed and responsive desktop menu functionality

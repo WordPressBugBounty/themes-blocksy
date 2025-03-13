@@ -8,11 +8,8 @@
 		text-align: var(--horizontal-alignment);
 	}
 
-	article {
-
-		> *:not(:last-child) {
-			margin-block: 0 var(--card-element-spacing, 20px);
-		}
+	.post > *:not(:last-child) {
+		margin-block: 0 var(--card-element-spacing, 20px);
 	}
 
 	.ct-media-container {
@@ -23,8 +20,7 @@
 		color: var(--theme-text-color);
 	}
 
-	.entry-meta,
-	.related-entry-title {
+	:is(.entry-meta, .related-entry-title) {
 		--theme-link-initial-color: initial;
 	}
 }

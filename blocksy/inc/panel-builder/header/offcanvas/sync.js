@@ -7,6 +7,8 @@ import {
 	mutateSelector,
 } from '../../../../static/js/customizer/sync/helpers'
 
+import { maybePromoteScalarValueIntoResponsive } from 'customizer-sync-helpers/dist/promote-into-responsive'
+
 ctEvents.on(
 	'ct:header:sync:collect-variable-descriptors',
 	(variableDescriptors) => {
@@ -74,7 +76,6 @@ ctEvents.on(
 			}).section
 
 		variableDescriptors['offcanvas'] = ({ itemId }) => ({
-			
 			offcanvas_heading_font_color: {
 				selector: '#offcanvas .ct-panel-actions',
 				variable: 'theme-text-color',
@@ -90,9 +91,7 @@ ctEvents.on(
 
 			headerPanelShadow: {
 				selector: assembleSelector(
-					`${
-						getRootSelectorFor({ itemId })[0]
-					} #offcanvas`
+					`${getRootSelectorFor({ itemId })[0]} #offcanvas`
 				),
 				type: 'box-shadow',
 				variable: 'theme-box-shadow',
@@ -112,6 +111,38 @@ ctEvents.on(
 					variable: 'vertical-alignment',
 					responsive: true,
 					unit: '',
+				},
+
+				{
+					selector: assembleSelector(getRootSelectorFor({ itemId })),
+					variable: 'panel-content-height',
+					responsive: true,
+					unit: '',
+					extractValue: (value) => {
+						console.log('here', { value })
+
+						value = maybePromoteScalarValueIntoResponsive(value)
+
+						const height = {
+							desktop: 'auto',
+							tablet: 'auto',
+							mobile: 'auto',
+						}
+
+						if (value.desktop === 'flex-start') {
+							height.desktop = '100%'
+						}
+
+						if (value.tablet === 'flex-start') {
+							height.tablet = '100%'
+						}
+
+						if (value.mobile === 'flex-start') {
+							height.mobile = '100%'
+						}
+
+						return height
+					},
 				},
 			],
 
@@ -297,6 +328,21 @@ ctEvents.on(
 				variable: 'toggle-button-radius',
 				unit: 'px',
 			},
+
+			// panel offset
+			offcanvas_offset: {
+				selector: assembleSelector(getRootSelectorFor({ itemId })),
+				variable: 'side-panel-offset',
+				responsive: true,
+				unit: 'px',
+			},
+
+			offcanvas_panel_radius: {
+				selector: assembleSelector(getRootSelectorFor({ itemId })),
+				type: 'spacing',
+				variable: 'side-panel-border-radius',
+				responsive: true,
+			},
 		})
 	}
 )
@@ -370,6 +416,12 @@ ctEvents.on(
 					})
 				})
 			}, 300)
+		}
+
+		if (optionId === 'has_offcanvas_offset') {
+			wp.customize.preview.trigger('ct:sync:refresh_partial', {
+				id: 'header_placements_offcanvas',
+			})
 		}
 	}
 )

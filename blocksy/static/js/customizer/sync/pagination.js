@@ -7,24 +7,32 @@ import {
 } from './helpers'
 
 const prefix = getPrefixFor({
-	allowed_prefixes: ['blog', 'woo_categories'],
+	allowed_prefixes: [
+		'blog',
+		'search',
+		'author',
+		'categories',
+		'woo_categories',
+	],
 	default_prefix: 'blog',
 })
+
+const optionPrefix = ['author', 'categories'].includes(prefix) ? 'blog' : prefix
 
 watchOptionsWithPrefix({
 	getPrefix: () => prefix,
 	getOptionsForPrefix: () => [
-		`${prefix}_load_more_label`,
-		`${prefix}_paginationDivider`,
-		`${prefix}_numbers_visibility`,
-		`${prefix}_arrows_visibility`,
+		`${optionPrefix}_load_more_label`,
+		`${optionPrefix}_paginationDivider`,
+		`${optionPrefix}_numbers_visibility`,
+		`${optionPrefix}_arrows_visibility`,
 	],
 
 	render: () => {
 		if (document.querySelector('.ct-load-more')) {
 			document.querySelector('.ct-load-more').innerHTML = getOptionFor(
 				'load_more_label',
-				prefix
+				optionPrefix
 			)
 		}
 
@@ -32,23 +40,25 @@ watchOptionsWithPrefix({
 			el.removeAttribute('data-divider')
 			;[...el.parentNode.querySelectorAll('nav > a')].map((el) => {
 				responsiveClassesFor(
-					getOptionFor('arrows_visibility', prefix),
+					getOptionFor('arrows_visibility', optionPrefix),
 					el
 				)
 			})
 			;[...el.parentNode.querySelectorAll('nav > div')].map((el) => {
 				responsiveClassesFor(
-					getOptionFor('numbers_visibility', prefix),
+					getOptionFor('numbers_visibility', optionPrefix),
 					el
 				)
 			})
 
-			if (getOptionFor('paginationDivider', prefix).style === 'none') {
+			if (
+				getOptionFor('paginationDivider', optionPrefix).style === 'none'
+			) {
 				return
 			}
 
 			if (
-				getOptionFor('pagination_global_type', prefix) ===
+				getOptionFor('pagination_global_type', optionPrefix) ===
 				'infinite_scroll'
 			) {
 				return
@@ -60,31 +70,32 @@ watchOptionsWithPrefix({
 })
 
 export const getPaginationVariables = () => ({
-	[`${prefix}_paginationSpacing`]: {
-		selector: applyPrefixFor(
-			'.ct-pagination',
-			prefix === 'blog' ? '' : prefix
-		),
+	[`${optionPrefix}_paginationSpacing`]: {
+		selector: applyPrefixFor('.ct-pagination', prefix),
 		variable: 'spacing',
 		responsive: true,
 		unit: '',
 	},
 
-	[`${prefix}_paginationDivider`]: {
-		selector: applyPrefixFor(
-			'.ct-pagination[data-divider]',
-			prefix === 'blog' ? '' : prefix
-		),
+	[`${optionPrefix}_paginationDivider`]: {
+		selector: applyPrefixFor('.ct-pagination[data-divider]', prefix),
 		variable: 'pagination-divider',
 		type: 'border',
 		skip_none: true,
 	},
 
-	[`${prefix}_simplePaginationFontColor`]: [
+	[`${optionPrefix}_pagination_border_radius`]: {
+		selector: applyPrefixFor('.ct-pagination', prefix),
+		type: 'spacing',
+		variable: 'theme-border-radius',
+		emptyValue: 4,
+	},
+
+	[`${optionPrefix}_simplePaginationFontColor`]: [
 		{
 			selector: applyPrefixFor(
 				'[data-pagination="simple"], [data-pagination="next_prev"]',
-				prefix === 'blog' ? '' : prefix
+				prefix
 			),
 			variable: 'theme-text-color',
 			type: 'color:default',
@@ -93,7 +104,7 @@ export const getPaginationVariables = () => ({
 		{
 			selector: applyPrefixFor(
 				'.ct-pagination[data-pagination="simple"]',
-				prefix === 'blog' ? '' : prefix
+				prefix
 			),
 			variable: 'theme-text-active-color',
 			type: 'color:active',
@@ -102,57 +113,38 @@ export const getPaginationVariables = () => ({
 		{
 			selector: applyPrefixFor(
 				'[data-pagination="simple"], [data-pagination="next_prev"]',
-				prefix === 'blog' ? '' : prefix
+				prefix
 			),
 			variable: 'theme-link-hover-color',
 			type: 'color:hover',
 		},
 	],
 
-	[`${prefix}_paginationButtonText`]: [
+	[`${optionPrefix}_paginationButtonText`]: [
 		{
-			selector: applyPrefixFor(
-				'[data-pagination="load_more"]',
-				prefix === 'blog' ? '' : prefix
-			),
+			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-text-initial-color',
 			type: 'color:default',
 		},
 
 		{
-			selector: applyPrefixFor(
-				'[data-pagination="load_more"]',
-				prefix === 'blog' ? '' : prefix
-			),
+			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-text-hover-color',
 			type: 'color:hover',
 		},
 	],
 
-	[`${prefix}_paginationButton`]: [
+	[`${optionPrefix}_paginationButton`]: [
 		{
-			selector: applyPrefixFor(
-				'[data-pagination="load_more"]',
-				prefix === 'blog' ? '' : prefix
-			),
+			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-background-initial-color',
 			type: 'color:default',
 		},
 
 		{
-			selector: applyPrefixFor(
-				'[data-pagination="load_more"]',
-				prefix === 'blog' ? '' : prefix
-			),
+			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-background-hover-color',
 			type: 'color:hover',
 		},
 	],
-
-	[`${prefix}_pagination_border_radius`]: {
-		selector: applyPrefixFor('.ct-pagination', prefix),
-		type: 'spacing',
-		variable: 'theme-border-radius',
-		emptyValue: 4,
-	},
 })

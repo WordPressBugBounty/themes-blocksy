@@ -219,9 +219,9 @@ class Blocksy_Attributes_Parser {
 		return preg_replace(
 			'/(\\<' .
 			$tag .
-			'[^>]+)(\\s?' .
+			'[^>]*)(\\s?' .
 			$attribute .
-			'\\="[^"]+"\\s?)([^>]+)(>)/',
+			'\\="[^"]*"\\s?)([^>]+)(>)/',
 			'${1}${3}${4}',
 			$image
 		);

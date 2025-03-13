@@ -131,6 +131,36 @@ if ($vertical_alignment !== 'flex-start') {
 	]);
 }
 
+$vertical_alignment = blocksy_expand_responsive_value($vertical_alignment);
+
+$offcanvas_height = [
+	'desktop' => 'auto',
+	'tablet' => 'auto',
+	'mobile' => 'auto'
+];
+
+if ($vertical_alignment['desktop'] === 'flex-start') {
+	$offcanvas_height['desktop'] = '100%';
+}
+
+if ($vertical_alignment['tablet'] === 'flex-start') {
+	$offcanvas_height['tablet'] = '100%';
+}
+
+if ($vertical_alignment['mobile'] === 'flex-start') {
+	$offcanvas_height['mobile'] = '100%';
+}
+
+blocksy_output_responsive([
+	'css' => $css,
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+	'selector' => blocksy_assemble_selector($root_selector),
+	'variableName' => 'panel-content-height',
+	'unit' => '',
+	'value' => $offcanvas_height
+]);
+
 $horizontal_alignment = blocksy_akg(
 	'offcanvasContentAlignment',
 	$atts,
@@ -323,4 +353,37 @@ if ($close_button_type !== 'type-1') {
 			'--toggle-button-radius: ' . $menu_close_button_border_radius . 'px'
 		);
 	}
+}
+
+
+// panel offset
+$has_offcanvas_offset = blocksy_akg('has_offcanvas_offset', $atts, 'no');
+
+if($has_offcanvas_offset === 'yes' && $offcanvas_behavior === 'panel') {
+
+	blocksy_output_responsive([
+		'css' => $css,
+		'tablet_css' => $tablet_css,
+		'mobile_css' => $mobile_css,
+		'selector' => blocksy_assemble_selector($root_selector),
+		'variableName' => 'side-panel-offset',
+		'value' => blocksy_akg( 'offcanvas_offset', $atts, 20 ),
+	]);
+
+	blocksy_output_spacing([
+		'css' => $css,
+		'tablet_css' => $tablet_css,
+		'mobile_css' => $mobile_css,
+		'selector' => blocksy_assemble_selector($root_selector),
+		'property' => 'side-panel-border-radius',
+		'value' => blocksy_akg( 'offcanvas_panel_radius', $atts,
+			blocksy_spacing_value([
+				'top' => '10px',
+				'left' => '10px',
+				'right' => '10px',
+				'bottom' => '10px',
+			])
+		),
+	]);
+
 }
