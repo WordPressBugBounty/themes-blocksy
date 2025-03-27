@@ -37,6 +37,17 @@ foreach ($all_cpts as $single_cpt) {
 	$cpt_options[$single_cpt] = false;
 }
 
+foreach ($cpt_choices as $cpt => $value) {
+	$post_type_object = get_post_type_object($cpt);
+
+	if ($post_type_object && isset($post_type_object->show_in_rest) && $post_type_object->show_in_rest) {
+		continue;
+	}
+
+	unset($cpt_choices[$cpt]);
+	unset($cpt_options[$cpt]);
+}
+
 $options = [
 	blocksy_rand_md5() => [
 		'title' => __( 'General', 'blocksy' ),

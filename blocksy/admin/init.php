@@ -27,6 +27,8 @@ add_action(
 	'init',
 	function () {
 		blocksy_get_jed_locale_data('blocksy');
+
+		blocksy_manager()->entity_id_picker->mount_ajax_action();
 	}
 );
 
@@ -159,45 +161,49 @@ add_action(
 			}
 		}
 
+		$localize_data = [
+			'conditions_override' => blocksy_manager()->get_conditions_overrides(),
+			'theme_version' => $theme->get('Version'),
+			'current_palette' => blocksy_manager()->colors->get_color_palette(),
+			'test' => blocksy_manager()->colors->get_color_palette(),
+			'gradients' => $gradients,
+			'is_dev_mode' => !! (
+				defined('BLOCKSY_DEVELOPMENT_MODE')
+				&&
+				BLOCKSY_DEVELOPMENT_MODE
+			),
+			'nonce' => wp_create_nonce('ct-ajax-nonce'),
+			'dashboard_actions_nonce' => wp_create_nonce('ct-dashboard'),
+			'public_url' => get_template_directory_uri() . '/static/bundle/',
+			'static_public_url' => get_template_directory_uri() . '/static/',
+			'dismissed_google_fonts_notice' => get_option(
+				'dismissed-blocksy_google_fonts_notice',
+				'no'
+			) === 'yes',
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'rest_url' => get_rest_url(),
+			'customizer_url' => admin_url('/customize.php?autofocus'),
+			'product_name' => blocksy_get_wp_theme()->get('Name'),
+			'customizer_sync' => [
+				'svg_patterns' => blocksy_get_patterns_svgs_list()
+			],
+			'gutenberg_metaboxes_data' => apply_filters(
+				'blocksy:gutenberg-metaboxes-data',
+				[]
+			),
+			'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls()
+		];
+
+		$block_editor_data = blocksy_get_block_editor_data();
+
+		if (! empty($block_editor_data)) {
+			$localize_data['block_editor_data'] = $block_editor_data;
+		}
+
 		wp_localize_script(
 			'ct-options-scripts',
 			'ct_localizations',
-			[
-				'conditions_override' => blocksy_manager()->get_conditions_overrides(),
-				'theme_version' => $theme->get('Version'),
-				'current_palette' => blocksy_manager()->colors->get_color_palette(),
-				'test' => blocksy_manager()->colors->get_color_palette(),
-				'gradients' => $gradients,
-				'is_dev_mode' => !! (
-					defined('BLOCKSY_DEVELOPMENT_MODE')
-					&&
-					BLOCKSY_DEVELOPMENT_MODE
-				),
-				'nonce' => wp_create_nonce('ct-ajax-nonce'),
-				'dashboard_actions_nonce' => wp_create_nonce('ct-dashboard'),
-				'public_url' => get_template_directory_uri() . '/static/bundle/',
-				'static_public_url' => get_template_directory_uri() . '/static/',
-				'dismissed_google_fonts_notice' => get_option(
-					'dismissed-blocksy_google_fonts_notice',
-					'no'
-				) === 'yes',
-				'ajax_url' => admin_url('admin-ajax.php'),
-				'rest_url' => get_rest_url(),
-				'customizer_url' => admin_url('/customize.php?autofocus'),
-				'product_name' => blocksy_get_wp_theme()->get('Name'),
-				'customizer_sync' => [
-					'svg_patterns' => blocksy_get_patterns_svgs_list()
-				],
-				'gutenberg_blocks_data' => apply_filters(
-					'blocksy:gutenberg-blocks-data',
-					[]
-				),
-				'gutenberg_metaboxes_data' => apply_filters(
-					'blocksy:gutenberg-metaboxes-data',
-					[]
-				),
-				'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls()
-			]
+			$localize_data
 		);
 	},
 	50

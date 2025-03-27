@@ -2,7 +2,6 @@
 
 namespace Blocksy;
 
-
 class WooCommerceCheckout {
 	public function __construct() {
 		add_action('wp', function () {

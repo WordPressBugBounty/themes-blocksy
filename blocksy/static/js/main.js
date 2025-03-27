@@ -333,6 +333,12 @@ ctEvents.on('blocksy:frontend:init', () => {
 				promise: () => import('./frontend/integration/elementor'),
 				check: () => !!window.elementorFrontend,
 			},
+
+			{
+				promise: () =>
+					import('./frontend/integration/elementor-premium-addons'),
+				check: () => !!window.premiumWooProducts,
+			},
 		])
 	}
 })

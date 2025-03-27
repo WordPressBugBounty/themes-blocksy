@@ -182,7 +182,7 @@ class WooImportExport {
 
 	public static function upload_video_from_url($video_url) {
 		// Validate the URL
-		if (!filter_var($video_url, FILTER_VALIDATE_URL)) {
+		if (! filter_var($video_url, FILTER_VALIDATE_URL)) {
 			return new WP_Error('invalid_url', 'Invalid video URL.');
 		}
 

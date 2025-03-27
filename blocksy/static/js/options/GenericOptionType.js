@@ -397,6 +397,8 @@ const GenericOptionType = ({
 									values,
 							  }),
 
+						// Important: all implementations should add handling
+						// for undefined and skip revert in that case.
 						renderingConfig.getValueForRevert
 							? renderingConfig.getValueForRevert({
 									value,

@@ -283,39 +283,46 @@ add_action(
 			$gradients = wp_get_global_settings()['color']['gradients']['theme'];
 		}
 
+
+		$localize_data = [
+			'customizer_reset_none' => wp_create_nonce('ct-customizer-reset'),
+			'static_public_url' => get_template_directory_uri() . '/static/',
+			'header_builder_data' => Blocksy_Manager::instance()
+				->builder
+				->get_data_for_customizer(),
+			'has_new_widgets' => $has_new_widgets,
+			'gradients' => $gradients,
+			'has_child_theme' => $has_child_theme,
+			'is_parent_theme' => ! wp_get_theme()->parent(),
+			'rest_url' => get_rest_url(),
+			'wp_admin_url' => admin_url(),
+			'dismissed_google_fonts_notice' => get_option(
+				'dismissed-blocksy_google_fonts_notice',
+				'no'
+			) === 'yes',
+			'current_palette' => blocksy_manager()->colors->get_color_palette(),
+			'gutenberg_metaboxes_data' => apply_filters(
+				'blocksy:gutenberg-metaboxes-data',
+				[]
+			),
+			'dashboard_actions_nonce' => wp_create_nonce('ct-dashboard'),
+			'conditions_override' => blocksy_manager()->get_conditions_overrides(),
+			'modal_links' => blocksy_get_pricing_links(),
+			'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls()
+		];
+
+		$block_editor_data = blocksy_get_block_editor_data([
+			'is_block_editor' => $has_new_widgets
+		]);
+
+		if (! empty($block_editor_data)) {
+			$localize_data['block_editor_data'] = $block_editor_data;
+		}
+
 		wp_localize_script(
 			'ct-customizer-controls',
 			'ct_customizer_localizations',
-			[
-				'customizer_reset_none' => wp_create_nonce('ct-customizer-reset'),
-				'static_public_url' => get_template_directory_uri() . '/static/',
-				'header_builder_data' => Blocksy_Manager::instance()
-					->builder
-					->get_data_for_customizer(),
-				'has_new_widgets' => $has_new_widgets,
-				'gradients' => $gradients,
-				'has_child_theme' => $has_child_theme,
-				'is_parent_theme' => ! wp_get_theme()->parent(),
-				'rest_url' => get_rest_url(),
-				'wp_admin_url' => admin_url(),
-				'dismissed_google_fonts_notice' => get_option(
-					'dismissed-blocksy_google_fonts_notice',
-					'no'
-				) === 'yes',
-				'current_palette' => blocksy_manager()->colors->get_color_palette(),
-				'gutenberg_blocks_data' => apply_filters(
-					'blocksy:gutenberg-blocks-data',
-					[]
-				),
-				'gutenberg_metaboxes_data' => apply_filters(
-					'blocksy:gutenberg-metaboxes-data',
-					[]
-				),
-				'dashboard_actions_nonce' => wp_create_nonce('ct-dashboard'),
-				'conditions_override' => blocksy_manager()->get_conditions_overrides(),
-				'modal_links' => blocksy_get_pricing_links(),
-				'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls()
-			]
+			$localize_data
 		);
 	}
 );

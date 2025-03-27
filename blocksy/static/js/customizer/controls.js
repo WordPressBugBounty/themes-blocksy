@@ -170,6 +170,7 @@ export { default as Switch } from '../options/options/ct-switch'
 export { default as ImageUploader } from '../options/options/ct-image-uploader'
 export { default as Select } from '../options/options/ct-select'
 export { default as DateTimePicker } from '../options/options/date-time-picker'
+export { default as EntityIdPicker } from '../options/options/ct-entity-picker'
 
 export { default as OutsideClickHandler } from '../options/options/react-outside-click-handler'
 

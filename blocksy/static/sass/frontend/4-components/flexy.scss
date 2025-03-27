@@ -96,7 +96,7 @@
 
 // flexy pills
 .flexy-pills ol,
-.flex-control-nav {
+.flex-control-nav:has(img) {
 	display: flex;
 	flex-direction: var(--pills-direction);
 	justify-content: var(--pills-horizontal-alignment);

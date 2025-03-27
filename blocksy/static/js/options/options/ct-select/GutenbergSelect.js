@@ -43,16 +43,6 @@ const GutenbergSelect = ({
 			? value
 			: (orderedChoices[0] || {}).key
 
-	useEffect(() => {
-		if (!appendToBody) {
-			return
-		}
-
-		setTimeout(() => {
-			setTempState(Math.round())
-		}, 50)
-	}, [])
-
 	let maybeSelectedItem = orderedChoices.find(
 		({ key }) => key === potentialValue
 	)

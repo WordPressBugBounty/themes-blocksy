@@ -18,6 +18,6 @@
 
 	margin-inline: auto;
 	margin-block: var(--has-boxed, $sides_spacing);
-	width: calc(100% - #{$sides_spacing * 2}) !important; // !important - is set for when desktop doesn't have iframe
+	width: calc(100% - #{$sides_spacing * 2});
 	max-width: var(--has-boxed, var(--theme-block-max-width));
 }

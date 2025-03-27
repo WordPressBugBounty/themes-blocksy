@@ -111,7 +111,11 @@ export {
 	applyPrefixFor,
 	watchOptionsWithPrefix,
 } from './sync/helpers'
-export { responsiveClassesFor, setRatioFor } from './sync/helpers'
+export {
+	responsiveClassesFor,
+	setRatioFor,
+	getColumnSelectorFor,
+} from './sync/helpers'
 export { typographyOption } from './sync/variables/typography'
 export { maybePromoteScalarValueIntoResponsive } from 'customizer-sync-helpers/dist/promote-into-responsive'
 

@@ -124,7 +124,8 @@ if ($has_taxonomy_filter) {
 	);
 
 	$skip_tax = [
-		'product_brands'
+		'product_brands',
+		'product_brand'
 	];
 
 	$taxonomy_filter_visibility = ' ' . blocksy_visibility_classes(

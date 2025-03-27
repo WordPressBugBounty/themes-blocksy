@@ -663,7 +663,6 @@ blocksy_output_spacing([
 
 
 // footer button
-$horizontal_alignment =
 blocksy_output_responsive([
 	'css' => $css,
 	'tablet_css' => $tablet_css,

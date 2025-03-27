@@ -85,24 +85,26 @@ wp.customize('product_gallery_ratio', (val) =>
 
 		const article = document.querySelector('.ct-product-gallery-container')
 
-		;[...article.querySelectorAll('.ct-media-container')].map((el) => {
-			setRatioFor({
-				ratio: to,
-				el,
+		;[...article.querySelectorAll('.ct-media-container')]
+			.filter((el) => !el.closest('.flexy-pills'))
+			.map((el) => {
+				setRatioFor({
+					ratio: to,
+					el,
 
-				setFullSize: true,
-			})
+					setFullSize: true,
+				})
 
-			const flexyItems = article.querySelector('.flexy-items')
+				const flexyItems = article.querySelector('.flexy-items')
 
-			if (flexyItems) {
-				if (to !== 'original' && flexyItems) {
-					flexyItems.removeAttribute('style')
-					flexyItems.removeAttribute('data-height')
-				} else {
-					flexyItems.dataset.height = 'dynamic'
+				if (flexyItems) {
+					if (to !== 'original' && flexyItems) {
+						flexyItems.removeAttribute('style')
+						flexyItems.removeAttribute('data-height')
+					} else {
+						flexyItems.dataset.height = 'dynamic'
+					}
 				}
-			}
-		})
+			})
 	})
 )

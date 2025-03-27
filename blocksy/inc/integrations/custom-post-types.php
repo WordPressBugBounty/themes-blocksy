@@ -20,6 +20,7 @@ class CustomPostTypes {
 
 				// theme
 				'ct_content_block',
+				'ct_thank_you_page',
 
 				// elements kit
 				'elementskit_content',

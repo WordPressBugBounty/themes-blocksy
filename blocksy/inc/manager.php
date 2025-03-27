@@ -19,6 +19,7 @@ class Blocksy_Manager {
 	public $dynamic_styles_descriptor = null;
 	public $woocommerce = null;
 	public $colors = null;
+	public $entity_id_picker = null;
 
 	public $archive = null;
 
@@ -27,6 +28,7 @@ class Blocksy_Manager {
 	private $current_template = null;
 
 	private $scripts_enqueued = null;
+
 
 	public static function instance() {
 		if (is_null(self::$instance)) {
@@ -69,6 +71,8 @@ class Blocksy_Manager {
 		$breadcrumbs->mount_shortcode();
 
 		new \Blocksy\SearchModifications();
+
+		$this->entity_id_picker = new \Blocksy\EntityIdPicker();
 
 		$this->boot_woocommerce_integration();
 

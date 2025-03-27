@@ -60,9 +60,9 @@ add_filter(
 			$attr = blocksy_attr_to_html($other_attr);
 		}
 
-		return str_replace(
-			'class="products',
-			$attr . ' class="products',
+		return preg_replace(
+			'/<ul class="products (.*)"/',
+			'<ul class="products $1" ' . $attr,
 			$content
 		);
 	}

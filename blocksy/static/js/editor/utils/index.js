@@ -43,6 +43,6 @@ export const getDefaultsFromOptions = (options) => {
 export const getOptionsForBlock = (blockName) => {
 	return (
 		(window.ct_localizations || window.ct_customizer_localizations)
-			?.gutenberg_blocks_data?.[blockName] || []
+			?.block_editor_data?.[blockName] || []
 	)
 }

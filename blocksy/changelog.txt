@@ -1,3 +1,12 @@
+2.0.93: 2025-03-27
+- Improvement: Better integration with Premium Elementor Add-ons and the theme custom quantity input
+- Improvement: Correctly apply product gallery aspect ratio in the customizer preview
+- Improvement: Related products - better compatibility when used inside a custom Elementor single product template
+- Improvement: Search live results - correctly filter CPT's that don't support Rest API
+- Improvement: Small CSS refactor for quote block
+- Improvement: Typography option - add support for custom values in the line height and letter spacing options
+- Fix: Coupon form option can't be turned off for the cart page
+
 2.0.92: 2025-03-13
 - Improvement: Add pagination options for search archive
 - Improvement: Add product name to the product gallery images as a fallback for accessibility reasons

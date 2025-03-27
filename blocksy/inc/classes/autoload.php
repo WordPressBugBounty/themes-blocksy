@@ -25,6 +25,8 @@ class ThemeAutoloader {
 			'Database' => 'inc/classes/database.php',
 			'DbVersioning' => 'inc/classes/theme-db-versioning.php',
 
+			'EntityIdPicker' => 'inc/classes/entity-id-picker.php',
+
 			'DbVersioning\\CacheManager' => 'inc/classes/db-versioning/utils/cache-manager.php',
 
 			'DbVersioning\\V200' => 'inc/classes/db-versioning/v2-0-0.php',
@@ -50,6 +52,7 @@ class ThemeAutoloader {
 			'DbVersioning\\V2076' => 'inc/classes/db-versioning/v2-0-76.php',
 			'DbVersioning\\V2087' => 'inc/classes/db-versioning/v2-0-87.php',
 			'DbVersioning\\V2092' => 'inc/classes/db-versioning/v2-0-92.php',
+			'DbVersioning\\V2093' => 'inc/classes/db-versioning/v2-0-93.php',
 
 			'DbVersioning\\DefaultValuesCleaner' => 'inc/classes/db-versioning/utils/db-default-values-cleaner.php',
 
@@ -67,6 +70,7 @@ class ThemeAutoloader {
 			'ThemeDynamicCss' => 'inc/dynamic-css.php',
 
 			'BreadcrumbsBuilder' => 'inc/components/breadcrumbs.php',
+			'ThemePatterns' => 'inc/components/patterns.php',
 
 			'Sidebar' => 'inc/components/sidebar.php',
 			'WooCommerce' => 'inc/components/woocommerce-integration.php',

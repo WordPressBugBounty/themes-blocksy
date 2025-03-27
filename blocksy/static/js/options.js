@@ -70,6 +70,7 @@ export { default as ImageUploader } from './options/options/ct-image-uploader'
 export { default as Select } from './options/options/ct-select'
 export { default as OutsideClickHandler } from './options/options/react-outside-click-handler'
 export { default as DateTimePicker } from './options/options/date-time-picker'
+export { default as EntityIdPicker } from './options/options/ct-entity-picker'
 
 export { Transition, animated } from 'react-spring'
 export { default as bezierEasing } from 'bezier-easing'

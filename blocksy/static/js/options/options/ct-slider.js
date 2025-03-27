@@ -37,28 +37,33 @@ const UnitsList = ({
 	is_open,
 	toggleOpen,
 	currentUnit,
+	forced_current_unit,
 	getNumericValue,
 
-	forced_current_unit,
 	setForcedCurrentUnit,
 }) => {
-	const pickUnit = (unit) => {
+	const pickUnit = (unit, type) => {
 		const numericValue = getNumericValue()
 
 		let futureUnitDescriptor = option.units.find(
-			({ unit: u }) => u === unit
+			({ unit: u, type: t }) => u === unit && t === type
 		)
 
-		if (Object.keys(futureUnitDescriptor).includes('min')) {
-			onChange(
-				`${clamp(
-					option.units.find(({ unit: u }) => u === unit).min,
-					option.units.find(({ unit: u }) => u === unit).max,
-					numericValue === '' ? -Infinity : numericValue
-				)}${unit}`
-			)
+		// Don't try to clamp if the value was empty
+		if (numericValue === '') {
+			onChange(`${numericValue}${unit}`)
 		} else {
-			onChange(`${numericValue}${currentUnit}`)
+			if (Object.keys(futureUnitDescriptor).includes('min')) {
+				onChange(
+					`${clamp(
+						option.units.find(({ unit: u }) => u === unit).min,
+						option.units.find(({ unit: u }) => u === unit).max,
+						numericValue === '' ? -Infinity : numericValue
+					)}${unit}`
+				)
+			} else {
+				onChange(`${numericValue}${currentUnit}`)
+			}
 		}
 
 		if (
@@ -71,9 +76,12 @@ const UnitsList = ({
 		}
 	}
 
-	let futureUnitDescriptor = option.units.find(
-		({ unit: u }) => u === currentUnit
-	)
+	let futureUnitDescriptor =
+		forced_current_unit === ''
+			? option.units.find(
+					({ unit: u, type }) => u === '' && type === 'custom'
+			  )
+			: option.units.find(({ unit: u }) => u === currentUnit)
 
 	return (
 		<Fragment>
@@ -104,13 +112,26 @@ const UnitsList = ({
 					toggleOpen()
 				}}>
 				{option.units
-					.filter(({ unit }) => unit !== currentUnit)
+					.filter(({ unit, type }) => {
+						// Custom is selected
+						const isCustom = forced_current_unit === ''
+
+						if (isCustom) {
+							return type !== 'custom'
+						}
+
+						if (type === 'custom') {
+							return !isCustom
+						}
+
+						return unit !== currentUnit
+					})
 					.map(({ unit, type }) => (
 						<span
-							key={unit}
+							key={unit + '-' + type}
 							data-unit={type === 'custom' ? 'custom' : unit}
 							onClick={() => {
-								pickUnit(unit)
+								pickUnit(unit, type)
 								toggleOpen()
 							}}>
 							{unit ||
@@ -132,6 +153,45 @@ export default class Slider extends Component {
 		forced_current_unit: '__DEFAULT__',
 
 		localValue: '__DEFAULT__',
+	}
+
+	static renderingConfig = {
+		computeOptionValue: (value, { option }) => {
+			if (value === 'CT_CSS_SKIP_RULE' || value === '') {
+				return ''
+			}
+
+			return value
+		},
+
+		getValueForRevert: ({ value, option }) => {
+			if (value === undefined) {
+				return option.value
+			}
+
+			if (value === 'CT_CSS_SKIP_RULE' || value === '') {
+				return ''
+			}
+
+			let computedUnit = (value || '')
+				.toString()
+				.replace(/[0-9]/g, '')
+				.replace(/\-/g, '')
+				.replace(/\./g, '')
+				.replace('CT_CSS_SKIP_RULE', '')
+
+			const maybeValue = parseFloat(value, 10)
+
+			if (
+				option.units &&
+				computedUnit === option.units[0].unit &&
+				!maybeValue
+			) {
+				return ''
+			}
+
+			return value
+		},
 	}
 
 	el = createRef()
@@ -428,12 +488,19 @@ export default class Slider extends Component {
 
 		let maybeUnit = this.props.option.units.find(({ unit: u }) => u === '')
 
+		if (this.state.forced_current_unit === '') {
+			maybeUnit = this.props.option.units.find(
+				({ unit: u, type }) => u === '' && type === 'custom'
+			)
+		}
+
 		if (!maybeUnit) {
 			return false
 		}
 
 		return (
 			this.getCurrentUnit() === '' &&
+			this.state.forced_current_unit === '' &&
 			maybeUnit.unit === '' &&
 			maybeUnit.type === 'custom'
 		)
