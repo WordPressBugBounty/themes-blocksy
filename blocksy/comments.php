@@ -38,6 +38,19 @@ if (blocksy_get_theme_mod(
 	$html_atts['class'] .= ' is-width-constrained';
 }
 
+$deep_link_args = [
+	'prefix' => $prefix,
+	'suffix' => $prefix . '_has_comments',
+	'return' => 'array',
+];
+
+$html_atts = array_merge(
+	$html_atts,
+	blocksy_generic_get_deep_link(
+		$deep_link_args
+	)
+);
+
 ?>
 
 

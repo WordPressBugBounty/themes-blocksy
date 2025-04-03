@@ -11,6 +11,10 @@ if (! isset($has_hero_type)) {
 	$has_hero_type = true;
 }
 
+if (! isset($location_name)) {
+	$location_name = '';
+}
+
 if (! isset($enabled_label)) {
 	$enabled_label = __('Page Title', 'blocksy');
 }
@@ -1319,7 +1323,18 @@ $options_when_not_default = [
 			'prefix' => $prefix,
 			'prefix_custom' => 'hero'
 		]),
-		'inner-options' => $when_enabled_settings
+		'inner-options' => $when_enabled_settings,
+
+		// 'disabled_notice' => empty($location_name) ? __(
+		// 	'This page may not fully meet accessibility requirements, consider manually adding a heading tag to ensure compliance.',
+		// 	'blocksy'
+		// ) : blocksy_safe_sprintf(
+		// 	__(
+		// 		'The "%s" page may not fully meet accessibility requirements, consider manually adding a heading tag to ensure compliance.',
+		// 		'blocksy'
+		// 	),
+		// 	$location_name
+		// )
 	]
 ];
 

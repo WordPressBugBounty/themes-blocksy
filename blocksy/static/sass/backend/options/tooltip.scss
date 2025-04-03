@@ -76,6 +76,7 @@
 	}
 }
 
+
 // reaveal left
 [data-tooltip-reveal="left"] {
 
@@ -94,9 +95,9 @@
 		&:after {
 			height: 10px;
 			wifth: 5px;
-			inset-inline-end: -4px;
-			inset-block: 0;
-			margin-block: auto;
+			// inset-inline-end: -4px;
+			// inset-block: 0;
+			// margin-block: auto;
 			border-block: 5px solid transparent;
 			border-inline-start: 5px solid rgba(54, 63, 66, 1);
 		}
@@ -106,5 +107,3 @@
 		transform: translateX(calc(-100% - 5px - var(--tooltip-hover-position, 7px)));
 	}
 }
-
-

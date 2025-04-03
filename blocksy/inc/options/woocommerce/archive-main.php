@@ -3,6 +3,7 @@
 $page_title_options = blocksy_get_options('general/page-title', [
 	'prefix' => 'woo_categories',
 	'is_woo' => true,
+	'location_name' => __('Product Archives', 'blocksy'),
 ]);
 
 $options = [

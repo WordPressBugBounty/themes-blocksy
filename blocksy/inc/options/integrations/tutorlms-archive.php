@@ -13,6 +13,7 @@ $options = [
 					'Courses'
 				),
 				'is_tutorlms' => true,
+				'location_name' => __('Course Archive', 'blocksy')
 			]),
 
 			blocksy_rand_md5() => [

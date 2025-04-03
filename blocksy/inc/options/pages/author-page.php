@@ -9,7 +9,8 @@
 
 $page_title_options = blocksy_get_options('general/page-title', [
 	'prefix' => 'author',
-	'is_author' => true
+	'is_author' => true,
+	'location_name' => __('Author', 'blocksy'),
 ]);
 
 $posts_listing_options = blocksy_get_options('general/posts-listing', [

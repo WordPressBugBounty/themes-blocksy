@@ -1,3 +1,13 @@
+2.0.94: 2025-04-03
+- Improvement: Better integration with Dokan Pro Free Shipping and checkout page
+- Improvement: Button header element - make sure spacing value is correctly outputted in certain scenarios
+- Improvement: Comments form - small accessibility improvements
+- Improvement: Ensure the custom values are properly displayed in the typography options
+- Improvement: Improve post type selection logic in search and search box header elements
+- Improvement: Make the color picker option more resilient in the customizer
+- Improvement: WooCommerce custom quantity input - make sure styles and markup are applied only when needed
+- Fix: WooCommerce product archives - make sure the preview works correctly in customizer
+
 2.0.93: 2025-03-27
 - Improvement: Better integration with Premium Elementor Add-ons and the theme custom quantity input
 - Improvement: Correctly apply product gallery aspect ratio in the customizer preview

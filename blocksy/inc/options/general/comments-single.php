@@ -38,13 +38,13 @@ $options = [
 					$prefix . 'comments_label_position' => [
 						'label' => __('Inputs Label Position', 'blocksy'),
 						'type' => 'ct-radio',
-						'value' => 'inside',
+						'value' => 'outside',
 						'view' => 'text',
 						'design' => 'block',
 						'divider' => 'top',
 						'choices' => [
-							'inside' => __('Inside', 'blocksy'),
 							'outside' => __('Outside', 'blocksy'),
+							'inside' => __('Inside', 'blocksy'),
 						],
 
 						'sync' => blocksy_sync_whole_page([

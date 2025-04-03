@@ -14,7 +14,8 @@ $options = [
 				'enabled_label' => blocksy_safe_sprintf(
 					__('%s Title', 'blocksy'),
 					'Event'
-				)
+				),
+				'location_name' => __('Event Single', 'blocksy'),
 			]),
 
 			[

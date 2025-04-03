@@ -38,6 +38,7 @@ const SpacingInput = ({ value, option, onChange, currentUnit }) => {
 		args = {
 			sideIndex: 0,
 			shouldClamp: false,
+
 			...args,
 		}
 
@@ -108,7 +109,7 @@ const SpacingInput = ({ value, option, onChange, currentUnit }) => {
 						onBlur={() => {
 							let finalValue = value.values[index].value
 
-							if (finalValue === 'auto') {
+							if (finalValue === 'auto' || finalValue === '') {
 								return
 							}
 

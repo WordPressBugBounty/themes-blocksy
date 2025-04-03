@@ -2,7 +2,8 @@
 
 $page_title_options = blocksy_get_options('general/page-title', [
     'prefix' => 'categories',
-    'is_archive' => true
+	'is_archive' => true,
+	'location' => __('Categories', 'blocksy'),
 ]);
 
 $posts_listing_options = blocksy_get_options('general/posts-listing', [

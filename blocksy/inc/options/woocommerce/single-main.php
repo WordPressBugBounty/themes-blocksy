@@ -3,7 +3,8 @@
 $page_title_options = blocksy_get_options('general/page-title', [
 	'prefix' => 'product',
 	'is_single' => true,
-	'enabled_label' => __('Product Title', 'blocksy')
+	'enabled_label' => __('Product Title', 'blocksy'),
+	'location_name' => __('Single Product', 'blocksy'),
 ]);
 
 $options = [

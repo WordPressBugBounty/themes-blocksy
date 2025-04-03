@@ -50,6 +50,18 @@ class WooCommerceAddToCart {
 			);
 		}
 
+		// TODO: maybe extract block watcher in a separate class and use from one
+		// single place, in case we will need to detect more of them.
+		add_filter('pre_render_block', function ($pre_render, $parsed_block, $parent_block) {
+			if ($parsed_block['blockName'] === 'woocommerce/add-to-cart-form') {
+				global $blocksy_detect_woo_block_render;
+
+				$blocksy_detect_woo_block_render = true;
+			}
+
+			return $pre_render;
+		}, 10, 3);
+
 		// Make sure we process response exactly same way as Woo does. In the
 		// exact point of time.
 		//
@@ -101,6 +113,16 @@ class WooCommerceAddToCart {
 			)
 			&&
 			! blocksy_manager()->screen->uses_woo_default_template()
+		) {
+			return;
+		}
+
+		global $blocksy_detect_woo_block_render;
+
+		if (
+			isset($blocksy_detect_woo_block_render)
+			&&
+			$blocksy_detect_woo_block_render
 		) {
 			return;
 		}
@@ -241,6 +263,16 @@ class WooCommerceAddToCart {
 			)
 			&&
 			! did_action('woocommerce_before_add_to_cart_quantity')
+		) {
+			return;
+		}
+
+		global $blocksy_detect_woo_block_render;
+
+		if (
+			isset($blocksy_detect_woo_block_render)
+			&&
+			$blocksy_detect_woo_block_render
 		) {
 			return;
 		}

@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-27 19:10+0000\n"
+"POT-Creation-Date: 2025-04-03 16:42+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: "
@@ -19,32 +19,32 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "x-generator: babel-plugin-wp-i18n\n"
 
-#: comments.php:49
+#: comments.php:62
 msgid "No comments yet"
 msgstr ""
 
-#: comments.php:49
+#: comments.php:62
 msgid "One comment"
 msgstr ""
 
 #. translators: % refers to the number of comments, when more than 1
-#: comments.php:49, inc/components/post-meta.php:505
+#: comments.php:62, inc/components/post-meta.php:505
 msgid "% Comments"
 msgstr ""
 
-#: comments.php:77
+#: comments.php:90
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:82
+#: comments.php:95
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: comments.php:86
+#: comments.php:99
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: comments.php:94
+#: comments.php:107
 msgid "Comments are closed."
 msgstr ""
 
@@ -69,7 +69,7 @@ msgstr ""
 msgid "Search in category"
 msgstr ""
 
-#: searchform.php:347, inc/manager.php:239, inc/manager.php:241
+#: searchform.php:347, inc/manager.php:240, inc/manager.php:242
 msgid "No results"
 msgstr ""
 
@@ -141,38 +141,38 @@ msgstr ""
 msgid "Footer Widget Area "
 msgstr ""
 
-#: inc/manager.php:236
+#: inc/manager.php:237
 msgid "Show more"
 msgstr ""
 
-#: inc/manager.php:237
+#: inc/manager.php:238
 msgid "More"
 msgstr ""
 
-#: inc/manager.php:238
+#: inc/manager.php:239
 msgid "Search results"
 msgstr ""
 
-#: inc/manager.php:242, inc/manager.php:248
+#: inc/manager.php:243, inc/manager.php:249
 msgid "You got %s result. Please press Tab to select it."
 msgid_plural "You got %s results. Please press Tab to select one."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/manager.php:255
+#: inc/manager.php:256
 msgid "Copied!"
 msgstr ""
 
-#: inc/manager.php:256
+#: inc/manager.php:257
 msgid "Failed to Copy"
 msgstr ""
 
-#: inc/manager.php:258, inc/components/menus.php:92,
+#: inc/manager.php:259, inc/components/menus.php:92,
 #: inc/components/menus.php:80, inc/components/menus.php:241
 msgid "Expand dropdown menu"
 msgstr ""
 
-#: inc/manager.php:259
+#: inc/manager.php:260
 msgid "Collapse dropdown menu"
 msgstr ""
 
@@ -232,6 +232,7 @@ msgstr ""
 
 #: woocommerce/product-searchform.php:28, inc/classes/screen-manager.php:217,
 #: inc/components/builder/header-elements.php:196,
+#: inc/options/pages/search-page.php:13,
 #: inc/panel-builder/header/search/config.php:4,
 #: inc/panel-builder/header/search/options.php:139,
 #: inc/panel-builder/header/search/options.php:452,
@@ -282,16 +283,17 @@ msgid "Color %s"
 msgstr ""
 
 #: inc/classes/screen-manager.php:214, inc/components/breadcrumbs.php:416,
-#: inc/options/general/posts-listing.php:14, inc/options/posts/blog.php:19
+#: inc/options/general/posts-listing.php:14, inc/options/posts/blog.php:20
 msgid "Blog"
 msgstr ""
 
 #: inc/classes/screen-manager.php:215, inc/options/customizer.php:118,
-#: inc/options/posts/categories.php:10
+#: inc/options/posts/categories.php:6, inc/options/posts/categories.php:11
 msgid "Categories"
 msgstr ""
 
-#: inc/classes/screen-manager.php:216, inc/options/general/meta.php:202
+#: inc/classes/screen-manager.php:216, inc/options/general/meta.php:202,
+#: inc/options/pages/author-page.php:13
 msgid "Author"
 msgstr ""
 
@@ -337,8 +339,8 @@ msgstr ""
 
 #: inc/components/breadcrumbs.php:54, inc/components/hero/elements.php:201,
 #: inc/options/general/breadcrumbs.php:164,
-#: inc/options/general/page-title.php:119,
-#: inc/options/general/page-title.php:360
+#: inc/options/general/page-title.php:123,
+#: inc/options/general/page-title.php:364
 #: admin/dashboard/static/js/Navigation.js:21
 msgid "Home"
 msgstr ""
@@ -372,7 +374,7 @@ msgstr ""
 #: inc/options/general/back-to-top.php:37,
 #: inc/options/general/breadcrumbs.php:12,
 #: inc/options/general/breadcrumbs.php:61, inc/options/general/meta.php:163,
-#: inc/options/general/meta.php:372, inc/options/general/page-title.php:728,
+#: inc/options/general/meta.php:372, inc/options/general/page-title.php:732,
 #: inc/options/general/posts-listing.php:450,
 #: inc/options/single-elements/featured-image.php:81,
 #: inc/options/single-elements/post-nav.php:41,
@@ -610,35 +612,35 @@ msgstr ""
 #: inc/options/general/breadcrumbs.php:48, inc/options/general/buttons.php:19,
 #: inc/options/general/comments-single.php:25,
 #: inc/options/general/form-elements.php:19,
-#: inc/options/general/page-title.php:1299,
-#: inc/options/general/page-title.php:1369,
+#: inc/options/general/page-title.php:1303,
+#: inc/options/general/page-title.php:1384,
 #: inc/options/general/pagination.php:24,
 #: inc/options/general/posts-listing.php:29,
 #: inc/options/general/posts-listing.php:1496,
 #: inc/options/general/sidebar.php:17,
-#: inc/options/integrations/tutorlms-archive.php:24,
-#: inc/options/integrations/tutorlms-single.php:207,
+#: inc/options/integrations/tutorlms-archive.php:25,
+#: inc/options/integrations/tutorlms-single.php:208,
 #: inc/options/meta/default.php:43, inc/options/meta/page.php:27,
 #: inc/options/meta/post.php:24, inc/options/pages/page.php:24,
-#: inc/options/posts/custom-post-type-single.php:39,
-#: inc/options/posts/post.php:16,
+#: inc/options/posts/custom-post-type-single.php:44,
+#: inc/options/posts/post.php:17,
 #: inc/options/single-elements/author-box.php:21,
 #: inc/options/single-elements/featured-image.php:21,
 #: inc/options/single-elements/post-nav.php:29,
 #: inc/options/single-elements/post-share-box.php:633,
 #: inc/options/single-elements/post-tags.php:68,
 #: inc/options/single-elements/related-posts.php:29,
-#: inc/options/woocommerce/archive-main.php:48,
+#: inc/options/woocommerce/archive-main.php:49,
 #: inc/options/woocommerce/card-product-elements.php:209,
 #: inc/options/woocommerce/related-upsells.php:16,
 #: inc/options/woocommerce/results-count.php:16,
-#: inc/options/woocommerce/single-main.php:49,
+#: inc/options/woocommerce/single-main.php:50,
 #: inc/options/woocommerce/single-product-elements.php:14,
 #: inc/options/woocommerce/single-product-gallery.php:10,
 #: inc/options/woocommerce/single-product-gallery.php:305,
 #: inc/options/woocommerce/single-product-tabs.php:16,
-#: inc/options/integrations/the-events-calendar/archive.php:25,
-#: inc/options/integrations/the-events-calendar/single.php:27,
+#: inc/options/integrations/the-events-calendar/archive.php:26,
+#: inc/options/integrations/the-events-calendar/single.php:28,
 #: inc/options/woocommerce/general/account-page.php:19,
 #: inc/options/woocommerce/general/cart-page.php:19,
 #: inc/options/woocommerce/general/checkout-page.php:52,
@@ -689,15 +691,15 @@ msgstr ""
 msgid "Post types"
 msgstr ""
 
-#: inc/options/customizer.php:103
+#: inc/options/customizer.php:103, inc/options/posts/blog.php:15
 msgid "Blog Posts"
 msgstr ""
 
-#: inc/options/customizer.php:109
+#: inc/options/customizer.php:109, inc/options/posts/post.php:7
 msgid "Single Post"
 msgstr ""
 
-#: inc/options/customizer.php:139, inc/options/pages/author-page.php:17
+#: inc/options/customizer.php:139, inc/options/pages/author-page.php:18
 msgid "Author Page"
 msgstr ""
 
@@ -709,11 +711,11 @@ msgstr ""
 msgid "WooCommerce"
 msgstr ""
 
-#: inc/options/customizer.php:169
+#: inc/options/customizer.php:169, inc/options/woocommerce/archive-main.php:6
 msgid "Product Archives"
 msgstr ""
 
-#: inc/options/customizer.php:177
+#: inc/options/customizer.php:177, inc/options/woocommerce/single-main.php:7
 msgid "Single Product"
 msgstr ""
 
@@ -837,7 +839,7 @@ msgstr ""
 
 #: inc/components/blocks/blocks-fallback.php:36,
 #: inc/options/general/breadcrumbs.php:334,
-#: inc/options/general/page-title.php:279,
+#: inc/options/general/page-title.php:283,
 #: inc/options/woocommerce/single-product-layers.php:133
 msgid "Breadcrumbs"
 msgstr ""
@@ -893,11 +895,11 @@ msgstr ""
 msgid "Offcanvas modal"
 msgstr ""
 
-#: inc/components/builder/header-elements.php:306
+#: inc/components/builder/header-elements.php:245
 msgid "Search modal"
 msgstr ""
 
-#: inc/components/builder/header-elements.php:308
+#: inc/components/builder/header-elements.php:247
 msgid "Close search modal"
 msgstr ""
 
@@ -1020,13 +1022,13 @@ msgstr ""
 
 #: inc/components/single/single-helpers.php:410,
 #: inc/components/single/single-helpers.php:546,
-#: inc/options/general/page-title.php:540
+#: inc/options/general/page-title.php:544
 msgid "Articles"
 msgstr ""
 
 #: inc/components/single/single-helpers.php:414,
 #: inc/options/general/comments-single.php:15,
-#: inc/options/general/meta.php:270, inc/options/general/page-title.php:541
+#: inc/options/general/meta.php:270, inc/options/general/page-title.php:545
 msgid "Comments"
 msgstr ""
 
@@ -1071,9 +1073,9 @@ msgstr ""
 
 #: inc/options/general/back-to-top.php:38,
 #: inc/options/general/breadcrumbs.php:62, inc/options/general/meta.php:164,
-#: inc/options/general/page-title.php:747,
-#: inc/options/general/page-title.php:1341,
-#: inc/options/general/page-title.php:1382, inc/options/meta/default.php:95,
+#: inc/options/general/page-title.php:751,
+#: inc/options/general/page-title.php:1356,
+#: inc/options/general/page-title.php:1397, inc/options/meta/default.php:95,
 #: inc/options/meta/default.php:126, inc/options/meta/page.php:80,
 #: inc/options/meta/page.php:111, inc/options/meta/post.php:76,
 #: inc/options/meta/post.php:110,
@@ -1088,7 +1090,7 @@ msgstr ""
 #: static/js/backend/woo-variation.js:47
 #: static/js/options/options/color-palettes/ColorPalettesModal.js:41
 #: static/js/options/options/ct-ratio.js:263
-#: static/js/options/options/ct-slider.js:139
+#: static/js/options/options/ct-slider.js:150
 #: static/js/options/options/ct-spacing.js:209
 #: static/js/options/options/ct-typography.js:151
 msgid "Custom"
@@ -1106,10 +1108,10 @@ msgstr ""
 #: inc/options/general/back-to-top.php:93,
 #: inc/options/general/breadcrumbs.php:88,
 #: inc/options/general/content-elements.php:47,
-#: inc/options/general/page-title.php:203, inc/options/general/sidebar.php:30,
+#: inc/options/general/page-title.php:207, inc/options/general/sidebar.php:30,
 #: inc/options/single-elements/author-box.php:44,
 #: inc/options/single-elements/post-share-box.php:176,
-#: inc/options/woocommerce/archive-main.php:65,
+#: inc/options/woocommerce/archive-main.php:66,
 #: inc/options/woocommerce/single-product-tabs.php:29,
 #: inc/options/woocommerce/general/product-badges.php:37,
 #: inc/options/woocommerce/general/quantity-input.php:49,
@@ -1123,10 +1125,10 @@ msgstr ""
 #: inc/options/general/back-to-top.php:98,
 #: inc/options/general/breadcrumbs.php:93,
 #: inc/options/general/content-elements.php:48,
-#: inc/options/general/page-title.php:208, inc/options/general/sidebar.php:35,
+#: inc/options/general/page-title.php:212, inc/options/general/sidebar.php:35,
 #: inc/options/single-elements/author-box.php:49,
 #: inc/options/single-elements/post-share-box.php:181,
-#: inc/options/woocommerce/archive-main.php:70,
+#: inc/options/woocommerce/archive-main.php:71,
 #: inc/options/woocommerce/single-product-tabs.php:34,
 #: inc/options/woocommerce/general/product-badges.php:42,
 #: inc/options/woocommerce/general/quantity-input.php:50,
@@ -1211,8 +1213,8 @@ msgid "Alignment"
 msgstr ""
 
 #: inc/options/general/back-to-top.php:197,
-#: inc/options/general/page-title.php:302,
-#: inc/options/general/page-title.php:501,
+#: inc/options/general/page-title.php:306,
+#: inc/options/general/page-title.php:505,
 #: inc/options/single-elements/author-box.php:213,
 #: inc/options/single-elements/post-share-box.php:419,
 #: inc/options/single-elements/post-tags.php:140,
@@ -1223,9 +1225,9 @@ msgid "Visibility"
 msgstr ""
 
 #: inc/options/general/back-to-top.php:207,
-#: inc/options/general/page-title.php:311,
-#: inc/options/general/page-title.php:510,
-#: inc/options/general/page-title.php:810,
+#: inc/options/general/page-title.php:315,
+#: inc/options/general/page-title.php:514,
+#: inc/options/general/page-title.php:814,
 #: inc/options/general/pagination.php:85,
 #: inc/options/general/pagination.php:104, inc/options/general/sidebar.php:245,
 #: inc/options/single-elements/author-box.php:223,
@@ -1263,9 +1265,9 @@ msgid "Desktop"
 msgstr ""
 
 #: inc/options/general/back-to-top.php:208,
-#: inc/options/general/page-title.php:312,
-#: inc/options/general/page-title.php:511,
-#: inc/options/general/page-title.php:811,
+#: inc/options/general/page-title.php:316,
+#: inc/options/general/page-title.php:515,
+#: inc/options/general/page-title.php:815,
 #: inc/options/general/pagination.php:86,
 #: inc/options/general/pagination.php:105, inc/options/general/sidebar.php:246,
 #: inc/options/single-elements/author-box.php:224,
@@ -1311,9 +1313,9 @@ msgid "Tablet"
 msgstr ""
 
 #: inc/options/general/back-to-top.php:209,
-#: inc/options/general/page-title.php:313,
-#: inc/options/general/page-title.php:512,
-#: inc/options/general/page-title.php:812,
+#: inc/options/general/page-title.php:317,
+#: inc/options/general/page-title.php:516,
+#: inc/options/general/page-title.php:816,
 #: inc/options/general/pagination.php:87,
 #: inc/options/general/pagination.php:106, inc/options/general/sidebar.php:247,
 #: inc/options/single-elements/author-box.php:225,
@@ -1362,35 +1364,35 @@ msgstr ""
 #: inc/options/general/breadcrumbs.php:269, inc/options/general/buttons.php:45,
 #: inc/options/general/comments-single.php:141,
 #: inc/options/general/form-elements.php:101,
-#: inc/options/general/page-title.php:1305,
-#: inc/options/general/page-title.php:1396,
+#: inc/options/general/page-title.php:1309,
+#: inc/options/general/page-title.php:1411,
 #: inc/options/general/pagination.php:133,
 #: inc/options/general/posts-listing.php:812,
 #: inc/options/general/posts-listing.php:1710,
 #: inc/options/general/sidebar.php:269,
-#: inc/options/integrations/tutorlms-archive.php:39,
-#: inc/options/integrations/tutorlms-single.php:219,
+#: inc/options/integrations/tutorlms-archive.php:40,
+#: inc/options/integrations/tutorlms-single.php:220,
 #: inc/options/meta/default.php:176, inc/options/meta/page.php:160,
 #: inc/options/meta/post.php:159, inc/options/pages/page.php:35,
-#: inc/options/posts/custom-post-type-single.php:51,
-#: inc/options/posts/post.php:26,
+#: inc/options/posts/custom-post-type-single.php:56,
+#: inc/options/posts/post.php:27,
 #: inc/options/single-elements/author-box.php:233,
 #: inc/options/single-elements/featured-image.php:138,
 #: inc/options/single-elements/post-nav.php:166,
 #: inc/options/single-elements/post-share-box.php:639,
 #: inc/options/single-elements/post-tags.php:161,
 #: inc/options/single-elements/related-posts.php:617,
-#: inc/options/woocommerce/archive-main.php:166,
+#: inc/options/woocommerce/archive-main.php:167,
 #: inc/options/woocommerce/card-product-elements.php:687,
 #: inc/options/woocommerce/related-upsells.php:144,
 #: inc/options/woocommerce/results-count.php:44,
-#: inc/options/woocommerce/single-main.php:61,
+#: inc/options/woocommerce/single-main.php:62,
 #: inc/options/woocommerce/single-product-elements.php:129,
 #: inc/options/woocommerce/single-product-gallery.php:143,
 #: inc/options/woocommerce/single-product-gallery.php:368,
 #: inc/options/woocommerce/single-product-tabs.php:182,
-#: inc/options/integrations/the-events-calendar/archive.php:36,
-#: inc/options/integrations/the-events-calendar/single.php:38,
+#: inc/options/integrations/the-events-calendar/archive.php:37,
+#: inc/options/integrations/the-events-calendar/single.php:39,
 #: inc/options/woocommerce/general/account-page.php:74,
 #: inc/options/woocommerce/general/cart-page.php:58,
 #: inc/options/woocommerce/general/checkout-page.php:200,
@@ -1455,13 +1457,13 @@ msgstr ""
 #: inc/options/general/form-elements.php:233,
 #: inc/options/general/form-elements.php:279,
 #: inc/options/general/form-elements.php:309,
-#: inc/options/general/general.php:65, inc/options/general/page-title.php:871,
-#: inc/options/general/page-title.php:956,
-#: inc/options/general/page-title.php:992,
-#: inc/options/general/page-title.php:1023,
-#: inc/options/general/page-title.php:1085,
-#: inc/options/general/page-title.php:1120,
-#: inc/options/general/page-title.php:1151,
+#: inc/options/general/general.php:65, inc/options/general/page-title.php:875,
+#: inc/options/general/page-title.php:960,
+#: inc/options/general/page-title.php:996,
+#: inc/options/general/page-title.php:1027,
+#: inc/options/general/page-title.php:1089,
+#: inc/options/general/page-title.php:1124,
+#: inc/options/general/page-title.php:1155,
 #: inc/options/general/pagination.php:212,
 #: inc/options/general/pagination.php:242,
 #: inc/options/general/posts-listing.php:854,
@@ -1646,11 +1648,11 @@ msgstr ""
 #: inc/options/general/back-to-top.php:274, inc/options/general/buttons.php:73,
 #: inc/options/general/buttons.php:103, inc/options/general/colors.php:556,
 #: inc/options/general/comments-single.php:168,
-#: inc/options/general/page-title.php:962,
-#: inc/options/general/page-title.php:998,
-#: inc/options/general/page-title.php:1029,
-#: inc/options/general/page-title.php:1126,
-#: inc/options/general/page-title.php:1157,
+#: inc/options/general/page-title.php:966,
+#: inc/options/general/page-title.php:1002,
+#: inc/options/general/page-title.php:1033,
+#: inc/options/general/page-title.php:1130,
+#: inc/options/general/page-title.php:1161,
 #: inc/options/general/pagination.php:218,
 #: inc/options/general/pagination.php:248,
 #: inc/options/general/posts-listing.php:884,
@@ -1838,7 +1840,7 @@ msgstr ""
 
 #: inc/options/general/breadcrumbs.php:147,
 #: inc/options/general/breadcrumbs.php:308, inc/options/general/colors.php:581,
-#: inc/options/general/page-title.php:1204,
+#: inc/options/general/page-title.php:1208,
 #: inc/options/general/posts-listing.php:506,
 #: inc/options/single-elements/author-box.php:320,
 #: inc/options/woocommerce/single-product-elements.php:250,
@@ -1875,19 +1877,19 @@ msgid "Shop Page in Breadcrumbs"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:275,
-#: inc/options/general/page-title.php:1175,
+#: inc/options/general/page-title.php:1179,
 #: inc/options/woocommerce/single-product-elements.php:221
 msgid "Breadcrumbs Font"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:287,
-#: inc/options/general/page-title.php:1183,
+#: inc/options/general/page-title.php:1187,
 #: inc/options/woocommerce/single-product-elements.php:229
 msgid "Breadcrumbs Font Color"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:314,
-#: inc/options/general/page-title.php:1210,
+#: inc/options/general/page-title.php:1214,
 #: inc/options/general/sidebar.php:367,
 #: inc/options/single-elements/author-box.php:326,
 #: inc/options/woocommerce/single-product-elements.php:256,
@@ -1903,7 +1905,7 @@ msgid "Link Initial"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:320,
-#: inc/options/general/page-title.php:1216,
+#: inc/options/general/page-title.php:1220,
 #: inc/options/general/sidebar.php:372,
 #: inc/options/single-elements/author-box.php:332,
 #: inc/options/woocommerce/single-product-elements.php:262,
@@ -2143,11 +2145,11 @@ msgid "Inputs Label Position"
 msgstr ""
 
 #: inc/options/general/comments-single.php:46
-msgid "Inside"
+msgid "Outside"
 msgstr ""
 
 #: inc/options/general/comments-single.php:47
-msgid "Outside"
+msgid "Inside"
 msgstr ""
 
 #: inc/options/general/comments-single.php:56
@@ -2191,7 +2193,7 @@ msgid "Container Structure"
 msgstr ""
 
 #: inc/options/general/comments-single.php:109,
-#: inc/options/general/page-title.php:729,
+#: inc/options/general/page-title.php:733,
 #: inc/options/single-elements/related-posts.php:569
 msgid "Narrow"
 msgstr ""
@@ -2207,7 +2209,7 @@ msgid "Container Max Width"
 msgstr ""
 
 #: inc/options/general/comments-single.php:181,
-#: inc/options/general/page-title.php:1265,
+#: inc/options/general/page-title.php:1269,
 #: inc/options/single-elements/related-posts.php:921,
 #: inc/panel-builder/footer/options.php:89
 msgid "Container Background"
@@ -2222,7 +2224,7 @@ msgid "Content Spacing"
 msgstr ""
 
 #: inc/options/general/content-elements.php:25,
-#: inc/options/general/page-title.php:748,
+#: inc/options/general/page-title.php:752,
 #: inc/options/general/posts-listing.php:349,
 #: inc/options/single-elements/related-posts.php:347,
 #: inc/options/woocommerce/card-product-elements.php:341,
@@ -2269,11 +2271,13 @@ msgstr ""
 msgid "Tutor LMS"
 msgstr ""
 
-#: inc/options/general/custom-post-types.php:61
+#: inc/options/general/custom-post-types.php:61,
+#: inc/options/integrations/tutorlms-archive.php:16
 msgid "Course Archive"
 msgstr ""
 
-#: inc/options/general/custom-post-types.php:67
+#: inc/options/general/custom-post-types.php:67,
+#: inc/options/integrations/tutorlms-single.php:199
 msgid "Course Single"
 msgstr ""
 
@@ -2293,7 +2297,8 @@ msgstr ""
 msgid "Single"
 msgstr ""
 
-#: inc/options/general/custom-post-types.php:124
+#: inc/options/general/custom-post-types.php:124,
+#: inc/options/posts/custom-post-type-single.php:26
 msgid "Single %s"
 msgstr ""
 
@@ -2494,7 +2499,7 @@ msgstr ""
 msgid "Date format %sinstructions%s."
 msgstr ""
 
-#: inc/options/general/meta.php:193, inc/options/general/page-title.php:532
+#: inc/options/general/meta.php:193, inc/options/general/page-title.php:536
 msgid "Meta Elements"
 msgstr ""
 
@@ -2502,7 +2507,7 @@ msgstr ""
 msgid "Author Avatar"
 msgstr ""
 
-#: inc/options/general/meta.php:215, inc/options/general/page-title.php:399,
+#: inc/options/general/meta.php:215, inc/options/general/page-title.php:403,
 #: inc/options/woocommerce/general/account-page.php:39
 msgid "Avatar Size"
 msgstr ""
@@ -2592,60 +2597,60 @@ msgstr ""
 msgid "none"
 msgstr ""
 
-#: inc/options/general/page-title.php:15,
-#: inc/options/general/page-title.php:1373, inc/options/meta/page.php:8,
-#: inc/options/pages/author-page.php:25, inc/options/pages/page.php:99,
-#: inc/options/pages/search-page.php:29, inc/options/posts/blog.php:31,
-#: inc/options/posts/categories.php:18,
-#: inc/options/posts/custom-post-type-archive.php:28,
-#: inc/options/posts/custom-post-type-single.php:65,
-#: inc/options/posts/post.php:91, inc/options/woocommerce/archive-main.php:17,
-#: inc/options/woocommerce/single-main.php:18
+#: inc/options/general/page-title.php:19,
+#: inc/options/general/page-title.php:1388, inc/options/meta/page.php:8,
+#: inc/options/pages/author-page.php:26, inc/options/pages/page.php:99,
+#: inc/options/pages/search-page.php:30, inc/options/posts/blog.php:32,
+#: inc/options/posts/categories.php:19,
+#: inc/options/posts/custom-post-type-archive.php:30,
+#: inc/options/posts/custom-post-type-single.php:70,
+#: inc/options/posts/post.php:92, inc/options/woocommerce/archive-main.php:18,
+#: inc/options/woocommerce/single-main.php:19
 msgid "Page Title"
 msgstr ""
 
-#: inc/options/general/page-title.php:95
+#: inc/options/general/page-title.php:99
 msgid "Description"
 msgstr ""
 
-#: inc/options/general/page-title.php:98
+#: inc/options/general/page-title.php:102
 msgid "Bio"
 msgstr ""
 
-#: inc/options/general/page-title.php:106,
+#: inc/options/general/page-title.php:110,
 #: inc/options/general/posts-listing.php:442
 msgid "Excerpt"
 msgstr ""
 
-#: inc/options/general/page-title.php:110
+#: inc/options/general/page-title.php:114
 msgid "Subtitle"
 msgstr ""
 
-#: inc/options/general/page-title.php:192
+#: inc/options/general/page-title.php:196
 #: static/js/backend/woo-attributes/AfterHeading.js:53
 msgid "Type"
 msgstr ""
 
-#: inc/options/general/page-title.php:221
+#: inc/options/general/page-title.php:225
 #: static/js/customizer/panels-builder/columns/AvailableItems.js:74
 #: static/js/customizer/panels-builder/placements/AvailableItems.js:78
 msgid "Elements"
 msgstr ""
 
-#: inc/options/general/page-title.php:287,
-#: inc/options/general/page-title.php:422,
-#: inc/options/general/page-title.php:487,
-#: inc/options/general/page-title.php:571,
-#: inc/options/general/page-title.php:594
+#: inc/options/general/page-title.php:291,
+#: inc/options/general/page-title.php:426,
+#: inc/options/general/page-title.php:491,
+#: inc/options/general/page-title.php:575,
+#: inc/options/general/page-title.php:598
 msgid "Top Spacing"
 msgstr ""
 
-#: inc/options/general/page-title.php:325
+#: inc/options/general/page-title.php:329
 msgid "Name & Avatar"
 msgstr ""
 
-#: inc/options/general/page-title.php:325,
-#: inc/options/general/page-title.php:358,
+#: inc/options/general/page-title.php:329,
+#: inc/options/general/page-title.php:362,
 #: inc/options/general/posts-listing.php:221,
 #: inc/options/single-elements/related-posts.php:402,
 #: inc/options/woocommerce/card-product-elements.php:388,
@@ -2658,49 +2663,49 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: inc/options/general/page-title.php:329
+#: inc/options/general/page-title.php:333
 msgid "Heading tag"
 msgstr ""
 
-#: inc/options/general/page-title.php:372
+#: inc/options/general/page-title.php:376
 msgid "Archive Label"
 msgstr ""
 
-#: inc/options/general/page-title.php:386
+#: inc/options/general/page-title.php:390
 msgid "Author avatar"
 msgstr ""
 
-#: inc/options/general/page-title.php:467,
+#: inc/options/general/page-title.php:471,
 #: inc/panel-builder/header/text/options.php:37
 msgid "Max Width"
 msgstr ""
 
-#: inc/options/general/page-title.php:524
+#: inc/options/general/page-title.php:528
 msgid "Author Meta"
 msgstr ""
 
-#: inc/options/general/page-title.php:524,
+#: inc/options/general/page-title.php:528,
 #: inc/options/general/posts-listing.php:539,
 #: inc/options/single-elements/related-posts.php:453
 msgid "Post Meta"
 msgstr ""
 
-#: inc/options/general/page-title.php:539
+#: inc/options/general/page-title.php:543
 msgid "Joined Date"
 msgstr ""
 
-#: inc/options/general/page-title.php:587
+#: inc/options/general/page-title.php:591
 msgid "Social Channels"
 msgstr ""
 
-#: inc/options/general/page-title.php:609,
+#: inc/options/general/page-title.php:613,
 #: inc/options/single-elements/author-box.php:160,
 #: inc/panel-builder/footer/socials/options.php:52,
 #: inc/panel-builder/header/socials/options.php:52
 msgid "Open links in new tab"
 msgstr ""
 
-#: inc/options/general/page-title.php:615,
+#: inc/options/general/page-title.php:619,
 #: inc/options/single-elements/author-box.php:177,
 #: inc/options/single-elements/post-share-box.php:288,
 #: inc/panel-builder/footer/socials/options.php:59,
@@ -2708,8 +2713,8 @@ msgstr ""
 msgid "Set links to nofollow"
 msgstr ""
 
-#: inc/options/general/page-title.php:634,
-#: inc/options/general/page-title.php:674,
+#: inc/options/general/page-title.php:638,
+#: inc/options/general/page-title.php:678,
 #: inc/options/general/posts-listing.php:738,
 #: inc/options/woocommerce/single-product-tabs.php:60,
 #: inc/panel-builder/footer/copyright/options.php:31,
@@ -2724,11 +2729,11 @@ msgstr ""
 msgid "Horizontal Alignment"
 msgstr ""
 
-#: inc/options/general/page-title.php:653
+#: inc/options/general/page-title.php:657
 msgid "Container Bottom Spacing"
 msgstr ""
 
-#: inc/options/general/page-title.php:690,
+#: inc/options/general/page-title.php:694,
 #: inc/options/general/posts-listing.php:791,
 #: inc/panel-builder/footer/copyright/options.php:47,
 #: inc/panel-builder/footer/menu/options.php:105,
@@ -2742,35 +2747,35 @@ msgstr ""
 msgid "Vertical Alignment"
 msgstr ""
 
-#: inc/options/general/page-title.php:721,
+#: inc/options/general/page-title.php:725,
 #: inc/options/woocommerce/single-product-gallery.php:87,
 #: inc/panel-builder/footer/middle-row/options.php:427
 msgid "Container Width"
 msgstr ""
 
-#: inc/options/general/page-title.php:738
+#: inc/options/general/page-title.php:742
 msgid "Container Background Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:745
+#: inc/options/general/page-title.php:749
 msgid "Featured"
 msgstr ""
 
-#: inc/options/general/page-title.php:762
+#: inc/options/general/page-title.php:766
 msgid "Custom Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:767
+#: inc/options/general/page-title.php:771
 #: static/js/options/options/background/ImagePicker.js:27
 msgid "Select Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:768
+#: inc/options/general/page-title.php:772
 #: static/js/options/options/background/ImagePicker.js:28
 msgid "Change Image"
 msgstr ""
 
-#: inc/options/general/page-title.php:784,
+#: inc/options/general/page-title.php:788,
 #: inc/options/general/posts-listing.php:327,
 #: inc/options/single-elements/featured-image.php:36,
 #: inc/options/single-elements/post-nav.php:89,
@@ -2783,72 +2788,72 @@ msgstr ""
 msgid "Image Size"
 msgstr ""
 
-#: inc/options/general/page-title.php:797
+#: inc/options/general/page-title.php:801
 msgid "Image Parallax Effect"
 msgstr ""
 
-#: inc/options/general/page-title.php:798
+#: inc/options/general/page-title.php:802
 msgid "Choose for which devices you want to enable the parallax effect."
 msgstr ""
 
-#: inc/options/general/page-title.php:823
+#: inc/options/general/page-title.php:827
 msgid "Container Min Height"
 msgstr ""
 
-#: inc/options/general/page-title.php:849,
+#: inc/options/general/page-title.php:853,
 #: inc/options/general/posts-listing.php:824,
 #: inc/options/integrations/tutorlms-single.php:8,
 #: inc/options/woocommerce/single-product-elements.php:141
 msgid "Title Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:858,
+#: inc/options/general/page-title.php:862,
 #: inc/options/general/posts-listing.php:837,
 #: inc/options/integrations/tutorlms-single.php:17,
 #: inc/options/woocommerce/single-product-elements.php:149
 msgid "Title Font Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:926,
+#: inc/options/general/page-title.php:930,
 #: inc/options/general/posts-listing.php:942
 msgid "Meta Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:939,
+#: inc/options/general/page-title.php:943,
 #: inc/options/general/posts-listing.php:956
 msgid "Meta Font Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:974
+#: inc/options/general/page-title.php:978
 msgid "Meta Button Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:1006,
+#: inc/options/general/page-title.php:1010,
 #: inc/options/general/posts-listing.php:1023,
 #: inc/options/single-elements/related-posts.php:842
 msgid "Meta Button Background"
 msgstr ""
 
-#: inc/options/general/page-title.php:1056,
+#: inc/options/general/page-title.php:1060,
 #: inc/options/general/posts-listing.php:907
 msgid "Excerpt Font"
 msgstr ""
 
 #. translators: %s entity of font
-#: inc/options/general/page-title.php:1058
+#: inc/options/general/page-title.php:1062
 msgid "%s Font"
 msgstr ""
 
-#: inc/options/general/page-title.php:1068
+#: inc/options/general/page-title.php:1072
 msgid "Excerpt Font Color"
 msgstr ""
 
 #. translators: %s entity of font color
-#: inc/options/general/page-title.php:1070
+#: inc/options/general/page-title.php:1074
 msgid "%s Font Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1102,
+#: inc/options/general/page-title.php:1106,
 #: inc/options/single-elements/author-box.php:345,
 #: inc/options/single-elements/post-share-box.php:194,
 #: inc/options/single-elements/post-share-box.php:511,
@@ -2864,7 +2869,7 @@ msgstr ""
 msgid "Icons Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1134,
+#: inc/options/general/page-title.php:1138,
 #: inc/options/single-elements/author-box.php:378,
 #: inc/panel-builder/footer/socials/options.php:335,
 #: inc/panel-builder/header/socials/options.php:477,
@@ -2874,19 +2879,19 @@ msgstr ""
 msgid "Icons Background Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1245
+#: inc/options/general/page-title.php:1249
 #: static/js/options/options/background/ImagePicker.js:184
 msgid "Image Overlay Color"
 msgstr ""
 
-#: inc/options/general/page-title.php:1280,
+#: inc/options/general/page-title.php:1284,
 #: inc/panel-builder/footer/options.php:110,
 #: inc/panel-builder/footer/options.php:127
 msgid "Container Padding"
 msgstr ""
 
-#: inc/options/general/page-title.php:1340,
-#: inc/options/general/page-title.php:1381, inc/options/meta/default.php:94,
+#: inc/options/general/page-title.php:1355,
+#: inc/options/general/page-title.php:1396, inc/options/meta/default.php:94,
 #: inc/options/meta/default.php:125, inc/options/meta/page.php:79,
 #: inc/options/meta/page.php:110, inc/options/meta/post.php:75,
 #: inc/options/meta/post.php:109,
@@ -2898,30 +2903,30 @@ msgstr ""
 msgid "Inherit"
 msgstr ""
 
-#: inc/options/general/page-title.php:1342,
-#: inc/options/general/page-title.php:1383,
+#: inc/options/general/page-title.php:1357,
+#: inc/options/general/page-title.php:1398,
 #: inc/options/general/posts-listing.php:1693,
 #: inc/options/meta/default.php:157, inc/options/meta/page.php:142,
 #: inc/options/meta/post.php:141,
 #: inc/options/single-elements/structure.php:114,
-#: inc/options/woocommerce/archive-main.php:149
+#: inc/options/woocommerce/archive-main.php:150
 #: static/js/options/options/background/ImagePicker.js:151
 msgid "Disabled"
 msgstr ""
 
-#: inc/options/general/page-title.php:1353
+#: inc/options/general/page-title.php:1368
 msgid "By default these options are inherited from Customizer options."
 msgstr ""
 
-#: inc/options/general/page-title.php:1413
+#: inc/options/general/page-title.php:1428
 msgid ""
 "Options will appear here only if you will set Custom in Page Title option."
 msgstr ""
 
-#: inc/options/general/pagination.php:13, inc/options/pages/author-page.php:59,
-#: inc/options/pages/search-page.php:63, inc/options/posts/blog.php:66,
-#: inc/options/posts/categories.php:52,
-#: inc/options/posts/custom-post-type-archive.php:62
+#: inc/options/general/pagination.php:13, inc/options/pages/author-page.php:60,
+#: inc/options/pages/search-page.php:64, inc/options/posts/blog.php:67,
+#: inc/options/posts/categories.php:53,
+#: inc/options/posts/custom-post-type-archive.php:64
 msgid "Pagination"
 msgstr ""
 
@@ -3244,7 +3249,7 @@ msgstr ""
 
 #. translators: placeholder here means the actual structure title.
 #: inc/options/general/posts-listing.php:1485, inc/options/meta/default.php:37,
-#: inc/options/posts/custom-post-type-single.php:33
+#: inc/options/posts/custom-post-type-single.php:38
 msgid "%s Structure"
 msgstr ""
 
@@ -3293,7 +3298,7 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1673,
 #: inc/options/meta/default.php:119, inc/options/meta/page.php:104,
 #: inc/options/meta/post.php:104, inc/options/single-elements/structure.php:94,
-#: inc/options/woocommerce/archive-main.php:129
+#: inc/options/woocommerce/archive-main.php:130
 msgid "Content Area Vertical Spacing"
 msgstr ""
 
@@ -3301,7 +3306,7 @@ msgstr ""
 #: inc/options/meta/default.php:148, inc/options/meta/page.php:133,
 #: inc/options/meta/post.php:132,
 #: inc/options/single-elements/structure.php:105,
-#: inc/options/woocommerce/archive-main.php:140
+#: inc/options/woocommerce/archive-main.php:141
 msgid "Top & Bottom"
 msgstr ""
 
@@ -3309,7 +3314,7 @@ msgstr ""
 #: inc/options/meta/default.php:151, inc/options/meta/page.php:136,
 #: inc/options/meta/post.php:135,
 #: inc/options/single-elements/structure.php:108,
-#: inc/options/woocommerce/archive-main.php:143
+#: inc/options/woocommerce/archive-main.php:144
 msgid "Only Top"
 msgstr ""
 
@@ -3317,7 +3322,7 @@ msgstr ""
 #: inc/options/meta/default.php:154, inc/options/meta/page.php:139,
 #: inc/options/meta/post.php:138,
 #: inc/options/single-elements/structure.php:111,
-#: inc/options/woocommerce/archive-main.php:146
+#: inc/options/woocommerce/archive-main.php:147
 msgid "Only Bottom"
 msgstr ""
 
@@ -3326,7 +3331,7 @@ msgstr ""
 #: inc/options/meta/default.php:161, inc/options/meta/page.php:146,
 #: inc/options/meta/post.php:145,
 #: inc/options/single-elements/structure.php:118,
-#: inc/options/woocommerce/archive-main.php:153
+#: inc/options/woocommerce/archive-main.php:154
 msgid ""
 "You can customize the global spacing value in General ➝ Layout ➝ %sContent "
 "Area Spacing%s."
@@ -3334,14 +3339,14 @@ msgstr ""
 
 #: inc/options/general/posts-listing.php:1715,
 #: inc/options/single-elements/structure-design.php:21,
-#: inc/options/woocommerce/archive-main.php:170
+#: inc/options/woocommerce/archive-main.php:171
 msgid "Page Background"
 msgstr ""
 
 #. translators: placeholder here means the actual URL.
 #: inc/options/general/posts-listing.php:1730,
 #: inc/options/single-elements/structure-design.php:36,
-#: inc/options/woocommerce/archive-main.php:185
+#: inc/options/woocommerce/archive-main.php:186
 msgid ""
 "Please note, by default this option is inherited from Colors ➝ %sSite "
 "Background%s."
@@ -3425,7 +3430,7 @@ msgstr ""
 #: inc/options/single-elements/post-share-box.php:223,
 #: inc/options/woocommerce/general/store-notice.php:47,
 #: inc/panel-builder/header/logo/options.php:282
-#: static/js/options/options/ct-spacing/input.js:148
+#: static/js/options/options/ct-spacing/input.js:149
 msgid "Top"
 msgstr ""
 
@@ -3435,7 +3440,7 @@ msgstr ""
 #: inc/panel-builder/header/cart/options.php:143,
 #: inc/panel-builder/header/search/options.php:130,
 #: inc/panel-builder/header/trigger/options.php:144
-#: static/js/options/options/ct-spacing/input.js:149
+#: static/js/options/options/ct-spacing/input.js:150
 msgid "Bottom"
 msgstr ""
 
@@ -3497,8 +3502,8 @@ msgstr ""
 msgid "%s Title"
 msgstr ""
 
-#: inc/options/integrations/tutorlms-archive.php:20,
-#: inc/options/integrations/tutorlms-single.php:203
+#: inc/options/integrations/tutorlms-archive.php:21,
+#: inc/options/integrations/tutorlms-single.php:204
 msgid "Course Structure"
 msgstr ""
 
@@ -3579,7 +3584,7 @@ msgid "You can customize the spacing value in general settings panel."
 msgstr ""
 
 #: inc/options/meta/default.php:191, inc/options/meta/post.php:172,
-#: inc/options/posts/post.php:40
+#: inc/options/posts/post.php:41
 msgid "Post Elements"
 msgstr ""
 
@@ -3606,15 +3611,15 @@ msgid "Disable Posts Navigation"
 msgstr ""
 
 #: inc/options/meta/default.php:234, inc/options/meta/page.php:173,
-#: inc/options/meta/post.php:214, inc/options/pages/author-page.php:78,
+#: inc/options/meta/post.php:214, inc/options/pages/author-page.php:79,
 #: inc/options/pages/page.php:52, inc/options/pages/page.php:129,
-#: inc/options/pages/search-page.php:82, inc/options/posts/blog.php:85,
-#: inc/options/posts/custom-post-type-archive.php:81,
-#: inc/options/posts/custom-post-type-single.php:155,
-#: inc/options/posts/custom-post-type-single.php:177,
-#: inc/options/posts/post.php:67, inc/options/posts/post.php:121,
-#: inc/options/woocommerce/archive-main.php:198,
-#: inc/options/woocommerce/single-main.php:79
+#: inc/options/pages/search-page.php:83, inc/options/posts/blog.php:86,
+#: inc/options/posts/custom-post-type-archive.php:83,
+#: inc/options/posts/custom-post-type-single.php:160,
+#: inc/options/posts/custom-post-type-single.php:182,
+#: inc/options/posts/post.php:68, inc/options/posts/post.php:122,
+#: inc/options/woocommerce/archive-main.php:199,
+#: inc/options/woocommerce/single-main.php:80
 msgid "Page Elements"
 msgstr ""
 
@@ -3624,8 +3629,8 @@ msgstr ""
 
 #: inc/options/meta/page.php:23, inc/options/pages/page.php:19,
 #: inc/options/pages/page.php:121,
-#: inc/options/posts/custom-post-type-single.php:87,
-#: inc/options/posts/post.php:113, inc/options/woocommerce/single-main.php:45
+#: inc/options/posts/custom-post-type-single.php:92,
+#: inc/options/posts/post.php:114, inc/options/woocommerce/single-main.php:46
 msgid "Page Structure"
 msgstr ""
 
@@ -3637,7 +3642,7 @@ msgstr ""
 msgid "Post Title"
 msgstr ""
 
-#: inc/options/meta/post.php:20, inc/options/posts/post.php:12
+#: inc/options/meta/post.php:20, inc/options/posts/post.php:13
 msgid "Post Structure"
 msgstr ""
 
@@ -3645,15 +3650,15 @@ msgstr ""
 msgid "Disable Post Tags"
 msgstr ""
 
-#: inc/options/pages/author-page.php:47, inc/options/pages/search-page.php:51,
-#: inc/options/posts/blog.php:54, inc/options/posts/categories.php:40,
-#: inc/options/posts/custom-post-type-archive.php:50
+#: inc/options/pages/author-page.php:48, inc/options/pages/search-page.php:52,
+#: inc/options/posts/blog.php:55, inc/options/posts/categories.php:41,
+#: inc/options/posts/custom-post-type-archive.php:52
 msgid "Posts Listing"
 msgstr ""
 
-#: inc/options/pages/author-page.php:101,
-#: inc/options/pages/search-page.php:146, inc/options/posts/blog.php:128,
-#: inc/options/posts/categories.php:94
+#: inc/options/pages/author-page.php:102,
+#: inc/options/pages/search-page.php:147, inc/options/posts/blog.php:129,
+#: inc/options/posts/categories.php:95
 msgid ""
 "This archive page is overrided by a custom template, to edit it please "
 "access %sthis page%s."
@@ -3664,35 +3669,35 @@ msgid "Page %s"
 msgstr ""
 
 #: inc/options/pages/page.php:158,
-#: inc/options/posts/custom-post-type-single.php:224,
-#: inc/options/posts/post.php:149
+#: inc/options/posts/custom-post-type-single.php:229,
+#: inc/options/posts/post.php:150
 msgid ""
 "This single page is overrided by a custom template, to edit it please access "
 "%sthis page%s."
 msgstr ""
 
-#: inc/options/pages/search-page.php:17,
+#: inc/options/pages/search-page.php:18,
 #: inc/panel-builder/header/search/options.php:439
 msgid "Search Results"
 msgstr ""
 
-#: inc/options/pages/search-page.php:95, inc/options/posts/blog.php:98,
-#: inc/options/posts/custom-post-type-archive.php:94,
-#: inc/options/woocommerce/archive-main.php:227,
-#: inc/options/woocommerce/single-main.php:99
+#: inc/options/pages/search-page.php:96, inc/options/posts/blog.php:99,
+#: inc/options/posts/custom-post-type-archive.php:96,
+#: inc/options/woocommerce/archive-main.php:228,
+#: inc/options/woocommerce/single-main.php:100
 msgid "Functionality Options"
 msgstr ""
 
-#: inc/options/pages/search-page.php:99
+#: inc/options/pages/search-page.php:100
 msgid "Live results"
 msgstr ""
 
-#: inc/options/pages/search-page.php:110,
+#: inc/options/pages/search-page.php:111,
 #: inc/panel-builder/header/search/options.php:480
 msgid "Live Results Product Price"
 msgstr ""
 
-#: inc/options/pages/search-page.php:117,
+#: inc/options/pages/search-page.php:118,
 #: inc/panel-builder/header/search/options.php:488
 msgid "Live Results Product Status"
 msgstr ""
@@ -3701,11 +3706,11 @@ msgstr ""
 msgid "Blog Title"
 msgstr ""
 
-#: inc/options/posts/categories.php:71
+#: inc/options/posts/categories.php:72
 msgid "Categories Elements"
 msgstr ""
 
-#: inc/options/posts/custom-post-type-single.php:199
+#: inc/options/posts/custom-post-type-single.php:204
 msgid "%s Elements"
 msgstr ""
 
@@ -4024,87 +4029,87 @@ msgstr ""
 msgid "Content Area Padding"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:44
+#: inc/options/woocommerce/archive-main.php:45
 msgid "Shop Settings"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:82,
+#: inc/options/woocommerce/archive-main.php:83,
 #: inc/options/woocommerce/related-upsells.php:33
 msgid "Columns & Rows"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:238
+#: inc/options/woocommerce/archive-main.php:239
 msgid "Product Catalog"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:245
+#: inc/options/woocommerce/archive-main.php:246
 msgid "Shop page display"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:249,
-#: inc/options/woocommerce/archive-main.php:257,
-#: inc/options/woocommerce/archive-main.php:269,
-#: inc/options/woocommerce/archive-main.php:277
+#: inc/options/woocommerce/archive-main.php:250,
+#: inc/options/woocommerce/archive-main.php:258,
+#: inc/options/woocommerce/archive-main.php:270,
+#: inc/options/woocommerce/archive-main.php:278
 msgid "Show products"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:254
+#: inc/options/woocommerce/archive-main.php:255
 msgid "Choose what to display on the main shop page."
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:258
+#: inc/options/woocommerce/archive-main.php:259
 msgid "Show categories"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:259
+#: inc/options/woocommerce/archive-main.php:260
 msgid "Show categories & products"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:265
+#: inc/options/woocommerce/archive-main.php:266
 msgid "Category display"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:274
+#: inc/options/woocommerce/archive-main.php:275
 msgid "Choose what to display on product category pages."
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:278
+#: inc/options/woocommerce/archive-main.php:279
 msgid "Show subcategories"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:279
+#: inc/options/woocommerce/archive-main.php:280
 msgid "Show subcategories & products"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:285
+#: inc/options/woocommerce/archive-main.php:286
 msgid "Default product sorting"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:290
+#: inc/options/woocommerce/archive-main.php:291
 msgid "How should products be sorted in the catalog by default?"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:298
+#: inc/options/woocommerce/archive-main.php:299
 msgid "Default sorting (custom ordering + name)"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:299
+#: inc/options/woocommerce/archive-main.php:300
 msgid "Popularity (sales)"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:300
+#: inc/options/woocommerce/archive-main.php:301
 msgid "Average rating"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:301
+#: inc/options/woocommerce/archive-main.php:302
 msgid "Sort by most recent"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:302
+#: inc/options/woocommerce/archive-main.php:303
 msgid "Sort by price (asc)"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:303
+#: inc/options/woocommerce/archive-main.php:304
 msgid "Sort by price (desc)"
 msgstr ""
 
@@ -4245,7 +4250,7 @@ msgstr ""
 msgid "Product Title"
 msgstr ""
 
-#: inc/options/woocommerce/single-main.php:103
+#: inc/options/woocommerce/single-main.php:104
 msgid "AJAX Add To Cart"
 msgstr ""
 
@@ -4617,11 +4622,19 @@ msgstr ""
 msgid "Label Visibility"
 msgstr ""
 
-#: inc/options/integrations/the-events-calendar/archive.php:21
+#: inc/options/integrations/the-events-calendar/archive.php:17
+msgid "Events Calendar Archive"
+msgstr ""
+
+#: inc/options/integrations/the-events-calendar/archive.php:22
 msgid "Events Calendar Archive Structure"
 msgstr ""
 
-#: inc/options/integrations/the-events-calendar/single.php:23
+#: inc/options/integrations/the-events-calendar/single.php:18
+msgid "Event Single"
+msgstr ""
+
+#: inc/options/integrations/the-events-calendar/single.php:24
 msgid "Event Structure"
 msgstr ""
 
@@ -5385,7 +5398,7 @@ msgstr ""
 #: inc/panel-builder/header/logo/options.php:280,
 #: inc/panel-builder/header/search/options.php:128,
 #: inc/panel-builder/header/trigger/options.php:142
-#: static/js/options/options/ct-spacing/input.js:150
+#: static/js/options/options/ct-spacing/input.js:151
 msgid "Left"
 msgstr ""
 
@@ -5393,7 +5406,7 @@ msgstr ""
 #: inc/panel-builder/header/logo/options.php:281,
 #: inc/panel-builder/header/search/options.php:129,
 #: inc/panel-builder/header/trigger/options.php:143
-#: static/js/options/options/ct-spacing/input.js:151
+#: static/js/options/options/ct-spacing/input.js:152
 msgid "Right"
 msgstr ""
 
@@ -6756,12 +6769,12 @@ msgid "No custom palettes yet."
 msgstr ""
 
 #: static/js/options/options/color-palettes/PalettePreview.js:170
-#: static/js/options/options/color-picker/color-picker-iris.js:67
+#: static/js/options/options/color-picker/color-picker-iris.js:96
 msgid "Copied"
 msgstr ""
 
 #: static/js/options/options/color-palettes/PalettePreview.js:174
-#: static/js/options/options/color-picker/color-picker-iris.js:68
+#: static/js/options/options/color-picker/color-picker-iris.js:97
 #: static/js/options/options/ct-customize-section-title-actions.js:282
 msgid "Copy"
 msgstr ""
@@ -6885,7 +6898,7 @@ msgstr ""
 msgid "Select value..."
 msgstr ""
 
-#: static/js/options/options/ct-slider.js:95
+#: static/js/options/options/ct-slider.js:106
 msgid "custom"
 msgstr ""
 

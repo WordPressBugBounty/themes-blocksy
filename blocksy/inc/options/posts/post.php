@@ -3,7 +3,8 @@
 $page_title_options = blocksy_get_options('general/page-title', [
 	'prefix' => 'single_blog_post',
 	'is_single' => true,
-	'enabled_label' => __('Post Title', 'blocksy')
+	'enabled_label' => __('Post Title', 'blocksy'),
+	'location_name' => __('Single Post', 'blocksy')
 ]);
 
 $page_structure_options = [

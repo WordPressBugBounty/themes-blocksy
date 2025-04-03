@@ -203,7 +203,25 @@ class WooCommerceCheckout {
 
 				$result = ob_get_clean();
 
-				echo str_replace('td data-title', 'td colspan="2" data-title', $result);
+				// drop the first column
+				$result = preg_replace(
+					'/<th>.+?<\/th>/',
+					'',
+					$result
+				);
+
+				// add option title, collspan and remove data-title
+				echo preg_replace(
+					'/(<td data-title=".*>)/',
+					'<td colspan="2">' . blocksy_html_tag(
+						'div',
+						[
+							'class' => 'ct-shipping-heading'
+						],
+						$args['package_name']
+					),
+					$result
+				);
 			},
 			1,
 			4

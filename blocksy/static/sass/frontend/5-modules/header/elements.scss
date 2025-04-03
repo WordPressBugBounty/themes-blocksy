@@ -27,7 +27,8 @@
 .ct-header-text,
 .ct-account-item,
 .ct-header-compare,
-.ct-header-wishlist {
+.ct-header-wishlist,
+.ct-language-switcher [data-label] {
 	display: flex;
 	align-items: var(--align-items, center);
 }

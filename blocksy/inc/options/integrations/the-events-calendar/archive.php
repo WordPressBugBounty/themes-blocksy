@@ -13,7 +13,8 @@ $options = [
 				'enabled_label' => blocksy_safe_sprintf(
 					__('%s Title', 'blocksy'),
 					'Events Calendar Archive'
-				)
+				),
+				'location_name' => __('Events Calendar Archive', 'blocksy'),
 			]),
 
 			blocksy_rand_md5() => [

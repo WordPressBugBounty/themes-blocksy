@@ -71,6 +71,7 @@ class Blocksy_Manager {
 		$breadcrumbs->mount_shortcode();
 
 		new \Blocksy\SearchModifications();
+		new \Blocksy\ThemePatterns();
 
 		$this->entity_id_picker = new \Blocksy\EntityIdPicker();
 

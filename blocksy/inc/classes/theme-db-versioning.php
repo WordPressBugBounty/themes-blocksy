@@ -382,6 +382,14 @@ class DbVersioning {
 					$obj = new DbVersioning\V2093();
 					$obj->migrate();
 				}
+			],
+
+			[
+				'version' => '2.0.94',
+				'cb' => function () {
+					$obj = new DbVersioning\V2094();
+					$obj->migrate();
+				}
 			]
 		];
 	}
@@ -1777,6 +1785,10 @@ class DbVersioning {
 				set_theme_mod($new_id, $maybe_old);
 			}
 		}
+	}
+
+	public function is_fresh_setup() {
+		return get_option('blocksy_db_version', '__empty__') === '__empty__';
 	}
 }
 

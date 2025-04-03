@@ -504,6 +504,7 @@ require get_template_directory() . '/inc/helpers/layout.php';
 require get_template_directory() . '/inc/helpers/html.php';
 require get_template_directory() . '/inc/helpers/db.php';
 require get_template_directory() . '/inc/helpers/dynamic-css.php';
+require get_template_directory() . '/inc/helpers/get-terms.php';
 require get_template_directory() . '/inc/helpers/cpt.php';
 require get_template_directory() . '/inc/helpers/search.php';
 

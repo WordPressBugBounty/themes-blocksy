@@ -18,15 +18,44 @@ const ColorPickerIris = ({
 }) => {
 	const [copied, setCopied] = useState(false)
 
+	// The ColorPicker component from WordPress is not a real controlled
+	// component, as it also persists some state inside. We should not try to
+	// feed new colors into it while dragging, as it will really
+	// confuse the component, because of the debounce inside it has, and likely
+	// also some race condition is going on there.
+	const [staticColor, setStaticColor] = useState(null)
+	const [timeoutId, setTimeoutId] = useState(null)
+
 	const calculatedColor = useMemo(() => getComputedStyleValue(color), [color])
 
 	return (
 		<div className="ct-gutenberg-color-picker">
 			<ColorPicker
-				color={calculatedColor}
+				color={staticColor !== null ? staticColor : calculatedColor}
 				enableAlpha
 				onChange={(color) => {
 					onChange({ ...value, color: normalizeColor(color) })
+				}}
+				onMouseDown={() => {
+					setStaticColor(calculatedColor)
+
+					if (timeoutId) {
+						clearTimeout(timeoutId)
+						setTimeoutId(null)
+					}
+				}}
+				onMouseUp={() => {
+					setStaticColor(null)
+
+					if (timeoutId) {
+						clearTimeout(timeoutId)
+					}
+
+					setTimeoutId(
+						setTimeout(() => {
+							setStaticColor(null)
+						}, 50)
+					)
 				}}
 			/>
 

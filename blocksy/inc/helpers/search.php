@@ -78,3 +78,70 @@ function blocksy_reqursive_taxonomy($tax, $parent_term_id, $level, $selected_cat
 
 	return $els;
 }
+
+function blocksy_get_search_post_type($search_through = []) {
+	$all_cpts = blocksy_manager()->post_types->get_supported_post_types();
+
+	if (function_exists('is_bbpress')) {
+		$all_cpts[] = 'forum';
+		$all_cpts[] = 'topic';
+		$all_cpts[] = 'reply';
+	}
+
+	foreach ($all_cpts as $single_cpt) {
+		if (! isset($search_through[$single_cpt])) {
+			$search_through[$single_cpt] = false;
+		}
+	}
+
+	$post_type = [];
+
+	foreach ($search_through as $single_post_type => $enabled) {
+		if (
+			! $enabled
+			||
+			! get_post_type_object($single_post_type)
+		) {
+			continue;
+		}
+
+		if (
+			$single_post_type !== 'post'
+			&&
+			$single_post_type !== 'page'
+			&&
+			$single_post_type !== 'product'
+			&&
+			! in_array($single_post_type, $all_cpts)
+		) {
+			continue;
+		}
+
+		$post_type[] = $single_post_type;
+	}
+
+	// All subtypes used in the REST API Post Search Handler.
+	// wp-includes/rest-api/search/class-wp-rest-post-search-handler.php
+	$rest_api_all_subtypes = array_diff(
+		array_values(
+			get_post_types(
+				[
+					'public' => true,
+					'show_in_rest' => true
+				],
+				'names'
+			)
+		),
+		['attachment']
+	);
+
+	if (
+		count(array_keys($search_through)) === count($post_type)
+		&&
+		count($post_type) === count($rest_api_all_subtypes)
+	) {
+		$post_type = [];
+	}
+
+	return $post_type;
+}

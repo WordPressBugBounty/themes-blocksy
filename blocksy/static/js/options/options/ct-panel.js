@@ -333,9 +333,24 @@ const Panel = ({
 		) : null
 	}
 
+	const isEnabled = value === 'yes' || value === true
+
 	return (
 		<div className="ct-customizer-panel-container">
+
+			{option.disabled_notice && !isEnabled && (
+				<span className="ct-option-notice" data-tooltip-reveal="top:full">
+					<span className="ct-tooltip-trigger">
+						<svg width="12" height="12" viewBox="0 0 10 10" fill="rgba(80, 87, 94, 0.7)">
+							<path d="M5 0C2.237 0 0 2.237 0 5s2.237 5 5 5 5-2.237 5-5-2.237-5-5-5Zm.5 7.5h-1v-3h1v3Zm0-4h-1v-1h1v1Z"/>
+						</svg>
+					</span>
+					<i className="ct-tooltip">{option.disabled_notice}</i>
+				</span>
+			)}
+
 			<div className={classnames('ct-customizer-panel-option')}>
+
 				{option.switch && (
 					<Switch
 						value={value}

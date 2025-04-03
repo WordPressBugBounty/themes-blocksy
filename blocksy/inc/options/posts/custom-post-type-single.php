@@ -21,6 +21,11 @@ $page_title_options = blocksy_get_options(
 				__('%s Title', 'blocksy'),
 				$post_type->labels->singular_name
 			),
+
+			'location_name' => blocksy_safe_sprintf(
+				__('Single %s', 'blocksy'),
+				$post_type->labels->singular_name
+			)
 		],
 		$post_type->name
 	)

@@ -195,7 +195,8 @@ $options = [
 					__('%s Title', 'blocksy'),
 					'Course'
 				),
-				'design_options' => $design_options
+				'design_options' => $design_options,
+				'location_name' => __('Course Single', 'blocksy')
 			]),
 
 			blocksy_rand_md5() => [

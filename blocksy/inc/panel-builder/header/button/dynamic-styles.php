@@ -624,7 +624,8 @@ blocksy_output_spacing([
 		'headerCtaRadius',
 		$atts,
 		blocksy_spacing_value()
-	)
+	),
+	'empty_value' => ''
 ]);
 
 // Padding
@@ -644,7 +645,8 @@ blocksy_output_spacing([
 		'headerCtaPadding',
 		$atts,
 		blocksy_spacing_value()
-	)
+	),
+	'empty_value' => ''
 ]);
 
 // Margin

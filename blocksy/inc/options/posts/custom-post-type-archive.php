@@ -8,6 +8,8 @@ $page_title_options = blocksy_get_options('general/page-title', [
 		__('%s Title', 'blocksy'),
 		$post_type->labels->name
 	),
+
+	'location_name' => $post_type->labels->name
 ]);
 
 $posts_listing_options = blocksy_get_options('general/posts-listing', [

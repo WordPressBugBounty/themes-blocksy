@@ -1,18 +1,11 @@
 .woocommerce-shipping-totals {
 	--theme-table-text-align: start;
 
-	th {
-		display: none;
-	}
-
 	td {
 		padding-inline-start: 0;
 
-		&:before {
-			content: attr(data-title);
-			display: block;
+		.ct-shipping-heading {
 			font-weight: 600;
-			text-align: initial;
 			margin-bottom: 15px;
 		}
 	}

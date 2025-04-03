@@ -11,7 +11,8 @@ $page_title_options = blocksy_get_options('general/page-title', [
 	'prefix' => 'blog',
 	'is_home' => true,
 	'enabled_label' => __('Blog Title', 'blocksy'),
-	'enabled_default' => 'no'
+	'enabled_default' => 'no',
+	'location_name' => __('Blog Posts', 'blocksy'),
 ]);
 
 $posts_listing_options = blocksy_get_options('general/posts-listing', [

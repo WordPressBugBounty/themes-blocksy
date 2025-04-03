@@ -26,6 +26,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		type: 'spacing',
 		variable: 'theme-button-border-radius',
 		responsive: true,
+		emptyValue: '',
 	},
 
 	headerCtaPadding: {
@@ -39,6 +40,7 @@ const getVariables = ({ itemId, fullItemId, panelType }) => ({
 		type: 'spacing',
 		variable: 'theme-button-padding',
 		responsive: true,
+		emptyValue: '',
 	},
 
 	headerCtaMargin: {

@@ -34,7 +34,7 @@ add_filter('comment_form_defaults', function ($defaults) {
 		$website_field_class = 'has-website-field';
 	}
 
-	$label_position = blocksy_get_theme_mod($prefix . '_comments_label_position', 'inside');
+	$label_position = blocksy_get_theme_mod($prefix . '_comments_label_position', 'outside');
 	$label_position_class = 'has-labels-' . $label_position;
 
 	$defaults['format'] = 'xhtml';

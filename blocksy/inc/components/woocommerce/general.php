@@ -73,6 +73,16 @@ add_action(
 			return;
 		}
 
+		global $blocksy_detect_woo_block_render;
+
+		if (
+			isset($blocksy_detect_woo_block_render)
+			&&
+			$blocksy_detect_woo_block_render
+		) {
+			return;
+		}
+
 		echo '<span class="ct-increase"></span>';
 		echo '<span class="ct-decrease"></span>';
 	}
@@ -212,14 +222,6 @@ add_action(
 		if ($template_name === 'single-product/related.php') {
 			ob_start();
 		}
-
-		if (
-			$template_name === 'loop/loop-start.php'
-			&&
-			is_archive()
-		) {
-			ob_start();
-		}
 	},
 	10,
 	4
@@ -251,27 +253,6 @@ add_action(
 				'class="quantity"',
 				$final_quantity_look,
 				$quantity
-			);
-		}
-
-		if (
-			$template_name === 'loop/loop-start.php'
-			&&
-			is_archive()
-		) {
-			$loop_start = ob_get_clean();
-
-			$other_attr = [];
-
-			if ( is_customize_preview() ) {
-				$other_attr['data-shortcut'] = 'border:outside';
-				$other_attr['data-shortcut-location'] = blocksy_first_level_deep_link('woo_categories');
-			}
-
-			echo str_replace(
-				'class="products',
-				blocksy_attr_to_html($other_attr) . 'class="products ',
-				$loop_start
 			);
 		}
 

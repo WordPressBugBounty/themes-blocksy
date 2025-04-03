@@ -14,6 +14,8 @@ import { __ } from 'ct-i18n'
 import InputWithValidCssExpression from '../components/InputWithValidCssExpression'
 import { getNumericKeyboardEvents } from '../helpers/getNumericKeyboardEvents'
 
+import { hasUnitsList, getCurrentUnit } from './ct-slider/helpers'
+
 export const clamp = (min, max, value) => Math.max(min, Math.min(max, value))
 
 export const round = (value, decimalPlaces = 1) => {
@@ -76,12 +78,21 @@ const UnitsList = ({
 		}
 	}
 
-	let futureUnitDescriptor =
-		forced_current_unit === ''
-			? option.units.find(
-					({ unit: u, type }) => u === '' && type === 'custom'
-			  )
-			: option.units.find(({ unit: u }) => u === currentUnit)
+	const normalizedCurrentUnit = getCurrentUnit({
+		value,
+		option,
+		forced_current_unit,
+		explicitCustom: true,
+	})
+
+	const futureUnitDescriptor = option.units.find(({ unit, type }) => {
+		if (normalizedCurrentUnit === 'custom') {
+			return unit === '' && type === 'custom'
+		}
+
+		// custom is the last one, anyway
+		return unit === normalizedCurrentUnit
+	})
 
 	return (
 		<Fragment>
@@ -114,7 +125,7 @@ const UnitsList = ({
 				{option.units
 					.filter(({ unit, type }) => {
 						// Custom is selected
-						const isCustom = forced_current_unit === ''
+						const isCustom = normalizedCurrentUnit === 'custom'
 
 						if (isCustom) {
 							return type !== 'custom'
@@ -196,8 +207,7 @@ export default class Slider extends Component {
 
 	el = createRef()
 
-	hasUnitsList = () =>
-		this.props.option.units && this.props.option.units.length > 1
+	hasUnitsList = () => hasUnitsList({ option: this.props.option })
 
 	withDefault = (currentUnit, defaultUnit) =>
 		this.props.option.units
@@ -206,54 +216,18 @@ export default class Slider extends Component {
 				: currentUnit || defaultUnit
 			: currentUnit || defaultUnit
 
-	getCurrentUnit = () => {
-		if (this.state.forced_current_unit !== '__DEFAULT__') {
-			return this.state.forced_current_unit
+	getCurrentUnit = (args = {}) => {
+		args = {
+			explicitCustom: false,
+			...args,
 		}
 
-		if (!this.props.option.units) {
-			return ''
-		}
-
-		let defaultUnit = this.props.option.units
-			? this.props.option.units[0].unit
-			: ''
-
-		if (
-			this.props.value === 'NaN' ||
-			this.props.value === '' ||
-			this.props.value === 'CT_CSS_SKIP_RULE'
-		) {
-			return defaultUnit
-		}
-
-		let computedUnit = this.props.value
-			.toString()
-			.replace(/[0-9]/g, '')
-			.replace(/\-/g, '')
-			.replace(/\./g, '')
-			.replace('CT_CSS_SKIP_RULE', '')
-
-		let maybeActualUnit = this.props.option.units.find(
-			({ unit }) => unit === computedUnit
-		)
-
-		if (
-			computedUnit === '' &&
-			this.props.value.toString() ===
-				parseFloat(this.props.value).toString() &&
-			!this.props.option.units.find(
-				({ unit, type }) => unit === '' && !type
-			)
-		) {
-			return defaultUnit
-		}
-
-		if (maybeActualUnit) {
-			return computedUnit
-		}
-
-		return ''
+		return getCurrentUnit({
+			explicitCustom: args.explicitCustom,
+			value: this.props.value,
+			option: this.props.option,
+			forced_current_unit: this.state.forced_current_unit,
+		})
 	}
 
 	getMax = () =>
@@ -484,25 +458,10 @@ export default class Slider extends Component {
 	}
 
 	isCustomValueInput() {
-		if (!this.hasUnitsList()) return false
-
-		let maybeUnit = this.props.option.units.find(({ unit: u }) => u === '')
-
-		if (this.state.forced_current_unit === '') {
-			maybeUnit = this.props.option.units.find(
-				({ unit: u, type }) => u === '' && type === 'custom'
-			)
-		}
-
-		if (!maybeUnit) {
-			return false
-		}
-
 		return (
-			this.getCurrentUnit() === '' &&
-			this.state.forced_current_unit === '' &&
-			maybeUnit.unit === '' &&
-			maybeUnit.type === 'custom'
+			this.getCurrentUnit({
+				explicitCustom: true,
+			}) === 'custom'
 		)
 	}
 

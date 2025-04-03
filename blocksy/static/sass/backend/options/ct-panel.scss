@@ -1,4 +1,5 @@
 .ct-panel {
+
 	&.ct-click-allowed {
 		cursor: pointer;
 		position: relative;
@@ -23,6 +24,7 @@
 		}
 
 		.ct-customizer-panel-option {
+
 			button {
 				opacity: 0.7;
 				pointer-events: auto;
@@ -206,4 +208,70 @@
 .ct-tmp-panel-actions {
 	z-index: 999999;
 	position: relative;
+}
+
+
+
+// temp notice for this case - https://themes.trac.wordpress.org/ticket/181031#comment:13
+// to remove later maybe 
+.ct-customizer-panel-container {
+	display: flex;
+	align-items: center;
+
+	.ct-option-notice {
+		display: flex;
+		justify-content: center;
+		margin-inline-end: 10px;
+		position: initial;
+	}
+
+
+	[data-tooltip-reveal="top:full"] {
+
+		.ct-tooltip {
+			text-align: initial;
+			white-space: initial;
+			padding: 8px 10px;
+			top: 0;
+			inset-inline: 0px;
+			transform: translateY(calc(-100% - 8px));
+		}
+
+		.ct-tooltip-trigger {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			&:after {
+				opacity: 0;
+				visibility: hidden;
+				content: '';
+				position: absolute;
+				box-sizing: border-box;
+				width: 10px;
+				height: 5px;
+				border-inline: 5px solid transparent;
+				border-top: 5px solid rgba(54, 63, 66, 1);
+
+				transform: translateY(calc(-100% - 11px));
+
+				transition: opacity 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+							transform 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+							visibility 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+			}
+		}
+
+		&:hover {
+			.ct-tooltip-trigger:after {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(calc(-100% - 15px));
+			}
+
+			.ct-tooltip {
+				transform: translateY(calc(-100% - 12px));
+			}
+		}
+	}
 }

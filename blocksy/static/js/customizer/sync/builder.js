@@ -184,6 +184,7 @@ const makeAllShortcuts = () => {
 		...document.querySelectorAll('.ct-shortcuts-bar'),
 		...document.querySelectorAll('.ct-related-posts-container'),
 		...document.querySelectorAll('.ct-related-posts'),
+		...document.querySelectorAll('.ct-comments'),
 		...document.querySelectorAll('.ct-floating-bar'),
 	].map((el) => makeShortcutFor(el))
 }

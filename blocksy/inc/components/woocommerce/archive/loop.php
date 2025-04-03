@@ -57,6 +57,11 @@ add_filter(
 				);
 			}
 
+			if (is_archive() && is_customize_preview()) {
+				$other_attr['data-shortcut'] = 'border:outside';
+				$other_attr['data-shortcut-location'] = blocksy_first_level_deep_link('woo_categories');
+			}
+
 			$attr = blocksy_attr_to_html($other_attr);
 		}
 

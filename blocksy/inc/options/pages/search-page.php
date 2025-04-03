@@ -9,7 +9,8 @@
 
 $page_title_options = blocksy_get_options('general/page-title', [
 	'prefix' => 'search',
-	'is_search' => true
+	'is_search' => true,
+	'location_name' => __('Search', 'blocksy')
 ]);
 
 $posts_listing_options = blocksy_get_options('general/posts-listing', [
