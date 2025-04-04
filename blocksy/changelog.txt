@@ -1,3 +1,6 @@
+2.0.95: 2025-04-04
+- Improvement: Minor accessibility improvements
+
 2.0.94: 2025-04-03
 - Improvement: Better integration with Dokan Pro Free Shipping and checkout page
 - Improvement: Button header element - make sure spacing value is correctly outputted in certain scenarios
