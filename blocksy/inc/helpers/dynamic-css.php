@@ -173,3 +173,19 @@ function blocksy_theme_get_dynamic_styles($args = []) {
 	}
 }
 
+function blocksy_has_dynamic_css_in_frontend() {
+	$is_site_preview = isset($_REQUEST['wp_site_preview']);
+
+	// wp_site_preview is a special IFRAME_REQUEST.
+	// It is placed in the new Appearanca -> Design view for classic themes.
+	if ($is_site_preview) {
+		return true;
+	}
+
+	if (defined('IFRAME_REQUEST') && IFRAME_REQUEST) {
+		return false;
+	}
+
+	return true;
+}
+

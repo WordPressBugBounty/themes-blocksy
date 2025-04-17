@@ -23,6 +23,10 @@ class SingleProductAdditionalActions {
 	}
 
 	public function add_layer_options($opt) {
+		if (empty($this->get_actions())) {
+			return $opt;
+		}
+
 		$actions_options = [];
 		$actions_values = [];
 

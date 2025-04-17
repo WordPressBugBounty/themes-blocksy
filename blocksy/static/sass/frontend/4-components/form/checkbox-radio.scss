@@ -7,8 +7,9 @@ $checkbox:
 	'.woocommerce-form__input[type="checkbox"]',
 	'.woocommerce-form__label-for-checkbox input[type="checkbox"]',
 	'.woocommerce-input-wrapper input[type="checkbox"]',
-	'#wc-stripe-new-payment-method[type="checkbox"]',
-	'.ppcp-credit-card-vault[type="checkbox"]',
+	'#payment .payment_box input[type="checkbox"]',
+	// '#wc-stripe-new-payment-method[type="checkbox"]',
+	// '.ppcp-credit-card-vault[type="checkbox"]',
 	'.forminator-ui[data-design="none"] .forminator-checkbox input[type="checkbox"]',
 	'.wpforms-container:not(.wpforms-container-full) input[type="checkbox"]',
 	'.ff-inherit-theme-style input[type=checkbox]'

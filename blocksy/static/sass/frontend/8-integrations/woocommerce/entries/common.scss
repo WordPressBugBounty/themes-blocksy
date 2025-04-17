@@ -37,6 +37,16 @@
 		--theme-font-size: 15px;
 	}
 
+	.ct-woo-card-rating {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+
+		[class*="ct-rating"] {
+			font-size: 13px;
+		}
+	}
+
 	[data-add-to-cart="auto-hide"] {
 
 		.added {

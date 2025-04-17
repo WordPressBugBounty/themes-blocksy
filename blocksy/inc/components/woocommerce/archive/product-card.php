@@ -345,8 +345,43 @@ add_action($action_to_hook, function () {
 				}
 
 				if ($layout['id'] === 'product_rating') {
+					ob_start();
 					woocommerce_template_loop_rating();
+					$rating_stars = ob_get_clean();
 
+					$average_rating = '';
+					$review_count = '';
+
+
+					if ($product->get_review_count() > 0) {
+						if (blocksy_akg('average_rating', $layout, 'no') === 'yes') {
+							$average_rating = blocksy_html_tag(
+								'span',
+								[
+									'class' => 'ct-rating-average'
+								],
+								'(' . $product->get_average_rating() . ')'
+							);
+						}
+
+						if (blocksy_akg('review_count', $layout, 'no') === 'yes') {
+							$review_count = blocksy_html_tag(
+								'span',
+								[
+									'class' => 'ct-rating-count'
+								],
+								'(' . $product->get_review_count() . ')'
+							);
+						}
+
+						echo blocksy_html_tag(
+							'div',
+							[
+								'class' => 'ct-woo-card-rating'
+							],
+							$rating_stars . $review_count . $average_rating
+						);
+					}
 					continue;
 				}
 

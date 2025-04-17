@@ -27,16 +27,9 @@
 
 
 // payment methods
-#payment .payment_methods {
-	padding: 0;
-	margin-inline: 0;
+#payment ul.payment_methods {
 
-	li {
-		list-style: none;
-	}
-
-	li.wc_payment_method,
-	li.woocommerce-PaymentMethod {
+	> li.wc_payment_method {
 		border: 1px solid var(--theme-border-color);
 
 		&:not(:first-child) {
@@ -52,11 +45,6 @@
 				border-color: var(--theme-form-selection-field-active-color);
 			}
 		}
-	}
-
-	// label
-	> .wc_payment_method,
-	> .woocommerce-PaymentMethod {
 
 		> label {
 			display: flex;
@@ -75,18 +63,20 @@
 				height: 16px;
 				min-width: 16px;
 				margin-top: 2px;
-				// margin-inline-end: 0.7em;
 				border-radius: 100%;
 				border: var(--form-selection-control-border-width, var(--theme-form-field-border-width, 1px)) solid var(--theme-form-selection-field-initial-color);
 			}
 
 			img {
 				max-height: 35px;
-				// max-width: 50%;
 
 				&:first-of-type {
 					margin-inline-start: auto !important;
 				}
+			}
+
+			.payment-methods--logos {
+				margin-inline-start: auto;
 			}
 
 			.about_paypal {
@@ -94,6 +84,7 @@
 			}
 		}
 	}
+
 
 	// payment box
 	.payment_box {
@@ -122,9 +113,11 @@
 		}
 
 		fieldset {
-			padding: 0;
+			padding: 0 !important;
 			border: none;
-			margin-top: 20px;
+
+			// this margin adds extra spacing and needs to be deactivated - https://d.pr/v/yh3QZB
+			// margin-top: 20px;
 
 			.form-row:not(:first-child) {
 				margin-top: 15px;

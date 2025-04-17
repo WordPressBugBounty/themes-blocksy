@@ -444,6 +444,20 @@ $options = [
 									'product_rating' => [
 										'label' => __('Star Rating', 'blocksy'),
 										'options' => [
+											'review_count' => [
+												'label' => __( 'Reviews Count', 'blocksy' ),
+												'type' => 'ct-switch',
+												'value' => 'no',
+												'setting' => [ 'transport' => 'postMessage' ],
+											],
+
+											'average_rating' => [
+												'label' => __( 'Average Rating', 'blocksy' ),
+												'type' => 'ct-switch',
+												'value' => 'no',
+												'setting' => [ 'transport' => 'postMessage' ],
+											],
+
 											'spacing' => [
 												'label' => __( 'Bottom Spacing', 'blocksy' ),
 												'type' => 'ct-slider',

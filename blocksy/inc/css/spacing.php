@@ -158,9 +158,14 @@ function blocksy_spacing_prepare_for_device($value, $args = []) {
 	}
 
 	$result = array_map(
-		function ($side) use ($args) {
+		function ($side) use ($args, $value) {
 			if ($side['value'] === '' || $side['value'] === 'auto') {
-				$side['value'] = $args['empty_value'];
+				// empty_value is only supported for linked values
+				if ($value['state'] === 1) {
+					$side['value'] = $args['empty_value'];
+				} else {
+					$side['value'] = 0;
+				}
 			}
 
 			return $side;

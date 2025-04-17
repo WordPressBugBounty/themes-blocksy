@@ -303,7 +303,11 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			}
 		} else {
 			if (! is_search()) {
-				if (! empty(get_the_archive_description())) {
+				if (
+					! is_author()
+					&&
+					! empty(get_the_archive_description())
+				) {
 					$description = '<div class="' . $description_class . '">' . get_the_archive_description() . '</div>';
 				}
 

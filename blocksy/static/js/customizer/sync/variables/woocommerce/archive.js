@@ -11,7 +11,7 @@ export const getWooArchiveVariablesFor = () => ({
 				product_image: '[data-products] .product figure',
 				product_title: '[data-products] .product .woocommerce-loop-product__title',
 				product_price: '[data-products] .product .price',
-				product_rating: '[data-products] .product .star-rating',
+				product_rating: '[data-products] .product .ct-woo-card-rating',
 				// product_meta: '[data-products] .product .entry-meta',
 				product_desc: '[data-products] .product .entry-excerpt',
 				product_add_to_cart: '[data-products] .product .ct-woo-card-actions',

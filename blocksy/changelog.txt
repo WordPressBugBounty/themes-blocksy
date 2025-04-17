@@ -1,3 +1,10 @@
+2.0.96: 2025-04-17
+- Improvement: Checkout page coupon field is hidden due to WooCommerce latest changes
+- Improvement: More reliable calculation and output of the "Content Edge Spacing" option
+- Improvement: Page title - proper description in author archives
+- Improvement: WooCommerce archive - add review counter and average ration option to "start rating" layer
+- Fix: Header "Button" padding is not working if values are unlinked and some sides are left unfilled
+
 2.0.95: 2025-04-04
 - Improvement: Minor accessibility improvements
 

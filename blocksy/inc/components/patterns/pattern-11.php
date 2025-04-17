@@ -42,7 +42,7 @@ return [
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"15px","margin":{"bottom":"10px"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group" style="margin-bottom:10px"><!-- wp:image {"id":7800,"width":"22px","height":"22px","scale":"contain","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#ffffff","#ffffff"]}}} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://blocksy.local/wp-content/uploads/2025/03/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . trailingslashit( get_template_directory_uri() ) . 'inc/components/patterns/assets/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"textColor":"white"} -->
@@ -52,7 +52,7 @@ return [
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"15px","margin":{"bottom":"10px"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group" style="margin-bottom:10px"><!-- wp:image {"id":7800,"width":"22px","height":"22px","scale":"contain","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#ffffff","#ffffff"]}}} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://blocksy.local/wp-content/uploads/2025/03/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . trailingslashit( get_template_directory_uri() ) . 'inc/components/patterns/assets/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"textColor":"white"} -->
@@ -62,7 +62,7 @@ return [
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"15px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":7800,"width":"22px","height":"22px","scale":"contain","sizeSlug":"full","linkDestination":"none","style":{"color":{"duotone":["#ffffff","#ffffff"]}}} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://blocksy.local/wp-content/uploads/2025/03/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . trailingslashit( get_template_directory_uri() ) . 'inc/components/patterns/assets/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"textColor":"white"} -->
@@ -98,7 +98,7 @@ return [
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"15px","margin":{"bottom":"10px"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group" style="margin-bottom:10px"><!-- wp:image {"id":7800,"width":"22px","height":"22px","scale":"contain","sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://blocksy.local/wp-content/uploads/2025/03/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . trailingslashit( get_template_directory_uri() ) . 'inc/components/patterns/assets/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"textColor":"black"} -->
@@ -108,7 +108,7 @@ return [
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"15px","margin":{"bottom":"10px"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group" style="margin-bottom:10px"><!-- wp:image {"id":7800,"width":"22px","height":"22px","scale":"contain","sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://blocksy.local/wp-content/uploads/2025/03/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . trailingslashit( get_template_directory_uri() ) . 'inc/components/patterns/assets/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"textColor":"black"} -->
@@ -118,7 +118,7 @@ return [
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"15px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":7800,"width":"22px","height":"22px","scale":"contain","sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://blocksy.local/wp-content/uploads/2025/03/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . trailingslashit( get_template_directory_uri() ) . 'inc/components/patterns/assets/pattern-check-mark.svg" alt="" class="wp-image-7800" style="object-fit:contain;width:22px;height:22px"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"var:preset|color|black"}}}},"textColor":"black"} -->

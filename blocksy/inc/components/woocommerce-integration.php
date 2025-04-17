@@ -33,7 +33,10 @@ require get_template_directory() . '/inc/components/woocommerce/single/tabs.php'
 
 if (class_exists('Custom_Related_Products')) {
 	require get_template_directory() . '/inc/components/woocommerce/integrations/wt-woocommerce-related-products.php';
+}
 
+if (class_exists('WC_Payments')) {
+	require get_template_directory() . '/inc/components/woocommerce/integrations/woocommerce-payments.php';
 }
 
 add_filter(

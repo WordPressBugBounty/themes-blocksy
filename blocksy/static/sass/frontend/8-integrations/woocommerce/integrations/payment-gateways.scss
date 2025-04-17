@@ -61,3 +61,26 @@ div.wc-square-wallet-buttons {
 #wc-stripe-payment-request-wrapper {
 	padding-top: 0 !important;
 }
+
+
+// WooPayoments - https://wordpress.org/plugins/woocommerce-payments/
+#payment .wc_payment_methods {
+
+	.payment_box {
+
+		#wc-woocommerce_payments-new-payment-method {
+			top: 0;
+		}
+	}
+
+
+	// Afterpay payment option
+	.payment_method_woocommerce_payments_afterpay_clearpay {
+		grid-template-areas: "li-label";
+		grid-template-columns: 1fr;
+
+		.spacer {
+			display: none;
+		}
+	}
+}

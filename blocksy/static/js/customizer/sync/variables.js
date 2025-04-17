@@ -21,6 +21,8 @@ import { isFunction } from './builder'
 
 import ctEvents from 'ct-events'
 
+import { maybePromoteScalarValueIntoResponsive } from 'customizer-sync-helpers/dist/promote-into-responsive'
+
 let variablesCache = null
 
 const getAllVariables = () => {
@@ -290,6 +292,8 @@ const getAllVariables = () => {
 				responsive: true,
 				unit: 'vw',
 				extractValue: (value) => {
+					value = maybePromoteScalarValueIntoResponsive(value)
+
 					return {
 						desktop: 100 - parseFloat(value.desktop) * 2,
 						tablet: 100 - parseFloat(value.tablet) * 2,

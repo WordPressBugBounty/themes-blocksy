@@ -174,7 +174,7 @@ class Blocksy_Manager {
 		add_action(
 			'wp_head',
 			function () {
-				if (defined('IFRAME_REQUEST') && IFRAME_REQUEST) {
+				if (! blocksy_has_dynamic_css_in_frontend()) {
 					return;
 				}
 

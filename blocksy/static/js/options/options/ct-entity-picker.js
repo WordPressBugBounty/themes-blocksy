@@ -95,6 +95,8 @@ const EntityIdPicker = ({
 						allEntities.find(({ id }) => id === entity_id) ||
 							entity_id
 					)
+
+					return
 				}
 
 				return onChange(entity_id)
