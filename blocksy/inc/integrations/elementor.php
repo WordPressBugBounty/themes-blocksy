@@ -160,24 +160,6 @@ add_action('init', function () {
 		},
 		10, 2
 	);
-
-	add_action('elementor/editor/after_enqueue_styles', function () {
-		if (! apply_filters(
-			'blocksy:integrations:elementor:has-ui-styles',
-			true
-		)) {
-			return;
-		}
-
-		$theme = blocksy_get_wp_parent_theme();
-
-		wp_enqueue_style(
-			'blocksy-elementor-styles',
-			get_template_directory_uri() . '/static/bundle/elementor-editor.min.css',
-			[],
-			$theme->get('Version')
-		);
-	});
 });
 
 add_action(

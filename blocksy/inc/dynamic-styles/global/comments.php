@@ -14,8 +14,33 @@ if ($comments_narrow_width !== 750) {
 }
 
 blocksy_output_colors([
-	'value' => blocksy_get_theme_mod(
-		$prefix . '_comments_font_color',
+	'value' => blocksy_get_theme_mod($prefix . '_comments_author_name_font_color',
+		[
+			'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+			'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+		]
+	),
+	'default' => [
+		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+		'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+	],
+	'css' => $css,
+	'variables' => [
+		'default' => [
+			'selector' => blocksy_prefix_selector('.ct-comments .ct-comment-author', $prefix),
+			'variable' => 'theme-heading-color'
+		],
+
+		'hover' => [
+			'selector' => blocksy_prefix_selector('.ct-comments .ct-comment-author', $prefix),
+			'variable' => 'theme-link-hover-color'
+		],
+	],
+]);
+
+
+blocksy_output_colors([
+	'value' => blocksy_get_theme_mod($prefix . '_comments_font_color',
 		[
 			'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
 			'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],

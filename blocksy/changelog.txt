@@ -1,3 +1,8 @@
+2.0.97: 2025-04-24
+- Improvement: Add color options for comments author name
+- Improvement: Customizer UI - properly cleanup style attribute for `ct-layers` and `ct-panel` option types
+- Improvement: Mini cart and language switcher - make sure the element dropdown is correctly positioned on mobile devices
+
 2.0.96: 2025-04-17
 - Improvement: Checkout page coupon field is hidden due to WooCommerce latest changes
 - Improvement: More reliable calculation and output of the "Content Edge Spacing" option

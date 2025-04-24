@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-17 17:34+0000\n"
+"POT-Creation-Date: 2025-04-24 14:06+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: "
@@ -1451,6 +1451,7 @@ msgstr ""
 #: inc/options/general/colors.php:715, inc/options/general/colors.php:737,
 #: inc/options/general/colors.php:759,
 #: inc/options/general/comments-single.php:162,
+#: inc/options/general/comments-single.php:192,
 #: inc/options/general/form-elements.php:129,
 #: inc/options/general/form-elements.php:164,
 #: inc/options/general/form-elements.php:197,
@@ -1648,6 +1649,7 @@ msgstr ""
 #: inc/options/general/back-to-top.php:274, inc/options/general/buttons.php:73,
 #: inc/options/general/buttons.php:103, inc/options/general/colors.php:556,
 #: inc/options/general/comments-single.php:168,
+#: inc/options/general/comments-single.php:198,
 #: inc/options/general/page-title.php:966,
 #: inc/options/general/page-title.php:1002,
 #: inc/options/general/page-title.php:1033,
@@ -1940,7 +1942,6 @@ msgid "Hover Effect"
 msgstr ""
 
 #: inc/options/general/buttons.php:50,
-#: inc/options/general/comments-single.php:146,
 #: inc/options/general/form-elements.php:113,
 #: inc/options/general/form-elements.php:263,
 #: inc/options/general/pagination.php:196,
@@ -2208,7 +2209,16 @@ msgstr ""
 msgid "Container Max Width"
 msgstr ""
 
-#: inc/options/general/comments-single.php:181,
+#: inc/options/general/comments-single.php:146,
+#: inc/options/single-elements/author-box.php:245
+msgid "Author Name Font Color"
+msgstr ""
+
+#: inc/options/general/comments-single.php:176
+msgid "Text Font Color"
+msgstr ""
+
+#: inc/options/general/comments-single.php:211,
 #: inc/options/general/page-title.php:1269,
 #: inc/options/single-elements/related-posts.php:921,
 #: inc/panel-builder/footer/options.php:89
@@ -3746,10 +3756,6 @@ msgstr ""
 
 #: inc/options/single-elements/author-box.php:239
 msgid "Author Name Font"
-msgstr ""
-
-#: inc/options/single-elements/author-box.php:245
-msgid "Author Name Font Color"
 msgstr ""
 
 #: inc/options/single-elements/author-box.php:292

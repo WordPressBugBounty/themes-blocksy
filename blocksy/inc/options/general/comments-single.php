@@ -142,8 +142,38 @@ $options = [
 				'type' => 'tab',
 				'options' => [
 
+					$prefix . 'comments_author_name_font_color' => [
+						'label' => __( 'Author Name Font Color', 'blocksy' ),
+						'type'  => 'ct-color-picker',
+						'design' => 'inline',
+						'sync' => 'live',
+						'value' => [
+							'default' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
+
+							'hover' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
+						],
+
+						'pickers' => [
+							[
+								'title' => __( 'Initial', 'blocksy' ),
+								'id' => 'default',
+								'inherit' => 'var(--theme-heading-color, var(--theme-heading-4-color, var(--theme-headings-color)))'
+							],
+
+							[
+								'title' => __( 'Hover', 'blocksy' ),
+								'id' => 'hover',
+								'inherit' => 'var(--theme-link-hover-color)'
+							],
+						],
+					],
+
 					$prefix . 'comments_font_color' => [
-						'label' => __( 'Font Color', 'blocksy' ),
+						'label' => __( 'Text Font Color', 'blocksy' ),
 						'type'  => 'ct-color-picker',
 						'design' => 'inline',
 						'sync' => 'live',

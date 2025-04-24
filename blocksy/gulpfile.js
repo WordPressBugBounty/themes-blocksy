@@ -484,13 +484,6 @@ var options = {
 		},
 
 		{
-			input: 'static/sass/backend/admin/elementor.scss',
-			output: 'static/bundle',
-			filename: 'elementor-editor.min',
-			// header: buildProcess.headerFor(false, data),
-		},
-
-		{
 			input: 'static/sass/backend/admin.scss',
 			output: 'static/bundle',
 			filename: 'options.min',

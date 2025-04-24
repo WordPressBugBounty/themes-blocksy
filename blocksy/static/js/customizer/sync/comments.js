@@ -58,6 +58,20 @@ export const getCommentsVariables = () => {
 			unit: 'px',
 		},
 
+		[`${prefix}_comments_author_name_font_color`]: [
+			{
+				selector: applyPrefixFor('.ct-comments .ct-comment-author', prefix),
+				variable: 'theme-heading-color',
+				type: 'color:default',
+			},
+
+			{
+				selector: applyPrefixFor('.ct-comments .ct-comment-author', prefix),
+				variable: 'theme-link-hover-color',
+				type: 'color:hover',
+			},
+		],
+
 		[`${prefix}_comments_font_color`]: [
 			{
 				selector: applyPrefixFor('.ct-comments', prefix),

@@ -200,26 +200,28 @@ const Layers = ({ value, option, onChange, values }) => {
 									draggableId={value.__id}
 									isDragDisabled={!!option.disableDrag}
 									index={index}>
-									{(provided, snapshot) => (
-										<SingleItem
-											onChange={onChange}
-											value={value}
-											items={computedValue}
-											provided={provided}
-											snapshot={snapshot}
-											className={
-												condition &&
-												!matchValuesWithCondition(
-													normalizeCondition(
-														condition
-													),
-													valueForCondition
-												)
-													? 'ct-hidden'
-													: ''
-											}
-										/>
-									)}
+									{(provided, snapshot) => {
+										return (
+											<SingleItem
+												onChange={onChange}
+												value={value}
+												items={computedValue}
+												provided={provided}
+												snapshot={snapshot}
+												className={
+													condition &&
+													!matchValuesWithCondition(
+														normalizeCondition(
+															condition
+														),
+														valueForCondition
+													)
+														? 'ct-hidden'
+														: ''
+												}
+											/>
+										)
+									}}
 								</Draggable>
 							)
 						})}

@@ -53,11 +53,11 @@
 
 	// placement
 	&[data-placement='left'] {
-		right: -20px;
+		right: var(--theme-submenu-inline-offset, -20px);
 	}
 
 	&[data-placement='right'] {
-		left: -20px;
+		left: var(--theme-submenu-inline-offset, -20px);
 	}
 
 	// bridge
