@@ -144,6 +144,10 @@ export const mount = (paginationContainer) => {
 							'wc_price_based_country_ajax_geolocation'
 						)
 					}
+
+					document.dispatchEvent(
+						new CustomEvent('cfvswVariationLoad', { detail: {} })
+					)
 				}, 100)
 			})
 

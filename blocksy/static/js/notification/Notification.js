@@ -20,6 +20,10 @@ const Notification = ({ initialStatus, url, pluginUrl, pluginLink }) => {
 		setPluginStatus(initialStatus)
 	}, [])
 
+	const hasDownloadLink =
+		pluginStatus === 'uninstalled' &&
+		ct_localizations.can_install_plugins !== 'yes'
+
 	return (
 		<div className="ct-blocksy-plugin-inner" ref={containerEl}>
 			<button
@@ -78,51 +82,54 @@ const Notification = ({ initialStatus, url, pluginUrl, pluginLink }) => {
 				/>
 
 				<div className="notice-actions">
-					{null && pluginStatus === 'uninstalled' && (
+					{hasDownloadLink && (
 						<a
 							className="button button-primary"
-							href={pluginLink}
+							href={
+								'https://wordpress.org/plugins/blocksy-companion/'
+							}
 							target="_blank">
 							{__('Download Blocksy Companion', 'blocksy')}
 						</a>
 					)}
 
-					<button
-						className="button button-primary"
-						disabled={isLoading || pluginStatus === 'active'}
-						onClick={() => {
-							setIsLoading(true)
+					{!hasDownloadLink && (
+						<button
+							className="button button-primary"
+							disabled={isLoading || pluginStatus === 'active'}
+							onClick={() => {
+								setIsLoading(true)
 
-							setTimeout(() => {})
-							$.ajax(ajaxurl, {
-								type: 'POST',
-								data: {
-									action: 'blocksy_notice_button_click',
-									nonce: ct_localizations.nonce,
-								},
-							}).then(({ success, data }) => {
-								if (success) {
-									setPluginStatus(data.status)
+								$.ajax(ajaxurl, {
+									type: 'POST',
+									data: {
+										action: 'blocksy_notice_button_click',
+										nonce: ct_localizations.nonce,
+									},
+								}).then(({ success, data }) => {
+									if (success) {
+										setPluginStatus(data.status)
 
-									if (data.status === 'active') {
-										location.assign(pluginUrl)
+										if (data.status === 'active') {
+											location.assign(pluginUrl)
+										}
 									}
-								}
 
-								setIsLoading(false)
-							})
-						}}>
-						{isLoading
-							? __('Installing & activating...', 'blocksy')
-							: pluginStatus === 'uninstalled'
-							? __('Install Blocksy Companion', 'blocksy')
-							: pluginStatus === 'installed'
-							? __('Activate Blocksy Companion', 'blocksy')
-							: __('Blocksy Companion active!', 'blocksy')}
-						{isLoading && (
-							<i className="dashicons dashicons-update" />
-						)}
-					</button>
+									setIsLoading(false)
+								})
+							}}>
+							{isLoading
+								? __('Installing & activating...', 'blocksy')
+								: pluginStatus === 'uninstalled'
+								? __('Install Blocksy Companion', 'blocksy')
+								: pluginStatus === 'installed'
+								? __('Activate Blocksy Companion', 'blocksy')
+								: __('Blocksy Companion active!', 'blocksy')}
+							{isLoading && (
+								<i className="dashicons dashicons-update" />
+							)}
+						</button>
+					)}
 
 					<a
 						className="ct-why-button button"

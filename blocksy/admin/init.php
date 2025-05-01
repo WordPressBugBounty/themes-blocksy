@@ -165,7 +165,6 @@ add_action(
 			'conditions_override' => blocksy_manager()->get_conditions_overrides(),
 			'theme_version' => $theme->get('Version'),
 			'current_palette' => blocksy_manager()->colors->get_color_palette(),
-			'test' => blocksy_manager()->colors->get_color_palette(),
 			'gradients' => $gradients,
 			'is_dev_mode' => !! (
 				defined('BLOCKSY_DEVELOPMENT_MODE')
@@ -191,7 +190,8 @@ add_action(
 				'blocksy:gutenberg-metaboxes-data',
 				[]
 			),
-			'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls()
+			'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls(),
+			'can_install_plugins' => current_user_can('install_plugins') ? "yes" : "no",
 		];
 
 		$block_editor_data = blocksy_get_block_editor_data();

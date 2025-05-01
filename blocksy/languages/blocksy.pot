@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-24 14:06+0000\n"
+"POT-Creation-Date: 2025-05-01 14:26+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: "
@@ -257,7 +257,7 @@ msgstr ""
 msgid "Blocksy"
 msgstr ""
 
-#: admin/notices/templates.php:40 static/js/notification/Notification.js:68
+#: admin/notices/templates.php:40 static/js/notification/Notification.js:72
 msgid "Thanks for installing Blocksy, you rock!"
 msgstr ""
 
@@ -366,7 +366,7 @@ msgctxt "breadcrumb"
 msgid "Home"
 msgstr ""
 
-#: inc/components/gallery.php:269, inc/components/gallery.php:257
+#: inc/components/gallery.php:273, inc/components/gallery.php:261
 msgid "Slide %s"
 msgstr ""
 
@@ -6171,22 +6171,22 @@ msgid ""
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:496
-#: static/js/notification/Notification.js:116
+#: static/js/notification/Notification.js:122
 msgid "Installing & activating..."
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:501
-#: static/js/notification/Notification.js:118
+#: static/js/notification/Notification.js:124
 msgid "Install Blocksy Companion"
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:506
-#: static/js/notification/Notification.js:120
+#: static/js/notification/Notification.js:126
 msgid "Activate Blocksy Companion"
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:510
-#: static/js/notification/Notification.js:121
+#: static/js/notification/Notification.js:127
 msgid "Blocksy Companion active!"
 msgstr ""
 
@@ -6579,22 +6579,22 @@ msgstr ""
 msgid "%s Page Settings"
 msgstr ""
 
-#: static/js/notification/Notification.js:130
+#: static/js/notification/Notification.js:137
 msgid "Why you need Blocksy Companion?"
 msgstr ""
 
-#: static/js/notification/Notification.js:45
+#: static/js/notification/Notification.js:49
 msgid "Dismiss this notice."
 msgstr ""
 
-#: static/js/notification/Notification.js:73
+#: static/js/notification/Notification.js:77
 msgid ""
 "We strongly recommend you to activate the <b>Blocksy Companion</b> plugin."
 "<br>This way you will have access to custom extensions, demo templates and "
 "many other awesome features."
 msgstr ""
 
-#: static/js/notification/Notification.js:86
+#: static/js/notification/Notification.js:92
 msgid "Download Blocksy Companion"
 msgstr ""
 

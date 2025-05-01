@@ -9,6 +9,8 @@ add_action('wp_ajax_blocksy_notice_button_click', function () {
 	if (
 		! current_user_can('activate_plugins')
 		||
+		! current_user_can('install_plugins')
+		||
 		! isset($_REQUEST['nonce'])
 		||
 		! wp_verify_nonce($_REQUEST['nonce'], 'ct-ajax-nonce')

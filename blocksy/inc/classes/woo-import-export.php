@@ -280,6 +280,11 @@ class WooImportExport {
 		);
 
 		$importer = new \WC_Product_CSV_Importer($file, $params);
+		
+		if (! isset($importer->get_parsed_data()[0]['blocksy_custom_data'])) {
+			return [];
+		}
+
 		$parsed_data = self::parse_data($importer->get_parsed_data()[0]['blocksy_custom_data'])[0];
 
 		self::$data_cache = $parsed_data;

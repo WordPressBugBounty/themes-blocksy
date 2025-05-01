@@ -1,3 +1,9 @@
+2.0.98: 2025-05-01
+- Improvement: Add filter for changing the them slider arrow icons
+- Improvement: Correctly respect "edit_plugins" capability in Blocksy Companion notice
+- Improvement: Infinite pagination - better compatibility with Variation Swatches for WooCommerce plugin
+- Improvement: WooCommerce import/export - gracefully handle the case when no custom data is present in CSV
+
 2.0.97: 2025-04-24
 - Improvement: Add color options for comments author name
 - Improvement: Customizer UI - properly cleanup style attribute for `ct-layers` and `ct-panel` option types

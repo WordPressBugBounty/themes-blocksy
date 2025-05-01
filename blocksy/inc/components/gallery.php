@@ -184,17 +184,21 @@ function blocksy_flexy($args = []) {
 				</div>
 			</div>
 
-			<?php if ($args['has_arrows']) { ?>
+			<?php if ($args['has_arrows']) {
+				$arrow_icons = apply_filters(
+					'blocksy:flexy:arrows',
+					[
+						'prev' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M15.3 4.3h-13l2.8-3c.3-.3.3-.7 0-1-.3-.3-.6-.3-.9 0l-4 4.2-.2.2v.6c0 .1.1.2.2.2l4 4.2c.3.4.6.4.9 0 .3-.3.3-.7 0-1l-2.8-3h13c.2 0 .4-.1.5-.2s.2-.3.2-.5-.1-.4-.2-.5c-.1-.1-.3-.2-.5-.2z"></path></svg>',
+						'next' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M.2 4.5c-.1.1-.2.3-.2.5s.1.4.2.5c.1.1.3.2.5.2h13l-2.8 3c-.3.3-.3.7 0 1 .3.3.6.3.9 0l4-4.2.2-.2V5v-.3c0-.1-.1-.2-.2-.2l-4-4.2c-.3-.4-.6-.4-.9 0-.3.3-.3.7 0 1l2.8 3H.7c-.2 0-.4.1-.5.2z"></path></svg>'
+					]
+				);	
+			?>
 				<span class="<?php echo trim('flexy-arrow-prev' . ' ' . $args['arrows_class']) ?>">
-					<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10">
-						<path d="M15.3 4.3h-13l2.8-3c.3-.3.3-.7 0-1-.3-.3-.6-.3-.9 0l-4 4.2-.2.2v.6c0 .1.1.2.2.2l4 4.2c.3.4.6.4.9 0 .3-.3.3-.7 0-1l-2.8-3h13c.2 0 .4-.1.5-.2s.2-.3.2-.5-.1-.4-.2-.5c-.1-.1-.3-.2-.5-.2z"/>
-					</svg>
+					<?php echo $arrow_icons['prev']; ?>
 				</span>
 
 				<span class="<?php echo trim('flexy-arrow-next' . ' ' . $args['arrows_class']) ?>">
-					<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10">
-						<path d="M.2 4.5c-.1.1-.2.3-.2.5s.1.4.2.5c.1.1.3.2.5.2h13l-2.8 3c-.3.3-.3.7 0 1 .3.3.6.3.9 0l4-4.2.2-.2V5v-.3c0-.1-.1-.2-.2-.2l-4-4.2c-.3-.4-.6-.4-.9 0-.3.3-.3.7 0 1l2.8 3H.7c-.2 0-.4.1-.5.2z"/>
-					</svg>
+					<?php echo $arrow_icons['next']; ?>
 				</span>
 			<?php } ?>
 		</div>
@@ -278,16 +282,16 @@ if (! function_exists('blocksy_flexy_pills')) {
 		echo '</ol>';
 
 		if ($args['pills_have_arrows']) {
-			echo '<span class="' . trim('flexy-arrow-prev' . ' ' . $args['pills_arrows_class']) . '">
-				<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10">
-					<path d="M15.3 4.3h-13l2.8-3c.3-.3.3-.7 0-1-.3-.3-.6-.3-.9 0l-4 4.2-.2.2v.6c0 .1.1.2.2.2l4 4.2c.3.4.6.4.9 0 .3-.3.3-.7 0-1l-2.8-3h13c.2 0 .4-.1.5-.2s.2-.3.2-.5-.1-.4-.2-.5c-.1-.1-.3-.2-.5-.2z"/>
-				</svg>
-			</span>';
-			echo '<span class="' . trim('flexy-arrow-next' . ' ' . $args['pills_arrows_class']) . '">
-				<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10">
-					<path d="M.2 4.5c-.1.1-.2.3-.2.5s.1.4.2.5c.1.1.3.2.5.2h13l-2.8 3c-.3.3-.3.7 0 1 .3.3.6.3.9 0l4-4.2.2-.2V5v-.3c0-.1-.1-.2-.2-.2l-4-4.2c-.3-.4-.6-.4-.9 0-.3.3-.3.7 0 1l2.8 3H.7c-.2 0-.4.1-.5.2z"/>
-				</svg>
-			</span>';
+			$arrow_icons = apply_filters(
+				'blocksy:flexy:arrows',
+				[
+					'prev' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M15.3 4.3h-13l2.8-3c.3-.3.3-.7 0-1-.3-.3-.6-.3-.9 0l-4 4.2-.2.2v.6c0 .1.1.2.2.2l4 4.2c.3.4.6.4.9 0 .3-.3.3-.7 0-1l-2.8-3h13c.2 0 .4-.1.5-.2s.2-.3.2-.5-.1-.4-.2-.5c-.1-.1-.3-.2-.5-.2z"></path></svg>',
+					'next' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M.2 4.5c-.1.1-.2.3-.2.5s.1.4.2.5c.1.1.3.2.5.2h13l-2.8 3c-.3.3-.3.7 0 1 .3.3.6.3.9 0l4-4.2.2-.2V5v-.3c0-.1-.1-.2-.2-.2l-4-4.2c-.3-.4-.6-.4-.9 0-.3.3-.3.7 0 1l2.8 3H.7c-.2 0-.4.1-.5.2z"></path></svg>'
+				]
+			);	
+
+			echo '<span class="' . trim('flexy-arrow-prev' . ' ' . $args['pills_arrows_class']) . '">' . $arrow_icons['prev'] . '</span>
+							<span class="' . trim('flexy-arrow-next' . ' ' . $args['pills_arrows_class']) . '">' . $arrow_icons['next'] . '</span>';
 		}
 
 		echo '</div>';
