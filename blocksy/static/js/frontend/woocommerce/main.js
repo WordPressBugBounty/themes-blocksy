@@ -76,4 +76,12 @@ export const wooEntryPoints = [
 		trigger: ['change'],
 		load: () => import('./quantity-update'),
 	},
+
+	{
+		els: '.product .ct-card-variation-swatches',
+		load: () => import('./variation-stock'),
+		condition: () =>
+			!!document.querySelector('.product .ct-woo-card-stock'),
+		trigger: ['hover'],
+	},
 ]

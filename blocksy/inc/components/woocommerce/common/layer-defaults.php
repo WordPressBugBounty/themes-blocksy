@@ -36,6 +36,10 @@ function blocksy_get_woo_archive_layout_defaults() {
 				'id' => 'product_add_to_cart_and_price',
 				'enabled' => true
 			],
+			[
+				'id' => 'product_stock',
+				'enabled' => false
+			],
 		]
 	);
 }

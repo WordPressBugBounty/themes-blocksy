@@ -50,26 +50,26 @@ const maybeCreateMoreItemsFor = (nav, onDone) => {
 }
 
 const countElWidth = (el) => {
+	let extraWidth = 0
+
+	let parentComputedStyle = window.getComputedStyle(el.parentNode, null)
+
+	if (parentComputedStyle.gap !== 'normal') {
+		extraWidth = parseFloat(parentComputedStyle.gap)
+
+		if (
+			el.parentNode.firstElementChild === el ||
+			el === el.parentNode.lastElementChild
+		) {
+			extraWidth = extraWidth / 2
+		}
+	}
+
 	if (el.firstElementChild.matches('a') && !el.querySelector('svg')) {
 		const a = el.firstElementChild
 		a.innerHTML = `<span>${a.innerHTML}</span>`
 
 		const props = window.getComputedStyle(a, null)
-
-		let extraWidth = 0
-
-		let parentComputedStyle = window.getComputedStyle(el.parentNode, null)
-
-		if (parentComputedStyle.gap !== 'normal') {
-			extraWidth = parseFloat(parentComputedStyle.gap)
-
-			if (
-				el.parentNode.firstElementChild === el ||
-				el === el.parentNode.lastElementChild
-			) {
-				extraWidth = extraWidth / 2
-			}
-		}
 
 		let actualWidth =
 			a.firstElementChild.getBoundingClientRect().width +
@@ -83,7 +83,7 @@ const countElWidth = (el) => {
 		return actualWidth
 	}
 
-	return el.firstElementChild.getBoundingClientRect().width
+	return el.firstElementChild.getBoundingClientRect().width + extraWidth
 }
 
 const computeMoreItemWidth = (nav) => {

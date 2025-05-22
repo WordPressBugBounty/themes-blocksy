@@ -60,6 +60,7 @@ foreach ($woo_single_layout as $layer) {
 		'product_countdown' => '.entry-summary-items > .ct-product-sale-countdown',
 		'product_stock_scarcity' => '.entry-summary-items > .ct-product-stock-scarcity',
 		'product_waitlist' => '.entry-summary-items > .ct-product-waitlist',
+		'product_attributes' => '.entry-summary-items > .ct-product-attributes',
 	];
 
 	$spacing_default = 10;

@@ -1,3 +1,18 @@
+2.0.99: 2025-05-22
+- Improvement: Add fallback for the terms that have an incorrect value for the `blocksy_taxonomy_meta_options` meta
+- Improvement: Add stock information layer for product archives
+- Improvement: Correctly reset the `ct-slider` option in Customizer when the value was changed from the input field
+- Improvement: Header button - make sure the text won't wrap when the header menu has the "Stretch Menu" option on
+- Improvement: Off-canvas menu - make sure the interactive state of inner elements are correctly rendered in Safari on iOS
+- Improvement: Responsive desktop menu - properly calculate width for items that contain SVG icons
+- Improvement: Theme breadcrumbs provider integration with Slim SEO plugin
+
+2.0.99-dev22: 2025-05-12
+- Improvement: General fixes and improvements
+
+2.0.99-dev21: 2025-05-12
+- Improvement: General fixes and improvements
+
 2.0.98: 2025-05-01
 - Improvement: Add filter for changing the them slider arrow icons
 - Improvement: Correctly respect "edit_plugins" capability in Blocksy Companion notice

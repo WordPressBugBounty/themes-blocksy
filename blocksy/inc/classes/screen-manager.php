@@ -653,7 +653,9 @@ function blocksy_get_special_post_id($args = []) {
 		'search_pages' => false,
 
 		// 'global' | 'local'
-		'context' => 'global'
+		'context' => 'global',
+
+		'block_context' => null
 	]);
 
 	$special_post_id = null;
@@ -703,6 +705,17 @@ function blocksy_get_special_post_id($args = []) {
 		// get_post_type() === 'page'
 	) {
 		$special_post_id = get_queried_object_id();
+	}
+
+	// This happens for Gutenberg block - Woocommerce single product block
+	if (
+		$args['context'] === 'local'
+		&&
+		$args['block_context']
+		&&
+		isset($args['block_context']['postId'])
+	) {
+		$special_post_id = $args['block_context']['postId'];
 	}
 
 	if ($special_post_id !== null) {

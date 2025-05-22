@@ -130,7 +130,7 @@ if (! function_exists('blocksy_validate_for')) {
 
 			return max(
 				intval($option['min']),
-				min(intval($option['max']), intval($current))
+				min(intval($option['max']), intval($input))
 			);
 		}
 

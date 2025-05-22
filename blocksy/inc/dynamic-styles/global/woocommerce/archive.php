@@ -26,6 +26,7 @@ foreach ($woo_card_layout as $layer) {
 			'product_desc' => '[data-products] .product .entry-excerpt',
 			'product_add_to_cart' => '[data-products] .product .ct-woo-card-actions',
 			'product_add_to_cart_and_price' => '[data-products] .product .ct-woo-card-actions',
+			'product_stock' => '[data-products] .product .ct-woo-card-stock',
 
 			// companion
 			'product_brands' => '[data-products] .product .ct-product-brands',
@@ -389,6 +390,37 @@ blocksy_output_colors([
 		'inactive' => [
 			'selector' => ':root',
 			'variable' => 'star-rating-inactive-color'
+		],
+	],
+]);
+
+// product stock
+blocksy_output_font_css([
+	'font_value' => blocksy_get_theme_mod(
+		'cardProductStockFont',
+		blocksy_typography_default_values([
+			'size' => '15px',
+		])
+	),
+	'css' => $css,
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+	'selector' => '[data-products] .ct-woo-card-stock'
+]);
+
+blocksy_output_colors([
+	'value' => blocksy_get_theme_mod('cardProductStockColor'),
+	'default' => [
+		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+	],
+	'css' => $css,
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+	'responsive' => true,
+	'variables' => [
+		'default' => [
+			'selector' => '[data-products] .ct-woo-card-stock',
+			'variable' => 'theme-text-color'
 		],
 	],
 ]);

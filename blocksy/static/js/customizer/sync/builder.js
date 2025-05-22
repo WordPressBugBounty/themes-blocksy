@@ -510,7 +510,11 @@ wp.customize.bind('preview-ready', () => {
 						return
 					}
 
+					// If the target element of the partial is not detected on the page,
+					// request full page refresh.
 					if (!document.querySelector(partial.params.selector)) {
+						wp.customize.selectiveRefresh.requestFullRefresh()
+
 						return
 					}
 

@@ -1,6 +1,6 @@
 {
 	"name": "small-ct",
-	"version": "2.0.98",
+	"version": "2.0.99",
 	"title": "Blocksy",
 	"browserslist": "> 1%, not opera > 0, not op_mini all",
 	"devDependencies": {
@@ -19,15 +19,10 @@
 		"dev": "gulp dev --silent",
 		"build": "cross-env NODE_ENV=production gulp build --silent",
 		"gettext-generate": "gulp gettext-generate --silent",
-		"deploy:staging": "scripts/deploy-staging.sh demo.creativethemes.com staging/wp-content",
-		"deploy:speed-test": "scripts/deploy-staging.sh demo.creativethemes.com speed-test/wp-content",
-		"deploy:tutorial": "NODE_ENV=production gulp build_zips && scp build_tmp/*-production.zip root@demo.creativethemes.com:/var/www/html && ssh root@demo.creativethemes.com 'cd /var/www/html && mv *-production.zip tutorial/wp-content/themes/ && cd tutorial/wp-content/themes && rm -rf blocksy && unzip *-production.zip && rm *-production.zip'",
 		"changelogs": "env-cmd --silent node scripts/get-changelog.js",
-		"get-next-version": "node scripts/get-next-version.js",
 		"set-version": "node scripts/set-version.js",
-		"make-nightly": "scripts/make-nightly.sh",
-		"make-release": "scripts/make-release.sh",
-		"create-github-release": "env-cmd --silent node scripts/create-github-release.js",
+		"notify-nightly-done": "env-cmd --silent node scripts/notify-nightly-done.js",
+		"make-release": "env-cmd --silent node scripts/make-release.js",
 		"sync-google-fonts": "env-cmd --silent node scripts/sync-google-fonts.js",
 		"make-pr": "env-cmd --silent node scripts/make-pr.js",
 		"test": "NODE_ENV=test jest"

@@ -118,7 +118,13 @@ function blocksy_get_taxonomy_options($term_id = null) {
 		'blocksy_taxonomy_meta_options'
 	);
 
-	if (empty($values)) {
+	if (
+		empty($values)
+		||
+		! is_array($values[0])
+		||
+		! $values[0]
+	) {
 		$values = [[]];
 	}
 

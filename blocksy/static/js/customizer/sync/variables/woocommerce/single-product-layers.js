@@ -6,24 +6,34 @@ const collectVariablesForLayers = (v) => {
 	v.map((layer) => {
 		let selectorsMap = {
 			product_title: '.entry-summary-items > .entry-title',
-			product_rating: '.entry-summary-items > .woocommerce-product-rating',
+			product_rating:
+				'.entry-summary-items > .woocommerce-product-rating',
 			product_price: '.entry-summary-items > .price',
-			product_desc: '.entry-summary-items > .woocommerce-product-details__short-description',
-			product_add_to_cart: '.entry-summary-items > .ct-product-add-to-cart',
+			product_desc:
+				'.entry-summary-items > .woocommerce-product-details__short-description',
+			product_add_to_cart:
+				'.entry-summary-items > .ct-product-add-to-cart',
 			product_meta: '.entry-summary-items > .product_meta',
-			product_payment_methods: '.entry-summary-items > .ct-payment-methods',
-			additional_info: '.entry-summary-items > .ct-product-additional-info',
+			product_payment_methods:
+				'.entry-summary-items > .ct-payment-methods',
+			additional_info:
+				'.entry-summary-items > .ct-product-additional-info',
 			product_tabs: '.entry-summary-items > .woocommerce-tabs',
 			product_breadcrumbs: '.entry-summary-items > .ct-breadcrumbs',
 
 			// companion
 			product_brands: '.entry-summary-items > .ct-product-brands-single',
 			product_sharebox: '.entry-summary-items > .ct-share-box',
-			free_shipping: '.entry-summary-items > .ct-shipping-progress-single',
-			product_actions: '.entry-summary-items > .ct-product-additional-actions',
-			product_countdown: '.entry-summary-items > .ct-product-sale-countdown',
-			product_stock_scarcity: '.entry-summary-items > .ct-product-stock-scarcity',
+			free_shipping:
+				'.entry-summary-items > .ct-shipping-progress-single',
+			product_actions:
+				'.entry-summary-items > .ct-product-additional-actions',
+			product_countdown:
+				'.entry-summary-items > .ct-product-sale-countdown',
+			product_stock_scarcity:
+				'.entry-summary-items > .ct-product-stock-scarcity',
 			product_waitlist: '.entry-summary-items > .ct-product-waitlist',
+			product_attributes: '.entry-summary-items > .ct-product-attributes',
 		}
 
 		if (selectorsMap[layer.id]) {

@@ -423,6 +423,34 @@ add_action($action_to_hook, function () {
 					continue;
 				}
 
+				if ($layout['id'] === 'product_stock') {
+					$has_managed_stock = $product->get_manage_stock();
+					$remaining_stock = $product->get_stock_quantity();
+					
+					$need_to_show_for_variations = false;
+
+					if ($product->is_type('variable')) {
+						$maybe_current_variation = blocksy_manager()
+							->woocommerce
+							->retrieve_product_default_variation($product);
+
+						if ($maybe_current_variation) {
+							$has_managed_stock = $maybe_current_variation->get_manage_stock();
+							$remaining_stock = $maybe_current_variation->get_stock_quantity();
+						}
+					}
+					
+					echo blocksy_html_tag(
+						'div',
+						[
+							'class' => 'ct-woo-card-stock'
+						],
+						wc_get_stock_html($product)
+					);
+
+					continue;
+				}
+
 				if (
 					$shop_cards_type === 'type-1'
 					&&

@@ -574,7 +574,6 @@ require get_template_directory() . '/inc/integrations/zion.php';
 require get_template_directory() . '/inc/integrations/generateblocks.php';
 require get_template_directory() . '/inc/integrations/qubely.php';
 require get_template_directory() . '/inc/integrations/tutorlms.php';
-require get_template_directory() . '/inc/integrations/tribe-events.php';
 require get_template_directory() . '/inc/integrations/beaver-themer.php';
 require get_template_directory() . '/inc/integrations/theme-builders.php';
 require get_template_directory() . '/inc/integrations/cartflows.php';

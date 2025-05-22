@@ -627,6 +627,25 @@ $options = [
 
 										],
 									],
+
+									'product_stock' => [
+										'label' => __('Stock Information', 'blocksy'),
+										'options' => [
+
+											'spacing' => [
+												'label' => __( 'Bottom Spacing', 'blocksy' ),
+												'type' => 'ct-slider',
+												'min' => 0,
+												'max' => 100,
+												'value' => 10,
+												'responsive' => true,
+												'sync' => [
+													'id' => 'woo_card_layout_skip'
+												]
+											],
+
+										],
+									],
 								]
 							),
 						],
@@ -1160,6 +1179,50 @@ $options = [
 										[
 											'title' => __( 'Hover', 'blocksy' ),
 											'id' => 'hover',
+										],
+									],
+								],
+
+							],
+						],
+
+						blocksy_rand_md5() => [
+							'type' => 'ct-condition',
+							'condition' => [ 'woo_card_layout:array-ids:product_stock:enabled' => '!no' ],
+							'options' => [
+
+								blocksy_rand_md5() => [
+									'type' => 'ct-title',
+									'label' => __( 'Stock Information', 'blocksy' ),
+								],
+
+								'cardProductStockFont' => [
+									'type' => 'ct-typography',
+									'label' => __( 'Font', 'blocksy' ),
+									'value' => blocksy_typography_default_values([
+										'size' => '15px',
+									]),
+									'setting' => [ 'transport' => 'postMessage' ],
+								],
+
+								'cardProductStockColor' => [
+									'label' => __( 'Font Color', 'blocksy' ),
+									'type'  => 'ct-color-picker',
+									'design' => 'block:right',
+									'responsive' => true,
+									'setting' => [ 'transport' => 'postMessage' ],
+
+									'value' => [
+										'default' => [
+											'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+										],
+									],
+
+									'pickers' => [
+										[
+											'title' => __( 'Initial', 'blocksy' ),
+											'id' => 'default',
+											'inherit' => 'var(--theme-text-color)'
 										],
 									],
 								],

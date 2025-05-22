@@ -668,6 +668,10 @@ class BreadcrumbsBuilder {
 			$available_sources[] = 'bcnxt';
 		}
 
+		if (class_exists('\SlimSEO\Breadcrumbs')) {
+			$available_sources[] = 'slimseo';
+		}
+
 		$source = blocksy_get_theme_mod('breadcrumbs_source', 'default');
 
 		if (! in_array($source, $available_sources)) {
@@ -734,6 +738,18 @@ class BreadcrumbsBuilder {
 			ob_start();
 			echo '<div class="' . $class . '" data-source="' . $source . '" ' . $style . '>';
 			bcn_display();
+			echo '</div>';
+			return ob_get_clean();
+		}
+
+		if (
+			class_exists('\SlimSEO\Breadcrumbs')
+			&&
+			$source === 'slimseo'
+		) {
+			ob_start();
+			echo '<div class="' . $class . '" data-source="' . $source . '" ' . $style . '>';
+			echo do_shortcode('[slim_seo_breadcrumbs]');
 			echo '</div>';
 			return ob_get_clean();
 		}

@@ -80,7 +80,11 @@ const BlocksyNumberOption = ({
 						? ''
 						: parsedValue
 				}
-				onBlur={() => {
+				onBlur={(e) => {
+					if (e?.nativeEvent?.relatedTarget?.matches('.ct-revert')) {
+						return
+					}
+
 					setLiftedOptionState({
 						isEmptyInput: false,
 					})

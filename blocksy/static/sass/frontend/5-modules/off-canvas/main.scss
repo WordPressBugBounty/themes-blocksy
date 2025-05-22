@@ -14,14 +14,11 @@ body[data-panel] {
 	z-index: 999999;
 	inset: var(--admin-bar, 0px) 0 0 0;
 	opacity: 0;
-	visibility: hidden;
 	pointer-events: none;
-	transition: opacity $transition-duration ease-in-out, 
-				visibility $transition-duration ease-in-out;
+	transition: opacity $transition-duration ease-in-out;
 
 	&.active {
 		opacity: 1;
-		visibility: visible;
 		pointer-events: auto;
 	}
 

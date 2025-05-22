@@ -33,6 +33,14 @@ class Blocksy_Plugin_Manager {
 		$free_status = $this->get_plugin_status('blocksy-companion');
 		$status = $this->get_plugin_status('blocksy-companion-pro');
 
+		// If free is active prefer it, even if pro is installed.
+		if ($free_status === 'active' && $status !== 'uninstalled') {
+			return [
+				'slug' => 'blocksy-companion',
+				'status' => $free_status
+			];
+		}
+
 		if ($status !== 'uninstalled') {
 			return [
 				'slug' => 'blocksy-companion-pro',

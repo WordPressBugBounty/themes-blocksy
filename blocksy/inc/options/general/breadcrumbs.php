@@ -43,6 +43,10 @@ if (function_exists('bcn_display')) {
 	$source_options['bcnxt'] = __('Breadcrumb NavXT', 'blocksy');
 }
 
+if (class_exists('\SlimSEO\Breadcrumbs')) {
+	$source_options['slimseo'] = __('SlimSEO', 'blocksy');
+}
+
 $breadcrumbs_options = [
 	blocksy_rand_md5() => [
 		'title' => __( 'General', 'blocksy' ),
