@@ -108,7 +108,7 @@ const loadSingleEntryPoint = ({
 						//
 						// In result, mount is triggered a couple times.
 						//
-						// Context: https://github.com/sergiu-radu/blocksy/issues/3374
+						// Context: https://github.com/creative-themes/blocksy/issues/3374
 						event.stopPropagation()
 
 						event.preventDefault()

@@ -126,6 +126,7 @@ export const mount = (paginationContainer) => {
 				: null,
 
 		outlayer: null,
+		history: 'push',
 
 		scrollThreshold: paginationType === 'infinite_scroll' ? 400 : false,
 

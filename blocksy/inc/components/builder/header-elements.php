@@ -160,7 +160,9 @@ class Blocksy_Header_Builder_Elements {
 					'id' => 'offcanvas',
 					'class' => $class,
 					'data-behaviour' => $behavior,
+					'role' => 'dialog',
 					'aria-label' => __('Offcanvas modal', 'blocksy'),
+					'tabindex' => '-1',
 					'inert' => ''
 				],
 				$position_output
@@ -242,7 +244,7 @@ class Blocksy_Header_Builder_Elements {
 
 		?>
 
-		<div id="search-modal" class="ct-panel" data-behaviour="modal" aria-label="<?php echo __('Search modal', 'blocksy') ?>" inert>
+		<div id="search-modal" class="ct-panel" data-behaviour="modal" role="dialog" aria-label="<?php echo __('Search modal', 'blocksy') ?>" tabindex="-1" inert>
 			<div class="ct-panel-actions">
 				<button class="ct-toggle-close" data-type="<?php echo $search_close_button_type ?>" aria-label="<?php echo __('Close search modal', 'blocksy') ?>">
 					<?php echo $search_modal_close_icon ?>

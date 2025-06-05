@@ -3,6 +3,16 @@
 namespace Blocksy;
 
 class BreadcrumbsBuilder {
+	private $is_frontend = true;
+
+	public function __construct($args = []) {
+		$args = wp_parse_args($args, [
+			'is_frontend' => true
+		]);
+
+		$this->is_frontend = $args['is_frontend'];
+	}
+
 	public function mount_shortcode() {
 		call_user_func(
 			'add_' . 'shortcode',
@@ -20,12 +30,14 @@ class BreadcrumbsBuilder {
 	 * @return array
 	 */
 	private function build_breadcrumbs() {
-		if (is_admin()) {
-			return [];
-		}
+		if ($this->is_frontend) {
+			if (is_admin()) {
+				return [];
+			}
 
-		if (did_action('wp') === 0) {
-			return [];
+			if (did_action('wp') === 0) {
+				return [];
+			}
 		}
 
 		$home_icon = '';

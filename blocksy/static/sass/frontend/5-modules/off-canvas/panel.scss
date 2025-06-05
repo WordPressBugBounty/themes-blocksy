@@ -11,6 +11,9 @@
 		border-radius: var(--side-panel-border-radius, 0px);
 		transition: transform $transition-duration ease-in-out;
 	}
+}
+
+[data-panel*='in'] [data-behaviour*='side'] {
 
 	&.active .ct-panel-inner {
 		transform: translate3d(0, 0, 0);

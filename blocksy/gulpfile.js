@@ -598,6 +598,12 @@ var options = {
 		'./build_tmp/build/tests',
 		'./build_tmp/build/scripts',
 		'./build_tmp/build/inc/browser-sync.php',
+
+		'./build_tmp/build/composer.lock',
+		'./build_tmp/build/composer.json',
+		'./build_tmp/build/phpunit.xml.dist',
+		'./build_tmp/build/tests',
+
 		// './build_tmp/build/admin/dashboard/static/{js,sass}',
 		// './build_tmp/build/static/{js,sass}'
 		],

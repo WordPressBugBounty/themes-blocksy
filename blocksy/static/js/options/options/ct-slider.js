@@ -564,13 +564,17 @@ export default class Slider extends Component {
 										: this.getNumericValue()
 								}
 								onFocus={() => this.handleFocus()}
-                                                               onBlur={(e) => {
-                                                                       if (e?.nativeEvent?.relatedTarget?.matches('.ct-revert')) {
-                                                                               return
-                                                                       }
+								onBlur={(e) => {
+									if (
+										e?.nativeEvent?.relatedTarget?.matches(
+											'.ct-revert'
+										)
+									) {
+										return
+									}
 
-                                                                       this.handleBlur()
-                                                               }}
+									this.handleBlur()
+								}}
 								onChange={({ target: { value } }) => {
 									// If the value is within valid bounds,
 									// Just update the value and reset the localValue, if needed.

@@ -1,5 +1,7 @@
 import { loadStyle } from '../helpers'
 
+import { whenTransitionEnds } from './helpers/when-transition-ends'
+
 export const fastOverlayHandleClick = (e, settings) => {
 	settings = {
 		container: null,
@@ -18,9 +20,11 @@ export const fastOverlayHandleClick = (e, settings) => {
 
 	const mount = () => {
 		if (settings.openStrategy !== 'skip') {
-			requestAnimationFrame(() => {
-				settings.container.classList.add('active')
+			document.body.dataset.panel = ''
 
+			settings.container.classList.add('active')
+
+			requestAnimationFrame(() => {
 				document.body.dataset.panel = `in${
 					settings.container.dataset.behaviour.indexOf('left') > -1
 						? ':left'

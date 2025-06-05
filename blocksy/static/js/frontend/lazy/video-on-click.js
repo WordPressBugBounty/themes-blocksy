@@ -94,6 +94,10 @@ const listenForStateChanges = (videoOrIframe, args = {}) => {
 
 const loadVideoOrIframeViaAjax = (el) => {
 	el.querySelector('.ct-video-indicator').classList.add('loading')
+	const hasRevert =
+		el.dataset.state &&
+		el.dataset.state.indexOf('hover') !== -1 &&
+		el.dataset.state.indexOf('revert') !== -1
 
 	fetchVideoBy(el.dataset.mediaId).then((data) => {
 		const div = document.createElement('div')
@@ -143,6 +147,13 @@ const loadVideoOrIframeViaAjax = (el) => {
 						...flexyInstance.state,
 						lastTimeAnimated: new Date().getTime(),
 					}
+				}
+
+				if (
+					hasRevert &&
+					!el.classList.contains('ct-simplified-player')
+				) {
+					el.dataset.state = 'hover:paused'
 				}
 			},
 
@@ -266,6 +277,28 @@ export const mount = (el, { event }) => {
 		cb()
 
 		return
+	}
+
+	if (event && event.type === 'mouseover') {
+		if (!el.hasMouseLeaveListener) {
+			el.hasMouseLeaveListener = true
+
+			el.addEventListener('mouseenter', () => {
+				const videoOrIframe = el.querySelector('video,iframe')
+
+				playVideo(videoOrIframe)
+			})
+
+			if (el.dataset.state.indexOf('revert') !== -1) {
+				el.addEventListener('mouseleave', () => {
+					const videoOrIframe = el.querySelector('video,iframe')
+
+					pauseVideo(videoOrIframe, {
+						shouldRevert: true,
+					})
+				})
+			}
+		}
 	}
 
 	const videoOrIframe = el.querySelector('video,iframe')

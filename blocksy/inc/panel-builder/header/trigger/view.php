@@ -50,8 +50,9 @@ $trigger_class = trim(
 ?>
 
 <button
-	data-toggle-panel="#offcanvas"
 	class="<?php echo esc_attr($class) ?>"
+	data-toggle-panel="#offcanvas"
+	aria-controls="offcanvas"
 	data-design="<?php echo $trigger_design ?>"
 	data-label="<?php echo $trigger_label_alignment[$device] ?>"
 	aria-label="<?php echo $trigger_label ?>"

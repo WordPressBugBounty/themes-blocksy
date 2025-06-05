@@ -1,7 +1,8 @@
+Blocksy is a fast, modern WordPress theme with advanced WooCommerce support and full compatibility with the block editor.
+
 === Blocksy ===
 Contributors: creativethemeshq
 Website: https://creativethemes.com
-Email: info@creativethemes.com
 Tags: accessibility-ready, blog, block-patterns, e-commerce, wide-blocks, block-styles, grid-layout, one-column, two-columns, three-columns, four-columns, right-sidebar, left-sidebar, translation-ready, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, full-width-template, theme-options, threaded-comments
 Requires at least: 5.2
 Requires PHP: 7.0
@@ -12,7 +13,24 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Blocksy is a blazing fast and lightweight WordPress theme built with the latest web technologies. It was built with the Gutenberg editor in mind and has a lot of options that makes it extendable and customizable. You can easily create any type of website, such as business agency, shop, corporate, education, restaurant, blog, portfolio, landing page and so on. It works like a charm with popular WordPress page builders, including Elementor, Beaver Builder, Visual Composer and Brizy. Since it is responsive and adaptive, translation ready, SEO optimized and has WooCommerce built-in, you will experience an easy build and even an increase in conversions.
+Blocksy is a fast and lightweight WordPress theme built with the latest web technologies. It was designed from the ground up to be fully compatible with the Gutenberg editor and offers deep integration with popular page builders like Elementor, Brizy, and Beaver Builder. With a modern and modular architecture, Blocksy gives you full control over your site’s layout, colors, typography, and functionality.
+
+It’s ideal for creating any type of website, including blogs, portfolios, business sites, and WooCommerce stores. The theme is responsive, translation-ready, accessibility-ready, and SEO-friendly. It also includes features like advanced header and footer builders, customizable sidebars, global design controls, and extended WooCommerce compatibility including AJAX filters, product galleries, and off-canvas features.
+
+Blocksy is built for performance and flexibility, offering a solid foundation for both beginners and developers who want a reliable, extendable theme that works out of the box.
+
+== Features ==
+
+* Advanced Header & Footer Builder – Drag-and-drop builder with sticky, transparent, and overlapping header options. Create unique headers/footers per page or post with conditional logic.
+* Content Blocks System – Create reusable content sections and display them anywhere using hooks, shortcodes, or custom triggers.
+* Custom Sidebars & Widget Areas – Assign different sidebars to individual posts, pages, categories, and more.
+* Built-in Dark Mode Toggle – Offer users an automatic or manual dark mode switch without third-party plugins.
+* Global Color Palette System – Define and manage global color variables for consistent design across your site.
+* Custom Layouts per Post Type – Control the structure of archives, single posts, pages, and custom post types with flexible layout presets.
+* Performance-First Modular System – Disable unused theme features to reduce bloat and improve load times.
+* Developer Friendly – Clean, extendable code with WordPress hooks, filters, and custom code injection for JS/CSS.
+* Dynamic Content Controls – Use conditional display rules for headers, content blocks, footers, and widgets based on user roles, pages, devices, and more.
+* Modern Design Toolkit – Responsive controls, custom spacing, advanced typography, transparent headers, and more design freedom with no code.
 
 == Installation ==
 
@@ -47,6 +65,20 @@ compatibility.
 components using hooks both in the theme an din the `blocksy-companion` plugin
 (https://creativethemes.com/downloads/blocksy-companion.zip). That way we
 avoid breaking the rules of hooks.
+
+== Frequently Asked Questions ==
+
+= Does Blocksy work with page builders? =
+Yes, Blocksy is fully compatible with popular page builders like Gutenberg, Elementor, Brizy, and Beaver Builder.
+
+= Is Blocksy optimized for speed? =
+Yes, Blocksy is built with performance in mind, featuring clean and efficient code that loads quickly and passes Core Web Vitals.
+
+= Can I use Blocksy for WooCommerce shops? =
+Absolutely. Blocksy includes deep WooCommerce integration, offering advanced features for online stores.
+
+= Is Blocksy translation-ready? =
+Yes, Blocksy is fully translation-ready and supports RTL languages.
 
 == How can I report security bugs? ==
 

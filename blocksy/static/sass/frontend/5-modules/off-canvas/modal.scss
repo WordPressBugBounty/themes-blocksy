@@ -9,8 +9,6 @@
 }
 
 [data-panel*='in'] [data-behaviour='modal'].active {
-	opacity: 1;
-	visibility: visible;
 
 	.ct-panel-content {
 		animation-name: move-in;
@@ -18,6 +16,7 @@
 }
 
 [data-panel*='out'] [data-behaviour='modal'] {
+
 	.ct-panel-content {
 		animation-name: move-out;
 	}

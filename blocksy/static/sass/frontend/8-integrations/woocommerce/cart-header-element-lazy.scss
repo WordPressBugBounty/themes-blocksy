@@ -127,12 +127,12 @@
 	}
 
 	.remove {
+		display: flex;
 		position: absolute;
 		z-index: 2;
-		inset-inline-end: 0;
-		width: 11px;
-		height: 11px;
-		line-height: 11px;
+		inset-inline-end: -8px;
+		padding: 8px;
+
 		--theme-icon-size: 11px;
 		--theme-icon-color: currentColor;
 		--theme-link-initial-color: var(--theme-text-color);

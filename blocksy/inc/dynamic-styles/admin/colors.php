@@ -368,3 +368,29 @@ blocksy_output_colors([
 		],
 	],
 ]);
+
+blocksy_output_colors([
+	'value' => blocksy_get_theme_mod('breadcrumbsFontColor'),
+	'default' => [
+		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+		'initial' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+		'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
+	],
+	'css' => $css,
+	'variables' => [
+		'default' => [
+			'selector' => '.ct-breadcrumbs',
+			'variable' => 'theme-text-color'
+		],
+
+		'initial' => [
+			'selector' => '.ct-breadcrumbs',
+			'variable' => 'theme-link-initial-color'
+		],
+
+		'hover' => [
+			'selector' => '.ct-breadcrumbs',
+			'variable' => 'theme-link-hover-color'
+		],
+	],
+]);

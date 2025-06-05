@@ -19,6 +19,7 @@
 			<key name="cookie_consent_decline_button_text" />
 			<key name="forms_cookie_consent_content" />
 			<key name="single_blog_post_share_box_title" />
+			<key name="single_page_share_box_title" />
 			<key name="facebook" />
 			<key name="twitter" />
 			<key name="instagram" />
@@ -85,6 +86,7 @@
 			<key name="cookie_consent_decline_button_text" />
 			<key name="forms_cookie_consent_content" />
 			<key name="single_blog_post_share_box_title" />
+			<key name="single_page_share_box_title" />
 			<key name="facebook" />
 			<key name="twitter" />
 			<key name="instagram" />

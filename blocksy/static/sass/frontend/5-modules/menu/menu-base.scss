@@ -36,7 +36,8 @@
 	width: 100%;
 
 	> .menu {
-		width: inherit;
+		flex: 1;
+		// width: inherit;
 		justify-content: space-between;
 	}
 }

@@ -16,6 +16,11 @@
 	input {
 		--padding: 3px 30px;
 		text-align: center;
+
+		&::-webkit-contacts-auto-fill-button {
+			position: absolute;
+			visibility: hidden;
+		}
 	}
 
 	> a {

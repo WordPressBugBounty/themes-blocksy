@@ -9,6 +9,25 @@ const triggersList = {
 	click: handleClickTrigger,
 	scroll: handleScrollTrigger,
 
+	'window-event': (trigger, chunk, loadChunkWithPayload) => {
+		if (!trigger.eventName) {
+			return
+		}
+
+		;[...document.querySelectorAll(trigger.selector)].map((el) => {
+			const propName = 'hasWindowEventListener' + trigger.eventName
+			if (el[propName]) {
+				return
+			}
+
+			el[propName] = true
+
+			window.addEventListener(trigger.eventName, (event) => {
+				loadChunkWithPayload(chunk, { event })
+			})
+		})
+	},
+
 	input: (trigger, chunk, loadChunkWithPayload) => {
 		;[...document.querySelectorAll(trigger.selector)].map((el) => {
 			if (el.hasLazyLoadInputListener) {

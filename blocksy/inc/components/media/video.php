@@ -220,7 +220,20 @@ function blocksy_get_image_video_component($media_id, $args = []) {
 	}
 
 	$use_simple_player = blocksy_akg('media_video_player', $video_data, 'no') === 'yes';
-	$use_autoplay = blocksy_akg('media_video_autoplay', $video_data, 'no') === 'yes';
+
+	$new_default_based_on_old_value = blocksy_akg(
+		'media_video_autoplay',
+		$video_data,
+		'no'
+	) === 'yes' ? 'autoplay' : 'click';
+
+	$play_event = blocksy_akg(
+		'media_video_event',
+		$video_data,
+		$new_default_based_on_old_value
+	);
+
+	$use_autoplay = $play_event === 'autoplay' || $play_event === 'hover';
 
 	if ($args['ignore_video_options']) {
 		$use_autoplay = false;

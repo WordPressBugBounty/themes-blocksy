@@ -1,3 +1,11 @@
+2.1.0: 2025-06-05
+- Improvement: Attributes table single product layer - make sure the attributes respect the "Visible on the product page" WooCommerce option
+- Improvement: Correctly translate share box title with WPML and Polylang
+- Improvement: Ensure off-canvas panel is completely hidden in closed state for accessibility reasons
+- Improvement: Footer menu - make sure the stretch option doesn't break the horizontal anlignment
+- Improvement: Increase touch targets padding for various off-canvas elements
+- Improvement: Make sure the list block preview inherits the theme global styles
+
 2.0.99: 2025-05-22
 - Improvement: Add fallback for the terms that have an incorrect value for the `blocksy_taxonomy_meta_options` meta
 - Improvement: Add stock information layer for product archives

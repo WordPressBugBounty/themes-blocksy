@@ -68,8 +68,9 @@ if (function_exists('blc_get_icon') && isset($atts['icon'])) {
 ?>
 
 <button
-	data-toggle-panel="#search-modal"
 	class="<?php echo esc_attr($class) ?>"
+	data-toggle-panel="#search-modal"
+	aria-controls="search-modal"
 	aria-label="<?php echo $search_label; ?>"
 	data-label="<?php echo $search_label_position[$device] ?>"
 	<?php echo blocksy_attr_to_html($attr) ?>>

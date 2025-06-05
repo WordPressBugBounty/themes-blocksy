@@ -214,6 +214,14 @@ if (! function_exists('blocksy_media')) {
 				unset($args['html_atts']['href']);
 				unset($args['html_atts']['aria-label']);
 
+				$new_default_based_on_old_value = blocksy_akg(
+					'media_video_autoplay',
+					$maybe_video_result,
+					'no'
+				) === 'yes' ? 'autoplay' : 'click';
+
+				$play_event = blocksy_akg('media_video_event', $maybe_video_result, $new_default_based_on_old_value);
+
 				if ($args['display_video'] !== 'pill') {
 					$args['html_atts']['data-media-id'] = $args['attachment_id'];
 				}
@@ -225,11 +233,21 @@ if (! function_exists('blocksy_media')) {
 				}
 
 				if (
-					blocksy_akg('media_video_autoplay', $maybe_video_result, 'no') === 'yes'
+					$play_event !== 'click'
 					&&
 					$args['display_video'] !== 'pill'
 				) {
-					$args['html_atts']['data-state'] = 'autoplay';
+					$args['html_atts']['data-state'] = $play_event;
+
+					$media_video_hover_revert = blocksy_akg('media_video_hover_revert', $maybe_video_result, 'yes');
+
+					if (
+						$play_event === 'hover'
+						&&
+						$media_video_hover_revert === 'yes'
+					) {
+						$args['html_atts']['data-state'] .= ':revert';
+					}
 				}
 			}
 		}
