@@ -8,7 +8,7 @@
 		text-align: var(--horizontal-alignment);
 	}
 
-	.post > *:not(:last-child) {
+	.hentry > *:not(:last-child) {
 		margin-block: 0 var(--card-element-spacing, 20px);
 	}
 

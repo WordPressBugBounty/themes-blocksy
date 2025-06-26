@@ -25,7 +25,6 @@ $options = [
 						'type' => 'ct-image-picker',
 						'value' => 'classic-forms',
 						'setting' => [ 'transport' => 'postMessage' ],
-						'switchDeviceOnChange' => 'desktop',
 						'choices' => [
 
 							'classic-forms' => [

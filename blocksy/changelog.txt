@@ -1,3 +1,16 @@
+2.1.1: 2025-06-26
+- Improvement: Header menu - minor accessibility improvement
+- Improvement: Make sure all WordPress discussion settings are applied correctly to WooCommerce product reviews
+- Improvement: Make sure increasing the global button height doesn't break the quantity selector on single product pages
+- Improvement: Make sure when switching "Form Elements" design the Customizer doesn't switch to desktop from mobile view
+- Improvement: Off-canvas menu - make sure the close button icon size applies correctly to all button types
+- Improvement: Page title hero section - small accessibility improvement
+- Improvement: Related posts - make sure the bottom spacing option applies properly on all elements
+- Improvement: Remove the "and website" wording from the single post comments checkbox, if the website field is removed
+- Improvement: Single product gallery - make sure the slider thumbnails are properly scrolled on touch devices
+- Improvement: WooCommerce checkout block - make sure the spacing is not stripped from the "Terms and Conditions" inner block
+- Improvement: WooCommerce checkout page - make sure payment methods are changeable using keyboard navigation
+
 2.1.0: 2025-06-05
 - Improvement: Attributes table single product layer - make sure the attributes respect the "Visible on the product page" WooCommerce option
 - Improvement: Correctly translate share box title with WPML and Polylang

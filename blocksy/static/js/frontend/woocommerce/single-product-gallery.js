@@ -446,12 +446,7 @@ export const mount = (el, { event: mountEvent }) => {
 	if (mountEvent) {
 		if (mountEvent.type === 'click') {
 			setTimeout(() => {
-				if (
-					mountEvent.target &&
-					mountEvent.target.click &&
-					// Propagate click only into the main gallery, not the pills.
-					!mountEvent.target.closest('.flexy-pills')
-				) {
+				if (mountEvent.target && mountEvent.target.click) {
 					mountEvent.target.dispatchEvent(mountEvent)
 				}
 			}, 100)

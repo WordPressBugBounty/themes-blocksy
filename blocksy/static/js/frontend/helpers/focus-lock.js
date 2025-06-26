@@ -5,7 +5,10 @@ const tabbables = [
 	'button:enabled:not([readonly])',
 	'select:enabled:not([readonly])',
 	'textarea:enabled:not([readonly])',
-	'input:enabled:not([readonly])',
+
+	// Exclude hidden inputs as they are not part of the tab order
+	// and can cause focus to escape the modal when they are the last element
+	'input:enabled:not([readonly]):not([type="hidden"])',
 
 	'a[href]',
 	'area[href]',

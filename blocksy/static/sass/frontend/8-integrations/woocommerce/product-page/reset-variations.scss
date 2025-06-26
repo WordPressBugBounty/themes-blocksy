@@ -11,17 +11,14 @@
 	}
 }
 
-table.variations {
+.variations {
+
+	:is(.reset_variations, .ct-swatches-more) {
+		font-size: 14px;
+		--theme-link-initial-color: var(--theme-text-color);
+	}
 
 	.reset_variations {
-		background: transparent;
-		cursor: pointer;
 		visibility: hidden;
-		font-size: 14px;
-		color: var(--theme-text-color);
-
-		&:hover {
-			--theme-text-color: var(--theme-link-hover-color);
-		}
 	}
 }

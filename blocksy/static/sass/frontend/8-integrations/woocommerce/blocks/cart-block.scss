@@ -28,8 +28,10 @@
 		// summary
 		.wc-block-components-sidebar {
 
-			.wc-block-components-panel,
-			.wc-block-components-totals-item {
+			:is(
+				.wc-block-components-panel,
+				.wc-block-components-totals-item
+			) {
 				padding-inline: 0;
 			}
 		}

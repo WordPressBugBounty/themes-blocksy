@@ -61,6 +61,10 @@ form.cart {
 	// buttons
 	--theme-button-padding: 5px 20px;
 
+	@include media-breakpoint-down (sm) {
+		--theme-button-min-height: 40px;
+	}
+
 	@include media-breakpoint-up (sm) {
 		--theme-button-min-height: 55px;
 	}

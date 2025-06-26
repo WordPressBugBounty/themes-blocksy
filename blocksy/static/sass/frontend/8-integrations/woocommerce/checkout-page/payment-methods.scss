@@ -30,6 +30,7 @@
 #payment ul.payment_methods {
 
 	> li.wc_payment_method {
+		position: relative;
 		border: 1px solid var(--theme-border-color);
 
 		&:not(:first-child) {
@@ -37,12 +38,20 @@
 		}
 
 		> input[type="radio"]:first-child {
-			display: none;
+			// display: none;
+			position: absolute;
+			clip: rect(1px, 1px, 1px, 1px);
+
 
 			&:checked + label:before {
 				background: #fff;
 				border-width: 5px;
 				border-color: var(--theme-form-selection-field-active-color);
+			}
+
+			&:focus-visible + label:before {				
+				outline-offset: 2px;
+				outline: 1px solid var(--theme-form-selection-field-active-color);
 			}
 		}
 

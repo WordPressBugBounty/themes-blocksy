@@ -3,6 +3,7 @@
 @import '../../../../../static/sass/frontend/4-components/ratio.scss';
 @import '../../../../../static/sass/frontend/4-components/entry-meta.scss';
 @import '../../../../../static/sass/frontend/4-components/pagination.scss';
+@import '../../../../../static/sass/frontend/4-components/entry-button.scss';
 @import '../../../../../static/sass/frontend/6-layout/entries/main.scss';
 
 @import '../../../../../static/sass/frontend/5-modules/blocks/query-loop.scss';
@@ -31,5 +32,10 @@
 				display: none;
 			}
 		}
+	}
+
+	.entry-button {
+		box-sizing: border-box;
+		color: var(--theme-button-text-initial-color);
 	}
 }

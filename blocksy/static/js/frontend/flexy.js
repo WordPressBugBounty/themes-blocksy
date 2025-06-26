@@ -9,8 +9,6 @@ import { pauseVideo, maybePlayAutoplayedVideo } from './helpers/video'
 import { getScalarOrCallback } from './helpers/get-scalar-or-callback'
 
 export const mount = (sliderEl, args) => {
-	// sliderEl = sliderEl.parentNode
-
 	args = {
 		event: null,
 		flexyOptions: {},

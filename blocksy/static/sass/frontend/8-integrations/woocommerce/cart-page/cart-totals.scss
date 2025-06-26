@@ -1,12 +1,12 @@
 // general styles
 .cart_totals {
 
-	.wc-proceed-to-checkout {
+	// .wc-proceed-to-checkout {
 
-		a {
-			width: 100%;
-		}
-	}
+	// 	a {
+	// 		width: 100%;
+	// 	}
+	// }
 
 	// misc
 	.shipping-calculator-button {
@@ -42,10 +42,10 @@
 
 	.wc-proceed-to-checkout {
 		margin-top: 30px;
+	}
 
-		a {
-			width: 100%;
-		}
+	.checkout-button {
+		width: 100%;
 	}
 
 	// misc

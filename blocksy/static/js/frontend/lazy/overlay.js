@@ -139,12 +139,12 @@ const showOffcanvas = (initialSettings) => {
 
 				scrollLockManager().enable()
 
-				// If panel is closed, we should not block the scroll
-				if (!document.body.hasAttribute('data-panel')) {
-					return
-				}
-
 				setTimeout(() => {
+					// If panel is closed, we should not block the scroll
+					if (!document.body.hasAttribute('data-panel')) {
+						return
+					}
+
 					scrollLockManager().disable(
 						settings.computeScrollContainer
 							? settings.computeScrollContainer()
@@ -184,6 +184,7 @@ const showOffcanvas = (initialSettings) => {
 	})
 
 	ctEvents.trigger('ct:modal:opened', settings.container)
+	ctEvents.trigger('blocksy:frontend:init')
 	;[...settings.container.querySelectorAll('.ct-toggle-dropdown-mobile')].map(
 		(arrow) => {
 			mountMobileMenu(arrow)

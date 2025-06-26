@@ -209,14 +209,44 @@ foreach ($hero_elements as $index => $single_hero_element) {
 		}
 
 		if (! empty($title)) {
+			$title_attrs = [
+				'class' => 'page-title'
+			];
+
+			$custom_attribute = blocksy_akg(
+				'custom_attribute',
+				$single_hero_element,
+				''
+			);
+
+			if (! empty($custom_attribute)) {
+				$custom_attribute = explode(' ', $custom_attribute);
+
+				foreach ($custom_attribute as $single_custom_attribute) {
+					$single_custom_attribute = explode('=', $single_custom_attribute);
+
+					if (count($single_custom_attribute) !== 2) {
+						continue;
+					}
+
+					$attr_value = trim($single_custom_attribute[1]);
+
+					$attr_value = str_replace('{title}', strip_tags($title), $attr_value);
+					$attr_value = str_replace('"', '', $attr_value);
+					$attr_value = str_replace('\'', '', $attr_value);
+
+					$title_attrs[trim($single_custom_attribute[0])] = $attr_value;
+				};
+			}
+
 			$title = blocksy_html_tag(
 				blocksy_akg('heading_tag', $single_hero_element, 'h1'),
-				array_merge([
-					'class' => 'page-title',
-					'title' => strip_tags($title)
-				], blocksy_schema_org_definitions('headline', [
-					'array' => true
-				])),
+				array_merge(
+					$title_attrs,
+					blocksy_schema_org_definitions('headline', [
+						'array' => true
+					])
+				),
 				$title
 			);
 		}

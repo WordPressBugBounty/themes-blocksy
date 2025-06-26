@@ -263,7 +263,7 @@ if (! function_exists('blocksy_render_archive_card')) {
 			$read_more_text .= $read_more_arrow;
 		}
 
-		$button_class = 'entry-button';
+		$button_class = 'entry-button wp-element-button';
 
 		$button_type = blocksy_default_akg(
 			'button_type',

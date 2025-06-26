@@ -53,7 +53,7 @@ add_filter('comment_form_defaults', function ($defaults) {
 	// Textarea
 	$defaults['comment_field'] =
 		'<p class="comment-form-field-textarea">
-			<label for="comment">' . __( 'Add Comment', 'blocksy' ) . '<b class="required">&nbsp;*</b></label>
+			<label for="comment">' . __('Add Comment', 'blocksy') . '<b class="required">&nbsp;*</b></label>
 			<textarea id="comment" name="comment" cols="45" rows="8" required="required">' . '</textarea>
 		</p>';
 
@@ -68,9 +68,14 @@ add_filter('comment_form_defaults', function ($defaults) {
 		! is_user_logged_in()
 	) {
 		$consent = empty($commenter['comment_author_email']) ? '' : ' checked="checked"';
+		$message = __('Save my name and email in this browser for the next time I comment.', 'blocksy');
+
+		if ($has_website_field === 'yes') {
+			$message = __('Save my name, email and website in this browser for the next time I comment.', 'blocksy');
+		}
 
 		$defaults['comment_notes_after'] .= '<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"' . $consent . '>' .
-			'<label for="wp-comment-cookies-consent">' . __( 'Save my name, email, and website in this browser for the next time I comment.', 'blocksy') . '</label></p>';
+			'<label for="wp-comment-cookies-consent">' . $message . '</label></p>';
 	}
 
 	if (function_exists('blocksy_ext_cookies_checkbox')) {
@@ -117,15 +122,15 @@ add_filter(
 
 		$fields['author'] =
 			'<p class="comment-form-field-input-author">
-			<label for="author">' . __( 'Name', 'blocksy' ) . ' ' . ($req ? '<b class="required">&nbsp;*</b>' : '') . '</label>
+			<label for="author">' . __('Name', 'blocksy') . ' ' . ($req ? '<b class="required">&nbsp;*</b>' : '') . '</label>
 			<input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . '>
 			</p>';
 
 		// Email input
 		$fields['email'] =
 			'<p class="comment-form-field-input-email">
-				<label for="email">' . __( 'Email', 'blocksy' ) . ' ' . ($req ? '<b class="required">&nbsp;*</b>' : '') . '</label>
-				<input id="email" name="email" type="text" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . '>
+				<label for="email">' . __('Email', 'blocksy') . ' ' . ($req ? '<b class="required">&nbsp;*</b>' : '') . '</label>
+				<input id="email" name="email" type="text" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . '>
 			</p>';
 
 		$website_field_output = '';
@@ -133,8 +138,8 @@ add_filter(
 		if ($has_website_field === 'yes') {
 			$website_field_output =
 				'<p class="comment-form-field-input-url">
-				<label for="url">' . __( 'Website', 'blocksy' ) . '</label>
-				<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30">
+				<label for="url">' . __('Website', 'blocksy') . '</label>
+				<input id="url" name="url" type="text" value="' . esc_attr($commenter['comment_author_url']) . '" size="30">
 				</p>';
 		}
 
@@ -247,7 +252,7 @@ function blocksy_custom_comment_template($comment, $args, $depth) {
 							'time',
 							array_merge(
 								[
-									'datetime' => get_comment_time( 'c' )
+									'datetime' => get_comment_time('c')
 								],
 								blocksy_schema_org_definitions('publish_date', [
 									'array' => true
@@ -255,17 +260,17 @@ function blocksy_custom_comment_template($comment, $args, $depth) {
 							),
 							blocksy_safe_sprintf(
 								/* translators: 1: date, 2: time */
-								wp_kses_post( __( '%1$s / %2$s', 'blocksy' ) ),
-								wp_kses_post( get_comment_date() ),
-								wp_kses_post( get_comment_time() )
+								wp_kses_post(__('%1$s / %2$s', 'blocksy')),
+								wp_kses_post(get_comment_date()),
+								wp_kses_post(get_comment_time())
 							)
 						);
 
-						if ( $meta_with_link ) {
+						if ($meta_with_link) {
 							echo blocksy_html_tag(
 								'a',
 								[
-									'href' => esc_attr( get_comment_link( $comment->comment_ID ) ),
+									'href' => esc_attr(get_comment_link($comment->comment_ID)),
 								],
 								$date_link_content
 							);
@@ -278,7 +283,7 @@ function blocksy_custom_comment_template($comment, $args, $depth) {
 						}
 					?>
 
-					<?php edit_comment_link( __( 'Edit', 'blocksy' ), '  ', '' ); ?>
+					<?php edit_comment_link(__('Edit', 'blocksy'), '  ', ''); ?>
 
 					<?php
 					comment_reply_link(
@@ -300,9 +305,9 @@ function blocksy_custom_comment_template($comment, $args, $depth) {
 			<div class="ct-comment-content entry-content is-layout-flow" <?php echo blocksy_schema_org_definitions('entry_content'); ?>>
 				<?php comment_text(); ?>
 
-				<?php if ( '0' === $comment->comment_approved ) : ?>
+				<?php if ('0' === $comment->comment_approved) : ?>
 					<em class="ct-awaiting-moderation">
-						<?php esc_html_e( 'Your comment is awaiting moderation.', 'blocksy' ); ?>
+						<?php esc_html_e('Your comment is awaiting moderation.', 'blocksy'); ?>
 					</em>
 				<?php endif; ?>
 			</div>

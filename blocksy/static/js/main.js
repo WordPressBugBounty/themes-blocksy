@@ -41,7 +41,6 @@ let allFrontendEntryPoints = [
 	{
 		els: '.flexy-container[data-flexy*="no"]',
 		load: () => import('./frontend/flexy'),
-		events: ['ct:flexy:update'],
 		trigger: ['hover-with-touch'],
 	},
 

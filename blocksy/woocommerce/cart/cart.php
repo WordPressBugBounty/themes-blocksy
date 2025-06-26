@@ -279,6 +279,9 @@ $image_ratio = blocksy_get_theme_mod('cart_page_image_ratio', '1/1');
 </div>
 
 <?php
+
+	do_action('blocksy:woocommerce:cart:before-cross-sells');
+	
 	if (apply_filters('blocksy:woocommerce:cart:has-cross-sells', true)) {
 		woocommerce_cross_sell_display(null, 4);
 	}

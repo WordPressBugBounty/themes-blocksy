@@ -418,6 +418,12 @@ $when_enabled_general_settings = [
 							] : []
 						],
 
+						'custom_attribute' => [
+							'label' => __('Custom Attribute', 'blocksy'),
+							'type' => 'text',
+							'value' => ''
+						],
+
 						blocksy_rand_md5() => [
 							'type' => 'ct-condition',
 							'condition' => ['itemIndex' => '!0'],

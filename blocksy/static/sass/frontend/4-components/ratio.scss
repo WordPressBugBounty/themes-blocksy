@@ -1,6 +1,7 @@
 [class*='ct-media-container'] {
 	display: inline-flex;
 	overflow: hidden;
+	user-select: none;
 	isolation: isolate;
 	vertical-align: middle;
 }
