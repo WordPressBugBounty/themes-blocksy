@@ -156,6 +156,10 @@ if ($has_taxonomy_filter) {
 			$allowed_post_types[] = 'reply';
 		}
 
+		if (class_exists('Tribe__Events__Main')) {
+			$allowed_post_types[] = 'tribe_events';
+		}
+
 		foreach ($all_cpts as $single_cpt) {
 			$allowed_post_types[] = $single_cpt;
 		}

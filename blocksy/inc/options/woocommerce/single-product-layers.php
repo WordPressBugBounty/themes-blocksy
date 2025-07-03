@@ -267,6 +267,23 @@ $options = apply_filters(
 					],
 				],
 
+				'add_to_cart_button_height' => [
+					'label' => __('Button Height', 'blocksy'),
+					'type' => 'ct-slider',
+					'min' => 20,
+					'max' => 100,
+					'value' => [
+						'mobile' => 40,
+						'tablet' => 55,
+						'desktop' => 55,
+					],
+					'responsive' => true,
+					'setting' => [ 'transport' => 'postMessage' ],
+					'sync' => [
+						'id' => 'woo_single_layout_skip'
+					],
+				],
+
 				'spacing' => [
 					'label' => __( 'Bottom Spacing', 'blocksy' ),
 					'type' => 'ct-slider',

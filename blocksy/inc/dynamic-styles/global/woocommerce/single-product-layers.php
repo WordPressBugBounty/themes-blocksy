@@ -161,6 +161,26 @@ foreach ($woo_single_layout as $layer) {
 				'value' => $add_to_cart_button_width,
 			]);
 		}
+
+		$add_to_cart_button_height = blocksy_akg(
+			'add_to_cart_button_height',
+			$layer,
+			blocksy_get_theme_mod('add_to_cart_button_height', [
+				'mobile' => 40,
+				'tablet' => 55,
+				'desktop' => 55,
+			])
+		);
+
+		blocksy_output_responsive([
+			'css' => $css,
+			'tablet_css' => $tablet_css,
+			'mobile_css' => $mobile_css,
+			'selector' => $selectors_map[$layer['id']] . ' > .cart',
+			'variableName' => 'theme-button-min-height',
+			'unit' => 'px',
+			'value' => $add_to_cart_button_height,
+		]);
 	}
 
 	if ($layer['id'] === 'product_brands') {

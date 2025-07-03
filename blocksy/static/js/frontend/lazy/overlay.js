@@ -200,7 +200,7 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 	}
 
 	args = {
-		closeInstant: false,
+		onlyUnmountEvents: false,
 		shouldFocusOriginalTrigger: true,
 		...args,
 	}
@@ -241,19 +241,18 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 		}
 	})
 
-	if (args.closeInstant) {
-		document.body.removeAttribute('data-panel')
-		settings.container.classList.remove('active')
-
+	if (args.onlyUnmountEvents) {
 		scrollLockManager().enable(
 			settings.computeScrollContainer
 				? settings.computeScrollContainer()
 				: settings.container.querySelector('.ct-panel-content')
 		)
 
-		clearSettings(settings)
+		focusLockManager().focusLockOff(
+			settings.container.querySelector('.ct-panel-content').parentNode
+		)
 
-		ctEvents.trigger('ct:modal:closed', settings.container)
+		clearSettings(settings)
 	} else {
 		document.body.dataset.panel = `out`
 
@@ -438,25 +437,72 @@ export const handleClick = (e, settings) => {
 					return
 				}
 
-				hideOffcanvas(settings, {
-					closeInstant: maybeA.getAttribute('href')[0] !== '#',
-					shouldFocusOriginalTrigger: false,
-				})
+				// regular | hash-link | modal
+				let linkType = 'regular'
 
-				setTimeout(() => {
-					if (
-						maybeA.matches('.ct-offcanvas-trigger') ||
-						maybeA.matches('.ct-header-account')
-					) {
+				if (
+					maybeA.matches('.ct-offcanvas-trigger') ||
+					maybeA.matches('.ct-header-account')
+				) {
+					linkType = 'modal'
+				}
+
+				if (maybeA.getAttribute('href')[0] === '#') {
+					linkType = 'hash-link'
+				}
+
+				// When a regular link is clicked, we should not hide the
+				// offcanvas visually and should instead only clear out the
+				// event listeners.
+				//
+				// The remainings of the offcanvas will be dropped visually
+				// in the pageshow event when the back forward cache is detected.
+				if (linkType === 'regular') {
+					hideOffcanvas(settings, {
+						onlyUnmountEvents: true,
+						shouldFocusOriginalTrigger: false,
+					})
+				}
+
+				if (linkType === 'modal') {
+					hideOffcanvas(settings, {
+						shouldFocusOriginalTrigger: false,
+					})
+
+					setTimeout(() => {
 						maybeA.click()
-					}
-				}, 500)
+					}, 500)
+				}
+
+				if (linkType === 'hash-link') {
+					hideOffcanvas(settings, {
+						shouldFocusOriginalTrigger: false,
+					})
+				}
 			})
 		}
 	}
 }
 
 ctEvents.on('ct:offcanvas:force-close', (settings) => hideOffcanvas(settings))
+
+// Hide the remainings of the panel when the page is loaded
+// from back/forward cache.
+window.addEventListener('pageshow', (e) => {
+	if (!event.persisted) {
+		return
+	}
+
+	if (document.body.hasAttribute('data-panel')) {
+		document.body.removeAttribute('data-panel')
+	}
+
+	const maybePanel = document.querySelector('.ct-panel.active')
+
+	if (maybePanel) {
+		maybePanel.classList.remove('active')
+	}
+})
 
 export const mount = (el, { event, focus = false }) => {
 	handleClick(event, {

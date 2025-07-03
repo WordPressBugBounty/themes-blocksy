@@ -1,7 +1,16 @@
 export function whenTransitionEnds(el, cb) {
+	let timeoutId = null
+	let didEnd = false
+
 	const end = () => {
+		clearTimeout(timeoutId)
+
 		el.removeEventListener('transitionend', onEnd)
-		cb()
+
+		if (!didEnd) {
+			didEnd = true
+			cb()
+		}
 	}
 
 	const onEnd = (e) => {
@@ -15,5 +24,12 @@ export function whenTransitionEnds(el, cb) {
 		}
 	}
 
+	const transitionDuration =
+		parseFloat(getComputedStyle(el).transitionDuration) * 1000
+
 	el.addEventListener('transitionend', onEnd)
+
+	timeoutId = setTimeout(() => {
+		end()
+	}, transitionDuration)
 }

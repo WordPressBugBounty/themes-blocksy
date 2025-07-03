@@ -47,7 +47,10 @@ const Overlay = ({
 							onDismiss={() => onDismiss()}
 							initialFocusRef={initialFocusRef}>
 							<AnimatedDialogContent
-								className={className}
+								className={classnames(
+									'ct-admin-modal',
+									className
+								)}
 								style={{
 									transform: props.y.to(
 										(y) => `translate3d(0px, ${y}px, 0px)`

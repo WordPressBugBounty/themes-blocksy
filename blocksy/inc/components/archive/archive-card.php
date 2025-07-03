@@ -263,7 +263,7 @@ if (! function_exists('blocksy_render_archive_card')) {
 			$read_more_text .= $read_more_arrow;
 		}
 
-		$button_class = 'entry-button wp-element-button';
+		$button_class = 'entry-button';
 
 		$button_type = blocksy_default_akg(
 			'button_type',
@@ -272,11 +272,11 @@ if (! function_exists('blocksy_render_archive_card')) {
 		);
 
 		if ($button_type === 'background') {
-			$button_class .= ' ct-button';
+			$button_class .= ' wp-element-button ct-button';
 		}
 
 		if ($button_type === 'outline') {
-			$button_class .= ' ct-button-ghost';
+			$button_class .= ' wp-element-button ct-button-ghost';
 		}
 
 		$outputs = null;

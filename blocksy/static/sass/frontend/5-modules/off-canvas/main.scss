@@ -4,7 +4,6 @@ $transition-duration: 0.25s;
 @import 'panel';
 
 body {
-
 	&[data-panel] {
 		padding-right: var(--scrollbar-width, 0px);
 
@@ -14,7 +13,6 @@ body {
 	}
 
 	&[data-panel*='in'] {
-
 		.ct-panel.active {
 			opacity: 1;
 			pointer-events: auto;

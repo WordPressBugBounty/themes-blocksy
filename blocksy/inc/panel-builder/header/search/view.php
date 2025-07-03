@@ -60,7 +60,8 @@ if (function_exists('blc_get_icon') && isset($atts['icon'])) {
 		]),
 		'icon_container' => false,
 		'icon_html_atts' => [
-			'class' => trim(implode(' ', $icon_classes))
+			'class' => trim(implode(' ', $icon_classes)),
+			'aria-hidden' => 'true',
 		]
 	]);
 }
@@ -75,7 +76,7 @@ if (function_exists('blc_get_icon') && isset($atts['icon'])) {
 	data-label="<?php echo $search_label_position[$device] ?>"
 	<?php echo blocksy_attr_to_html($attr) ?>>
 
-	<span class="<?php echo $label_class ?>"><?php echo $search_label; ?></span>
+	<span class="<?php echo $label_class ?>" aria-hidden="true"><?php echo $search_label; ?></span>
 
 	<?php
 		/**

@@ -1,7 +1,6 @@
-import Component from '@reach/component-component'
+import Component from './component-component'
 import Portal from './portal'
-import { checkStyles, wrapEvent } from '@reach/utils'
-import createFocusTrap from 'focus-trap'
+import { wrapEvent } from './utils'
 import {
 	createElement,
 	useEffect,
@@ -44,23 +43,11 @@ let createAriaHider = (dialogNode) => {
 
 let k = () => {}
 
-let checkDialogStyles = () => checkStyles('dialog')
-
 let portalDidMount = (refs, initialFocusRef) => {
 	refs.disposeAriaHider = createAriaHider(refs.overlayNode)
-	refs.trap = createFocusTrap(refs.overlayNode, {
-		initialFocus: initialFocusRef
-			? () => initialFocusRef.current
-			: undefined,
-		fallbackFocus: refs.contentNode,
-		escapeDeactivates: false,
-		clickOutsideDeactivates: false,
-	})
-	// refs.trap.activate()
 }
 
 let contentWillUnmount = ({ refs }) => {
-	refs.trap.deactivate()
 	refs.disposeAriaHider()
 }
 
@@ -79,7 +66,7 @@ let DialogOverlay = React.forwardRef(
 		},
 		forwardRef
 	) => (
-		<Component didMount={checkDialogStyles}>
+		<Component>
 			{isOpen ? (
 				<Portal container={container} data-reach-dialog-wrapper>
 					<Component

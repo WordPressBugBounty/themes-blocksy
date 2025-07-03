@@ -215,6 +215,16 @@ const collectVariablesForLayers = (v) => {
 						return layer.add_to_cart_button_width
 					},
 				},
+
+				{
+					selector: `${selectorsMap[layer.id]} > .cart`,
+					variable: 'theme-button-min-height',
+					responsive: true,
+					unit: 'px',
+					extractValue: () => {
+						return layer.add_to_cart_button_height
+					},
+				},
 			]
 		}
 

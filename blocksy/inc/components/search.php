@@ -194,6 +194,10 @@ class SearchModifications {
 			$custom_post_types[] = 'reply';
 		}
 
+		if (class_exists('Tribe__Events__Main')) {
+			$custom_post_types[] = 'tribe_events';
+		}
+
 		$allowed_post_types = [];
 
 		$post_types = explode(

@@ -63,6 +63,7 @@ watchOptionsWithPrefix({
 								component.button_type || 'simple'
 
 							button.classList.remove(
+								'wp-element-button',
 								'ct-button',
 								'ct-button-ghost'
 							)
@@ -71,14 +72,20 @@ watchOptionsWithPrefix({
 								(component.button_type || 'simple') ===
 								'background'
 							) {
-								button.classList.add('ct-button')
+								button.classList.add(
+									'wp-element-button',
+									'ct-button'
+								)
 							}
 
 							if (
 								(component.button_type || 'simple') ===
 								'outline'
 							) {
-								button.classList.add('ct-button-ghost')
+								button.classList.add(
+									'wp-element-button',
+									'ct-button-ghost'
+								)
 							}
 
 							replaceFirstTextNode(

@@ -73,7 +73,7 @@ if (! function_exists('blocksy_media')) {
 				$placeholder_image = get_option('woocommerce_placeholder_image', 0);
 
 				if ($placeholder_image) {
-					if (is_numeric($placeholder_image)) {
+					if (wp_attachment_is_image($placeholder_image)) {
 						$args['attachment_id'] = $placeholder_image;
 
 						$attachment_exists = !!wp_get_attachment_image_src(
@@ -82,6 +82,8 @@ if (! function_exists('blocksy_media')) {
 
 						$is_woo_placeholder_image = true;
 					} else {
+						$placeholder_image = wc_placeholder_img_src($args['size']);
+
 						return apply_filters(
 							'woocommerce_placeholder_img',
 							blocksy_simple_image($placeholder_image, $args),

@@ -103,10 +103,6 @@ Blocksy is distributed under the terms of the GNU GPL
 
 Blocksy bundles the following third-party resources:
 
-@reach/dialog, Copyright (c) 2018-present, MOGHOUSE LLC
-Licenses: The MIT License (MIT)
-Source: https://github.com/reach/reach-ui/tree/master/packages/dialog
-
 @reach/router, Copyright (c) 2018-present, Ryan Florence
 Licenses: The MIT License (MIT)
 Source: https://github.com/reach/router

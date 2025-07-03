@@ -58,13 +58,13 @@ $trigger_class = trim(
 	aria-label="<?php echo $trigger_label ?>"
 	<?php echo blocksy_attr_to_html($attr) ?>>
 
-	<span class="<?php echo $label_class ?>"><?php echo $trigger_label ?></span>
+	<span class="<?php echo $label_class ?>" aria-hidden="true"><?php echo $trigger_label ?></span>
 
 	<svg
 		class="<?php echo esc_attr($trigger_class) ?>"
 		width="18" height="14" viewBox="0 0 18 14"
-		aria-hidden="true"
-		data-type="<?php echo esc_attr($trigger_type) ?>">
+		data-type="<?php echo esc_attr($trigger_type) ?>"
+		aria-hidden="true">
 
 		<rect y="0.00" width="18" height="1.7" rx="1"/>
 		<rect y="6.15" width="18" height="1.7" rx="1"/>

@@ -3,14 +3,14 @@ import {
 	useEffect,
 	createPortal,
 	useState,
-	Fragment
+	Fragment,
 } from '@wordpress/element'
-import Component from '@reach/component-component'
+import Component from './component-component'
 
 let Portal = ({
 	children,
 	container = document.body,
-	type = 'reach-portal'
+	type = 'reach-portal',
 }) => (
 	<Component
 		getRefs={() => ({ node: null })}

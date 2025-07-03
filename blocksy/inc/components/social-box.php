@@ -1353,6 +1353,7 @@ function blocksy_get_social_box($args = []) {
 					$label_attr = $args['label_attr'];
 
 					$label_attr['class'] = $class;
+					$label_attr['aria-hidden'] = 'true';
 				?>
 
 				<a <?php echo blocksy_attr_to_html($attr) ?>>

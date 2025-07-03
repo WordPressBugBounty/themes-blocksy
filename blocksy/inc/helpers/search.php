@@ -88,6 +88,10 @@ function blocksy_get_search_post_type($search_through = []) {
 		$all_cpts[] = 'reply';
 	}
 
+	if (class_exists('Tribe__Events__Main')) {
+		$all_cpts[] = 'tribe_events';
+	}
+
 	foreach ($all_cpts as $single_cpt) {
 		if (! isset($search_through[$single_cpt])) {
 			$search_through[$single_cpt] = false;

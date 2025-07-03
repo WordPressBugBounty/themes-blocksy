@@ -1,3 +1,10 @@
+2.1.2: 2025-07-03
+- Improvement: Correctly respect Loco Translate custom translation locations
+- Improvement: Correctly respect WooCommerce placeholder image
+- Improvement: Off canvas panel - more reliable link navigation functionality
+- Improvement: Search header element - add support for "The Events Calendar" plugin
+- Fix: Archive read more button - make sure the element type is applied correctly
+
 2.1.1: 2025-06-26
 - Improvement: Header menu - minor accessibility improvement
 - Improvement: Make sure all WordPress discussion settings are applied correctly to WooCommerce product reviews

@@ -178,7 +178,6 @@ $count_output = blocksy_html_tag(
 	[
 		'class' => 'ct-dynamic-count-cart',
 		'data-count' => $has_badge ? $current_count : 0,
-		'aria-hidden' => 'true'
 	],
 	$current_count
 );
@@ -264,7 +263,7 @@ $icon_classes = [
 		);
 	?>
 
-	<span class="<?php echo esc_attr(implode(' ', $icon_classes)) ?>">
+	<span class="<?php echo esc_attr(implode(' ', $icon_classes)) ?>" aria-hidden="true">
 		<?php
 			echo $count_output;
 
