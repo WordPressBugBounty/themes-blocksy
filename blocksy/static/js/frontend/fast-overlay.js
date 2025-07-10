@@ -2,6 +2,24 @@ import { loadStyle } from '../helpers'
 
 import { whenTransitionEnds } from './helpers/when-transition-ends'
 
+export const fastOverlayPreloadAssets = (el = null) => {
+	import('./lazy/overlay')
+
+	if (el) {
+		const potentialStyles =
+			ct_localizations.dynamic_styles_selectors.filter(
+				(styleDescriptor) => {
+					return (
+						el.matches(styleDescriptor.selector) ||
+						el.querySelector(styleDescriptor.selector)
+					)
+				}
+			)
+
+		potentialStyles.map((styleDescriptor) => loadStyle(styleDescriptor.url))
+	}
+}
+
 export const fastOverlayHandleClick = (e, settings) => {
 	settings = {
 		container: null,

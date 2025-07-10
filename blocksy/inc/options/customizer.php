@@ -149,7 +149,7 @@ $options = [
 	],
 
 	[
-		function_exists('is_shop') ? [
+		class_exists('WooCommerce') ? [
 			$custom_post_types,
 			'woocommerce_group_title' => [
 				'type' => 'ct-group-title',

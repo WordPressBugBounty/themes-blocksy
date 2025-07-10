@@ -222,13 +222,21 @@ const mountIntegrations = (integrations) => {
 	}
 }
 
+export const preloadLazyAssets = (userCall = true) => {
+	loadStyle(ct_localizations.dynamic_styles.lazy_load)
+	preloadClickHandlers()
+	import('./frontend/handle-3rd-party-events')
+
+	if (userCall) {
+		ctEvents.trigger('blocksy:frontend:init')
+	}
+}
+
 onDocumentLoaded(() => {
 	document.body.addEventListener(
 		'mouseover',
 		() => {
-			loadStyle(ct_localizations.dynamic_styles.lazy_load)
-			preloadClickHandlers()
-			import('./frontend/handle-3rd-party-events.js')
+			preloadLazyAssets(false)
 
 			const maybeModalSearch = document.querySelector(
 				'#search-modal .ct-search-form input'
@@ -367,3 +375,5 @@ ctEvents.on(
 export { loadStyle, handleEntryPoints, onDocumentLoaded } from './helpers'
 export { registerDynamicChunk, loadDynamicChunk } from './dynamic-chunks'
 export { getCurrentScreen } from './frontend/helpers/current-screen'
+
+export { fastOverlayPreloadAssets as overlayPreloadAssets } from './frontend/fast-overlay'

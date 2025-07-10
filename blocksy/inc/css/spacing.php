@@ -154,6 +154,10 @@ function blocksy_spacing_prepare_for_device($value, $args = []) {
 			return 'CT_CSS_SKIP_RULE';
 		}
 
+		if ($args['format'] === 'array') {
+			return [trim($value['custom'])];
+		}
+
 		return trim($value['custom']);
 	}
 

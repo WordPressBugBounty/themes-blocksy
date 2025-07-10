@@ -447,8 +447,32 @@ export const handleClick = (e, settings) => {
 					linkType = 'modal'
 				}
 
-				if (maybeA.getAttribute('href')[0] === '#') {
-					linkType = 'hash-link'
+				let currentUrl = new URL(location.href)
+				let nextUrl = null
+
+				try {
+					nextUrl = new URL(
+						maybeA.getAttribute('href'),
+						location.href
+					)
+				} catch (e) {
+					console.error('Error parsing URLs', e, maybeA)
+				}
+
+				// Need to match even full URLs inside links: http://example.com/page#some-section
+				// https://github.com/Creative-Themes/blocksy/issues/4694
+				if (currentUrl && nextUrl) {
+					const nextHashIsDifferent = nextUrl.hash !== currentUrl.hash
+
+					currentUrl.hash = ''
+					nextUrl.hash = ''
+
+					if (
+						currentUrl.toString() === nextUrl.toString() &&
+						nextHashIsDifferent
+					) {
+						linkType = 'hash-link'
+					}
 				}
 
 				// When a regular link is clicked, we should not hide the

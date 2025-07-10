@@ -153,6 +153,16 @@ class Blocksy_Static_Css_Files {
 				$should_load_flexy_styles
 				||
 				(
+					is_cart()
+					&&
+					blocksy_get_theme_mod('cart_suggested_products', 'yes') === 'yes'
+				)
+			);
+
+			$should_load_flexy_styles = (
+				$should_load_flexy_styles
+				||
+				(
 					$render->contains_item('cart')
 					&&
 					blocksy_get_theme_mod('mini_cart_suggested_products', 'yes') === 'yes'
