@@ -462,15 +462,10 @@ export const handleClick = (e, settings) => {
 				// Need to match even full URLs inside links: http://example.com/page#some-section
 				// https://github.com/Creative-Themes/blocksy/issues/4694
 				if (currentUrl && nextUrl) {
-					const nextHashIsDifferent = nextUrl.hash !== currentUrl.hash
-
 					currentUrl.hash = ''
 					nextUrl.hash = ''
 
-					if (
-						currentUrl.toString() === nextUrl.toString() &&
-						nextHashIsDifferent
-					) {
+					if (currentUrl.toString() === nextUrl.toString()) {
 						linkType = 'hash-link'
 					}
 				}

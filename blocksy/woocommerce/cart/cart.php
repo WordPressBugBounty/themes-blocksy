@@ -10,9 +10,9 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/template-structure/
+ * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 7.9.0
+ * @version 10.0.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -37,9 +37,9 @@ $image_ratio = blocksy_get_theme_mod('cart_page_image_ratio', '1/1');
 	<table class="shop_table cart woocommerce-cart-form__contents" cellspacing="0">
 		<thead>
 			<tr>
-				<th class="product-name" colspan="2"><?php esc_html_e( 'Product', 'blocksy' ); ?></th>
-				<th class="product-quantity"><?php esc_html_e( 'Quantity', 'blocksy' ); ?></th>
-				<th class="product-subtotal"><?php esc_html_e( 'Subtotal', 'blocksy' ); ?></th>
+				<th scope="col" class="product-name" colspan="2"><?php esc_html_e( 'Product', 'blocksy' ); ?></th>
+				<th scope="col" class="product-quantity"><?php esc_html_e( 'Quantity', 'blocksy' ); ?></th>
+				<th scope="col" class="product-subtotal"><?php esc_html_e( 'Subtotal', 'blocksy' ); ?></th>
 				<th class="product-remove">&nbsp;</th>
 			</tr>
 		</thead>
@@ -109,7 +109,7 @@ $image_ratio = blocksy_get_theme_mod('cart_page_image_ratio', '1/1');
 									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'blocksy' ) . '</p>', $product_id ) );
 								}
 							?>
-							<p class="price ct-hidden-sm ct-hidden-md">
+							<p class="price ct-hidden-sm ct-hidden-md" data-title="<?php esc_attr_e( 'Price', 'blocksy' ); ?>">
 								<?php
 									echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 								?>
@@ -170,8 +170,8 @@ $image_ratio = blocksy_get_theme_mod('cart_page_image_ratio', '1/1');
 									echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 										'woocommerce_cart_item_remove_link',
 										blocksy_safe_sprintf(
-											'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">
-												<svg class="ct-icon" width="10px" height="10px" viewBox="0 0 24 24"><path d="M9.6,0l0,1.2H1.2v2.4h21.6V1.2h-8.4l0-1.2H9.6z M2.8,6l1.8,15.9C4.8,23.1,5.9,24,7.1,24h9.9c1.2,0,2.2-0.9,2.4-2.1L21.2,6H2.8z"></path></svg>
+											'<a role="button" href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">
+												<svg class="ct-icon" width="10px" height="10px" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6,0l0,1.2H1.2v2.4h21.6V1.2h-8.4l0-1.2H9.6z M2.8,6l1.8,15.9C4.8,23.1,5.9,24,7.1,24h9.9c1.2,0,2.2-0.9,2.4-2.1L21.2,6H2.8z"></path></svg>
 											</a>',
 											esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 											/* translators: %s is the product name */
@@ -219,7 +219,7 @@ $image_ratio = blocksy_get_theme_mod('cart_page_image_ratio', '1/1');
 									'woocommerce_cart_item_remove_link',
 									blocksy_safe_sprintf(
 										'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">
-											<svg class="ct-icon" width="10px" height="10px" viewBox="0 0 24 24"><path d="M9.6,0l0,1.2H1.2v2.4h21.6V1.2h-8.4l0-1.2H9.6z M2.8,6l1.8,15.9C4.8,23.1,5.9,24,7.1,24h9.9c1.2,0,2.2-0.9,2.4-2.1L21.2,6H2.8z"></path></svg>
+											<svg class="ct-icon" width="10px" height="10px" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6,0l0,1.2H1.2v2.4h21.6V1.2h-8.4l0-1.2H9.6z M2.8,6l1.8,15.9C4.8,23.1,5.9,24,7.1,24h9.9c1.2,0,2.2-0.9,2.4-2.1L21.2,6H2.8z"></path></svg>
 										</a>',
 										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 										/* translators: %s is the product name */
@@ -244,12 +244,12 @@ $image_ratio = blocksy_get_theme_mod('cart_page_image_ratio', '1/1');
 
 					<?php if ( wc_coupons_enabled() ) { ?>
 						<div class="coupon">
-							<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'blocksy' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'blocksy' ); ?>" /> <button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'blocksy' ); ?>"><?php esc_html_e( 'Apply coupon', 'blocksy' ); ?></button>
+							<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'blocksy' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'blocksy' ); ?>" /> <button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'blocksy' ); ?>"><?php esc_html_e( 'Apply coupon', 'blocksy' ); ?></button>
 							<?php do_action( 'woocommerce_cart_coupon' ); ?>
 						</div>
 					<?php } ?>
 
-					<button type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'blocksy' ); ?>"><?php esc_html_e( 'Update cart', 'blocksy' ); ?></button>
+					<button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'blocksy' ); ?>"><?php esc_html_e( 'Update cart', 'blocksy' ); ?></button>
 
 					<?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -260,7 +260,6 @@ $image_ratio = blocksy_get_theme_mod('cart_page_image_ratio', '1/1');
 			<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 		</tbody>
 	</table>
-
 	<?php do_action( 'woocommerce_after_cart_table' ); ?>
 </form>
 
