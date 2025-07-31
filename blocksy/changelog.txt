@@ -1,3 +1,11 @@
+2.1.5: 2025-07-31
+- Improvement: Better integration with latest version of the Simply Static plugin
+- Improvement: Cart header element properly handle click when placed inside offcanvas panel
+- Improvement: Introduce filter for controlling vertical spacing output
+- Improvement: Offcanvas - correctly detect links that are opened in new tab via keyboard
+- Improvement: Offcanvas - improve detection of links that trigger a modal inside the offcanvas bar
+- Improvement: Tutor LMS - correctly render course page title when coming soon is enabled
+
 2.1.4: 2025-07-17
 - Improvement: Off canvas panel - improve detection of anchor links
 - Improvement: Update WooCommerce "cart" and "mini-cart" templates to the latest version

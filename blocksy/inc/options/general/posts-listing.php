@@ -1235,7 +1235,10 @@ $overridable_card_options = [
 				blocksy_rand_md5() =>  [
 					'type' => 'ct-condition',
 					'condition' => [
-						$prefix . 'card_type' => 'simple',
+						'any' => [
+							$prefix . 'card_type' => 'simple',
+							$prefix . 'structure' => 'gutenberg'
+						],
 						$prefix . 'archive_order:array-ids:featured_image:enabled' => '!no'
 					],
 					'options' => [
@@ -1252,16 +1255,6 @@ $overridable_card_options = [
 							'min' => 0,
 							'responsive' => true
 						],
-					],
-				],
-
-				blocksy_rand_md5() =>  [
-					'type' => 'ct-condition',
-					'condition' => [
-						$prefix . 'structure' => 'simple',
-						$prefix . 'card_type' => 'simple',
-					],
-					'options' => [
 
 						$prefix . 'cardThumbShadow' => [
 							'label' => __( 'Featured Image Shadow', 'blocksy' ),
@@ -1281,6 +1274,16 @@ $overridable_card_options = [
 								],
 							])
 						],
+					],
+				],
+
+				blocksy_rand_md5() =>  [
+					'type' => 'ct-condition',
+					'condition' => [
+						$prefix . 'structure' => 'simple',
+						$prefix . 'card_type' => 'simple',
+					],
+					'options' => [
 
 						$prefix . 'cardDivider' => [
 							'label' => __( 'Card Bottom Divider', 'blocksy' ),

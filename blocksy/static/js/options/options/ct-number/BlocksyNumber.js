@@ -39,7 +39,7 @@ const BlocksyNumberOption = ({
 			<a
 				className={classnames('ct-minus', {
 					['ct-disabled']:
-						parseFloat(parsedValue) === parseInt(min) ||
+						parseFloat(parsedValue) === parseFloat(min) ||
 						parsedValue === '',
 				})}
 				onClick={() =>
@@ -58,7 +58,8 @@ const BlocksyNumberOption = ({
 
 			<a
 				className={classnames('ct-plus', {
-					['ct-disabled']: parseFloat(parsedValue) === parseInt(max),
+					['ct-disabled']:
+						parseFloat(parsedValue) === parseFloat(max),
 				})}
 				onClick={() =>
 					onChange(
@@ -91,11 +92,7 @@ const BlocksyNumberOption = ({
 						isEmptyInput: false,
 					})
 
-					if (parseFloat(parsedValue)) {
-						onChange(
-							round(clamp(min, max, parsedValue), decimalPlaces)
-						)
-					}
+					onChange(round(clamp(min, max, parsedValue), decimalPlaces))
 				}}
 				onChange={({ target: { value } }) => {
 					if (value.toString().trim() === '') {

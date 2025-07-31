@@ -59,6 +59,11 @@ function blocksy_get_v_spacing($args = []) {
 
 	$v_spacing_output = [];
 
+	$v_spacing_components = apply_filters(
+		'blocksy:vertical-spacing:components',
+		$v_spacing_components
+	);
+
 	if (! empty($v_spacing_components)) {
 		$v_spacing_output['data-vertical-spacing'] = implode(':', $v_spacing_components);
 	}

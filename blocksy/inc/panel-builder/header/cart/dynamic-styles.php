@@ -670,7 +670,7 @@ if ($cart_drawer_type === 'offcanvas' || is_customize_preview()) {
 			blocksy_background_default_value([
 				'backgroundColor' => [
 					'default' => [
-						'color' => '#ffffff'
+						'color' => 'var(--theme-palette-color-8)'
 					],
 				],
 			])

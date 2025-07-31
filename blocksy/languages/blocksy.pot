@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-17 15:35+0000\n"
+"POT-Creation-Date: 2025-07-31 16:57+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -617,7 +617,7 @@ msgstr ""
 #: inc/options/general/page-title.php:1390,
 #: inc/options/general/pagination.php:24,
 #: inc/options/general/posts-listing.php:29,
-#: inc/options/general/posts-listing.php:1496,
+#: inc/options/general/posts-listing.php:1499,
 #: inc/options/general/sidebar.php:17,
 #: inc/options/integrations/tutorlms-archive.php:25,
 #: inc/options/integrations/tutorlms-single.php:208,
@@ -1380,7 +1380,7 @@ msgstr ""
 #: inc/options/general/page-title.php:1417,
 #: inc/options/general/pagination.php:133,
 #: inc/options/general/posts-listing.php:812,
-#: inc/options/general/posts-listing.php:1710,
+#: inc/options/general/posts-listing.php:1713,
 #: inc/options/general/sidebar.php:269,
 #: inc/options/integrations/tutorlms-archive.php:40,
 #: inc/options/integrations/tutorlms-single.php:220,
@@ -2056,7 +2056,7 @@ msgstr ""
 #: inc/options/general/buttons.php:145,
 #: inc/options/general/form-elements.php:84,
 #: inc/options/general/pagination.php:281,
-#: inc/options/general/posts-listing.php:1464,
+#: inc/options/general/posts-listing.php:1467,
 #: inc/options/general/sidebar.php:480,
 #: inc/options/single-elements/author-box.php:506,
 #: inc/options/single-elements/featured-image.php:143,
@@ -2339,7 +2339,7 @@ msgid "Form Elements"
 msgstr ""
 
 #: inc/options/general/form-elements.php:32,
-#: inc/options/general/posts-listing.php:1517
+#: inc/options/general/posts-listing.php:1520
 msgid "Classic"
 msgstr ""
 
@@ -2597,7 +2597,7 @@ msgstr ""
 
 #: inc/options/general/meta.php:438, inc/options/general/posts-listing.php:66,
 #: inc/options/general/posts-listing.php:495,
-#: inc/options/general/posts-listing.php:1512,
+#: inc/options/general/posts-listing.php:1515,
 #: inc/panel-builder/header/cart/options.php:992,
 #: inc/panel-builder/header/menu/options.php:643,
 #: inc/panel-builder/header/menu/options.php:673,
@@ -2938,7 +2938,7 @@ msgstr ""
 
 #: inc/options/general/page-title.php:1363,
 #: inc/options/general/page-title.php:1404,
-#: inc/options/general/posts-listing.php:1693,
+#: inc/options/general/posts-listing.php:1696,
 #: inc/options/meta/default.php:157, inc/options/meta/page.php:142,
 #: inc/options/meta/post.php:141,
 #: inc/options/single-elements/structure.php:114,
@@ -3246,97 +3246,97 @@ msgstr ""
 msgid "Button Font Color"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1248
+#: inc/options/general/posts-listing.php:1251
 msgid "Featured Image Radius"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1267
+#: inc/options/general/posts-listing.php:1260
 msgid "Featured Image Shadow"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1286
+#: inc/options/general/posts-listing.php:1289
 msgid "Card Bottom Divider"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1314
+#: inc/options/general/posts-listing.php:1317
 msgid "Card Divider"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1394
+#: inc/options/general/posts-listing.php:1397
 msgid "Card Overlay Color"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1413,
+#: inc/options/general/posts-listing.php:1416,
 #: inc/options/woocommerce/card-product-elements.php:1247
 msgid "Card Background Color"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1429,
+#: inc/options/general/posts-listing.php:1432,
 #: inc/options/woocommerce/card-product-elements.php:1288
 msgid "Card Border"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1445,
+#: inc/options/general/posts-listing.php:1448,
 #: inc/options/woocommerce/card-product-elements.php:1269
 msgid "Card Shadow"
 msgstr ""
 
 #. translators: placeholder here means the actual structure title.
-#: inc/options/general/posts-listing.php:1485, inc/options/meta/default.php:37,
+#: inc/options/general/posts-listing.php:1488, inc/options/meta/default.php:37,
 #: inc/options/posts/custom-post-type-single.php:38
 msgid "%s Structure"
 msgstr ""
 
 #. translators: placeholder here means the actual structure title.
-#: inc/options/general/posts-listing.php:1490
+#: inc/options/general/posts-listing.php:1493
 msgid "Set the %s entries default structure."
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1522
+#: inc/options/general/posts-listing.php:1525
 msgid "Grid"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1527
+#: inc/options/general/posts-listing.php:1530
 msgid "Enhanced Grid"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1532
+#: inc/options/general/posts-listing.php:1535
 msgid "Gutenberg"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1572
+#: inc/options/general/posts-listing.php:1575
 msgid "Number of Posts"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1613,
+#: inc/options/general/posts-listing.php:1616,
 #: inc/options/single-elements/related-posts.php:51
 msgid "Columns & Posts"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1621,
+#: inc/options/general/posts-listing.php:1624,
 #: inc/options/single-elements/related-posts.php:70
 #: static/js/options/options/ct-woocommerce-columns-and-rows.js:51
 msgid "Number of columns"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1640,
+#: inc/options/general/posts-listing.php:1643,
 #: inc/options/single-elements/related-posts.php:84
 msgid "Number of posts"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1665,
+#: inc/options/general/posts-listing.php:1668,
 #: inc/options/woocommerce/card-product-elements.php:202
 msgid "Card Options"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1673,
+#: inc/options/general/posts-listing.php:1676,
 #: inc/options/meta/default.php:119, inc/options/meta/page.php:104,
 #: inc/options/meta/post.php:104, inc/options/single-elements/structure.php:94,
 #: inc/options/woocommerce/archive-main.php:130
 msgid "Content Area Vertical Spacing"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1684,
+#: inc/options/general/posts-listing.php:1687,
 #: inc/options/meta/default.php:148, inc/options/meta/page.php:133,
 #: inc/options/meta/post.php:132,
 #: inc/options/single-elements/structure.php:105,
@@ -3344,7 +3344,7 @@ msgstr ""
 msgid "Top & Bottom"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1687,
+#: inc/options/general/posts-listing.php:1690,
 #: inc/options/meta/default.php:151, inc/options/meta/page.php:136,
 #: inc/options/meta/post.php:135,
 #: inc/options/single-elements/structure.php:108,
@@ -3352,7 +3352,7 @@ msgstr ""
 msgid "Only Top"
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1690,
+#: inc/options/general/posts-listing.php:1693,
 #: inc/options/meta/default.php:154, inc/options/meta/page.php:139,
 #: inc/options/meta/post.php:138,
 #: inc/options/single-elements/structure.php:111,
@@ -3361,7 +3361,7 @@ msgid "Only Bottom"
 msgstr ""
 
 #. translators: placeholder here means the actual URL.
-#: inc/options/general/posts-listing.php:1697,
+#: inc/options/general/posts-listing.php:1700,
 #: inc/options/meta/default.php:161, inc/options/meta/page.php:146,
 #: inc/options/meta/post.php:145,
 #: inc/options/single-elements/structure.php:118,
@@ -3371,14 +3371,14 @@ msgid ""
 "Area Spacing%s."
 msgstr ""
 
-#: inc/options/general/posts-listing.php:1715,
+#: inc/options/general/posts-listing.php:1718,
 #: inc/options/single-elements/structure-design.php:21,
 #: inc/options/woocommerce/archive-main.php:171
 msgid "Page Background"
 msgstr ""
 
 #. translators: placeholder here means the actual URL.
-#: inc/options/general/posts-listing.php:1730,
+#: inc/options/general/posts-listing.php:1733,
 #: inc/options/single-elements/structure-design.php:36,
 #: inc/options/woocommerce/archive-main.php:186
 msgid ""

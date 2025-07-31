@@ -1,5 +1,37 @@
 <?php
 
+add_filter(
+	'wp_before_load_template',
+	function ($template_name) {
+		if (strpos($template_name, 'woocommerce/templates/content-product.php') === false) {
+			return;
+		}
+
+		ob_start();
+	},
+	1,
+	1
+);
+
+add_filter(
+	'wp_after_load_template',
+	function ($template_name) {
+		if (strpos($template_name, 'woocommerce/templates/content-product.php') === false) {
+			return;
+		}
+
+		$result = ob_get_clean();
+
+		do_action('blocksy:woocommerce:product-card:before');
+
+		echo $result;
+
+		do_action('blocksy:woocommerce:product-card:after');
+	},
+	1,
+	1
+);
+
 function blocksy_template_loop_product_thumbnail($attr) {
 	global $product;
 
@@ -426,7 +458,7 @@ add_action($action_to_hook, function () {
 				if ($layout['id'] === 'product_stock') {
 					$has_managed_stock = $product->get_manage_stock();
 					$remaining_stock = $product->get_stock_quantity();
-					
+
 					$need_to_show_for_variations = false;
 
 					if ($product->is_type('variable')) {
@@ -439,7 +471,7 @@ add_action($action_to_hook, function () {
 							$remaining_stock = $maybe_current_variation->get_stock_quantity();
 						}
 					}
-					
+
 					echo blocksy_html_tag(
 						'div',
 						[

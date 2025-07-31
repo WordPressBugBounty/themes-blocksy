@@ -33,8 +33,9 @@ form.variations_form {
 	.single_variation {
 		display: none;
 
-		&:has(*:not(:empty)) {
-			margin-bottom: 1.5em;
+		:is(p, .price) {
+			display: block;
+			margin-bottom: 20px;
 		}
 	}
 

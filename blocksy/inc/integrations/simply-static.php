@@ -2,11 +2,22 @@
 
 add_action(
 	'ss_after_extract_and_replace_urls_in_html',
-	function ($dom, $url_extractor) {
-		$blocksy_scripts = $dom->find('script[id="ct-scripts-js-extra"]');
+	function ($html_content, $url_extractor) {
+		$pattern = '/<script[^>]*id=[\'"]ct-scripts-js-extra[\'"][^>]*>(.*?)<\/script>/is';
+
+		$blocksy_scripts = [];
+
+		if (preg_match_all($pattern, $html_content, $matches)) {
+			foreach ($matches[0] as $match) {
+				$script_content = preg_replace('/<script[^>]*id=[\'"]ct-scripts-js-extra[\'"][^>]*>/', '', $match);
+				$script_content = preg_replace('/<\/script>/', '', $script_content);
+
+				$blocksy_scripts[] = $script_content;
+			}
+		}
 
 		foreach ($blocksy_scripts as $single_script) {
-			$content = $single_script->innertext;
+			$content = $single_script;
 
 			$all_components = explode('};', $content);
 
@@ -63,7 +74,7 @@ add_action(
 				$all_components
 			);
 
-			$single_script->innertext = $result;
+			$single_script = $result;
 		}
 	},
 	10, 2

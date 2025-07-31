@@ -6,6 +6,7 @@ import { focusLockManager } from '../helpers/focus-lock'
 import { whenTransitionEnds } from '../helpers/when-transition-ends'
 import { isTouchDevice } from '../helpers/is-touch-device'
 import { isIosDevice } from '../helpers/is-ios-device'
+import { isModalTrigger } from '../helpers/is-modal-trigger'
 
 const persistSettings = (settings) => {
 	settings.container.__overlay_settings__ = settings
@@ -376,7 +377,9 @@ export const handleClick = (e, settings) => {
 					settings.container.contains(e.target) ||
 					e.target === document.body ||
 					e.target.closest('[class*="select2-container"]') ||
-					!e.target.closest('body')
+					!e.target.closest('body') ||
+					// If the click is inside the micro popup, we should not close the panel.
+					e.target.closest('.ct-popup')
 				) {
 					return
 				}
@@ -426,26 +429,40 @@ export const handleClick = (e, settings) => {
 					return
 				}
 
+				const modalsTriggers = [
+					'.ct-offcanvas-trigger',
+					'.ct-header-account',
+					'[href="#ct-compare-modal"][data-behaviour="modal"]',
+					'[data-shortcut="compare"][data-behaviour="modal"]',
+				]
+
+				const linkIsModalTrigger = isModalTrigger(maybeA)
+
 				if (
 					!maybeA.closest('nav[data-id*="menu"]') &&
 					!maybeA.closest('[data-id*="text"]') &&
 					!maybeA.closest('[data-id*="button"]') &&
-					!maybeA.matches('.ct-offcanvas-trigger') &&
-					!maybeA.matches('.ct-header-account') &&
+					// If it will open a new overlay, we should not close the current one.
+					!linkIsModalTrigger &&
 					!maybeA.closest('.widget_nav_menu')
 				) {
 					return
 				}
 
+				const isLeftClick = event.button === 0
+
+				// event.ctrlKey is true if Ctrl is held
+				// event.metaKey is true if Cmd (⌘) is held (on Mac)
+				const newTabIntent =
+					isLeftClick && (event.ctrlKey || event.metaKey)
+
+				// Do not close the offcanvas if the link is intended to open in a new tab.
+				if (isLeftClick && newTabIntent) {
+					return
+				}
+
 				// regular | hash-link | modal
 				let linkType = 'regular'
-
-				if (
-					maybeA.matches('.ct-offcanvas-trigger') ||
-					maybeA.matches('.ct-header-account')
-				) {
-					linkType = 'modal'
-				}
 
 				let currentUrl = new URL(location.href)
 				let nextUrl = null
@@ -468,6 +485,10 @@ export const handleClick = (e, settings) => {
 					if (currentUrl.toString() === nextUrl.toString()) {
 						linkType = 'hash-link'
 					}
+				}
+
+				if (linkIsModalTrigger) {
+					linkType = 'modal'
 				}
 
 				// When a regular link is clicked, we should not hide the

@@ -772,7 +772,7 @@ if ($card_type === 'cover') {
 }
 
 // Featured Image Radius
-if ($card_type === 'simple') {
+if ($card_type === 'simple' || $structure === 'gutenberg') {
 	blocksy_output_spacing([
 		'css' => $css,
 		'tablet_css' => $tablet_css,

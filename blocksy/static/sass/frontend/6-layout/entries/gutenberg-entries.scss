@@ -1,6 +1,6 @@
 [data-archive="default"][data-layout="gutenberg"] {
 
-	article {
+	> article {
 		align-items: center;
 
 		&:not(:last-child) {

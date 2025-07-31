@@ -20,6 +20,9 @@
 
 	font-family: ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace;
 	font-size: 13px;
+	line-height: 1.65;
+	letter-spacing: initial;
+	text-transform: initial;
 }
 
 .w-tc-editor-numbers {
@@ -45,24 +48,18 @@
 .w-tc-editor-preview {
 	min-height: 16px;
 }
-.w-tc-editor-preview pre {
+
+.w-tc-editor-preview :is(pre, code) {
 	margin: 0;
 	padding: 0;
 	white-space: inherit;
 	font-family: inherit !important;
 	font-size: inherit !important;
+	line-height: inherit !important;
+	letter-spacing: inherit !important;
+	text-transform: inherit !important;
 }
 
-.w-tc-editor-preview code {
-	margin: 0;
-	padding: 0;
-	white-space: inherit;
-	font-family: inherit !important;
-	font-size: inherit !important;
-}
-.w-tc-editor-preview pre code {
-	font-family: inherit;
-}
 .w-tc-editor code[class*='language-'] .token.cdata,
 .w-tc-editor pre[class*='language-'] .token.cdata,
 .w-tc-editor code[class*='language-'] .token.comment,

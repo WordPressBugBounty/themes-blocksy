@@ -11,7 +11,9 @@
 	flex: 0 0 var(--toggle-button-size);
 	margin-block: var(--toggle-button-margin-block, initial);
 	margin-inline: var(--toggle-button-margin-start, auto) var(--toggle-button-margin-end, 0);
-	transition: border-color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955), background 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	transition: color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+				border-color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955), 
+				background 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
 	padding: var(--toggle-button-padding, 0px) !important;
 	box-shadow: var(--toggle-button-shadow, none) !important;

@@ -309,6 +309,8 @@ if (! function_exists('blocksy_render_archive_card')) {
 		$entry_open .= ' ' . wp_kses_post($data_reveal_output);
 		$entry_open .= '>';
 
+		do_action('blocksy:loop:card:before');
+
 		echo $entry_open;
 
 		do_action('blocksy:loop:card:start');
@@ -525,6 +527,8 @@ if (! function_exists('blocksy_render_archive_card')) {
 		do_action('blocksy:loop:card:end');
 
 		echo '</article>';
+
+		do_action('blocksy:loop:card:after');
 	}
 }
 

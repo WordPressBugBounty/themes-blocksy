@@ -938,7 +938,7 @@ $options = [
 								'value' => blocksy_background_default_value([
 									'backgroundColor' => [
 										'default' => [
-											'color' => '#ffffff'
+											'color' => 'var(--theme-palette-color-8)'
 										],
 									],
 								])

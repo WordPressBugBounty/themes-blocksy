@@ -79,15 +79,23 @@ let allFrontendEntryPoints = [
 	},
 
 	{
-		els: () => [
-			...(document.querySelector(
+		els: () => {
+			const popperEls = [
+				'.ct-language-switcher > .ct-active-language',
+				'.ct-header-account[data-interaction="dropdown"] > .ct-account-item',
+			]
+
+			const maybeCart = document.querySelector(
 				'.ct-header-cart > .ct-cart-content:not([data-count="0"])'
 			)
-				? ['.ct-header-cart > .ct-cart-item']
-				: []),
-			'.ct-language-switcher > .ct-active-language',
-			'.ct-header-account[data-interaction="dropdown"] > .ct-account-item',
-		],
+
+			// Cart within offcanvas doesn't have a dropdown
+			if (maybeCart && !maybeCart.closest('#offcanvas')) {
+				popperEls.push('.ct-header-cart > .ct-cart-item')
+			}
+
+			return popperEls
+		},
 		load: () => import('./frontend/popper-elements'),
 		trigger: ['hover-with-click'],
 	},
@@ -351,6 +359,14 @@ ctEvents.on('blocksy:frontend:init', () => {
 				promise: () =>
 					import('./frontend/integration/elementor-premium-addons'),
 				check: () => !!window.premiumWooProducts,
+			},
+
+			{
+				promise: () =>
+					import(
+						'./frontend/integration/advanced-product-fields-for-woocommerce'
+					),
+				check: () => !!window._wapf,
 			},
 		])
 	}

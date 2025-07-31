@@ -126,7 +126,13 @@ export const mount = (paginationContainer) => {
 				: null,
 
 		outlayer: null,
-		history: 'push',
+
+		// For now, history push is fully disabled because of cases when the
+		// view is not updated and we see outdated content on the page.
+		//
+		// https://github.com/Creative-Themes/blocksy/issues/4744
+		//
+		// history: 'push',
 
 		scrollThreshold: paginationType === 'infinite_scroll' ? 400 : false,
 
@@ -221,7 +227,9 @@ function getAppendSelectorFor(layoutEl, args = {}) {
 			return null
 		}
 
-		return `${selector} > li`
+		// Used to be plain "li", but now we use a more generic selector since
+		// content blocks can appear between products in archives.
+		return `${selector} > *`
 	}
 
 	return `section > ${

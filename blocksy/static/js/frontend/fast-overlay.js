@@ -42,16 +42,21 @@ export const fastOverlayHandleClick = (e, settings) => {
 
 			settings.container.classList.add('active')
 
+			// allow one frame to move from display: none -> flex
+			// Fixes issue with Firefox on first page load
 			requestAnimationFrame(() => {
-				document.body.dataset.panel = `in${
-					settings.container.dataset.behaviour.indexOf('left') > -1
-						? ':left'
-						: settings.container.dataset.behaviour.indexOf(
-								'right'
-						  ) > -1
-						? ':right'
-						: ''
-				}`
+				requestAnimationFrame(() => {
+					document.body.dataset.panel = `in${
+						settings.container.dataset.behaviour.indexOf('left') >
+						-1
+							? ':left'
+							: settings.container.dataset.behaviour.indexOf(
+									'right'
+							  ) > -1
+							? ':right'
+							: ''
+					}`
+				})
 			})
 		}
 

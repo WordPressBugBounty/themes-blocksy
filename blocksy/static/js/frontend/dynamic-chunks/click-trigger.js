@@ -1,5 +1,7 @@
 import { fastOverlayHandleClick } from '../fast-overlay'
 
+import { isModalTrigger } from '../helpers/is-modal-trigger'
+
 export const preloadClickHandlers = () => {
 	import('./button-loader-flow')
 	import('./modal-loader-flow')
@@ -29,10 +31,7 @@ export const handleClickTrigger = (
 
 			event.preventDefault()
 
-			if (
-				el.closest('.ct-panel.active') &&
-				el.matches('.ct-header-account[href*="account-modal"]')
-			) {
+			if (el.closest('.ct-panel.active') && isModalTrigger(el)) {
 				return
 			}
 

@@ -17,6 +17,10 @@ if (! function_exists('blocksy_tutor_lms_content_close')) {
 
 if (! function_exists('blocksy_tutor_lms_hero_type_1')) {
 	function blocksy_tutor_lms_hero_type_1($result) {
+		if ( empty($result) ) {
+			return $result;
+		}
+		
 		return blocksy_output_hero_section([
 			'type' => 'type-1',
 			'elements' => str_replace(
