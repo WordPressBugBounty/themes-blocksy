@@ -394,7 +394,7 @@ class Blocksy_Static_Css_Files {
 				'id' => 'ct-stackable-styles',
 				'url' => '/static/bundle/stackable.min.css',
 				'deps' => ['ct-main-styles'],
-				'enabled' => function_exists('sugb_fs')
+				'enabled' => defined('STACKABLE_VERSION')
 			],
 
 			[

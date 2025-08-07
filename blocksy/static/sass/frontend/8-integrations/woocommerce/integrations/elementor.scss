@@ -65,6 +65,20 @@
 	}
 }
 
+// product card
+[data-products="type-2"] .product {
+	padding-inline: 20px !important;
+	padding-bottom: 20px !important;
+
+	figure {
+		margin-inline: -20px !important;
+	}
+}
+
+:is(.ct-woo-card-actions, .ct-woo-card-extra) :is(a, button) {
+	margin: 0 !important;
+}
+
 // products shortcode
 .elementor-element [data-products] .product > figure {
 	margin-bottom: var(--product-element-spacing, 10px) !important;

@@ -739,7 +739,7 @@ function blocksy_customizer_register_options(
 			if (
 				$opt['option']['type'] === 'ct-panel'
 				&&
-				!isset($opt['option']['switch'])
+				! isset($opt['option']['switch'])
 			) {
 				$is_allowed = false;
 			}

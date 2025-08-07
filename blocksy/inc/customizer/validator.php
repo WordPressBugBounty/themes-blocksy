@@ -41,8 +41,61 @@ if (! function_exists('blocksy_validate_single_slider')) {
 	}
 }
 
+function blocksy_sanitize_builder_value($option, $input) {
+	if (! isset($input['sections'])) {
+		return $input;
+	}
+
+	foreach ($input['sections'] as $key => $section) {
+		if (! isset($section['items'])) {
+			continue;
+		}
+
+		$html_fields = [
+			'text' => ['header_text'],
+			'copyright_text' => ['copyright_text']
+		];
+
+		foreach ($section['items'] as $item_key => $item) {
+			if (! isset($item['id'])) {
+				continue;
+			}
+
+			if (
+				! isset($html_fields[$item['id']])
+				||
+				! isset($item['values'])
+			) {
+				continue;
+			}
+
+			foreach ($html_fields[$item['id']] as $html_field) {
+				if (! isset($item['values'][$html_field])) {
+					continue;
+				}
+
+				$item['values'][$html_field] = blocksy_sanitize_user_html(
+					$item['values'][$html_field]
+				);
+			}
+
+			$input['sections'][$key]['items'][$item_key] = $item;
+		}
+	}
+
+	return $input;
+}
+
 if (! function_exists('blocksy_validate_for')) {
 	function blocksy_validate_for($option, $input) {
+		if (
+			$option['type'] === 'ct-header-builder'
+			||
+			$option['type'] === 'ct-footer-builder'
+		) {
+			return blocksy_sanitize_builder_value($option, $input);
+		}
+
 		if (
 			$option['type'] === 'ct-switch'
 			||
@@ -162,7 +215,7 @@ if (! function_exists('blocksy_validate_for')) {
 				||
 				! isset($input['attachment_id'])
 				||
-				!wp_attachment_is_image($input['attachment_id'])
+				! wp_attachment_is_image($input['attachment_id'])
 			) {
 				return $option['value'];
 			}
@@ -174,11 +227,15 @@ if (! function_exists('blocksy_validate_for')) {
 
 if (! function_exists('blocksy_include_sanitizer')) {
 	function blocksy_include_sanitizer($option) {
-		if (isset($option['sanitize_callback'])) {
+		if (! isset($option['setting'])) {
 			return $option;
 		}
 
-		$option['sanitize_callback'] = function ($input, $setting) use ($option) {
+		if (isset($option['setting']['sanitize_callback'])) {
+			return $option;
+		}
+
+		$option['setting']['sanitize_callback'] = function ($input, $setting) use ($option) {
 			return blocksy_validate_for($option, $input);
 		};
 

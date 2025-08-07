@@ -253,7 +253,7 @@ if (! function_exists('blocksy_debug')) {
 	}
 }
 
-function blocksy_output_html_safely($html) {
+function blocksy_sanitize_user_html($html) {
 	// Just drop scripts from the html content, if user doesnt have
 	// unfiltered_html capability.
 	//
@@ -262,8 +262,20 @@ function blocksy_output_html_safely($html) {
 	// places.
 	if (! current_user_can('unfiltered_html')) {
 		$html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
+
+		// Remove any on*="…" or on*='…' or on*=… (unquoted) attributes
+		// Matches: space + on + letters + optional whitespace = optional quotes + anything except > + optional closing quote
+		$html = preg_replace(
+			'#\s+on[a-z]+\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+)#is',
+			'',
+			$html
+		);
 	}
 
+	return $html;
+}
+
+function blocksy_output_html_safely($html) {
 	return do_shortcode($html);
 
 	// Dont use wp_filter_post_kses() as it is very unstable as far as slashes go.
