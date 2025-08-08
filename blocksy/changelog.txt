@@ -1,3 +1,7 @@
+2.1.7: 2025-08-08
+- Improvement: Proper integration with Simply Static plugin
+- Improvement: Properly sanitize slider values from customizer
+
 2.1.6: 2025-08-07
 - Improvement: Better detect Stackable free version and apply needed styles
 - Improvement: Correctly sanitize HTML fields for users that don't have the unfiltered_html capability

@@ -522,7 +522,7 @@ function blocksy_customizer_register_options(
 				]
 			);
 
-			unset( $children_data );
+			unset($children_data);
 			continue;
 		}
 
@@ -800,7 +800,7 @@ function blocksy_customizer_register_options(
 
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 		trigger_error(
-			'Unknown group: ' . esc_html( $opt['group'] ),
+			'Unknown group: ' . esc_html($opt['group']),
 			E_USER_WARNING
 		);
 	}

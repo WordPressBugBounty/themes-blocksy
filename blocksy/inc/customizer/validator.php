@@ -19,7 +19,7 @@ if (! function_exists('blocksy_validate_color')) {
 		/**
 		 * Allow var(--global) values
 		 */
-		if (strlen($color) > 2 && substr( $color, 0, 5 ) === "var(--") {
+		if (strlen($color) > 2 && substr($color, 0, 6) === "var(--") {
 			return $color;
 		}
 
@@ -32,7 +32,7 @@ if (! function_exists('blocksy_validate_color')) {
 }
 
 if (! function_exists('blocksy_validate_single_slider')) {
-	function blocksy_validate_single_slider($option, $value) {
+	function blocksy_validate_single_slider($value) {
 		if (! intval($value) && intval($value) !== 0) {
 			return null;
 		}
@@ -147,7 +147,7 @@ if (! function_exists('blocksy_validate_for')) {
 				true
 			)) {
 				return $option['value'];
-						}
+			}
 		}
 
 		if (
@@ -170,9 +170,9 @@ if (! function_exists('blocksy_validate_for')) {
 						),
 						true
 					)
-								) {
-									return $option['value'];
-								}
+				) {
+					return $option['value'];
+				}
 			}
 		}
 
