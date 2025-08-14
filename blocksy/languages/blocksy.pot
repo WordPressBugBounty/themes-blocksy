@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-08 16:44+0000\n"
+"POT-Creation-Date: 2025-08-14 15:42+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -20,32 +20,32 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "x-generator: babel-plugin-wp-i18n\n"
 
-#: comments.php:62
+#: comments.php:64
 msgid "No comments yet"
 msgstr ""
 
-#: comments.php:62
+#: comments.php:64
 msgid "One comment"
 msgstr ""
 
 #. translators: % refers to the number of comments, when more than 1
-#: comments.php:62, inc/components/post-meta.php:505
+#: comments.php:64, inc/components/post-meta.php:505
 msgid "% Comments"
 msgstr ""
 
-#: comments.php:90
+#: comments.php:92
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:95
+#: comments.php:97
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: comments.php:99
+#: comments.php:101
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: comments.php:107
+#: comments.php:109
 msgid "Comments are closed."
 msgstr ""
 
@@ -1000,21 +1000,21 @@ msgid "Website"
 msgstr ""
 
 #. translators: 1: date, 2: time
-#: inc/components/single/comments.php:263
+#: inc/components/single/comments.php:265
 msgid "%1$s / %2$s"
 msgstr ""
 
-#: inc/components/single/comments.php:286
+#: inc/components/single/comments.php:288
 #: static/js/customizer/sync/builder.js:111
 #: static/js/options/options/ct-image-uploader.js:385
 msgid "Edit"
 msgstr ""
 
-#: inc/components/single/comments.php:294
+#: inc/components/single/comments.php:296
 msgid "Reply"
 msgstr ""
 
-#: inc/components/single/comments.php:310
+#: inc/components/single/comments.php:312
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
@@ -1374,7 +1374,7 @@ msgstr ""
 
 #: inc/options/general/back-to-top.php:217,
 #: inc/options/general/breadcrumbs.php:273, inc/options/general/buttons.php:45,
-#: inc/options/general/comments-single.php:141,
+#: inc/options/general/comments-single.php:190,
 #: inc/options/general/form-elements.php:100,
 #: inc/options/general/page-title.php:1315,
 #: inc/options/general/page-title.php:1417,
@@ -1462,8 +1462,8 @@ msgstr ""
 #: inc/options/general/colors.php:671, inc/options/general/colors.php:693,
 #: inc/options/general/colors.php:715, inc/options/general/colors.php:737,
 #: inc/options/general/colors.php:759,
-#: inc/options/general/comments-single.php:162,
-#: inc/options/general/comments-single.php:192,
+#: inc/options/general/comments-single.php:211,
+#: inc/options/general/comments-single.php:241,
 #: inc/options/general/form-elements.php:128,
 #: inc/options/general/form-elements.php:163,
 #: inc/options/general/form-elements.php:196,
@@ -1661,8 +1661,8 @@ msgstr ""
 #: inc/options/general/back-to-top.php:244,
 #: inc/options/general/back-to-top.php:274, inc/options/general/buttons.php:73,
 #: inc/options/general/buttons.php:103, inc/options/general/colors.php:556,
-#: inc/options/general/comments-single.php:168,
-#: inc/options/general/comments-single.php:198,
+#: inc/options/general/comments-single.php:217,
+#: inc/options/general/comments-single.php:247,
 #: inc/options/general/page-title.php:972,
 #: inc/options/general/page-title.php:1008,
 #: inc/options/general/page-title.php:1039,
@@ -2171,72 +2171,85 @@ msgstr ""
 msgid "Inside"
 msgstr ""
 
-#: inc/options/general/comments-single.php:56
+#: inc/options/general/comments-single.php:56,
+#: inc/options/single-elements/post-share-box.php:245,
+#: inc/options/single-elements/post-tags.php:99,
+#: inc/options/single-elements/related-posts.php:173,
+#: inc/options/woocommerce/related-upsells.php:76
+msgid "Module Title Tag"
+msgstr ""
+
+#: inc/options/general/comments-single.php:81,
+#: inc/options/single-elements/author-box.php:55
+msgid "Author Name Tag"
+msgstr ""
+
+#: inc/options/general/comments-single.php:105
 msgid "Comment Form Position"
 msgstr ""
 
-#: inc/options/general/comments-single.php:63
+#: inc/options/general/comments-single.php:112
 msgid "Below List"
 msgstr ""
 
-#: inc/options/general/comments-single.php:64
+#: inc/options/general/comments-single.php:113
 msgid "Above List"
 msgstr ""
 
-#: inc/options/general/comments-single.php:77,
+#: inc/options/general/comments-single.php:126,
 #: inc/options/single-elements/related-posts.php:500,
 #: inc/options/woocommerce/single-product-tabs.php:85
 msgid "Module Placement"
 msgstr ""
 
-#: inc/options/general/comments-single.php:82
+#: inc/options/general/comments-single.php:131
 msgid ""
 "Separate or unify the comments module from or with the entry content area."
 msgstr ""
 
-#: inc/options/general/comments-single.php:84,
+#: inc/options/general/comments-single.php:133,
 #: inc/options/single-elements/related-posts.php:507
 msgid "Separated"
 msgstr ""
 
-#: inc/options/general/comments-single.php:85,
+#: inc/options/general/comments-single.php:134,
 #: inc/options/single-elements/related-posts.php:508
 msgid "Contained"
 msgstr ""
 
-#: inc/options/general/comments-single.php:103,
+#: inc/options/general/comments-single.php:152,
 #: inc/options/single-elements/related-posts.php:561,
 #: inc/panel-builder/footer/options.php:6,
 #: inc/panel-builder/header/middle-row/options.php:32
 msgid "Container Structure"
 msgstr ""
 
-#: inc/options/general/comments-single.php:109,
+#: inc/options/general/comments-single.php:158,
 #: inc/options/general/page-title.php:739,
 #: inc/options/single-elements/related-posts.php:569
 msgid "Narrow"
 msgstr ""
 
-#: inc/options/general/comments-single.php:110,
+#: inc/options/general/comments-single.php:159,
 #: inc/options/single-elements/related-posts.php:568
 msgid "Normal"
 msgstr ""
 
-#: inc/options/general/comments-single.php:126,
+#: inc/options/general/comments-single.php:175,
 #: inc/options/single-elements/related-posts.php:585
 msgid "Container Max Width"
 msgstr ""
 
-#: inc/options/general/comments-single.php:146,
+#: inc/options/general/comments-single.php:195,
 #: inc/options/single-elements/author-box.php:245
 msgid "Author Name Font Color"
 msgstr ""
 
-#: inc/options/general/comments-single.php:176
+#: inc/options/general/comments-single.php:225
 msgid "Text Font Color"
 msgstr ""
 
-#: inc/options/general/comments-single.php:211,
+#: inc/options/general/comments-single.php:260,
 #: inc/options/general/page-title.php:1275,
 #: inc/options/single-elements/related-posts.php:921,
 #: inc/panel-builder/footer/options.php:89
@@ -3756,10 +3769,6 @@ msgstr ""
 msgid "Box Type"
 msgstr ""
 
-#: inc/options/single-elements/author-box.php:55
-msgid "Author Name Tag"
-msgstr ""
-
 #: inc/options/single-elements/author-box.php:88
 msgid "Posts Count"
 msgstr ""
@@ -3921,13 +3930,6 @@ msgstr ""
 #: inc/options/single-elements/post-tags.php:87,
 #: inc/options/single-elements/related-posts.php:165
 msgid "Module Title"
-msgstr ""
-
-#: inc/options/single-elements/post-share-box.php:245,
-#: inc/options/single-elements/post-tags.php:99,
-#: inc/options/single-elements/related-posts.php:173,
-#: inc/options/woocommerce/related-upsells.php:76
-msgid "Module Title Tag"
 msgstr ""
 
 #: inc/options/single-elements/post-share-box.php:282

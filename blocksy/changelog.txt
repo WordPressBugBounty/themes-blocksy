@@ -1,3 +1,10 @@
+2.1.8: 2025-08-14
+- Improvement: Customizer - properly validate color values in customizer
+- Improvement: Customizer - properly validate responsive values in customizer
+- Improvement: Offcanvas - correctly handle focus lock when offcanvas is scrollable in Firefox
+- Improvement: Post comments - add option to change the comments number and comments author heading tag
+- Improvement: Update WooCommerce cart template to the latest version
+
 2.1.7: 2025-08-08
 - Improvement: Proper integration with Simply Static plugin
 - Improvement: Properly sanitize slider values from customizer

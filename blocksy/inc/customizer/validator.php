@@ -23,7 +23,8 @@ if (! function_exists('blocksy_validate_color')) {
 			return $color;
 		}
 
-		if ($color === 'CT_CSS_SKIP_RULE') {
+		// Allow CT_CSS_SKIP_RULE values
+		if (strpos($color, 'CT_CSS_SKIP_RULE') !== false) {
 			return $color;
 		}
 
@@ -189,15 +190,19 @@ if (! function_exists('blocksy_validate_for')) {
 
 		if ($option['type'] === 'ct-slider') {
 			if ($option['responsive']) {
-				foreach (
-					array_values(
-						blocksy_expand_responsive_value($input)
-					) as $single_value
-				) {
+				$values_to_validate = ['desktop', 'tablet', 'mobile'];
+
+				foreach (blocksy_expand_responsive_value($input) as $single_key => $single_value) {
+					if (! in_array($single_key, $values_to_validate)) {
+						continue;
+					}
+
 					if (! blocksy_validate_single_slider($single_value)) {
 						return $option['value'];
 					}
 				}
+
+				return $input;
 			}
 
 			if (
