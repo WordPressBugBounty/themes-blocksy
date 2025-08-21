@@ -1,6 +1,8 @@
 import { getCurrentScreen } from '../helpers/current-screen'
 import { isTouchDevice } from '../helpers/is-touch-device'
 
+// Maybe try to check focus with :has(:focus) instead of document.activeElement.
+
 const tabbables = [
 	'button:enabled:not([readonly])',
 	'select:enabled:not([readonly])',

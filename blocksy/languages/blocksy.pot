@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-14 15:42+0000\n"
+"POT-Creation-Date: 2025-08-21 15:00+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Search in category"
 msgstr ""
 
-#: searchform.php:351, inc/manager.php:240, inc/manager.php:242
+#: searchform.php:351, inc/manager.php:230, inc/manager.php:232
 msgid "No results"
 msgstr ""
 
@@ -142,38 +142,38 @@ msgstr ""
 msgid "Footer Widget Area "
 msgstr ""
 
-#: inc/manager.php:237
+#: inc/manager.php:227
 msgid "Show more"
 msgstr ""
 
-#: inc/manager.php:238
+#: inc/manager.php:228
 msgid "More"
 msgstr ""
 
-#: inc/manager.php:239
+#: inc/manager.php:229
 msgid "Search results"
 msgstr ""
 
-#: inc/manager.php:243, inc/manager.php:249
+#: inc/manager.php:233, inc/manager.php:239
 msgid "You got %s result. Please press Tab to select it."
 msgid_plural "You got %s results. Please press Tab to select one."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/manager.php:256
+#: inc/manager.php:246
 msgid "Copied!"
 msgstr ""
 
-#: inc/manager.php:257
+#: inc/manager.php:247
 msgid "Failed to Copy"
 msgstr ""
 
-#: inc/manager.php:259, inc/components/menus.php:92,
+#: inc/manager.php:249, inc/components/menus.php:92,
 #: inc/components/menus.php:80, inc/components/menus.php:241
 msgid "Expand dropdown menu"
 msgstr ""
 
-#: inc/manager.php:260
+#: inc/manager.php:250
 msgid "Collapse dropdown menu"
 msgstr ""
 
@@ -326,11 +326,11 @@ msgstr ""
 msgid "Singulars"
 msgstr ""
 
-#: inc/classes/woo-import-export.php:76
+#: inc/classes/woo-import-export.php:78
 msgid "Blocksy Custom Data"
 msgstr ""
 
-#: inc/classes/woo-variation-images-import-export.php:41
+#: inc/classes/woo-variation-images-import-export.php:44
 msgid "Blocksy Variation Images"
 msgstr ""
 
@@ -1006,7 +1006,7 @@ msgstr ""
 
 #: inc/components/single/comments.php:288
 #: static/js/customizer/sync/builder.js:111
-#: static/js/options/options/ct-image-uploader.js:385
+#: static/js/options/options/ct-image-uploader.js:397
 msgid "Edit"
 msgstr ""
 
@@ -1320,7 +1320,7 @@ msgstr ""
 #: inc/panel-builder/header/text/options.php:452,
 #: inc/panel-builder/header/trigger/options.php:62,
 #: inc/panel-builder/header/trigger/options.php:118,
-#: inc/panel-builder/header/trigger/options.php:649
+#: inc/panel-builder/header/trigger/options.php:179
 msgid "Tablet"
 msgstr ""
 
@@ -1368,7 +1368,7 @@ msgstr ""
 #: inc/panel-builder/header/text/options.php:453,
 #: inc/panel-builder/header/trigger/options.php:63,
 #: inc/panel-builder/header/trigger/options.php:119,
-#: inc/panel-builder/header/trigger/options.php:650
+#: inc/panel-builder/header/trigger/options.php:180
 msgid "Mobile"
 msgstr ""
 
@@ -1430,7 +1430,7 @@ msgstr ""
 #: inc/panel-builder/header/search/options.php:538,
 #: inc/panel-builder/header/socials/options.php:189,
 #: inc/panel-builder/header/text/options.php:150,
-#: inc/panel-builder/header/trigger/options.php:166
+#: inc/panel-builder/header/trigger/options.php:190
 msgid "Design"
 msgstr ""
 
@@ -1447,10 +1447,10 @@ msgstr ""
 #: inc/panel-builder/header/search/options.php:368,
 #: inc/panel-builder/header/search/options.php:398,
 #: inc/panel-builder/header/search/options.php:746,
-#: inc/panel-builder/header/trigger/options.php:319,
-#: inc/panel-builder/header/trigger/options.php:348,
-#: inc/panel-builder/header/trigger/options.php:379,
-#: inc/panel-builder/header/trigger/options.php:408
+#: inc/panel-builder/header/trigger/options.php:343,
+#: inc/panel-builder/header/trigger/options.php:372,
+#: inc/panel-builder/header/trigger/options.php:403,
+#: inc/panel-builder/header/trigger/options.php:432
 msgid "Icon Color"
 msgstr ""
 
@@ -1642,15 +1642,15 @@ msgstr ""
 #: inc/panel-builder/header/socials/options.php:549,
 #: inc/panel-builder/header/socials/options.php:588,
 #: inc/panel-builder/header/socials/options.php:627,
-#: inc/panel-builder/header/trigger/options.php:238,
-#: inc/panel-builder/header/trigger/options.php:269,
-#: inc/panel-builder/header/trigger/options.php:298,
-#: inc/panel-builder/header/trigger/options.php:365,
-#: inc/panel-builder/header/trigger/options.php:396,
-#: inc/panel-builder/header/trigger/options.php:425,
-#: inc/panel-builder/header/trigger/options.php:508,
-#: inc/panel-builder/header/trigger/options.php:548,
-#: inc/panel-builder/header/trigger/options.php:586
+#: inc/panel-builder/header/trigger/options.php:262,
+#: inc/panel-builder/header/trigger/options.php:293,
+#: inc/panel-builder/header/trigger/options.php:322,
+#: inc/panel-builder/header/trigger/options.php:389,
+#: inc/panel-builder/header/trigger/options.php:420,
+#: inc/panel-builder/header/trigger/options.php:449,
+#: inc/panel-builder/header/trigger/options.php:532,
+#: inc/panel-builder/header/trigger/options.php:572,
+#: inc/panel-builder/header/trigger/options.php:610
 #: static/js/options/options/background/BackgroundModal.js:154
 #: static/js/options/options/background/ImagePicker.js:190
 #: static/js/options/options/background/PatternPicker.js:170
@@ -1793,15 +1793,15 @@ msgstr ""
 #: inc/panel-builder/header/socials/options.php:554,
 #: inc/panel-builder/header/socials/options.php:593,
 #: inc/panel-builder/header/socials/options.php:632,
-#: inc/panel-builder/header/trigger/options.php:244,
-#: inc/panel-builder/header/trigger/options.php:274,
-#: inc/panel-builder/header/trigger/options.php:303,
-#: inc/panel-builder/header/trigger/options.php:371,
-#: inc/panel-builder/header/trigger/options.php:401,
-#: inc/panel-builder/header/trigger/options.php:430,
-#: inc/panel-builder/header/trigger/options.php:514,
-#: inc/panel-builder/header/trigger/options.php:553,
-#: inc/panel-builder/header/trigger/options.php:591
+#: inc/panel-builder/header/trigger/options.php:268,
+#: inc/panel-builder/header/trigger/options.php:298,
+#: inc/panel-builder/header/trigger/options.php:327,
+#: inc/panel-builder/header/trigger/options.php:395,
+#: inc/panel-builder/header/trigger/options.php:425,
+#: inc/panel-builder/header/trigger/options.php:454,
+#: inc/panel-builder/header/trigger/options.php:538,
+#: inc/panel-builder/header/trigger/options.php:577,
+#: inc/panel-builder/header/trigger/options.php:615
 #: static/js/options/options/ct-border.js:115
 msgid "Hover"
 msgstr ""
@@ -2004,9 +2004,9 @@ msgstr ""
 #: inc/panel-builder/header/text/options.php:195,
 #: inc/panel-builder/header/text/options.php:237,
 #: inc/panel-builder/header/text/options.php:276,
-#: inc/panel-builder/header/trigger/options.php:221,
-#: inc/panel-builder/header/trigger/options.php:252,
-#: inc/panel-builder/header/trigger/options.php:281
+#: inc/panel-builder/header/trigger/options.php:245,
+#: inc/panel-builder/header/trigger/options.php:276,
+#: inc/panel-builder/header/trigger/options.php:305
 msgid "Font Color"
 msgstr ""
 
@@ -2029,10 +2029,10 @@ msgstr ""
 #: inc/panel-builder/header/menu/options.php:518,
 #: inc/panel-builder/header/offcanvas/options.php:387,
 #: inc/panel-builder/header/search/options.php:822,
-#: inc/panel-builder/header/trigger/options.php:446,
-#: inc/panel-builder/header/trigger/options.php:488,
-#: inc/panel-builder/header/trigger/options.php:528,
-#: inc/panel-builder/header/trigger/options.php:566
+#: inc/panel-builder/header/trigger/options.php:470,
+#: inc/panel-builder/header/trigger/options.php:512,
+#: inc/panel-builder/header/trigger/options.php:552,
+#: inc/panel-builder/header/trigger/options.php:590
 #: static/js/options/options/background/BackgroundModal.js:144
 msgid "Background Color"
 msgstr ""
@@ -2065,10 +2065,9 @@ msgstr ""
 #: inc/options/woocommerce/single-product-gallery.php:373,
 #: inc/panel-builder/header/button/options.php:834,
 #: inc/panel-builder/header/cart/options.php:1126,
-#: inc/panel-builder/header/middle-row/options.php:590,
 #: inc/panel-builder/header/offcanvas/options.php:428,
 #: inc/panel-builder/header/search/options.php:861,
-#: inc/panel-builder/header/trigger/options.php:606
+#: inc/panel-builder/header/trigger/options.php:630
 msgid "Border Radius"
 msgstr ""
 
@@ -2413,10 +2412,10 @@ msgstr ""
 #: inc/panel-builder/header/cart/options.php:1035,
 #: inc/panel-builder/header/offcanvas/options.php:346,
 #: inc/panel-builder/header/search/options.php:783,
-#: inc/panel-builder/header/trigger/options.php:442,
-#: inc/panel-builder/header/trigger/options.php:484,
-#: inc/panel-builder/header/trigger/options.php:524,
-#: inc/panel-builder/header/trigger/options.php:562
+#: inc/panel-builder/header/trigger/options.php:466,
+#: inc/panel-builder/header/trigger/options.php:508,
+#: inc/panel-builder/header/trigger/options.php:548,
+#: inc/panel-builder/header/trigger/options.php:586
 msgid "Border Color"
 msgstr ""
 
@@ -4959,7 +4958,7 @@ msgstr ""
 #: inc/panel-builder/header/socials/options.php:167,
 #: inc/panel-builder/header/text/options.php:111,
 #: inc/panel-builder/header/text/options.php:442,
-#: inc/panel-builder/header/trigger/options.php:638
+#: inc/panel-builder/header/trigger/options.php:168
 msgid "Element Visibility"
 msgstr ""
 
@@ -4975,7 +4974,7 @@ msgstr ""
 #: inc/panel-builder/header/offcanvas-logo/options.php:76,
 #: inc/panel-builder/header/socials/options.php:642,
 #: inc/panel-builder/header/text/options.php:419,
-#: inc/panel-builder/header/trigger/options.php:621
+#: inc/panel-builder/header/trigger/options.php:645
 msgid "Margin"
 msgstr ""
 
@@ -5137,7 +5136,7 @@ msgstr ""
 #: inc/panel-builder/footer/socials/options.php:246,
 #: inc/panel-builder/header/search/options.php:172,
 #: inc/panel-builder/header/socials/options.php:206,
-#: inc/panel-builder/header/trigger/options.php:182
+#: inc/panel-builder/header/trigger/options.php:206
 msgid "Label Font"
 msgstr ""
 
@@ -5336,9 +5335,9 @@ msgstr ""
 #: inc/panel-builder/header/socials/options.php:490,
 #: inc/panel-builder/header/text/options.php:171,
 #: inc/panel-builder/header/text/options.php:324,
-#: inc/panel-builder/header/trigger/options.php:198,
-#: inc/panel-builder/header/trigger/options.php:324,
-#: inc/panel-builder/header/trigger/options.php:455
+#: inc/panel-builder/header/trigger/options.php:222,
+#: inc/panel-builder/header/trigger/options.php:348,
+#: inc/panel-builder/header/trigger/options.php:479
 msgid "Default State"
 msgstr ""
 
@@ -5367,9 +5366,9 @@ msgstr ""
 #: inc/panel-builder/header/socials/options.php:499,
 #: inc/panel-builder/header/text/options.php:176,
 #: inc/panel-builder/header/text/options.php:329,
-#: inc/panel-builder/header/trigger/options.php:203,
-#: inc/panel-builder/header/trigger/options.php:329,
-#: inc/panel-builder/header/trigger/options.php:461
+#: inc/panel-builder/header/trigger/options.php:227,
+#: inc/panel-builder/header/trigger/options.php:353,
+#: inc/panel-builder/header/trigger/options.php:485
 msgid "Transparent State"
 msgstr ""
 
@@ -5398,9 +5397,9 @@ msgstr ""
 #: inc/panel-builder/header/socials/options.php:510,
 #: inc/panel-builder/header/text/options.php:185,
 #: inc/panel-builder/header/text/options.php:338,
-#: inc/panel-builder/header/trigger/options.php:212,
-#: inc/panel-builder/header/trigger/options.php:338,
-#: inc/panel-builder/header/trigger/options.php:471
+#: inc/panel-builder/header/trigger/options.php:236,
+#: inc/panel-builder/header/trigger/options.php:362,
+#: inc/panel-builder/header/trigger/options.php:495
 msgid "Sticky State"
 msgstr ""
 
@@ -5820,6 +5819,14 @@ msgstr ""
 msgid "Bottom Border"
 msgstr ""
 
+#: inc/panel-builder/header/middle-row/options.php:590
+msgid "Row Padding"
+msgstr ""
+
+#: inc/panel-builder/header/middle-row/options.php:620
+msgid "Row Border Radius"
+msgstr ""
+
 #: inc/panel-builder/header/mobile-menu/options.php:35
 msgid "Interactive Collapse"
 msgstr ""
@@ -5894,7 +5901,7 @@ msgstr ""
 
 #: inc/panel-builder/header/search/options.php:183,
 #: inc/panel-builder/header/socials/options.php:217,
-#: inc/panel-builder/header/trigger/options.php:193
+#: inc/panel-builder/header/trigger/options.php:217
 msgid "Label Font Color"
 msgstr ""
 
@@ -5988,9 +5995,9 @@ msgstr ""
 msgid "Trigger"
 msgstr ""
 
-#: inc/panel-builder/header/trigger/options.php:482,
-#: inc/panel-builder/header/trigger/options.php:522,
-#: inc/panel-builder/header/trigger/options.php:560
+#: inc/panel-builder/header/trigger/options.php:506,
+#: inc/panel-builder/header/trigger/options.php:546,
+#: inc/panel-builder/header/trigger/options.php:584
 msgid "Trigger Border Color"
 msgstr ""
 
@@ -6628,7 +6635,7 @@ msgid "Download Blocksy Companion"
 msgstr ""
 
 #: static/js/options/GenericOptionType.js:593
-msgid "Option can't be edited for current device"
+msgid "This option can't be edited for current device"
 msgstr ""
 
 #: static/js/options/options/background/BackgroundModal.js:105
@@ -6803,7 +6810,7 @@ msgid "Custom Palette #%s"
 msgstr ""
 
 #: static/js/options/options/color-palettes/CustomPalettes.js:55
-#: static/js/options/options/ct-image-uploader.js:401
+#: static/js/options/options/ct-image-uploader.js:413
 msgid "Remove"
 msgstr ""
 
@@ -6907,7 +6914,7 @@ msgstr ""
 msgid "Choose File"
 msgstr ""
 
-#: static/js/options/options/ct-image-uploader.js:416
+#: static/js/options/options/ct-image-uploader.js:428
 msgid "Select logo"
 msgstr ""
 

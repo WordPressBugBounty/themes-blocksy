@@ -1,6 +1,6 @@
 {
 	"name": "small-ct",
-	"version": "2.1.8",
+	"version": "2.1.9",
 	"title": "Blocksy",
 	"browserslist": "> 1%, not opera > 0, not op_mini all",
 	"devDependencies": {
@@ -50,7 +50,7 @@
 		"file-saver": "^2.0.0-rc.4",
 		"flexy": "git+ssh://git@github.com:sergiu-radu/flexy.git",
 		"gradient-parser": "^1.0.2",
-		"infinite-scroll": "^4.0.1",
+		"infinite-scroll": "^5.0.0",
 		"match-conditions": "^1.0.16",
 		"md5": "^2.2.1",
 		"nanoid": "^2.0.0",

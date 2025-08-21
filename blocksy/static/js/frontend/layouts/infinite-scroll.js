@@ -67,6 +67,16 @@ const generateQuerySelector = (el) => {
 InfiniteScroll.imagesLoaded = (fragment, fn) => fn()
 InfiniteScroll.Button.prototype.hide = () => {}
 
+InfiniteScroll.prototype.onPageScroll = InfiniteScroll.throttle(function () {
+	let distance = this.getBottomDistance()
+	if (
+		distance <= this.options.scrollThreshold &&
+		distance > -this.options.scrollThreshold
+	) {
+		this.dispatchEvent('scrollThreshold')
+	}
+})
+
 export const mount = (paginationContainer) => {
 	let layoutEl = [...paginationContainer.parentNode.children]
 		.reduce(

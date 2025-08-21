@@ -1,3 +1,13 @@
+2.1.9: 2025-08-21
+- Improvement: I18n - Properly register theme mods keys for Polylang
+- Improvement: Infinite scroll - don't load next page when scrolled way past the end of the archive container
+- Improvement: Logo element - correctly detect SVG logo when taking default native logo
+- Improvement: Make sure "Customizer" toggles are correctly aligned in RTL mode when turned on
+- Improvement: Make sure the "Customizer" menu levels have the correct animation in RTL mode
+- Improvement: Make sure the WooCommerce "Coupon Form" option works correctly for the "Checkout" page
+- Improvement: Single product gallery - Correctly initialize zoom on first hover without hardcoded timeouts
+- Fix: Make sure all "Customizer" panel levels are accessible in RTL mode
+
 2.1.8: 2025-08-14
 - Improvement: Customizer - properly validate color values in customizer
 - Improvement: Customizer - properly validate responsive values in customizer

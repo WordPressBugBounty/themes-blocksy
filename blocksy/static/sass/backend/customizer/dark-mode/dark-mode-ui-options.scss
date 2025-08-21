@@ -352,11 +352,10 @@
 	}
 
 	// notification
-	.ct-notification,
-	.ct-disabled-notification {
+	.ct-notification {
 		color: lighten($background, 50%);
-		background: $background_light;
-		border-left-color: $accent;
+		// background: $background_light;
+		// border-left-color: $accent;
 	}
 
 	// attachment

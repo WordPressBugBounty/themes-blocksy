@@ -102,7 +102,13 @@ if (! function_exists('blocksy_validate_for')) {
 			||
 			$option['type'] === 'ct-panel'
 		) {
-			if (in_array($input, ['yes', 'no'], true)) {
+			$allowed_values = ['yes', 'no'];
+
+			if (isset($option['behavior']) && $option['behavior'] === 'bool') {
+				$allowed_values = [true, false];
+			}
+
+			if (in_array($input, $allowed_values, true)) {
 				return $input;
 			}
 

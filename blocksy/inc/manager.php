@@ -89,16 +89,6 @@ class Blocksy_Manager {
 			$i18n_manager->register_wpml_translation_keys();
 		});
 
-		if (is_admin()) {
-			add_action(
-				'admin_init',
-				function () {
-					$i18n_manager = new Blocksy_Translations_Manager();
-					$i18n_manager->register_translation_keys();
-				}
-			);
-		}
-
 		add_action('customize_save', function ($obj) {
 			if (! $obj) {
 				return;

@@ -591,6 +591,36 @@ class Blocksy_Screen_Manager {
 
 		return $output;
 	}
+
+	public function compute_post_type_for_prefix($prefix) {
+		$post_type = 'post';
+
+		if ($prefix === 'product') {
+			$post_type = 'product';
+		}
+
+		if ($prefix === 'single_page') {
+			$post_type = 'page';
+		}
+
+		$post_types = [];
+
+		if (blocksy_manager()) {
+			$post_types = blocksy_manager()->post_types->get_supported_post_types();
+		}
+
+		foreach ($post_types as $single_post_type) {
+			if (
+				$prefix === $single_post_type . '_archive'
+				||
+				$prefix === $single_post_type . '_single'
+			) {
+				$post_type = $single_post_type;
+			}
+		}
+
+		return $post_type;
+	}
 }
 
 /**

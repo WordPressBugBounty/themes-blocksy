@@ -157,6 +157,12 @@ const Condition = ({
 
 					const hasSvg = ids.some((id) => {
 						const attachmentIds = [
+							...(wp &&
+							wp.customize &&
+							wp.customize('custom_logo')
+								? [wp.customize('custom_logo')()]
+								: []),
+
 							...new Set(
 								typeof valueForCondition[id] === 'number'
 									? [valueForCondition[id]]

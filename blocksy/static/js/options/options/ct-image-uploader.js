@@ -43,8 +43,20 @@ export default class ImageUploader extends Component {
 				  }
 		)
 
-	getAttachmentId = (props = this.props) =>
-		props.option.inline_value ? props.value : props.value.attachment_id
+	getAttachmentId = (props = this.props) => {
+		let defaultValue = props.option.value || ''
+
+		// Special case for custom logo. Sometimes, the custom logo is set but
+		// not published, so we need to get the default straight from the
+		// customizer.
+		if (!defaultValue && props.id === 'custom_logo') {
+			defaultValue = wp.customize('custom_logo')() || ''
+		}
+
+		return props.option.inline_value
+			? props.value || defaultValue
+			: props.value.attachment_id
+	}
 
 	/**
 	 * Create a media modal select frame, and store it so the instance can be reused when needed.

@@ -1,5 +1,4 @@
 .ct-panel {
-
 	&.ct-click-allowed {
 		cursor: pointer;
 		position: relative;
@@ -24,7 +23,6 @@
 		}
 
 		.ct-customizer-panel-option {
-
 			button {
 				opacity: 0.7;
 				pointer-events: auto;
@@ -210,10 +208,8 @@
 	position: relative;
 }
 
-
-
 // temp notice for this case - https://themes.trac.wordpress.org/ticket/181031#comment:13
-// to remove later maybe 
+// to remove later maybe
 .ct-customizer-panel-container {
 	display: flex;
 	align-items: center;
@@ -225,9 +221,7 @@
 		position: initial;
 	}
 
-
-	[data-tooltip-reveal="top:full"] {
-
+	[data-tooltip-reveal='top:full'] {
 		.ct-tooltip {
 			text-align: initial;
 			white-space: initial;
@@ -257,8 +251,8 @@
 				transform: translateY(calc(-100% - 11px));
 
 				transition: opacity 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-							transform 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-							visibility 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+					transform 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+					visibility 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 			}
 		}
 

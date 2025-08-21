@@ -14,6 +14,7 @@ class WooImportExport {
 			"woocommerce_product_export_{$this->export_type}_default_columns",
 			[$this, 'export_column_name']
 		);
+
 		add_filter(
 			'woocommerce_product_export_column_names',
 			[$this, 'export_column_name']
@@ -28,11 +29,12 @@ class WooImportExport {
 		add_filter(
 			'woocommerce_csv_product_import_mapping_options',
 			[$this, 'export_column_name']
-	   	);
+		);
+
 		add_filter(
 			'woocommerce_csv_product_import_mapping_default_columns',
 			[$this, 'default_import_column_name']
-	   	);
+		);
 	}
 
 	public static function parse_data($data) {
@@ -181,23 +183,23 @@ class WooImportExport {
 	}
 
 	public static function upload_video_from_url($video_url) {
-		// Validate the URL
 		if (! filter_var($video_url, FILTER_VALIDATE_URL)) {
 			return new WP_Error('invalid_url', 'Invalid video URL.');
 		}
 
 		require_once(ABSPATH . 'wp-admin/includes/file.php');
-		require_once( ABSPATH . 'wp-admin/includes/media.php' );
+		require_once(ABSPATH . 'wp-admin/includes/media.php');
 
 		// Get the video file extension and MIME type
 		$file_info = wp_check_filetype(basename($video_url));
-		$allowed_mime_types = array(
+
+		$allowed_mime_types = [
 			'video/mp4'  => 'mp4',
 			'video/webm' => 'webm',
 			'video/ogg'  => 'ogg',
-		);
+		];
 
-		if (!array_key_exists($file_info['type'], $allowed_mime_types)) {
+		if (! array_key_exists($file_info['type'], $allowed_mime_types)) {
 			return new \WP_Error('file_type_error', 'This file type is not allowed for video uploads.');
 		}
 
@@ -212,7 +214,7 @@ class WooImportExport {
 		$video_content = wp_remote_retrieve_body($response);
 		$temp_file = wp_tempnam($video_url);
 
-		if (!$temp_file) {
+		if (! $temp_file) {
 			return new \WP_Error('temp_file_error', 'Could not create a temporary file for the video.');
 		}
 
@@ -220,15 +222,15 @@ class WooImportExport {
 		file_put_contents($temp_file, $video_content);
 
 		// Prepare the file array for WordPress
-		$file = array(
-			'name'     => basename($video_url), // Set the file name
+		$file = [
+			'name' => basename($video_url), // Set the file name
 			'tmp_name' => $temp_file,
-			'error'    => 0,
-			'size'     => filesize($temp_file),
-		);
+			'error' => 0,
+			'size' => filesize($temp_file),
+		];
 
 		// Handle the file upload using wp_handle_sideload
-		$upload_overrides = array('test_form' => false);
+		$upload_overrides = ['test_form' => false];
 		$uploaded_file = wp_handle_sideload($file, $upload_overrides);
 
 		if (isset($uploaded_file['error'])) {
@@ -236,12 +238,12 @@ class WooImportExport {
 		}
 
 		// Insert the attachment into the media library
-		$attachment = array(
+		$attachment = [
 			'post_mime_type' => $file_info['type'],
-			'post_title'     => sanitize_file_name($file['name']),
-			'post_content'   => '',
-			'post_status'    => 'inherit'
-		);
+			'post_title' => sanitize_file_name($file['name']),
+			'post_content'=> '',
+			'post_status' => 'inherit'
+		];
 
 		$attachment_id = wp_insert_attachment($attachment, $uploaded_file['file']);
 
@@ -257,30 +259,28 @@ class WooImportExport {
 		// Clean up the temporary file
 		@unlink($temp_file);
 
-		// Return the attachment ID or URL if successful
 		return $attachment_id;
 	}
 
 	public static function get_import_file_data() {
-
 		if (self::$data_cache) {
 			return self::$data_cache;
 		}
 
-		$file = wc_clean(wp_unslash($_POST['file'] ?? '')); // PHPCS: input var ok.
+		$file = wc_clean(wp_unslash($_POST['file'] ?? ''));
 
-		$params = array(
-			'delimiter' => ! empty($_POST['delimiter']) ? wc_clean(wp_unslash($_POST['delimiter'])) : ',', // PHPCS: input var ok.
+		$params = [
+			'delimiter' => ! empty($_POST['delimiter']) ? wc_clean(wp_unslash($_POST['delimiter'])) : ',',
 			'start_pos' => 0,
-			'mapping' => isset($_POST['mapping']) ? (array) wc_clean(wp_unslash($_POST['mapping'])) : array(), // PHPCS: input var ok.
-			'update_existing'    => false,
+			'mapping' => isset($_POST['mapping']) ? (array) wc_clean(wp_unslash($_POST['mapping'])) : array(),
+			'update_existing' => false,
 			'character_encoding' => isset($_POST['character_encoding']) ? wc_clean(wp_unslash($_POST['character_encoding'])) : '',
 			'lines' => 1,
 			'parse' => true,
-		);
+		];
 
 		$importer = new \WC_Product_CSV_Importer($file, $params);
-		
+
 		if (! isset($importer->get_parsed_data()[0]['blocksy_custom_data'])) {
 			return [];
 		}
