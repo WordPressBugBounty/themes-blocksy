@@ -95,7 +95,7 @@ add_action('blocksy:rest_api:live_search:fields', function () {
 					) : 0;
 				}
 
-				return $price ? wc_price($price) : 0;
+				return apply_filters( 'woocommerce_get_price_html', $price, $product );
 			},
 			'update_callback' => null,
 			'schema' => [

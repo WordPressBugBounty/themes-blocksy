@@ -22,17 +22,6 @@
 		transform: rotate(180deg);
 	}
 
-	// trending block
-	.ct-trending-block {
-		.ct-arrow-left:before {
-			transform: rotate(135deg);
-		}
-
-		.ct-arrow-right:before {
-			transform: rotate(-45deg);
-		}
-	}
-
 	// posts nav
 	.post-navigation {
 		.nav-item-prev svg {
@@ -74,11 +63,16 @@
 		float: left;
 	}
 
-	// WooCommerce
-	// .flexy-items,
-	// .flexy-pills [data-flexy] {
-	// 	direction: ltr;
-	// }
+	// slider arrows
+	.ct-slider-arrows {
+		.ct-arrow-prev svg {
+			transform: rotate(-180deg);
+		}
+
+		.ct-arrow-next svg {
+			transform: rotate(-180deg);
+		}
+	}
 
 	// reviews
 	.star-rating {

@@ -34,18 +34,21 @@
 			align-items: center;
 			margin-top: 4px;
 
-			small {
-				font-size: 80%;
-				color: inherit;
-
+			:is(.price, .stock-status) {
+				
 				del {
 					font-size: inherit;
 				}
 
-				&:not(:last-child):after {
+				&:not(:first-child):before {
 					content: '-';
 					margin-inline: 5px;
 				}
+			}
+
+			small {
+				color: inherit;
+				font-size: 12px;
 			}
 		}
 	}

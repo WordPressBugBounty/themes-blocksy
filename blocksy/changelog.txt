@@ -1,3 +1,15 @@
+2.1.10: 2025-09-04
+- Improvement: Add to cart button element from single product - output correctly the CSS for customizer preview
+- Improvement: Add to cart button from single product - make sure the width option is applied correctly on mobile devices
+- Improvement: Better detection of current template in Elementor integration
+- Improvement: Correctly compute prefix on pages where SEO plugins trigger loops in wp_head
+- Improvement: Don't load outdated polyfills in the JS files served in modern browsers
+- Improvement: Header logo - add option to remove the link for site logo or site title
+- Improvement: Make sure the slider arrows are correctly placed in RTL mode
+- Improvement: Offcanvas cart - correctly prefix selectors to scope under multiple headers
+- Improvement: Proper detection of responsive slider option in customizer validator
+- Improvement: Search live results - better integration with WooCommerce Wholesale Prices plugin
+
 2.1.9: 2025-08-21
 - Improvement: I18n - Properly register theme mods keys for Polylang
 - Improvement: Infinite scroll - don't load next page when scrolled way past the end of the archive container

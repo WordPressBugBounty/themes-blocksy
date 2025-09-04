@@ -141,8 +141,11 @@ class Blocksy_Manager {
 			}
 		});
 
+		// Wipe any caches that might have been computed before the WP action.
+		// These are usually custom the_content triggers that are ran on demand
+		// by various SEO plugins -- usually in wp_head action.
 		add_action(
-			'init',
+			'wp',
 			function () {
 				$this->screen->wipe_caches();
 				$this->post_types->wipe_caches();

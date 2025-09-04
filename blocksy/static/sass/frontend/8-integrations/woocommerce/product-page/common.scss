@@ -61,14 +61,6 @@ form.cart {
 	// buttons
 	--theme-button-padding: 5px 20px;
 
-	// @include media-breakpoint-down (sm) {
-	// 	--theme-button-min-height: 40px;
-	// }
-
-	// @include media-breakpoint-up (sm) {
-	// 	--theme-button-min-height: 55px;
-	// }
-
 	.single_add_to_cart_button {
 		flex: 1;
 		--item-order: 2;
@@ -87,11 +79,7 @@ form.cart {
 	}
 
 
-	.single_add_to_cart_button,
-	.added_to_cart {
-
-		@include media-breakpoint-up (md) {
-			max-width: var(--theme-button-max-width);
-		}
+	:is(.single_add_to_cart_button, .added_to_cart) {
+		max-width: var(--theme-button-max-width);
 	}
 }

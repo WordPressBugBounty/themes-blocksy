@@ -60,6 +60,7 @@ add_filter(
 class WooCommerce {
 	public $single = null;
 	public $checkout = null;
+	public $import_export = null;
 
 	private $default_variation_cache = [];
 
@@ -72,7 +73,7 @@ class WooCommerce {
 
 		$this->checkout = new WooCommerceCheckout();
 
-		new WooImportExport();
+		$this->import_export = new WooImportExport();
 		new WooVariationImagesImportExport();
 	}
 

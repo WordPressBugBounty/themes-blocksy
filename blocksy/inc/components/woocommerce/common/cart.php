@@ -1,5 +1,9 @@
 <?php
 
+// Remove cross-sells from the cart page. We will call this function in cart/cart.php
+// template that we override in templates.
+remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
+
 add_action('elementor/widget/before_render_content', function($widget) {
 	if (! class_exists('ElementorPro\Modules\Woocommerce\Widgets\Cart')) {
 		return;

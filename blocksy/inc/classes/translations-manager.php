@@ -277,7 +277,6 @@ class Blocksy_Translations_Manager {
 			);
 
 			if ($related_label !== '__empty__') {
-				continue;
 				$keys[] = $prefix . '_related_label';
 			}
 

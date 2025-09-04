@@ -195,7 +195,7 @@ if (! function_exists('blocksy_validate_for')) {
 		}
 
 		if ($option['type'] === 'ct-slider') {
-			if ($option['responsive']) {
+			if (isset($option['responsive']) && $option['responsive']) {
 				$values_to_validate = ['desktop', 'tablet', 'mobile'];
 
 				foreach (blocksy_expand_responsive_value($input) as $single_key => $single_value) {
