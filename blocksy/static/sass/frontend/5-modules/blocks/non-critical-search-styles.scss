@@ -26,7 +26,7 @@
 			flex: 0 0 var(--search-image-size, 45px);
 			max-width: var(--search-image-size, 45px);
 			align-self: flex-start;
-			border-radius: 2px;
+			border-radius: var(--search-image-radius, 2px);
 		}
 
 		.product-search-meta {

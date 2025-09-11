@@ -18,6 +18,11 @@
 	}
 
 	.ct-media-container {
+
+		img {
+			height: auto;
+			max-width: 100%;
+		}
 		
 		.ct-video-indicator {
 			position: absolute;

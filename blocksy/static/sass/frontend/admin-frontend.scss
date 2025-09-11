@@ -1,6 +1,7 @@
 .blocksy-hook-indicator,
 .ct-customizer-shortcut {
-	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
 // hooks locations
@@ -16,7 +17,7 @@
 	text-align: left;
 
 	// background: rgba(255, 205, 5, 0.4);
-	background: #FFEBAC;
+	background: #ffebac;
 	border-radius: 3px;
 	border: 1px dashed #eabc4b;
 
@@ -39,7 +40,7 @@
 
 		&:before {
 			font-family: dashicons;
-			content: "\f464";
+			content: '\f464';
 			font-size: 17px;
 			line-height: 17px;
 			cursor: pointer;
@@ -51,22 +52,21 @@
 	}
 }
 
-
 // indicator spacing
 .blocksy-hook-indicator {
 	margin: 15px var(--hook-side-margin, 0);
 
-	&[data-type*="full"] {
+	&[data-type*='full'] {
 		--hook-side-margin: 15px;
 	}
 
-	&:not([data-type*="top-margin"]) {
+	&:not([data-type*='top-margin']) {
 		&:first-child {
 			margin-top: 0;
 		}
 	}
 
-	&:not([data-type*="bottom-margin"]) {
+	&:not([data-type*='bottom-margin']) {
 		&:last-child {
 			margin-bottom: 0;
 		}
@@ -74,12 +74,10 @@
 }
 
 .ct-container {
-
-	.blocksy-hook-indicator[data-type*="full"] {
+	.blocksy-hook-indicator[data-type*='full'] {
 		--hook-side-margin: 0;
 	}
 }
-
 
 // customizer utilities
 body [data-customize-hide] {
@@ -219,7 +217,6 @@ $drop-size: 22px;
 	}
 }
 
-
 // customizer partial refresh
 .customize-partial-refreshing {
 	opacity: 0.25 !important;
@@ -232,7 +229,6 @@ $drop-size: 22px;
 
 // search live results helper
 .ct-search-form {
-
 	&:not([data-live-results*='thumbs']) .ct-media-container {
 		display: none;
 	}
@@ -244,4 +240,37 @@ $drop-size: 22px;
 	&:not([data-live-results*='product_status']) .stock-status {
 		display: none;
 	}
+}
+
+// content blocks
+
+#wp-admin-bar-blocksy-content-blocks .ab-item {
+
+	&:has(.ct-scroll-to) {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.ct-scroll-to {
+		display: flex;
+		cursor: pointer;
+		line-height: 1;
+		padding: 4px;
+		margin-inline-start: auto;
+		border-radius: 3px;
+		background-color: rgba(255, 255, 255, 0.1);
+
+		&:hover {
+			color: #fff;
+			// background-color: rgba(255, 255, 255, 0.2);
+			background-color: #72aee6;
+		}
+	}
+}
+
+[data-block*='highlight'] {
+	border-radius: 1px;
+	outline: 2px solid var(--theme-palette-color-2);
+	outline-offset: 7px;
 }

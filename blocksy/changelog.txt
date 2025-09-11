@@ -1,3 +1,6 @@
+2.1.11: 2025-09-11
+- Fix: Search live results - make sure the product prices are displayed properly for simple products
+
 2.1.10: 2025-09-04
 - Improvement: Add to cart button element from single product - output correctly the CSS for customizer preview
 - Improvement: Add to cart button from single product - make sure the width option is applied correctly on mobile devices

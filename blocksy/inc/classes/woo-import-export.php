@@ -325,6 +325,16 @@ class WooImportExport {
 
 		return $parsed_data;
 	}
-}
 
+	public static function implode_values($values) {
+		$values_to_implode = [];
+
+		foreach ($values as $value) {
+			$value = (string) is_scalar($value) ? html_entity_decode($value, ENT_QUOTES) : '';
+			$values_to_implode[] = str_replace(',', '\\,', $value);
+		}
+
+		return implode(', ', $values_to_implode);
+	}
+}
 
