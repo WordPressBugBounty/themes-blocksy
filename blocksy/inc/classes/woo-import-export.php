@@ -295,23 +295,32 @@ class WooImportExport {
 	}
 
 	public static function get_import_file_data() {
+		if (! isset($_POST['file'])) {
+			return [];
+		}
+
 		if (self::$data_cache) {
 			return self::$data_cache;
 		}
 
 		$file = wc_clean(wp_unslash($_POST['file'] ?? ''));
 
+		if (! file_exists($file)) {
+			return [];
+		}
+
 		$params = [
 			'delimiter' => ! empty($_POST['delimiter']) ? wc_clean(wp_unslash($_POST['delimiter'])) : ',',
 			'start_pos' => 0,
 			'mapping' => isset($_POST['mapping']) ? (array) wc_clean(wp_unslash($_POST['mapping'])) : array(),
-			'update_existing' => false,
+			'update_existing' => isset($_POST['update_existing']) ? (bool) $_POST['update_existing'] : false,
 			'character_encoding' => isset($_POST['character_encoding']) ? wc_clean(wp_unslash($_POST['character_encoding'])) : '',
 			// 'lines' => 1,
 			'parse' => true,
 		];
 
 		$importer = new \WC_Product_CSV_Importer($file, $params);
+
 		$parsed_data_array = $importer->get_parsed_data();
 		$last_line = end($parsed_data_array);
 

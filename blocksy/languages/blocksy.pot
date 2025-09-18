@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-11 19:13+0000\n"
+"POT-Creation-Date: 2025-09-18 15:58+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -342,7 +342,7 @@ msgstr ""
 #: inc/options/general/breadcrumbs.php:168,
 #: inc/options/general/page-title.php:123,
 #: inc/options/general/page-title.php:364
-#: admin/dashboard/static/js/Navigation.js:21
+#: admin/dashboard/static/js/Navigation.js:54
 msgid "Home"
 msgstr ""
 
@@ -6019,11 +6019,11 @@ msgid ""
 "your next web project visually, in no time."
 msgstr ""
 
-#: admin/dashboard/static/js/Navigation.js:34
+#: admin/dashboard/static/js/Navigation.js:78
 msgid "Useful Plugins"
 msgstr ""
 
-#: admin/dashboard/static/js/Navigation.js:40
+#: admin/dashboard/static/js/Navigation.js:90
 msgid "Changelog"
 msgstr ""
 
@@ -6062,23 +6062,23 @@ msgstr ""
 msgid "Join Facebook Community"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:191
+#: admin/dashboard/static/js/screens/Changelog.js:186
 msgid "Loading changelog..."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:225
+#: admin/dashboard/static/js/screens/Changelog.js:220
 msgid "New"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:229
+#: admin/dashboard/static/js/screens/Changelog.js:224
 msgid "Fix"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:233
+#: admin/dashboard/static/js/screens/Changelog.js:228
 msgid "Improvement"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:252
+#: admin/dashboard/static/js/screens/Changelog.js:247
 msgid "No changelog present at the moment."
 msgstr ""
 
@@ -6270,7 +6270,7 @@ msgstr ""
 msgid "Typography Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/RecommendedPlugins.js:118
+#: admin/dashboard/static/js/screens/RecommendedPlugins.js:113
 msgid "Loading Plugins Status..."
 msgstr ""
 
@@ -6850,11 +6850,11 @@ msgstr ""
 msgid "Inherited"
 msgstr ""
 
-#: static/js/options/options/ct-addable-box.js:357
+#: static/js/options/options/ct-addable-box.js:294
 msgid "Add New Item"
 msgstr ""
 
-#: static/js/options/options/ct-addable-box.js:85
+#: static/js/options/options/ct-addable-box/LayerControls.js:66
 #: static/js/options/options/ct-layers/LayerControls.js:113
 msgid "Clone Item"
 msgstr ""
@@ -7012,7 +7012,7 @@ msgstr ""
 msgid "Line Height"
 msgstr ""
 
-#: static/js/options/options/typography/FontsList.js:88
+#: static/js/options/options/typography/FontsList.js:87
 msgid "Variable"
 msgstr ""
 

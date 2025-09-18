@@ -55,6 +55,16 @@ const generateQuerySelector = (el) => {
 				}
 			}
 
+			if (elForSelector === el) {
+				const layoutIndex = [
+					...elForSelector.parentNode.children,
+				].indexOf(elForSelector)
+
+				if (layoutIndex > -1) {
+					str += `:nth-child(${layoutIndex + 1})`
+				}
+			}
+
 			return str
 		})
 		.join(' > ')
@@ -202,19 +212,17 @@ function getAppendSelectorFor(layoutEl, args = {}) {
 		...args,
 	}
 
-	const layoutIndex = [...layoutEl.parentNode.parentNode.children].indexOf(
-		layoutEl.parentNode
-	)
-
 	if (layoutEl.closest('.ct-posts-shortcode')) {
 		if (layoutEl.classList.contains('products')) {
-			return `.ct-posts-shortcode:nth-child(${layoutIndex + 1}) ${
+			return `${generateQuerySelector(
+				layoutEl.closest('.ct-posts-shortcode')
+			)} ${
 				args.toAppend === 'default' ? '.products > li' : args.toAppend
 			}`
 		} else {
-			return `.ct-posts-shortcode:nth-child(${layoutIndex + 1}) ${
-				args.toAppend === 'default' ? '.entries > *' : args.toAppend
-			}`
+			return `${generateQuerySelector(
+				layoutEl.closest('.ct-posts-shortcode')
+			)} ${args.toAppend === 'default' ? '.entries > *' : args.toAppend}`
 		}
 	}
 

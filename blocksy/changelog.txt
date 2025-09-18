@@ -1,3 +1,11 @@
+2.1.13: 2025-09-18
+- Improvement: Better handling of back/forward cache in off-canvas module
+- Improvement: Correctly set `update_existing` flag when running CSV importer in WooCommerce
+- Improvement: Correctly validate customizer `ct-number` option
+- Improvement: Don't attempt to run the CSV importer while the WooCommerce onboarding screen is still displayed
+- Improvement: Make sure the pagination works properly in `[blocksy_posts]` shortcode when the `post_type` parameter is added
+- Improvement: Pagination "Load More" button - make sure the button border radius option applies the correct CSS variable
+
 2.1.12: 2025-09-11
 - Improvement: General fixes and improvements
 

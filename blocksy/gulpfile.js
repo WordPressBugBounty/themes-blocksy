@@ -563,9 +563,7 @@ var options = {
 		*/
 	],
 
-	webpackResolveAliases: {
-		'ct-log': 'ct-wp-js-log',
-	},
+	webpackResolveAliases: {},
 
 	babelAdditionalPlugins: [
 		'babel-plugin-lodash',

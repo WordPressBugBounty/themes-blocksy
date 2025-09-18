@@ -184,6 +184,22 @@ if (! function_exists('blocksy_validate_for')) {
 		}
 
 		if ($option['type'] === 'ct-number') {
+			if (isset($option['responsive']) && $option['responsive']) {
+				$values_to_validate = ['desktop', 'tablet', 'mobile'];
+
+				foreach (blocksy_expand_responsive_value($input) as $single_key => $single_value) {
+					if (! in_array($single_key, $values_to_validate)) {
+						continue;
+					}
+
+					if (! is_numeric($single_value)) {
+						return $option['value'];
+					}
+				}
+
+				return $input;
+			}
+
 			if (! is_numeric($input)) {
 				return $option['value'];
 			}

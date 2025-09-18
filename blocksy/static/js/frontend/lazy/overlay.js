@@ -24,6 +24,8 @@ const clearSettings = (settings) => {
 	settings.container.__overlay_settings__ = null
 }
 
+let windowClickListenerController = null
+
 const showOffcanvas = (initialSettings) => {
 	const settings = {
 		onClose: () => {},
@@ -175,6 +177,10 @@ const showOffcanvas = (initialSettings) => {
 		})
 	}
 
+	if ('AbortController' in window) {
+		windowClickListenerController = new AbortController()
+	}
+
 	/**
 	 * Add window event listener in the next frame. This allows us to freely
 	 * propagate the current clck event up the chain -- without the modal
@@ -182,6 +188,9 @@ const showOffcanvas = (initialSettings) => {
 	 */
 	window.addEventListener('click', settings.handleWindowClick, {
 		capture: true,
+		signal: windowClickListenerController
+			? windowClickListenerController.signal
+			: undefined,
 	})
 
 	ctEvents.trigger('ct:modal:opened', settings.container)
@@ -243,11 +252,7 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 	})
 
 	if (args.onlyUnmountEvents) {
-		scrollLockManager().enable(
-			settings.computeScrollContainer
-				? settings.computeScrollContainer()
-				: settings.container.querySelector('.ct-panel-content')
-		)
+		scrollLockManager().enable()
 
 		focusLockManager().focusLockOff(
 			settings.container.querySelector('.ct-panel-content').parentNode
@@ -261,11 +266,7 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 			document.body.removeAttribute('data-panel')
 			settings.container.classList.remove('active')
 
-			scrollLockManager().enable(
-				settings.computeScrollContainer
-					? settings.computeScrollContainer()
-					: settings.container.querySelector('.ct-panel-content')
-			)
+			scrollLockManager().enable()
 
 			focusLockManager().focusLockOff(
 				settings.container.querySelector('.ct-panel-content').parentNode
@@ -282,9 +283,9 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 		settings.container.__overlay_observer__ = null
 	}
 
-	window.removeEventListener('click', settings.handleWindowClick, {
-		capture: true,
-	})
+	if (windowClickListenerController) {
+		windowClickListenerController.abort()
+	}
 
 	settings.container.removeEventListener(
 		'click',
@@ -539,8 +540,19 @@ window.addEventListener('pageshow', (e) => {
 
 	const maybePanel = document.querySelector('.ct-panel.active')
 
+	if (windowClickListenerController) {
+		windowClickListenerController.abort()
+		windowClickListenerController = null
+	}
+
+	scrollLockManager().enable()
+
 	if (maybePanel) {
 		maybePanel.classList.remove('active')
+
+		focusLockManager().focusLockOff(
+			maybePanel.querySelector('.ct-panel-content').parentNode
+		)
 	}
 })
 
