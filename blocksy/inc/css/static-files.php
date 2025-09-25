@@ -61,6 +61,20 @@ class Blocksy_Static_Css_Files {
 
 		$is_woocommmerce = function_exists('is_woocommerce') && is_woocommerce();
 
+		$is_elementor_preview = false;
+
+		if (
+			class_exists('Elementor\Plugin')
+			&&
+			(
+				\Elementor\Plugin::$instance->preview->is_preview_mode()
+				||
+				\Elementor\Plugin::$instance->editor->is_edit_mode()
+			)
+		) {
+			$is_elementor_preview = true;
+		}
+
 		$should_load_flexy_styles = (
 			is_singular('blc-product-review')
 			||
@@ -168,6 +182,10 @@ class Blocksy_Static_Css_Files {
 					blocksy_get_theme_mod('mini_cart_suggested_products', 'yes') === 'yes'
 				)
 			);
+		}
+
+		if ($is_elementor_preview) {
+			$should_load_flexy_styles = true;
 		}
 
 		return [

@@ -169,3 +169,38 @@ add_action(
 	}
 );
 
+// Render WP Core block supports styles inside Elementor preview.
+// Check wp_enqueue_stored_styles() function from core WP as reference.
+add_filter(
+	'elementor/widget/render_content',
+	function ($content, $widget) {
+		if (
+			$widget instanceof \Elementor\Widget_Shortcode
+			&&
+			isset($_GET['action'])
+			&&
+			$_GET['action'] === 'elementor_ajax'
+		) {
+			return $content;
+		}
+
+		$style_tag_id = 'core-block-supports';
+
+		$compiled_core_stylesheet = wp_style_engine_get_stylesheet_from_context(
+			'block-supports',
+			[]
+		);
+
+		$content .= blocksy_html_tag(
+			'style',
+			[
+				'id' => 'core-' . $widget->get_id() . '-' . $style_tag_id . '-inline-css',
+			],
+			$compiled_core_stylesheet
+		);
+
+		return $content;
+	},
+	10,
+	2
+);

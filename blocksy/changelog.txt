@@ -1,3 +1,7 @@
+2.1.14: 2025-09-25
+- Improvement: Add possibility to automatically detect child theme and apply Customizer string translations
+- Improvement: Correctly generate URL's of dynamic chunk dependencies
+
 2.1.13: 2025-09-18
 - Improvement: Better handling of back/forward cache in off-canvas module
 - Improvement: Correctly set `update_existing` flag when running CSV importer in WooCommerce

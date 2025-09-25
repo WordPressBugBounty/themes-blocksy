@@ -370,18 +370,26 @@ class Blocksy_Manager {
 			$deps_data = [];
 
 			foreach ($chunk['deps'] as $dep_id) {
-				if (!isset($wp_scripts->registered[$dep_id])) {
+				if (! isset($wp_scripts->registered[$dep_id])) {
 					continue;
 				}
 
 				$src = $wp_scripts->registered[$dep_id]->src;
-				$deps_data[$dep_id] = '';
 
-				if (strpos($src, site_url()) === false) {
-					$deps_data[$dep_id] = site_url();
+				// Follow approach from do_item() in /wp-includes/class-wp-scripts.php
+				if (
+					! preg_match('|^(https?:)?//|', $src)
+					&&
+					! (
+						$wp_scripts->content_url
+						&&
+						str_starts_with($src, $wp_scripts->content_url)
+					)
+				) {
+					$src = $wp_scripts->base_url . $src;
 				}
 
-				$deps_data[$dep_id] .= $wp_scripts->registered[$dep_id]->src;
+				$deps_data[$dep_id] = $src;
 			}
 
 			$all_chunks[$index]['deps_data'] = $deps_data;

@@ -39,7 +39,9 @@ class Blocksy_Translations_Manager {
 				}
 
 				new PLL_Translate_Option('theme_mods_blocksy', $all_keys);
-				new PLL_Translate_Option('theme_mods_blocksy-child', $all_keys);
+				if (is_child_theme()) {
+					new PLL_Translate_Option('theme_mods_' . basename(get_stylesheet_directory()), $all_keys);
+				}
 
 				blocksy_manager()->db->wipe_cache();
 			}
