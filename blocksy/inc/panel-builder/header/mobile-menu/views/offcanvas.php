@@ -58,17 +58,31 @@ add_filter(
 	10, 4
 );
 
+$mobile_menu_interactive_auto_expand = blocksy_default_akg(
+	'mobile_menu_interactive_auto_expand',
+	$atts,
+	'no'
+);
+
+$mobile_menu_interactive = blocksy_akg(
+	'mobile_menu_interactive',
+	$atts,
+	'yes'
+);
+
 wp_nav_menu($menu === 'blocksy_location' ? array_merge([
 	'container' => false,
 	'menu_class' => false,
 	'fallback_cb' => 'blocksy_main_menu_fallback',
 	'blocksy_advanced_item' => true,
-	'theme_location' => $location
+	'blocksy_should_add_dropdown_active' => $mobile_menu_interactive_auto_expand === 'yes' && $mobile_menu_interactive === 'yes',
+	'theme_location' => $location,
 ], $menu_args) : array_merge([
 	'container' => false,
 	'menu_class' => false,
 	'fallback_cb' => 'blocksy_main_menu_fallback',
-	'blocksy_advanced_item' => true
+	'blocksy_advanced_item' => true,
+	'blocksy_should_add_dropdown_active' => $mobile_menu_interactive_auto_expand === 'yes' && $mobile_menu_interactive === 'yes',
 ], $menu_args));
 
 remove_filter(

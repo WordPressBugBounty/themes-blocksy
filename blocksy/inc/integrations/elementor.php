@@ -174,13 +174,25 @@ add_action(
 add_filter(
 	'elementor/widget/render_content',
 	function ($content, $widget) {
+		if (! $widget instanceof \Elementor\Widget_Shortcode) {
+			return $content;
+		}
+
+		$should_run = false;
+
+		if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
+			$should_run = true;
+		}
+
 		if (
-			$widget instanceof \Elementor\Widget_Shortcode
-			&&
 			isset($_GET['action'])
 			&&
 			$_GET['action'] === 'elementor_ajax'
 		) {
+			$should_run = true;
+		}
+
+		if (! $should_run) {
 			return $content;
 		}
 

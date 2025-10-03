@@ -292,31 +292,39 @@ $drop-size: 22px;
 
 // filters table regeneration notice
 .ct-filter-widget-admin-notice {
-	--box-padding: 25px;
+	--box-padding: 20px;
+	--box-text-color: #58534d;
+	--box-accent-color: #fddf67;
 
-	padding: var(--box-padding);
-	border-radius: 5px;
 	font-size: 14px;
-	// color: #1e1e1e;
-	// background: rgba(0, 0, 0, 0.02);
-	// background: #f6f7f7;
-	border: 1px solid rgba(0, 0, 0, 0.07);
+	color: var(--box-text-color);
+	border-radius: 5px;
+	background: var(--box-accent-color);
 
 
 	.ct-notice-heading {
 		display: flex;
-		gap: 10px;
+		gap: 8px;
 		align-items: center;
-		margin-bottom: 10px;
-
-		color: var(--theme-heading-color);
-		font-size: 15px;
+		font-size: 14px;
 		font-weight: 600;
+		color: #9f6000;
+		padding: 18px var(--box-padding);
 	}
+
+
+	.ct-notice-content {
+		background: #fff;
+		border-radius: 4px;
+		margin: 0 2px 2px 2px;
+		padding: calc(var(--box-padding) + 5px) var(--box-padding);
+	}
+
 
 	.ct-notice-text {
-		margin-bottom: 30px;
+		margin-top: var(--box-padding);
 	}
+
 
 	.ct-notice-progress-bar-heading {
 		display: flex;
@@ -335,31 +343,28 @@ $drop-size: 22px;
 			display: block;
 			height: 100%;
 			border-radius: 3px;
-			background: var(--theme-palette-color-2);
+			background: var(--box-accent-color);
+			transition: width 0.2s ease;
 		}
 	}
 
 	.ct-notice-buttons-group {
-
-		padding: var(--box-padding) var(--box-padding) 0 var(--box-padding);
-		margin-top: var(--box-padding);
+		margin-top: calc(var(--box-padding) + 5px);
 		margin-inline: calc(var(--box-padding) * -1);
-		border-top: 1px solid rgba(0, 0, 0, 0.07);
+		padding: calc(var(--box-padding) + 5px) var(--box-padding) 0 var(--box-padding);
+		border-top: 1px solid var(--box-accent-color);
 
 		a {
 			display: flex;
 			align-items: center;
 			gap: 7px;
-			// font-weight: 500;
+			text-decoration: underline;
 
-			--theme-link-initial-color: var(--theme-palette-color-2);
+			--theme-link-initial-color: var(--box-text-color);
+			--theme-link-hover-color: #9f6000;
 
 			&:not(:last-child) {
 				margin-bottom: 3px;
-			}
-
-			&:hover {
-				text-decoration: underline;
 			}
 		}
 	}
