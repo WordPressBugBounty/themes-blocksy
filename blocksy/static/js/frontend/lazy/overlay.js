@@ -31,14 +31,14 @@ const showOffcanvas = (initialSettings) => {
 		onClose: () => {},
 		container: null,
 		focus: true,
-		...getSettings(initialSettings),
+		...getSettings(initialSettings)
 	}
 	;[
 		...document.querySelectorAll(
 			`[data-toggle-panel*="${settings.container.id}"]`
 		),
 
-		...document.querySelectorAll(`[href*="${settings.container.id}"]`),
+		...document.querySelectorAll(`[href*="${settings.container.id}"]`)
 	].map((trigger) => {
 		trigger.setAttribute('aria-expanded', 'true')
 	})
@@ -153,14 +153,14 @@ const showOffcanvas = (initialSettings) => {
 							? settings.computeScrollContainer()
 							: settings.container.querySelector(
 									'.ct-panel-content'
-							  )
+								)
 					)
 				}, 1000)
 			})
 
 			observer.observe(settings.container, {
 				childList: true,
-				subtree: true,
+				subtree: true
 			})
 
 			settings.container.__overlay_observer__ = observer
@@ -171,7 +171,7 @@ const showOffcanvas = (initialSettings) => {
 				settings.container.querySelector('.ct-panel-content')
 					.parentNode,
 				{
-					focusOnMount: !settings.focus,
+					focusOnMount: !settings.focus
 				}
 			)
 		})
@@ -190,7 +190,7 @@ const showOffcanvas = (initialSettings) => {
 		capture: true,
 		signal: windowClickListenerController
 			? windowClickListenerController.signal
-			: undefined,
+			: undefined
 	})
 
 	ctEvents.trigger('ct:modal:opened', settings.container)
@@ -206,13 +206,13 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 	const settings = {
 		onClose: () => {},
 		container: null,
-		...getSettings(initialSettings),
+		...getSettings(initialSettings)
 	}
 
 	args = {
 		onlyUnmountEvents: false,
 		shouldFocusOriginalTrigger: true,
-		...args,
+		...args
 	}
 
 	if (settings.shouldBeInert) {
@@ -234,7 +234,7 @@ const hideOffcanvas = (initialSettings, args = {}) => {
 			`[data-toggle-panel*="${settings.container.id}"]`
 		),
 
-		...document.querySelectorAll(`[href*="${settings.container.id}"]`),
+		...document.querySelectorAll(`[href*="${settings.container.id}"]`)
 	].map((trigger, index) => {
 		trigger.setAttribute('aria-expanded', 'false')
 
@@ -316,7 +316,7 @@ export const handleClick = (e, settings) => {
 			let isInsidePanelContent = event.target.closest('.ct-panel-content')
 			let isPanelContentItself =
 				[
-					...settings.container.querySelectorAll('.ct-panel-content'),
+					...settings.container.querySelectorAll('.ct-panel-content')
 				].indexOf(event.target) > -1
 
 			let maybeTarget = null
@@ -392,7 +392,7 @@ export const handleClick = (e, settings) => {
 				hideOffcanvas(settings)
 			})
 		},
-		...settings,
+		...settings
 	}
 
 	persistSettings(settings)
@@ -434,7 +434,7 @@ export const handleClick = (e, settings) => {
 					'.ct-offcanvas-trigger',
 					'.ct-header-account',
 					'[href="#ct-compare-modal"][data-behaviour="modal"]',
-					'[data-shortcut="compare"][data-behaviour="modal"]',
+					'[data-shortcut="compare"][data-behaviour="modal"]'
 				]
 
 				const linkIsModalTrigger = isModalTrigger(maybeA)
@@ -452,13 +452,17 @@ export const handleClick = (e, settings) => {
 
 				const isLeftClick = event.button === 0
 
-				// event.ctrlKey is true if Ctrl is held
-				// event.metaKey is true if Cmd (⌘) is held (on Mac)
+				// Links with target attribute (except _self) open in new tab/window
+				const opensInNewContext =
+					maybeA.target && maybeA.target !== '_self'
+
+				// Ctrl+click (Windows/Linux) or Cmd+click (Mac) opens in new tab
 				const newTabIntent =
-					isLeftClick && (event.ctrlKey || event.metaKey)
+					isLeftClick &&
+					(event.ctrlKey || event.metaKey || opensInNewContext)
 
 				// Do not close the offcanvas if the link is intended to open in a new tab.
-				if (isLeftClick && newTabIntent) {
+				if (newTabIntent) {
 					return
 				}
 
@@ -501,13 +505,13 @@ export const handleClick = (e, settings) => {
 				if (linkType === 'regular') {
 					hideOffcanvas(settings, {
 						onlyUnmountEvents: true,
-						shouldFocusOriginalTrigger: false,
+						shouldFocusOriginalTrigger: false
 					})
 				}
 
 				if (linkType === 'modal') {
 					hideOffcanvas(settings, {
-						shouldFocusOriginalTrigger: false,
+						shouldFocusOriginalTrigger: false
 					})
 
 					setTimeout(() => {
@@ -517,7 +521,7 @@ export const handleClick = (e, settings) => {
 
 				if (linkType === 'hash-link') {
 					hideOffcanvas(settings, {
-						shouldFocusOriginalTrigger: false,
+						shouldFocusOriginalTrigger: false
 					})
 				}
 			})
@@ -561,6 +565,6 @@ export const mount = (el, { event, focus = false }) => {
 		isModal: true,
 		container: document.querySelector(el.dataset.togglePanel || el.hash),
 		clickOutside: true,
-		focus,
+		focus
 	})
 }

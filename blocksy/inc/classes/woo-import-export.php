@@ -295,7 +295,7 @@ class WooImportExport {
 	}
 
 	public static function get_import_file_data() {
-		if (! isset($_POST['file'])) {
+		if (!isset($_POST['file'])) {
 			return [];
 		}
 
@@ -305,34 +305,85 @@ class WooImportExport {
 
 		$file = wc_clean(wp_unslash($_POST['file'] ?? ''));
 
-		if (! file_exists($file)) {
+		if (!file_exists($file)) {
 			return [];
 		}
 
-		$params = [
-			'delimiter' => ! empty($_POST['delimiter']) ? wc_clean(wp_unslash($_POST['delimiter'])) : ',',
-			'start_pos' => 0,
-			'mapping' => isset($_POST['mapping']) ? (array) wc_clean(wp_unslash($_POST['mapping'])) : array(),
-			'update_existing' => isset($_POST['update_existing']) ? (bool) $_POST['update_existing'] : false,
-			'character_encoding' => isset($_POST['character_encoding']) ? wc_clean(wp_unslash($_POST['character_encoding'])) : '',
-			// 'lines' => 1,
-			'parse' => true,
-		];
+		$data = self::get_header_and_last_line($file);
 
-		$importer = new \WC_Product_CSV_Importer($file, $params);
-
-		$parsed_data_array = $importer->get_parsed_data();
-		$last_line = end($parsed_data_array);
-
-		if (! isset($last_line['blocksy_custom_data'])) {
+		if (!$data || empty($data['last_line']) || empty($data['header'])) {
 			return [];
 		}
 
-		$parsed_data = self::parse_data($last_line['blocksy_custom_data'])[0];
+		$delimiter = !empty($_POST['delimiter'])
+			? wc_clean(wp_unslash($_POST['delimiter']))
+			: ',';
+
+		$header_columns = str_getcsv($data['header'], $delimiter);
+
+		if (!$header_columns) {
+			return [];
+		}
+
+		$columns_map = array_flip($header_columns);
+
+		// find Blocksy Custom Data in $columns_map
+		$index_of_custom_data = array_search('Blocksy Custom Data', $header_columns, true);
+
+		if ($index_of_custom_data === false) {
+			return [];
+		}
+
+		$columns = str_getcsv($data['last_line'], $delimiter);
+
+		if (!isset($columns[$index_of_custom_data])) {
+			return [];
+		}
+
+		$value = $columns[$index_of_custom_data];
+
+		$parsed_data = self::parse_data($value)[0] ?? null;
+
+		if (!$parsed_data) {
+			return [];
+		}
 
 		self::$data_cache = $parsed_data;
 
 		return $parsed_data;
+	}
+
+	private static function get_header_and_last_line($file) {
+		$fh = fopen($file, 'r');
+		if (!$fh) {
+			return false;
+		}
+
+		$header = fgets($fh);
+
+		$cursor = -1;
+		$line = '';
+
+		fseek($fh, $cursor, SEEK_END);
+		$char = fgetc($fh);
+
+		while ($char === "\n" || $char === "\r") {
+			fseek($fh, $cursor--, SEEK_END);
+			$char = fgetc($fh);
+		}
+
+		while ($char !== false && $char !== "\n") {
+			$line = $char . $line;
+			fseek($fh, $cursor--, SEEK_END);
+			$char = fgetc($fh);
+		}
+
+		fclose($fh);
+
+		return [
+			'header'    => $header,
+			'last_line' => $line
+		];
 	}
 
 	public static function implode_values($values) {

@@ -1,5 +1,5 @@
-@import 'cart-block';
-@import 'checkout-block';
+@use 'cart-block';
+@use 'checkout-block';
 
 div:is(
 	.wp-block-woocommerce-cart,

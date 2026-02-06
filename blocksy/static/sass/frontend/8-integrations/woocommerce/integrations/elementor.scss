@@ -1,4 +1,4 @@
-@import '../../../1-helpers/functions.scss';
+@use '../../../1-helpers/functions.scss';
 
 .elementor-widget-container {
 
@@ -58,7 +58,7 @@
 	.actions {
 
 		.coupon {
-			@include media-breakpoint-down(sm) {
+			@include functions.media-breakpoint-down(sm) {
 				flex-direction: column !important;
 			}
 		}

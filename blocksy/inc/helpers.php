@@ -39,15 +39,18 @@ function blocksy_sync_whole_page($args = []) {
 
 	$selector = 'main#main';
 
-	return array_merge(
-		[
-			'selector' => $selector,
-			'container_inclusive' => true,
-			'render' => function () {
-				echo blocksy_replace_current_template();
-			}
-		],
-		$args
+	return apply_filters(
+		'blocksy:customizer:sync:whole-page',
+		array_merge(
+			[
+				'selector' => $selector,
+				'container_inclusive' => true,
+				'render' => function () {
+					echo blocksy_replace_current_template();
+				}
+			],
+			$args
+		)
 	);
 }
 
@@ -149,6 +152,11 @@ if (! function_exists('blocksy_render_view')) {
 
 		return ob_get_clean();
 	}
+}
+
+function blocksy_render_view_e($file_path, $view_variables = [], $default_value = '') {
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo blocksy_render_view($file_path, $view_variables, $default_value);
 }
 
 function blocksy_get_wp_theme() {

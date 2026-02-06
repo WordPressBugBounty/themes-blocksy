@@ -433,6 +433,52 @@ class Blocksy_Screen_Manager {
 		}
 
 		if (
+			class_exists('\EventKoi\Init')
+			&&
+			(
+				get_post_type() === 'eventkoi_event'
+				||
+				get_post_type() === 'event'
+			)
+		) {
+			$actual_prefix = 'eventkoi_event_single';
+		}
+
+		if (
+			class_exists('\EventKoi\Init')
+			&&
+			is_tax('event_cal')
+		) {
+			$actual_prefix = 'eventkoi_event_archive';
+		}
+
+		if (
+			class_exists('Visual_Portfolio')
+			&&
+			get_post_type() === 'portfolio'
+		) {
+			$actual_prefix = 'vs_portfolio_single';
+		}
+
+		if (class_exists('Visual_Portfolio')) {
+			$vp_settings = get_option('vp_general');
+			
+			if (
+				(
+					isset($vp_settings['portfolio_archive_page'])
+					&&
+					intval($vp_settings['portfolio_archive_page']) === get_the_ID()
+				)
+				||
+				is_tax('portfolio_category')
+				||
+				is_tax('portfolio_tag')
+			) {
+				$actual_prefix = 'vs_portfolio_archive';
+			}
+		}
+
+		if (
 			class_exists('Tribe__Events__Main')
 			&&
 			tribe_is_event()

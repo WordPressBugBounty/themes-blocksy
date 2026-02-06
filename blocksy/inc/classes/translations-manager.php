@@ -268,6 +268,7 @@ class Blocksy_Translations_Manager {
 			"free_not_enought_message",
 			"free_enought_message",
 			"breadcrumb_home_text",
+			"woo_reserved_timer_message"
 		];
 
 		$prefixes = blocksy_manager()->screen->get_single_prefixes();
@@ -504,4 +505,8 @@ function blocksy_safe_sprintf($format, ...$args) {
 	}
 
 	return $result;
+}
+
+function blocksy_safe_sprintf_e($format, ...$args) {
+	echo blocksy_safe_sprintf($format, ...$args);
 }

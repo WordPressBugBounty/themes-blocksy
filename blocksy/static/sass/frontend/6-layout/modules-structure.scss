@@ -1,3 +1,5 @@
+@use "../1-helpers/functions";
+
 article > .ct-comments,
 article > .ct-related-posts {
 	margin-top: 60px;
@@ -7,12 +9,12 @@ article > .ct-related-posts {
 
 // separated comments
 .ct-comments-container > div {
-	@include media-breakpoint-down(sm) {
+	@include functions.media-breakpoint-down(sm) {
 		padding-top: 40px;
 		padding-bottom: 60px;
 	}
 
-	@include media-breakpoint-up(md) {
+	@include functions.media-breakpoint-up(md) {
 		padding-top: 60px;
 		padding-bottom: 100px;
 	}

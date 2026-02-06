@@ -148,7 +148,6 @@ class Blocksy_Manager {
 			'wp',
 			function () {
 				$this->screen->wipe_caches();
-				$this->post_types->wipe_caches();
 			},
 			PHP_INT_MAX
 		);
@@ -161,6 +160,14 @@ class Blocksy_Manager {
 			$this->current_template = $template;
 			return $template;
 		}, 900000000);
+
+		// WP 6.9 feature that loads core block assets separately.
+		// Fixed in WP 6.9.1-RC1, so we only need this workaround for earlier versions.
+		global $wp_version;
+
+		if (version_compare($wp_version, '6.9.1-RC1', '<')) {
+			add_filter('should_load_separate_core_block_assets', '__return_false');
+		}
 
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts'], 10);
 
@@ -245,6 +252,11 @@ class Blocksy_Manager {
 				5,
 				'blocksy'
 			),
+
+			'search_live_stock_status_texts' => [
+				'instock' => __('In stock', 'blocksy'),
+				'outofstock' => __('Out of stock', 'blocksy'),
+			],
 
 			'clipboard_copied' => __('Copied!', 'blocksy'),
 			'clipboard_failed' => __('Failed to Copy', 'blocksy'),
@@ -344,6 +356,8 @@ class Blocksy_Manager {
 		if (is_singular() && comments_open() && get_option('thread_comments')) {
 			wp_enqueue_script('comment-reply');
 		}
+
+		do_action('blocksy:frontend:scripts-enqueued');
 	}
 
 	public function get_dynamic_js_chunks() {

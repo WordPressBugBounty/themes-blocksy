@@ -45,12 +45,12 @@ const Condition = ({
 					? (Array.isArray(conditionOption.perform_replace)
 							? conditionOption.perform_replace
 							: [conditionOption.perform_replace]
-					  ).reduce((res, singleReplace) => {
+						).reduce((res, singleReplace) => {
 							return {
 								...res,
 								...conditionOption.perform_replace.condition,
 							}
-					  }, {})
+						}, {})
 					: {}),
 			}
 
@@ -168,9 +168,9 @@ const Condition = ({
 									? [valueForCondition[id]]
 									: Object.values(
 											valueForCondition[id] || {}
-									  ).filter(
+										).filter(
 											(value) => typeof value === 'number'
-									  )
+										)
 							),
 						]
 
@@ -178,11 +178,6 @@ const Condition = ({
 							const attachment = wp.media
 								.attachment(attachmentId)
 								.toJSON()
-
-							console.log(
-								attachment,
-								attachment?.url?.match(/\.svg$/)
-							)
 
 							if (attachment && attachment.url) {
 								return attachment.url.match(/\.svg$/)

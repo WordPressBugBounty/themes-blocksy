@@ -1,4 +1,4 @@
-@import '../../1-helpers/functions';
+@use '../../1-helpers/functions';
 
 
 // search results
@@ -72,17 +72,17 @@
 		--items-divider: none;
 		--items-spacing: 5%;
 
-		@include media-breakpoint-up(md) {
+		@include functions.media-breakpoint-up(md) {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
 		.ct-media-container {
 
-			@include media-breakpoint-down(sm) {
+			@include functions.media-breakpoint-down(sm) {
 				--search-image-size: 15%;
 			}
 
-			@include media-breakpoint-up(md) {
+			@include functions.media-breakpoint-up(md) {
 				--search-image-size: 20%;
 			}
 		}

@@ -30,7 +30,7 @@ import LayerControls from './ct-addable-box/LayerControls'
 
 import OptionsPanel from '../OptionsPanel'
 import { getValueFromInput } from '../helpers/get-value-from-input'
-import nanoid from 'nanoid'
+import { nanoid } from 'nanoid'
 
 const valueWithUniqueIds = (value) =>
 	value.map((singleItem) => ({
@@ -40,7 +40,7 @@ const valueWithUniqueIds = (value) =>
 			? {}
 			: {
 					__id: nanoid(),
-			  }),
+				}),
 	}))
 
 const getDefaultState = () => ({
@@ -98,12 +98,12 @@ const SortableItem = ({ items, onChange, value, disabled }) => {
 						items={items}
 						onChange={onChange}
 						value={value}
-						dragHandleProps={{ 
-							...attributes, 
+						dragHandleProps={{
+							...attributes,
 							...listeners,
 							style: {
 								cursor: isDragging ? 'grabbing' : 'grab',
-							}
+							},
 						}}
 					/>
 
@@ -122,7 +122,7 @@ const SortableItem = ({ items, onChange, value, disabled }) => {
 													? {
 															...l,
 															[key]: newValue,
-													  }
+														}
 													: l
 											)
 										)
@@ -136,7 +136,7 @@ const SortableItem = ({ items, onChange, value, disabled }) => {
 												? option.value.filter(
 														({ id }) =>
 															value.id === id
-												  )[
+													)[
 														items
 															.filter(
 																({ id }) =>
@@ -148,7 +148,7 @@ const SortableItem = ({ items, onChange, value, disabled }) => {
 																	__id
 															)
 															.indexOf(value.__id)
-												  ]
+													]
 												: {}),
 											...value,
 										}

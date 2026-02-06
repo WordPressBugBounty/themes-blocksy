@@ -1,5 +1,5 @@
-@import '1-helpers/functions';
-@import '1-helpers/variables';
+@use '1-helpers/functions';
+@use '1-helpers/variables';
 
 .rtl {
 	
@@ -81,14 +81,14 @@
 
 	.woocommerce-Reviews {
 		.star-rating {
-			@include media-breakpoint-up(sm) {
+			@include functions.media-breakpoint-up(sm) {
 				float: left;
 			}
 		}
 	}
 
 	// shop table
-	@include media-breakpoint-up(md) {
+	@include functions.media-breakpoint-up(md) {
 		.form-row-first {
 			float: right;
 		}

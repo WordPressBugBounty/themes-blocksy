@@ -192,6 +192,12 @@ if ($custom_logo_id) {
 				);
 			}
 
+			$svg = apply_filters(
+				'blocksy:' . $panel_type . ':logo:svg-content',
+				$svg,
+				$custom_logo_id
+			);
+
 			$image_logo_html = $svg;
 		}
 	}
@@ -229,6 +235,12 @@ if ($custom_logo_id) {
 						false
 					);
 				}
+
+				$svg = apply_filters(
+					'blocksy:' . $panel_type . ':logo:svg-content',
+					$svg,
+					$additional_logo['id']
+				);
 
 				$additional_logo_html = $svg;
 			}

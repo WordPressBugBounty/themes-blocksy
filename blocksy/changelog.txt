@@ -1,3 +1,62 @@
+2.1.27: 2026-01-30
+- Improvement: Core accordion block - unset the extra margin from `wp-block-accordion-heading`
+- Improvement: Improve compatibility with WordPress 6.9.1 to allow separated loading of core block assets
+
+2.1.26: 2026-01-29
+- Improvement: Improve stacking order of the sidebar elements
+- Improvement: Single Product  Page - AJAX Add to Cart correct signaling of context so that mini cart fragments are rendered correctly
+- Improvement: Single Product Page - better integration with WooCommerce Composite Products plugin
+- Improvement: Visual improvements of the WooCommerce notice on mobile devices
+- Fix: Page "freezes" if an off canvas link is opened in a new tab and then the browser back button is used to navigate back
+
+2.1.25: 2026-01-16
+- Improvement: General fixes and improvements
+
+2.1.24: 2026-01-15
+- Improvement: Custom post types - better parsing of the tax_query when detecting supported post types
+- Improvement: Header logo element - correctly clear settings panel if dark mode is enabled, not filled with a logo, and standard logo is deleted
+- Improvement: Search live results - pass REST API nonces only for logged in users
+- Improvement: Small RTL alignment issue for the avatar in the single post author box
+- Improvement: WooCommerce checkout shipping calculator - make sure the form drop down doesn't overflow from the content area
+- Fix: WooCommerce account page - make sure all native notices are correctly outputted
+
+2.1.23: 2025-12-11
+- Improvement: Ensure single product gallery slider is mounted fully when items visibility is calculated
+- Improvement: Header "Trigger" element - accessibility improvements
+
+2.1.22: 2025-11-27
+- Improvement: Better integration with Visual Portfolio plugin
+- Improvement: Header and footer builder - add possibility to view and remove unsupported items
+- Improvement: Live search - better integration with WooCommerce Dynamic Pricing and Discount Rules plugin
+- Improvement: Smarter detection of all compatible custom post types in case plugins register post types too late
+- Fix: Fix minor issue in Customizer notice modal when the companion plugin is not installed
+
+2.1.21: 2025-11-13
+- Improvement: Archive cards - add option for post meta comments to display even if posts has no comments
+- Improvement: Archive cards - don't apply `wpautop` when "full post" option is used for excerpt element
+- Improvement: Widgets admin screen - make sure the site background is applied to widget areas in order to keep a visual sync with frontend
+
+2.1.20: 2025-11-07
+- Improvement: Mini-cart - use the native WooCommerce `cart-empty` template when there are no products
+
+2.1.19: 2025-11-06
+- Improvement: Live search - added filter to set a minimum length of the search term
+- Improvement: Make sure the `global.css` file is not loaded on `wp-login` page
+- Improvement: WooCommerce archive - avoid duplicated actions in product cards
+
+2.1.18: 2025-10-30
+- Improvement: Better integration with EventKoi plugin
+- Improvement: Products archive card type 3 - make sure the pre-selected variations are properly initialized
+
+2.1.17: 2025-10-17
+- Improvement: General fixes and improvements
+
+2.1.16: 2025-10-16
+- Improvement: Don't add cart actions for the second add to cart form in the single product
+- Improvement: Header menu - restored correct default selection after menu deletion
+- Improvement: Make sure images with captions in product description don't go outside of viewport bounds in responsive mode
+- Improvement: Product archive price - correctly apply typography underline/strikethrough proprieties
+
 2.1.15: 2025-10-02
 - Improvement: Cleaner and smarter logic for enqueueing dynamic data styles in frontend
 - Improvement: Mobile menu - add option to keep the dropdown expanded if a child menu item is active
