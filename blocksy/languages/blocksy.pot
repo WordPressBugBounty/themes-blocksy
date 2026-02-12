@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-30 14:56+0000\n"
+"POT-Creation-Date: 2026-02-12 17:07+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -638,11 +638,11 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1499,
 #: inc/options/general/sidebar.php:17,
 #: inc/options/integrations/eventkoi-archive.php:25,
-#: inc/options/integrations/eventkoi-single.php:207,
+#: inc/options/integrations/eventkoi-single.php:26,
 #: inc/options/integrations/tutorlms-archive.php:25,
 #: inc/options/integrations/tutorlms-single.php:208,
 #: inc/options/integrations/visual-portfolio-archive.php:25,
-#: inc/options/integrations/visual-portfolio-single.php:208,
+#: inc/options/integrations/visual-portfolio-single.php:26,
 #: inc/options/meta/default.php:43, inc/options/meta/page.php:27,
 #: inc/options/meta/post.php:24, inc/options/pages/page.php:24,
 #: inc/options/posts/custom-post-type-single.php:44,
@@ -1403,11 +1403,11 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1713,
 #: inc/options/general/sidebar.php:269,
 #: inc/options/integrations/eventkoi-archive.php:38,
-#: inc/options/integrations/eventkoi-single.php:218,
+#: inc/options/integrations/eventkoi-single.php:37,
 #: inc/options/integrations/tutorlms-archive.php:40,
 #: inc/options/integrations/tutorlms-single.php:220,
 #: inc/options/integrations/visual-portfolio-archive.php:38,
-#: inc/options/integrations/visual-portfolio-single.php:219,
+#: inc/options/integrations/visual-portfolio-single.php:37,
 #: inc/options/meta/default.php:176, inc/options/meta/page.php:160,
 #: inc/options/meta/post.php:159, inc/options/pages/page.php:35,
 #: inc/options/posts/custom-post-type-single.php:56,
@@ -1513,21 +1513,11 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1177,
 #: inc/options/general/posts-listing.php:1219,
 #: inc/options/general/sidebar.php:297, inc/options/general/sidebar.php:398,
-#: inc/options/integrations/eventkoi-single.php:30,
-#: inc/options/integrations/eventkoi-single.php:69,
-#: inc/options/integrations/eventkoi-single.php:114,
-#: inc/options/integrations/eventkoi-single.php:154,
-#: inc/options/integrations/eventkoi-single.php:176,
 #: inc/options/integrations/tutorlms-single.php:30,
 #: inc/options/integrations/tutorlms-single.php:69,
 #: inc/options/integrations/tutorlms-single.php:114,
 #: inc/options/integrations/tutorlms-single.php:154,
 #: inc/options/integrations/tutorlms-single.php:176,
-#: inc/options/integrations/visual-portfolio-single.php:30,
-#: inc/options/integrations/visual-portfolio-single.php:69,
-#: inc/options/integrations/visual-portfolio-single.php:114,
-#: inc/options/integrations/visual-portfolio-single.php:154,
-#: inc/options/integrations/visual-portfolio-single.php:176,
 #: inc/options/single-elements/author-box.php:259,
 #: inc/options/single-elements/author-box.php:364,
 #: inc/options/single-elements/author-box.php:397,
@@ -1715,12 +1705,8 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1137,
 #: inc/options/general/posts-listing.php:1183,
 #: inc/options/general/posts-listing.php:1225,
-#: inc/options/integrations/eventkoi-single.php:75,
-#: inc/options/integrations/eventkoi-single.php:120,
 #: inc/options/integrations/tutorlms-single.php:75,
 #: inc/options/integrations/tutorlms-single.php:120,
-#: inc/options/integrations/visual-portfolio-single.php:75,
-#: inc/options/integrations/visual-portfolio-single.php:120,
 #: inc/options/single-elements/author-box.php:370,
 #: inc/options/single-elements/author-box.php:403,
 #: inc/options/single-elements/post-nav.php:191,
@@ -2372,7 +2358,7 @@ msgid "Event Archive"
 msgstr ""
 
 #: inc/options/general/custom-post-types.php:87,
-#: inc/options/integrations/eventkoi-single.php:198,
+#: inc/options/integrations/eventkoi-single.php:17,
 #: inc/options/integrations/the-events-calendar/single.php:18
 msgid "Event Single"
 msgstr ""
@@ -2923,18 +2909,14 @@ msgstr ""
 
 #: inc/options/general/page-title.php:887,
 #: inc/options/general/posts-listing.php:824,
-#: inc/options/integrations/eventkoi-single.php:8,
 #: inc/options/integrations/tutorlms-single.php:8,
-#: inc/options/integrations/visual-portfolio-single.php:8,
 #: inc/options/woocommerce/single-product-elements.php:141
 msgid "Title Font"
 msgstr ""
 
 #: inc/options/general/page-title.php:896,
 #: inc/options/general/posts-listing.php:837,
-#: inc/options/integrations/eventkoi-single.php:17,
 #: inc/options/integrations/tutorlms-single.php:17,
-#: inc/options/integrations/visual-portfolio-single.php:17,
 #: inc/options/woocommerce/single-product-elements.php:149
 msgid "Title Font Color"
 msgstr ""
@@ -3620,11 +3602,11 @@ msgid "The font used if the chosen font isn't available."
 msgstr ""
 
 #: inc/options/integrations/eventkoi-archive.php:12,
-#: inc/options/integrations/eventkoi-single.php:194,
+#: inc/options/integrations/eventkoi-single.php:14,
 #: inc/options/integrations/tutorlms-archive.php:12,
 #: inc/options/integrations/tutorlms-single.php:195,
 #: inc/options/integrations/visual-portfolio-archive.php:12,
-#: inc/options/integrations/visual-portfolio-single.php:195,
+#: inc/options/integrations/visual-portfolio-single.php:14,
 #: inc/options/meta/default.php:13, inc/options/meta/default.php:26,
 #: inc/options/posts/custom-post-type-archive.php:8,
 #: inc/options/posts/custom-post-type-single.php:21,
@@ -3634,53 +3616,22 @@ msgid "%s Title"
 msgstr ""
 
 #: inc/options/integrations/eventkoi-archive.php:21,
-#: inc/options/integrations/eventkoi-single.php:203,
+#: inc/options/integrations/eventkoi-single.php:22,
 #: inc/options/integrations/the-events-calendar/single.php:24
 msgid "Event Structure"
-msgstr ""
-
-#: inc/options/integrations/eventkoi-single.php:39,
-#: inc/options/integrations/tutorlms-single.php:39,
-#: inc/options/integrations/visual-portfolio-single.php:39
-msgid "Categories Font"
-msgstr ""
-
-#: inc/options/integrations/eventkoi-single.php:52,
-#: inc/options/integrations/tutorlms-single.php:52,
-#: inc/options/integrations/visual-portfolio-single.php:52
-msgid "Categories Font Color"
-msgstr ""
-
-#: inc/options/integrations/eventkoi-single.php:84
-msgid "Event Actions Font"
-msgstr ""
-
-#: inc/options/integrations/eventkoi-single.php:97
-msgid "Event Actions Font Color"
-msgstr ""
-
-#: inc/options/integrations/eventkoi-single.php:129,
-#: inc/options/integrations/tutorlms-single.php:129,
-#: inc/options/integrations/visual-portfolio-single.php:129
-msgid "Rating Font"
-msgstr ""
-
-#: inc/options/integrations/eventkoi-single.php:141,
-#: inc/options/integrations/tutorlms-single.php:141,
-#: inc/options/integrations/visual-portfolio-single.php:141
-msgid "Rating Font Color"
-msgstr ""
-
-#: inc/options/integrations/eventkoi-single.php:162,
-#: inc/options/integrations/tutorlms-single.php:162,
-#: inc/options/integrations/visual-portfolio-single.php:162,
-#: inc/options/woocommerce/general/star-rating.php:19
-msgid "Star Rating Color"
 msgstr ""
 
 #: inc/options/integrations/tutorlms-archive.php:21,
 #: inc/options/integrations/tutorlms-single.php:204
 msgid "Course Structure"
+msgstr ""
+
+#: inc/options/integrations/tutorlms-single.php:39
+msgid "Categories Font"
+msgstr ""
+
+#: inc/options/integrations/tutorlms-single.php:52
+msgid "Categories Font Color"
 msgstr ""
 
 #: inc/options/integrations/tutorlms-single.php:84
@@ -3691,24 +3642,29 @@ msgstr ""
 msgid "Course Actions Font Color"
 msgstr ""
 
+#: inc/options/integrations/tutorlms-single.php:129
+msgid "Rating Font"
+msgstr ""
+
+#: inc/options/integrations/tutorlms-single.php:141
+msgid "Rating Font Color"
+msgstr ""
+
+#: inc/options/integrations/tutorlms-single.php:162,
+#: inc/options/woocommerce/general/star-rating.php:19
+msgid "Star Rating Color"
+msgstr ""
+
 #: inc/options/integrations/visual-portfolio-archive.php:16
 msgid "Portfolio Archive"
 msgstr ""
 
 #: inc/options/integrations/visual-portfolio-archive.php:21,
-#: inc/options/integrations/visual-portfolio-single.php:204
+#: inc/options/integrations/visual-portfolio-single.php:22
 msgid "Portfolio Structure"
 msgstr ""
 
-#: inc/options/integrations/visual-portfolio-single.php:84
-msgid "Portfolio Actions Font"
-msgstr ""
-
-#: inc/options/integrations/visual-portfolio-single.php:97
-msgid "Portfolio Actions Font Color"
-msgstr ""
-
-#: inc/options/integrations/visual-portfolio-single.php:199
+#: inc/options/integrations/visual-portfolio-single.php:17
 msgid "Portfolio Single"
 msgstr ""
 

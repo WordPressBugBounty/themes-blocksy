@@ -1,3 +1,8 @@
+2.1.28: 2026-02-12
+- Improvement: Improved integration with Visual Portfolio plugin
+- Improvement: Optimize selectors for entry content links type
+- Fix: Make sure the header main background options can be resetted
+
 2.1.27: 2026-01-30
 - Improvement: Core accordion block - unset the extra margin from `wp-block-accordion-heading`
 - Improvement: Improve compatibility with WordPress 6.9.1 to allow separated loading of core block assets
