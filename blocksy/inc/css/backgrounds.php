@@ -345,7 +345,13 @@ if (! function_exists('blocksy_output_single_background_css')) {
 			$gradient = blocksy_akg('gradient', $args['value'], '');
 
 			if (! empty($gradient)) {
-				$image_url = $gradient;
+				if (function_exists('blocksy_sanitize_css_gradient')) {
+					$gradient = blocksy_sanitize_css_gradient($gradient);
+				}
+
+				if (! empty($gradient)) {
+					$image_url = $gradient;
+				}
 			}
 		}
 

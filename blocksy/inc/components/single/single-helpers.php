@@ -576,6 +576,17 @@ if (! function_exists('blocksy_get_featured_image_source')) {
 			];
 		}
 
+		if (
+			class_exists('Visual_Portfolio')
+			&&
+			is_singular('portfolio')
+		) {
+			return [
+				'strategy' => 'customizer',
+				'prefix' => 'vs_portfolio_single'
+			];
+		}
+
 		return [
 			'strategy' => 'customizer',
 			'prefix' => 'single_blog_post'

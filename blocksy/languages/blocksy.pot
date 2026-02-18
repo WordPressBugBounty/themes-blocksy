@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-12 17:07+0000\n"
+"POT-Creation-Date: 2026-02-18 16:16+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -239,7 +239,7 @@ msgstr ""
 msgid "Search products&hellip;"
 msgstr ""
 
-#: woocommerce/product-searchform.php:28, inc/classes/screen-manager.php:217,
+#: woocommerce/product-searchform.php:28, inc/classes/screen-manager.php:222,
 #: inc/components/builder/header-elements.php:197,
 #: inc/options/pages/search-page.php:13,
 #: inc/panel-builder/header/search/config.php:4,
@@ -258,11 +258,11 @@ msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
 #. translators: %s is the theme name.
-#: admin/helpers/meta-boxes.php:144
+#: admin/helpers/meta-boxes.php:152
 msgid "%s Settings"
 msgstr ""
 
-#: admin/helpers/meta-boxes.php:145
+#: admin/helpers/meta-boxes.php:153
 msgid "Blocksy"
 msgstr ""
 
@@ -291,46 +291,46 @@ msgstr ""
 msgid "Color %s"
 msgstr ""
 
-#: inc/classes/screen-manager.php:214, inc/components/breadcrumbs.php:428,
+#: inc/classes/screen-manager.php:219, inc/components/breadcrumbs.php:428,
 #: inc/options/general/posts-listing.php:14, inc/options/posts/blog.php:20
 msgid "Blog"
 msgstr ""
 
-#: inc/classes/screen-manager.php:215, inc/options/customizer.php:106,
+#: inc/classes/screen-manager.php:220, inc/options/customizer.php:106,
 #: inc/options/posts/categories.php:6, inc/options/posts/categories.php:11
 msgid "Categories"
 msgstr ""
 
-#: inc/classes/screen-manager.php:216, inc/options/general/meta.php:215,
+#: inc/classes/screen-manager.php:221, inc/options/general/meta.php:215,
 #: inc/options/pages/author-page.php:13
 msgid "Author"
 msgstr ""
 
-#: inc/classes/screen-manager.php:218
+#: inc/classes/screen-manager.php:223
 msgid "WooCommerce Categories"
 msgstr ""
 
-#: inc/classes/screen-manager.php:237, inc/classes/screen-manager.php:226
+#: inc/classes/screen-manager.php:242, inc/classes/screen-manager.php:231
 msgid "Archives"
 msgstr ""
 
-#: inc/classes/screen-manager.php:252,
+#: inc/classes/screen-manager.php:257,
 #: inc/panel-builder/header/search/options.php:6
 msgid "Posts"
 msgstr ""
 
-#: inc/classes/screen-manager.php:253, inc/options/customizer.php:121,
+#: inc/classes/screen-manager.php:258, inc/options/customizer.php:121,
 #: inc/components/single/content-helpers.php:298,
 #: inc/panel-builder/header/search/options.php:7
 msgid "Pages"
 msgstr ""
 
-#: inc/classes/screen-manager.php:254, inc/components/hero/elements.php:201,
+#: inc/classes/screen-manager.php:259, inc/components/hero/elements.php:201,
 #: inc/panel-builder/header/search/options.php:16
 msgid "Products"
 msgstr ""
 
-#: inc/classes/screen-manager.php:273, inc/classes/screen-manager.php:262
+#: inc/classes/screen-manager.php:278, inc/classes/screen-manager.php:267
 msgid "Singulars"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgctxt "breadcrumb"
 msgid "Home"
 msgstr ""
 
-#: inc/components/gallery.php:273, inc/components/gallery.php:261
+#: inc/components/gallery.php:275, inc/components/gallery.php:263
 msgid "Slide %s"
 msgstr ""
 
@@ -642,7 +642,7 @@ msgstr ""
 #: inc/options/integrations/tutorlms-archive.php:25,
 #: inc/options/integrations/tutorlms-single.php:208,
 #: inc/options/integrations/visual-portfolio-archive.php:25,
-#: inc/options/integrations/visual-portfolio-single.php:26,
+#: inc/options/integrations/visual-portfolio-single.php:29,
 #: inc/options/meta/default.php:43, inc/options/meta/page.php:27,
 #: inc/options/meta/post.php:24, inc/options/pages/page.php:24,
 #: inc/options/posts/custom-post-type-single.php:44,
@@ -1407,7 +1407,7 @@ msgstr ""
 #: inc/options/integrations/tutorlms-archive.php:40,
 #: inc/options/integrations/tutorlms-single.php:220,
 #: inc/options/integrations/visual-portfolio-archive.php:38,
-#: inc/options/integrations/visual-portfolio-single.php:37,
+#: inc/options/integrations/visual-portfolio-single.php:83,
 #: inc/options/meta/default.php:176, inc/options/meta/page.php:160,
 #: inc/options/meta/post.php:159, inc/options/pages/page.php:35,
 #: inc/options/posts/custom-post-type-single.php:56,
@@ -1425,7 +1425,7 @@ msgstr ""
 #: inc/options/woocommerce/single-main.php:62,
 #: inc/options/woocommerce/single-product-elements.php:129,
 #: inc/options/woocommerce/single-product-gallery.php:143,
-#: inc/options/woocommerce/single-product-gallery.php:368,
+#: inc/options/woocommerce/single-product-gallery.php:380,
 #: inc/options/woocommerce/single-product-tabs.php:182,
 #: inc/options/integrations/the-events-calendar/archive.php:37,
 #: inc/options/integrations/the-events-calendar/single.php:39,
@@ -2089,7 +2089,7 @@ msgstr ""
 #: inc/options/single-elements/featured-image.php:143,
 #: inc/options/single-elements/post-tags.php:223,
 #: inc/options/woocommerce/single-product-gallery.php:277,
-#: inc/options/woocommerce/single-product-gallery.php:373,
+#: inc/options/woocommerce/single-product-gallery.php:385,
 #: inc/panel-builder/header/button/options.php:834,
 #: inc/panel-builder/header/cart/options.php:1126,
 #: inc/panel-builder/header/offcanvas/options.php:428,
@@ -2889,7 +2889,7 @@ msgstr ""
 #: inc/options/single-elements/related-posts.php:325,
 #: inc/options/woocommerce/card-product-elements.php:314,
 #: inc/options/woocommerce/single-product-gallery.php:113,
-#: inc/options/woocommerce/single-product-gallery.php:339,
+#: inc/options/woocommerce/single-product-gallery.php:350,
 #: inc/options/woocommerce/general/cart-page.php:40,
 #: inc/panel-builder/header/cart/options.php:716
 msgid "Image Size"
@@ -3225,6 +3225,7 @@ msgstr ""
 #: inc/options/single-elements/related-posts.php:315,
 #: inc/options/woocommerce/card-product-elements.php:299,
 #: inc/options/woocommerce/single-product-gallery.php:101,
+#: inc/options/woocommerce/single-product-gallery.php:338,
 #: inc/options/woocommerce/general/cart-page.php:29,
 #: inc/panel-builder/header/cart/options.php:708
 msgid "Image Ratio"
@@ -3606,7 +3607,7 @@ msgstr ""
 #: inc/options/integrations/tutorlms-archive.php:12,
 #: inc/options/integrations/tutorlms-single.php:195,
 #: inc/options/integrations/visual-portfolio-archive.php:12,
-#: inc/options/integrations/visual-portfolio-single.php:14,
+#: inc/options/integrations/visual-portfolio-single.php:17,
 #: inc/options/meta/default.php:13, inc/options/meta/default.php:26,
 #: inc/options/posts/custom-post-type-archive.php:8,
 #: inc/options/posts/custom-post-type-single.php:21,
@@ -3660,12 +3661,26 @@ msgid "Portfolio Archive"
 msgstr ""
 
 #: inc/options/integrations/visual-portfolio-archive.php:21,
-#: inc/options/integrations/visual-portfolio-single.php:22
+#: inc/options/integrations/visual-portfolio-single.php:25
 msgid "Portfolio Structure"
 msgstr ""
 
-#: inc/options/integrations/visual-portfolio-single.php:17
+#: inc/options/integrations/visual-portfolio-single.php:20
 msgid "Portfolio Single"
+msgstr ""
+
+#: inc/options/integrations/visual-portfolio-single.php:66,
+#: inc/options/meta/default.php:234, inc/options/meta/page.php:173,
+#: inc/options/meta/post.php:214, inc/options/pages/author-page.php:79,
+#: inc/options/pages/page.php:52, inc/options/pages/page.php:129,
+#: inc/options/pages/search-page.php:83, inc/options/posts/blog.php:86,
+#: inc/options/posts/custom-post-type-archive.php:83,
+#: inc/options/posts/custom-post-type-single.php:160,
+#: inc/options/posts/custom-post-type-single.php:182,
+#: inc/options/posts/post.php:68, inc/options/posts/post.php:122,
+#: inc/options/woocommerce/archive-main.php:199,
+#: inc/options/woocommerce/single-main.php:80
+msgid "Page Elements"
 msgstr ""
 
 #: inc/options/meta/blog.php:6, inc/options/meta/default.php:244,
@@ -3740,19 +3755,6 @@ msgstr ""
 
 #: inc/options/meta/default.php:227, inc/options/meta/post.php:200
 msgid "Disable Posts Navigation"
-msgstr ""
-
-#: inc/options/meta/default.php:234, inc/options/meta/page.php:173,
-#: inc/options/meta/post.php:214, inc/options/pages/author-page.php:79,
-#: inc/options/pages/page.php:52, inc/options/pages/page.php:129,
-#: inc/options/pages/search-page.php:83, inc/options/posts/blog.php:86,
-#: inc/options/posts/custom-post-type-archive.php:83,
-#: inc/options/posts/custom-post-type-single.php:160,
-#: inc/options/posts/custom-post-type-single.php:182,
-#: inc/options/posts/post.php:68, inc/options/posts/post.php:122,
-#: inc/options/woocommerce/archive-main.php:199,
-#: inc/options/woocommerce/single-main.php:80
-msgid "Page Elements"
 msgstr ""
 
 #: inc/options/meta/default.php:238, inc/options/meta/post.php:218
@@ -4482,7 +4484,7 @@ msgid "Gallery Thumbnails"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-gallery.php:317
-msgid "Position"
+msgid "Thumbnails Position"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-gallery.php:324,
@@ -4497,11 +4499,11 @@ msgstr ""
 msgid "Vertical"
 msgstr ""
 
-#: inc/options/woocommerce/single-product-gallery.php:340
+#: inc/options/woocommerce/single-product-gallery.php:351
 msgid "Image size used for the gallery thumbnails on single product pages."
 msgstr ""
 
-#: inc/options/woocommerce/single-product-gallery.php:347
+#: inc/options/woocommerce/single-product-gallery.php:359
 msgid "Spacing"
 msgstr ""
 

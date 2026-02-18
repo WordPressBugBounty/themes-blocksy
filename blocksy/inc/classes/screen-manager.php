@@ -147,6 +147,11 @@ class Blocksy_Screen_Manager {
 			$result[] = 'tribe_events_archive';
 		}
 
+		if (class_exists('Visual_Portfolio')) {
+			$result[] = 'vs_portfolio_single';
+			$result[] = 'vs_portfolio_archive';
+		}
+
 		return $result;
 	}
 

@@ -1,3 +1,7 @@
+2.1.29: 2026-02-18
+- Improvement: Post meta for single posts - correctly sanitize background values
+- Improvement: Single product gallery thumbnails - add option for changing image ratio
+
 2.1.28: 2026-02-12
 - Improvement: Improved integration with Visual Portfolio plugin
 - Improvement: Optimize selectors for entry content links type
