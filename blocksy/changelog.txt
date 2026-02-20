@@ -1,3 +1,6 @@
+2.1.30: 2026-02-20
+- Improvement: Post meta for single posts - correctly sanitize typography values
+
 2.1.29: 2026-02-18
 - Improvement: Post meta for single posts - correctly sanitize background values
 - Improvement: Single product gallery thumbnails - add option for changing image ratio
