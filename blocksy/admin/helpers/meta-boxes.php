@@ -99,9 +99,7 @@ class Blocksy_Meta_Boxes {
 			'blocksy_meta',
 			array(
 				'get_callback' => function ($object) {
-					return blocksy_sanitize_post_meta_options(
-						blocksy_get_post_options($object['id'])
-					);
+					return blocksy_get_post_options($object['id']);
 				},
 				'update_callback' => function ($value, $object) {
 					$post_id = $object->ID;

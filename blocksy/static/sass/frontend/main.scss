@@ -26,7 +26,6 @@
 @use '4-components/labels';
 @use '4-components/tooltip';
 @use '4-components/form/main';
-@use '4-components/pagination';
 @use '4-components/entry-meta';
 @use '4-components/entry-tags';
 @use '4-components/breadcrumbs';
@@ -39,9 +38,7 @@
 @use '4-components/module-title';
 @use '4-components/slider-arrows';
 @use '4-components/image-overlay';
-@use '4-components/related-posts';
 @use '4-components/show-password';
-@use '4-components/featured-image';
 @use '4-components/post-edit-link';
 @use '4-components/video-indicator';
 @use '4-components/expandable-container';
@@ -57,7 +54,6 @@
 
 // 6 - LAYOUT
 @use '6-layout/main' as layout-main;
-@use '6-layout/entries/main' as entries-main;
 @use '6-layout/modules-structure';
 
 // 7 - PAGES
@@ -67,4 +63,3 @@
 // 8 - INTEGRATIONS
 @use '8-integrations/editors-common';
 @use '8-integrations/gutenberg/main' as gutenberg-main;
-

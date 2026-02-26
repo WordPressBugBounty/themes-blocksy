@@ -409,6 +409,30 @@ var options = {
 		},
 
 		{
+			input: 'static/sass/frontend/4-components/pagination.scss',
+			output: 'static/bundle',
+			filename: 'pagination.min',
+		},
+
+		{
+			input: 'static/sass/frontend/6-layout/entries/main.scss',
+			output: 'static/bundle',
+			filename: 'entries.min',
+		},
+
+		{
+			input: 'static/sass/frontend/4-components/featured-image.scss',
+			output: 'static/bundle',
+			filename: 'featured-image.min',
+		},
+
+		{
+			input: 'static/sass/frontend/4-components/related-posts.scss',
+			output: 'static/bundle',
+			filename: 'related-posts.min',
+		},
+
+		{
 			input: 'static/sass/backend/editor/main.scss',
 			output: 'static/bundle',
 			filename: 'editor.min',

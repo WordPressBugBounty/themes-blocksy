@@ -1,3 +1,10 @@
+2.1.31: 2026-02-26
+- Improvement: Don't load comments CSS on single product pages
+- Improvement: Improved logic for sanitizing post meta for single posts/pages
+- Improvement: Load archive cards CSS only on archive/posts loop pages
+- Improvement: Load pagination CSS only on pages where archive/posts loop is present
+- Improvement: Load related posts CSS only on single post pages
+
 2.1.30: 2026-02-20
 - Improvement: Post meta for single posts - correctly sanitize typography values
 
