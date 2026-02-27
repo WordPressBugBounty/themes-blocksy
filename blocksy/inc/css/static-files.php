@@ -50,17 +50,13 @@ class Blocksy_Static_Css_Files {
 		);
 
 		$should_load_featured_image_styles = (
-			(
-				is_singular('post')
-				&&
-				blocksy_get_theme_mod('single_blog_post_has_featured_image', 'no') === 'yes'
-			)
-			||
-			(
-				is_page()
-				&&
-				blocksy_get_theme_mod('single_page_has_featured_image', 'no') === 'yes'
-			)
+			is_singular()
+			&&
+			blocksy_akg_or_customizer(
+				'has_featured_image',
+				blocksy_get_featured_image_source(),
+				'no'
+			) === 'yes'
 		);
 
 		$static_files = [
@@ -343,52 +339,6 @@ class Blocksy_Static_Css_Files {
 			blocksy_get_theme_mod($prefix . '_has_related_posts', 'no') === 'yes'
 		);
 
-		$pagination_prefix = $prefix;
-		$is_archive_with_posts = (
-			is_home()
-			||
-			is_archive()
-			||
-			is_search()
-		);
-
-		if (
-			function_exists('is_woocommerce')
-			&&
-			is_woocommerce()
-			&&
-			(
-				is_shop()
-				||
-				is_product_category()
-				||
-				is_product_tag()
-				||
-				is_product_taxonomy()
-			)
-		) {
-			$pagination_prefix = 'woo_categories';
-		}
-
-		$should_load_pagination_styles = (
-			$is_archive_with_posts
-			&&
-			blocksy_get_theme_mod($pagination_prefix . '_has_pagination', 'yes') === 'yes'
-		);
-
-		$is_entries_archive_screen = in_array(
-			$prefix,
-			blocksy_manager()->screen->get_archive_prefixes([
-				'has_blog' => true,
-				'has_categories' => true,
-				'has_author' => true,
-				'has_search' => true
-			]),
-			true
-		);
-
-		$should_load_entries_styles = $is_entries_archive_screen;
-
 		$should_load_flexy_styles = (
 			is_singular('blc-product-review')
 			||
@@ -565,13 +515,13 @@ class Blocksy_Static_Css_Files {
 			'ct-pagination-styles' => [
 				'url' => '/static/bundle/pagination.min.css',
 				'deps' => ['ct-main-styles'],
-				'enabled' => $should_load_pagination_styles
+				'enabled' => false
 			],
 
 			'ct-entries-styles' => [
 				'url' => '/static/bundle/entries.min.css',
 				'deps' => ['ct-main-styles'],
-				'enabled' => $should_load_entries_styles
+				'enabled' => false
 			],
 
 			'ct-flexy-styles' => [

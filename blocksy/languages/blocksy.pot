@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-26 16:36+0000\n"
+"POT-Creation-Date: 2026-02-27 16:02+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -420,16 +420,16 @@ msgstr ""
 msgid "No more products to load"
 msgstr ""
 
-#: inc/components/pagination.php:109, inc/options/general/pagination.php:38,
+#: inc/components/pagination.php:113, inc/options/general/pagination.php:38,
 #: inc/options/general/pagination.php:61
 msgid "Load More"
 msgstr ""
 
-#: inc/components/pagination.php:206
+#: inc/components/pagination.php:210
 msgid "Prev"
 msgstr ""
 
-#: inc/components/pagination.php:208
+#: inc/components/pagination.php:212
 msgid "Next"
 msgstr ""
 

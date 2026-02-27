@@ -1,3 +1,7 @@
+2.1.32: 2026-02-27
+- Improvement: Ensure ct-options-scripts is not registered as dependency in customizer
+- Improvement: Related posts - make sure the grid styles are applied correctly
+
 2.1.31: 2026-02-26
 - Improvement: Don't load comments CSS on single product pages
 - Improvement: Improved logic for sanitizing post meta for single posts/pages

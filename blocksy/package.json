@@ -1,6 +1,6 @@
 {
 	"name": "small-ct",
-	"version": "2.1.31",
+	"version": "2.1.32",
 	"title": "Blocksy",
 	"browserslist": "> 1%, not opera > 0, not op_mini all",
 	"devDependencies": {
@@ -25,7 +25,8 @@
 		"sync-google-fonts": "env-cmd --silent node scripts/sync-google-fonts.js",
 		"make-pr": "env-cmd --silent node scripts/make-pr.js",
 		"test": "NODE_ENV=test jest",
-		"create-issues-changelogs": "env-cmd --silent node scripts/create-issues-changelogs.js"
+		"create-issues-changelogs": "env-cmd --silent node scripts/create-issues-changelogs.js",
+		"set-issue-data": "env-cmd --silent node scripts/set-issue-data.js"
 	},
 	"dependencies": {
 		"@creative-themes/build-process": "6.0.14",

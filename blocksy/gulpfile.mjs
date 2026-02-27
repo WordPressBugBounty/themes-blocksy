@@ -552,6 +552,7 @@ var options = {
 		'./build_tmp/build/wp-cli.yml',
 		'./build_tmp/build/.babelrc',
 		'./build_tmp/build/docs',
+		'./build_tmp/build/CLAUDE.md',
 		'./build_tmp/build/extensions.json',
 		// './build_tmp/build/gulpfile.js',
 		// './build_tmp/build/gulpfile.mjs',
