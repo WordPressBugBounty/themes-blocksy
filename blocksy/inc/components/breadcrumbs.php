@@ -633,7 +633,10 @@ class BreadcrumbsBuilder {
 			$woo_compatible_breadcrumbs = new \WC_Breadcrumb();
 
 			foreach ($result as $item) {
-				$woo_compatible_breadcrumbs->add_crumb($item['name'], $item['url']);
+				$woo_compatible_breadcrumbs->add_crumb(
+					$item['name'] ?? __('No title', 'blocksy'),
+					$item['url'] ?? ''
+				);
 			}
 
 			do_action(
@@ -991,5 +994,4 @@ class BreadcrumbsBuilder {
 		return ob_get_clean();
 	}
 }
-
 

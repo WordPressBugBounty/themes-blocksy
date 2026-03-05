@@ -4,7 +4,12 @@ import './events'
 import ctEvents from 'ct-events'
 
 import { watchLayoutContainerForReveal } from './frontend/animated-element'
-import { onDocumentLoaded, handleEntryPoints, loadStyle } from './helpers'
+import {
+	onDocumentLoaded,
+	handleEntryPoints,
+	loadStyle,
+	preloadAssetsForContent
+} from './helpers'
 
 import { getCurrentScreen } from './frontend/helpers/current-screen'
 import { mountDynamicChunks } from './dynamic-chunks'
@@ -114,7 +119,13 @@ let allFrontendEntryPoints = [
 	},
 
 	{
-		els: ['.entries[data-layout]', '[data-products].products'],
+		els: () => [
+			...new Set(
+				[...document.querySelectorAll('[data-reveal*="no"]')]
+					.map((el) => el.closest('.entries'))
+					.filter((el) => !!el)
+			)
+		],
 		load: () =>
 			new Promise((r) => r({ mount: watchLayoutContainerForReveal }))
 	},
@@ -335,6 +346,15 @@ ctEvents.on('blocksy:frontend:init', () => {
 
 	initOverlayTrigger()
 
+	// If assets detected in main container, preload them.
+	// It will not cover assets for elements from drawer canvas, as those
+	// will be opened later when corresponding items open.
+	//
+	// Also, need to do it on this first load because woo fragments may
+	// already have updated the cart content before our main script runs,
+	// so we need to make sure to cover those assets as well.
+	preloadAssetsForContent(document.querySelector('#main-container'))
+
 	if (isPageLoad) {
 		isPageLoad = false
 	} else {
@@ -397,8 +417,11 @@ ctEvents.on(
 	}
 )
 
-export { loadStyle, handleEntryPoints, onDocumentLoaded } from './helpers'
+export {
+	loadStyle,
+	preloadAssetsForContent,
+	handleEntryPoints,
+	onDocumentLoaded
+} from './helpers'
 export { registerDynamicChunk, loadDynamicChunk } from './dynamic-chunks'
 export { getCurrentScreen } from './frontend/helpers/current-screen'
-
-export { fastOverlayPreloadAssets as overlayPreloadAssets } from './frontend/fast-overlay'

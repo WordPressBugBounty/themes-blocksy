@@ -38,6 +38,8 @@ function blocksy_flexy($args = []) {
 		'active_index' => 1
 	]);
 
+	wp_enqueue_style('ct-flexy-styles');
+
 	$prefix = $args['prefix'];
 
 	if (! empty($args['prefix'])) {

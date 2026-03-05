@@ -16,11 +16,12 @@ if ($) {
 		'reset_data',
 		'wc_fragments_loaded',
 		'prdctfltr-reload',
-		'wpf_ajax_success',
+		'wpf_ajax_success'
 	].map((event) => {
-		$(document.body).on(event, () =>
+		$(document.body).on(event, () => {
 			ctEvents.trigger('blocksy:frontend:init')
-		)
+			console.log({ event })
+		})
 
 		$(window).on(event, () => ctEvents.trigger('blocksy:frontend:init'))
 	})

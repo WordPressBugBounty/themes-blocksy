@@ -293,6 +293,30 @@ wp.customize.bind('preview-ready', () => {
 			}
 		}
 
+	const originalRenderContent =
+		wp.customize.selectiveRefresh.Partial.prototype.renderContent
+
+	wp.customize.selectiveRefresh.Partial.prototype.renderContent =
+		function (placement) {
+			if (
+				!placement.addedContent ||
+				!_.isString(placement.addedContent)
+			) {
+				return originalRenderContent.call(this, placement)
+			}
+
+			ctFrontend
+				.preloadAssetsForContent(placement.addedContent)
+				.then(() => {
+					originalRenderContent.call(this, placement)
+				})
+
+			// Return value is not used by WP core (see
+			// customize-selective-refresh.js#381), but we return false to
+			// make it explicit that rendering is deferred.
+			return false
+		}
+
 	wp.customize.selectiveRefresh.Partial.prototype.createEditShortcutForPlacement =
 		() => {}
 

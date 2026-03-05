@@ -10,7 +10,7 @@ const loadSingleEntryPoint = ({
 	load,
 	mount,
 	condition,
-	trigger,
+	trigger
 }) => {
 	if (!els) {
 		els = []
@@ -38,7 +38,7 @@ const loadSingleEntryPoint = ({
 	trigger = trigger.map((t) => {
 		if (typeof t === 'string') {
 			return {
-				id: t,
+				id: t
 			}
 		}
 
@@ -60,8 +60,8 @@ const loadSingleEntryPoint = ({
 			...(Array.isArray(selector)
 				? selector
 				: typeof selector === 'string'
-				? document.querySelectorAll(selector)
-				: [selector]),
+					? document.querySelectorAll(selector)
+					: [selector])
 		],
 		[]
 	)
@@ -74,7 +74,7 @@ const loadSingleEntryPoint = ({
 		condition &&
 		!condition({
 			els,
-			allEls,
+			allEls
 		})
 	) {
 		return
@@ -118,9 +118,9 @@ const loadSingleEntryPoint = ({
 					{
 						...(triggerDescriptor.once
 							? {
-									once: true,
-							  }
-							: {}),
+									once: true
+								}
+							: {})
 					}
 				)
 			})
@@ -231,7 +231,7 @@ const loadSingleEntryPoint = ({
 							load().then((arg) =>
 								mount({
 									...arg,
-									el,
+									el
 								})
 							)
 						}, 10)
@@ -258,16 +258,16 @@ const loadSingleEntryPoint = ({
 										'touchmove',
 										() => {
 											el.forcedMount({
-												event,
+												event
 											})
 										},
 										{
-											once: true,
+											once: true
 										}
 									)
 								} else {
 									el.forcedMount({
-										event,
+										event
 									})
 								}
 							},
@@ -291,7 +291,7 @@ const loadSingleEntryPoint = ({
 						mount({
 							...arg,
 							event,
-							el,
+							el
 						})
 					)
 				}
@@ -348,7 +348,7 @@ const loadSingleEntryPoint = ({
 						}
 					},
 					{
-						signal: controller.signal,
+						signal: controller.signal
 					}
 				)
 
@@ -379,7 +379,7 @@ const loadSingleEntryPoint = ({
 							l(event)
 						},
 						{
-							signal: controller.signal,
+							signal: controller.signal
 						}
 					)
 				}
@@ -403,7 +403,7 @@ const loadSingleEntryPoint = ({
 							mount({
 								...arg,
 								event,
-								el,
+								el
 							})
 						)
 					},
@@ -457,11 +457,11 @@ export const handleEntryPoints = (mountEntryPoints, args) => {
 					(currentEvents, entry) => [
 						...currentEvents,
 						...(entry.events || []),
-						...(entry.forcedEvents || []),
+						...(entry.forcedEvents || [])
 					],
 					[]
 				)
-			),
+			)
 		].map((distinctEvent) => {
 			ctEvents.on(distinctEvent, () => {
 				mountEntryPoints
@@ -481,10 +481,10 @@ export const handleEntryPoints = (mountEntryPoints, args) => {
 							...(entry.forcedEventsElsSkip
 								? {}
 								: {
-										els: ['body'],
-								  }),
+										els: ['body']
+									}),
 							condition: () => true,
-							trigger: [],
+							trigger: []
 						})
 					)
 			})
@@ -581,9 +581,12 @@ function onloadCSS(ss, callback) {
 	}
 }
 
+const loadedStyles = {}
+
 export const loadStyle = (src, hasDisable = false) =>
 	new Promise((resolve, reject) => {
-		if (document.querySelector(`[href="${src}"]`)) {
+		if (loadedStyles[src] || document.querySelector(`[href="${src}"]`)) {
+			loadedStyles[src] = true
 			resolve()
 			return
 		}
@@ -592,9 +595,39 @@ export const loadStyle = (src, hasDisable = false) =>
 			const ss = loadCSS(src)
 
 			onloadCSS(ss, () => {
+				loadedStyles[src] = true
+
 				requestAnimationFrame(() => {
 					resolve()
 				})
 			})
 		})
 	})
+
+// Preload lazily-loaded stylesheets that match selectors found in the
+// given content. Accepts an HTML string or a DOM element.
+export const preloadAssetsForContent = (content) => {
+	if (!content || !ct_localizations.dynamic_styles_selectors) {
+		return Promise.resolve()
+	}
+
+	let el
+
+	if (typeof content === 'string') {
+		el = document.createElement('div')
+		el.innerHTML = content
+	} else {
+		el = content
+	}
+
+	const promises = ct_localizations.dynamic_styles_selectors
+		.filter(
+			(styleDescriptor) =>
+				!loadedStyles[styleDescriptor.url] &&
+				(el.matches(styleDescriptor.selector) ||
+					el.querySelector(styleDescriptor.selector))
+		)
+		.map((s) => loadStyle(s.url))
+
+	return promises.length > 0 ? Promise.all(promises) : Promise.resolve()
+}

@@ -1,5 +1,6 @@
-import { createElement, useEffect, useState, useMemo } from '@wordpress/element'
+import { createElement, useEffect, useState, useMemo, useRef } from '@wordpress/element'
 import { __ } from 'ct-i18n'
+import { nanoid } from 'nanoid'
 
 import cachedFetch from '@creative-themes/wordpress-helpers/cached-fetch'
 import Select from './ct-select'
@@ -23,6 +24,14 @@ const EntityIdPicker = ({
 	purpose,
 	onChange,
 }) => {
+	const fetcherRef = useRef(null)
+
+	if (!fetcherRef.current) {
+		fetcherRef.current = `entity-picker-${nanoid()}`
+	}
+
+	const fetcherId = fetcherRef.current
+
 	const [allEntities, setAllEntities] = useState([])
 	const requestBody = useMemo(() => {
 		const requestBody = {}
@@ -51,10 +60,7 @@ const EntityIdPicker = ({
 				...requestBody,
 			},
 			{
-				// Abort intermediary requests.
-				// TODO: maybe add a more specific name to the fetcherName to
-				// avoid clashes with other instances of the same component.
-				fetcherName: `entity-picker`,
+				fetcherName: fetcherId,
 			}
 		)
 			.then((r) => r.json())

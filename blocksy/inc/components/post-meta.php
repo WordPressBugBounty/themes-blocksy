@@ -62,6 +62,8 @@ if (! function_exists('blocksy_render_post_author_details')) {
 
 		$result = '';
 
+		$display_name = get_the_author_meta('display_name', $author->ID);
+
 		$result .= blocksy_html_tag(
 			'a',
 			array_merge(
@@ -88,7 +90,7 @@ if (! function_exists('blocksy_render_post_author_details')) {
 			blocksy_html_tag(
 				'span',
 				blocksy_schema_org_definitions('author_name', ['array' => true]),
-				get_the_author()
+				$display_name
 			)
 		);
 

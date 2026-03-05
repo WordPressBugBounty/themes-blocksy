@@ -66,10 +66,40 @@ if (! function_exists('blocksy_sanitize_post_meta_options')) {
 	 * Any string containing suspicious characters (< >) will be replaced
 	 * with an empty string to prevent XSS attacks.
 	 *
+	 * Keys listed in the 'blocksy:post-meta:unfiltered-keys' filter are
+	 * skipped when the current user has the 'unfiltered_html' capability.
+	 *
 	 * @param mixed $value The meta options to sanitize.
 	 * @return mixed Sanitized meta options.
 	 */
 	function blocksy_sanitize_post_meta_options($value) {
+		$unfiltered_keys = [];
+
+		if (current_user_can('unfiltered_html')) {
+			$unfiltered_keys = apply_filters(
+				'blocksy:post-meta:unfiltered-keys',
+				[]
+			);
+		}
+
+		if (is_array($value) && ! empty($unfiltered_keys)) {
+			$preserved = [];
+
+			foreach ($unfiltered_keys as $key) {
+				if (array_key_exists($key, $value)) {
+					$preserved[$key] = $value[$key];
+				}
+			}
+
+			$value = blocksy_sanitize_value_recursive($value);
+
+			foreach ($preserved as $key => $val) {
+				$value[$key] = $val;
+			}
+
+			return $value;
+		}
+
 		return blocksy_sanitize_value_recursive($value);
 	}
 }

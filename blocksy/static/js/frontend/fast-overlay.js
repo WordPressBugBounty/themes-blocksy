@@ -1,24 +1,6 @@
-import { loadStyle } from '../helpers'
+import { preloadAssetsForContent } from '../helpers'
 
 import { whenTransitionEnds } from './helpers/when-transition-ends'
-
-export const fastOverlayPreloadAssets = (el = null) => {
-	import('./lazy/overlay')
-
-	if (el) {
-		const potentialStyles =
-			ct_localizations.dynamic_styles_selectors.filter(
-				(styleDescriptor) => {
-					return (
-						el.matches(styleDescriptor.selector) ||
-						el.querySelector(styleDescriptor.selector)
-					)
-				}
-			)
-
-		potentialStyles.map((styleDescriptor) => loadStyle(styleDescriptor.url))
-	}
-}
 
 export const fastOverlayHandleClick = (e, settings) => {
 	settings = {
@@ -26,7 +8,7 @@ export const fastOverlayHandleClick = (e, settings) => {
 
 		// full | fast | skip
 		openStrategy: 'full',
-		...settings,
+		...settings
 	}
 
 	if (
@@ -51,10 +33,10 @@ export const fastOverlayHandleClick = (e, settings) => {
 						-1
 							? ':left'
 							: settings.container.dataset.behaviour.indexOf(
-									'right'
-							  ) > -1
-							? ':right'
-							: ''
+										'right'
+								  ) > -1
+								? ':right'
+								: ''
 					}`
 				})
 			})
@@ -70,24 +52,7 @@ export const fastOverlayHandleClick = (e, settings) => {
 		}
 	}
 
-	const potentialStyles = ct_localizations.dynamic_styles_selectors.filter(
-		(styleDescriptor) => {
-			return (
-				settings.container.matches(styleDescriptor.selector) ||
-				settings.container.querySelector(styleDescriptor.selector)
-			)
-		}
-	)
-
-	if (potentialStyles.length > 0) {
-		Promise.all(
-			potentialStyles.map((styleDescriptor) =>
-				loadStyle(styleDescriptor.url)
-			)
-		).then(mount)
-	} else {
-		mount()
-	}
+	preloadAssetsForContent(settings.container).then(mount)
 }
 
 export const fastOverlayMount = (el, { event, focus = false }) => {
@@ -95,6 +60,6 @@ export const fastOverlayMount = (el, { event, focus = false }) => {
 		isModal: true,
 		container: document.querySelector(el.dataset.togglePanel || el.hash),
 		clickOutside: true,
-		focus,
+		focus
 	})
 }

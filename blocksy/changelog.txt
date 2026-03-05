@@ -1,3 +1,8 @@
+2.1.33: 2026-03-05
+- Improvement: Better compatibility with PublishPress Authors plugin
+- Improvement: Breadcrumbs - add fallback in case URL param is missing
+- Improvement: Smarter logic for loading the slider module CSS only when it is really needed
+
 2.1.32: 2026-02-27
 - Improvement: Ensure ct-options-scripts is not registered as dependency in customizer
 - Improvement: Related posts - make sure the grid styles are applied correctly

@@ -188,8 +188,12 @@ export const mount = (el, { event }) => {
 				this[0].setAttribute(name, value)
 			})
 
+			ctFrontend.preloadAssetsForContent(arguments[0])
+
 			return this
 		}
+
+		ctFrontend.preloadAssetsForContent(arguments[0])
 
 		return originalReplaceWith.apply(this, arguments)
 	}
