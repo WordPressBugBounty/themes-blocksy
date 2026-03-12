@@ -122,7 +122,7 @@ let allFrontendEntryPoints = [
 		els: () => [
 			...new Set(
 				[...document.querySelectorAll('[data-reveal*="no"]')]
-					.map((el) => el.closest('.entries'))
+					.map((el) => el.closest('.entries, .products'))
 					.filter((el) => !!el)
 			)
 		],

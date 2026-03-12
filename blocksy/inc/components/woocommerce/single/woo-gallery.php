@@ -7,6 +7,8 @@ add_action(
 			return;
 		}
 
+		wp_enqueue_style('ct-flexy-styles');
+
 		if (! blocksy_woocommerce_has_flexy_view()) {
 			return;
 		}

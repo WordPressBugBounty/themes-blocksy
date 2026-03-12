@@ -177,23 +177,43 @@ export const mount = (el, { event }) => {
 	const originalReplaceWith = jQuery.fn.replaceWith
 
 	jQuery.fn.replaceWith = function () {
+		let content = arguments[0]
+
+		// Normalize content
+		if (content && typeof content !== 'string') {
+			// jQuery object or array-like
+			if (content.jquery || content.length !== undefined) {
+				content = content[0]
+			}
+
+			// DOM element → convert to HTML
+			if (content instanceof Element) {
+				content = content.outerHTML
+			}
+		}
+
 		if (
 			window.blocksySkippedFragments &&
 			window.blocksySkippedFragments.includes(this[0])
 		) {
 			const div = document.createElement('div')
-			div.innerHTML = arguments[0]
-			this[0].innerHTML = div.firstElementChild.innerHTML
-			;[...div.firstElementChild.attributes].map(({ name, value }) => {
-				this[0].setAttribute(name, value)
-			})
+			div.innerHTML = content
 
-			ctFrontend.preloadAssetsForContent(arguments[0])
+			this[0].innerHTML = div.firstElementChild.innerHTML
+			;[...div.firstElementChild.attributes].forEach(
+				({ name, value }) => {
+					this[0].setAttribute(name, value)
+				}
+			)
+
+			ctFrontend.preloadAssetsForContent(content)
 
 			return this
 		}
 
-		ctFrontend.preloadAssetsForContent(arguments[0])
+		if (typeof content === 'string') {
+			ctFrontend.preloadAssetsForContent(content)
+		}
 
 		return originalReplaceWith.apply(this, arguments)
 	}

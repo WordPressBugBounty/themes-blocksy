@@ -1,3 +1,9 @@
+2.1.35: 2026-03-12
+- Improvement: Better compatibility with FunnelKit plugin
+- Improvement: Cross-sell products in slider mode - improve logic for on demand JS assets loading
+- Improvement: Product tabs - improve logic for on demand JS assets loading
+- Improvement: Single product - correctly enqueue slider styles even if page has non-standard template
+
 2.1.34: 2026-03-06
 - Improvement: Cart header element - small accessibility improvement
 

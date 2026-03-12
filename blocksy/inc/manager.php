@@ -369,11 +369,16 @@ class Blocksy_Manager {
 		global $wp_scripts;
 
 		$theme = blocksy_get_wp_parent_theme();
+		$version = $theme->get('Version');
 
 		foreach ($all_chunks as $index => $chunk) {
+			if (isset($chunk['version'])) {
+				$version = $chunk['version'];
+			}
+
 			$all_chunks[$index]['url'] = add_query_arg(
 				'ver',
-				$theme->get('Version'),
+				$version,
 				$chunk['url']
 			);
 
