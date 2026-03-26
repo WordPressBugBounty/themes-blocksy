@@ -195,7 +195,7 @@ class WooImportExport {
 
 			if (! wp_attachment_is_image($id)) {
 				throw new \Exception(
-					blc_safe_sprintf(__('Not able to attach "%s".', 'woocommerce'), $url),
+					blocksy_safe_sprintf(__('Not able to attach "%s".', 'woocommerce'), $url),
 					400
 				);
 			}
@@ -206,7 +206,7 @@ class WooImportExport {
 
 		if (! $id) {
 			throw new \Exception(
-				blc_safe_sprintf(__('Unable to use image "%s".', 'woocommerce'), $url),
+				blocksy_safe_sprintf(__('Unable to use image "%s".', 'woocommerce'), $url),
 				400
 			);
 		}

@@ -596,7 +596,6 @@ require get_template_directory() . '/inc/components/archive/archive-card.php';
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-actions.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/footer.php';
 

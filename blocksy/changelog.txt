@@ -1,3 +1,11 @@
+2.1.36: 2026-03-26
+- Improvement: Off-canvas menu - add option to show/hide close button
+- Improvement: Product quantity selector - better integration with WPC Suite plugin
+- Improvement: Product sticky gallery - better interaction with header with sticky auto hide effect
+- Improvement: Search module - replace forbidden `get_post_type_labels()` with public API
+- Improvement: Smarter integration with Co Authors Plus plugin
+- Fix: Autoloader - replace apply_filters with static class registration to avoid re-entry issues
+
 2.1.35: 2026-03-12
 - Improvement: Better compatibility with FunnelKit plugin
 - Improvement: Cross-sell products in slider mode - improve logic for on demand JS assets loading

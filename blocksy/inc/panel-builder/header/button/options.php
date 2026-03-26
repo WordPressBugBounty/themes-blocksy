@@ -96,9 +96,9 @@ $options = [
 				'header_button_open' => [
 					'label' => __('Click Behavior', 'blocksy'),
 					'type' => (
-						function_exists('blc_site_has_feature')
+						function_exists('blocksy_companion_site_has_feature')
 						&&
-						blc_site_has_feature('base_pro')
+						blocksy_companion_site_has_feature('base_pro')
 					) ? 'ct-select' : 'hidden',
 					'value' => 'link',
 					'view' => 'text',
@@ -147,9 +147,9 @@ $options = [
 					'type' => 'ct-condition',
 					'condition' => [ 'header_button_open' => 'popup' ],
 					'options' => (
-						function_exists('blc_get_content_blocks')
+						function_exists('blocksy_companion_get_content_blocks')
 						&&
-						! empty(blc_get_content_blocks([
+						! empty(blocksy_companion_get_content_blocks([
 							'template_type' => 'popup'
 						]))
 					) ? [
@@ -161,7 +161,7 @@ $options = [
 							'search' => true,
 							'defaultToFirstItem' => false,
 							'placeholder' => __('None', 'blocksy'),
-							'choices' => blocksy_ordered_keys(blc_get_content_blocks([
+							'choices' => blocksy_ordered_keys(blocksy_companion_get_content_blocks([
 								'template_type' => 'popup'
 							])),
 						],

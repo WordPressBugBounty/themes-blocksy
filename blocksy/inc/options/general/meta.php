@@ -417,13 +417,13 @@ $options = [
 					],
 
 					(
-						function_exists('blc_get_ext')
+						function_exists('blocksy_companion_get_ext')
 						&&
-						blc_get_ext('post-types-extra')
+						blocksy_companion_get_ext('post-types-extra')
 						&&
-						isset(blc_get_ext('post-types-extra')->taxonomies_customization)
+						isset(blocksy_companion_get_ext('post-types-extra')->taxonomies_customization)
 						&&
-						blc_get_ext('post-types-extra')->taxonomies_customization
+						blocksy_companion_get_ext('post-types-extra')->taxonomies_customization
 					) ? [
 						'has_term_accent_color' => [
 							'type'  => 'ct-switch',

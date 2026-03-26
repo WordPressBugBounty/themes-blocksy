@@ -353,9 +353,9 @@ $options = [
 											],
 
 											(
-												function_exists('blc_site_has_feature')
+												function_exists('blocksy_companion_site_has_feature')
 												&&
-												blc_site_has_feature('base_pro')
+												blocksy_companion_site_has_feature('base_pro')
 											) ? [
 												'has_archive_video_thumbnail' => [
 													'label' => __( 'Video Thumbnail', 'blocksy' ),

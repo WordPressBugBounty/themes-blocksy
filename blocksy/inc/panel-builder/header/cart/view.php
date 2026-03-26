@@ -117,11 +117,11 @@ if (empty($icon_type)) {
 
 $icon = $icon[$icon_type];
 
-if (function_exists('blc_get_icon')) {
+if (function_exists('blocksy_companion_get_icon')) {
 	$icon_source = blocksy_default_akg('icon_source', $atts, 'default');
 
 	if ( $icon_source === 'custom' ) {
-		$icon = blc_get_icon([
+		$icon = blocksy_companion_get_icon([
 			'icon_descriptor' => blocksy_akg('icon', $atts, [
 				'icon' => 'blc blc-cart'
 			]),

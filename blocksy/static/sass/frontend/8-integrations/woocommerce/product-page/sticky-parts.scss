@@ -7,8 +7,11 @@
 		align-self: flex-start;
 		position: sticky;
 		top: calc(
-			50px + var(--admin-bar, 0px) + var(--header-sticky-height, 0px) *
-				(var(--sticky-shrink, 100) / 100)
+			50px +
+			var(--admin-bar, 0px) +
+			var(--theme-frame-size, 0px) +
+			var(--header-sticky-offset, 0px) +
+			var(--header-sticky-height-animated, calc(var(--header-sticky-height, 0px) * (var(--sticky-shrink, 100) / 100)))
 		);
 	}
 }

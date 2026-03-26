@@ -11,9 +11,9 @@ if (! function_exists('blocksy_output_header')) {
 		}
 
 		if (
-			function_exists('blc_get_content_block_that_matches')
+			function_exists('blocksy_companion_get_content_block_that_matches')
 			&&
-			blc_get_content_block_that_matches([
+			blocksy_companion_get_content_block_that_matches([
 				'template_type' => 'header'
 			])
 		) {
@@ -25,8 +25,8 @@ if (! function_exists('blocksy_output_header')) {
 					],
 					blocksy_schema_org_definitions('header', ['array' => true])
 				),
-				blc_render_content_block(
-					blc_get_content_block_that_matches([
+				blocksy_companion_render_content_block(
+					blocksy_companion_get_content_block_that_matches([
 						'template_type' => 'header'
 					])
 				)
@@ -83,9 +83,9 @@ if (! function_exists('blocksy_output_footer')) {
 		}
 
 		if (
-			function_exists('blc_get_content_block_that_matches')
+			function_exists('blocksy_companion_get_content_block_that_matches')
 			&&
-			blc_get_content_block_that_matches([
+			blocksy_companion_get_content_block_that_matches([
 				'template_type' => 'footer'
 			])
 		) {
@@ -96,8 +96,8 @@ if (! function_exists('blocksy_output_footer')) {
 				], blocksy_schema_org_definitions('footer', [
 					'array' => true
 				])),
-				blc_render_content_block(
-					blc_get_content_block_that_matches([
+				blocksy_companion_render_content_block(
+					blocksy_companion_get_content_block_that_matches([
 						'template_type' => 'footer'
 					])
 				)

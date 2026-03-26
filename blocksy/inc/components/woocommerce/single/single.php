@@ -357,9 +357,9 @@ class WooCommerceSingle {
 					&&
 					$item['icon_source'] === 'custom'
 					&&
-					function_exists('blc_get_icon')
+					function_exists('blocksy_companion_get_icon')
 				) {
-					$icon = blc_get_icon(
+					$icon = blocksy_companion_get_icon(
 						[
 							'icon_descriptor' => blocksy_akg('icon', $item, [
 								'icon' => "blc blc-user" // TODO: get defaults from item ID
@@ -453,13 +453,13 @@ class WooCommerceSingle {
 			);
 
 			if (
-				function_exists('blc_get_icon')
+				function_exists('blocksy_companion_get_icon')
 				&&
 				isset($item['icon_source'])
 				&&
 				$item['icon_source'] === 'custom'
 			) {
-				$icon = blc_get_icon(
+				$icon = blocksy_companion_get_icon(
 					[
 						'icon_descriptor' => blocksy_akg('icon', $item, [
 							'icon' => "fas fa-check"

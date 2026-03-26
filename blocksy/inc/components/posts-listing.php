@@ -79,9 +79,9 @@ if (! function_exists('blocksy_get_listing_card_type')) {
 				$blog_post_structure === 'simple'
 				||
 				(
-					function_exists('blc_get_content_block_that_matches')
+					function_exists('blocksy_companion_get_content_block_that_matches')
 					&&
-					blc_get_content_block_that_matches([
+					blocksy_companion_get_content_block_that_matches([
 						'template_type' => 'archive'
 					])
 				)
@@ -115,9 +115,9 @@ if (! function_exists('blocksy_listing_page_structure')) {
 			$blog_post_structure === 'simple'
 		) {
 			$has_matching_template = (
-				function_exists('blc_get_content_block_that_matches')
+				function_exists('blocksy_companion_get_content_block_that_matches')
 				&&
-				blc_get_content_block_that_matches([
+				blocksy_companion_get_content_block_that_matches([
 					'template_type' => 'archive',
 					'match_conditions_strategy' => rtrim($args['prefix'], '_')
 				])

@@ -39,24 +39,15 @@ if (class_exists('WC_Payments')) {
 	require get_template_directory() . '/inc/components/woocommerce/integrations/woocommerce-payments.php';
 }
 
-add_filter(
-	'blocksy_theme_autoloader_classes_map',
-	function ($classes) {
-		$prefix = 'inc/components/woocommerce/';
-
-		$classes['WooCommerceBoot'] = $prefix . 'boot.php';
-		$classes['WooCommerceImageSizes'] = $prefix . 'common/image-sizes.php';
-
-		$classes['WooCommerceSingle'] = $prefix . 'single/single.php';
-		$classes['WooCommerceAddToCart'] = $prefix . 'single/add-to-cart.php';
-		$classes['SingleProductAdditionalActions'] = $prefix . 'single/additional-actions-layer.php';
-
-		$classes['WooCommerceCheckout'] = $prefix . 'common/checkout.php';
-		$classes['WooCommerceCart'] = $prefix . 'common/cart.php';
-
-		return $classes;
-	}
-);
+ThemeAutoloader::register_classes([
+	'WooCommerceBoot' => 'inc/components/woocommerce/boot.php',
+	'WooCommerceImageSizes' => 'inc/components/woocommerce/common/image-sizes.php',
+	'WooCommerceSingle' => 'inc/components/woocommerce/single/single.php',
+	'WooCommerceAddToCart' => 'inc/components/woocommerce/single/add-to-cart.php',
+	'SingleProductAdditionalActions' => 'inc/components/woocommerce/single/additional-actions-layer.php',
+	'WooCommerceCheckout' => 'inc/components/woocommerce/common/checkout.php',
+	'WooCommerceCart' => 'inc/components/woocommerce/common/cart.php',
+]);
 
 class WooCommerce {
 	public $single = null;

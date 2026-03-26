@@ -209,15 +209,15 @@ function blocksy_single_content($content = null) {
 
 			if (! is_attachment()) {
 				if (
-					function_exists('blc_get_content_block_that_matches')
+					function_exists('blocksy_companion_get_content_block_that_matches')
 					&&
-					blc_get_content_block_that_matches([
+					blocksy_companion_get_content_block_that_matches([
 						'template_type' => 'single',
 						'template_subtype' => 'content'
 					])
 				) {
-					$content = blc_render_content_block(
-						blc_get_content_block_that_matches([
+					$content = blocksy_companion_render_content_block(
+						blocksy_companion_get_content_block_that_matches([
 							'template_type' => 'single',
 							'template_subtype' => 'content'
 						])
@@ -461,13 +461,13 @@ function blocksy_single_content($content = null) {
 			echo blocksy_post_navigation();
 		}
 
-		if (function_exists('blc_ext_newsletter_subscribe_form')) {
+		if (function_exists('blocksy_companion_ext_newsletter_subscribe_form')) {
 			if (get_post_type() === 'post') {
 				/**
 				 * Note to code reviewers: This line doesn't need to be escaped.
-				 * Function blc_ext_newsletter_subscribe_form() used here escapes the value properly.
+				 * Function blocksy_companion_ext_newsletter_subscribe_form() used here escapes the value properly.
 				 */
-				echo blc_ext_newsletter_subscribe_form();
+				echo blocksy_companion_ext_newsletter_subscribe_form();
 			}
 		}
 

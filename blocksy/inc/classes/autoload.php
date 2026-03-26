@@ -13,8 +13,14 @@ class ThemeAutoloader {
 	 *
 	 * @var array Classes used by blocksy.
 	 */
+	private static $additional_classes = [];
+
+	public static function register_classes($classes) {
+		self::$additional_classes = array_merge(self::$additional_classes, $classes);
+	}
+
 	private static function get_classes_map() {
-		return apply_filters('blocksy_theme_autoloader_classes_map', [
+		return array_merge([
 			'RaiiPattern' => 'inc/classes/raii.php',
 			'WordPressActionsManager' => 'inc/classes/trait-wordpress-actions-manager.php',
 
@@ -107,7 +113,7 @@ class ThemeAutoloader {
 
 			'WooImportExport' => 'inc/classes/woo-import-export.php',
 			'WooVariationImagesImportExport' => 'inc/classes/woo-variation-images-import-export.php',
-		]);
+		], self::$additional_classes);
 	}
 
 	/**
@@ -182,4 +188,3 @@ class ThemeAutoloader {
 		}
 	}
 }
-

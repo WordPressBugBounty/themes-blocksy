@@ -31,9 +31,9 @@ function blocksy_output_back_to_top_link() {
 
 	$icon = $svgs[$type];
 
-	if (function_exists('blc_get_icon')) {
+	if (function_exists('blocksy_companion_get_icon')) {
 		if ($icon_source === 'custom') {
-			$icon = blc_get_icon([
+			$icon = blocksy_companion_get_icon([
 				'icon_descriptor' => blocksy_get_theme_mod(
 					'top_button_icon',
 					['icon' => 'blc blc-arrow-up-circle']

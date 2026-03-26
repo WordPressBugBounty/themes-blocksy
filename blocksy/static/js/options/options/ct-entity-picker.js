@@ -1,4 +1,10 @@
-import { createElement, useEffect, useState, useMemo, useRef } from '@wordpress/element'
+import {
+	createElement,
+	useEffect,
+	useState,
+	useMemo,
+	useRef
+} from '@wordpress/element'
 import { __ } from 'ct-i18n'
 import { nanoid } from 'nanoid'
 
@@ -19,10 +25,12 @@ const EntityIdPicker = ({
 		post_type = 'post',
 		placeholder,
 		additionOptions = [],
+
+		selectParams = {}
 	},
 	return_type = 'id',
 	purpose,
-	onChange,
+	onChange
 }) => {
 	const fetcherRef = useRef(null)
 
@@ -46,7 +54,7 @@ const EntityIdPicker = ({
 
 		return {
 			...requestBody,
-			...(value ? { alsoInclude: value } : {}),
+			...(value ? { alsoInclude: value } : {})
 		}
 	}, [entity, post_type, value])
 
@@ -57,10 +65,10 @@ const EntityIdPicker = ({
 				entity,
 
 				...(searchQuery ? { search_query: searchQuery } : {}),
-				...requestBody,
+				...requestBody
 			},
 			{
-				fetcherName: fetcherId,
+				fetcherName: fetcherId
 			}
 		)
 			.then((r) => r.json())
@@ -89,10 +97,11 @@ const EntityIdPicker = ({
 					...allEntities.map((entity) => ({
 						key: entity.id,
 						value: entity.label,
-						...(entity.group ? { group: entity.group } : {}),
-					})),
+						...(entity.group ? { group: entity.group } : {})
+					}))
 				],
 				search: true,
+				...selectParams
 			}}
 			value={value}
 			onChange={(entity_id) => {

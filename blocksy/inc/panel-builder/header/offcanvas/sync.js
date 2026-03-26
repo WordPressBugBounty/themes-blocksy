@@ -380,7 +380,10 @@ ctEvents.on(
 			ctEvents.on('ct:sync:dynamic-css:updated', cb)
 		}
 
-		if (optionId === 'has_offcanvas_heading') {
+		if (
+			optionId === 'has_offcanvas_heading' ||
+			optionId === 'has_offcanvas_close_trigger'
+		) {
 			wp.customize.preview.trigger('ct:sync:refresh_partial', {
 				id: 'header_placements_offcanvas',
 			})

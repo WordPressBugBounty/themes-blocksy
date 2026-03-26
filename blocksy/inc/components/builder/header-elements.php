@@ -127,19 +127,35 @@ class Blocksy_Header_Builder_Elements {
 		);
 
 		$heading = '';
+		$close_trigger = '';
 
-		if (blocksy_akg('has_offcanvas_heading', $atts, 'no') === 'yes') {
+		$has_offcanvas_close_trigger = blocksy_akg('has_offcanvas_close_trigger', $atts, 'yes');
+		$has_offcanvas_heading = blocksy_akg('has_offcanvas_heading', $atts, 'no');
+
+		if ($has_offcanvas_heading === 'yes') {
 			$heading = '<span class="ct-panel-heading">' . blocksy_akg('offcanvas_heading', $atts, __( 'Menu', 'blocksy' )) . '</span>';
 		}
 
-		$without_container = '
-		<div class="ct-panel-actions">
-			'. $heading .'
-			<button class="ct-toggle-close" data-type="' . $close_type . '" aria-label="'. __('Close drawer', 'blocksy') . '">
-				'. $main_offcanvas_close_icon . '
-			</button>
-		</div>
-		' .  $without_container;
+		if ($has_offcanvas_close_trigger === 'yes') {
+			$close_trigger = '
+				<button class="ct-toggle-close" data-type="' . $close_type . '" aria-label="'. __('Close drawer', 'blocksy') . '">
+					'. $main_offcanvas_close_icon . '
+				</button>
+			';
+		}
+
+		if (
+			! empty($close_trigger)
+			||
+			! empty($heading)
+		) {
+			$without_container = '
+				<div class="ct-panel-actions">
+					'. $heading .'
+					'. $close_trigger . '
+				</div>
+			' .  $without_container;
+		}
 
 		if (blocksy_default_akg(
 			'offcanvas_behavior',

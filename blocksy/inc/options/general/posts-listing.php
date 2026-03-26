@@ -15,9 +15,9 @@ if (! isset($title)) {
 }
 
 $has_card_matching_template = (
-	function_exists('blc_get_content_block_that_matches')
+	function_exists('blocksy_companion_get_content_block_that_matches')
 	&&
-	blc_get_content_block_that_matches([
+	blocksy_companion_get_content_block_that_matches([
 		'template_type' => 'archive',
 		'template_subtype' => 'card',
 		'match_conditions_strategy' => rtrim($prefix, '_')
@@ -361,9 +361,9 @@ $overridable_card_options = [
 
 								[
 									(
-										function_exists('blc_site_has_feature')
+										function_exists('blocksy_companion_site_has_feature')
 										&&
-										blc_site_has_feature('base_pro')
+										blocksy_companion_site_has_feature('base_pro')
 									) ? [
 										'has_archive_video_thumbnail' => [
 											'label' => __( 'Video Thumbnail', 'blocksy' ),

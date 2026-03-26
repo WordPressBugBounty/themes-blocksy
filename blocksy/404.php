@@ -10,15 +10,15 @@
 get_header();
 
 if (
-	function_exists('blc_get_content_block_that_matches')
+	function_exists('blocksy_companion_get_content_block_that_matches')
 	&&
-	blc_get_content_block_that_matches([
+	blocksy_companion_get_content_block_that_matches([
 		'template_type' => '404',
 		'match_conditions' => false
 	])
 ) {
-	echo blc_render_content_block(
-		blc_get_content_block_that_matches([
+	echo blocksy_companion_render_content_block(
+		blocksy_companion_get_content_block_that_matches([
 			'template_type' => '404',
 			'match_conditions' => false
 		])

@@ -41,6 +41,7 @@ if ($) {
 		'ywraq_table_reloaded',
 		'sf:ajaxfinish',
 		'ddwcpoRenderVariation',
+		'woosq_loaded'
 	].map((event) => {
 		$(document).on(event, () => {
 			setTimeout(() => {

@@ -78,8 +78,8 @@ $strategy = [
 	'prefix' => $prefix
 ];
 
-if (function_exists('blc_get_content_block_that_matches')) {
-	$maybe_matching_template = blc_get_content_block_that_matches([
+if (function_exists('blocksy_companion_get_content_block_that_matches')) {
+	$maybe_matching_template = blocksy_companion_get_content_block_that_matches([
 		'template_type' => 'single',
 		'template_subtype' => 'canvas',
 		'match_conditions_strategy' => $prefix

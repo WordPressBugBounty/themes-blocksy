@@ -13,7 +13,7 @@ $source_options = [
 ];
 
 $is_shop = class_exists( 'woocommerce' );
-$is_pro = function_exists('blc_site_has_feature') && blc_site_has_feature();
+$is_pro = function_exists('blocksy_companion_site_has_feature') && blocksy_companion_site_has_feature();
 
 if (function_exists('rank_math_the_breadcrumbs')) {
 	ob_start();

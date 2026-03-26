@@ -45,8 +45,8 @@ class BreadcrumbsBuilder {
 		if (blocksy_get_theme_mod('breadcrumb_home_item', 'text') === 'icon') {
 			$home_icon = '<svg class="ct-icon ct-home-icon" width="15" height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7.5 1 0 7.8h2.1v6.1h4.1V9.8h2.7v4.1H13V7.8h2.1L7.5 1Z"/></svg>';
 
-			if (function_exists('blc_get_icon')) {		
-				$home_icon = blc_get_icon([
+			if (function_exists('blocksy_companion_get_icon')) {		
+				$home_icon = blocksy_companion_get_icon([
 					'icon_descriptor' => blocksy_get_theme_mod(
 						'breadcrumb_home_icon',
 						['icon' => 'blc blc-home-alt']
@@ -787,14 +787,14 @@ class BreadcrumbsBuilder {
 			blocksy_get_theme_mod('breadcrumb_separator', 'type-1')
 		];
 
-		if (function_exists('blc_get_icon')) {
+		if (function_exists('blocksy_companion_get_icon')) {
 			$icon_source = blocksy_get_theme_mod(
 				'breadcrumb_separator_icon_source',
 				'default'
 			);
 	
 			if ($icon_source === 'custom') {
-				$separator = blc_get_icon([
+				$separator = blocksy_companion_get_icon([
 					'icon_descriptor' => blocksy_get_theme_mod(
 						'breadcrumb_custom_separator',
 						['icon' => 'blc blc-arrow-right']

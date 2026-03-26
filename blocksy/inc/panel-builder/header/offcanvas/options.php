@@ -109,9 +109,17 @@ $options = [
 						'design' => 'block',
 						'disableRevertButton' => true,
 						'value' => __( 'Menu', 'blocksy' ),
+						'divider' => 'bottom',
 					],
 
 				],
+			],
+
+			'has_offcanvas_close_trigger' => [
+				'label' => __('Panel Close Button', 'blocksy'),
+				'type' => 'ct-switch',
+				'value' => 'yes',
+				// 'divider' => 'top',
 			],
 
 			blocksy_rand_md5() => [
@@ -276,163 +284,171 @@ $options = [
 				],
 			],
 
-			'menu_close_button_type' => [
-				'label' => __('Close Button Type', 'blocksy'),
-				'type' => 'ct-select',
-				'value' => 'type-1',
-				'view' => 'text',
-				'design' => 'inline',
-				'divider' => 'top:full',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'choices' => blocksy_ordered_keys(
-					[
-						'type-1' => __( 'Simple', 'blocksy' ),
-						'type-2' => __( 'Border', 'blocksy' ),
-						'type-3' => __( 'Background', 'blocksy' ),
-					]
-				),
-			],
-
-			'menu_close_button_icon_size' => [
-				'label' => __( 'Icon Size', 'blocksy' ),
-				'type' => 'ct-number',
-				'design' => 'inline',
-				'value' => 12,
-				'min' => 5,
-				'max' => 50,
-				'divider' => 'top',
-				'setting' => [ 'transport' => 'postMessage' ],
-			],
-
-			'menu_close_button_color' => [
-				'label' => __( 'Icon Color', 'blocksy' ),
-				'type'  => 'ct-color-picker',
-				'design' => 'block',
-				'divider' => 'top',
-				'responsive' => true,
-				'setting' => [ 'transport' => 'postMessage' ],
-
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-
-					'hover' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
-
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-						'inherit' => 'rgba(255, 255, 255, 0.7)'
-					],
-
-					[
-						'title' => __( 'Hover', 'blocksy' ),
-						'id' => 'hover',
-						'inherit' => '#ffffff'
-					],
-				],
-			],
-
 			blocksy_rand_md5() => [
 				'type' => 'ct-condition',
-				'condition' => [ 'menu_close_button_type' => 'type-2' ],
+				'condition' => [ 'has_offcanvas_close_trigger' => 'yes' ],
 				'options' => [
 
-					'menu_close_button_border_color' => [
-						'label' => __( 'Border Color', 'blocksy' ),
-						'type'  => 'ct-color-picker',
-						'design' => 'block',
-						'divider' => 'top',
-						'responsive' => true,
+					'menu_close_button_type' => [
+						'label' => __('Close Button Type', 'blocksy'),
+						'type' => 'ct-select',
+						'value' => 'type-1',
+						'view' => 'text',
+						'design' => 'inline',
+						'divider' => 'top:full',
 						'setting' => [ 'transport' => 'postMessage' ],
-
-						'value' => [
-							'default' => [
-								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-							],
-
-							'hover' => [
-								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-							],
-						],
-
-						'pickers' => [
+						'choices' => blocksy_ordered_keys(
 							[
-								'title' => __( 'Initial', 'blocksy' ),
-								'id' => 'default',
-								'inherit' => 'rgba(0, 0, 0, 0.5)'
-							],
-
-							[
-								'title' => __( 'Hover', 'blocksy' ),
-								'id' => 'hover',
-								'inherit' => 'rgba(0, 0, 0, 0.5)'
-							],
-						],
+								'type-1' => __( 'Simple', 'blocksy' ),
+								'type-2' => __( 'Border', 'blocksy' ),
+								'type-3' => __( 'Background', 'blocksy' ),
+							]
+						),
 					],
 
-				],
-			],
-
-			blocksy_rand_md5() => [
-				'type' => 'ct-condition',
-				'condition' => [ 'menu_close_button_type' => 'type-3' ],
-				'options' => [
-
-					'menu_close_button_shape_color' => [
-						'label' => __( 'Background Color', 'blocksy' ),
-						'type'  => 'ct-color-picker',
-						'design' => 'block',
-						'divider' => 'top',
-						'responsive' => true,
-						'setting' => [ 'transport' => 'postMessage' ],
-
-						'value' => [
-							'default' => [
-								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-							],
-
-							'hover' => [
-								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-							],
-						],
-
-						'pickers' => [
-							[
-								'title' => __( 'Initial', 'blocksy' ),
-								'id' => 'default',
-								'inherit' => 'rgba(0, 0, 0, 0.5)'
-							],
-
-							[
-								'title' => __( 'Hover', 'blocksy' ),
-								'id' => 'hover',
-								'inherit' => 'rgba(0, 0, 0, 0.5)'
-							],
-						],
-					],
-
-				],
-			],
-
-			blocksy_rand_md5() => [
-				'type' => 'ct-condition',
-				'condition' => [ 'menu_close_button_type' => '!type-1' ],
-				'options' => [
-
-					'menu_close_button_border_radius' => [
-						'label' => __( 'Border Radius', 'blocksy' ),
+					'menu_close_button_icon_size' => [
+						'label' => __( 'Icon Size', 'blocksy' ),
 						'type' => 'ct-number',
 						'design' => 'inline',
-						'value' => 5,
-						'min' => 0,
-						'max' => 100,
+						'value' => 12,
+						'min' => 5,
+						'max' => 50,
 						'divider' => 'top',
 						'setting' => [ 'transport' => 'postMessage' ],
+					],
+
+					'menu_close_button_color' => [
+						'label' => __( 'Icon Color', 'blocksy' ),
+						'type'  => 'ct-color-picker',
+						'design' => 'block',
+						'divider' => 'top',
+						'responsive' => true,
+						'setting' => [ 'transport' => 'postMessage' ],
+
+						'value' => [
+							'default' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
+
+							'hover' => [
+								'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+							],
+						],
+
+						'pickers' => [
+							[
+								'title' => __( 'Initial', 'blocksy' ),
+								'id' => 'default',
+								'inherit' => 'rgba(255, 255, 255, 0.7)'
+							],
+
+							[
+								'title' => __( 'Hover', 'blocksy' ),
+								'id' => 'hover',
+								'inherit' => '#ffffff'
+							],
+						],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'menu_close_button_type' => 'type-2' ],
+						'options' => [
+
+							'menu_close_button_border_color' => [
+								'label' => __( 'Border Color', 'blocksy' ),
+								'type'  => 'ct-color-picker',
+								'design' => 'block',
+								'divider' => 'top',
+								'responsive' => true,
+								'setting' => [ 'transport' => 'postMessage' ],
+
+								'value' => [
+									'default' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+
+									'hover' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+								],
+
+								'pickers' => [
+									[
+										'title' => __( 'Initial', 'blocksy' ),
+										'id' => 'default',
+										'inherit' => 'rgba(0, 0, 0, 0.5)'
+									],
+
+									[
+										'title' => __( 'Hover', 'blocksy' ),
+										'id' => 'hover',
+										'inherit' => 'rgba(0, 0, 0, 0.5)'
+									],
+								],
+							],
+
+						],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'menu_close_button_type' => 'type-3' ],
+						'options' => [
+
+							'menu_close_button_shape_color' => [
+								'label' => __( 'Background Color', 'blocksy' ),
+								'type'  => 'ct-color-picker',
+								'design' => 'block',
+								'divider' => 'top',
+								'responsive' => true,
+								'setting' => [ 'transport' => 'postMessage' ],
+
+								'value' => [
+									'default' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+
+									'hover' => [
+										'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
+									],
+								],
+
+								'pickers' => [
+									[
+										'title' => __( 'Initial', 'blocksy' ),
+										'id' => 'default',
+										'inherit' => 'rgba(0, 0, 0, 0.5)'
+									],
+
+									[
+										'title' => __( 'Hover', 'blocksy' ),
+										'id' => 'hover',
+										'inherit' => 'rgba(0, 0, 0, 0.5)'
+									],
+								],
+							],
+
+						],
+					],
+
+					blocksy_rand_md5() => [
+						'type' => 'ct-condition',
+						'condition' => [ 'menu_close_button_type' => '!type-1' ],
+						'options' => [
+
+							'menu_close_button_border_radius' => [
+								'label' => __( 'Border Radius', 'blocksy' ),
+								'type' => 'ct-number',
+								'design' => 'inline',
+								'value' => 5,
+								'min' => 0,
+								'max' => 100,
+								'divider' => 'top',
+								'setting' => [ 'transport' => 'postMessage' ],
+							],
+
+						],
 					],
 
 				],

@@ -142,9 +142,9 @@ $inner_options = [
 ];
 
 if (
-	function_exists('blc_get_content_block_that_matches')
+	function_exists('blocksy_companion_get_content_block_that_matches')
 	&&
-	blc_get_content_block_that_matches([
+	blocksy_companion_get_content_block_that_matches([
 		'template_type' => 'single',
 		'template_subtype' => 'canvas',
 		'match_conditions_strategy' => 'single_page'
@@ -156,7 +156,7 @@ if (
 			'attr' => [ 'data-type' => 'background:white' ],
 			'text' => blocksy_safe_sprintf(
 				__('This single page is overrided by a custom template, to edit it please access %sthis page%s.', 'blocksy'),
-				'<a href="' . get_edit_post_link(blc_get_content_block_that_matches([
+				'<a href="' . get_edit_post_link(blocksy_companion_get_content_block_that_matches([
 					'template_type' => 'single',
 					'template_subtype' => 'canvas',
 					'match_conditions_strategy' => 'single_page'

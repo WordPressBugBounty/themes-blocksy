@@ -158,8 +158,8 @@ $icon = '';
 
 $icon_position = blocksy_akg('icon_position', $atts, 'left');
 
-if (function_exists('blc_get_icon')) {
-	$icon = blc_get_icon([
+if (function_exists('blocksy_companion_get_icon')) {
+	$icon = blocksy_companion_get_icon([
 		'icon_descriptor' => blocksy_akg('icon', $atts, [
 			'icon' => ''
 		]),

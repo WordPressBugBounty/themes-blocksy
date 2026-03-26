@@ -117,8 +117,8 @@ add_action(
 
 		$page_structure_key = 'structure';
 
-		if (function_exists('blc_get_content_block_that_matches')) {
-			$single_cb = blc_get_content_block_that_matches([
+		if (function_exists('blocksy_companion_get_content_block_that_matches')) {
+			$single_cb = blocksy_companion_get_content_block_that_matches([
 				'template_type' => 'single',
 				'template_subtype' => 'canvas',
 				'match_conditions_strategy' => $prefix

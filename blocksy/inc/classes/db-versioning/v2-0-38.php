@@ -7,7 +7,7 @@ class V2038 {
 		if (
 			! function_exists('wc_get_attribute_taxonomies')
 			||
-			! function_exists('blc_get_terms')
+			! function_exists('blocksy_companion_get_terms')
 			||
 			! class_exists('\Blocksy\Plugin')
 			||
@@ -35,7 +35,7 @@ class V2038 {
 		}
 
 		foreach (array_values(wc_get_attribute_taxonomies()) as $tax) {
-			$all_terms = blc_get_terms(
+			$all_terms = blocksy_companion_get_terms(
 				[
 					'taxonomy' => 'pa_' . $tax->attribute_name,
 					'update_term_meta_cache' => false,
