@@ -1,3 +1,6 @@
+2.1.37: 2026-03-26
+- Improvement: General fixes and improvements
+
 2.1.36: 2026-03-26
 - Improvement: Off-canvas menu - add option to show/hide close button
 - Improvement: Product quantity selector - better integration with WPC Suite plugin

@@ -1,6 +1,6 @@
 {
 	"name": "small-ct",
-	"version": "2.1.36",
+	"version": "2.1.37",
 	"title": "Blocksy",
 	"browserslist": "> 1%, not opera > 0, not op_mini all",
 	"devDependencies": {
@@ -28,7 +28,7 @@
 		"set-issue-data": "env-cmd --silent node scripts/set-issue-data.js"
 	},
 	"dependencies": {
-		"@creative-themes/build-process": "6.0.14",
+		"@creative-themes/build-process": "6.0.25",
 		"@creative-themes/flexy": "1.0.3",
 		"@dnd-kit/core": "^6.3.1",
 		"@dnd-kit/modifiers": "^9.0.0",
