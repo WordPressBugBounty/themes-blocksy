@@ -62,7 +62,13 @@ if (! function_exists('blocksy_render_archive_cards')) {
 				$entries_open['data-archive'] = "default";
 			}
 
-			if (! $args['has_slideshow']) {
+			// don't apply data-layout attribute when grid/enhanced-grid
+			// https://github.com/Creative-Themes/blocksy/issues/5217
+			if (
+				! $args['has_slideshow']
+				||
+				! in_array($blog_post_structure, ['grid', 'enhanced-grid'], true)
+			) {
 				$entries_open['data-layout'] = esc_attr($blog_post_structure);
 			}
 

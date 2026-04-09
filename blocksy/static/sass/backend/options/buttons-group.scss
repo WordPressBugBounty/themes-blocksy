@@ -8,9 +8,10 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		font-size: 13px;
+		font-size: 12px;
+		font-weight: 500;
 		cursor: pointer;
-		height: 30px;
+		height: var(--ui-option-height, 30px);
 		min-width: 40px;
 		margin: 0;
 		background: rgba(255, 255, 255, 0.6);

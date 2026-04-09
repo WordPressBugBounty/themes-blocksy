@@ -4,8 +4,8 @@
 	input[type="number"] {
 		// --input-font-size: 12px;
 
-		height: var(--input-height, 30px) !important;
-		width: var(--input-width, 100%) !important;
+		height: var(--ui-input-height, 30px) !important;
+		width: var(--ui-input-width, 100%) !important;
 		margin: var(--margin, 0) !important;
 		padding: var(--padding, 3px 8px) !important;
 		min-height: initial;

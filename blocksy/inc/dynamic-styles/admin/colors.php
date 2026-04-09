@@ -9,55 +9,69 @@ if (! isset($only_palette)) {
 }
 
 // WP Color palette
-$current_color = get_user_option('admin_color');
+global $wp_version;
 
-global $_wp_admin_css_colors;
+if (version_compare($wp_version, '7.0-RC1', '>=')) {
+	$css->put(
+		'body',
+		'--ui-accent-color: var(--wp-admin-theme-color)'
+	);
 
-if (
-	$_wp_admin_css_colors
-	&&
-	$current_color
-	&&
-	isset($_wp_admin_css_colors[$current_color])
-) {
-	$colors = $_wp_admin_css_colors[$current_color]->colors;
+	$css->put(
+		'body',
+		'--ui-accent-hover-color: var(--wp-admin-theme-color-darker-10)'
+	);
+} else {
+	$current_color = get_user_option('admin_color');
+
+	global $_wp_admin_css_colors;
+
+	if (
+		$_wp_admin_css_colors
+		&&
+		$current_color
+		&&
+		isset($_wp_admin_css_colors[$current_color])
+	) {
+		$colors = $_wp_admin_css_colors[$current_color]->colors;
 
 
-	if (! empty($colors)) {
-		$ui_accent_color = $colors[count($colors) - 1];
+		if (! empty($colors)) {
+			$ui_accent_color = $colors[count($colors) - 1];
 
-		if (count($colors) > 2) {
-			$ui_accent_color = $colors[2];
+			if (count($colors) > 2) {
+				$ui_accent_color = $colors[2];
+			}
+
+			if ($current_color === 'light') {
+				$ui_accent_color = $colors[3];
+			}
+
+			if ($current_color === 'modern') {
+				$ui_accent_color = $colors[1];
+			}
+
+			if ($current_color === 'blue') {
+				$ui_accent_color = $colors[1];
+			}
+
+			if ($current_color === 'midnight') {
+				$ui_accent_color = $colors[3];
+			}
+
+			$css->put(
+				$selector,
+				'--ui-accent-color: ' . $ui_accent_color
+			);
+
+			$css->put(
+				$selector,
+				'--ui-accent-hover-color: ' . blocksy_adjust_color_lightness(
+					$ui_accent_color,
+					-0.15
+				)
+			);
 		}
-
-		if ($current_color === 'light') {
-			$ui_accent_color = $colors[3];
-		}
-
-		if ($current_color === 'modern') {
-			$ui_accent_color = $colors[1];
-		}
-
-		if ($current_color === 'blue') {
-			$ui_accent_color = $colors[1];
-		}
-
-		if ($current_color === 'midnight') {
-			$ui_accent_color = $colors[3];
-		}
-
-		$css->put(
-			$selector,
-			'--ui-accent-color: ' . $ui_accent_color
-		);
-
-		$css->put(
-			$selector,
-			'--ui-accent-hover-color: ' . blocksy_adjust_color_lightness(
-				$ui_accent_color,
-				-0.15
-			)
-		);
 	}
 }
 

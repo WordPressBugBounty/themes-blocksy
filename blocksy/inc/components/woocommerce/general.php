@@ -429,8 +429,6 @@ if (! function_exists('blocksy_product_get_gallery_images')) {
 			$root_product
 		);
 
-		$thumb_id = get_post_thumbnail_id($root_product->get_id());
-
 		$gallery_images = $root_product->get_gallery_image_ids();
 
 		if ($thumb_id) {

@@ -4,8 +4,8 @@
 	grid-template-columns: repeat(2, 1fr);
 	align-items: center;
 	position: relative;
-	height: 30px;
-	border-radius: 3px;
+	height: var(--ui-option-height, 30px);
+	border-radius: var(--ui-border-radius, 3px);
 	box-sizing: border-box;
 	border: 1px solid var(--optionBorderColor, #ddd);
 	background: var(--backgroundColor, #fff);
@@ -13,7 +13,8 @@
 				border-color 0.1s ease;
 
 	input[type="number"] {
-		--input-width: auto;
+		--ui-input-width: auto;
+		--ui-input-height: 100%;
 		--input-font-size: 11px;
 		--margin: -1px;
 		--padding: 0 5px;
@@ -98,6 +99,7 @@
 .ct-units-list {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-auto-rows: calc(var(--ui-input-height) - 1px);
 	grid-column-gap: 5px;
 	position: absolute;
 	z-index: 2;
@@ -124,9 +126,7 @@
 		justify-content: center;
 		position: relative;
 		z-index: 1;
-		padding: 2px 3px;
 		cursor: pointer;
-		min-height: 24px;
 		color: #555d66;
 		font-size: 9px;
 		font-weight: 700;
@@ -135,7 +135,7 @@
 		text-transform: uppercase;
 		text-align: center;
 		hyphens: auto;
-		// word-break: break-all;
+		user-select: none;
 		background: inherit;
 		box-sizing: content-box;
 
@@ -144,8 +144,7 @@
 			position: absolute;
 			z-index: -1;
 			content: '';
-			width: 100%;
-			min-height: inherit;
+			inset: 2px 0;
 			border-radius: 2px;
 		}
 

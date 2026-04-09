@@ -62,7 +62,7 @@
 // Simple card
 [data-archive="default"][data-cards="simple"] {
 
-	.entry-card {
+	> .entry-card {
 		padding-bottom: var(--grid-columns-gap, 30px);
 		border-bottom: var(--card-border, none);
 	}

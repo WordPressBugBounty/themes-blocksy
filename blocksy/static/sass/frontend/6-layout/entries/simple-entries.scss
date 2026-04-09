@@ -10,6 +10,10 @@
 			flex-direction: column;
 		}
 
+		&:not(:last-child) {
+			margin-bottom: var(--grid-columns-gap, 30px);
+		}
+
 		> .ct-media-container {
 			@include functions.media-breakpoint-up (md) {
 				max-width: var(--card-media-max-width, 40%);
@@ -28,16 +32,6 @@
 			@include functions.media-breakpoint-up (md) {
 				align-self: center;
 			}
-		}
-	}
-
-	// apply spacing and border only when slider is not enabled
-	> article {
-		border-bottom: var(--card-border, none);
-		padding-bottom: var(--grid-columns-gap, 30px);
-
-		&:not(:last-child) {
-			margin-bottom: var(--grid-columns-gap, 30px);
 		}
 	}
 

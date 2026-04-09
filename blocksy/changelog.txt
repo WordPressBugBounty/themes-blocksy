@@ -1,3 +1,13 @@
+2.1.38: 2026-04-09
+- Improvement: Add option to hide "Archives" label from hero section for The Events Calendar plugin
+- Improvement: Archive cards with simple layout type - spacing issue
+- Improvement: Correctly call WooCommerce `woocommerce_product_get_image_id` filter without rewriting it
+- Improvement: UI improvements related to WordPress 7.0 changes
+- Fix: "Read More" button inherits global button settings in Gutenberg, when using Advanced Posts.
+- Fix: Load more pagination JS is not load unless page is scrolled
+- Fix: Menu drop down with "Solid Color" hover effect - inherits incorrect border radius
+- Fix: Pagination CSS is not applied in customizer live preview on first appearance
+
 2.1.37: 2026-03-26
 - Improvement: General fixes and improvements
 

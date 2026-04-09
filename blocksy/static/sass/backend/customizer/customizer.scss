@@ -3,6 +3,15 @@ $customizer-width: 320px;
 // header actions
 #customize-header-actions {
 
+	.customize-save-button-wrapper {
+		margin-top: 8px;
+
+		.button-primary {
+			min-height: 30px;
+			line-height: normal;
+		}
+	}
+
 	.customize-controls-close {
 		height: 45px;
 		border-top: none;
@@ -42,6 +51,12 @@ $customizer-width: 320px;
 	h3 {
 		border-top: none !important;
 		margin-bottom: 0 !important;
+
+		button.change-theme {
+			min-height: 30px;
+			line-height: normal;
+			margin-top: -14px !important;
+		}
 	}
 }
 

@@ -313,6 +313,17 @@ class Blocksy_Manager {
 							get_template_directory_uri() . '/static/bundle/flexy.min.css'
 						)
 					),
+				],
+
+				[
+					'selector' => '.ct-pagination',
+					'url' => add_query_arg(
+						'ver',
+						$theme->get('Version'),
+						blocksy_cdn_url(
+							get_template_directory_uri() . '/static/bundle/pagination.min.css'
+						)
+					),
 				]
 			]
 		]);

@@ -399,7 +399,15 @@ $when_enabled_general_settings = [
 						],
 
 						[
-							($is_archive || $is_bbpress || $is_home) ? [
+							(
+								$is_archive
+								||
+								$is_bbpress
+								||
+								$is_home
+								||
+								$is_tribe_events
+							) ? [
 								'has_category_label' => [
 									'label' => __('Archive Label', 'blocksy'),
 									'type' => 'ct-switch',

@@ -1,7 +1,9 @@
-.wpforms-submit,
-.wp-element-button,
-.wp-block-button__link,
-.ff-inherit-theme-style .ff-btn-submit {
+:is(
+	.wpforms-submit,
+	.wp-element-button,
+	.wp-block-button__link,
+	.ff-inherit-theme-style .ff-btn-submit
+) {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -23,10 +25,13 @@
 
 
 // filled button
-.wpforms-submit,
-.wp-element-button,
-.wp-block-button__link,
-.ff-inherit-theme-style .ff-btn-submit {
+:is(
+	.ct-button,
+	.wpforms-submit,
+	.wp-element-button,
+	.wp-block-button__link,
+	.ff-inherit-theme-style .ff-btn-submit
+) {
 	color: var(--theme-button-text-initial-color);
 	background-color: var(--theme-button-background-initial-color);
 
@@ -38,22 +43,22 @@
 }
 
 // outlined button
-.wp-block-button.is-style-outline {
+:is(
+	.ct-button-ghost,
+	.wp-block-button.is-style-outline .wp-element-button
+) {
+	padding: var(--theme-button-padding);
+	border: 2px solid;
+	border-color: var(--theme-button-background-initial-color);
+	background-color: initial;
 
-	.wp-element-button {
-		padding: var(--theme-button-padding);
-		border: 2px solid;
-		border-color: var(--theme-button-background-initial-color);
-		background-color: initial;
+	&:not(.has-text-color) {
+		color: var(--theme-button-background-initial-color);
+	}
 
-		&:not(.has-text-color) {
-			color: var(--theme-button-background-initial-color);
-		}
-
-		&:hover {
-			color: var(--theme-button-text-hover-color);
-			border-color: var(--theme-button-background-hover-color);
-			background-color: var(--theme-button-background-hover-color);
-		}
+	&:hover {
+		color: var(--theme-button-text-hover-color);
+		border-color: var(--theme-button-background-hover-color);
+		background-color: var(--theme-button-background-hover-color);
 	}
 }

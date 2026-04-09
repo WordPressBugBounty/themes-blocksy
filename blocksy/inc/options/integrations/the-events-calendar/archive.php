@@ -14,6 +14,7 @@ $options = [
 					__('%s Title', 'blocksy'),
 					'Events Calendar Archive'
 				),
+				'is_tribe_events' => true,
 				'location_name' => __('Events Calendar Archive', 'blocksy'),
 			]),
 

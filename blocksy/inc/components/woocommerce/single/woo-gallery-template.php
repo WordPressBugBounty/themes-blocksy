@@ -48,8 +48,6 @@ if (! isset($gallery_images)) {
 		$product
 	);
 
-	$thumb_id = get_post_thumbnail_id($product->get_id());
-
 	$gallery_images = $product->get_gallery_image_ids();
 
 	if ($thumb_id) {

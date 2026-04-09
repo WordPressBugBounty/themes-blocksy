@@ -16,7 +16,7 @@
 		font-size: 13px;
 		color: #555d66;
 		width: inherit;
-		height: var(--input-height, 30px);
+		height: var(--ui-input-height, 30px);
 		margin: 0;
 		padding-block: 0;
 		padding-inline-end: 20px;
@@ -97,7 +97,7 @@
 	line-height: 1.5;
 	color: #555d66;
 	background: #fff;
-	border-radius: 3px;
+	border-radius: var(--ui-border-radius, 3px);
 	box-sizing: border-box;
 	box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08),
 				0px 0px 1px 1px rgba(0, 0, 0, 0.02);
