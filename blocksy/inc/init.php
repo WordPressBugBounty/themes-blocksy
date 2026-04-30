@@ -180,13 +180,13 @@ add_action('after_setup_theme', function () {
 
 			[
 				'name' => 'Teen Party',
-				'gradient' => 'linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%)',
+				'gradient' => 'linear-gradient(135deg, #FF057C 0%, #8D0B93 50%, #321575 100%)',
 				'slug' => 'teen-party',
 			],
 
 			[
 				'name' => 'Fabled Sunset',
-				'gradient' => 'linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)',
+				'gradient' => 'linear-gradient(135deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)',
 				'slug' => 'fabled-sunset',
 			],
 
@@ -252,7 +252,7 @@ add_action('after_setup_theme', function () {
 
 			[
 				'name' => 'Happy Memories',
-				'gradient' => 'linear-gradient(-60deg, #ff5858 0%, #f09819 100%)',
+				'gradient' => 'linear-gradient(300deg, #ff5858 0%, #f09819 100%)',
 				'slug' => 'happy-memories',
 			],
 
@@ -264,25 +264,25 @@ add_action('after_setup_theme', function () {
 
 			[
 				'name' => 'Morning Salad',
-				'gradient' => 'linear-gradient(-225deg, #B7F8DB 0%, #50A7C2 100%)',
+				'gradient' => 'linear-gradient(135deg, #B7F8DB 0%, #50A7C2 100%)',
 				'slug' => 'morning-salad',
 			],
 
 			[
 				'name' => 'Night Call',
-				'gradient' => 'linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)',
+				'gradient' => 'linear-gradient(135deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)',
 				'slug' => 'night-call',
 			],
 
 			[
 				'name' => 'Mind Crawl',
-				'gradient' => 'linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%)',
+				'gradient' => 'linear-gradient(135deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%)',
 				'slug' => 'mind-crawl',
 			],
 
 			[
 				'name' => 'Angel Care',
-				'gradient' => 'linear-gradient(-225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%)',
+				'gradient' => 'linear-gradient(135deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%)',
 				'slug' => 'angel-care',
 			],
 
@@ -300,7 +300,7 @@ add_action('after_setup_theme', function () {
 
 			[
 				'name' => 'Mole Hall',
-				'gradient' => 'linear-gradient(-20deg, #616161 0%, #9bc5c3 100%)',
+				'gradient' => 'linear-gradient(340deg, #616161 0%, #9bc5c3 100%)',
 				'slug' => 'mole-hall',
 			],
 
@@ -336,7 +336,7 @@ add_action('after_setup_theme', function () {
 
 			[
 				'name' => 'Kind Steel',
-				'gradient' => 'linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%)',
+				'gradient' => 'linear-gradient(340deg, #e9defa 0%, #fbfcdb 100%)',
 				'slug' => 'kind-steel',
 			],
 
@@ -384,7 +384,7 @@ add_action('after_setup_theme', function () {
 
 			[
 				'name' => 'Perfect White',
-				'gradient' => 'linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%)',
+				'gradient' => 'linear-gradient(135deg, #E3FDF5 0%, #FFE6FA 100%)',
 				'slug' => 'perfect-white',
 			],
 		], blocksy_manager()->colors->get_color_palette())
@@ -582,7 +582,6 @@ require get_template_directory() . '/inc/integrations/bbpress.php';
 require get_template_directory() . '/inc/integrations/fluent-forms.php';
 require get_template_directory() . '/inc/integrations/coauthors.php';
 require get_template_directory() . '/inc/integrations/disqus.php';
-require get_template_directory() . '/inc/integrations/secupress.php';
 require get_template_directory() . '/inc/integrations/wpc-variations-table.php';
 require get_template_directory() . '/inc/integrations/woocommerce-composite-products.php';
 
@@ -653,4 +652,3 @@ class Blocksy_Fonts_Manager {
 		return [];
 	}
 }
-

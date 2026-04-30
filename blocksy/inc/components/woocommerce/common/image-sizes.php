@@ -11,7 +11,17 @@ class WooCommerceImageSizes {
 			[$this, 'add_image_sizes']
 		);
 
-		if (! is_multisite()) {
+		// Only register when WooCommerce's background process is
+		// available. WC_Regenerate_Images::init() creates the process
+		// and registers its own customize_save_after hook inside the
+		// same conditional — calling queue_image_regeneration() without
+		// it causes a fatal error on null $background_process.
+		// See: https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/includes/class-wc-regenerate-images.php#L46-L58
+		if (
+			! is_multisite()
+			&&
+			apply_filters('woocommerce_background_image_regeneration', true)
+		) {
 			add_action(
 				'customize_save_after',
 				[$this, 'maybe_regenerate_images'],
