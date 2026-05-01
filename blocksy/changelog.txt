@@ -1,3 +1,6 @@
+2.1.40: 2026-05-01
+- Improvement: Post meta box - correctly listen for meta field changes
+
 2.1.39: 2026-04-30
 - Fix: WooCommerce images - don't attempt image regeneration when Customizer options are saved if background processing is disabled
 
