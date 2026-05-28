@@ -427,6 +427,7 @@ add_action('after_setup_theme', function () {
 			'comment-list',
 			'gallery',
 			'caption',
+			'navigation-widgets',
 		]
 	);
 

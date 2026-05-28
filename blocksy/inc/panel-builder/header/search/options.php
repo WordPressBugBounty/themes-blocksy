@@ -451,7 +451,7 @@ $options = [
 					'label' => __( 'Placeholder Text', 'blocksy' ),
 					'type' => 'text',
 					'design' => 'block',
-					'value' => __( 'Search', 'blocksy' ),
+					'value' => __( 'Start typing to search', 'blocksy' ),
 					'sync' => 'live'
 				],
 
@@ -697,6 +697,45 @@ $options = [
 				],
 			],
 
+			blocksy_rand_md5() => [
+				'type' => 'ct-condition',
+				'condition' => [ 'forms_type' => 'classic-forms' ],
+				'values_source' => 'global',
+				'options' => [
+
+					'search_form_border_radius' => [
+						'label' => __( 'Input Border Radius', 'blocksy' ),
+						'type' => 'ct-slider',
+						'min' => 0,
+						'max' => 200,
+						'value' => 20,
+						'responsive' => true,
+						'divider' => 'top',
+						'setting' => [ 'transport' => 'postMessage' ],
+					],
+
+				],
+			],
+
+			blocksy_rand_md5() => [
+				'type' => 'ct-condition',
+				'condition' => [ 'searchHeaderImages' => 'yes' ],
+				'options' => [
+
+					'search_thumb_radius' => [
+						'label' => __( 'Image Border Radius', 'blocksy' ),
+						'type' => 'ct-slider',
+						'divider' => 'top',
+						'value' => 10,
+						'min' => 0,
+						'max' => 200,
+						'responsive' => true,
+						'setting' => [ 'transport' => 'postMessage' ],
+					],
+
+				],
+			],
+
 			'searchHeaderBackground' => [
 				'label' => __( 'Modal Background', 'blocksy' ),
 				'type'  => 'ct-background',
@@ -710,27 +749,6 @@ $options = [
 						],
 					],
 				])
-			],
-
-			blocksy_rand_md5() => [
-				'type' => 'ct-condition',
-				'condition' => [ 'searchHeaderImages' => 'yes' ],
-				'options' => [
-
-					'search_thumb_radius' => [
-						'label' => __( 'Image Border Radius', 'blocksy' ),
-						'type' => 'ct-spacing',
-						'divider' => 'top',
-						'value' => blocksy_spacing_value(),
-						'inputAttr' => [
-							'placeholder' => '2'
-						],
-						'min' => 0,
-						'responsive' => true,
-						'sync' => 'live',
-					],
-
-				],
 			],
 
 			'search_close_button_type' => [

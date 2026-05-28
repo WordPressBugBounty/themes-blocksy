@@ -3,6 +3,7 @@ import { h } from 'dom-chef'
 import classnames from 'classnames'
 
 import { loadStyle } from '../helpers'
+import { setLoaderState } from './helpers/set-loader-state'
 import { isIosDevice } from './helpers/is-ios-device'
 import { whenTransitionEnds } from './helpers/when-transition-ends'
 
@@ -158,6 +159,30 @@ const getPreviewElFor = ({
 }
 
 export const mount = (formEl, args = {}) => {
+	const maybeEl = formEl.querySelector('input[type="search"]')
+	const maybeStatusEl = formEl.querySelector('[aria-live]')
+	const searchResultsId = maybeEl?.getAttribute('aria-controls')
+
+	const setExpandedState = (isExpanded) => {
+		if (!maybeEl) {
+			return
+		}
+
+		maybeEl.setAttribute('aria-expanded', isExpanded ? 'true' : 'false')
+	}
+
+	const closeResults = ({ announce = false } = {}) => {
+		const maybeResultsEl = formEl.querySelector('.ct-search-results')
+
+		fadeOutAndRemove(maybeResultsEl)
+		setExpandedState(false)
+
+		if (announce && maybeStatusEl) {
+			maybeStatusEl.innerHTML =
+				ct_localizations.search_live_results_closed
+		}
+	}
+
 	const clickOutsideHandler = (e) => {
 		let mode = { mode: 'inline', ...args }.mode
 
@@ -169,10 +194,8 @@ export const mount = (formEl, args = {}) => {
 			return
 		}
 
-		fadeOutAndRemove(formEl.querySelector('.ct-search-results'))
+		closeResults()
 	}
-
-	const maybeEl = formEl.querySelector('input[type="search"]')
 
 	const options = {
 		postType: 'any',
@@ -194,9 +217,7 @@ export const mount = (formEl, args = {}) => {
 		document.addEventListener('click', clickOutsideHandler)
 
 		if (e.target.value.trim().length === 0) {
-			fadeOutAndRemove(formEl.querySelector('.ct-search-results'))
-
-			let maybeStatusEl = formEl.querySelector('[aria-live]')
+			closeResults()
 
 			if (maybeStatusEl) {
 				maybeStatusEl.innerHTML = ct_localizations.search_live_no_result
@@ -214,6 +235,7 @@ export const mount = (formEl, args = {}) => {
 		}
 
 		formEl.classList.add('ct-searching')
+		setLoaderState(formEl, { enabled: true })
 
 		const requestUrl = getRequestUrl({
 			formEl,
@@ -302,6 +324,7 @@ export const mount = (formEl, args = {}) => {
 			alreadyRunning = true
 
 			formEl.classList.remove('ct-searching')
+			setLoaderState(formEl, { enabled: false })
 
 			let itHadSearchResultsBefore =
 				!!formEl.querySelector('.ct-search-results')
@@ -320,10 +343,11 @@ export const mount = (formEl, args = {}) => {
 				 * Should just quickly replace the list
 				 * when results are available
 				 */
+				setExpandedState(false)
 				searchResults && formEl.removeChild(searchResults)
 			} else {
 				if (e.target.value.trim().length === 0 || posts.length === 0) {
-					fadeOutAndRemove(searchResults)
+					closeResults()
 				}
 			}
 
@@ -338,8 +362,6 @@ export const mount = (formEl, args = {}) => {
 				).replace('%s', posts.length)
 			}
 
-			let maybeStatusEl = formEl.querySelector('[aria-live]')
-
 			if (maybeStatusEl) {
 				maybeStatusEl.innerHTML = searchResultsCountElLabel
 			}
@@ -347,6 +369,7 @@ export const mount = (formEl, args = {}) => {
 			if (posts.length > 0 && e.target.value.trim().length > 0) {
 				let searchResultsEl = (
 					<div
+						id={searchResultsId}
 						class="ct-search-results"
 						role="listbox"
 						aria-label={ct_localizations.search_live_results}>
@@ -381,6 +404,7 @@ export const mount = (formEl, args = {}) => {
 				)
 
 				formEl.appendChild(searchResultsEl)
+				setExpandedState(true)
 
 				if (!itHadSearchResultsBefore) {
 					fadeIn(formEl.querySelector('.ct-search-results'))
@@ -436,11 +460,27 @@ export const mount = (formEl, args = {}) => {
 
 	maybeEl.addEventListener('input', listener)
 
-	maybeEl.addEventListener('keydown', (e) => {
-		if (e.key === 'Escape') {
+	const handleEscape = (e) => {
+		if (e.key !== 'Escape') return
+
+		const hasResults = !!formEl.querySelector('.ct-search-results')
+		const hasValue = maybeEl.value.trim().length > 0
+
+		if (hasResults || hasValue) {
+			// First ESC: close results and clear input
 			e.preventDefault()
+			e.stopPropagation()
+			closeResults({ announce: true })
+			maybeEl.value = ''
 		}
-	})
+
+		// Second ESC (nothing to clear): let the event bubble
+		// up to close the modal/overlay
+	}
+
+	// Overlay close listener uses keyup, so we intercept
+	// the same event to stop it from bubbling
+	maybeEl.addEventListener('keyup', handleEscape)
 
 	maybeEl.addEventListener('focus', (e) => {
 		listener(e)
@@ -458,8 +498,6 @@ function fadeOutAndRemove(el) {
 
 	el.classList.add('ct-fade-leave')
 	el.style.height = `${height}px`
-
-	el.closest('form').classList.remove('ct-has-dropdown')
 
 	requestAnimationFrame(() => {
 		el.classList.remove('ct-fade-leave')
@@ -480,8 +518,6 @@ function fadeIn(el) {
 
 	el.classList.add('ct-fade-leave')
 	el.style.height = 0
-
-	el.closest('form').classList.add('ct-has-dropdown')
 
 	requestAnimationFrame(() => {
 		el.style.height = `${height}px`

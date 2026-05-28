@@ -87,10 +87,6 @@ mark {
 	background: transparent;
 }
 
-del {
-	opacity: 0.5;
-}
-
 sup,
 sub {
 	font-size: 75%;
@@ -120,14 +116,13 @@ a {
 a,
 button {
 	&:focus {
+		outline: none;
 		transition: none;
-		outline-width: 0;
 	}
 
 	&:focus-visible {
-		outline-width: 2px;
-		outline-offset: var(--outline-offset, 3px);
-		outline-color: var(--theme-palette-color-2);
+		outline: 2px solid var(--theme-palette-color-1);
+		outline-offset: var(--outline-offset, 2px);
 	}
 }
 

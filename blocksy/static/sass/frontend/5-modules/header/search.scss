@@ -1,61 +1,52 @@
 @use "../../1-helpers/functions";
 
 #search-modal {
-	--vertical-alignment: initial;
+	--vertical-alignment: center;
 
-	// input field
-	input {
-		--has-classic-forms: var(--false);
-		--theme-form-field-border-width: 0 0 1px 0;
-		--search-input-additional-padding: 10px;
-
-		@include functions.media-breakpoint-down(sm) {
-			--theme-form-font-size: 22px;
-			--theme-form-field-height: 70px;
-			--theme-form-field-padding: 0px;
-			margin-bottom: 25px;
-		}
+	.ct-search-form {
+		margin-inline: auto;
+		width: 100%;
+		max-width: var(--theme-form-max-width, 750px);
 
 		@include functions.media-breakpoint-up(md) {
-			--theme-form-font-size: 35px;
-			--theme-form-field-height: 90px;
-			--theme-form-field-padding: 0 50px 0 0;
-			margin-bottom: 35px;
+			--theme-form-font-size: 20px;
+			--theme-form-field-height: 50px;
+		}
+
+		@include functions.media-breakpoint-down(md) {
+			--theme-form-max-width: 90%;
+		}
+
+		@include functions.media-breakpoint-down(sm) {
+			--theme-form-font-size: 20px;
+			--theme-form-field-height: 40px;
+			--theme-form-inner-spacing: 12px;
 		}
 	}
 
-	form {
-		display: block;
-		margin: auto;
-		width: 100%;
-		max-width: var(--max-width, 800px);
+	.ct-search-form-inner {
+		--theme-form-inner-spacing: 15px;
 
-		@include functions.media-breakpoint-down(md) {
-			--max-width: 90%;
-			--search-button-size: 40px;
-		}
+		height: auto;
+		padding-block: var(--theme-form-inner-spacing);
+		padding-inline: var(--has-classic-forms, var(--theme-form-inner-spacing));		
+		border-radius: var(--has-classic-forms, var(--theme-form-border-radius));
 
 		@include functions.media-breakpoint-up(md) {
-			--search-button-size: 48px;
+			margin-bottom: 35px;
 		}
 
-		// submit button
-		.ct-search-form-controls {
-			position: absolute;
-			inset-inline-end: 0;
-
-			@include functions.media-breakpoint-down(sm) {
-				top: calc(35px - 20px);
-			}
-
-			@include functions.media-breakpoint-up(md) {
-				top: calc(45px - 24px);
-			}
-
-			button {
-				--theme-button-border-radius: 100%;
-				--theme-icon-size: calc(100% / 3);
-			}
+		@include functions.media-breakpoint-down(md) {
+			margin-bottom: 25px;
 		}
+	}
+
+	.wp-element-button {
+		--theme-icon-size: calc(100% / 3);
+
+		--theme-button-border-radius: max(
+			calc(var(--theme-form-border-radius, 100%) * 0.5),
+			calc(var(--theme-form-border-radius, 100%) - var(--theme-form-inner-spacing))
+		);
 	}
 }

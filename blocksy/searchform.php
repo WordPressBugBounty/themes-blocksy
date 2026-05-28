@@ -249,64 +249,110 @@ if (isset($args['html_atts'])) {
 	);
 }
 
-if (! isset($args['button_type'])) {
-	$args['button_type'] = $html_atts['data-form-controls']  . ':' . $html_atts['data-submit-button'];
-}
-
 if (isset($args['override_html_atts'])) {
 	$html_atts = $args['override_html_atts'];
 }
 
+if (
+	! isset($args['override_html_atts'])
+	&&
+	($html_atts['data-form-controls'] ?? 'inside') === 'inside'
+	&&
+	($html_atts['data-submit-button'] ?? 'icon') === 'icon'
+) {
+	$html_atts['data-submit-button'] = 'minimal:icon';
+}
+
 $button_html_atts = array_merge(
 	[
-		'data-button' => $args['button_type'],
 		'aria-label' => __('Search button', 'blocksy')
 	],
 	isset($args['button_html_atts']) ? $args['button_html_atts'] : []
 );
 
 $search_box_min_length = apply_filters('blocksy:search-form:min-length', 1);
+$results_id = '';
+$status_id = '';
+
+if ($has_live_results === 'yes') {
+	$uid = substr(blocksy_rand_md5(), 0, 3);
+	$results_id = 'ct-search-results-' . $uid;
+	$status_id = 'ct-search-status-' . $uid;
+}
+
+$has_visible_taxonomy_filter = $has_taxonomy_filter && count($options) > 1;
+$form_controls_type = isset($html_atts['data-form-controls']) ? $html_atts['data-form-controls'] : 'inside';
+$inner_wrapper_atts = [];
+$inner_wrapper_classes = ['ct-search-form-inner'];
+
+if ($form_controls_type === 'inside') {
+	$inner_wrapper_classes[] = 'ct-pseudo-input';
+}
+
+$inner_wrapper_class = implode(' ', $inner_wrapper_classes);
 
 ?>
 
 
 <form role="search" method="get" class="ct-search-form" <?php echo blocksy_attr_to_html($html_atts); ?> action="<?php echo esc_url($home_url); ?>" aria-haspopup="listbox" <?php echo wp_kses_post($search_live_results_output) ?>>
 
-	<input
-		type="search" <?php echo $class_output ?>
-		placeholder="<?php echo $placeholder; ?>"
-		value="<?php echo get_search_query(); ?>"
-		name="s"
-		autocomplete="off"
-		title="<?php echo __('Search for...', 'blocksy') ?>"
-		aria-label="<?php echo __('Search for...', 'blocksy') ?>"
-		<?php
-		if (
-			isset($search_box_min_length)
-			&&
-			$search_box_min_length > 1
-		) {
-			echo 'data-min-length="' . esc_attr($search_box_min_length) . '"';
-		}
-		?>
-	>
-
-	<div class="ct-search-form-controls">
+	<div class="<?php echo esc_attr($inner_wrapper_class); ?>" <?php echo blocksy_attr_to_html($inner_wrapper_atts); ?>>
 		<?php if (
-			$has_taxonomy_filter
+			$form_controls_type === 'outside'
 			&&
-			count($options) > 1
-		) {
-			echo blocksy_html_tag(
-				'select',
-				[
-					'class' => 'ct-select-taxonomy' . (! empty(trim($taxonomy_filter_visibility) ) ? $taxonomy_filter_visibility : ''),
-					'name' => 'ct_tax_query',
-					'aria-label' => __('Search in category', 'blocksy')
-				],
-				implode('', $options)
-			);
-			?>
+			($html_atts['data-taxonomy-filter'] ?? 'false') === 'true'
+			&&
+			$has_visible_taxonomy_filter
+		) { ?>
+			<div class="ct-pseudo-input">
+		<?php } ?>
+
+			<input
+				type="search" <?php echo $class_output ?>
+				placeholder="<?php echo $placeholder; ?>"
+				value="<?php echo get_search_query(); ?>"
+				name="s"
+				autocomplete="off"
+				title="<?php echo __('Search for...', 'blocksy') ?>"
+				aria-label="<?php echo __('Search for...', 'blocksy') ?>"
+				<?php if ($has_live_results === 'yes') { ?>
+					aria-autocomplete="list"
+					aria-controls="<?php echo esc_attr($results_id); ?>"
+					aria-describedby="<?php echo esc_attr($status_id); ?>"
+					aria-expanded="false"
+				<?php } ?>
+				<?php
+				if (
+					isset($search_box_min_length)
+					&&
+					$search_box_min_length > 1
+				) {
+					echo 'data-min-length="' . esc_attr($search_box_min_length) . '"';
+				}
+				?>
+			>
+
+			<?php if ($has_visible_taxonomy_filter) {
+				echo blocksy_html_tag(
+					'select',
+					[
+						'class' => 'ct-select-taxonomy' . (! empty(trim($taxonomy_filter_visibility) ) ? $taxonomy_filter_visibility : ''),
+						'name' => 'ct_tax_query',
+						'aria-label' => __('Search in category', 'blocksy')
+					],
+					implode('', $options)
+				);
+				?>
+			<?php } ?>
+
+		<?php if (
+			$form_controls_type === 'outside'
+			&&
+			($html_atts['data-taxonomy-filter'] ?? 'false') === 'true'
+			&&
+			$has_visible_taxonomy_filter
+		) { ?>
+			</div>
 		<?php } ?>
 
 		<button type="submit" class="wp-element-button" <?php echo blocksy_attr_to_html($button_html_atts); ?>>
@@ -332,6 +378,7 @@ $search_box_min_length = apply_filters('blocksy:search-form:min-length', 1);
 							from="0 12 12"
 							to="360 12 12"
 							repeatCount="indefinite"
+							begin="indefinite"
 						/>
 					</path>
 				</svg>
@@ -374,11 +421,13 @@ $search_box_min_length = apply_filters('blocksy:search-form:min-length', 1);
 	</div>
 
 	<?php if ($has_live_results === 'yes') { ?>
-		<div class="screen-reader-text" aria-live="polite" role="status">
+		<div
+			class="screen-reader-text"
+			id="<?php echo esc_attr($status_id); ?>"
+			aria-live="polite"
+			role="status">
 			<?php echo __('No results', 'blocksy') ?>
 		</div>
 	<?php } ?>
 
 </form>
-
-

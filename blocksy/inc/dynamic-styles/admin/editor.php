@@ -87,22 +87,22 @@ if ($post_type === 'ct_content_block') {
 
 if ($page_structure === 'type-4') {
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--theme-block-max-width: var(--theme-normal-container-max-width)'
 	);
 
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--theme-block-wide-max-width: calc(var(--theme-normal-container-max-width) + var(--theme-wide-offset) * 2)'
 	);
 } else {
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--theme-block-max-width: var(--theme-narrow-container-max-width)'
 	);
 
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--theme-block-wide-max-width: calc(var(--theme-narrow-container-max-width) + var(--theme-wide-offset) * 2)'
 	);
 }
@@ -170,22 +170,22 @@ $forms_type = blocksy_get_theme_mod('forms_type', 'classic-forms');
 
 if ($forms_type === 'classic-forms') {
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--has-classic-forms: var(--true)'
 	);
 
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--has-modern-forms: var(--false)'
 	);
 } else {
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--has-classic-forms: var(--false)'
 	);
 
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--has-modern-forms: var(--true)'
 	);
 }
@@ -199,12 +199,12 @@ blocksy_output_colors([
 	'css' => $css,
 	'variables' => [
 		'default' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-text-initial-color'
 		],
 
 		'focus' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-text-focus-color'
 		],
 	],
@@ -213,7 +213,7 @@ blocksy_output_colors([
 $formFontSize = blocksy_get_theme_mod('formFontSize', 16);
 
 if ($formFontSize !== 16) {
-	$css->put(':root', '--theme-form-font-size: ' . $formFontSize . 'px');
+	$css->put('.editor-styles-wrapper', '--theme-form-font-size: ' . $formFontSize . 'px');
 }
 
 blocksy_output_colors([
@@ -225,12 +225,12 @@ blocksy_output_colors([
 	'css' => $css,
 	'variables' => [
 		'default' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-field-background-initial-color'
 		],
 
 		'focus' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-field-background-focus-color'
 		],
 	],
@@ -239,13 +239,13 @@ blocksy_output_colors([
 $formInputHeight = blocksy_get_theme_mod( 'formInputHeight', 40 );
 
 if ($formInputHeight !== 40) {
-	$css->put( ':root', '--theme-form-field-height: ' . $formInputHeight . 'px' );
+	$css->put( '.editor-styles-wrapper', '--theme-form-field-height: ' . $formInputHeight . 'px' );
 }
 
 $formFieldBorderRadius = blocksy_get_theme_mod( 'formFieldBorderRadius', 3 );
 
 if ($formFieldBorderRadius !== 3) {
-	$css->put( ':root', '--theme-form-field-border-radius: ' . $formFieldBorderRadius . 'px' );
+	$css->put( '.editor-styles-wrapper', '--theme-form-field-border-radius: ' . $formFieldBorderRadius . 'px' );
 }
 
 blocksy_output_colors([
@@ -257,12 +257,12 @@ blocksy_output_colors([
 	'css' => $css,
 	'variables' => [
 		'default' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-field-border-initial-color'
 		],
 
 		'focus' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-field-border-focus-color'
 		],
 	],
@@ -273,18 +273,18 @@ $formBorderSize = blocksy_get_theme_mod( 'formBorderSize', 1 );
 if ($forms_type === 'classic-forms') {
 	if($formBorderSize !== 1) {
 		$css->put(
-			':root',
+			'.editor-styles-wrapper',
 			'--theme-form-field-border-width: ' . $formBorderSize . 'px'
 		);
 	}
 } else {
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--theme-form-field-border-width: 0 0 ' . $formBorderSize . 'px 0'
 	);
 
 	$css->put(
-		':root',
+		'.editor-styles-wrapper',
 		'--form-selection-control-border-width: ' . $formBorderSize . 'px'
 	);
 }
@@ -298,12 +298,12 @@ blocksy_output_colors([
 	'css' => $css,
 	'variables' => [
 		'default' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-selection-field-initial-color'
 		],
 
 		'accent' => [
-			'selector' => ':root',
+			'selector' => '.editor-styles-wrapper',
 			'variable' => 'theme-form-selection-field-active-color'
 		],
 	],

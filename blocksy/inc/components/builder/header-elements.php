@@ -210,7 +210,7 @@ class Blocksy_Header_Builder_Elements {
 			blocksy_akg(
 				'header_search_placeholder',
 				$atts,
-				__('Search', 'blocksy')
+				__('Start typing to search', 'blocksy')
 			),
 			$key
 		);
@@ -234,8 +234,11 @@ class Blocksy_Header_Builder_Elements {
 			'search_placeholder' => $search_placeholder,
 			'search_live_results' => 'no',
 
-			'override_html_atts' => [],
-			'button_type' => 'icon'
+			'override_html_atts' => [
+				'data-form-controls' => 'inside',
+				'data-taxonomy-filter' => 'false',
+				'data-submit-button' => 'icon',
+			],
 		];
 
 		if (blocksy_akg('enable_live_results', $atts, 'yes') === 'yes') {

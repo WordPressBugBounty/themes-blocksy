@@ -16,7 +16,10 @@ a {
 
 // type 2
 [data-link='type-2'] :where(#{$selector}) {
-	--theme-text-decoration: underline;
+
+	&:not(:hover) {
+		--theme-text-decoration: underline;
+	}
 }
 
 // type 3 & 4 & 5

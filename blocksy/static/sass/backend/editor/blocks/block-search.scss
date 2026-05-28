@@ -22,8 +22,8 @@
 	&.wp-block-search__button-inside {
 
 		.wp-block-search__inside-wrapper {
-			border-radius: var(--theme-form-field-border-radius, 3px);
 			border-color: var(--theme-form-field-border-initial-color);
+			border-radius: var(--has-classic-forms, var(--theme-form-field-border-radius, 3px));
 
 			.wp-block-search__input {
 				border: none;

@@ -505,20 +505,38 @@ blocksy_output_background_css([
 	)
 ]);
 
+// Form border radius
+$search_form_border_radius = blocksy_akg('search_form_border_radius', $atts, 20);
+$forms_type = blocksy_get_theme_mod('forms_type', 'classic-forms');
+
+if ($forms_type === 'classic-forms') {
+	blocksy_output_responsive([
+		'css' => $css,
+		'tablet_css' => $tablet_css,
+		'mobile_css' => $mobile_css,
+		'selector' => blocksy_assemble_selector(
+			$root_selector[0] . ' #search-modal .ct-search-form'
+		),
+		'variableName' => 'theme-form-border-radius',
+		'value' => $search_form_border_radius
+	]);
+}
+
 // Image border radius
-blocksy_output_spacing([
-	'css' => $css,
-	'tablet_css' => $tablet_css,
-	'mobile_css' => $mobile_css,
-	'selector' => blocksy_assemble_selector(
-		$root_selector[0] . ' #search-modal .ct-search-results'
-	),
-	'property' => 'search-image-radius',
-	'value' => blocksy_akg('search_thumb_radius', $atts,
-		blocksy_spacing_value()
-	),
-	'empty_value' => 2
-]);
+$search_thumb_radius = blocksy_akg('search_thumb_radius', $atts, 10);
+
+if ($search_thumb_radius !== 10) {
+	blocksy_output_responsive([
+		'css' => $css,
+		'tablet_css' => $tablet_css,
+		'mobile_css' => $mobile_css,
+		'selector' => blocksy_assemble_selector(
+			$root_selector[0] . ' #search-modal .ct-search-results'
+		),
+		'variableName' => 'search-image-radius',
+		'value' => $search_thumb_radius,
+	]);
+}
 
 
 // Icon margin
