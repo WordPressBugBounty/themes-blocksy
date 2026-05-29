@@ -64,6 +64,7 @@ class ThemeAutoloader {
 			'DbVersioning\\V210' => 'inc/classes/db-versioning/v2-1-0.php',
 			'DbVersioning\\V211' => 'inc/classes/db-versioning/v2-1-1.php',
 			'DbVersioning\\V2110' => 'inc/classes/db-versioning/v2-1-10.php',
+			'DbVersioning\\V2144' => 'inc/classes/db-versioning/v2-1-44.php',
 
 			'DbVersioning\\DefaultValuesCleaner' => 'inc/classes/db-versioning/utils/db-default-values-cleaner.php',
 

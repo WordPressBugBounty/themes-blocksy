@@ -1,3 +1,7 @@
+2.1.44: 2026-05-29
+- Improvement: Potential CLS issue when sidebar is set on the left for single posts
+- Fix: Search - fix fatal error when search_thumb_radius has legacy ct-spacing format
+
 2.1.43: 2026-05-28
 - Improvement: General accessibility improvements
 - Improvement: Refactor search form markup for better accessibility and consistency

@@ -4,9 +4,10 @@
 	width: var(--quantity-width, 130px);
 
 	input[type="number"] {
-		border-width: 1px;
 		padding-block: 0px;
 		padding-inline: calc(var(--quantity-height, 55px) / 1.8 + 9%);
+
+		--theme-form-field-border-width: 1px;
 	}
 
 	.ct-increase, 

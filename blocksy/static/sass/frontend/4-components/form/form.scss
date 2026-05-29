@@ -24,7 +24,6 @@ fieldset .wc-stripe-elements-field,
 	outline-offset: calc(var(--theme-form-field-border-width, 1px) * -1);
 
 	&:focus {
-		// outline: none;
 		color: var(--theme-form-text-focus-color, var(--theme-text-color));
 		outline-color: var(--theme-form-field-border-focus-color);
 		border-color: var(--theme-form-field-border-focus-color);

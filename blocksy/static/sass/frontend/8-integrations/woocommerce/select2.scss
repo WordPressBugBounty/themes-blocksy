@@ -8,9 +8,6 @@ span.select2-container {
 		border: var(--theme-form-field-border-width, 1px) var(--theme-form-field-border-style, solid) var(--theme-form-field-border-initial-color);
 
 		.select2-selection__rendered {
-			// display: flex;
-			// flex-wrap: wrap;
-			// align-items: center;
 			color: var(--theme-form-text-initial-color, var(--theme-text-color));
 			padding: var(--has-classic-forms, var(--theme-form-field-padding, 0 15px));
 		}
@@ -23,7 +20,6 @@ span.select2-container {
 		height: var(--theme-form-field-height, 40px);
 
 		.select2-selection__rendered {
-			// height: 100%;
 			width: 100%;
 			padding-inline-end: 30px;
 		}

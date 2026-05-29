@@ -141,6 +141,12 @@ function blocksy_output_css_vars($args = []) {
 
 	$value = blocksy_expand_responsive_value($args['value']);
 
+	foreach (['desktop', 'tablet', 'mobile'] as $device) {
+		if (isset($value[$device]) && is_array($value[$device])) {
+			throw new Error('blocksy_output_css_vars: value[' . $device . '] must be a scalar, got array for ' . $args['variableName']);
+		}
+	}
+
 	if ($args['variableType'] === 'custom-property') {
 		$args['variableName'] = '--' . $args['variableName'];
 	}

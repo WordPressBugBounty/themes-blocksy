@@ -55,9 +55,9 @@ class V211 {
 			) {
 				continue;
 			}
-			
+
 			$limit = blocksy_akg('limit', $layer['options'], 10);
-			
+
 			set_theme_mod('limit_number_of_swatches', 'yes');
 			set_theme_mod('archive_limit_number_of_swatches_number', $limit);
 		}

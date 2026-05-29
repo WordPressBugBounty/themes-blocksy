@@ -525,6 +525,31 @@ if ($forms_type === 'classic-forms') {
 // Image border radius
 $search_thumb_radius = blocksy_akg('search_thumb_radius', $atts, 10);
 
+// Legacy ct-spacing format (pre-2.1.44): convert to ct-slider scalar
+if (is_array($search_thumb_radius)) {
+	$expanded = blocksy_expand_responsive_value($search_thumb_radius);
+
+	if (
+		is_array($expanded['desktop'])
+		&&
+		isset($expanded['desktop']['values'])
+	) {
+		$values = [
+			'desktop' => 10,
+			'tablet' => 10,
+			'mobile' => 10,
+		];
+
+		foreach (['desktop', 'tablet', 'mobile'] as $device) {
+			if (isset($expanded[$device]['values'][0]['value'])) {
+				$values[$device] = intval($expanded[$device]['values'][0]['value']);
+			}
+		}
+
+		$search_thumb_radius = blocksy_default_responsive_value($values);
+	}
+}
+
 if ($search_thumb_radius !== 10) {
 	blocksy_output_responsive([
 		'css' => $css,

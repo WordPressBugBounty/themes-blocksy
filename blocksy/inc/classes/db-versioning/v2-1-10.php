@@ -46,8 +46,6 @@ class V2110 {
 		} else {
 			set_theme_mod('woo_count_with_discount', 'yes');
 		}
-		
 	}
 }
-
 

@@ -2,8 +2,6 @@ $checkbox:
 	'.ct-checkbox',
 	'.comment-form input[type="checkbox"]',
 	'#ship-to-different-address-checkbox',
-	// '.wc-block-checkbox-list input[type="checkbox"]',
-	// '.wc-block-checkbox-list .wc-block-components-checkbox .wc-block-components-checkbox__input[type=checkbox]',
 	'.woocommerce-form__input[type="checkbox"]',
 	'.woocommerce-form__label-for-checkbox input[type="checkbox"]',
 	'.woocommerce-input-wrapper input[type="checkbox"]',
@@ -83,7 +81,7 @@ $radiobox:
 		height: 5px;
 		border: 2px solid #fff;
 		border-top: none;
-		border-right: none;
+		border-inline-end: none;
 		transform: rotate(-45deg);
 	}
 }

@@ -27,14 +27,11 @@
 	outline-offset: calc(var(--theme-form-field-border-width, 1px) * -1);
 	
 	&:focus {
-		// outline: none;
 		box-shadow: none;
 		color: var(--theme-form-text-focus-color, var(--theme-text-color));
-		// border-color: var(--theme-form-field-border-focus-color);
-		background-color: var(--has-classic-forms, var(--theme-form-field-background-focus-color));
-
-		// outline
 		outline-color: var(--theme-form-field-border-focus-color);
+		border-color: var(--theme-form-field-border-focus-color);
+		background-color: var(--has-classic-forms, var(--theme-form-field-background-focus-color));
 	}
 
 	&::placeholder {
@@ -55,9 +52,8 @@
 }
 
 // checkbox & radiobox
-.ff-inherit-theme-style input[type="radio"],
-.ff-inherit-theme-style input[type="checkbox"],
-.ct-newsletter-subscribe-block input[type="checkbox"] {
+.ct-newsletter-subscribe-block input[type="checkbox"],
+.ff-inherit-theme-style :is(input[type="checkbox"], input[type="radio"]) {
 	appearance: none;
 	width: 16px;
 	height: 16px;
@@ -68,6 +64,14 @@
 	border: var(--form-selection-control-border-width, var(--theme-form-field-border-width, 1px)) solid var(--theme-form-selection-field-initial-color);
 }
 
+.ct-newsletter-subscribe-block input[type="checkbox"],
+.ff-inherit-theme-style input[type="checkbox"] {
+	border-radius: var(--theme-form-checkbox-border-radius, 3px);
+}
+
+.ff-inherit-theme-style input[type="radio"] {
+	border-radius: 100%;
+}
 
 // labels
 .ff-inherit-theme-style .ff-el-input--label label {
@@ -100,6 +104,7 @@
 
 	&:has(:is(input, .ct-select-taxonomy):focus) {
 		outline-color: var(--theme-form-field-border-focus-color);
+		border-color: var(--theme-form-field-border-focus-color);
 		background-color: var(--has-classic-forms, var(--theme-form-field-background-focus-color));
 	}
 }

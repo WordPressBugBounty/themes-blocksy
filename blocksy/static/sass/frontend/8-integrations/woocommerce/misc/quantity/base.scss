@@ -52,11 +52,6 @@ div.quantity {
 			color: var(--quantity-arrows-hover-color, #fff);
 			background: var(--quantity-hover-color, var(--theme-button-background-hover-color));
 		}
-
-		~ input[type="number"]:focus {
-			border-color: var(--quantity-initial-color, var(--theme-button-background-initial-color));
-			box-shadow: 0 0 0 1px var(--quantity-initial-color, var(--theme-button-background-initial-color));
-		}
 	}
 
 	&.hidden {

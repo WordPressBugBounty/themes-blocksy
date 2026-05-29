@@ -7,8 +7,9 @@ $arrows-width: 25%;
 		padding-block: 0px;
 		padding-inline-start: 5px;
 		padding-inline-end: calc(#{$arrows-width} + 3px);
-		border-width: 1px;
 		border-inline-end-width: 0;
+
+		--theme-form-field-border-width: 1px;
 	}
 
 	.ct-increase, 

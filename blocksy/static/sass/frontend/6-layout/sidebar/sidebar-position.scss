@@ -20,7 +20,7 @@
 		--sidebar-order: -1;
 		--grid-template-columns: var(--sidebar-width, 27%) minmax(100px, 1fr);
 
-		> section {
+		> :is(section, article) {
 			grid-column: 2;
 		}
 	}
