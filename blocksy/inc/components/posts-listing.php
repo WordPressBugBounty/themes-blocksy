@@ -53,6 +53,31 @@ add_action('parse_tax_query', function ($query) {
 			get_option('posts_per_page', 10)
 		))
 	);
+
+	// Posts that share an identical `post_date` produce an undefined SQL
+	// order that isn't stable across separate LIMIT/OFFSET queries, so a
+	// post can surface on two consecutive pages while another never appears.
+	// Add `ID` as a deterministic tiebreaker to make the sort total and
+	// stable. Only do this when ordering by date (the default), so search
+	// relevance and any explicit custom orderby are left untouched.
+	$current_orderby = $query->get('orderby');
+
+	if (
+		empty($current_orderby)
+		||
+		$current_orderby === 'date'
+		||
+		$current_orderby === 'post_date'
+	) {
+		$current_order = strtoupper($query->get('order')) === 'ASC'
+			? 'ASC'
+			: 'DESC';
+
+		$query->set('orderby', [
+			'date' => $current_order,
+			'ID' => $current_order,
+		]);
+	}
 });
 
 if (! function_exists('blocksy_get_listing_card_type')) {

@@ -155,6 +155,8 @@ do_action('blocksy:woocommerce:product-gallery:before');
 
 echo '<div class="ct-product-gallery-container">';
 
+ob_start();
+
 echo implode('', apply_filters('blocksy:woocommerce:single:after-sale-badge', $badges));
 
 $maybe_custom_content = null;
@@ -168,7 +170,6 @@ if (! $blocksy_is_quick_view) {
 		$is_single
 	);
 }
-
 
 do_action('blocksy:woocommerce:product-view:start', $gallery_images);
 
@@ -270,6 +271,12 @@ if ($maybe_custom_content) {
 	echo $maybe_custom_content;
 }
 
+echo apply_filters(
+	'woocommerce_single_product_image_thumbnail_html',
+	ob_get_clean(),
+	$gallery_images[0]
+);
+
 do_action('woocommerce_product_thumbnails');
 
 echo '</div>';
@@ -286,16 +293,10 @@ if (is_customize_preview()) {
 }
 
 if (! empty($result_html)) {
-	$result_html = blocksy_html_tag(
+	echo blocksy_html_tag(
 		'div',
 		$product_view_attr,
 		$result_html
-	);
-
-	echo apply_filters(
-		'woocommerce_single_product_image_thumbnail_html',
-		$result_html,
-		$gallery_images[0]
 	);
 }
 
