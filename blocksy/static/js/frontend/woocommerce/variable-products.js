@@ -419,6 +419,9 @@ export const mount = (el) => {
 			)
 
 			if (oldContainer && newContainer) {
+				const ownedGalleryContainers =
+					'.flexy-container, .container-image-and-badge, .ct-stacked-gallery-container'
+
 				// Foreign = nodes Blocksy didn't render — markup other plugins
 				// inject into the gallery. The concrete case this solves is YITH
 				// WooCommerce Badge Management: it adds `.yith-wcbm-badge` nodes
@@ -431,14 +434,15 @@ export const mount = (el) => {
 				//
 				// Blocksy's own gallery nodes are: `.flexy-container` and its
 				// `flexy-*` children (`.flexy`, `.flexy-pills`, `.flexy-arrow-*`),
-				// the `.woocommerce-product-gallery__trigger` lightbox link, and
-				// the single-image `<figure>`. Everything else is foreign. YITH
-				// may also wrap the image+badges in `.container-image-and-badge`,
-				// so collectForeign() recurses into that (and `.flexy-container`)
-				// to reach foreign nodes wherever they sit.
+				// the stacked-gallery wrapper, the `.woocommerce-product-gallery__trigger`
+				// lightbox link, and the single-image `<figure>`. Everything else
+				// is foreign. YITH may also wrap the image+badges in
+				// `.container-image-and-badge`, so collectForeign() recurses into
+				// Blocksy-owned gallery containers to reach foreign nodes wherever
+				// they sit.
 				const isForeign = (el) =>
 					!el.matches(
-						'.flexy-container, .container-image-and-badge, .woocommerce-product-gallery__trigger, figure'
+						`${ownedGalleryContainers}, .woocommerce-product-gallery__trigger, figure`
 					) &&
 					![...el.classList].some((c) => c.indexOf('flexy') === 0)
 
@@ -447,11 +451,7 @@ export const mount = (el) => {
 
 					const scan = (node) => {
 						;[...node.children].forEach((child) => {
-							if (
-								child.matches(
-									'.flexy-container, .container-image-and-badge'
-								)
-							) {
+							if (child.matches(ownedGalleryContainers)) {
 								scan(child)
 								return
 							}
