@@ -55,7 +55,11 @@ const AfterHeading = ({ item, attribute, onChange, value }) => {
 				id={`ct-variation-type-${attribute.taxonomy}`}
 				name={`ct-variation-type-${attribute.taxonomy}`}
 				onChange={handleChange}
-				value={value[attribute.taxonomy]?.swatch_type || 'button'}>
+				value={
+					value[attribute.taxonomy]?.swatch_type ||
+					(attribute.customAttr ? 'button' : 'inherit')
+				}
+			>
 				{dopdownOptions.map(({ label, value: val }) => {
 					return (
 						<option

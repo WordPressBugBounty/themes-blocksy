@@ -24,12 +24,18 @@ export function whenTransitionEnds(el, cb) {
 		}
 	}
 
-	const transitionDuration =
-		parseFloat(getComputedStyle(el).transitionDuration) * 1000
+	const transitionDuration = parseFloat(
+		getComputedStyle(el).transitionDuration
+	)
+
+	if (!transitionDuration) {
+		cb()
+		return
+	}
 
 	el.addEventListener('transitionend', onEnd)
 
 	timeoutId = setTimeout(() => {
 		end()
-	}, transitionDuration)
+	}, transitionDuration * 1000)
 }

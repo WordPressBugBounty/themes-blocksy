@@ -36,10 +36,21 @@ add_action(
 
 		global $product;
 
-		if (
-			! blocksy_manager()->screen->is_product()
+		$product_image_needs_layout = (
+			// This layout is needed on single product pages
+			blocksy_manager()->screen->is_product()
 			||
+			// Layout applied on all product images rendered via AJAX.
+			// It might be too broad and it will need scoping in case it conflicts.
+			//
+			// Some plugins load their custom gallery through AJAX in the single product page, via custom ajax actions.
+			wp_doing_ajax()
+		);
+
+		if (
 			! $product
+			||
+			! $product_image_needs_layout
 		) {
 			echo $product_gallery;
 			return;
@@ -131,4 +142,3 @@ function blocksy_get_product_view_type() {
 		'default-gallery'
 	);
 }
-

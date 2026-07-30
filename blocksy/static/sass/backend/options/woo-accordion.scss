@@ -1,11 +1,11 @@
 .ct-accordion-item {
 	display: grid;
-	grid-template-rows: var(--ct-accordion-heading-height, 47px) 0fr;
+	grid-template-rows: var(--ct-accordion-heading-height, 60px) 0fr;
 	border-bottom: 1px solid #eee;
 	transition: grid-template-rows 0.3s ease;
 
 	&.active {
-		grid-template-rows: var(--ct-accordion-heading-height, 47px) 1fr;
+		grid-template-rows: var(--ct-accordion-heading-height, 60px) 1fr;
 
 		> .ct-accordion-heading svg {
 			transform: rotate(180deg);
@@ -49,13 +49,14 @@
 }
 
 .ct-accordion-options-container {
-	padding: 26px;
+	padding: 20px;
 	border-top: 1px solid #eee;
 
 	// inner accordion
 	.ct-accordion-item {
 		border: 1px solid #eee;
-		--ct-accordion-heading-height: 38px;
+		--ct-accordion-heading-height: 40px;
+		--revert-button-offset: 17px;
 
 		&:not(:last-child) {
 			margin-bottom: 10px;

@@ -1,3 +1,5 @@
+import { whenTransitionEnds } from '../../helpers/when-transition-ends'
+
 const activateSubMenu = (container) => {
 	const subMenu = container.querySelector('ul')
 
@@ -100,19 +102,4 @@ export const mount = (arrow) => {
 			arrow.closest('.menu-item-has-children, .page_item_has_children')
 		)
 	})
-}
-
-function whenTransitionEnds(el, cb) {
-	const end = () => {
-		el.removeEventListener('transitionend', onEnd)
-		cb()
-	}
-
-	const onEnd = (e) => {
-		if (e.target === el) {
-			end()
-		}
-	}
-
-	el.addEventListener('transitionend', onEnd)
 }

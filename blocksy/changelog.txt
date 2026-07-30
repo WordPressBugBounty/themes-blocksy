@@ -1,3 +1,8 @@
+2.1.51: 2026-07-30
+- Improvement: Better integration with YITH WooCommerce Color, Image & Label Variation Swatches plugin
+- Improvement: Pagination module - ensure transition end event is triggered correctly when reduce motion is enabled
+- Improvement: WooCommerce single product gallery - properly respect new format values in customizer
+
 2.1.50: 2026-07-23
 - Improvement: Products additional action buttons - proper loader sync with request state
 - Improvement: Search module - correctly handles product price and product status metadata in live results

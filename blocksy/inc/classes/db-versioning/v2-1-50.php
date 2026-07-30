@@ -16,6 +16,10 @@ class V2150 {
 			return;
 		}
 
+		if (! function_exists('blocksy_get_woo_single_layout_defaults')) {
+			return;
+		}
+
 		$this->apply_to_mod(
 			'woo_single_layout',
 			blocksy_get_woo_single_layout_defaults(),
