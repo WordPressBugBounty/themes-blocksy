@@ -140,7 +140,7 @@
 	.ct-accordion-heading {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		// justify-content: space-between;
 		color: var(--theme-link-initial-color);
 		padding: 18px 0;
 		cursor: pointer;
@@ -151,6 +151,10 @@
 
 		&:hover {
 			color: var(--theme-link-hover-color);
+		}
+
+		svg {
+			margin-inline-start: auto;
 		}
 	}
 

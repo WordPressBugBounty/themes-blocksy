@@ -1,3 +1,11 @@
+2.1.52: 2026-08-06
+- Improvement: Dynamic CSS - more reliable check for current saved styles version
+- Improvement: Infinite pagination - better integration with the Search & Filter Pro plugin
+- Improvement: Infinite scroll pagination - improve compatibility with modern browser navigation
+- Improvement: Product tabs - better integration with Barn2 WooCommerce Product Tabs plugin
+- Improvement: WooCommerce cart/checkout blocks - make sure form controls inherit global typography styles
+- Fix: Product gallery - more reliable applying of default gallery attributes
+
 2.1.51: 2026-07-30
 - Improvement: Better integration with YITH WooCommerce Color, Image & Label Variation Swatches plugin
 - Improvement: Pagination module - ensure transition end event is triggered correctly when reduce motion is enabled

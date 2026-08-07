@@ -13,10 +13,7 @@ add_action(
 			echo blocksy_render_view(dirname(__FILE__) . '/woo-gallery-template.php');
 
 			ob_start();
-			return;
 		}
-
-		ob_start();
 	},
 	4, 4
 );
@@ -28,71 +25,9 @@ add_action(
 			return;
 		}
 
-		$product_gallery = ob_get_clean();
-
 		if (blocksy_woocommerce_has_flexy_view()) {
-			return;
+			ob_end_clean();
 		}
-
-		global $product;
-
-		$product_image_needs_layout = (
-			// This layout is needed on single product pages
-			blocksy_manager()->screen->is_product()
-			||
-			// Layout applied on all product images rendered via AJAX.
-			// It might be too broad and it will need scoping in case it conflicts.
-			//
-			// Some plugins load their custom gallery through AJAX in the single product page, via custom ajax actions.
-			wp_doing_ajax()
-		);
-
-		if (
-			! $product
-			||
-			! $product_image_needs_layout
-		) {
-			echo $product_gallery;
-			return;
-		}
-
-		/**
-		 * Filters the attributes applied to the default (non-flexy) single
-		 * product gallery wrapper (`.woocommerce-product-gallery`).
-		 *
-		 * Integrations can return an empty array to opt a product out
-		 * entirely — e.g. the Custom Product Boxes integration for
-		 * `wdm_bundle_product`, which renders its own gallery.
-		 *
-		 * @since 2.1.50
-		 *
-		 * @param array       $attr    Map of attribute name => value applied to
-		 *                             the gallery wrapper. Default
-		 *                             `['data-gallery' => 'default']`.
-		 * @param \WC_Product $product The product being rendered.
-		 */
-		$gallery_attr = apply_filters(
-			'blocksy:woocommerce:default-gallery:attr',
-			['data-gallery' => 'default'],
-			$product
-		);
-
-		if (empty($gallery_attr)) {
-			echo $product_gallery;
-			return;
-		}
-
-		$gallery_processor = new \WP_HTML_Tag_Processor($product_gallery);
-
-		if ($gallery_processor->next_tag([
-			'class_name' => 'woocommerce-product-gallery'
-		])) {
-			foreach ($gallery_attr as $attr_name => $attr_value) {
-				$gallery_processor->set_attribute($attr_name, $attr_value);
-			}
-		}
-
-		echo $gallery_processor->get_updated_html();
 	},
 	4, 4
 );

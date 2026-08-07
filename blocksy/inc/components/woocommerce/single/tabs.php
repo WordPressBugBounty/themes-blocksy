@@ -19,7 +19,7 @@ if ( !function_exists('blocksy_custom_accordion_tabs') ) {
 							aria-expanded="<?php echo $is_open && !$index ? "true" : "false" ?>"
 							<?php echo $additional_attr; ?>
 							>
-							<?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?>
+							<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ); ?>
 
 							<svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor">
 								<path d="M10,20c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1s1,0.4,1,1v18C11,19.6,10.6,20,10,20z"/>
@@ -56,7 +56,23 @@ if ( !function_exists('blocksy_custom_simple_tabs') ) {
 				<article>
 					<?php foreach ( $tabs as $key => $tab ) : ?>
 						<div id="tab-<?php echo esc_attr( $key ); ?>" class="entry-content is-layout-constrained">
-							<?php call_user_func( $tab['callback'], $key, $tab ); ?>
+							<?php
+							ob_start();
+							call_user_func( $tab['callback'], $key, $tab );
+							$tab_content = ob_get_clean();
+							$tab_title = apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key );
+
+							preg_match_all( '/<h2\\b[^>]*>(.*?)<\\/h2>/is', $tab_content, $tab_heading_matches );
+							$tab_headings = array_map( 'trim', array_map( 'wp_strip_all_tags', $tab_heading_matches[1] ) );
+							$has_title = in_array( trim( wp_strip_all_tags( $tab_title ) ), $tab_headings, true );
+
+							if ( ! $has_title ) {
+								echo '<h2>' . wp_kses_post( $tab_title ) . '</h2>';
+							}
+
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo $tab_content;
+							?>
 						</div>
 					<?php endforeach; ?>
 				</article>

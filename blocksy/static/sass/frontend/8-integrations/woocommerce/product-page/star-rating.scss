@@ -7,7 +7,6 @@
 
 
 	.woocommerce-review-link {
-		// margin-inline-start: 10px;
 		font-size: 12px;
 		--theme-link-initial-color: var(--theme-text-color);
 	}
@@ -28,64 +27,35 @@
 
 	.stars {
 		color: var(--star-rating-initial-color, #fda256);
-		font-size: 0.9em;
 
 		span {
 			display: flex;
+			margin-inline-start: 4px;
 		}
 
 		a {
-			position: relative;
-			display: inline-block;
-			width: 1em;
-			height: 1em;
-			text-indent: -999em;
+			font-size: 0;
 			text-decoration: none;
 			color: currentColor;
-			margin-inline-start: 8px;
+			padding-inline: 4px;
 
 			&:before {
-				position: absolute;
 				display: block;
-				top: 0;
-				left: 0;
-				width: 1em;
-				height: 1em;
 				font-family: 'star';
+				font-size: 14px;
 				content: '\73';
 				line-height: 1;
-				text-indent: 0;
-			}
-
-			&:hover {
-				~ a:before {
-					content: '\73';
-				}
 			}
 		}
 
-		&:hover {
-			a:before {
-				content: '\53';
-			}
+		&:has(a:hover) a:before,
+		&.selected a:before {
+			content: '\53';
 		}
 
-		&.selected {
-			a {
-				&.active {
-					&:before {
-						content: '\53';
-					}
-
-					~ a:before {
-						content: '\73';
-					}
-				}
-
-				&:not(.active):before {
-					content: '\53';
-				}
-			}
+		a:hover ~ a:before,
+		&.selected a.active ~ a:before {
+			content: '\73';
 		}
 	}
 }

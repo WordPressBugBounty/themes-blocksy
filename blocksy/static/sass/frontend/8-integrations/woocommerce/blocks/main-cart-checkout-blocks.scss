@@ -10,9 +10,18 @@ div:is(
 
 // forms
 .wc-block-components-textarea,
-.wc-blocks-components-select .wc-blocks-components-select__container,
+.wc-blocks-components-select .wc-blocks-components-select__container select,
 .wc-block-components-text-input input:is([type=email], [type=number], [type=tel], [type=text], [type=url]) {
 	--has-height: var(--false);
+
+	font-family: var(--theme-form-font-family) !important;
+	font-size: var(--theme-form-font-size, 16px) !important;
+	font-weight: var(--theme-form-font-weight) !important;
+	font-style: var(--theme-form-font-style, inherit) !important;
+	line-height: var(--theme-form-line-height) !important;
+	letter-spacing: var(--theme-form-letter-spacing) !important;
+	text-transform: var(--theme-form-text-transform) !important;
+	text-decoration: var(--theme-form-text-decoration) !important;
 
 	padding-inline: 15px !important;
 	color: var(--theme-form-text-initial-color, var(--theme-text-color)) !important;
@@ -38,16 +47,17 @@ div:is(
 
 // form select
 .wc-blocks-components-select .wc-blocks-components-select__container {
+	background: transparent !important;
 
-	.wc-blocks-components-select__select {
-		padding-inline: 0;
-		color: inherit;
-		border: none;
-	}
+// 	.wc-blocks-components-select__select {
+// 		padding-inline: 0;
+// 		color: inherit;
+// 		border: none;
+// 	}
 
-	.wc-blocks-components-select__expand {
-		fill: currentColor;
-	}
+// 	.wc-blocks-components-select__expand {
+// 		fill: currentColor;
+// 	}
 }
 
 

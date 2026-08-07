@@ -88,6 +88,31 @@ InfiniteScroll.prototype.onPageScroll = InfiniteScroll.throttle(function () {
 	}
 })
 
+// The library's history behavior binds its cleanup handler to the deprecated
+// `unload` event, which browsers report as "Permissions policy violation:
+// unload is not allowed in this document" when the host forbids the feature.
+// `unload` is referenced in this one method only — rebinding it to `pagehide`
+// (skipping bfcache freezes, where the page keeps living) is the whole fix.
+//
+// https://github.com/metafizzy/infinite-scroll/issues/980
+InfiniteScroll.prototype.bindHistoryAppendEvents = function (isBind) {
+	const addRemove = isBind ? 'addEventListener' : 'removeEventListener'
+
+	this.scroller[addRemove]('scroll', this.scrollHistoryHandler)
+
+	if (!this.pageHideHandler) {
+		this.pageHideHandler = (event) => {
+			if (event.persisted) {
+				return
+			}
+
+			this.onUnload()
+		}
+	}
+
+	window[addRemove]('pagehide', this.pageHideHandler)
+}
+
 export const mount = (paginationContainer, { event } = {}) => {
 	let layoutEl = [...paginationContainer.parentNode.children]
 		.reduce(
@@ -128,12 +153,23 @@ export const mount = (paginationContainer, { event } = {}) => {
 
 	let pathParam = `${paginationSelector} .next`
 
-	if (nextEl && nextEl.href && nextEl.href.indexOf('paged=') > -1) {
+	if (nextEl && nextEl.href) {
 		const parsedHref = new URL(nextEl.href)
+		let hasTemplateParam = false
 
-		parsedHref.searchParams.set('paged', '{{#}}')
+		;[...parsedHref.searchParams.keys()].forEach((key) => {
+			if (key === 'paged' || key.endsWith('_paged')) {
+				parsedHref.searchParams.set(key, '{{#}}')
+				hasTemplateParam = true
+			}
+		})
 
-		pathParam = decodeURIComponent(parsedHref.toString())
+		// Pretty permalinks carry no paged param — without one the URL has no
+		// {{#}} template and the library would treat it as a CSS selector and
+		// throw. Keep the selector fallback in that case.
+		if (hasTemplateParam) {
+			pathParam = decodeURIComponent(parsedHref.toString())
+		}
 	}
 
 	let inf = new InfiniteScroll(layoutEl, {
@@ -242,10 +278,18 @@ function getAppendSelectorFor(layoutEl, args = {}) {
 		}
 	}
 
-	if (layoutEl.closest('.wp-block-blocksy-query')) {
-		const prefix = `.wp-block-blocksy-query[data-id="${
-			layoutEl.closest('.wp-block-blocksy-query').dataset.id
-		}"]`
+	const queryBlock = layoutEl.closest(
+		'.wp-block-blocksy-query, .wp-block-blocksy-tax-query'
+	)
+
+	if (queryBlock) {
+		const blockClass = queryBlock.classList.contains(
+			'wp-block-blocksy-query'
+		)
+			? 'wp-block-blocksy-query'
+			: 'wp-block-blocksy-tax-query'
+
+		const prefix = `.${blockClass}[data-id="${queryBlock.dataset.id}"]`
 
 		return `${prefix} ${
 			args.toAppend === 'default'

@@ -59,6 +59,8 @@ class CustomPostTypes {
 				'sfwd-essays',
 				'sfwd-transactions',
 				'sfwd-certificates',
+				'sfwd-quiz',
+				'sfwd-question',
 
 				// Lifter LMS
 				'llms_quiz',
@@ -184,6 +186,13 @@ class CustomPostTypes {
 
 			$potential_post_types = array_values(array_diff($potential_post_types, $exclude_post_types));
 
+			/**
+			 * Filters the custom post types supported by the theme options.
+			 *
+			 * @since 1.7.11
+			 *
+			 * @param string[] $post_types List of supported post type names.
+			 */
 			$this->supported_post_types = array_unique(apply_filters(
 				'blocksy:custom_post_types:supported_list',
 				$potential_post_types
@@ -271,6 +280,13 @@ class CustomPostTypes {
 			return $post_type;
 		}
 
+		/**
+		 * Filters the computed post type of the currently rendered screen.
+		 *
+		 * @since 1.8.8
+		 *
+		 * @param string|null $post_type The detected post type name.
+		 */
 		$post_type = apply_filters(
 			'blocksy:custom_post_types:current_post_type:compute',
 			$post_type
@@ -313,6 +329,13 @@ class CustomPostTypes {
 			$to_exclude
 		));
 
+		/**
+		 * Filters the list of all public custom post types.
+		 *
+		 * @since 2.0.48
+		 *
+		 * @param string[] $post_types List of post type names.
+		 */
 		return apply_filters(
 			'blocksy:custom_post_types:all_post_types',
 			$custom_post_types

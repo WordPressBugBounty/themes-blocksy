@@ -9,7 +9,6 @@
 	}
 
 	.ct-media-container {
-		// display: flex;
 		border-radius: var(--border-radius);
 	}
 }
@@ -17,8 +16,12 @@
 
 // default & stacked gallery
 .product-entry-wrapper:has(
-	[data-gallery="default"], 
-	[data-gallery="stacked"]
+
+	.woocommerce-product-gallery:not(
+		[data-gallery="top"], 
+		[data-gallery="columns-top"]
+	)
+
 ) {
 	@include functions.media-breakpoint-up (lg) {
 		display: flex;
