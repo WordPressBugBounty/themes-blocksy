@@ -453,13 +453,13 @@ class ThemeDynamicCss {
 		$css = $all_global_css;
 
 		if (! empty($all_tablet_css)) {
-			$css .= "\n@media (max-width: 800px) {\n";
+			$css .= "\n@media (max-width: 999.98px) {\n";
 			$css .= $all_tablet_css;
 			$css .= "}\n";
 		}
 
 		if (! empty($all_mobile_css)) {
-			$css .= "\n@media (max-width: 370px) {\n";
+			$css .= "\n@media (max-width: 689.98px) {\n";
 			$css .= $all_mobile_css;
 			$css .= "}\n";
 		}

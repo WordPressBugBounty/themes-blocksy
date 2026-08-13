@@ -49,15 +49,9 @@ div:is(
 .wc-blocks-components-select .wc-blocks-components-select__container {
 	background: transparent !important;
 
-// 	.wc-blocks-components-select__select {
-// 		padding-inline: 0;
-// 		color: inherit;
-// 		border: none;
-// 	}
-
-// 	.wc-blocks-components-select__expand {
-// 		fill: currentColor;
-// 	}
+	.wc-blocks-components-select__select {
+		line-height: initial !important;
+	}
 }
 
 

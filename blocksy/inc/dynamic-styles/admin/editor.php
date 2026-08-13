@@ -143,24 +143,16 @@ if ($post_type === 'ct_content_block') {
 	}
 }
 
-global $wp_version;
-
-$is_65_wordpress = version_compare($wp_version, '6.5', '>=');
-
-// We don't support boxed styles for 6.4 and less. For that version of WP
-// we will only support the main page background.
-if ($is_65_wordpress) {
-	blocksy_theme_get_dynamic_styles([
-		'name' => 'admin/6-5-styles',
-		'css' => $css,
-		'mobile_css' => $mobile_css,
-		'tablet_css' => $tablet_css,
-		'context' => $context,
-		'chunk' => 'admin',
-		'has_boxed' => $has_boxed,
-		'source' => $source,
-	]);
-}
+blocksy_theme_get_dynamic_styles([
+	'name' => 'admin/content-area-styles',
+	'css' => $css,
+	'mobile_css' => $mobile_css,
+	'tablet_css' => $tablet_css,
+	'context' => $context,
+	'chunk' => 'admin',
+	'has_boxed' => $has_boxed,
+	'source' => $source,
+]);
 
 // form styles
 $forms_type = blocksy_get_theme_mod('forms_type', 'classic-forms');

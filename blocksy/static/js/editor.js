@@ -3,7 +3,7 @@ import {
 	Fragment,
 	useRef,
 	useEffect,
-	useState,
+	useState
 } from '@wordpress/element'
 import { registerPlugin, withPluginContext } from '@wordpress/plugins'
 import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor'
@@ -20,12 +20,10 @@ import {
 	OptionsPanel,
 	getValueFromInput,
 	PanelLevel,
-	DeviceManagerProvider,
+	DeviceManagerProvider
 } from 'blocksy-options'
 
 import { SVG, Path } from '@wordpress/primitives'
-
-import { getCurrentDevice } from './customizer/components/useDeviceManager'
 
 export const dropIframeBodyTransition = () => {
 	const maybeIframe = document.querySelector('iframe[name="editor-canvas"]')
@@ -52,32 +50,6 @@ export const revertIframeBodyTransition = () => {
 		}
 	}
 }
-
-let previousDevice = null
-
-const setResponsiveClass = () => {
-	let device = getCurrentDevice()
-
-	if (previousDevice === device) {
-		return
-	}
-
-	previousDevice = device
-
-	document.body.classList.remove(
-		'ct-desktop-view',
-		'ct-tablet-view',
-		'ct-mobile-view'
-	)
-
-	document.body.classList.add(`ct-${device}-view`)
-}
-
-setResponsiveClass()
-
-wp.data.subscribe(() => {
-	setResponsiveClass()
-})
 
 const closeSmall = (
 	<SVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -117,14 +89,14 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 	const handleChange = ({ id: key, value: v }) => {
 		const futureValue = {
 			...(values || getValueFromInput(options, value || {})),
-			[key]: v,
+			[key]: v
 		}
 
 		handleMetaboxValueChange(key, v)
 
 		onChange({
 			...value,
-			[key]: v,
+			[key]: v
 		})
 		setValues(futureValue)
 	}
@@ -135,7 +107,7 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 		setController(controller)
 
 		ctEvents.on('ct:metabox:options:trigger-change', handleChange, {
-			signal: controller.signal,
+			signal: controller.signal
 		})
 	}
 
@@ -167,10 +139,10 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 						style={{
 							display: 'flex',
 							width: '20px',
-							height: '20px',
+							height: '20px'
 						}}
 						dangerouslySetInnerHTML={{
-							__html: ct_editor_localizations.options_panel_svg,
+							__html: ct_editor_localizations.options_panel_svg
 						}}
 					/>
 				}
@@ -178,14 +150,16 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 				title={sprintf(
 					__('%s Page Settings', 'blocksy'),
 					ct_localizations.product_name
-				)}>
+				)}
+			>
 				<div id="ct-page-options" ref={parentContainerRef}>
 					<div className="ct-options-container" ref={containerRef}>
 						<DeviceManagerProvider>
 							<PanelLevel
 								containerRef={containerRef}
 								parentContainerRef={parentContainerRef}
-								useRefsAsWrappers>
+								useRefsAsWrappers
+							>
 								<OptionsPanel
 									onChange={(key, v) => {
 										const futureValue = {
@@ -194,14 +168,14 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 													options,
 													value || {}
 												)),
-											[key]: v,
+											[key]: v
 										}
 
 										handleMetaboxValueChange(key, v)
 
 										onChange({
 											...value,
-											[key]: v,
+											[key]: v
 										})
 										setValues(futureValue)
 									}}
@@ -217,14 +191,14 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 
 										args = {
 											deleteNonExistent: false,
-											...args,
+											...args
 										}
 
 										let futureValue = null
 
 										if (args.deleteNonExistent) {
 											futureValue = {
-												...nextValues,
+												...nextValues
 											}
 										} else {
 											futureValue = {
@@ -233,7 +207,7 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 														options,
 														value || {}
 													)),
-												...nextValues,
+												...nextValues
 											}
 										}
 
@@ -257,7 +231,7 @@ const BlocksyOptions = ({ name, value, options, onChange, isActive }) => {
 
 const BlocksyOptionsComposed = compose(
 	withPluginContext((context, { name }) => ({
-		sidebarName: `${context.name}/${name}`,
+		sidebarName: `${context.name}/${name}`
 	})),
 
 	withSelect((select, { sidebarName }) => {
@@ -270,22 +244,22 @@ const BlocksyOptionsComposed = compose(
 		return {
 			isActive: getActiveGeneralSidebarName() === sidebarName,
 			value: Array.isArray(value) ? {} : value || {},
-			options: ct_editor_localizations.post_options,
+			options: ct_editor_localizations.post_options
 		}
 	}),
 	withDispatch((dispatch, { sidebarName }) => {
 		return {
 			onChange: (blocksy_meta) => {
 				dispatch('core/editor').editPost({
-					blocksy_meta,
+					blocksy_meta
 				})
-			},
+			}
 		}
 	})
 )(BlocksyOptions)
 
 if (ct_editor_localizations.post_options) {
 	registerPlugin('blocksy', {
-		render: () => <BlocksyOptionsComposed name="blocksy" />,
+		render: () => <BlocksyOptionsComposed name="blocksy" />
 	})
 }

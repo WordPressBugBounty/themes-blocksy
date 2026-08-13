@@ -624,6 +624,12 @@ require get_template_directory() . '/inc/integrations/coauthors.php';
 require get_template_directory() . '/inc/integrations/disqus.php';
 require get_template_directory() . '/inc/integrations/wpc-variations-table.php';
 
+if (function_exists('flrt_get_option')) {
+	require get_template_directory() . '/inc/integrations/filter-everything.php';
+}
+
+require get_template_directory() . '/inc/integrations/filter-everything.php';
+
 if (function_exists('get_rocket_cdn_url')) {
 	require get_template_directory() . '/inc/integrations/wprocket.php';
 }

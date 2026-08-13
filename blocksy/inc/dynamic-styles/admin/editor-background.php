@@ -131,49 +131,13 @@ if (
 	}
 }
 
-$background_source = blocksy_expand_responsive_value($background_source);
-
-global $wp_version;
-
-$is_65_wordpress = version_compare($wp_version, '6.5', '>=');
-
-$background_selectors = [
-	'desktop' => '.ct-desktop-view iframe[name="editor-canvas"], .ct-desktop-view .edit-post-visual-editor',
-	'tablet' => '.ct-tablet-view iframe[name="editor-canvas"]',
-	'mobile' => '.ct-mobile-view iframe[name="editor-canvas"]'
-];
-
-// We don't support boxed styles for 6.4 and less. For that version of WP
-// we will only support the main page background.
-if (! $is_65_wordpress) {
-	$background_selectors = [
-		'desktop' => '.ct-desktop-view iframe[name="editor-canvas"], .ct-desktop-view .edit-post-visual-editor__content-area > div',
-		'tablet' => '.ct-tablet-view iframe[name="editor-canvas"]',
-		'mobile' => '.ct-mobile-view iframe[name="editor-canvas"]'
-	];
-}
-
 blocksy_output_background_css([
-	'selector' => $background_selectors['desktop'],
+	'selector' => '.block-editor-iframe__html',
 	'css' => $css,
-	'value' => $background_source['desktop'],
-	'responsive' => false,
-	'important' => true
+	'tablet_css' => $tablet_css,
+	'mobile_css' => $mobile_css,
+	'value' => $background_source,
+	'responsive' => true,
+	'important' => true,
+	'forced_background_image' => true
 ]);
-
-blocksy_output_background_css([
-	'selector' => $background_selectors['tablet'],
-	'css' => $css,
-	'value' => $background_source['tablet'],
-	'responsive' => false,
-	'important' => true
-]);
-
-blocksy_output_background_css([
-	'selector' => $background_selectors['mobile'],
-	'css' => $css,
-	'value' => $background_source['mobile'],
-	'responsive' => false,
-	'important' => true
-]);
-

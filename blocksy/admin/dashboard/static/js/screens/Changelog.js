@@ -110,6 +110,10 @@ export default () => {
 
 		const body = new FormData()
 		body.append('action', 'get_latest_changelog')
+		body.append(
+			'nonce',
+			ctDashboardLocalizations.dashboard_actions_nonce
+		)
 
 		try {
 			const response = await fetch(ctDashboardLocalizations.ajax_url, {

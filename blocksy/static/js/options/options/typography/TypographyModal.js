@@ -496,6 +496,7 @@ const TypographyModal = ({
 											{
 												wp_customize: 'on',
 												action: 'blocksy_dismissed_google_fonts_notice_handler',
+												nonce: source.dashboard_actions_nonce,
 											},
 											() => {}
 										)

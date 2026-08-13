@@ -14,108 +14,67 @@ export const handleMetaboxValueChange = (optionId, optionValue) => {
 				.select('core/editor')
 				.getEditedPostAttribute('blocksy_meta') || {}
 		),
-		[optionId]: optionValue,
+		[optionId]: optionValue
 	}
 
 	if (!gutenbergVariables[optionId]) {
 		return
 	}
 
-	const groupedVariables = (
-		Array.isArray(gutenbergVariables[optionId])
-			? gutenbergVariables[optionId]
-			: [gutenbergVariables[optionId]]
-	).reduce(
-		(acc, item) => {
-			const key = item.selector.includes(`iframe[name="editor-canvas"]`)
-				? 'backgroundVariables'
-				: 'nonBackgroundVariables'
-
-			return {
-				...acc,
-
-				[key]: [...acc[key], item],
-			}
-		},
-		{
-			backgroundVariables: [],
-			nonBackgroundVariables: [],
-		}
-	)
+	const variableDescriptor = Array.isArray(gutenbergVariables[optionId])
+		? gutenbergVariables[optionId]
+		: [gutenbergVariables[optionId]]
 
 	dropIframeBodyTransition()
 
-	if (groupedVariables.backgroundVariables.length > 0) {
-		const maybeStyle = document.querySelector(
-			'#ct-main-editor-styles-inline-css'
-		)
+	updateVariableInStyleTags({
+		variableDescriptor,
 
-		if (maybeStyle) {
-			updateVariableInStyleTags({
-				variableDescriptor: groupedVariables.backgroundVariables,
+		value: optionValue,
+		fullValue: atts,
+		tabletMQ: '(max-width: 999.98px)',
+		mobileMQ: '(max-width: 689.98px)',
 
-				value: optionValue,
-				fullValue: atts,
-				tabletMQ: '(max-width: 800px)',
-				mobileMQ: '(max-width: 370px)',
+		cacheId: 'editor-styles',
+		initialStyleTagsDescriptor: [
+			{
+				readStyles: () => {
+					const settings = window.wp.data
+						.select('core/editor')
+						.getEditorSettings()
+					const maybeBlocksyStyle = settings.styles.find(
+						(s) => s.source === 'blocksy'
+					)
 
-				cacheId: 'background',
+					if (!maybeBlocksyStyle || !maybeBlocksyStyle.css) {
+						return ''
+					}
 
-				initialStyleTagsDescriptor: [{ style: maybeStyle }],
-			})
-		}
-	}
-
-	if (groupedVariables.nonBackgroundVariables.length > 0) {
-		updateVariableInStyleTags({
-			variableDescriptor: groupedVariables.nonBackgroundVariables,
-
-			value: optionValue,
-			fullValue: atts,
-			tabletMQ: '(max-width: 800px)',
-			mobileMQ: '(max-width: 370px)',
-
-			cacheId: 'non-background',
-			initialStyleTagsDescriptor: [
-				{
-					readStyles: () => {
-						const settings = window.wp.data
-							.select('core/editor')
-							.getEditorSettings()
-						const maybeBlocksyStyle = settings.styles.find(
-							(s) => s.source === 'blocksy'
-						)
-
-						if (!maybeBlocksyStyle || !maybeBlocksyStyle.css) {
-							return ''
-						}
-
-						return maybeBlocksyStyle.css
-					},
-
-					persistStyles: (newCss) => {
-						const settings = window.wp.data
-							.select('core/editor')
-							.getEditorSettings()
-
-						wp.data.dispatch('core/editor').updateEditorSettings({
-							...settings,
-							styles: settings.styles.map((s) => {
-								if (s.source !== 'blocksy') {
-									return s
-								}
-
-								return {
-									...s,
-									css: newCss,
-								}
-							}),
-						})
-					},
+					return maybeBlocksyStyle.css
 				},
-			],
-		})
-	}
+
+				persistStyles: (newCss) => {
+					const settings = window.wp.data
+						.select('core/editor')
+						.getEditorSettings()
+
+					wp.data.dispatch('core/editor').updateEditorSettings({
+						...settings,
+						styles: settings.styles.map((s) => {
+							if (s.source !== 'blocksy') {
+								return s
+							}
+
+							return {
+								...s,
+								css: newCss
+							}
+						})
+					})
+				}
+			}
+		]
+	})
 
 	revertIframeBodyTransition()
 }

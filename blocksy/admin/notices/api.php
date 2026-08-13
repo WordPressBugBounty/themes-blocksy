@@ -1,6 +1,12 @@
 <?php
 
 add_action('wp_ajax_blocksy_dismissed_notice_handler', function () {
+	if (! current_user_can('edit_theme_options')) {
+		wp_send_json_error();
+	}
+
+	check_ajax_referer('ct-ajax-nonce', 'nonce');
+
 	update_option('dismissed-blocksy_plugin_notice', true);
 	wp_die();
 });
@@ -55,4 +61,3 @@ add_action('wp_ajax_blocksy_notice_button_click', function () {
 
 	wp_die();
 });
-

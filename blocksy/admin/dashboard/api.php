@@ -28,6 +28,12 @@ class Blocksy_Admin_Dashboard_API {
 	}
 
 	public function get_latest_changelog() {
+		if (! current_user_can('manage_options')) {
+			wp_send_json_error();
+		}
+
+		check_ajax_referer('ct-dashboard', 'nonce');
+
 		$changelog = null;
 		$access_type = get_filesystem_method();
 
@@ -60,4 +66,3 @@ class Blocksy_Admin_Dashboard_API {
 		]);
 	}
 }
-

@@ -340,6 +340,12 @@ add_action(
 );
 
 add_action('wp_ajax_blocksy_dismissed_google_fonts_notice_handler', function () {
+	if (! current_user_can('edit_theme_options')) {
+		wp_send_json_error();
+	}
+
+	check_ajax_referer('ct-dashboard', 'nonce');
+
 	update_option(
 		'dismissed-blocksy_google_fonts_notice',
 		'yes'
@@ -817,4 +823,3 @@ function blocksy_customizer_register_options(
 		);
 	}
 }
-

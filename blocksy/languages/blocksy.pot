@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-06 13:48+0000\n"
+"POT-Creation-Date: 2026-08-13 16:40+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -251,7 +251,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: admin/dashboard/api.php:55
+#: admin/dashboard/api.php:61
 msgid "Theme"
 msgstr ""
 
@@ -268,7 +268,7 @@ msgstr ""
 msgid "Blocksy"
 msgstr ""
 
-#: admin/notices/templates.php:60 static/js/notification/Notification.js:72
+#: admin/notices/templates.php:60 static/js/notification/Notification.js:73
 msgid "Thanks for installing Blocksy, you rock!"
 msgstr ""
 
@@ -6180,23 +6180,23 @@ msgstr ""
 msgid "View Documentation"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:186
+#: admin/dashboard/static/js/screens/Changelog.js:190
 msgid "Loading changelog..."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:220
+#: admin/dashboard/static/js/screens/Changelog.js:224
 msgid "New"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:224
+#: admin/dashboard/static/js/screens/Changelog.js:228
 msgid "Fix"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:228
+#: admin/dashboard/static/js/screens/Changelog.js:232
 msgid "Improvement"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Changelog.js:247
+#: admin/dashboard/static/js/screens/Changelog.js:251
 msgid "No changelog present at the moment."
 msgstr ""
 
@@ -6285,22 +6285,22 @@ msgid ""
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:375
-#: static/js/notification/Notification.js:122
+#: static/js/notification/Notification.js:123
 msgid "Installing & activating..."
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:380
-#: static/js/notification/Notification.js:124
+#: static/js/notification/Notification.js:125
 msgid "Install Blocksy Companion"
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:385
-#: static/js/notification/Notification.js:126
+#: static/js/notification/Notification.js:127
 msgid "Activate Blocksy Companion"
 msgstr ""
 
 #: admin/dashboard/static/js/screens/Home.js:389
-#: static/js/notification/Notification.js:127
+#: static/js/notification/Notification.js:128
 msgid "Blocksy Companion active!"
 msgstr ""
 
@@ -6753,26 +6753,26 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#: static/js/editor.js:179
+#: static/js/editor.js:151
 msgid "%s Page Settings"
 msgstr ""
 
-#: static/js/notification/Notification.js:137
+#: static/js/notification/Notification.js:138
 msgid "Why you need Blocksy Companion?"
 msgstr ""
 
-#: static/js/notification/Notification.js:49
+#: static/js/notification/Notification.js:50
 msgid "Dismiss this notice."
 msgstr ""
 
-#: static/js/notification/Notification.js:77
+#: static/js/notification/Notification.js:78
 msgid ""
 "We strongly recommend you to activate the <b>Blocksy Companion</b> plugin."
 "<br>This way you will have access to custom extensions, demo templates and "
 "many other awesome features."
 msgstr ""
 
-#: static/js/notification/Notification.js:92
+#: static/js/notification/Notification.js:93
 msgid "Download Blocksy Companion"
 msgstr ""
 
@@ -7164,7 +7164,7 @@ msgstr ""
 msgid "I understand, don't show this notification again."
 msgstr ""
 
-#: static/js/options/options/typography/TypographyModal.js:504
+#: static/js/options/options/typography/TypographyModal.js:505
 msgid "Continue"
 msgstr ""
 

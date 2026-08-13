@@ -1,3 +1,10 @@
+2.1.53: 2026-08-13
+- Improvement: Better support for WordPress 7.1 responsive block styles
+- Improvement: Block editor - correctly apply Page Background in responsive previews
+- Improvement: Improved theme admin notice and dashboard interactions
+- Improvement: Pagination module - better integration with Filter Everything plugin
+- Improvement: WooCommerce Cart/Checkout blocks - make sure theme typography line height is correctly applied on `select` components
+
 2.1.52: 2026-08-06
 - Improvement: Dynamic CSS - more reliable check for current saved styles version
 - Improvement: Infinite pagination - better integration with the Search & Filter Pro plugin

@@ -23,6 +23,13 @@
 
 	margin-inline: auto;
 	margin-block: var(--has-boxed, variables.$sides_spacing);
-	width: calc(100% - #{variables.$sides_spacing * 2});
+	// width: calc(100% - #{variables.$sides_spacing * 2});
 	max-width: var(--has-boxed, var(--theme-block-max-width));
+
+	// In the iframed editor the wrapper is the <body>, where core's
+	// .block-editor-iframe__body { width: 100% } has equal specificity and wins
+	// by order in the tablet/mobile device preview. Reassert at higher specificity.
+	&.block-editor-iframe__body {
+		width: calc(100% - #{variables.$sides_spacing * 2});
+	}
 }

@@ -40,6 +40,7 @@ const Notification = ({ initialStatus, url, pluginUrl, pluginLink }) => {
 						type: 'POST',
 						data: {
 							action: 'blocksy_dismissed_notice_handler',
+							nonce: ct_localizations.nonce,
 						},
 					})
 				}}

@@ -1,8 +1,12 @@
 {
-	"version": 2,
+	"version": 3,
 
 
 	"settings": {
+		"viewport": {
+			"mobile": "689.98px",
+			"tablet": "999.98px"
+		},
 
 		"appearanceTools": true,
 
@@ -28,6 +32,7 @@
 
 		"typography": {
 			"fluid": true,
+			"defaultFontSizes": false,
 			"fontSizes": [
 				{
 					"fluid": false,
