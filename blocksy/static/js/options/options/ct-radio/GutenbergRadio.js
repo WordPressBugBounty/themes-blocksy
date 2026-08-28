@@ -27,6 +27,7 @@ const GutenbergRadio = ({ option, values, value, onChange }) => {
 	return (
 		<ToggleGroupControl
 			label={option.label}
+			help={option.desc}
 			value={normalizedValue}
 			isBlock
 			onChange={onChange}>

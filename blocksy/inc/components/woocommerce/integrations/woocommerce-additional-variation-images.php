@@ -16,6 +16,26 @@ add_action('init', function () {
 	);
 });
 
+if (! function_exists('blocksy_get_variation_video_payload')) {
+	function blocksy_get_variation_video_payload($attachment_id) {
+		$video_data = blocksy_get_video_data($attachment_id);
+
+		if (empty($video_data['url'])) {
+			return null;
+		}
+
+		return array_intersect_key(
+			$video_data,
+			array_flip([
+				'media_video_event',
+				'media_video_autoplay',
+				'media_video_hover_revert',
+				'media_video_player',
+			])
+		);
+	}
+}
+
 add_filter(
 	'woocommerce_available_variation',
 	function ($result, $product, $variation) {
@@ -46,9 +66,27 @@ add_filter(
 			$original_image['src'] = wc_placeholder_img_src('full');
 		}
 
+		$original_video = blocksy_get_variation_video_payload(
+			$product->get_image_id()
+		);
+
+		if ($original_video !== null) {
+			$original_image['blocksy_video'] = $original_video;
+		}
+
 		$result['blocksy_original_image'] = $original_image;
 
 		unset($result['blocksy_original_image']['url']);
+
+		if (isset($result['image_id'])) {
+			$variation_video = blocksy_get_variation_video_payload(
+				$result['image_id']
+			);
+
+			if ($variation_video !== null) {
+				$result['image']['blocksy_video'] = $variation_video;
+			}
+		}
 
 		$result['blocksy_gallery_source'] = blocksy_akg(
 			'gallery_source', $variation_values, 'default'
@@ -141,6 +179,12 @@ function blocksy_get_product_view_for_variation() {
 		foreach ($images_ids as $image_id) {
 			$image_data = wc_get_product_attachment_props($image_id);
 			$image_data['id'] = $image_id;
+
+			$image_video = blocksy_get_variation_video_payload($image_id);
+
+			if ($image_video !== null) {
+				$image_data['blocksy_video'] = $image_video;
+			}
 
 			$images[] = $image_data;
 		}

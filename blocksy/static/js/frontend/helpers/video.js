@@ -1,7 +1,13 @@
 export const handlePlayClasses = (videoOrIframe) => {
-	videoOrIframe.closest(
+	const container = videoOrIframe.closest(
 		'.ct-media-container, .ct-dynamic-media'
-	).dataset.state = 'playing'
+	)
+
+	if (!container) {
+		return
+	}
+
+	container.dataset.state = 'playing'
 }
 
 export const muteVideo = (videoOrIframe) => {
@@ -13,7 +19,7 @@ export const muteVideo = (videoOrIframe) => {
 		videoOrIframe.contentWindow.postMessage(
 			JSON.stringify({
 				event: 'command',
-				func: 'mute',
+				func: 'mute'
 			}),
 			'*'
 		)
@@ -25,7 +31,7 @@ export const muteVideo = (videoOrIframe) => {
 		videoOrIframe.contentWindow.postMessage(
 			JSON.stringify({
 				method: 'setMuted',
-				value: true,
+				value: true
 			}),
 			'*'
 		)
@@ -47,7 +53,7 @@ export const playVideo = (videoOrIframe) => {
 		videoOrIframe.contentWindow.postMessage(
 			JSON.stringify({
 				event: 'command',
-				func: 'playVideo',
+				func: 'playVideo'
 			}),
 			'*'
 		)
@@ -57,7 +63,7 @@ export const playVideo = (videoOrIframe) => {
 	if (videoOrIframe.matches('iframe[src*="vimeo"]')) {
 		videoOrIframe.contentWindow.postMessage(
 			JSON.stringify({
-				method: 'play',
+				method: 'play'
 			}),
 			'*'
 		)
@@ -87,9 +93,15 @@ export const maybePlayAutoplayedVideo = (
 }
 
 export const handlePauseClasses = (videoOrIframe) => {
-	videoOrIframe.closest(
+	const container = videoOrIframe.closest(
 		'.ct-media-container, .ct-dynamic-media'
-	).dataset.state = 'paused'
+	)
+
+	if (!container) {
+		return
+	}
+
+	container.dataset.state = 'paused'
 }
 
 export const pauseVideo = (videoOrIframe) => {
@@ -106,7 +118,7 @@ export const pauseVideo = (videoOrIframe) => {
 		videoOrIframe.contentWindow.postMessage(
 			JSON.stringify({
 				event: 'command',
-				func: 'pauseVideo',
+				func: 'pauseVideo'
 			}),
 			'*'
 		)
@@ -116,7 +128,7 @@ export const pauseVideo = (videoOrIframe) => {
 	if (videoOrIframe.matches('iframe[src*="vimeo"]')) {
 		videoOrIframe.contentWindow.postMessage(
 			JSON.stringify({
-				method: 'pause',
+				method: 'pause'
 			}),
 			'*'
 		)
@@ -170,7 +182,7 @@ export const subscribeForStateChanges = (videoOrIframe, cb = () => {}) => {
 				JSON.stringify({
 					event: 'listening',
 					id: 1,
-					channel: 'widget',
+					channel: 'widget'
 				}),
 				'*'
 			)
@@ -181,7 +193,7 @@ export const subscribeForStateChanges = (videoOrIframe, cb = () => {}) => {
 					func: 'addEventListener',
 					args: ['onStateChange'],
 					id: 1,
-					channel: 'widget',
+					channel: 'widget'
 				}),
 				'*'
 			)
@@ -205,7 +217,7 @@ export const subscribeForStateChanges = (videoOrIframe, cb = () => {}) => {
 					videoOrIframe.contentWindow.postMessage(
 						JSON.stringify({
 							method: 'addEventListener',
-							value: 'pause',
+							value: 'pause'
 						}),
 						'*'
 					)
@@ -213,7 +225,7 @@ export const subscribeForStateChanges = (videoOrIframe, cb = () => {}) => {
 					videoOrIframe.contentWindow.postMessage(
 						JSON.stringify({
 							method: 'addEventListener',
-							value: 'play',
+							value: 'play'
 						}),
 						'*'
 					)

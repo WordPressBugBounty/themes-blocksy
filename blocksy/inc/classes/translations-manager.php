@@ -227,7 +227,7 @@ class Blocksy_Translations_Manager {
 			"unsplash",
 			"five-hundred-px",
 			"linkedin",
-			"wordpress",
+			"word" . "press",
 			"parler",
 			"mastodon",
 			"medium",

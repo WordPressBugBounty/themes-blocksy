@@ -165,7 +165,10 @@
 	display: flex;
 	align-items: center;
 	gap: 7px;
-	padding-bottom: 10px;
+	
+	+ .ct-layers:not(:empty) {
+		margin-top: 10px;
+	}
 
 	.ct-select-input {
 		max-width: 100%;
@@ -174,7 +177,7 @@
 	button {
 		flex: 0 0 38px;
 		padding: 0;
-		min-height: var(--ui-input-height, 30px);
+		min-height: calc(var(--ui-input-height, 30px) - 1px);
 	}
 }
 

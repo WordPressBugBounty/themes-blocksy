@@ -26,8 +26,6 @@ if (defined('DOING_AJAX') && DOING_AJAX) {
 add_action(
 	'init',
 	function () {
-		blocksy_get_jed_locale_data('blocksy');
-
 		blocksy_manager()->entity_id_picker->mount_ajax_action();
 	}
 );
@@ -186,6 +184,16 @@ add_action(
 			'customizer_sync' => [
 				'svg_patterns' => blocksy_get_patterns_svgs_list()
 			],
+			/**
+			 * Filters the metaboxes data exposed to the block editor.
+			 *
+			 * The returned array is passed to the editor as the
+			 * `gutenberg_metaboxes_data` entry of Blocksy's localized data.
+			 *
+			 * @since 2.0.1
+			 *
+			 * @param array $metaboxes_data Metaboxes data. Default empty array.
+			 */
 			'gutenberg_metaboxes_data' => apply_filters(
 				'blocksy:gutenberg-metaboxes-data',
 				[]

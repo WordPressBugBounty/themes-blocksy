@@ -1,4 +1,4 @@
-.product:has([data-gallery]) .entry-summary-items {
+.product .entry-summary-items {
 
 	> * {
 		margin-bottom: var(--product-element-spacing, 10px);

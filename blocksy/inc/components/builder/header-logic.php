@@ -385,3 +385,9 @@ class Blocksy_Header_Builder {
 		);
 	}
 }
+
+if (! function_exists('blocksy_get_header_builder')) {
+	function blocksy_get_header_builder() {
+		return blocksy_manager()->header_builder;
+	}
+}

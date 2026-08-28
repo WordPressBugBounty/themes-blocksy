@@ -312,6 +312,16 @@ add_action(
 				'no'
 			) === 'yes',
 			'current_palette' => blocksy_manager()->colors->get_color_palette(),
+			/**
+			 * Filters the metaboxes data exposed to the block editor.
+			 *
+			 * The returned array is passed to the editor as the
+			 * `gutenberg_metaboxes_data` entry of Blocksy's localized data.
+			 *
+			 * @since 2.0.1
+			 *
+			 * @param array $metaboxes_data Metaboxes data. Default empty array.
+			 */
 			'gutenberg_metaboxes_data' => apply_filters(
 				'blocksy:gutenberg-metaboxes-data',
 				[]
@@ -412,6 +422,11 @@ add_action(
 		remove_theme_mods();
 
 		update_option('blocksy_custom_palettes', []);
+		/**
+		 * Fires when the dynamic CSS caches need to be regenerated.
+		 *
+		 * @since 1.8.0
+		 */
 		do_action('blocksy:dynamic-css:refresh-caches');
 
 		wp_send_json_success();

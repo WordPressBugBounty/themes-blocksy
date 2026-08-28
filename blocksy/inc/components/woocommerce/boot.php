@@ -166,6 +166,9 @@ class WooCommerceBoot {
 			$block_types[] = 'ProductTemplate';
 		}
 
-		return $block_types;
+		// Newer WooCommerce versions already include some of these in this
+		// context — a duplicate entry makes BlockTypesController register the
+		// block twice and trigger _doing_it_wrong.
+		return array_unique($block_types);
 	}
 }

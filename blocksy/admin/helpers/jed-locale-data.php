@@ -2,33 +2,25 @@
 
 if (! function_exists('blocksy_get_json_translation_files')) {
 	function blocksy_get_json_translation_files($domain) {
-		$cached_mofiles = [];
+		$locale = determine_locale();
 
 		$locations = [
 			WP_LANG_DIR . '/themes',
 			WP_LANG_DIR . '/plugins'
 		];
 
-		foreach ($locations as $location) {
-			$mofiles = glob($location . '/*.json');
-
-			if (! $mofiles) {
-				continue;
-			}
-
-			$cached_mofiles = array_merge($cached_mofiles, $mofiles);
-		}
-
-		$locale = determine_locale();
-
 		$result = [];
 
-		foreach ($cached_mofiles as $single_file) {
-			if (strpos($single_file, $locale) === false) {
+		foreach ($locations as $location) {
+			$files = glob(
+				$location . '/' . $domain . '-' . $locale . '-*.json'
+			);
+
+			if (! $files) {
 				continue;
 			}
 
-			$result[] = $single_file;
+			$result = array_merge($result, $files);
 		}
 
 		return $result;

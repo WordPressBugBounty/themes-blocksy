@@ -84,19 +84,16 @@ body [data-customize-hide] {
 	display: none !important;
 }
 
+
 // Customizer shortcuts
 [data-shortcut] {
-	position: relative;
-
-	// disable shortcuts on mega menu container
-	// over wise it will break the preview in customizer because of "postion: relative"
-	&:has([class*='ct-mega-menu']) {
-		position: initial;
-	}
+	anchor-name: --ct-shortcut-anchor;
+	anchor-scope: --ct-shortcut-anchor;
 }
 
 .ct-customizer-shortcut {
-	position: absolute !important;
+	position-anchor: --ct-shortcut-anchor;
+	position: fixed !important;
 	z-index: 2;
 	display: flex;
 	align-items: center;
@@ -107,11 +104,8 @@ body [data-customize-hide] {
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.2s ease;
-
-	&:hover {
-		color: rgba(255, 255, 255, 0.75);
-	}
 }
+
 
 // type border
 [data-shortcut*='border'] {
@@ -122,8 +116,8 @@ body [data-customize-hide] {
 	transition: outline 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 
 	> .ct-customizer-shortcut {
-		top: var(--ui-top, 0px);
-		inset-inline-start: var(--ui-left, 0px);
+		top: calc(anchor(start) + var(--ui-top, 0px));
+		inset-inline-start: calc(anchor(start) + var(--ui-left, 0px));
 		width: auto !important;
 		height: 28px;
 		padding: 0 13px;
@@ -160,17 +154,13 @@ body [data-customize-hide] {
 }
 
 // type drop
-$drop-size: 22px;
-
 [data-shortcut='drop'] {
+
 	> .ct-customizer-shortcut {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		top: calc(50% - #{calc($drop-size / 2)});
-		inset-inline-end: -5px;
-		width: $drop-size;
-		height: $drop-size;
+		top: calc(anchor(center) - (22px / 2));
+		inset-inline-end: calc(anchor(end) - 5px);
+		width: 22px;
+		height: 22px;
 		transform: translateX(100%);
 
 		@media (max-width: 690px) {
@@ -195,8 +185,8 @@ $drop-size: 22px;
 
 		&:after {
 			inset-inline-start: -15px;
-			width: calc(100% + #{$drop-size});
-			height: calc(100% + #{$drop-size});
+			width: calc(100% + 22px);
+			height: calc(100% + 22px);
 		}
 
 		svg {

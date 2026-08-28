@@ -30,7 +30,15 @@ class DbVersioning {
 	public function init() {
 		new \Blocksy\DbVersioning\CacheManager();
 
-		$saved_version = get_option('blocksy_db_version', '1.0.0');
+		$stylesheet = get_option('stylesheet');
+
+		$versions = $this->get_saved_versions();
+
+		$saved_version = '1.0.0';
+
+		if (isset($versions[$stylesheet])) {
+			$saved_version = $versions[$stylesheet];
+		}
 
 		$theme = blocksy_get_wp_parent_theme();
 		$current_version = $theme->get('Version');
@@ -65,7 +73,9 @@ class DbVersioning {
 
 		if (version_compare($saved_version, $current_version, '<')) {
 			if (count($patches_to_run) === $successfull_patches) {
-				update_option('blocksy_db_version', $current_version);
+				$versions[$stylesheet] = $current_version;
+
+				update_option('blocksy_db_versions', $versions);
 			}
 
 			/**
@@ -82,6 +92,35 @@ class DbVersioning {
 			 */
 			do_action('blocksy:dynamic-css:refresh-caches');
 		}
+	}
+
+	public function get_saved_versions() {
+		$versions = get_option('blocksy_db_versions', []);
+
+		if (! is_array($versions)) {
+			$versions = [];
+		}
+
+		if (! empty($versions)) {
+			return $versions;
+		}
+
+		// Legacy site-wide marker, read only here. Older theme versions
+		// still read and write it, so it must never be deleted or
+		// converted to another format.
+		$legacy_version = get_option('blocksy_db_version', '__empty__');
+
+		if ($legacy_version === '__empty__') {
+			return [];
+		}
+
+		$versions = [
+			get_option('stylesheet') => $legacy_version
+		];
+
+		update_option('blocksy_db_versions', $versions);
+
+		return $versions;
 	}
 
 	public function get_patches() {
@@ -1841,7 +1880,7 @@ class DbVersioning {
 	}
 
 	public function is_fresh_setup() {
-		return get_option('blocksy_db_version', '__empty__') === '__empty__';
+		return empty($this->get_saved_versions());
 	}
 }
 

@@ -3,6 +3,8 @@ import ctEvents from 'ct-events'
 
 import cachedFetch from '@creative-themes/wordpress-helpers/cached-fetch'
 
+import { syncVideoDecorations } from './video-decorations'
+
 let originalImageUpdate = null
 
 function isTouchDevice() {
@@ -53,6 +55,8 @@ const replaceFirstImage = ({ container, image }) => {
 			)
 		}
 	})
+
+	syncVideoDecorations({ containers: containersToReplace, image })
 
 	containersToReplace.map((imgContainer) => {
 		if (imgContainer.href) {

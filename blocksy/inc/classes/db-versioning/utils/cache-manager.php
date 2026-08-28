@@ -144,7 +144,7 @@ class CacheManager {
 			fastvelocity_purge_others();
 		}
 
-		# wordpress default cache
+		# WordPress default cache
 		if (function_exists('wp_cache_flush')) {
 			wp_cache_flush();
 		}

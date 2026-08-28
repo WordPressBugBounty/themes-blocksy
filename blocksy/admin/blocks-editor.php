@@ -59,13 +59,6 @@ add_action(
 		);
 
 		if (get_current_screen()->base === 'post') {
-			wp_enqueue_style(
-				'ct-main-editor-iframe-styles',
-				get_template_directory_uri() . '/static/bundle/editor-iframe.min.css',
-				[],
-				$theme->get('Version')
-			);
-
 			wp_add_inline_style(
 				'ct-main-editor-styles',
 				blocksy_manager()->dynamic_css->load_backend_dynamic_css([
@@ -308,4 +301,3 @@ add_action(
 		return $settings;
 	}
 );
-

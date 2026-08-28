@@ -12,10 +12,26 @@ if (! function_exists('blocksy_get_video_data')) {
 
 		if ($maybe_new_video) {
 			$source = blocksy_akg('media_video_source', $maybe_new_video, 'upload');
-			$maybe_video = $maybe_new_video;
+
+			$maybe_video = array_intersect_key(
+				$maybe_new_video,
+				array_flip([
+					'media_video_source',
+					'media_video_event',
+					'media_video_autoplay',
+					'media_video_hover_revert',
+					'media_video_loop',
+					'media_video_player',
+					'media_video_size',
+				])
+			);
 
 			if ($source === 'upload') {
-				$maybeVideoIdOrUrl = blocksy_akg('media_video_upload', $maybe_video, '');
+				$maybeVideoIdOrUrl = blocksy_akg(
+					'media_video_upload',
+					$maybe_new_video,
+					''
+				);
 
 				if (empty($maybeVideoIdOrUrl)) {
 					return [];

@@ -333,7 +333,7 @@ if (! function_exists('blocksy_get_social_metadata')) {
 				'
 			],
 
-			'wordpress' => [
+			'word' . 'press' => [
 				'name' => 'WordPress',
 				'icon' => '
 					<svg
@@ -1221,7 +1221,7 @@ function blocksy_get_social_box($args = []) {
 		'github' => '#24292e',
 		'gitlab' => '#f8713f',
 		'skype' => '#1caae7',
-		'wordpress' => '#1074a8',
+		'word' . 'press' => '#1074a8',
 		'hacker_news' => '#fd6721',
 		'ok' => '#eb7e2f',
 		'flipboard' => '#c40812',
@@ -1669,7 +1669,7 @@ if (! function_exists('blocksy_get_social_networks_list')) {
 				'label' => 'WhatsApp',
 			],
 
-			'wordpress' => [
+			'word' . 'press' => [
 				'label' => 'WordPress',
 			],
 

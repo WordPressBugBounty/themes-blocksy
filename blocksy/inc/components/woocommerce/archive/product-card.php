@@ -53,18 +53,18 @@ function blocksy_template_loop_product_thumbnail($attr) {
 
 	$badges = [];
 
-	if ($product->is_in_stock()) {
-		$has_sale_badge = blocksy_get_theme_mod('has_sale_badge', [
-			'single' => true,
-			'archive' => true
-		]);
+	$has_sale_badge = blocksy_get_theme_mod('has_sale_badge', [
+		'single' => true,
+		'archive' => true
+	]);
 
-		if ($has_sale_badge['archive']) {
-			ob_start();
-			woocommerce_show_product_loop_sale_flash();
-			$badges[] = ob_get_clean();
-		}
-	} else {
+	if ($has_sale_badge['archive']) {
+		ob_start();
+		woocommerce_show_product_loop_sale_flash();
+		$badges[] = ob_get_clean();
+	}
+
+	if (! $product->is_in_stock()) {
 		$maybe_stock_badge = blocksy_get_woo_out_of_stock_badge([
 			'location' => 'archive'
 		]);
@@ -643,4 +643,3 @@ add_action($action_to_hook, function () {
 	);
 
 }, 15000);
-

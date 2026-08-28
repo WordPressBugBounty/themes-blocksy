@@ -1,3 +1,14 @@
+2.1.55: 2026-08-27
+- Improvement: General fixes and improvements
+
+2.1.54: 2026-08-27
+- Improvement: Archive product cards - correctly display the sale badge for out of stock products
+- Improvement: Checkbox inputs - correctly display the check mark on RTL websites
+- Improvement: Content Blocks - add top and bottom locations for archive pages
+- Improvement: Content links - correctly apply the “Links Type” decoration to links inside nested lists
+- Improvement: Translations - improve the loading of translation strings in the admin area
+- Improvement: WooCommerce product pages - improve performance for logged-in administrators
+
 2.1.53: 2026-08-13
 - Improvement: Better support for WordPress 7.1 responsive block styles
 - Improvement: Block editor - correctly apply Page Background in responsive previews
@@ -3824,7 +3835,7 @@
 - Improvement: Move Posts Reveal effect to Card Options
 - Improvement: Change woo pagination text to `No more products to load`
 - Improvement: Woo notice position and color
-- Improvement: Change date format for post meta to respect wordpress settings
+- Improvement: Change date format for post meta to respect WordPress settings
 - Fix: Remove option from `metabox/categories`
 - Fix: Quick view close button spacing
 - Fix: Accessibility and validation issues

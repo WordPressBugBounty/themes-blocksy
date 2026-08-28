@@ -169,6 +169,7 @@ export const mount = (formEl, args = {}) => {
 		}
 
 		maybeEl.setAttribute('aria-expanded', isExpanded ? 'true' : 'false')
+		formEl.classList.toggle('ct-has-dropdown', isExpanded)
 	}
 
 	const closeResults = ({ announce = false } = {}) => {

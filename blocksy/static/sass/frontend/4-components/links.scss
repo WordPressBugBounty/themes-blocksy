@@ -1,6 +1,6 @@
 $selector: 
 	'.entry-content :where(p, em, strong ) > a',
-	'.entry-content > :where(ul, ol) a',
+	'.entry-content :where(ul, ol) a',
 	'.wp-block-table a',
 	'.ct-link-styles',
 ;

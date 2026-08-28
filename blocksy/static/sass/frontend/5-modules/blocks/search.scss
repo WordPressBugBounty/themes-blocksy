@@ -29,7 +29,7 @@
 	}
 
 	// has dropdown
-	&:has(input[aria-expanded='true']) {
+	&.ct-has-dropdown {
 		z-index: 2;
 	}
 

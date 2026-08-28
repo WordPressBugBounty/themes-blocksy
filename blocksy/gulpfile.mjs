@@ -439,12 +439,6 @@ var options = {
 		},
 
 		{
-			input: 'static/sass/backend/editor/iframe.scss',
-			output: 'static/bundle',
-			filename: 'editor-iframe.min',
-		},
-
-		{
 			input: 'static/sass/backend/editor/blocks/main.scss',
 			output: 'static/bundle',
 			filename: 'editor-styles.min',
