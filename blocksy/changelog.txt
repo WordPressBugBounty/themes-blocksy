@@ -1,3 +1,12 @@
+2.1.56: 2026-09-03
+- Improvement: Blocksy Page Settings - properly display nested panels in the Block Editor
+- Improvement: Dynamic CSS - validate post meta values before they reach the stylesheet output
+- Improvement: Make sure the AJAX add to cart works properly with WooCommerce Composite Products plugin
+- Improvement: Modify Customiser responsive views to reflect theme breakpoints
+- Improvement: Page Title / Hero - validate custom attribute names and heading tag before rendering
+- Improvement: Shop Extra - Swatches escape output and validate save target
+- Improvement: WooCommerce single product - correctly apply the Sticky Gallery and Sticky Summary options when the same product is also listed in a menu products loop
+
 2.1.55: 2026-08-27
 - Improvement: General fixes and improvements
 

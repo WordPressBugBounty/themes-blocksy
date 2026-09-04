@@ -4,9 +4,9 @@
 	> ul {
 		display: flex;
 		column-gap: 7px;
-		position: sticky;
-		z-index: 2;
+		position: var(--tabs-position, sticky);
 		top: var(--tabs-sticky-offset, 0px);
+		z-index: 2;
 		margin: 0;
 		padding: var(--tabs-pills-margin, 0 14px);
 		box-shadow: inset 0px -1px 0px 0px var(--optionBorderColor);

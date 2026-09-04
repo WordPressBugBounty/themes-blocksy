@@ -144,6 +144,10 @@ class Blocksy_Css_Injector {
 			return;
 		}
 
+		// Rules stored under the inline keyword are entire CSS chunks
+		// (@font-face, @media), not single declarations.
+		$is_inline = $selector === Blocksy_Css_Injector::get_inline_keyword();
+
 		$selector = $normalized['selector'];
 		$rules = $normalized['rules'];
 
@@ -166,8 +170,42 @@ class Blocksy_Css_Injector {
 				continue;
 			}
 
+			if (! $is_inline && $this->declaration_breaks_out($line)) {
+				continue;
+			}
+
 			$this->attr[$selector][] = $line;
 		}
+	}
+
+	// A single CSS declaration (`property: value`) can never legitimately
+	// contain `{`, `}` or `@`. Their presence means the value is trying to
+	// close its declaration block and open a new selector or at-rule — a
+	// stylesheet breakout from an attacker-controlled value. Inline-keyword
+	// rules are exempt (handled by the caller) because they are whole CSS
+	// chunks like @font-face / @media, not single declarations.
+	private function declaration_breaks_out($declaration) {
+		return preg_match('/[{}@]/', $declaration) === 1;
+	}
+
+	/**
+	 * Reduce a single rule element to its one declaration: everything before
+	 * the first `;`. A `;` that embeds a second declaration is dropped, and a
+	 * value that starts with `;` (empty property position) is rejected whole —
+	 * so the element is neutralized regardless of the caller, not trusting that
+	 * the caller fixed the property.
+	 *
+	 * @param mixed $element Single rule element.
+	 * @return string The single declaration, or empty string.
+	 */
+	private function take_first_declaration($element) {
+		if (! is_string($element)) {
+			return '';
+		}
+
+		$parts = explode(';', $element);
+
+		return trim($parts[0]) !== '' ? $parts[0] : '';
 	}
 
 	private function normalize_inputs($selector, $preliminary_rules) {
@@ -186,18 +224,15 @@ class Blocksy_Css_Injector {
 				$preliminary_rules
 			];
 		} else {
-			// Convert string to array.
-			if (! is_array($preliminary_rules)) {
-				$rules = explode(';', $preliminary_rules);
-			} else {
-				// Support nested rules.
-				foreach ($preliminary_rules as $maybe_rule) {
-					$current_rules = explode(';', $maybe_rule);
+			$elements = is_array($preliminary_rules)
+				? $preliminary_rules
+				: [$preliminary_rules];
 
-					foreach ($current_rules as $current_rule) {
-						$rules[] = $current_rule;
-					}
-				}
+			// Every legitimate caller passes a single `property: value` per
+			// element. A `;` that introduces a second declaration is always
+			// injection, so each element is reduced to its first declaration.
+			foreach ($elements as $element) {
+				$rules[] = $this->take_first_declaration($element);
 			}
 		}
 

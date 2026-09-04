@@ -155,6 +155,7 @@ const ManageAttributeOption = ({
 			document.querySelector('#woocommerce_meta_nonce').value
 		)
 		body.append('ct-woo-attributes-list', JSON.stringify(newValue))
+		body.append('post_id', document.querySelector('#post_ID')?.value || '')
 
 		try {
 			fetch(ct_localizations.ajax_url, {

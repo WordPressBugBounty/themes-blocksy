@@ -36,7 +36,18 @@ class WooCommerceSingle {
 
 		new WooCommerceAddToCart();
 
-		$this->attach_hooks();
+		// AJAX renders (quick view) never fire `woocommerce_before_single_product`.
+		if (wp_doing_ajax()) {
+			$this->attach_hooks();
+		}
+
+		add_action(
+			'woocommerce_before_single_product',
+			function () {
+				$this->attach_hooks();
+			},
+			PHP_INT_MAX
+		);
 
 		add_filter('the_password_form', function($output, $post) {
 			if ($post->post_type !== 'product') {
@@ -65,11 +76,19 @@ class WooCommerceSingle {
 	// applied once per product per request, no matter how many times
 	// WooCommerce fires `woocommerce_post_class` for it (quick view, AJAX
 	// re-renders, plugins re-rendering the wrapper).
+	//
+	// Attached only once single product markup starts rendering (see the
+	// constructor): product loops rendered before the wrapper (a
+	// `[products]` shortcode in a mega menu) can contain the queried
+	// product itself and must not consume its slot.
 	public function woocommerce_post_class($classes, $product) {
 		if (! $product instanceof \WC_Product) {
 			return $classes;
 		}
 
+		// Single product markup can also render on other screens (a
+		// `[product_page]` shortcode inside a widget or content block) —
+		// the filter contract is single product pages and AJAX only.
 		if (
 			! blocksy_manager()->screen->is_product()
 			&&
@@ -78,10 +97,10 @@ class WooCommerceSingle {
 			return $classes;
 		}
 
-		// Loops rendered on the single product page (related products,
-		// upsells) fire `woocommerce_post_class` too — the filter is only
-		// for the main product. Non-product queried objects (e.g. a page
-		// with the `[product_page]` shortcode) are exempt from the check.
+		// Loops rendered after the wrapper (related products, upsells) fire
+		// `woocommerce_post_class` too — the filter is only for the main
+		// product. Non-product queried objects (e.g. a page with the
+		// `[product_page]` shortcode) are exempt from the check.
 		$queried_object = get_queried_object();
 
 		if (
@@ -111,8 +130,10 @@ class WooCommerceSingle {
 		 *
 		 * Fired at most once per product per request, in these contexts:
 		 * - on single product pages (and pages treated as such, e.g. with the
-		 *   `[product_page]` shortcode) — for the main product only, never for
-		 *   the related products/upsells loops rendered on the same page;
+		 *   `[product_page]` shortcode) — for the main product wrapper only,
+		 *   never for product loops rendered on the same page (related
+		 *   products, upsells, a `[products]` shortcode in the header), even
+		 *   when such a loop contains the queried product itself;
 		 * - during AJAX requests that render single product markup (e.g. the
 		 *   quick view modal). Listeners whose classes only make sense on the
 		 *   actual single product page need to narrow themselves down (see

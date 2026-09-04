@@ -101,8 +101,23 @@ foreach ($hero_elements as $index => $single_hero_element) {
 		continue;
 	}
 
+	/**
+	 * Fires before a single hero element is rendered.
+	 *
+	 * The dynamic portion of the hook name, `$single_hero_element['id']`, refers
+	 * to the hero element id (e.g. `custom_title`, `breadcrumbs`, `post_meta`).
+	 *
+	 * @since 1.7.10
+	 */
 	do_action('blocksy:hero:' . $single_hero_element['id'] . ':before');
 
+	/**
+	 * Fires while a single hero element is rendered.
+	 *
+	 * @since 1.8.4
+	 *
+	 * @param array $single_hero_element The hero element configuration.
+	 */
 	do_action('blocksy:hero:element:render', $single_hero_element);
 
 	if ($single_hero_element['id'] === 'breadcrumbs') {
@@ -220,27 +235,23 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			);
 
 			if (! empty($custom_attribute)) {
-				$custom_attribute = explode(' ', $custom_attribute);
+				foreach (blocksy_parse_html_attributes($custom_attribute) as $attr_name => $attr_value) {
+					$title_attrs[$attr_name] = str_replace(
+						'{title}',
+						strip_tags($title),
+						$attr_value
+					);
+				}
+			}
 
-				foreach ($custom_attribute as $single_custom_attribute) {
-					$single_custom_attribute = explode('=', $single_custom_attribute);
+			$heading_tag = blocksy_akg('heading_tag', $single_hero_element, 'h1');
 
-					if (count($single_custom_attribute) !== 2) {
-						continue;
-					}
-
-					$attr_value = trim($single_custom_attribute[1]);
-
-					$attr_value = str_replace('{title}', strip_tags($title), $attr_value);
-					$attr_value = str_replace('"', '', $attr_value);
-					$attr_value = str_replace('\'', '', $attr_value);
-
-					$title_attrs[trim($single_custom_attribute[0])] = $attr_value;
-				};
+			if (! in_array($heading_tag, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], true)) {
+				$heading_tag = 'h1';
 			}
 
 			$title = blocksy_html_tag(
-				blocksy_akg('heading_tag', $single_hero_element, 'h1'),
+				$heading_tag,
 				array_merge(
 					$title_attrs,
 					blocksy_schema_org_definitions('headline', [
@@ -263,6 +274,13 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			)) * 2;
 
 			$title = blocksy_simple_image(
+				/**
+				 * Filters the author avatar URL used in the author hero title.
+				 *
+				 * @since 1.8.6.8
+				 *
+				 * @param string $avatar_url The resolved author avatar URL.
+				 */
 				apply_filters(
 					'blocksy:hero:title:author:author-avatar-url',
 					blocksy_get_avatar_url(['size' => $avatar_size])
@@ -283,8 +301,18 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			) . $title;
 		}
 
+		/**
+		 * Fires before the hero title is printed.
+		 *
+		 * @since 1.7.17
+		 */
 		do_action('blocksy:hero:title:before');
 		echo $title;
+		/**
+		 * Fires after the hero title is printed.
+		 *
+		 * @since 1.7.17
+		 */
 		do_action('blocksy:hero:title:after');
 
 		if (is_author()) {
@@ -385,8 +413,18 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			}
 		}
 
+		/**
+		 * Fires before the hero description is printed.
+		 *
+		 * @since 1.8.21
+		 */
 		do_action('blocksy:hero:description:before');
 		echo $description;
+		/**
+		 * Fires after the hero description is printed.
+		 *
+		 * @since 1.8.21
+		 */
 		do_action('blocksy:hero:description:after');
 	}
 
@@ -441,10 +479,26 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			$meta_indexes['second'] !== null
 		) {
 			if ($index === $meta_indexes['first']) {
+				/**
+				 * Fires before the first hero meta element group is rendered.
+				 *
+				 * The dynamic portion of the hook name, `$single_hero_element['id']`,
+				 * refers to the hero element id.
+				 *
+				 * @since 1.8.62
+				 */
 				do_action('blocksy:hero:' . $single_hero_element['id'] . ':first:before');
 			}
 
 			if ($index === $meta_indexes['second']) {
+				/**
+				 * Fires before the second hero meta element group is rendered.
+				 *
+				 * The dynamic portion of the hook name, `$single_hero_element['id']`,
+				 * refers to the hero element id.
+				 *
+				 * @since 1.8.62
+				 */
 				do_action('blocksy:hero:' . $single_hero_element['id'] . ':second:before');
 			}
 		}
@@ -519,6 +573,13 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				}
 			}
 
+			/**
+			 * Filters the HTML attributes of the hero meta container.
+			 *
+			 * @since 1.9.7
+			 *
+			 * @param array $attr The hero meta container HTML attributes.
+			 */
 			$attr = apply_filters(
 				'blocksy:hero:meta:container-attr',
 				$attr
@@ -550,14 +611,38 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			$meta_indexes['second'] !== null
 		) {
 			if ($index === $meta_indexes['first']) {
+				/**
+				 * Fires after the first hero meta element group is rendered.
+				 *
+				 * The dynamic portion of the hook name, `$single_hero_element['id']`,
+				 * refers to the hero element id.
+				 *
+				 * @since 1.8.62
+				 */
 				do_action('blocksy:hero:' . $single_hero_element['id'] . ':first:after');
 			}
 
 			if ($index === $meta_indexes['second']) {
+				/**
+				 * Fires after the second hero meta element group is rendered.
+				 *
+				 * The dynamic portion of the hook name, `$single_hero_element['id']`,
+				 * refers to the hero element id.
+				 *
+				 * @since 1.8.62
+				 */
 				do_action('blocksy:hero:' . $single_hero_element['id'] . ':second:after');
 			}
 		}
 	}
 
+	/**
+	 * Fires after a single hero element is rendered.
+	 *
+	 * The dynamic portion of the hook name, `$single_hero_element['id']`, refers
+	 * to the hero element id.
+	 *
+	 * @since 1.7.10
+	 */
 	do_action('blocksy:hero:' . $single_hero_element['id'] . ':after');
 }

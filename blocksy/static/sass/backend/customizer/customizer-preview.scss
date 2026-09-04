@@ -32,16 +32,16 @@
 
 .preview-tablet {
 	#customize-preview {
-		width: 850px;
+		width: 999px;
 		max-height: 1080px;
-		margin-inline-start: -425px;
+		margin-inline-start: calc(999px / -2);
 	}
 }
 
 .preview-mobile {
 	#customize-preview {
-		width: 390px;
-		max-height: 720px;
-		margin-inline-start: -195px;
+		width: 689px;
+		max-height: 1080px;
+		margin-inline-start: calc(689px / -2);
 	}
 }

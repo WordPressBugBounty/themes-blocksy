@@ -1,13 +1,21 @@
 .ct-components-panel {
 	display: flex;
 	flex-direction: column;
-	min-height: calc(100% - 47px);
+	// min-height: calc(100% - 47px);
 	background: #fcfcfc;
+
+	height: calc(100% - 47px);
+	min-height: 0;
+	overflow: hidden;
 }
 
 #ct-page-options {
+	height: 100%;
 
 	> .ct-options-container {
+		height: 100%;
+		overflow-y: auto;
+
 		padding: 0 12px 30px 12px;
 		transition: 180ms transform cubic-bezier(0.645, 0.045, 0.355, 1);
 	}
@@ -17,6 +25,7 @@
 #ct-page-options {
 	--optionBorderColor: #e2e4e7;
 
+	--tabs-position: relative;
 	--tabs-pills-active-background-color: #fcfcfc;
 	--tabs-pills-inactive-background-color: #f1f1f1;
 
@@ -60,6 +69,7 @@
 		background: #fcfcfc;
 		border-top: none;
 		border-bottom: none;
-		overflow: initial;
+		// overflow: initial;
+		overflow-y: auto;
 	}
 }

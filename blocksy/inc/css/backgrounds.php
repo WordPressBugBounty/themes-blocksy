@@ -260,11 +260,13 @@ if (! function_exists('blocksy_output_single_background_css')) {
 				'y' => 0.5
 			]);
 
-			$attachment_url = wp_get_attachment_url($background_image['attachment_id']);
+			$attachment_url = wp_get_attachment_url(
+				absint($background_image['attachment_id'])
+			);
 
 			if (! empty($attachment_url)) {
 				if (! empty($attachment_url)) {
-					$image_url = 'url(' . $attachment_url . ')';
+					$image_url = 'url(' . esc_url($attachment_url) . ')';
 				}
 
 				$background_position = blocksy_maybe_append_important(
@@ -344,7 +346,11 @@ if (! function_exists('blocksy_output_single_background_css')) {
 		if ($args['value']['background_type'] === 'gradient') {
 			$gradient = blocksy_akg('gradient', $args['value'], '');
 
-			if (! empty($gradient)) {
+			if (
+				! empty($gradient)
+				&&
+				(new Blocksy_Meta_Sanitizer())->is_safe_gradient($gradient)
+			) {
 				$image_url = $gradient;
 			}
 		}

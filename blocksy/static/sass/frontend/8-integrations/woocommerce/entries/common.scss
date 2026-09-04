@@ -31,6 +31,7 @@
 	:where(.woocommerce-loop-product__title, .woocommerce-loop-category__title) {
 		--theme-content-spacing: 0;
 		--theme-link-initial-color: initial;
+		--has-link-decoration: var(--false);
 	}
 
 	.price {

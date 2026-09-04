@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-27 16:37+0000\n"
+"POT-Creation-Date: 2026-09-03 17:29+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -327,7 +327,7 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: inc/classes/screen-manager.php:259, inc/components/hero/elements.php:201,
+#: inc/classes/screen-manager.php:259, inc/components/hero/elements.php:216,
 #: inc/panel-builder/header/search/options.php:16
 msgid "Products"
 msgstr ""
@@ -348,7 +348,7 @@ msgstr ""
 msgid "Go to top"
 msgstr ""
 
-#: inc/components/breadcrumbs.php:66, inc/components/hero/elements.php:201,
+#: inc/components/breadcrumbs.php:66, inc/components/hero/elements.php:216,
 #: inc/options/general/breadcrumbs.php:168,
 #: inc/options/general/page-title.php:131,
 #: inc/options/general/page-title.php:392
@@ -959,23 +959,23 @@ msgid "Close search modal"
 msgstr ""
 
 #. translators: 1: the search query
-#: inc/components/hero/elements.php:186
+#: inc/components/hero/elements.php:201
 msgid "Search Results for %1$s"
 msgstr ""
 
 #. translators: 1: span opening 2: span closing 3: the number of results
-#: inc/components/hero/elements.php:352
+#: inc/components/hero/elements.php:380
 msgid "%1$sSearch Results for%2$s %3$s"
 msgstr ""
 
 #. translators: %s are the opening and closing of the html tags
-#: inc/components/hero/elements.php:364
+#: inc/components/hero/elements.php:392
 msgid ""
 "%sSorry, but nothing matched your search terms. Please try again with some "
 "different keywords.%s"
 msgstr ""
 
-#: inc/components/hero/elements.php:383
+#: inc/components/hero/elements.php:411
 msgid "This is where you can add new products to your store."
 msgstr ""
 
@@ -4578,7 +4578,7 @@ msgid "Payment Methods"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-layers.php:356,
-#: inc/components/woocommerce/single/single.php:491
+#: inc/components/woocommerce/single/single.php:512
 msgid "Guaranteed Safe Checkout"
 msgstr ""
 
@@ -4587,7 +4587,7 @@ msgid "Reasons to Buy"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-layers.php:446,
-#: inc/components/woocommerce/single/single.php:621
+#: inc/components/woocommerce/single/single.php:642
 msgid "Extra Features"
 msgstr ""
 
@@ -4596,27 +4596,27 @@ msgid "Items"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-layers.php:461,
-#: inc/components/woocommerce/single/single.php:585
+#: inc/components/woocommerce/single/single.php:606
 msgid "Premium Quality"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-layers.php:466,
-#: inc/components/woocommerce/single/single.php:590
+#: inc/components/woocommerce/single/single.php:611
 msgid "Secure Payments"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-layers.php:471,
-#: inc/components/woocommerce/single/single.php:595
+#: inc/components/woocommerce/single/single.php:616
 msgid "Satisfaction Guarantee"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-layers.php:476,
-#: inc/components/woocommerce/single/single.php:600
+#: inc/components/woocommerce/single/single.php:621
 msgid "Worldwide Shipping"
 msgstr ""
 
 #: inc/options/woocommerce/single-product-layers.php:481,
-#: inc/components/woocommerce/single/single.php:605
+#: inc/components/woocommerce/single/single.php:626
 msgid "Money Back Guarantee"
 msgstr ""
 
@@ -6360,19 +6360,19 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:196
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:197
 msgid "Save changes"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:203
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:204
 msgid "Are you sure you want to reset it to default setting?"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:212
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:213
 msgid "Reset to default"
 msgstr ""
 
-#: static/js/backend/woo-attributes/ManageAttributeOption.js:220
+#: static/js/backend/woo-attributes/ManageAttributeOption.js:221
 msgid ""
 "Please add some attributes in the Attributes tab to generate variations and "
 "save this product first."

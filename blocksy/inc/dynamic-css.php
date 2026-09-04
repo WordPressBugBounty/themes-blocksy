@@ -6,7 +6,7 @@ class ThemeDynamicCss {
 	private $allow_styles_for_customize_preview = false;
 
 	public function get_css_version() {
-		return 7;
+		return 8;
 	}
 
 	public function __construct() {

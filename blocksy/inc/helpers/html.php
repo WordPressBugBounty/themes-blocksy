@@ -103,3 +103,40 @@ function blocksy_html_tag_e($tag, $attr = [], $end = false) {
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo blocksy_html_tag($tag, $attr, $end);
 }
+
+// Keep in parity with blocksy_companion_parse_attributes_string() in the
+// companion (framework/helpers/helpers.php) and its matching test file.
+function blocksy_parse_html_attributes($input) {
+	$result = [];
+
+	preg_match_all(
+		'/([a-zA-Z0-9_-]+)=([\'"])(.*?)\2/',
+		$input,
+		$matches,
+		PREG_SET_ORDER
+	);
+
+	foreach ($matches as $match) {
+		$result[$match[1]] = $match[3];
+	}
+
+	$stripped = preg_replace('/([a-zA-Z0-9_-]+)=([\'"])(.*?)\2/', '', $input);
+
+	$stripped = preg_replace('/([a-zA-Z0-9_-]+)=([^\s]+)/', '', $stripped);
+
+	preg_match_all('/\b([a-zA-Z0-9_-]+)\b/', $stripped, $bool_matches);
+
+	foreach ($bool_matches[1] as $key) {
+		if (! array_key_exists($key, $result)) {
+			$result[$key] = '';
+		}
+	}
+
+	foreach ($result as $name => $value) {
+		if (stripos($name, 'on') === 0) {
+			unset($result[$name]);
+		}
+	}
+
+	return $result;
+}
