@@ -97,6 +97,18 @@ if (
 	];
 }
 
+/**
+ * Filters the additional logo images rendered next to the main logo.
+ *
+ * @since 2.0.1
+ *
+ * @param array  $additional_logos  List of additional logos, each one an array with a `class`
+ *                                  string and an `id` attachment ID.
+ * @param array  $atts              Options of the logo panel builder item.
+ * @param string $device            Device the logo is rendered for. Either 'desktop', 'tablet' or 'mobile'.
+ * @param string $panel_type        Panel builder the logo belongs to. Either 'header' or 'footer'.
+ * @param array  $logo_type_classes Map of logo state to the class name applied to its image.
+ */
 $additional_logos = apply_filters(
 	'blocksy:panel-builder:logo:additional-logos',
 	$additional_logos,
@@ -106,6 +118,16 @@ $additional_logos = apply_filters(
 	$logo_type_classes
 );
 
+/**
+ * Filters the attachment ID of the logo image.
+ *
+ * The dynamic portion of the hook name, `$panel_type`, refers to the panel
+ * builder the logo is rendered in (e.g. `header`, `footer`).
+ *
+ * @since 1.8.97
+ *
+ * @param string|int $custom_logo_id Attachment ID of the resolved logo image. Default empty string.
+ */
 $custom_logo_id = apply_filters(
 	'blocksy:' . $panel_type . ':logo:image-id',
 	$custom_logo_id
@@ -164,17 +186,11 @@ if ($custom_logo_id) {
 	$inline_svg_logos = blocksy_akg('inline_svg_logos', $atts, 'no');
 
 	if ($inline_svg_logos === 'yes') {
-		$maybe_file = get_attached_file($custom_logo_id);
+		$svg = blocksy_get_sanitized_inline_svg(
+			get_attached_file($custom_logo_id)
+		);
 
-		if (
-			$maybe_file
-			&&
-			file_exists($maybe_file)
-			&&
-			strpos($maybe_file, '.svg') !== false
-		) {
-			$svg = file_get_contents($maybe_file);
-
+		if ($svg !== null) {
 			$parser = new Blocksy_Attributes_Parser();
 
 			unset($custom_logo_attr['loading']);
@@ -192,6 +208,17 @@ if ($custom_logo_id) {
 				);
 			}
 
+			/**
+			 * Filters the inline SVG markup of a logo image.
+			 *
+			 * The dynamic portion of the hook name, `$panel_type`, refers to the panel
+			 * builder the logo is rendered in (e.g. `header`, `footer`).
+			 *
+			 * @since 2.1.26
+			 *
+			 * @param string $svg           Sanitized inline SVG markup of the logo, with the image attributes applied.
+			 * @param int    $attachment_id Attachment ID the SVG file was read from.
+			 */
 			$svg = apply_filters(
 				'blocksy:' . $panel_type . ':logo:svg-content',
 				$svg,
@@ -213,17 +240,11 @@ if ($custom_logo_id) {
 		);
 
 		if ($inline_svg_logos === 'yes') {
-			$maybe_file = get_attached_file($additional_logo['id']);
+			$svg = blocksy_get_sanitized_inline_svg(
+				get_attached_file($additional_logo['id'])
+			);
 
-			if (
-				$maybe_file
-				&&
-				file_exists($maybe_file)
-				&&
-				strpos($maybe_file, '.svg') !== false
-			) {
-				$svg = file_get_contents($maybe_file);
-
+			if ($svg !== null) {
 				$parser = new Blocksy_Attributes_Parser();
 
 				foreach ($custom_logo_attr as $svg_attr => $svg_attr_value) {
@@ -236,6 +257,17 @@ if ($custom_logo_id) {
 					);
 				}
 
+				/**
+				 * Filters the inline SVG markup of a logo image.
+				 *
+				 * The dynamic portion of the hook name, `$panel_type`, refers to the panel
+				 * builder the logo is rendered in (e.g. `header`, `footer`).
+				 *
+				 * @since 2.1.26
+				 *
+				 * @param string $svg           Sanitized inline SVG markup of the logo, with the image attributes applied.
+				 * @param int    $attachment_id Attachment ID the SVG file was read from.
+				 */
 				$svg = apply_filters(
 					'blocksy:' . $panel_type . ':logo:svg-content',
 					$svg,
@@ -281,6 +313,16 @@ if ($custom_logo_id) {
 	$logo_html = blocksy_safe_sprintf(
 		'<a href="%1$s" class="site-logo-container" rel="home" itemprop="url" %2$s>%3$s</a>',
 		esc_url(
+			/**
+			 * Filters the URL the logo links to.
+			 *
+			 * The dynamic portion of the hook name, `$panel_type`, refers to the panel
+			 * builder the logo is rendered in (e.g. `header`, `footer`).
+			 *
+			 * @since 1.7.48
+			 *
+			 * @param string $url URL the logo links to. Default the home page URL.
+			 */
 			apply_filters('blocksy:' . $panel_type . ':logo:url', home_url('/'))
 		),
 		$aria_label,
@@ -296,6 +338,16 @@ if ($custom_logo_id) {
 	}
 }
 
+/**
+ * Filters the HTML tag used for the logo wrapper element.
+ *
+ * The dynamic portion of the hook name, `$panel_type`, refers to the panel
+ * builder the logo is rendered in (e.g. `header`, `footer`).
+ *
+ * @since 1.8.0
+ *
+ * @param string $wrapper_tag Tag name of the logo wrapper element. Default 'div'.
+ */
 $wrapper_tag = apply_filters('blocksy:' . $panel_type . ':logo:wrapper-tag', 'div');
 
 $logo_position = '';
@@ -350,6 +402,16 @@ if ($has_site_title) {
 		$panel_type . ':' . $section_id . ':logo:blogname'
 	);
 
+	/**
+	 * Filters the HTML tag used for the site title.
+	 *
+	 * The dynamic portion of the hook name, `$panel_type`, refers to the panel
+	 * builder the logo is rendered in (e.g. `header`, `footer`).
+	 *
+	 * @since 1.8.3.4
+	 *
+	 * @param string $tag Tag name of the site title element. Default 'span'.
+	 */
 	$tag = apply_filters('blocksy:' . $panel_type . ':logo:tag', 'span');
 
 	$site_title_class = 'site-title ' . blocksy_visibility_classes(
@@ -379,6 +441,16 @@ if ($has_site_title) {
 		$has_site_title_link ? blocksy_safe_sprintf(
 			'<a href="%1$s" rel="home" %2$s>%3$s</a>',
 			esc_url(
+				/**
+				 * Filters the URL the logo links to.
+				 *
+				 * The dynamic portion of the hook name, `$panel_type`, refers to the panel
+				 * builder the logo is rendered in (e.g. `header`, `footer`).
+				 *
+				 * @since 1.7.48
+				 *
+				 * @param string $url URL the logo links to. Default the home page URL.
+				 */
 				apply_filters('blocksy:' . $panel_type . ':logo:url', home_url('/'))
 			),
 			blocksy_schema_org_definitions(

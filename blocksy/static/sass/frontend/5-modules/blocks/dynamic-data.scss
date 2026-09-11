@@ -43,6 +43,13 @@
 	}
 }
 
+.ct-dynamic-cover {
+
+	&:not(.aligncenter):not(.alignwide):not(.alignfull) {
+		width: 100%;
+	}
+}
+
 
 // dynamic data layer
 .ct-dynamic-data-layer {

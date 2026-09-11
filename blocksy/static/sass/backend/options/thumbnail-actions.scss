@@ -1,20 +1,26 @@
-[class*='ct-attachment'],
-.editor-post-featured-image__container,
-[class*='acf-admin'] #set-post-thumbnail,
-.woocommerce-admin-page #set-post-thumbnail,
-.woocommerce-admin-page #product_images_container,
-.post-type-product.block-editor-page #product_images_container {
+:where(
+	[class*='ct-attachment'],
+	.editor-post-featured-image__container,
+	[class*='acf-admin'] #set-post-thumbnail,
+	.woocommerce-admin-page #set-post-thumbnail,
+	.woocommerce-admin-page #product_images_container,
+	.post-type-product.block-editor-page #product_images_container,
+	.wc-variation-gallery-field__hero,
+	.wc-variation-gallery-thumb
+) {
+
 	ul.actions {
 		display: flex !important;
 		padding: 0 !important;
 		margin: 0 !important;
 		position: absolute;
-		top: var(--actions-spacing, 10px) !important;
-		inset-inline-end: var(--actions-spacing, 10px) !important;
+		top: var(--actions-top-spacing, 10px) !important;
+		bottom: var(--actions-bottom-spacing, initial) !important;
+		inset-inline-end: var(--actions-right-spacing, 10px) !important;
 		overflow: hidden;
 		border-radius: 3px;
 		background: #fff;
-		opacity: 0;
+		opacity: var(--actions-visibility, 0);
 		box-shadow: inset 0px 0px 0px 1px var(--optionBorderColor, #ddd),
 			0 2px 5px rgba(0, 0, 0, 0.02);
 
@@ -103,12 +109,17 @@
 	}
 }
 
-[class*='ct-attachment'] .thumbnail,
-.editor-post-featured-image__container,
-[class*='acf-admin'] #set-post-thumbnail,
-.woocommerce-admin-page #set-post-thumbnail,
-.woocommerce-admin-page #product_images_container ul li,
-.post-type-product.block-editor-page #product_images_container ul li {
+:where(
+	[class*='ct-attachment'] .thumbnail,
+	.editor-post-featured-image__container,
+	[class*='acf-admin'] #set-post-thumbnail,
+	.woocommerce-admin-page #set-post-thumbnail,
+	.woocommerce-admin-page #product_images_container ul li,
+	.post-type-product.block-editor-page #product_images_container ul li,
+	.wc-variation-gallery-field__hero,
+	.wc-variation-gallery-thumb
+) {
+
 	&:hover {
 		ul.actions {
 			opacity: 1;
@@ -122,5 +133,6 @@
 }
 
 .woocommerce-admin-page #product_images_container ul.actions {
-	--actions-spacing: 5px;
+	--actions-top-spacing: 5px;
+	--actions-right-spacing: 5px;
 }

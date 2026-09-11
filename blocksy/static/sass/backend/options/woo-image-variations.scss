@@ -1,18 +1,12 @@
-.woocommerce_variable_attributes .form-row {
-	margin-bottom: 1.5em;
-}
+.wc-variation-gallery-field__hero.ct-has-actions {
 
-.ct-variation-image-gallery {
-	padding-bottom: 0.8em;
-	border-top: 1px solid #eee;
-	--options-horizontal-spacing: 0;
-	--optionBorderColor: #eee;
+	.wc-variation-gallery-replace {
+		display: none;
+	}
 
-	[data-design="inline"] {
-		grid-template-columns: calc(52% - 10px) min(48%, 450px) auto;
-
-		// .ct-attachment-multi {
-		// 	text-align: right;
-		// }
+	ul.actions {
+		--actions-visibility: 1;
+		--actions-top-spacing: auto;
+		--actions-bottom-spacing: 10px;
 	}
 }

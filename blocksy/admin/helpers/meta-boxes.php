@@ -7,74 +7,6 @@ class Blocksy_Meta_Boxes {
 		add_action('load-post.php', [$this, 'init_metabox']);
 		add_action('load-post-new.php', [$this, 'init_metabox']);
 
-		add_action(
-			'woocommerce_save_product_variation',
-			function ($variation_id, $i) {
-				if (! isset($_POST['blocksy_post_meta_options'])) {
-					return;
-				}
-
-				if (! isset($_POST['blocksy_post_meta_options'][$variation_id])) {
-					return;
-				}
-
-				$values = json_decode(
-					sanitize_text_field(
-						wp_unslash(
-							$_POST['blocksy_post_meta_options'][
-								$variation_id
-							]
-						)
-					),
-					true
-				);
-
-				$values = blocksy_sanitize_post_meta_options($values);
-
-				update_post_meta(
-					$variation_id,
-					'blocksy_post_meta_options',
-					$values
-				);
-
-				return true;
-			},
-			10, 2
-		);
-
-		add_action(
-			'woocommerce_variation_header',
-			function ($variation) {
-				if (! blocksy_woocommerce_has_flexy_view()) {
-					return;
-				}
-
-				$post_id = blocksy_translate_post_id(
-					$variation->ID,
-					[
-						'use_wpml_default_language_woo' => true
-					]
-				);
-
-				$values = get_post_meta($post_id, 'blocksy_post_meta_options');
-
-				if (empty($values)) {
-					$values = [[]];
-				}
-
-				if (! $values[0]) {
-					$values[0] = [];
-				}
-
-				echo blocksy_html_tag('input', [
-					'type' => 'hidden',
-					'class' => 'ct-options-panel-storage',
-					'value' => htmlspecialchars(wp_json_encode($values[0])),
-					'id' => 'blocksy_post_meta_options_' . $post_id . '',
-					'name' => 'blocksy_post_meta_options[' . $post_id . ']'
-				]);
-			}
-		);
 	}
 
 	public function init_metabox() {
@@ -83,6 +15,13 @@ class Blocksy_Meta_Boxes {
 	}
 
 	public function init_taxonomies() {
+		/**
+		 * Filters the post types that expose Blocksy options through the REST API.
+		 *
+		 * @since 1.7.43
+		 *
+		 * @param array $post_types Post type slugs.
+		 */
 		$post_types = apply_filters(
 			'blocksy:editor:post_types_for_rest_field',
 			['post', 'page']
@@ -137,6 +76,14 @@ class Blocksy_Meta_Boxes {
 		$post_types = get_post_types(['public' => true]);
 
 		foreach ($post_types as $type) {
+			/**
+			 * Filters the Blocksy metabox options for a post type.
+			 *
+			 * @since 1.6.14
+			 *
+			 * @param array|null $options   Metabox option definitions, or null for none.
+			 * @param string     $post_type Post type slug.
+			 */
 			$options = apply_filters('blocksy_post_meta_options', null, $type);
 
 			if (! $options) {
@@ -157,6 +104,14 @@ class Blocksy_Meta_Boxes {
 						$values = [[]];
 					}
 
+					/**
+					 * Filters the Blocksy metabox options for a post type.
+					 *
+					 * @since 1.6.14
+					 *
+					 * @param array|null $options   Metabox option definitions, or null for none.
+					 * @param string     $post_type Post type slug.
+					 */
 					$options = apply_filters(
 						'blocksy_post_meta_options',
 						null,

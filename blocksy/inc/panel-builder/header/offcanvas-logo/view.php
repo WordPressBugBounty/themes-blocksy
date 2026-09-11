@@ -18,6 +18,18 @@ $logo_type_classes = apply_filters("blocksy:{$panel_type}:logo:img:class", [
 	'offcanvas_logo' => ''
 ]);
 
+/**
+ * Filters the additional logo images rendered next to the offcanvas logo.
+ *
+ * @since 2.0.1
+ *
+ * @param array  $additional_logos  List of additional logos, each one an array with a `class`
+ *                                  string and an `id` attachment ID. Default empty array.
+ * @param array  $atts              Options of the offcanvas logo panel builder item.
+ * @param string $device            Device the logo is rendered for. Either 'desktop', 'tablet' or 'mobile'.
+ * @param string $panel_type        Panel builder the logo belongs to. Either 'header' or 'footer'.
+ * @param array  $logo_type_classes Map of logo state to the class name applied to its image.
+ */
 $additional_logos = apply_filters(
 	'blocksy:panel-builder:offcanvas-logo:additional-logos',
 	[],
@@ -63,17 +75,11 @@ if ($custom_logo_id) {
 	$inline_svg_logos = blocksy_akg('inline_svg_logos', $atts, 'no');
 
 	if ($inline_svg_logos === 'yes') {
-		$maybe_file = get_attached_file($custom_logo_id);
+		$svg = blocksy_get_sanitized_inline_svg(
+			get_attached_file($custom_logo_id)
+		);
 
-		if (
-			$maybe_file
-			&&
-			file_exists($maybe_file)
-			&&
-			strpos($maybe_file, '.svg') !== false
-		) {
-			$svg = file_get_contents($maybe_file);
-
+		if ($svg !== null) {
 			$parser = new Blocksy_Attributes_Parser();
 
 			unset($custom_logo_attr['loading']);
@@ -106,17 +112,11 @@ if ($custom_logo_id) {
 		);
 
 		if ($inline_svg_logos === 'yes') {
-			$maybe_file = get_attached_file($additional_logo['id']);
+			$svg = blocksy_get_sanitized_inline_svg(
+				get_attached_file($additional_logo['id'])
+			);
 
-			if (
-				$maybe_file
-				&&
-				file_exists($maybe_file)
-				&&
-				strpos($maybe_file, '.svg') !== false
-			) {
-				$svg = file_get_contents($maybe_file);
-
+			if ($svg !== null) {
 				$parser = new Blocksy_Attributes_Parser();
 
 				foreach ($custom_logo_attr as $svg_attr => $svg_attr_value) {
@@ -138,6 +138,13 @@ if ($custom_logo_id) {
 }
 
 $href = esc_url(
+	/**
+	 * Filters the URL the offcanvas logo links to.
+	 *
+	 * @since 1.8.15
+	 *
+	 * @param string $url URL the offcanvas logo links to. Default the home page URL.
+	 */
 	apply_filters('blocksy:header:offcanvas-logo:url', home_url('/'))
 );
 

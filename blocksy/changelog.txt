@@ -1,3 +1,8 @@
+2.1.57: 2026-09-10
+- Improvement: Dynamic Data block - improve "Cover" sizing and image editor previews
+- Improvement: Header - improve inline SVG logo handling
+- Improvement: Single product gallery - correctly display product variation galleries configured in WooCommerce 11.1
+
 2.1.56: 2026-09-03
 - Improvement: Blocksy Page Settings - properly display nested panels in the Block Editor
 - Improvement: Dynamic CSS - validate post meta values before they reach the stylesheet output

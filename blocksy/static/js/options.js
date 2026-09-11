@@ -3,7 +3,6 @@ import $ from 'jquery'
 import { initAllPanels } from './options/initPanels'
 import { initWidget } from './backend/widgets'
 
-import { initAllWooVariations } from './backend/woo-variation'
 import { initTaxonomies } from './backend/taxonomies'
 import { initAllWooAttributesOptions } from './backend/woo-attributes'
 
@@ -16,17 +15,8 @@ if ($ && $.fn) {
 		initWidget(widget[0])
 	})
 
-	initAllWooVariations()
-
 	setTimeout(() => {
 		initAllWooAttributesOptions()
-
-		$(document.body).on(
-			'woocommerce_variations_added woocommerce_variations_loaded',
-			function () {
-				initAllWooVariations()
-			}
-		)
 
 		$(document.body).on('woocommerce_attributes_saved', function () {
 			initAllWooAttributesOptions()

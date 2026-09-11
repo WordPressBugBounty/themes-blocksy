@@ -66,16 +66,23 @@ const triggersList = {
 
 			el.hasLazyLoadSubmitListener = true
 
+			const cb = (event) => {
+				event.preventDefault()
+				loadChunkWithPayload(chunk, { event }, el)
+			}
+
 			if ($) {
-				$(el).on('submit', (event) => {
-					event.preventDefault()
-					loadChunkWithPayload(chunk, { event }, el)
-				})
+				$(el).on('submit', cb)
+
+				el.dynamicJsChunkStop = () => {
+					$(el).off('submit', cb)
+				}
 			} else {
-				el.addEventListener('submit', (event) => {
-					event.preventDefault()
-					loadChunkWithPayload(chunk, { event }, el)
-				})
+				el.addEventListener('submit', cb)
+
+				el.dynamicJsChunkStop = () => {
+					el.removeEventListener('submit', cb)
+				}
 			}
 		})
 	},

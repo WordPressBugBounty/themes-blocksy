@@ -140,3 +140,68 @@ function blocksy_parse_html_attributes($input) {
 
 	return $result;
 }
+
+function blocksy_sanitize_html_for_display($args = []) {
+	$args = wp_parse_args($args, [
+		'html' => '',
+		'context' => 'block',
+	]);
+
+	if (! is_string($args['html']) || $args['html'] === '') {
+		return $args['html'];
+	}
+
+	/**
+	 * Filters the tags and attributes wp_kses() keeps in blocksy_sanitize_html_for_display().
+	 *
+	 * Starts from the core `post` context, the set WordPress allows in post
+	 * content for users without unfiltered_html.
+	 *
+	 * @since 2.1.57
+	 *
+	 * @param array  $tags    Allowed tags in wp_kses() format. Keys must be lowercase.
+	 * @param string $context Where the HTML renders: 'block' or 'logo'.
+	 */
+	$allowed_tags = apply_filters(
+		'blocksy:display-html:allowed-tags',
+		wp_kses_allowed_html('post'),
+		$args['context']
+	);
+
+	return wp_kses($args['html'], $allowed_tags);
+}
+
+function blocksy_get_sanitized_inline_svg($file) {
+	if (! $file || ! file_exists($file)) {
+		return null;
+	}
+
+	$check = wp_check_filetype($file, ['svg' => 'image/svg+xml']);
+
+	if ($check['ext'] !== 'svg') {
+		return null;
+	}
+
+	$svg = file_get_contents($file);
+
+	if (! is_string($svg)) {
+		return null;
+	}
+
+	$svg = preg_replace(
+		'#<\?xml[^>]*\?>|<!DOCTYPE[^>\[]*(\[[^\]]*\])?[^>]*>#is',
+		'',
+		$svg
+	);
+
+	$svg = blocksy_sanitize_html_for_display([
+		'html' => $svg,
+		'context' => 'logo',
+	]);
+
+	if (stripos($svg, '<svg') === false) {
+		return null;
+	}
+
+	return $svg;
+}

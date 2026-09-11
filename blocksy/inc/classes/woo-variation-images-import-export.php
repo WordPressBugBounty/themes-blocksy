@@ -3,29 +3,12 @@
 namespace Blocksy;
 
 class WooVariationImagesImportExport {
-	private $export_type = 'product';
 	private $column_id = 'blocksy_variation_images';
 
 	public function __construct() {
 		add_filter(
-			"woocommerce_product_export_{$this->export_type}_default_columns",
-			[$this, 'export_column_name']
-		);
-
-		add_filter(
-			'woocommerce_product_export_column_names',
-			[$this, 'export_column_name']
-		);
-
-		add_filter(
-			"woocommerce_product_export_{$this->export_type}_column_{$this->column_id}",
-			[$this, 'export_column_data'],
-			10, 3
-		);
-
-		add_filter(
 			'woocommerce_csv_product_import_mapping_options',
-			[$this, 'export_column_name']
+			[$this, 'import_column_name']
 		);
 
 		add_filter(
@@ -40,7 +23,7 @@ class WooVariationImagesImportExport {
 		);
 	}
 
-	public function export_column_name($columns) {
+	public function import_column_name($columns) {
 		$columns[$this->column_id] = __('Blocksy Variation Images', 'blocksy');
 
 		return $columns;
@@ -50,26 +33,6 @@ class WooVariationImagesImportExport {
 		$columns[__('Blocksy Variation Images', 'blocksy')] = $this->column_id;
 
 		return $columns;
-	}
-
-	public function export_column_data($value, $product, $column_id) {
-		if ($product->get_type() !== 'variation') {
-			return '';
-		}
-
-		$product_id = $product->get_id();
-
-		$gallery_images = get_post_meta(
-			$product_id,
-			'blocksy_post_meta_options',
-			true
-		);
-
-		if (empty($gallery_images)) {
-			return '';
-		}
-
-		return json_encode($gallery_images);
 	}
 
 	public function process_wc_import($product, $data) {

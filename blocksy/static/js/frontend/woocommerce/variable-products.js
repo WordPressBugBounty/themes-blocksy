@@ -389,7 +389,8 @@ export const mount = (el) => {
 							}
 
 							return (
-								variation.blocksy_gallery_source === 'default'
+								!variation.gallery_image_ids ||
+								variation.gallery_image_ids.length === 0
 							)
 						}
 					)
@@ -406,7 +407,7 @@ export const mount = (el) => {
 			return
 		}
 
-		const acceptHtml = (html, thumbs) => {
+		const acceptHtml = (html) => {
 			// Build the fresh gallery markup as real nodes in a detached buffer,
 			// so we can move the real (plugin-mutated) foreign nodes across
 			// instead of recreating everything from an HTML string and orphaning
@@ -484,11 +485,16 @@ export const mount = (el) => {
 
 			currentVariation.removeAttribute('data-thumbs')
 
+			const incomingGallery = buffer.querySelector(
+				'.woocommerce-product-gallery'
+			)
+
 			if (
 				currentVariation.dataset.gallery === 'default' &&
-				currentVariation.querySelector('.flexy-container')
+				incomingGallery &&
+				incomingGallery.dataset.thumbs
 			) {
-				currentVariation.dataset.thumbs = thumbs
+				currentVariation.dataset.thumbs = incomingGallery.dataset.thumbs
 			}
 
 			currentVariation.hasLazyLoadClickHoverListener = false
@@ -503,10 +509,7 @@ export const mount = (el) => {
 		}
 
 		if (variation.blocksy_gallery_html) {
-			acceptHtml(
-				variation.blocksy_gallery_html,
-				variation.blocksy_gallery_thumbs
-			)
+			acceptHtml(variation.blocksy_gallery_html)
 
 			return
 		}
@@ -529,7 +532,7 @@ export const mount = (el) => {
 					return
 				}
 
-				acceptHtml(data.html, data.blocksy_gallery_thumbs)
+				acceptHtml(data.html)
 			})
 	}
 }

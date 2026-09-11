@@ -106,26 +106,33 @@
 			transition: transform 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 		}
 	}
+}
 
+.ct-dynamic-cover {
 
-	// image placeholder
-	.ct-dynamic-data-placeholder {
-		display: flex;
+	&:not(.aligncenter):not(.alignwide):not(.alignfull) {
 		width: 100%;
-		overflow: hidden;
-		box-sizing: border-box;
-		border: 1px dashed rgb(58 79 102 / 25%) !important;
-		background: rgb(58 79 102 / 2%);
-
-		.ct-dynamic-data-placeholder-illustration {
-			width: 100%;
-			stroke-dasharray: 3;
-			stroke: rgb(58 79 102 / 25%);
-		}
 	}
 
-	&.wp-block-cover .ct-dynamic-data-placeholder {
+	.ct-dynamic-data-placeholder {
 		position: absolute;
 		inset: 0;
+	}
+}
+
+// image placeholder
+.ct-dynamic-data-placeholder {
+	display: flex;
+	flex-grow: 1;
+	width: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
+	border: 1px dashed rgb(58 79 102 / 25%) !important;
+	background: rgb(58 79 102 / 2%);
+
+	svg {
+		width: 100%;
+		stroke-dasharray: 3;
+		stroke: rgb(58 79 102 / 25%);
 	}
 }

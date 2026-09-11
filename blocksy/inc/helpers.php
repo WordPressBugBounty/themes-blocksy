@@ -39,6 +39,19 @@ function blocksy_sync_whole_page($args = []) {
 
 	$selector = 'main#main';
 
+	/**
+	 * Filters the selective refresh partial arguments used to re-render the whole page.
+	 *
+	 * @since 2.1.18
+	 *
+	 * @param array $args {
+	 *     Partial arguments passed to the customizer selective refresh API.
+	 *
+	 *     @type string   $selector            CSS selector of the refreshed container. Default 'main#main'.
+	 *     @type bool     $container_inclusive Whether the container itself is replaced. Default true.
+	 *     @type callable $render              Callback echoing the refreshed markup.
+	 * }
+	 */
 	return apply_filters(
 		'blocksy:customizer:sync:whole-page',
 		array_merge(
@@ -242,11 +255,31 @@ if (! function_exists('blocksy_handle_contained_fatal')) {
 }
 
 function blocksy_get_wp_theme() {
+	/**
+	 * Filters the theme object Blocksy reports as its own.
+	 *
+	 * Used to white label the theme name and metadata shown across the
+	 * dashboard and the customizer.
+	 *
+	 * @since 1.6.8
+	 *
+	 * @param WP_Theme $theme The resolved theme object.
+	 */
 	return apply_filters('blocksy_get_wp_theme', wp_get_theme());
 }
 
 if (! function_exists('blocksy_get_wp_parent_theme')) {
 	function blocksy_get_wp_parent_theme() {
+		/**
+		 * Filters the theme object Blocksy reports as its own.
+		 *
+		 * Used to white label the theme name and metadata shown across the
+		 * dashboard and the customizer.
+		 *
+		 * @since 1.6.8
+		 *
+		 * @param WP_Theme $theme The resolved theme object.
+		 */
 		return apply_filters('blocksy_get_wp_theme', wp_get_theme(get_template()));
 	}
 }
@@ -274,6 +307,13 @@ function blocksy_current_url() {
 
 		$request_uri = blocksy_akg('REQUEST_URI', $_SERVER, '');
 
+		/**
+		 * Filters the request URI used to build the current URL.
+		 *
+		 * @since 2.0.77
+		 *
+		 * @param string $request_uri The current request URI. Default the value of $_SERVER['REQUEST_URI'].
+		 */
 		$request_uri = apply_filters(
 			'blocksy:current-url:request-uri',
 			$request_uri
@@ -359,6 +399,8 @@ function blocksy_debug_log($message, $object = null) {
 	}
 }
 
+// Save-time only. Never call on stored content at render, use
+// blocksy_sanitize_html_for_display() there.
 function blocksy_sanitize_user_html($html) {
 	// Just drop scripts from the html content, if user doesnt have
 	// unfiltered_html capability.
@@ -396,6 +438,19 @@ function blocksy_output_html_safely($html) {
 }
 
 function blocksy_get_pricing_links() {
+	/**
+	 * Filters the pricing links used by the upsell modals.
+	 *
+	 * @since 2.0.62
+	 *
+	 * @param array $links {
+	 *     Pricing related URLs.
+	 *
+	 *     @type string $pricing       URL of the pricing page.
+	 *     @type string $premium       URL of the premium page.
+	 *     @type string $compare-plans URL of the free versus pro comparison table.
+	 * }
+	 */
 	return apply_filters('blocksy:modal:pricing-links', [
 		'pricing' => 'https://creativethemes.com/blocksy/pricing/',
 		'premium' => 'https://creativethemes.com/blocksy/premium/',

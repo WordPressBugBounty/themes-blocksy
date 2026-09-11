@@ -41,63 +41,31 @@ if (isset($forced_single) && $forced_single) {
 	$is_single = true;
 }
 
-if (! isset($gallery_images)) {
-	$thumb_id = apply_filters(
-		'woocommerce_product_get_image_id',
-		get_post_thumbnail_id($product->get_id()),
-		$product
-	);
-
-	$gallery_images = $product->get_gallery_image_ids();
-
-	if ($thumb_id) {
-		array_unshift($gallery_images, intval($thumb_id));
-	} else {
-		$gallery_images = [null];
-	}
-}
-
 $product_view_attr = [
 	'class' => 'woocommerce-product-gallery'
 ];
 
 $active_index = 1;
 
-if ($blocksy_current_variation) {
-	$variation_main_image = $blocksy_current_variation->get_image_id();
+if (! isset($gallery_images)) {
+	$gallery_product = $product;
 
-	$variation_values = blocksy_get_post_options(
-		blocksy_translate_post_id(
-			$blocksy_current_variation->get_id(),
-			[
-				'use_wpml_default_language_woo' => true
-			]
-		)
-	);
-
-	$variation_gallery_images = blocksy_akg('images', $variation_values, []);
-	$gallery_source = blocksy_akg('gallery_source', $variation_values, 'default');
-
-	if ($gallery_source === 'default') {
-		if (! in_array($variation_main_image, $gallery_images)) {
-			$gallery_images[0] = $variation_main_image;
-		} else {
-			$active_index = array_search(
-				$variation_main_image,
-				$gallery_images
-			) + 1;
-		}
-	} else {
-		$gallery_images = [$variation_main_image];
-
-		foreach ($variation_gallery_images as $variation_gallery_image) {
-			$gallery_images[] = $variation_gallery_image['attachment_id'];
-		}
+	if ($blocksy_current_variation) {
+		$gallery_product = $blocksy_current_variation;
 	}
 
-	$product_view_attr[
-		'data-current-variation'
-	] = $blocksy_current_variation->get_id();
+	$gallery_images = blocksy_product_get_gallery_images($gallery_product);
+}
+
+if ($blocksy_current_variation) {
+	$variation_main_image = $blocksy_current_variation->get_image_id();
+	$index = array_search($variation_main_image, $gallery_images);
+
+	if ($index !== false) {
+		$active_index = $index + 1;
+	}
+
+	$product_view_attr['data-current-variation'] = $blocksy_current_variation->get_id();
 }
 
 /**
