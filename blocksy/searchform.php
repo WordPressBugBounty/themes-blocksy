@@ -134,7 +134,9 @@ if ($has_taxonomy_filter) {
 		[
 			'value' => '',
 		],
-		blocksy_akg('taxonomy_filter_label', $args, __('Select Category', 'blocksy'))
+		esc_html(
+			blocksy_akg('taxonomy_filter_label', $args, __('Select Category', 'blocksy'))
+		)
 	);
 
 	$skip_tax = [
@@ -331,7 +333,7 @@ $inner_wrapper_class = implode(' ', $inner_wrapper_classes);
 
 			<input
 				type="search" <?php echo $class_output ?>
-				placeholder="<?php echo $placeholder; ?>"
+				placeholder="<?php echo esc_attr($placeholder); ?>"
 				value="<?php echo get_search_query(); ?>"
 				name="s"
 				autocomplete="off"

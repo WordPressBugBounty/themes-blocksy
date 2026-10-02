@@ -159,6 +159,15 @@ class BreadcrumbsBuilder {
 					}
 				}
 
+				/**
+				 * Filters the taxonomies used to build the term trail of a single post breadcrumb.
+				 *
+				 * The first taxonomy in the list is the one whose lowest term is shown.
+				 *
+				 * @since 1.8.7
+				 *
+				 * @param string[] $slugs Public, hierarchical taxonomy names registered for the post type.
+				 */
 				$slugs = apply_filters(
 					'blocksy:breadcrumbs:single:taxonomies:slugs',
 					$slugs
@@ -441,6 +450,18 @@ class BreadcrumbsBuilder {
 			}
 		}
 
+		/**
+		 * Filters the final list of breadcrumb items before they are rendered.
+		 *
+		 * @since 1.7.27
+		 *
+		 * @param array[] $items {
+		 *     Breadcrumb items, in order from the home link to the current page.
+		 *
+		 *     @type string $name Item label.
+		 *     @type string $url  Item URL.
+		 * }
+		 */
 		return apply_filters('blocksy:breadcrumbs:items-array', $items);
 	}
 
@@ -705,11 +726,16 @@ class BreadcrumbsBuilder {
 			$class .= ' ' . $args['class'];
 		}
 
-		$style = '';
+		$wrapper_attr = [
+			'class' => $class,
+			'data-source' => $source
+		];
 
 		if (! empty($args['style'])) {
-			$style .= 'style="' . $args['style'] . '"';
+			$wrapper_attr['style'] = $args['style'];
 		}
+
+		$wrapper_attr = blocksy_attr_to_html($wrapper_attr);
 
 		if (
 			function_exists('rank_math_the_breadcrumbs')
@@ -721,7 +747,7 @@ class BreadcrumbsBuilder {
 			$content = ob_get_clean();
 
 			if (! empty($content)) {
-				return '<div class="' . $class . '" data-source="' . $source . '" ' . $style . '>' . $content . '</div>';
+				return '<div ' . $wrapper_attr . '>' . $content . '</div>';
 			}
 		}
 
@@ -731,7 +757,7 @@ class BreadcrumbsBuilder {
 			$source === 'yoast'
 		) {
 			ob_start();
-			yoast_breadcrumb('<div class="' . $class . '" data-source="' . $source . '" ' . $style . '>', '</div>');
+			yoast_breadcrumb('<div ' . $wrapper_attr . '>', '</div>');
 			$content = ob_get_clean();
 
 			if (! empty($content)) {
@@ -745,7 +771,7 @@ class BreadcrumbsBuilder {
 			$source === 'seopress'
 		) {
 			ob_start();
-			echo '<div class="' . $class . '" data-source="' . $source . '" ' . $style . '>';
+			echo '<div ' . $wrapper_attr . '>';
 			seopress_display_breadcrumbs();
 			echo '</div>';
 			return ob_get_clean();
@@ -757,7 +783,7 @@ class BreadcrumbsBuilder {
 			$source === 'bcnxt'
 		) {
 			ob_start();
-			echo '<div class="' . $class . '" data-source="' . $source . '" ' . $style . '>';
+			echo '<div ' . $wrapper_attr . '>';
 			bcn_display();
 			echo '</div>';
 			return ob_get_clean();
@@ -769,7 +795,7 @@ class BreadcrumbsBuilder {
 			$source === 'slimseo'
 		) {
 			ob_start();
-			echo '<div class="' . $class . '" data-source="' . $source . '" ' . $style . '>';
+			echo '<div ' . $wrapper_attr . '>';
 			echo do_shortcode('[slim_seo_breadcrumbs]');
 			echo '</div>';
 			return ob_get_clean();
@@ -821,7 +847,7 @@ class BreadcrumbsBuilder {
 
 		?>
 
-			<nav class="<?php echo $class ?>" data-source="<?php echo $source; ?>" <?php echo $style; ?> <?php echo blocksy_schema_org_definitions('breadcrumb_list') ?>><?php
+			<nav <?php echo $wrapper_attr; ?> <?php echo blocksy_schema_org_definitions('breadcrumb_list') ?>><?php
 
 				for ($i = 0; $i < count($items); $i++) {
 					if ($i === (count($items) - 1)) {

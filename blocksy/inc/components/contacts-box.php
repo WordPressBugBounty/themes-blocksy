@@ -113,13 +113,33 @@ if (! function_exists('blocksy_get_contacts_output')) {
 					<?php
 						$link = do_shortcode(blocksy_akg('link', $single_layer, ''));
 
-						$content = do_shortcode(blocksy_akg('content', $single_layer, ''));
+						$title = do_shortcode(
+							blocksy_sanitize_html_for_display([
+								'html' => blocksy_akg('title', $single_layer, ''),
+								'context' => 'block',
+							])
+						);
+
+						$content = do_shortcode(
+							blocksy_sanitize_html_for_display([
+								'html' => blocksy_akg('content', $single_layer, ''),
+								'context' => 'block',
+							])
+						);
 
 						if (
 							function_exists('blocksy_safe_antispambot')
 							&&
 							strpos($link, 'mailto:') !== false
 						) {
+							/**
+							 * Filters the obfuscated content of a contact entry whose link is a mailto: address.
+							 *
+							 * @since 2.0.1 Moved from Blocksy Companion, where it was introduced in 1.8.68.
+							 *
+							 * @param string $obfuscated The content with its email address encoded by blocksy_safe_antispambot().
+							 * @param string $content    The original, sanitized content.
+							 */
 							$content = apply_filters(
 								'blocksy:frontend:contact:email:obfuscated-content',
 								blocksy_safe_antispambot($content),
@@ -195,15 +215,11 @@ if (! function_exists('blocksy_get_contacts_output')) {
 						echo $icon;
 					?>
 
-					<?php if (
-						! empty(blocksy_akg('title', $single_layer, ''))
-						||
-						! empty($content)
-					) { ?>
+					<?php if (! empty($title) || ! empty($content)) { ?>
 						<div class="contact-info">
-							<?php if (! empty(blocksy_akg('title', $single_layer, ''))) { ?>
+							<?php if (! empty($title)) { ?>
 								<span class="contact-title">
-									<?php echo do_shortcode(blocksy_akg('title', $single_layer, '')) ?>
+									<?php echo $title ?>
 								</span>
 							<?php } ?>
 

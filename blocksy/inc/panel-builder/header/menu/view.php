@@ -53,7 +53,7 @@ if ($menu_type === 'type-2') {
 $dropdown_animation = blocksy_default_akg('dropdown_animation', $atts, 'type-1');
 $dropdown_items_type = blocksy_default_akg('dropdown_items_type', $atts, 'simple');
 
-$dropdown_output = 'data-dropdown="' . $dropdown_animation . ':' . $dropdown_items_type . '"';
+$dropdown_output = 'data-dropdown="' . esc_attr($dropdown_animation . ':' . $dropdown_items_type) . '"';
 
 $menu = blocksy_default_akg('menu', $atts, 'blocksy_location');
 if (! wp_get_nav_menu_object($menu) && $menu !== 'blocksy_location') {
@@ -111,6 +111,13 @@ $menu_content = ob_get_clean();
 if (
 	strpos($menu_content, 'ubermenu') !== false
 	||
+	/**
+	 * Filters whether the header menu collapses items that do not fit into a "More" dropdown.
+	 *
+	 * @since 1.7.43
+	 *
+	 * @param bool $has_responsive Whether non-fitting items collapse. Default from the 'collapse_non_fitting_menu_items' option.
+	 */
 	! apply_filters(
 		'blocksy:header:menu:has-responsive-desktop-menu',
 		blocksy_default_akg(

@@ -25,6 +25,8 @@ class Blocksy_Manager {
 
 	public $archive = null;
 
+	public $lazy_loading = null;
+
 	private $hooks = null;
 
 	private $current_template = null;
@@ -54,6 +56,8 @@ class Blocksy_Manager {
 
 	private function early_init() {
 		$this->register_autoloader();
+
+		$this->lazy_loading = new \Blocksy\LazyLoading();
 
 		$this->companion = new \Blocksy\CompanionBridge();
 
@@ -231,6 +235,13 @@ class Blocksy_Manager {
 			true
 		);
 
+		/**
+		 * Filters the data localized for the theme frontend script.
+		 *
+		 * @since 1.7.24
+		 *
+		 * @param array $data The localized script data.
+		 */
 		$data = apply_filters('blocksy:general:ct-scripts-localizations', [
 			'ajax_url' => admin_url('admin-ajax.php'),
 			'public_url' => blocksy_cdn_url(
@@ -373,10 +384,22 @@ class Blocksy_Manager {
 			wp_enqueue_script('comment-reply');
 		}
 
+		/**
+		 * Fires after the theme frontend scripts are enqueued.
+		 *
+		 * @since 2.1.23
+		 */
 		do_action('blocksy:frontend:scripts-enqueued');
 	}
 
 	public function get_dynamic_js_chunks() {
+		/**
+		 * Filters the dynamic JavaScript chunks registered by the theme.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param array $all_chunks The dynamic JavaScript chunks.
+		 */
 		$all_chunks = apply_filters(
 			'blocksy:frontend:dynamic-js-chunks',
 			[]
@@ -439,6 +462,14 @@ class Blocksy_Manager {
 			'areas' => []
 		]);
 
+		/**
+		 * Filters the global actions available for a Customizer prefix.
+		 *
+		 * @since 2.0.1
+		 *
+		 * @param array $actions The global prefix actions.
+		 * @param array $args    The prefix action arguments.
+		 */
 		return apply_filters(
 			'blocksy:options:prefix-global-actions',
 			[],
@@ -453,6 +484,13 @@ class Blocksy_Manager {
 			$shop_cards_type = 'type-1';
 		}
 
+		/**
+		 * Filters the Customizer conditions overrides.
+		 *
+		 * @since 2.0.4
+		 *
+		 * @param array $overrides The conditions overrides.
+		 */
 		return apply_filters(
 			'blocksy:options:conditions:overrides',
 			[

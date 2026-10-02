@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import { BLOCKS_CART_SELECTOR } from './blocks-cart-events'
 
 if ($) {
 	// https://woocommerce.com/document/composite-products/composite-products-js-api-reference/#using-the-api
@@ -24,6 +25,10 @@ if ($) {
 
 		$(window).on(event, () => ctEvents.trigger('blocksy:frontend:init'))
 	})
+
+	if (document.querySelector(BLOCKS_CART_SELECTOR)) {
+		import('./cart-sync').then(({ mount }) => mount())
+	}
 
 	$('.wc-product-table').on('draw.wcpt', () => {
 		ctEvents.trigger('blocksy:frontend:init')

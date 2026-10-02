@@ -76,18 +76,46 @@ class Blocksy_Header_Builder_Elements {
 		}
 
 		ob_start();
+		/**
+		 * Fires at the top of the desktop off-canvas panel content.
+		 *
+		 * Output is captured and placed before the desktop off-canvas items.
+		 *
+		 * @since 1.7.56
+		 */
 		do_action('blocksy:header:offcanvas:desktop:top');
 		$desktop_content = ob_get_clean() . $desktop_content;
 
 		ob_start();
+		/**
+		 * Fires at the bottom of the desktop off-canvas panel content.
+		 *
+		 * Output is captured and placed after the desktop off-canvas items.
+		 *
+		 * @since 1.7.56
+		 */
 		do_action('blocksy:header:offcanvas:desktop:bottom');
 		$desktop_content = $desktop_content . ob_get_clean();
 
 		ob_start();
+		/**
+		 * Fires at the top of the mobile off-canvas panel content.
+		 *
+		 * Output is captured and placed before the mobile off-canvas items.
+		 *
+		 * @since 1.7.56
+		 */
 		do_action('blocksy:header:offcanvas:mobile:top');
 		$mobile_content = ob_get_clean() . $mobile_content;
 
 		ob_start();
+		/**
+		 * Fires at the bottom of the mobile off-canvas panel content.
+		 *
+		 * Output is captured and placed after the mobile off-canvas items.
+		 *
+		 * @since 1.7.56
+		 */
 		do_action('blocksy:header:offcanvas:mobile:bottom');
 		$mobile_content = $mobile_content . ob_get_clean();
 
@@ -121,6 +149,13 @@ class Blocksy_Header_Builder_Elements {
 
 		$close_type = blocksy_akg('menu_close_button_type', $atts, 'type-1');
 
+		/**
+		 * Filters the close icon markup of the header off-canvas panel.
+		 *
+		 * @since 1.8.45
+		 *
+		 * @param string $icon Close icon SVG markup.
+		 */
 		$main_offcanvas_close_icon = apply_filters(
 			'blocksy:main:offcanvas:close:icon',
 			'<svg class="ct-icon" width="12" height="12" viewBox="0 0 15 15"><path d="M1 15a1 1 0 01-.71-.29 1 1 0 010-1.41l5.8-5.8-5.8-5.8A1 1 0 011.7.29l5.8 5.8 5.8-5.8a1 1 0 011.41 1.41l-5.8 5.8 5.8 5.8a1 1 0 01-1.41 1.41l-5.8-5.8-5.8 5.8A1 1 0 011 15z"/></svg>'
@@ -133,12 +168,14 @@ class Blocksy_Header_Builder_Elements {
 		$has_offcanvas_heading = blocksy_akg('has_offcanvas_heading', $atts, 'no');
 
 		if ($has_offcanvas_heading === 'yes') {
-			$heading = '<span class="ct-panel-heading">' . blocksy_akg('offcanvas_heading', $atts, __( 'Menu', 'blocksy' )) . '</span>';
+			$heading = '<span class="ct-panel-heading">' . blocksy_sanitize_html_for_display([
+				'html' => blocksy_akg('offcanvas_heading', $atts, __( 'Menu', 'blocksy' ))
+			]) . '</span>';
 		}
 
 		if ($has_offcanvas_close_trigger === 'yes') {
 			$close_trigger = '
-				<button class="ct-toggle-close" data-type="' . $close_type . '" aria-label="'. __('Close drawer', 'blocksy') . '">
+				<button class="ct-toggle-close" data-type="' . esc_attr($close_type) . '" aria-label="'. __('Close drawer', 'blocksy') . '">
 					'. $main_offcanvas_close_icon . '
 				</button>
 			';
@@ -223,6 +260,13 @@ class Blocksy_Header_Builder_Elements {
 
 		$post_type = blocksy_get_search_post_type($search_through);
 
+		/**
+		 * Filters the close icon markup of the header search modal.
+		 *
+		 * @since 1.8.45
+		 *
+		 * @param string $icon Close icon SVG markup.
+		 */
 		$search_modal_close_icon = apply_filters(
 			'blocksy:search:modal:close:icon',
 			'<svg class="ct-icon" width="12" height="12" viewBox="0 0 15 15"><path d="M1 15a1 1 0 01-.71-.29 1 1 0 010-1.41l5.8-5.8-5.8-5.8A1 1 0 011.7.29l5.8 5.8 5.8-5.8a1 1 0 011.41 1.41l-5.8 5.8 5.8 5.8a1 1 0 01-1.41 1.41l-5.8-5.8-5.8 5.8A1 1 0 011 15z"/></svg>'
@@ -263,7 +307,7 @@ class Blocksy_Header_Builder_Elements {
 
 		<div id="search-modal" class="ct-panel" data-behaviour="modal" role="dialog" aria-label="<?php echo __('Search modal', 'blocksy') ?>" inert>
 			<div class="ct-panel-actions">
-				<button class="ct-toggle-close" data-type="<?php echo $search_close_button_type ?>" aria-label="<?php echo __('Close search modal', 'blocksy') ?>">
+				<button class="ct-toggle-close" data-type="<?php echo esc_attr($search_close_button_type) ?>" aria-label="<?php echo __('Close search modal', 'blocksy') ?>">
 					<?php echo $search_modal_close_icon ?>
 				</button>
 			</div>

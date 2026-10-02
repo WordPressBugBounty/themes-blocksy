@@ -82,12 +82,14 @@ if ($custom_logo_id) {
 		if ($svg !== null) {
 			$parser = new Blocksy_Attributes_Parser();
 
-			unset($custom_logo_attr['loading']);
-			$custom_logo_attr['aria-label'] = $custom_logo_attr['alt'];
-			$custom_logo_attr['role'] = 'img';
-			unset($custom_logo_attr['alt']);
+			$svg_logo_attr = $custom_logo_attr;
 
-			foreach ($custom_logo_attr as $svg_attr => $svg_attr_value) {
+			unset($svg_logo_attr['loading'], $svg_logo_attr['fetchpriority']);
+			$svg_logo_attr['aria-label'] = $svg_logo_attr['alt'];
+			$svg_logo_attr['role'] = 'img';
+			unset($svg_logo_attr['alt']);
+
+			foreach ($svg_logo_attr as $svg_attr => $svg_attr_value) {
 				$svg = $parser->add_attribute_to_images_with_tag(
 					$svg,
 					$svg_attr,
@@ -119,7 +121,14 @@ if ($custom_logo_id) {
 			if ($svg !== null) {
 				$parser = new Blocksy_Attributes_Parser();
 
-				foreach ($custom_logo_attr as $svg_attr => $svg_attr_value) {
+				$svg_logo_attr = $custom_logo_attr;
+
+				unset($svg_logo_attr['loading'], $svg_logo_attr['fetchpriority']);
+				$svg_logo_attr['aria-label'] = $svg_logo_attr['alt'];
+				$svg_logo_attr['role'] = 'img';
+				unset($svg_logo_attr['alt']);
+
+				foreach ($svg_logo_attr as $svg_attr => $svg_attr_value) {
 					$svg = $parser->add_attribute_to_images_with_tag(
 						$svg,
 						$svg_attr,

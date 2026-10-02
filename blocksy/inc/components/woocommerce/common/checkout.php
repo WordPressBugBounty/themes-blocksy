@@ -180,6 +180,39 @@ class WooCommerceCheckout {
 			1,
 			4
 		);
+
+		// Empty cart on classic checkout: reload instead of WC's "session
+		// expired" notice, so WC redirects to the cart page. Mirrors
+		// WC_AJAX::update_order_review(). See #5649.
+		add_action(
+			'wc_ajax_update_order_review',
+			function () {
+				check_ajax_referer('update-order-review', 'security');
+
+				if (
+					! WC()->cart
+					||
+					! WC()->cart->is_empty()
+					||
+					is_customize_preview()
+				) {
+					return;
+				}
+
+				// Empty-cart checkout allowed by the site.
+				if (! apply_filters('woocommerce_checkout_update_order_review_expired', true)) {
+					return;
+				}
+
+				// No redirect after reload means an infinite reload loop.
+				if (! apply_filters('woocommerce_checkout_redirect_empty_cart', true)) {
+					return;
+				}
+
+				wp_send_json(['reload' => true]);
+			},
+			5
+		);
 	}
 
 	public function has_custom_checkout() {
@@ -199,6 +232,16 @@ class WooCommerceCheckout {
 			$has_custom_checkout = false;
 		}
 
+		/**
+		 * Filters whether Blocksy's custom checkout markup is applied.
+		 *
+		 * Return false to keep WooCommerce's default checkout layout, e.g.
+		 * when a checkout builder plugin renders the checkout.
+		 *
+		 * @since 1.8.79
+		 *
+		 * @param bool $has_custom_checkout Whether the custom checkout markup is used.
+		 */
 		$has_custom_checkout = apply_filters(
 			'blocksy:woocommerce:checkout:has-custom-markup',
 			$has_custom_checkout

@@ -53,6 +53,27 @@ function blocksy_get_product_gallery_thumbs() {
 		: 'bottom';
 }
 
+function blocksy_get_product_gallery_columns() {
+	/**
+	 * Filters the number of gallery columns visible at once on the single
+	 * product page.
+	 *
+	 * @since 2.0.79
+	 *
+	 * @param array $columns Columns per device (desktop, tablet, mobile). Default 1 for each device.
+	 */
+	$columns = apply_filters(
+		'blocksy:woocommerce:single-product:gallery:columns',
+		[
+			'desktop' => 1,
+			'tablet' => 1,
+			'mobile' => 1
+		]
+	);
+
+	return blocksy_expand_responsive_value($columns);
+}
+
 add_action('init', function() {
 	blocksy_manager()->woocommerce->single->register_translations();
 });

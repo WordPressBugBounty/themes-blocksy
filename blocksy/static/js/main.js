@@ -111,7 +111,16 @@ let allFrontendEntryPoints = [
 			return popperEls
 		},
 		load: () => import('./frontend/popper-elements'),
-		trigger: ['hover-with-click']
+		trigger: [
+			{
+				id: 'hover-with-click',
+				preventTouchNavigation: true,
+				ignoredEls: [
+					'#offcanvas',
+					'.ct-header-cart:has(> .ct-cart-content[data-count="0"])'
+				]
+			}
+		]
 	},
 
 	{

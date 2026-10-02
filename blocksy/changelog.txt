@@ -1,3 +1,24 @@
+2.1.58: 2026-10-01
+- Improvement: Advanced Posts block - correctly autoplay carousel slides on RTL websites
+- Improvement: Breadcrumbs - properly sanitize custom CSS classes and color values in the Breadcrumbs block
+- Improvement: Cart header element - prevent unwanted cart page redirects when opening the dropdown on touch devices
+- Improvement: Contact Info - properly sanitize entry title and content in the block and Header/Footer builder items
+- Improvement: Correctly reset option values on the first click after editing an input
+- Improvement: Customizer - prevent extra spacing above Elementor page content in the live preview
+- Improvement: Header Builder - properly escape custom element labels and text in the header and Account element
+- Improvement: Header Cart element - correctly update after adding products from the Product Collection block
+- Improvement: Header and footer builder - properly sanitize HTML and Copyright element content saved by users without the `unfiltered_html` capability
+- Improvement: Header/Footer builder - normalize copyright and cloned HTML fields on save and render
+- Improvement: Search - correctly display custom placeholders and category filter labels that contain quotes or special characters
+- Improvement: Smarter theme image loading across the site with native WordPress optimization
+- Improvement: Sticky sidebar - prevent header styles from applying unwanted transitions
+- Improvement: Variation Swatches - add a filter to lower the inline variations threshold on product cards separately from the single product page
+- Improvement: WooCommerce - correctly display selected variation attributes in cart, mini-cart, and checkout item names with WooCommerce 11.2
+- Improvement: WooCommerce Cart and Checkout blocks - keep the header Cart element in sync without reloading the page
+- Improvement: WooCommerce checkout - correctly redirect to the cart page when the cart becomes empty
+- Improvement: WooCommerce product CSV import - properly sanitize the Blocksy Variation Images column before saving
+- Fix: Logo elements - correctly display SVG logos with embedded images when the “Inline SVG File” option is enabled
+
 2.1.57: 2026-09-10
 - Improvement: Dynamic Data block - improve "Cover" sizing and image editor previews
 - Improvement: Header - improve inline SVG logo handling

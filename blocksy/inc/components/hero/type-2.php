@@ -74,6 +74,13 @@ if ($page_title_bg_type === 'custom_image') {
 	}
 }
 
+/**
+ * Filters the attachment ID used as the type 2 hero background image.
+ *
+ * @since 1.8.78
+ *
+ * @param int|null $attachment_id Background image attachment ID.
+ */
 $attachment_id = apply_filters(
 	'blocksy:hero:type-2:image:attachment_id',
 	$attachment_id
@@ -127,6 +134,13 @@ if ($hero_structure === 'narrow') {
 	$container_class = 'ct-container-narrow';
 }
 
+/**
+ * Filters the HTML attributes of the type 2 hero wrapper.
+ *
+ * @since 1.8.6
+ *
+ * @param array $attr Wrapper HTML attributes.
+ */
 $attr = apply_filters('blocksy:hero:wrapper-attr', $attr);
 
 if ($prefix === 'courses_single' && function_exists('tutor')) {
@@ -144,6 +158,13 @@ if ($prefix === 'courses_single' && function_exists('tutor')) {
 		<figure>
 			<?php
 				echo blocksy_media(
+					/**
+					 * Filters the page title image arguments.
+					 *
+					 * @since 1.8.15
+					 *
+					 * @param array $image_args Arguments passed to blocksy_media().
+					 */
 					apply_filters('blocksy:hero:type-2:image-args', [
 						'attachment_id' => $attachment_id,
 						// 'size' => 'full',
@@ -152,11 +173,7 @@ if ($prefix === 'courses_single' && function_exists('tutor')) {
 							blocksy_get_page_title_source(),
 							'full'
 						),
-						'aspect_ratio' => false,
-						'lazyload' => blocksy_get_theme_mod(
-							'has_lazy_load_page_title_image',
-							'yes'
-						) === 'yes'
+						'aspect_ratio' => false
 					])
 				);
 			?>

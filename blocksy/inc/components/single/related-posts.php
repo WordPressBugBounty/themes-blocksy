@@ -1,5 +1,23 @@
 <?php
 
+function blocksy_related_posts_card_top() {
+	/**
+	 * Fires at the top of a related posts card, before its content.
+	 *
+	 * @since 1.8.29
+	 */
+	do_action('blocksy:single:related_posts:card:top');
+}
+
+function blocksy_related_posts_card_bottom() {
+	/**
+	 * Fires at the bottom of a related posts card, after its content.
+	 *
+	 * @since 1.8.29
+	 */
+	do_action('blocksy:single:related_posts:card:bottom');
+}
+
 if (! function_exists('blocksy_render_related_card')) {
 	function blocksy_render_related_card($args = []) {
 		$args = wp_parse_args(
@@ -12,11 +30,7 @@ if (! function_exists('blocksy_render_related_card')) {
 			]
 		);
 
-		$card_render = apply_filters(
-			'blocksy:posts-listing:cards:custom-output',
-			null,
-			$args['prefix']
-		);
+		$card_render = blocksy_get_posts_listing_card_custom_output($args['prefix']);
 
 		$related_item_attr = [
 			'id' => 'post-' . get_the_ID(),
@@ -34,46 +48,67 @@ if (! function_exists('blocksy_render_related_card')) {
 
 		if ($card_render) {
 			echo $entry_open;
-			do_action('blocksy:single:related_posts:card:top');
+			blocksy_related_posts_card_top();
 			echo $card_render['output'];
-			do_action('blocksy:single:related_posts:card:bottom');
+			blocksy_related_posts_card_bottom();
 			echo $entry_close;
 
 			return;
 		}
 
+		/**
+		 * Filters the default related posts card layers, used when no order is saved.
+		 *
+		 * @since 2.0.76
+		 *
+		 * @param array  $default_related_order Default related posts card layers.
+		 * @param string $prefix                Current screen prefix.
+		 */
+		$default_related_order = apply_filters(
+			'blocksy:posts-listing:related-order:default',
+			[
+				[
+					'id' => 'featured_image',
+					'enabled' => true,
+				],
+
+				[
+					'id' => 'title',
+					'enabled' => true,
+				],
+
+				[
+					'id' => 'post_meta',
+					'enabled' => true,
+					'meta_elements' => blocksy_post_meta_defaults([
+						[
+							'id' => 'post_date',
+							'enabled' => true,
+						],
+
+						[
+							'id' => 'comments',
+							'enabled' => true,
+						],
+					]),
+					'__id' => 'meta_1'
+				],
+			],
+			$args['prefix']
+		);
+
+		/**
+		 * Filters the related posts card layers, after the saved order is resolved.
+		 *
+		 * @since 2.0.76
+		 *
+		 * @param array $related_order Related posts card layers.
+		 */
 		$related_order = apply_filters(
 			'blocksy:posts-listing:related-order',
 			blocksy_get_theme_mod(
 				$args['prefix'] . '_related_order',
-				apply_filters('blocksy:posts-listing:related-order:default', [
-					[
-						'id' => 'featured_image',
-						'enabled' => true,
-					],
-
-					[
-						'id' => 'title',
-						'enabled' => true,
-					],
-
-					[
-						'id' => 'post_meta',
-						'enabled' => true,
-						'meta_elements' => blocksy_post_meta_defaults([
-							[
-								'id' => 'post_date',
-								'enabled' => true,
-							],
-
-							[
-								'id' => 'comments',
-								'enabled' => true,
-							],
-						]),
-						'__id' => 'meta_1'
-					],
-				], $args['prefix'])
+				$default_related_order
 			)
 		);
 
@@ -129,12 +164,21 @@ if (! function_exists('blocksy_render_related_card')) {
 		$featured_image_size = blocksy_default_akg('image_size', $featured_image_settings, 'medium_large');
 		$featured_image_has_link = blocksy_default_akg('has_link', $featured_image_settings, 'yes') === 'yes';
 
+		/**
+		 * Filters the attachment ID used for the featured image layer of a related posts card.
+		 *
+		 * @since 2.0.76
+		 *
+		 * @param int $attachment_id Attachment ID. Default the post thumbnail ID.
+		 */
+		$featured_image_attachment_id = apply_filters(
+			'blocksy:related:render-card-layers:featured_image:attachment_id',
+			get_post_thumbnail_id()
+		);
+
 		$featured_image_args = [
 			'class' => trim($image_hover_effect !== 'none' ? 'has-hover-effect' : ''),
-			'attachment_id' => apply_filters(
-				'blocksy:related:render-card-layers:featured_image:attachment_id',
-				get_post_thumbnail_id()
-			),
+			'attachment_id' => $featured_image_attachment_id,
 			'post_id' => get_the_ID(),
 			'ratio' => blocksy_default_akg('thumb_ratio', $featured_image_settings, '16/9'),
 			'tag_name' => $featured_image_has_link ? 'a' : 'figure',
@@ -143,10 +187,6 @@ if (! function_exists('blocksy_render_related_card')) {
 				'href' => esc_url(get_permalink()),
 				'aria-label' => wp_strip_all_tags(get_the_title()),
 			] : [],
-			'lazyload' => blocksy_get_theme_mod(
-				'has_lazy_load_related_posts_image',
-				'yes'
-			) === 'yes',
 			'display_video' => blocksy_default_akg('has_related_video_thumbnail', $featured_image_settings, 'no') === 'yes'
 		];
 
@@ -156,7 +196,7 @@ if (! function_exists('blocksy_render_related_card')) {
 
 		echo $entry_open;
 
-		do_action('blocksy:single:related_posts:card:top');
+		blocksy_related_posts_card_top();
 
 		foreach ($related_order as $single_component) {
 			if (! $single_component['enabled']) {
@@ -222,6 +262,15 @@ if (! function_exists('blocksy_render_related_card')) {
 					$featured_image_output = blocksy_media($featured_image_args);
 				}
 
+				/**
+				 * Filters the rendered output of the related posts card layers, keyed by layer ID.
+				 *
+				 * @since 2.0.76
+				 *
+				 * @param array  $outputs             Rendered layers: `title`, `featured_image`.
+				 * @param string $prefix              Current screen prefix.
+				 * @param array  $featured_image_args Arguments used to render the featured image.
+				 */
 				$outputs = apply_filters('blocksy:related:render-card-layers', [
 					'title' => blocksy_entry_title(
 						blocksy_default_akg('heading_tag', $title_settings, 'h4'),
@@ -244,6 +293,14 @@ if (! function_exists('blocksy_render_related_card')) {
 				$output = $outputs[$single_component['id']];
 			}
 
+			/**
+			 * Filters the rendered output of a single related posts card layer.
+			 *
+			 * @since 2.0.76
+			 *
+			 * @param string $output           Rendered layer output.
+			 * @param array  $single_component Layer settings.
+			 */
 			$output = apply_filters(
 				'blocksy:related:render-card-layer',
 				$output,
@@ -261,7 +318,7 @@ if (! function_exists('blocksy_render_related_card')) {
 			echo $output;
 		}
 
-		do_action('blocksy:single:related_posts:card:bottom');
+		blocksy_related_posts_card_bottom();
 
 		echo $entry_close;
 	}

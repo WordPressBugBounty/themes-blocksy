@@ -68,23 +68,10 @@ if (! function_exists('blocksy_simple_image')) {
 			)
 		);
 
-		if (
-			wp_lazy_loading_enabled('img', 'blocksy_simple_image')
-			&&
-			false === strpos($image_content, ' loading=')
-		) {
-			if (function_exists('wp_img_tag_add_loading_optimization_attrs')) {
-				$image_content = wp_img_tag_add_loading_optimization_attrs(
-					$image_content,
-					'blocksy_simple_image'
-				);
-			} else {
-				$image_content = wp_img_tag_add_loading_attr(
-					$image_content,
-					'blocksy_simple_image'
-				);
-			}
-		}
+		$image_content = wp_img_tag_add_loading_optimization_attrs(
+			$image_content,
+			'blocksy_simple_image'
+		);
 
 		return blocksy_html_tag(
 			$args['tag_name'],

@@ -17,12 +17,28 @@ $theme = blocksy_get_wp_theme();
 $text = str_replace(
 	'{current_year}',
 	date("Y"),
+	/**
+	 * Filters the footer copyright text before the `{current_year}` and
+	 * `{site_title}` tokens are replaced.
+	 *
+	 * @since 1.8.99
+	 *
+	 * @param string $copyright_text The resolved copyright text.
+	 */
 	apply_filters(
 		'blocksy:footer:copyright:value',
 		blocksy_translate_dynamic(
 			blocksy_default_akg(
 				'copyright_text',
 				$atts,
+				/**
+				 * Filters the default footer copyright text used when no
+				 * custom copyright value is set.
+				 *
+				 * @since 1.8.65
+				 *
+				 * @param string $default The default copyright text.
+				 */
 				apply_filters(
 					'blocksy:footer:copyright:default-value',
 					__(
@@ -42,17 +58,20 @@ $text = str_replace(
 	$text
 );
 
-$text = blocksy_output_html_safely(str_replace(
-	'{theme_author}',
-	blocksy_html_tag(
-		'a',
-		[
-			'href' => $theme->get('AuthorURI')
-		],
-		$theme->get('Author')
+$text = do_shortcode(blocksy_sanitize_html_for_display([
+	'html' => str_replace(
+		'{theme_author}',
+		blocksy_html_tag(
+			'a',
+			[
+				'href' => $theme->get('AuthorURI')
+			],
+			$theme->get('Author')
+		),
+		$text
 	),
-	$text
-));
+	'context' => 'block',
+]));
 
 ?>
 

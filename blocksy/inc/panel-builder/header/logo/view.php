@@ -141,6 +141,7 @@ if ($custom_logo_id) {
 				($will_use_transparent_logo ? $logo_type_classes['transparent_state_logo'] : $logo_type_classes['default_logo'])
 			])
 		),
+		'fetchpriority' => false,
 		// 'itemprop' => 'logo'
 	];
 
@@ -164,6 +165,8 @@ if ($custom_logo_id) {
 
 	$has_custom_mobile_logo = $panel_type === 'footer' && isset($default_logo['mobile']) && isset($default_logo['desktop']) &&  $default_logo['mobile'] !== $default_logo['desktop'];
 	$footer_mobile_logo_html = '';
+
+	blocksy_lazy_zone_start();
 
 	$image_logo_html = wp_get_attachment_image(
 		$custom_logo_id,
@@ -193,12 +196,14 @@ if ($custom_logo_id) {
 		if ($svg !== null) {
 			$parser = new Blocksy_Attributes_Parser();
 
-			unset($custom_logo_attr['loading']);
-			$custom_logo_attr['aria-label'] = $custom_logo_attr['alt'];
-			$custom_logo_attr['role'] = 'img';
-			unset($custom_logo_attr['alt']);
+			$svg_logo_attr = $custom_logo_attr;
 
-			foreach ($custom_logo_attr as $svg_attr => $svg_attr_value) {
+			unset($svg_logo_attr['loading'], $svg_logo_attr['fetchpriority']);
+			$svg_logo_attr['aria-label'] = $svg_logo_attr['alt'];
+			$svg_logo_attr['role'] = 'img';
+			unset($svg_logo_attr['alt']);
+
+			foreach ($svg_logo_attr as $svg_attr => $svg_attr_value) {
 				$svg = $parser->add_attribute_to_images_with_tag(
 					$svg,
 					$svg_attr,
@@ -247,7 +252,14 @@ if ($custom_logo_id) {
 			if ($svg !== null) {
 				$parser = new Blocksy_Attributes_Parser();
 
-				foreach ($custom_logo_attr as $svg_attr => $svg_attr_value) {
+				$svg_logo_attr = $custom_logo_attr;
+
+				unset($svg_logo_attr['loading'], $svg_logo_attr['fetchpriority']);
+				$svg_logo_attr['aria-label'] = $svg_logo_attr['alt'];
+				$svg_logo_attr['role'] = 'img';
+				unset($svg_logo_attr['alt']);
+
+				foreach ($svg_logo_attr as $svg_attr => $svg_attr_value) {
 					$svg = $parser->add_attribute_to_images_with_tag(
 						$svg,
 						$svg_attr,
@@ -305,6 +317,8 @@ if ($custom_logo_id) {
 			)
 		);
 	}
+
+	blocksy_lazy_zone_end();
 
 	/**
 	 * If the alt attribute is not empty, there's no need to explicitly pass
@@ -389,18 +403,20 @@ if (
 		blocksy_default_akg('logo_position', $atts, 'top')
 	);
 
-	$logo_position = 'data-logo="' . $logo_position_v[$device] . '"';
+	$logo_position = 'data-logo="' . esc_attr($logo_position_v[$device]) . '"';
 }
 
 if ($has_site_title) {
-	$blog_name = blocksy_translate_dynamic(
-		blocksy_default_akg(
-			'blogname',
-			$atts,
-			get_bloginfo('name')
-		),
-		$panel_type . ':' . $section_id . ':logo:blogname'
-	);
+	$blog_name = blocksy_sanitize_html_for_display([
+		'html' => blocksy_translate_dynamic(
+			blocksy_default_akg(
+				'blogname',
+				$atts,
+				get_bloginfo('name')
+			),
+			$panel_type . ':' . $section_id . ':logo:blogname'
+		)
+	]);
 
 	/**
 	 * Filters the HTML tag used for the site title.
@@ -487,14 +503,16 @@ if ($has_tagline) {
 				]
 			)
 		),
-		blocksy_translate_dynamic(
-			blocksy_default_akg(
-				'blogdescription',
-				$atts,
-				get_bloginfo('description')
-			),
-			$panel_type . ':' . $section_id . ':logo:blogdescription'
-		)
+		blocksy_sanitize_html_for_display([
+			'html' => blocksy_translate_dynamic(
+				blocksy_default_akg(
+					'blogdescription',
+					$atts,
+					get_bloginfo('description')
+				),
+				$panel_type . ':' . $section_id . ':logo:blogdescription'
+			)
+		])
 	);
 }
 
@@ -502,7 +520,7 @@ if ($has_tagline) {
 ?>
 
 <<?php echo $wrapper_tag ?>
-	class="<?php echo $wrapper_class ?>"
+	class="<?php echo esc_attr($wrapper_class) ?>"
 	<?php echo blocksy_attr_to_html($attr) ?>
 	<?php echo $logo_position ?>
 	<?php echo blocksy_schema_org_definitions('logo', ['condition' => $is_desktop]) ?>>

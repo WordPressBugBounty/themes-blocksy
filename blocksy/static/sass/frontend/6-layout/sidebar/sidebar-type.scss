@@ -14,7 +14,7 @@
 	}
 
 	// sticky sidebar
-	:is(&[data-sticky='sidebar'], .ct-sticky-widgets) {
+	:is(&[data-sticky-sidebar='full'], .ct-sticky-widgets) {
 
 		@include functions.media-breakpoint-up(lg) {
 			// prettier-ignore
@@ -23,7 +23,7 @@
 		}
 	}
 
-	&[data-sticky='widgets'] {
+	&[data-sticky-sidebar='widgets'] {
 
 		@include functions.media-breakpoint-up(lg) {
 			height: 100%;

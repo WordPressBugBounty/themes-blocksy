@@ -1,5 +1,24 @@
 <?php
 
+function blocksy_get_posts_listing_card_custom_output($prefix) {
+	/**
+	 * Filters the custom output that replaces a posts listing card.
+	 *
+	 * Returning an array with `output` and `has_default_layout` keys renders
+	 * it in place of the default card layers.
+	 *
+	 * @since 1.8.24
+	 *
+	 * @param array|null $card_render Custom card render. Default null.
+	 * @param string     $prefix      Current screen prefix.
+	 */
+	return apply_filters(
+		'blocksy:posts-listing:cards:custom-output',
+		null,
+		$prefix
+	);
+}
+
 if (! function_exists('blocksy_render_archive_card')) {
 	function blocksy_render_archive_card($args = []) {
 		$args = wp_parse_args(
@@ -27,11 +46,7 @@ if (! function_exists('blocksy_render_archive_card')) {
 			$data_reveal_output = 'data-reveal="bottom:no"';
 		}
 
-		$card_render = apply_filters(
-			'blocksy:posts-listing:cards:custom-output',
-			null,
-			$args['prefix']
-		);
+		$card_render = blocksy_get_posts_listing_card_custom_output($args['prefix']);
 
 		if ($card_render) {
 			$entry_open = '<article';
@@ -51,70 +66,91 @@ if (! function_exists('blocksy_render_archive_card')) {
 			'prefix' => $args['prefix']
 		]);
 
+		/**
+		 * Filters the default archive card layers, used when no order is saved.
+		 *
+		 * @since 1.7.60
+		 *
+		 * @param array  $default_archive_order Default archive card layers.
+		 * @param string $prefix                Current screen prefix.
+		 */
+		$default_archive_order = apply_filters(
+			'blocksy:posts-listing:archive-order:default',
+			[
+				[
+					'id' => 'post_meta',
+					'enabled' => true,
+					'meta_elements' => blocksy_post_meta_defaults([
+						[
+							'id' => 'categories',
+							'enabled' => true,
+						],
+					]),
+					'__id' => 'meta_1'
+				],
+
+				[
+					'id' => 'title',
+					'enabled' => true,
+				],
+
+				[
+					'id' => 'featured_image',
+					'enabled' => true,
+				],
+
+				[
+					'id' => 'excerpt',
+					'enabled' => true,
+				],
+
+				[
+					'id' => 'read_more',
+					'enabled' => false,
+				],
+
+				[
+					'id' => 'post_meta',
+					'enabled' => true,
+					'meta_elements' => blocksy_post_meta_defaults([
+						[
+							'id' => 'author',
+							'enabled' => true,
+						],
+
+						[
+							'id' => 'post_date',
+							'enabled' => true,
+						],
+
+						[
+							'id' => 'comments',
+							'enabled' => true,
+						],
+					]),
+					'__id' => 'meta_2'
+				],
+
+				[
+					'id' => 'divider',
+					'enabled' => false
+				]
+			],
+			$args['prefix']
+		);
+
+		/**
+		 * Filters the archive card layers, after the saved order is resolved.
+		 *
+		 * @since 1.8.43
+		 *
+		 * @param array $archive_order Archive card layers.
+		 */
 		$archive_order = apply_filters(
 			'blocksy:posts-listing:archive-order',
 			blocksy_get_theme_mod(
 				$args['prefix'] . '_archive_order',
-				apply_filters('blocksy:posts-listing:archive-order:default', [
-					[
-						'id' => 'post_meta',
-						'enabled' => true,
-						'meta_elements' => blocksy_post_meta_defaults([
-							[
-								'id' => 'categories',
-								'enabled' => true,
-							],
-						]),
-						'__id' => 'meta_1'
-					],
-
-					[
-						'id' => 'title',
-						'enabled' => true,
-					],
-
-					[
-						'id' => 'featured_image',
-						'enabled' => true,
-					],
-
-					[
-						'id' => 'excerpt',
-						'enabled' => true,
-					],
-
-					[
-						'id' => 'read_more',
-						'enabled' => false,
-					],
-
-					[
-						'id' => 'post_meta',
-						'enabled' => true,
-						'meta_elements' => blocksy_post_meta_defaults([
-							[
-								'id' => 'author',
-								'enabled' => true,
-							],
-
-							[
-								'id' => 'post_date',
-								'enabled' => true,
-							],
-
-							[
-								'id' => 'comments',
-								'enabled' => true,
-							],
-						]),
-						'__id' => 'meta_2'
-					],
-
-					[
-						'id' => 'divider',
-						'enabled' => false
-					]
-				], $args['prefix'])
+				$default_archive_order
 			)
 		);
 
@@ -197,11 +233,20 @@ if (! function_exists('blocksy_render_archive_card')) {
 
 		$has_link = blocksy_default_akg('has_link', $featured_image_settings, 'yes') === 'yes';
 
+		/**
+		 * Filters the attachment ID used for the featured image layer of an archive card.
+		 *
+		 * @since 1.8.7
+		 *
+		 * @param int $attachment_id Attachment ID. Default the post thumbnail ID.
+		 */
+		$featured_image_attachment_id = apply_filters(
+			'blocksy:archive:render-card-layers:featured_image:attachment_id',
+			get_post_thumbnail_id()
+		);
+
 		$featured_image_args = [
-			'attachment_id' => apply_filters(
-				'blocksy:archive:render-card-layers:featured_image:attachment_id',
-				get_post_thumbnail_id()
-			),
+			'attachment_id' => $featured_image_attachment_id,
 			'post_id' => get_the_ID(),
 			'ratio' => blocksy_default_akg('thumb_ratio', $featured_image_settings, '4/3'),
 			'tag_name' => $has_link ? 'a' : 'figure',
@@ -210,10 +255,6 @@ if (! function_exists('blocksy_render_archive_card')) {
 				'href' => esc_url(get_permalink()),
 				'aria-label' => wp_strip_all_tags(get_the_title()),
 			] : [],
-			'lazyload' => blocksy_get_theme_mod(
-				'has_lazy_load_archives_image',
-				'yes'
-			) === 'yes',
 			'display_video' => blocksy_default_akg('has_archive_video_thumbnail', $featured_image_settings, 'no') === 'yes'
 		];
 
@@ -309,10 +350,20 @@ if (! function_exists('blocksy_render_archive_card')) {
 		$entry_open .= ' ' . wp_kses_post($data_reveal_output);
 		$entry_open .= '>';
 
+		/**
+		 * Fires before an archive card is opened.
+		 *
+		 * @since 2.1.5
+		 */
 		do_action('blocksy:loop:card:before');
 
 		echo $entry_open;
 
+		/**
+		 * Fires at the start of an archive card, before its layers.
+		 *
+		 * @since 1.8.0
+		 */
 		do_action('blocksy:loop:card:start');
 
 		$had_a_meta = false;
@@ -455,6 +506,15 @@ if (! function_exists('blocksy_render_archive_card')) {
 					$featured_image_output = blocksy_media($featured_image_args);
 				}
 
+				/**
+				 * Filters the rendered output of the archive card layers, keyed by layer ID.
+				 *
+				 * @since 1.7.60
+				 *
+				 * @param array  $outputs             Rendered layers: `title`, `featured_image`, `excerpt`.
+				 * @param string $prefix              Current screen prefix.
+				 * @param array  $featured_image_args Arguments used to render the featured image.
+				 */
 				$outputs = apply_filters('blocksy:archive:render-card-layers', [
 					'title' => blocksy_entry_title(
 						blocksy_default_akg('heading_tag', $title_settings, 'h2'),
@@ -487,6 +547,14 @@ if (! function_exists('blocksy_render_archive_card')) {
 				$output = $outputs[$single_component['id']];
 			}
 
+			/**
+			 * Filters the rendered output of a single archive card layer.
+			 *
+			 * @since 1.8.4
+			 *
+			 * @param string $output           Rendered layer output.
+			 * @param array  $single_component Layer settings.
+			 */
 			$output = apply_filters(
 				'blocksy:archive:render-card-layer',
 				$output,
@@ -536,10 +604,20 @@ if (! function_exists('blocksy_render_archive_card')) {
 			}
 		}
 
+		/**
+		 * Fires at the end of an archive card, after its layers.
+		 *
+		 * @since 1.8.0
+		 */
 		do_action('blocksy:loop:card:end');
 
 		echo '</article>';
 
+		/**
+		 * Fires after an archive card is closed.
+		 *
+		 * @since 2.1.5
+		 */
 		do_action('blocksy:loop:card:after');
 	}
 }

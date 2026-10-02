@@ -42,12 +42,12 @@ watchOptionsWithPrefix({
 			document.querySelector('.ct-sidebar').dataset.widgets = 'separated'
 		}
 
-		sidebar.removeAttribute('data-sticky')
+		sidebar.removeAttribute('data-sticky-sidebar')
 
 		if (getOptionFor('has_sticky_sidebar') === 'yes') {
-			sidebar.dataset.sticky =
+			sidebar.dataset.stickySidebar =
 				getOptionFor('sidebar_stick_behavior') === 'sidebar'
-					? 'sidebar'
+					? 'full'
 					: 'widgets'
 		}
 

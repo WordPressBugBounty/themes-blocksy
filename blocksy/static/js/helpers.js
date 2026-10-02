@@ -393,6 +393,24 @@ const loadSingleEntryPoint = ({
 				}
 
 				el.addEventListener('focus', l, { once: true })
+
+				// Keep preventing touch taps after the first one, so that a
+				// link reference never navigates away on touch.
+				if (triggerDescriptor.preventTouchNavigation) {
+					let isTouchTap = false
+
+					el.addEventListener('pointerdown', (event) => {
+						isTouchTap = event.pointerType === 'touch'
+					})
+
+					el.addEventListener('click', (event) => {
+						if (isTouchTap && event.detail > 0 && !isIgnored(event)) {
+							event.preventDefault()
+						}
+
+						isTouchTap = false
+					})
+				}
 			})
 		}
 

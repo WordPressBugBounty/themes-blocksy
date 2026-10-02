@@ -39,11 +39,12 @@ export default class MultiImageUploader extends Component {
 			'blocksy.options.ct-multi-image-uploader.actions',
 			[
 				({ props, attachment: { attachment_id } }) => (
-					<button
-						title="Remove"
-						type="button"
-						className="button remove-button"
+					<a
+						href="#"
+						title={__('Remove', 'blocksy')}
+						className="delete"
 						onClick={(e) => {
+							e.preventDefault()
 							e.stopPropagation()
 
 							props.onChange(
@@ -51,7 +52,7 @@ export default class MultiImageUploader extends Component {
 									(a) => a.attachment_id !== attachment_id
 								)
 							)
-						}}></button>
+						}}></a>
 				),
 			]
 		)

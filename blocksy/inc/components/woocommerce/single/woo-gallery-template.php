@@ -92,10 +92,6 @@ $single_thumbs_ratio = blocksy_get_theme_mod(
 	'product_gallery_thumbs_ratio',
 	'1/1'
 );
-$has_lazy_load_single_product_image = blocksy_get_theme_mod(
-	'has_lazy_load_single_product_image',
-	'yes'
-) === 'yes';
 
 /**
  * Filters the HTML attributes of the product gallery wrapper element.
@@ -291,19 +287,13 @@ if (! $maybe_custom_content && count($gallery_images) === 1) {
 					'data-width' => $width,
 					'data-height' => $height
 				] : []),
-				'display_video' => true,
-				'lazyload' => $has_lazy_load_single_product_image
+				'display_video' => true
 			]
 		)
 	);
 }
 
 if (! $maybe_custom_content && count($gallery_images) > 1) {
-	$has_lazy_load_single_product_image = blocksy_get_theme_mod(
-		'has_lazy_load_single_product_image',
-		'yes'
-	) === 'yes';
-
 	/**
 	 * Filters the arguments passed to the Blocksy flexy slider for the single
 	 * product gallery.
@@ -321,9 +311,22 @@ if (! $maybe_custom_content && count($gallery_images) > 1) {
 			'pills_images' => $is_single ? $gallery_images : null,
 			'pills_images_ratio' => $is_single ? $single_thumbs_ratio : '1/1',
 			'images_ratio' => $is_single ? $single_ratio : $default_ratio,
-			'lazyload' => $has_lazy_load_single_product_image
 		]
 	);
+
+	if (
+		empty($flexy_args['slide_image_args'])
+		&&
+		($flexy_args['enable'] ?? true)
+	) {
+		$visible_items = 1;
+
+		if (! $blocksy_is_quick_view) {
+			$visible_items = max(blocksy_get_product_gallery_columns());
+		}
+
+		$flexy_args['visible_items'] = intval($visible_items);
+	}
 
 	echo blocksy_flexy($flexy_args);
 }

@@ -22,10 +22,20 @@ add_filter(
 
 		$result = ob_get_clean();
 
+		/**
+		 * Fires before a product card is rendered in an archive loop.
+		 *
+		 * @since 2.1.5
+		 */
 		do_action('blocksy:woocommerce:product-card:before');
 
 		echo $result;
 
+		/**
+		 * Fires after a product card is rendered in an archive loop.
+		 *
+		 * @since 2.1.5
+		 */
 		do_action('blocksy:woocommerce:product-card:after');
 	},
 	1,
@@ -35,6 +45,19 @@ add_filter(
 function blocksy_template_loop_product_thumbnail($attr) {
 	global $product;
 
+	/**
+	 * Filters the descriptor used to render a product card thumbnail.
+	 *
+	 * @since 2.0.67
+	 *
+	 * @param array $descriptor {
+	 *     Thumbnail descriptor.
+	 *
+	 *     @type array      $container_attr HTML attributes for the thumbnail figure.
+	 *     @type array|null $gallery_images List of gallery attachment IDs, or null
+	 *                                     to fall back to the product gallery.
+	 * }
+	 */
 	$loop_product_thumbnail_descriptor = apply_filters(
 		'blocksy:woocommerce:product-card:thumbnail:descriptor',
 		[
@@ -49,6 +72,11 @@ function blocksy_template_loop_product_thumbnail($attr) {
 
 	echo '<figure ' . blocksy_attr_to_html($loop_product_thumbnail_descriptor['container_attr']) . '>';
 
+	/**
+	 * Fires at the start of a product card thumbnail, inside the figure element.
+	 *
+	 * @since 1.8.0
+	 */
 	do_action('blocksy:woocommerce:product-card:thumbnail:start');
 
 	$badges = [];
@@ -76,13 +104,37 @@ function blocksy_template_loop_product_thumbnail($attr) {
 
 	echo implode(
 		'',
+		/**
+		 * Filters the badge markup rendered on a product card thumbnail.
+		 *
+		 * @since 2.0.1
+		 *
+		 * @param array $badges List of badge HTML strings (e.g. sale, out of stock).
+		 */
 		apply_filters('blocksy:woocommerce:product-card:badges', $badges)
 	);
 	
+	/**
+	 * Fires before the product card thumbnail toolbar is rendered.
+	 *
+	 * @since 2.1.19
+	 */
 	do_action('blocksy:woocommerce:product-card:toolbar:before');
 	echo blocksy_output_product_toolbar();
+	/**
+	 * Fires after the product card thumbnail toolbar is rendered.
+	 *
+	 * @since 2.1.19
+	 */
 	do_action('blocksy:woocommerce:product-card:toolbar:after');
 
+	/**
+	 * Filters the gallery images used for a product card thumbnail.
+	 *
+	 * @since 2.0.1
+	 *
+	 * @param array $gallery_images List of gallery attachment IDs.
+	 */
 	$gallery_images = apply_filters(
 		'blocksy:woocommerce:product-card:thumbnail:gallery-images',
 		$loop_product_thumbnail_descriptor['gallery_images']
@@ -112,8 +164,6 @@ function blocksy_template_loop_product_thumbnail($attr) {
 		$attr,
 		'no'
 	);
-
-	$has_lazy_load_shop_card_image = blocksy_get_theme_mod('has_lazy_load_shop_card_image', 'yes');
 
 	$html_atts = [
 		'href' => apply_filters(
@@ -153,6 +203,14 @@ function blocksy_template_loop_product_thumbnail($attr) {
 		'other_images' => $maybe_other_images,
 		'size' => 'woocommerce_archive_thumbnail',
 		'include_original_image_size' => is_customize_preview(),
+		/**
+		 * Filters the aspect ratio of a product card thumbnail.
+		 *
+		 * @since 2.0.38
+		 *
+		 * @param string $ratio      The thumbnail aspect ratio (e.g. '3/4').
+		 * @param int    $product_id The product ID.
+		 */
 		'ratio' => apply_filters(
 			'blocksy:woocommerce:product-card:thumbnail:ratio',
 			blocksy_get_woocommerce_ratio([
@@ -168,7 +226,6 @@ function blocksy_template_loop_product_thumbnail($attr) {
 		'tag_name' => 'a',
 		'html_atts' => $html_atts,
 		'display_video' => $has_archive_video_thumbnail === 'yes',
-		'lazyload' => $has_lazy_load_shop_card_image === 'yes',
 		'class' => $hover_value !== 'none' ? 'has-hover-effect' : '',
 	]);
 
@@ -182,6 +239,11 @@ function blocksy_template_loop_product_thumbnail($attr) {
 		$image
 	);
 
+	/**
+	 * Fires at the end of the product card thumbnail, inside the figure element.
+	 *
+	 * @since 1.7.62
+	 */
 	do_action('blocksy:woocommerce:product-card:thumbnail:end');
 
 	echo '</figure>';
@@ -219,6 +281,38 @@ function blocksy_output_product_toolbar() {
 	}
 
 	return '';
+}
+
+function blocksy_woo_card_price($price_html) {
+	/**
+	 * Filters the price HTML rendered on a product card.
+	 *
+	 * @since 2.0.1
+	 *
+	 * @param string $price_html The rendered price markup.
+	 */
+	return apply_filters(
+		'blocksy:woocommerce:product-card:price',
+		$price_html
+	);
+}
+
+function blocksy_woo_card_actions_before() {
+	/**
+	 * Fires before the product card add-to-cart actions are rendered.
+	 *
+	 * @since 1.8.7
+	 */
+	do_action('blocksy:woocommerce:product-card:actions:before');
+}
+
+function blocksy_woo_card_actions_after() {
+	/**
+	 * Fires after the product card add-to-cart actions are rendered.
+	 *
+	 * @since 1.8.7
+	 */
+	do_action('blocksy:woocommerce:product-card:actions:after');
 }
 
 $action_to_hook = 'wp';
@@ -307,8 +401,25 @@ add_action($action_to_hook, function () {
 				}
 
 				if ($layout['id'] === 'product_title') {
+					/**
+					 * Fires before the product card title is rendered.
+					 *
+					 * @since 1.7.36
+					 */
 					do_action('blocksy:woocommerce:product-card:title:before');
 
+					/**
+					 * Filters the link attributes for the product card title.
+					 *
+					 * @since 2.0.1
+					 *
+					 * @param array $link_attrs {
+					 *     Title link attributes.
+					 *
+					 *     @type string $href   The product permalink.
+					 *     @type string $target The anchor target. Default '_self'.
+					 * }
+					 */
 					$link_attrs = apply_filters(
 						'blocksy:woocommerce:product-card:title:link',
 						[
@@ -339,6 +450,11 @@ add_action($action_to_hook, function () {
 						)
 					);
 
+					/**
+					 * Fires after the product card title is rendered.
+					 *
+					 * @since 1.7.36
+					 */
 					do_action('blocksy:woocommerce:product-card:title:after');
 
 					continue;
@@ -349,17 +465,24 @@ add_action($action_to_hook, function () {
 					&&
 					$layout['id'] === 'product_price'
 				) {
+					/**
+					 * Fires before the product card price is rendered.
+					 *
+					 * @since 1.8.0
+					 */
 					do_action('blocksy:woocommerce:product-card:price:before');
 
 					ob_start();
 					woocommerce_template_loop_price();
 					$default_price = ob_get_clean();
 
-					echo apply_filters(
-						'blocksy:woocommerce:product-card:price',
-						$default_price
-					);
+					echo blocksy_woo_card_price($default_price);
 
+					/**
+					 * Fires after the product card price is rendered.
+					 *
+					 * @since 1.8.0
+					 */
 					do_action('blocksy:woocommerce:product-card:price:after');
 					continue;
 				}
@@ -489,11 +612,11 @@ add_action($action_to_hook, function () {
 						$html_atts['data-alignment'] = 'equal';
 					}
 
-					do_action('blocksy:woocommerce:product-card:actions:before');
+					blocksy_woo_card_actions_before();
 					echo '<div class="ct-woo-card-actions" ' . blocksy_attr_to_html($html_atts) . '>';
 					woocommerce_template_loop_add_to_cart();
 					echo '</div>';
-					do_action('blocksy:woocommerce:product-card:actions:after');
+					blocksy_woo_card_actions_after();
 					continue;
 				}
 
@@ -502,25 +625,29 @@ add_action($action_to_hook, function () {
 					&&
 					$layout['id'] === 'product_add_to_cart_and_price'
 				) {
-					do_action('blocksy:woocommerce:product-card:actions:before');
+					blocksy_woo_card_actions_before();
 					echo '<div class="ct-woo-card-actions" data-add-to-cart="auto-hide">';
 
 					ob_start();
 					woocommerce_template_loop_price();
 					$default_price = ob_get_clean();
 
-					echo apply_filters(
-						'blocksy:woocommerce:product-card:price',
-						$default_price
-					);
+					echo blocksy_woo_card_price($default_price);
 
 					woocommerce_template_loop_add_to_cart();
 					echo '</div>';
-					do_action('blocksy:woocommerce:product-card:actions:after');
+					blocksy_woo_card_actions_after();
 					continue;
 				}
 
 				$blocksy_rendering_woo_card = true;
+				/**
+				 * Fires when a custom (non-core) product card layer is rendered.
+				 *
+				 * @since 2.0.1
+				 *
+				 * @param array $layout The layer definition being rendered.
+				 */
 				do_action('blocksy:woocommerce:product-card:custom:layer', $layout);
 			}
 
@@ -561,11 +688,6 @@ add_action($action_to_hook, function () {
 
 					$hover_value = blocksy_akg('product_image_hover', $layout, 'none');
 
-					$has_lazy_load_shop_card_image = blocksy_get_theme_mod(
-						'has_lazy_load_shop_card_image',
-						'yes'
-					);
-
 					echo blocksy_html_tag(
 						'figure',
 						[],
@@ -586,7 +708,6 @@ add_action($action_to_hook, function () {
 							'html_atts' => [
 								'href' => get_term_link($category, 'product_cat'),
 							],
-							'lazyload' => $has_lazy_load_shop_card_image === 'yes',
 							'class' => $hover_value !== 'none' ? 'has-hover-effect' : '',
 						])
 					);

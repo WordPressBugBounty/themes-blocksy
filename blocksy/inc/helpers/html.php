@@ -160,7 +160,7 @@ function blocksy_sanitize_html_for_display($args = []) {
 	 * @since 2.1.57
 	 *
 	 * @param array  $tags    Allowed tags in wp_kses() format. Keys must be lowercase.
-	 * @param string $context Where the HTML renders: 'block' or 'logo'.
+	 * @param string $context Where the HTML renders. Default 'block'.
 	 */
 	$allowed_tags = apply_filters(
 		'blocksy:display-html:allowed-tags',
@@ -184,22 +184,30 @@ function blocksy_get_sanitized_inline_svg($file) {
 
 	$svg = file_get_contents($file);
 
-	if (! is_string($svg)) {
+	if (! is_string($svg) || $svg === '') {
 		return null;
 	}
 
-	$svg = preg_replace(
-		'#<\?xml[^>]*\?>|<!DOCTYPE[^>\[]*(\[[^\]]*\])?[^>]*>#is',
-		'',
-		$svg
-	);
-
-	$svg = blocksy_sanitize_html_for_display([
-		'html' => $svg,
-		'context' => 'logo',
+	/**
+	 * Filters the sanitized version of SVG markup that is about to be inlined.
+	 *
+	 * Nothing is inlined unless a callback returns the markup, the caller then
+	 * renders a regular image. The callback is responsible for sanitizing it.
+	 *
+	 * @since 2.1.58
+	 *
+	 * @param string|null $sanitized Sanitized SVG markup. Default null.
+	 * @param array       $args {
+	 *     Arguments of the SVG being inlined.
+	 *
+	 *     @type string $svg Raw SVG markup.
+	 * }
+	 */
+	$svg = apply_filters('blocksy:svg:sanitize-inline', null, [
+		'svg' => $svg,
 	]);
 
-	if (stripos($svg, '<svg') === false) {
+	if (! is_string($svg) || strpos(ltrim($svg), '<svg') !== 0) {
 		return null;
 	}
 

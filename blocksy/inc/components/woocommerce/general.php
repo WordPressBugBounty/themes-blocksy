@@ -409,94 +409,87 @@ add_action(
 	4
 );
 
-function blocksy_migrate_variation_gallery($variation_id) {
-	$source_id = blocksy_translate_post_id(
-		$variation_id,
-		[
-			'use_wpml_default_language_woo' => true
-		]
-	);
+if (! function_exists('blocksy_get_product_default_variation')) {
+	/**
+	 * Retrieve the variation a variable product's default attributes resolve
+	 * to, if any.
+	 *
+	 * Public wrapper for the WooCommerce integration internals, so the
+	 * companion can consume it through the ThemeFunctions proxy instead of
+	 * reaching into blocksy_manager().
+	 *
+	 * @since 2.1.58
+	 *
+	 * @param WC_Product $product The variable product.
+	 *
+	 * @return WC_Product_Variation|null
+	 */
+	function blocksy_get_product_default_variation($product) {
+		$variation = blocksy_manager()->woocommerce->retrieve_product_default_variation(
+			$product
+		);
 
-	$values = get_post_meta($source_id, 'blocksy_post_meta_options', true);
-
-	if (! is_array($values)) {
-		return;
-	}
-
-	if (blocksy_akg('gallery_source', $values, 'default') !== 'custom') {
-		return;
-	}
-
-	if (! empty($values['gallery_migrated'])) {
-		return;
-	}
-
-	$images = array_values(array_filter(wp_parse_id_list(
-		array_column(blocksy_akg('images', $values, []), 'attachment_id')
-	)));
-
-	foreach (array_unique([$source_id, $variation_id]) as $id) {
-		if (! empty(get_post_meta($id, '_product_image_gallery', true))) {
-			continue;
+		if (! $variation) {
+			return null;
 		}
 
-		$gallery = array_diff($images, [(int) get_post_thumbnail_id($id)]);
+		return $variation;
+	}
+}
 
-		if (empty($gallery)) {
-			continue;
+add_filter(
+	'woocommerce_product_variation_get_gallery_image_ids',
+	function ($value, $variation) {
+		$variation_id = $variation->get_id();
+
+		$source_id = blocksy_translate_post_id(
+			$variation_id,
+			[
+				'use_wpml_default_language_woo' => true
+			]
+		);
+
+		$legacy = get_post_meta($source_id, 'blocksy_post_meta_options', true);
+
+		if (! is_array($legacy)) {
+			$legacy = [];
 		}
 
-		update_post_meta($id, '_product_image_gallery', implode(',', $gallery));
-	}
+		$is_unmigrated_custom = (
+			blocksy_akg('gallery_source', $legacy, 'default') === 'custom'
+			&& empty($legacy['gallery_migrated'])
+		);
 
-	$values['gallery_migrated'] = true;
-	update_post_meta($source_id, 'blocksy_post_meta_options', $values);
-}
+		if ($is_unmigrated_custom) {
+			$images = array_values(array_filter(wp_parse_id_list(
+				array_column(blocksy_akg('images', $legacy, []), 'attachment_id')
+			)));
 
-function blocksy_get_woocommerce_variation_gallery($variation) {
-	blocksy_migrate_variation_gallery($variation->get_id());
+			foreach (array_unique([$source_id, $variation_id]) as $id) {
+				if (! empty(get_post_meta($id, '_product_image_gallery', true))) {
+					continue;
+				}
 
-	$images = $variation->get_gallery_image_ids();
+				$gallery = array_diff($images, [(int) get_post_thumbnail_id($id)]);
 
-	if (empty($images)) {
-		$images = get_post_meta($variation->get_id(), '_product_image_gallery', true);
-	}
+				if (empty($gallery)) {
+					continue;
+				}
 
-	return array_values(array_filter(wp_parse_id_list($images)));
-}
+				update_post_meta($id, '_product_image_gallery', implode(',', $gallery));
+			}
 
-function blocksy_migrate_product_variation_galleries() {
-	if (! check_ajax_referer('load-variations', 'security', false)) {
-		return;
-	}
+			$legacy['gallery_migrated'] = true;
+			update_post_meta($source_id, 'blocksy_post_meta_options', $legacy);
+		}
 
-	if (! isset($_POST['product_id'])) {
-		return;
-	}
+		if (empty($value)) {
+			$value = get_post_meta($variation_id, '_product_image_gallery', true);
+		}
 
-	$product_id = absint($_POST['product_id']);
-
-	if (! $product_id || ! current_user_can('edit_post', $product_id)) {
-		return;
-	}
-
-	$variation_ids = get_posts([
-		'post_type' => 'product_variation',
-		'post_parent' => $product_id,
-		'post_status' => 'any',
-		'posts_per_page' => -1,
-		'fields' => 'ids'
-	]);
-
-	foreach ($variation_ids as $variation_id) {
-		blocksy_migrate_variation_gallery($variation_id);
-	}
-}
-
-add_action(
-	'wp_ajax_woocommerce_load_variations',
-	'blocksy_migrate_product_variation_galleries',
-	5
+		return array_values(array_filter(wp_parse_id_list($value)));
+	},
+	10, 2
 );
 
 if (! function_exists('blocksy_product_get_gallery_images')) {
@@ -531,7 +524,7 @@ if (! function_exists('blocksy_product_get_gallery_images')) {
 		if ($product->post_type === 'product_variation') {
 			$variation_main_image = $product->get_image_id();
 
-			$variation_gallery_images = blocksy_get_woocommerce_variation_gallery($product);
+			$variation_gallery_images = $product->get_gallery_image_ids();
 
 			if (empty($variation_gallery_images)) {
 				if (

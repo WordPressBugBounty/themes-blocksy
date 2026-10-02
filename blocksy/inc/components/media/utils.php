@@ -1,9 +1,5 @@
 <?php
 
-add_filter('wp_lazy_loading_enabled', function ($enabled) {
-	return blocksy_get_theme_mod('has_lazy_load', 'yes') === 'yes';
-});
-
 if (! function_exists('blocksy_get_all_wp_image_sizes')) {
 	function blocksy_get_all_wp_image_sizes() {
 		global $_wp_additional_image_sizes;

@@ -370,7 +370,7 @@ const GenericOptionType = ({
 		return OptionComponentWithoutDesign
 	}
 
-	const RevertButton = () => {
+	const renderRevertButton = () => {
 		let computeOptionValue = renderingConfig.computeOptionValue
 
 		if (!computeOptionValue) {
@@ -465,7 +465,7 @@ const GenericOptionType = ({
 				<th scope="row">
 					{maybeLabel && (
 						<label>
-							{maybeLabel} <RevertButton />
+							{maybeLabel} {renderRevertButton()}
 						</label>
 					)}
 				</th>
@@ -562,7 +562,7 @@ const GenericOptionType = ({
 					}}>
 					<header {...(!maybeLabel ? { 'data-label': 'no' } : {})}>
 						{maybeLabel && <label>{maybeLabel}</label>}
-						<RevertButton />
+						{renderRevertButton()}
 
 						<LabelToolbar
 							{...{

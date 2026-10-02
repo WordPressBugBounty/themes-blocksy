@@ -595,6 +595,7 @@ require get_template_directory() . '/inc/meta-boxes.php';
 require get_template_directory() . '/inc/components/posts-listing.php';
 
 require get_template_directory() . '/inc/components/media/utils.php';
+require get_template_directory() . '/inc/components/media/lazy-loading.php';
 require get_template_directory() . '/inc/components/media/simple.php';
 require get_template_directory() . '/inc/components/media/video.php';
 require get_template_directory() . '/inc/components/media/full.php';

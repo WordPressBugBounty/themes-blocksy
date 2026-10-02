@@ -69,25 +69,29 @@ if ($header_button_open === 'popup') {
 $link_attr = [];
 
 $text = do_shortcode(
-	blocksy_translate_dynamic(
-		blocksy_default_akg(
-			'header_button_text',
-			$atts,
-			__('Download', 'blocksy')
-		),
-		$panel_type . ':' . $section_id . ':' . $item_id . ':header_button_text'
-	)
+	blocksy_sanitize_html_for_display([
+		'html' => blocksy_translate_dynamic(
+			blocksy_default_akg(
+				'header_button_text',
+				$atts,
+				__('Download', 'blocksy')
+			),
+			$panel_type . ':' . $section_id . ':' . $item_id . ':header_button_text'
+		)
+	])
 );
 
 $secondary_text = do_shortcode(
-	blocksy_translate_dynamic(
-		blocksy_default_akg(
-			'header_button_secondary_text',
-			$atts,
-			__('Hurry Up!', 'blocksy')
-		),
-		$panel_type . ':' . $section_id . ':' . $item_id . ':header_button_secondary_text'
-	)
+	blocksy_sanitize_html_for_display([
+		'html' => blocksy_translate_dynamic(
+			blocksy_default_akg(
+				'header_button_secondary_text',
+				$atts,
+				__('Hurry Up!', 'blocksy')
+			),
+			$panel_type . ':' . $section_id . ':' . $item_id . ':header_button_secondary_text'
+		)
+	])
 );
 
 $aria_label = do_shortcode(
@@ -199,7 +203,7 @@ if ($icon_position === 'right') {
 	<?php echo blocksy_attr_to_html($attr) ?>>
 	<a
 		href="<?php echo esc_url(do_shortcode($link)) ?>"
-		class="<?php echo $button_class ?>"
+		class="<?php echo esc_attr($button_class) ?>"
 		<?php echo blocksy_attr_to_html($link_attr) ?>>
 		<?php echo $text ?>
 	</a>

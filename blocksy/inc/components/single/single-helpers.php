@@ -78,6 +78,17 @@ function blocksy_get_the_author_meta($field, $user_id = false) {
 		$user_id = blocksy_get_author_id();
 	}
 
+	/**
+	 * Filters an author meta field before it is read from the user.
+	 *
+	 * Returning a non-null value short-circuits get_the_author_meta().
+	 *
+	 * @since 2.0.31
+	 *
+	 * @param mixed  $maybe_meta Meta value to use instead. Default null.
+	 * @param string $field      Requested author meta field.
+	 * @param int    $user_id    Author user ID.
+	 */
 	$maybe_meta = apply_filters(
 		'blocksy:author:get_the_author_meta',
 		null,
@@ -122,6 +133,16 @@ function blocksy_get_comment_author_link($args = []) {
 function blocksy_count_user_posts() {
 	$author_id = blocksy_get_author_id();
 
+	/**
+	 * Filters the author posts count before it is computed.
+	 *
+	 * Returning a non-null value short-circuits count_user_posts().
+	 *
+	 * @since 2.0.31
+	 *
+	 * @param int|null $maybe_count Posts count to use instead. Default null.
+	 * @param int      $author_id   Author user ID.
+	 */
 	$maybe_count = apply_filters('blocksy:author:count_user_posts', null, $author_id);
 
 	if ($maybe_count !== null) {
@@ -276,6 +297,15 @@ if (! function_exists('blocksy_author_social_channels')) {
 			]
 		];
 
+		/**
+		 * Filters the additional social networks available in the author profile.
+		 *
+		 * Each descriptor needs `id`, `name` and `icon` keys.
+		 *
+		 * @since 2.0.1
+		 *
+		 * @param array $additional_descriptors Additional social network descriptors. Default empty array.
+		 */
 		$additional_descriptors = apply_filters(
 			'blocksy:author-profile:custom-social-network',
 			[]
@@ -466,14 +496,23 @@ function blocksy_author_box() {
 
 	<div class="<?php echo esc_attr($class); ?>" data-type="<?php echo esc_attr($type); ?>" <?php echo blocksy_generic_get_deep_link($deep_link_args); ?>>
 		<?php
+			/**
+			 * Filters the avatar URL shown in the single post author box.
+			 *
+			 * @since 1.8.20
+			 *
+			 * @param string $avatar_url Author avatar URL.
+			 */
+			$author_avatar_url = apply_filters(
+				'blocksy:single:author_box:author-avatar-url',
+				blocksy_get_avatar_url([
+						'avatar_entity' => blocksy_get_author_id(),
+						'size' => 120
+				])
+			);
+
 			echo blocksy_simple_image(
-				apply_filters(
-					'blocksy:single:author_box:author-avatar-url',
-					blocksy_get_avatar_url([
-							'avatar_entity' => blocksy_get_author_id(),
-							'size' => 120
-					])
-				),
+				$author_avatar_url,
 				[
 					'tag_name' => $with_link ? 'a' : 'span',
 					'inner_content' => $with_link ? '
@@ -679,11 +718,7 @@ if (! function_exists('blocksy_get_featured_image_output')) {
 					$featured_image_source,
 					'full'
 				),
-				'display_video' => $has_video_thumbnail === 'yes',
-				'lazyload' => blocksy_get_theme_mod(
-					'has_lazy_load_single_featured_image',
-					'yes'
-				) === 'yes'
+				'display_video' => $has_video_thumbnail === 'yes'
 			]) . $maybe_figcaption),
 			get_the_ID(),
 			get_post_thumbnail_id(),

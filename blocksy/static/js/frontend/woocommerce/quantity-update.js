@@ -39,7 +39,9 @@ export const mount = (el) => {
 			jQuery('body').trigger('updated_wc_div')
 
 			$(document.body).trigger('update_checkout')
-			$(document).trigger('wc_update_cart')
+			if (document.querySelector('.woocommerce-cart-form')) {
+				$(document).trigger('wc_update_cart')
+			}
 
 			ctEvents.trigger('ct:header:update')
 		}

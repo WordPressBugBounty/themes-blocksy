@@ -406,19 +406,22 @@ export default class ImageUploader extends Component {
 
 							<ul className="actions">
 								<li>
-									<button
-										type="button"
-										className="button edit-button control-focus"
+									<a
+										href="#"
+										className="edit-button control-focus"
 										title={__('Edit', 'blocksy')}
 										onClick={(e) => {
+											e.preventDefault()
 											e.stopPropagation()
 											this.openFrame()
 										}}
-										id="customize-media-control-button-35"></button>
+										id="customize-media-control-button-35"></a>
 								</li>
 								<li>
-									<button
+									<a
+										href="#"
 										onClick={(e) => {
+											e.preventDefault()
 											e.stopPropagation()
 											this.setState({
 												attachment_info: null
@@ -426,8 +429,7 @@ export default class ImageUploader extends Component {
 											this.onChange(null)
 										}}
 										title={__('Remove', 'blocksy')}
-										type="button"
-										className="button remove-button"></button>
+										className="delete"></a>
 								</li>
 							</ul>
 						</div>

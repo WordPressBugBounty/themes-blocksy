@@ -9,6 +9,14 @@ $options = [
 			'copyright_text' => [
 				'label' => __( 'Copyright Text', 'blocksy' ),
 				'type' => 'wp-editor',
+				/**
+				 * Filters the default footer copyright text used when no
+				 * custom copyright value is set.
+				 *
+				 * @since 1.8.65
+				 *
+				 * @param string $default The default copyright text.
+				 */
 				'value' => apply_filters(
 					'blocksy:footer:copyright:default-value',
 					__('Copyright &copy; {current_year} - WordPress Theme by {theme_author}', 'blocksy')

@@ -8,13 +8,13 @@
 		border-color: var(--optionBorderColor, #ddd);
 		transition: box-shadow 0.1s linear, border-color 0.1s linear;
 
-		&:hover {
-			border-color: #0e8ecc;
-		}
+		// &:hover {
+		// 	border-color: var(--ui-accent-color);
+		// }
 
 		&:focus {
-			border-color: #0e8ecc;
-			box-shadow: 0 0 0 1px #0e8ecc;
+			border-color: var(--ui-accent-color);
+			box-shadow: 0 0 0 0.5px var(--ui-accent-color);
 		}
 	}
 

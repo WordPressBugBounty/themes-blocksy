@@ -1,4 +1,3 @@
-import { onDocumentLoaded } from '../../helpers'
 import ctEvents from 'ct-events'
 import $ from 'jquery'
 
@@ -70,9 +69,7 @@ export const wooEntryPoints = [
 
 	{
 		els: () =>
-			[
-				...document.querySelectorAll('[data-add-to-cart="ajax"]'),
-			]
+			[...document.querySelectorAll('[data-add-to-cart="ajax"]')]
 				.map((el) => el.closest('form'))
 				.filter(Boolean),
 		load: () => import('./add-to-cart-single'),

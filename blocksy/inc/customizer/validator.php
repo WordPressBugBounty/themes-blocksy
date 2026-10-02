@@ -42,49 +42,71 @@ if (! function_exists('blocksy_validate_single_slider')) {
 	}
 }
 
-function blocksy_sanitize_builder_value($option, $input) {
-	if (! isset($input['sections'])) {
-		return $input;
-	}
-
-	foreach ($input['sections'] as $key => $section) {
-		if (! isset($section['items'])) {
-			continue;
+if (! function_exists('blocksy_sanitize_builder_value')) {
+	function blocksy_sanitize_builder_value($option, $input) {
+		if (! isset($input['sections'])) {
+			return $input;
 		}
 
-		$html_fields = [
-			'text' => ['header_text'],
-			'copyright_text' => ['copyright_text']
-		];
-
-		foreach ($section['items'] as $item_key => $item) {
-			if (! isset($item['id'])) {
+		foreach ($input['sections'] as $key => $section) {
+			if (! isset($section['items'])) {
 				continue;
 			}
 
-			if (
-				! isset($html_fields[$item['id']])
-				||
-				! isset($item['values'])
-			) {
-				continue;
-			}
+			$html_fields = [
+				'text' => ['header_text'],
+				'copyright' => ['copyright_text'],
+				'trigger' => ['trigger_label'],
+				'search' => ['search_label'],
+				'offcanvas' => ['offcanvas_heading'],
+				'button' => [
+					'header_button_text',
+					'header_button_secondary_text'
+				],
+				'cart' => ['cart_total_label'],
+				'logo' => ['blogname', 'blogdescription']
+			];
 
-			foreach ($html_fields[$item['id']] as $html_field) {
-				if (! isset($item['values'][$html_field])) {
+			foreach ($section['items'] as $item_key => $item) {
+				if (! isset($item['id'])) {
 					continue;
 				}
 
-				$item['values'][$html_field] = blocksy_sanitize_user_html(
-					$item['values'][$html_field]
-				);
+				$original_id = explode('~', $item['id'])[0];
+
+				if (
+					! isset($html_fields[$original_id])
+					||
+					! isset($item['values'])
+				) {
+					continue;
+				}
+
+				foreach ($html_fields[$original_id] as $html_field) {
+					if (! isset($item['values'][$html_field])) {
+						continue;
+					}
+
+					if (is_array($item['values'][$html_field])) {
+						$item['values'][$html_field] = array_map(
+							'blocksy_sanitize_user_html',
+							$item['values'][$html_field]
+						);
+
+						continue;
+					}
+
+					$item['values'][$html_field] = blocksy_sanitize_user_html(
+						$item['values'][$html_field]
+					);
+				}
+
+				$input['sections'][$key]['items'][$item_key] = $item;
 			}
-
-			$input['sections'][$key]['items'][$item_key] = $item;
 		}
-	}
 
-	return $input;
+		return $input;
+	}
 }
 
 if (! function_exists('blocksy_validate_for')) {

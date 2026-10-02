@@ -22,6 +22,7 @@ class ThemeAutoloader {
 	private static function get_classes_map() {
 		return array_merge([
 			'RaiiPattern' => 'inc/classes/raii.php',
+			'LazyLoading' => 'inc/classes/lazy-loading.php',
 			'WordPressActionsManager' => 'inc/classes/trait-wordpress-actions-manager.php',
 
 			'SearchModifications' => 'inc/components/search.php',

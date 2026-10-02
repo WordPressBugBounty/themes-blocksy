@@ -19,9 +19,9 @@ class Sidebar {
 			);
 
 			if ($sidebar_stick_behavior === 'sidebar') {
-				$sticky_output['data-sticky'] = 'sidebar';
+				$sticky_output['data-sticky-sidebar'] = 'full';
 			} else {
-				$sticky_output['data-sticky'] = 'widgets';
+				$sticky_output['data-sticky-sidebar'] = 'widgets';
 			}
 		}
 

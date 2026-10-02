@@ -4,6 +4,8 @@ if (! function_exists('blocksy_output_drawer_canvas')) {
 	function blocksy_output_drawer_canvas($location = 'start') {
 		$default_footer_elements = [];
 
+		blocksy_lazy_zone_start();
+
 		global $blocksy_has_default_header;
 
 		if ($location === 'start') {
@@ -30,6 +32,14 @@ if (! function_exists('blocksy_output_drawer_canvas')) {
 			}
 		}
 
+		/**
+		 * Filters the elements rendered in the off-canvas drawer container.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param array $default_footer_elements Default drawer markup and element descriptors.
+		 * @param array $context                 Header availability and drawer location (start or end).
+		 */
 		$footer_elements = apply_filters(
 			'blocksy:footer:offcanvas-drawer',
 			$default_footer_elements,
@@ -38,6 +48,8 @@ if (! function_exists('blocksy_output_drawer_canvas')) {
 				'location' => $location
 			]
 		);
+
+		blocksy_lazy_zone_end();
 
 		if (! empty($footer_elements)) {
 			$attr = [

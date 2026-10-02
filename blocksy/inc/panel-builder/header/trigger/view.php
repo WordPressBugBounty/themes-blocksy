@@ -76,6 +76,15 @@ $svg = blocksy_html_tag(
 	'
 );
 
+/**
+ * Filters the header menu trigger icon markup.
+ *
+ * @since 2.1.19
+ *
+ * @param string $svg           Trigger icon SVG markup.
+ * @param array  $atts          Trigger item option values.
+ * @param string $trigger_class Class of the trigger icon.
+ */
 $svg = apply_filters(
 	'blocksy:header:trigger:svg',
 	$svg,
@@ -89,12 +98,12 @@ $svg = apply_filters(
 	class="<?php echo esc_attr($class) ?>"
 	data-toggle-panel="#offcanvas"
 	aria-controls="offcanvas"
-	data-design="<?php echo $trigger_design ?>"
-	data-label="<?php echo $trigger_label_alignment[$device] ?>"
-	aria-label="<?php echo $trigger_aria_label ?>"
+	data-design="<?php echo esc_attr($trigger_design) ?>"
+	data-label="<?php echo esc_attr($trigger_label_alignment[$device]) ?>"
+	aria-label="<?php echo esc_attr($trigger_aria_label) ?>"
 	<?php echo blocksy_attr_to_html($attr) ?>>
 
-	<span class="<?php echo $label_class ?>" aria-hidden="true"><?php echo $trigger_label ?></span>
+	<span class="<?php echo esc_attr($label_class) ?>" aria-hidden="true"><?php echo blocksy_sanitize_html_for_display(['html' => $trigger_label]) ?></span>
 
 	<?php echo $svg ?>
 </button>

@@ -47,6 +47,13 @@ if (isset($render_args['only_count'])) {
 
 $has_badge = blocksy_default_akg('has_cart_badge', $atts, 'yes') === 'yes';
 
+/**
+ * Filters the header cart icons, keyed by icon type.
+ *
+ * @since 1.8.0
+ *
+ * @param array $icons SVG markup keyed by icon type ('type-1' ... 'type-8').
+ */
 $icon = apply_filters('blocksy:header:cart:icons', [
 	'type-1' => '<svg aria-hidden="true" width="15" height="15" viewBox="0 0 15 15"><path d="M14.1,1.6C14,0.7,13.3,0,12.4,0H2.7C1.7,0,1,0.7,0.9,1.6L0.1,13.1c0,0.5,0.1,1,0.5,1.3C0.9,14.8,1.3,15,1.8,15h11.4c0.5,0,0.9-0.2,1.3-0.6c0.3-0.4,0.5-0.8,0.5-1.3L14.1,1.6zM13.4,13.4c0,0-0.1,0.1-0.2,0.1H1.8c-0.1,0-0.2-0.1-0.2-0.1c0,0-0.1-0.1-0.1-0.2L2.4,1.7c0-0.1,0.1-0.2,0.2-0.2h9.7c0.1,0,0.2,0.1,0.2,0.2l0.8,11.5C13.4,13.3,13.4,13.4,13.4,13.4z M10,3.2C9.6,3.2,9.2,3.6,9.2,4v1.5c0,1-0.8,1.8-1.8,1.8S5.8,6.5,5.8,5.5V4c0-0.4-0.3-0.8-0.8-0.8S4.2,3.6,4.2,4v1.5c0,1.8,1.5,3.2,3.2,3.2s3.2-1.5,3.2-3.2V4C10.8,3.6,10.4,3.2,10,3.2z"/></svg>',
 
@@ -83,6 +90,16 @@ $cart_drawer_type = blocksy_default_akg('cart_drawer_type', $atts, 'dropdown');
 if (
 	$cart_drawer_type !== 'dropdown'
 	&&
+	/**
+	 * Filters the option type of the header cart "Cart Drawer Type" option.
+	 *
+	 * When it stays 'hidden' the option is not available and the cart drawer
+	 * type is forced to 'dropdown'.
+	 *
+	 * @since 1.7.52
+	 *
+	 * @param string $type Option type. Default 'hidden'.
+	 */
 	apply_filters(
 		'blocksy:header:cart:cart_drawer_type:option',
 		'hidden'
@@ -160,6 +177,13 @@ if ($has_cart_dropdown && $cart_drawer_type === 'offcanvas') {
 	}
 }
 
+/**
+ * Filters the URL the header cart item links to.
+ *
+ * @since 1.8.0
+ *
+ * @param string $url Cart page URL, or the off-canvas panel anchor.
+ */
 $url = apply_filters('blocksy:header:cart:url', $url);
 
 ob_start();
@@ -182,9 +206,11 @@ $count_output = blocksy_html_tag(
 
 $totals_output = '';
 
-$label_mask = blocksy_expand_responsive_value(
-	blocksy_default_akg('cart_total_label', $atts, '{price}')
-)[$device];
+$label_mask = blocksy_sanitize_html_for_display([
+	'html' => blocksy_expand_responsive_value(
+		blocksy_default_akg('cart_total_label', $atts, '{price}')
+	)[$device]
+]);
 
 $label_parts = explode(
 	'{price}',
@@ -275,9 +301,9 @@ $icon_classes = [
 
 ?>
 
-<a class="<?php echo $item_class ?>"
+<a class="<?php echo esc_attr($item_class) ?>"
 	href="<?php echo esc_attr($url) ?>"
-	data-label="<?php echo $cart_total_position[$device] ?>"
+	data-label="<?php echo esc_attr($cart_total_position[$device]) ?>"
 	<?php echo $auto_open_output ?>>
 
 	<?php

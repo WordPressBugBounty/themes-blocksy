@@ -127,10 +127,12 @@ function blocksy_get_variables_from_file(
 	unset($_set_variables);
 
 	if (is_file($file_path)) {
+		$blocksy_fatal_containment = blocksy_start_fatal_containment();
+
 		try {
 			require $file_path;
 		} catch (\Throwable $e) {
-			blocksy_handle_contained_fatal($e, $file_path);
+			blocksy_handle_contained_fatal($e, $file_path, $blocksy_fatal_containment);
 		}
 	}
 
@@ -172,11 +174,13 @@ if (! function_exists('blocksy_render_view')) {
 
 		ob_start();
 
+		$blocksy_fatal_containment = blocksy_start_fatal_containment();
+
 		try {
 			require $file_path;
 		} catch (\Throwable $e) {
 			ob_end_clean();
-			blocksy_handle_contained_fatal($e, $file_path);
+			blocksy_handle_contained_fatal($e, $file_path, $blocksy_fatal_containment);
 			return $default_value;
 		}
 
@@ -202,6 +206,35 @@ function blocksy_render_view_e($file_path, $view_variables = [], $default_value 
 }
 
 /**
+ * Record the rendering state a contained fatal must restore. Take it right
+ * before the guarded `require` and pass it to blocksy_handle_contained_fatal().
+ * The companion's fatal containment uses it through its theme-functions proxy.
+ *
+ * @return array Containment state.
+ */
+function blocksy_start_fatal_containment() {
+	if (! Blocksy_Manager::$instance) {
+		return [];
+	}
+
+	return [
+		'lazy_zone_depth' => blocksy_manager()->lazy_loading->zone_depth(),
+	];
+}
+
+/**
+ * Put back the rendering state recorded by blocksy_start_fatal_containment().
+ * The companion's fatal containment uses it through its theme-functions proxy.
+ *
+ * @param array $containment Containment state.
+ */
+function blocksy_restore_fatal_containment($containment) {
+	if (isset($containment['lazy_zone_depth'])) {
+		blocksy_manager()->lazy_loading->restore_zone_depth($containment['lazy_zone_depth']);
+	}
+}
+
+/**
  * Contain a fatal thrown while a view/options file is being `require`d. A missing
  * function/class throws \Error (a \Throwable) since PHP 7, so the require can be
  * wrapped to keep one broken file from white-screening the whole request — the
@@ -216,11 +249,15 @@ function blocksy_render_view_e($file_path, $view_variables = [], $default_value 
  * PARITY: mirrored by the companion's blocksy_companion_handle_contained_fatal()
  * (framework/helpers/helpers.php) — keep both in sync.
  *
- * @param \Throwable $e       The contained error (carries the backtrace).
- * @param string     $context The file being loaded when it threw.
+ * @param \Throwable $e           The contained error (carries the backtrace).
+ * @param string     $context     The file being loaded when it threw.
+ * @param array      $containment State from blocksy_start_fatal_containment(),
+ *                                taken before the file was loaded.
  */
 if (! function_exists('blocksy_handle_contained_fatal')) {
-	function blocksy_handle_contained_fatal(\Throwable $e, $context = '') {
+	function blocksy_handle_contained_fatal(\Throwable $e, $context = '', $containment = []) {
+		blocksy_restore_fatal_containment($containment);
+
 		blocksy_debug_log(
 			sprintf(
 				'[Blocksy] Contained fatal while loading %s: %s in %s:%d',
@@ -401,26 +438,23 @@ function blocksy_debug_log($message, $object = null) {
 
 // Save-time only. Never call on stored content at render, use
 // blocksy_sanitize_html_for_display() there.
-function blocksy_sanitize_user_html($html) {
-	// Just drop scripts from the html content, if user doesnt have
-	// unfiltered_html capability.
-	//
-	// Should happen BEFORE do_shortcode() as shortcodes can contain inline
-	// scripts but we should leave those in place, since those come from trusted
-	// places.
-	if (! current_user_can('unfiltered_html')) {
-		$html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
+function blocksy_sanitize_user_html($html, $args = []) {
+	$args = wp_parse_args($args, [
+		'context' => 'block',
+	]);
 
-		// Remove any on*="…" or on*='…' or on*=… (unquoted) attributes
-		// Matches: space + on + letters + optional whitespace = optional quotes + anything except > + optional closing quote
-		$html = preg_replace(
-			'#\s+on[a-z]+\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>]+)#is',
-			'',
-			$html
-		);
+	if (current_user_can('unfiltered_html')) {
+		return $html;
 	}
 
-	return $html;
+	if (! is_string($html)) {
+		return '';
+	}
+
+	return blocksy_sanitize_html_for_display([
+		'html' => $html,
+		'context' => $args['context'],
+	]);
 }
 
 function blocksy_output_html_safely($html) {

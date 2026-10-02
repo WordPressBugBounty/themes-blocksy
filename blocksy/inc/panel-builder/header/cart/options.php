@@ -12,6 +12,13 @@ $options = [
 		'type' => 'tab',
 		'options' => [
 
+			/**
+			 * Filters the icon options of the header cart item.
+			 *
+			 * @since 1.8.39
+			 *
+			 * @param array $options Icon option definitions.
+			 */
 			apply_filters(
 				'blocksy:header:cart:options:icon',
 				[
@@ -605,6 +612,16 @@ $options = [
 
 					'cart_drawer_type' => [
 						'label' => __('Cart Drawer Type', 'blocksy'),
+						/**
+						 * Filters the option type of the header cart "Cart Drawer Type" option.
+						 *
+						 * When it stays 'hidden' the option is not available and the cart drawer
+						 * type is forced to 'dropdown'.
+						 *
+						 * @since 1.7.52
+						 *
+						 * @param string $type Option type. Default 'hidden'.
+						 */
 						'type' => apply_filters(
 							'blocksy:header:cart:cart_drawer_type:option',
 							'hidden'

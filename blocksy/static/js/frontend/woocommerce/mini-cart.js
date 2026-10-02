@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import ctEvents from 'ct-events'
+import { onCartAdded } from './cart-events'
 
 let mounted = false
 
@@ -36,21 +37,8 @@ const removeUnstyledFragments = () => {
 	})
 }
 
-export const mount = (el, { event }) => {
+export const mount = () => {
 	if (!$) return
-
-	const maybeCartLink = el.querySelector('.ct-cart-item')
-
-	if (
-		el.matches('.ct-header-cart') &&
-		maybeCartLink &&
-		!maybeCartLink.classList.contains('ct-offcanvas-trigger') &&
-		event &&
-		event.type === 'touchstart'
-	) {
-		location.href = maybeCartLink.getAttribute('href')
-		return
-	}
 
 	const selector = '.ct-header-cart, .ct-shortcuts-bar [data-id="cart"]'
 
@@ -119,28 +107,24 @@ export const mount = (el, { event }) => {
 		})
 	}
 
-	$(document.body).on(
-		'added_to_cart',
-		(_, fragments, __, button, quantity) => {
-			button = button[0]
-			;[...document.querySelectorAll(selector)].map((cart, index) => {
-				let elForOpen = cart
+	onCartAdded(({ fragments }) => {
+		;[...document.querySelectorAll(selector)].map((cart, index) => {
+			let elForOpen = cart
 
-				if (!cart.closest('.ct-shortcuts-bar')) {
-					elForOpen = cart.firstElementChild
-				}
-
-				elForOpen.classList.remove('ct-adding')
-				elForOpen.classList.add('ct-added')
-			})
-
-			if (Object.keys(fragments).length > 0) {
-				autoOpenCart()
-			} else {
-				addedToCart = true
+			if (!cart.closest('.ct-shortcuts-bar')) {
+				elForOpen = cart.firstElementChild
 			}
+
+			elForOpen.classList.remove('ct-adding')
+			elForOpen.classList.add('ct-added')
+		})
+
+		if (Object.keys(fragments).length > 0) {
+			autoOpenCart()
+		} else {
+			addedToCart = true
 		}
-	)
+	})
 
 	$(document.body).on('wc_fragments_refreshed', () => {
 		if (addedToCart) {
@@ -207,7 +191,9 @@ export const mount = (el, { event }) => {
 			} catch (e) {}
 		})
 
-		$(document).trigger('wc_update_cart')
+		if (document.querySelector('.woocommerce-cart-form')) {
+			$(document).trigger('wc_update_cart')
+		}
 		$(document.body).trigger('update_checkout')
 	})
 

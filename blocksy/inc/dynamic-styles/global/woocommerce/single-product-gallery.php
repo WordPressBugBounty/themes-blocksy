@@ -20,14 +20,7 @@ blocksy_output_spacing([
 	)
 ]);
 
-$gallery_columns = blocksy_expand_responsive_value(apply_filters(
-	'blocksy:woocommerce:single-product:gallery:columns',
-	[
-		'desktop' => 1,
-		'tablet' => 1,
-		'mobile' => 1
-	]
-));
+$gallery_columns = blocksy_get_product_gallery_columns();
 
 $gallery_columns_selectors = [
 	'desktop' => '',

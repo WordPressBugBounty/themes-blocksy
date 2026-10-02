@@ -303,13 +303,21 @@ if (! function_exists('blocksy_get_image_element')) {
 		$output = '';
 
 		$parser = new Blocksy_Attributes_Parser();
-		$global_lazyload = blocksy_get_theme_mod('has_lazy_load', 'yes') === 'yes';
+		$global_lazyload = blocksy_manager()->lazy_loading->is_enabled();
+		$loading_attributes = array_intersect_key(
+			$args['img_atts'],
+			array_flip(['loading', 'fetchpriority', 'decoding'])
+		);
+
+		if (! $global_lazyload || ! $args['lazyload']) {
+			$loading_attributes['loading'] = false;
+		}
 
 		$image = wp_get_attachment_image(
 			$args['attachment_id'],
 			$args['size'],
 			false,
-			$global_lazyload && $args['lazyload'] ? ['loading' => 'lazy'] : ['loading' => false]
+			$loading_attributes
 		);
 
 		$has_srcset = strpos($image, 'srcset') !== false;
@@ -322,7 +330,7 @@ if (! function_exists('blocksy_get_image_element')) {
 			);
 		}
 
-		foreach ($args['img_atts'] as $attr => $attr_value) {
+		foreach (array_diff_key($args['img_atts'], $loading_attributes) as $attr => $attr_value) {
 			$image = $parser->add_attribute_to_images(
 				$image,
 				$attr,
@@ -338,7 +346,10 @@ if (! function_exists('blocksy_get_image_element')) {
 					$other_image,
 					$args['size'],
 					false,
-					$global_lazyload && $args['lazyload'] ? [] : ['loading' => false]
+					[
+						'loading' => $global_lazyload && $args['lazyload'] ? 'lazy' : false,
+						'fetchpriority' => 'low'
+					]
 				);
 
 				$other_image = $parser->add_attribute_to_images(

@@ -1,5 +1,24 @@
 <?php
 
+function blocksy_get_flexy_arrows() {
+	/**
+	 * Filters the icons rendered inside the flexy slider arrows.
+	 *
+	 * Applies to both the main slider arrows and the pills arrows.
+	 *
+	 * @since 2.0.98
+	 *
+	 * @param array $arrow_icons Arrow icons markup, keyed `prev` and `next`.
+	 */
+	return apply_filters(
+		'blocksy:flexy:arrows',
+		[
+			'prev' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M15.3 4.3h-13l2.8-3c.3-.3.3-.7 0-1-.3-.3-.6-.3-.9 0l-4 4.2-.2.2v.6c0 .1.1.2.2.2l4 4.2c.3.4.6.4.9 0 .3-.3.3-.7 0-1l-2.8-3h13c.2 0 .4-.1.5-.2s.2-.3.2-.5-.1-.4-.2-.5c-.1-.1-.3-.2-.5-.2z"></path></svg>',
+			'next' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M.2 4.5c-.1.1-.2.3-.2.5s.1.4.2.5c.1.1.3.2.5.2h13l-2.8 3c-.3.3-.3.7 0 1 .3.3.6.3.9 0l4-4.2.2-.2V5v-.3c0-.1-.1-.2-.2-.2l-4-4.2c-.3-.4-.6-.4-.9 0-.3.3-.3.7 0 1l2.8 3H.7c-.2 0-.4.1-.5.2z"></path></svg>'
+		]
+	);
+}
+
 if (! function_exists('blocksy_flexy')) {
 function blocksy_flexy($args = []) {
 	$args = wp_parse_args($args, [
@@ -35,7 +54,9 @@ function blocksy_flexy($args = []) {
 
 		'slide_image_args' => null,
 
-		'active_index' => 1
+		'active_index' => 1,
+
+		'visible_items' => null
 	]);
 
 	wp_enqueue_style('ct-flexy-styles');
@@ -52,7 +73,23 @@ function blocksy_flexy($args = []) {
 		$args['pills_count'] = count($args['images']);
 		$args['items'] = '';
 
+		$visible_start = 1;
+		$visible_end = $args['pills_count'];
+
+		if ($args['visible_items']) {
+			$visible_start = max(1, min(
+				intval($args['active_index']),
+				$args['pills_count'] - intval($args['visible_items']) + 1
+			));
+
+			$visible_end = $visible_start + intval($args['visible_items']) - 1;
+		}
+
+		$position = 0;
+
 		foreach ($args['images'] as $index => $single_image) {
+			$position++;
+
 			$attachment_id = $single_image;
 
 			if (
@@ -117,15 +154,34 @@ function blocksy_flexy($args = []) {
 				$slide_wrapper_attr['class'] = $class;
 			}
 
+			$is_lazy_zone = $position < $visible_start || $position > $visible_end;
+
+			if ($is_lazy_zone) {
+				blocksy_lazy_zone_start();
+			}
+
+			/**
+			 * Filters the media arguments of a single flexy slider slide.
+			 *
+			 * @since 2.0.1
+			 *
+			 * @param array $slide_args Arguments passed to blocksy_media() for the slide.
+			 */
+			$slide_media_args = apply_filters(
+				'blocksy:woocommerce:image_additional_attributes',
+				$slide_args
+			);
+
+			$slide_media = blocksy_media($slide_media_args);
+
+			if ($is_lazy_zone) {
+				blocksy_lazy_zone_end();
+			}
+
 			$args['items'] .= blocksy_html_tag(
 				'div',
 				$slide_wrapper_attr,
-				blocksy_media(
-					apply_filters(
-						'blocksy:woocommerce:image_additional_attributes',
-						$slide_args
-					)
-				)
+				$slide_media
 			);
 
 			if ($has_scale_rotate) {
@@ -188,13 +244,7 @@ function blocksy_flexy($args = []) {
 			</div>
 
 			<?php if ($args['has_arrows']) {
-				$arrow_icons = apply_filters(
-					'blocksy:flexy:arrows',
-					[
-						'prev' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M15.3 4.3h-13l2.8-3c.3-.3.3-.7 0-1-.3-.3-.6-.3-.9 0l-4 4.2-.2.2v.6c0 .1.1.2.2.2l4 4.2c.3.4.6.4.9 0 .3-.3.3-.7 0-1l-2.8-3h13c.2 0 .4-.1.5-.2s.2-.3.2-.5-.1-.4-.2-.5c-.1-.1-.3-.2-.5-.2z"></path></svg>',
-						'next' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M.2 4.5c-.1.1-.2.3-.2.5s.1.4.2.5c.1.1.3.2.5.2h13l-2.8 3c-.3.3-.3.7 0 1 .3.3.6.3.9 0l4-4.2.2-.2V5v-.3c0-.1-.1-.2-.2-.2l-4-4.2c-.3-.4-.6-.4-.9 0-.3.3-.3.7 0 1l2.8 3H.7c-.2 0-.4.1-.5.2z"></path></svg>'
-					]
-				);	
+				$arrow_icons = blocksy_get_flexy_arrows();
 			?>
 				<span class="<?php echo trim('flexy-arrow-prev' . ' ' . $args['arrows_class']) ?>">
 					<?php echo $arrow_icons['prev']; ?>
@@ -256,6 +306,8 @@ if (! function_exists('blocksy_flexy_pills')) {
 					$class = ' class="active"';
 				}
 
+				blocksy_lazy_zone_start();
+
 				$image_output = '<li' . $class . '>' . blocksy_media([
 					'attachment_id' => $args['pills_images'][$index - 1],
 					'ratio' => $args['pills_images_ratio'],
@@ -268,6 +320,8 @@ if (! function_exists('blocksy_flexy_pills')) {
 					'display_video' => 'pill',
 					'lazyload' => $args['lazyload']
 				]) . '</li>';
+
+				blocksy_lazy_zone_end();
 
 				echo $image_output;
 			} else {
@@ -286,13 +340,7 @@ if (! function_exists('blocksy_flexy_pills')) {
 		echo '</ol>';
 
 		if ($args['pills_have_arrows']) {
-			$arrow_icons = apply_filters(
-				'blocksy:flexy:arrows',
-				[
-					'prev' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M15.3 4.3h-13l2.8-3c.3-.3.3-.7 0-1-.3-.3-.6-.3-.9 0l-4 4.2-.2.2v.6c0 .1.1.2.2.2l4 4.2c.3.4.6.4.9 0 .3-.3.3-.7 0-1l-2.8-3h13c.2 0 .4-.1.5-.2s.2-.3.2-.5-.1-.4-.2-.5c-.1-.1-.3-.2-.5-.2z"></path></svg>',
-					'next' => '<svg width="16" height="10" fill="currentColor" viewBox="0 0 16 10"><path d="M.2 4.5c-.1.1-.2.3-.2.5s.1.4.2.5c.1.1.3.2.5.2h13l-2.8 3c-.3.3-.3.7 0 1 .3.3.6.3.9 0l4-4.2.2-.2V5v-.3c0-.1-.1-.2-.2-.2l-4-4.2c-.3-.4-.6-.4-.9 0-.3.3-.3.7 0 1l2.8 3H.7c-.2 0-.4.1-.5.2z"></path></svg>'
-				]
-			);	
+			$arrow_icons = blocksy_get_flexy_arrows();
 
 			echo '<span class="' . trim('flexy-arrow-prev' . ' ' . $args['pills_arrows_class']) . '">' . $arrow_icons['prev'] . '</span>
 							<span class="' . trim('flexy-arrow-next' . ' ' . $args['pills_arrows_class']) . '">' . $arrow_icons['next'] . '</span>';
