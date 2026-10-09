@@ -1,7 +1,10 @@
 $arrows-width: 25%;
 
 .quantity[data-type="type-1"] {
-	width: var(--quantity-width, 100px);
+	width: var(--quantity-width, 90px);
+
+	--theme-form-field-border-width: 1px;
+	--quantity-icon-size: min(calc(var(--quantity-height, 55px) / 6.7), 10px);
 
 	input[type="number"] {
 		padding-block: 0px;
@@ -9,19 +12,17 @@ $arrows-width: 25%;
 		padding-inline-end: calc(#{$arrows-width} + 3px);
 		border-inline-end-width: 0;
 
-		--theme-form-field-border-width: 1px;
+		
 	}
 
-	.ct-increase, 
-	.ct-decrease {
+	:is(.ct-increase, .ct-decrease) {
 		inset-inline-end: 0;
 		border-radius: 0;
 		width: $arrows-width;
 		max-width: 25px;
 
-		&:before {
-			content: '\e911';
-			font-size: calc(var(--quantity-height, 55px) / 6.7);
+		.ct-quantity-type-2 {
+			display: none;
 		}
 	}
 
@@ -36,7 +37,7 @@ $arrows-width: 25%;
 		height: 50%;
 		border-end-end-radius: var(--theme-form-field-border-radius, 3px);
 
-		&:before {
+		svg {
 			transform: scale(1, -1);
 		}
 	}

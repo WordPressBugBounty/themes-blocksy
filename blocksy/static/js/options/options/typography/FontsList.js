@@ -21,17 +21,24 @@ import { __ } from 'ct-i18n'
 
 let loadedFonts = []
 
-const loadGoogleFonts = (font_families) => {
+const loadFonts = (font_families, fontsCss) => {
+	if (fontsCss && !document.getElementById('ct-fonts-preview')) {
+		const style = document.createElement('style')
+		style.id = 'ct-fonts-preview'
+		style.textContent = fontsCss
+		document.head.appendChild(style)
+	}
+
 	if (font_families.length === 0) return
 
 	loadedFonts = [...loadedFonts, ...font_families.map(({ family }) => family)]
 
 	const googleFonts = font_families
+		.filter(({ source }) => source === 'google')
 		.map(({ family }) => family)
-		.filter((family) => family.indexOf('ct_typekit') === -1)
 
 	const typekitFonts = font_families.filter(
-		({ family }) => family.indexOf('ct_typekit') > -1
+		({ source }) => source === 'typekit'
 	)
 
 	if (googleFonts.length > 0 || typekitFonts.length > 0) {
@@ -101,7 +108,7 @@ const FontsList = ({
 	option,
 	value,
 	onPickFamily,
-	typographyList,
+	fontsCss,
 	linearFontsList,
 	currentView,
 	searchTerm,
@@ -150,7 +157,7 @@ const FontsList = ({
 							(source === 'google' || source === 'typekit')
 					)
 
-				loadGoogleFonts(pageItems)
+				loadFonts(pageItems, fontsCss)
 			}, 100)
 		)
 	}

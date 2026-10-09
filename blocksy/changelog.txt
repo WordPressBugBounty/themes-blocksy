@@ -1,3 +1,11 @@
+2.1.59: 2026-10-08
+- Improvement: Cart & checkout page - match coupon input and button heights and properly align validation messages
+- Improvement: Custom Fonts and Local Google Fonts - make sure font settings are properly sanitized and only administrators can manage extensions
+- Improvement: Local Google Fonts - correctly display font previews in typography controls
+- Improvement: Single product - add to cart button and quantity input improvements
+- Improvement: Typography - correctly update the letter spacing revert button state
+- Fix: Header/Footer builder - allow scripts and styles in Text and Copyright elements for unfiltered_html authors
+
 2.1.58: 2026-10-01
 - Improvement: Advanced Posts block - correctly autoplay carousel slides on RTL websites
 - Improvement: Breadcrumbs - properly sanitize custom CSS classes and color values in the Breadcrumbs block

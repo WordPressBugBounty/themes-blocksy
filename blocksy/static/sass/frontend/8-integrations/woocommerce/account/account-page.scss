@@ -120,20 +120,28 @@
 	}
 }
 
-th.download-file,
-th.woocommerce-orders-table__header-order-actions {
-	width: 20%;
-}
+table.shop_table {
 
-td.download-file .button,
-td.woocommerce-orders-table__cell-order-actions .button {
-	@include functions.media-breakpoint-up(md) {
-		width: 100%;
+	th.woocommerce-orders-table__cell-order-number {
+		vertical-align: middle;
 	}
 
-	&:not(:last-child) {
-		margin-bottom: 10px;
-		margin-inline-end: 10px;
+	th.download-file,
+	th.woocommerce-orders-table__header-order-actions {
+		width: 20%;
+	}
+
+	td.download-file .button,
+	td.woocommerce-orders-table__cell-order-actions .button {
+		@include functions.media-breakpoint-up(md) {
+			width: 100%;
+			--theme-button-padding: 0 20px;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 10px;
+			margin-inline-end: 10px;
+		}
 	}
 }
 

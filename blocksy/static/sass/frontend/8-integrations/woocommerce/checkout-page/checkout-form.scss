@@ -20,6 +20,10 @@
 	h3 {
 		font-size: 17px;
 	}
+
+	.woocommerce-error:last-child {
+		margin-bottom: 0;
+	}
 }
 
 // customer details
@@ -38,9 +42,4 @@
 		font-size: 15px;
 		font-weight: 600;
 	}
-}
-
-// notice group
-.woocommerce-NoticeGroup-checkout {
-	grid-column: 1/-1;
 }

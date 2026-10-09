@@ -194,6 +194,7 @@ export default class Slider extends Component {
 			const maybeValue = parseFloat(value, 10)
 
 			if (
+				(option.value === '' || option.value === 'CT_CSS_SKIP_RULE') &&
 				option.units &&
 				computedUnit === option.units[0].unit &&
 				!maybeValue

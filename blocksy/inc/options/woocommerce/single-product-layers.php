@@ -283,10 +283,10 @@ $options = apply_filters(
 				'add_to_cart_button_width' => [
 					'label' => __('Button Width', 'blocksy'),
 					'type' => 'ct-slider',
-					'value' => '100%',
-					'units' => blocksy_units_config([
-						['unit' => '%', 'min' => 30, 'max' => 100],
-					]),
+					'value' => 100,
+					'min' => 30,
+					'max' => 100,
+					'defaultUnit' => '%',
 					'responsive' => true,
 					'setting' => ['transport' => 'postMessage'],
 					'sync' => [
@@ -297,12 +297,12 @@ $options = apply_filters(
 				'add_to_cart_button_height' => [
 					'label' => __('Button Height', 'blocksy'),
 					'type' => 'ct-slider',
-					'min' => 20,
+					'min' => 40,
 					'max' => 100,
 					'value' => [
 						'mobile' => 40,
-						'tablet' => 55,
-						'desktop' => 55,
+						'tablet' => 50,
+						'desktop' => 50,
 					],
 					'responsive' => true,
 					'setting' => [ 'transport' => 'postMessage' ],

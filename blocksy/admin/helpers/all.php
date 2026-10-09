@@ -23,6 +23,15 @@ function blocksy_get_block_editor_data($args = []) {
 		return [];
 	}
 
+	/**
+	 * Filters the data localized for Blocksy blocks in the block editor.
+	 *
+	 * Only applied on block editor screens.
+	 *
+	 * @since 2.0.93
+	 *
+	 * @param array $data Block editor data, keyed by feature. Default empty array.
+	 */
 	return apply_filters('blocksy:block-editor:localized_data', []);
 }
 
@@ -38,7 +47,7 @@ function blocksy_add_early_inline_style_in_gutenberg($cb) {
 	add_action(
 		'block_editor_settings_all',
 		function ($settings) use ($cb) {
-			$css = $cb();
+			$css = wp_strip_all_tags($cb());
 
 			if (empty($css)) {
 				return $settings;
@@ -47,7 +56,7 @@ function blocksy_add_early_inline_style_in_gutenberg($cb) {
 			$settings['__unstableResolvedAssets']['styles'] .= blocksy_html_tag(
 				'style',
 				[],
-				$cb()
+				$css
 			);
 
 			return $settings;
@@ -65,7 +74,7 @@ function blocksy_add_early_inline_style_in_gutenberg($cb) {
 				return;
 			}
 
-			$css = $cb();
+			$css = wp_strip_all_tags($cb());
 
 			if (empty($css)) {
 				return;

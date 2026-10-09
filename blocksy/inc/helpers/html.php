@@ -145,9 +145,18 @@ function blocksy_sanitize_html_for_display($args = []) {
 	$args = wp_parse_args($args, [
 		'html' => '',
 		'context' => 'block',
+
+		// The value already went through blocksy_sanitize_user_html() on save.
+		'trusted' => false,
 	]);
 
-	if (! is_string($args['html']) || $args['html'] === '') {
+	if (
+		! is_string($args['html'])
+		||
+		$args['html'] === ''
+		||
+		$args['trusted']
+	) {
 		return $args['html'];
 	}
 

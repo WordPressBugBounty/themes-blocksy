@@ -29,8 +29,7 @@ div.quantity {
 		}
 	}
 
-	.ct-increase, 
-	.ct-decrease {
+	:is(.ct-increase, .ct-decrease) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -42,10 +41,9 @@ div.quantity {
 		background: var(--quantity-initial-color, var(--theme-button-background-initial-color));
 		transition: all 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-		&:before {
-			font-family: 'woo';
-			font-weight: normal;
-			line-height: normal;
+		svg {
+			width: var(--quantity-icon-size, 10px);
+			height: var(--quantity-icon-size, 10px);
 		}
 
 		&:hover {

@@ -244,9 +244,20 @@ add_action('wp_ajax_blocksy_get_fonts_list', function () {
 	}
 
 	$m = new \Blocksy\FontsManager();
+	$fonts = $m->get_all_fonts();
+	$fonts_css = $fonts['fonts_css'] ?? '';
+
+	unset($fonts['fonts_css']);
+
+	foreach ($fonts as $source) {
+		if (is_string($source['css'] ?? null)) {
+			$fonts_css .= "\n" . $source['css'];
+		}
+	}
 
 	wp_send_json_success([
-		'fonts' => $m->get_all_fonts()
+		'fonts' => $fonts,
+		'fonts_css' => $fonts_css
 	]);
 });
 

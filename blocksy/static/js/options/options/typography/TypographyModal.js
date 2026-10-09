@@ -17,6 +17,7 @@ import {
 } from './helpers'
 import { __ } from 'ct-i18n'
 import $ from 'jquery'
+import cachedFetch from '@creative-themes/wordpress-helpers/cached-fetch'
 
 import bezierEasing from 'bezier-easing'
 
@@ -90,6 +91,7 @@ const TypographyModal = ({
 	const [typographyList, setTypographyList] = useState(
 		getDefaultFonts(option)
 	)
+	const [fontsCss, setFontsCss] = useState('')
 	const [isSearch, setIsSearch] = useState(false)
 	const [searchTerm, setSearchTerm] = useState('')
 
@@ -138,20 +140,17 @@ const TypographyModal = ({
 	)
 
 	const fetchFontsList = async () => {
-		const body = new FormData()
-
-		body.append('action', 'blocksy_get_fonts_list')
-
 		try {
-			const response = await fetch(ajaxurl, {
-				method: 'POST',
-				body,
-			})
+			const response = await cachedFetch(
+				`${ajaxurl}?action=blocksy_get_fonts_list`,
+				{}
+			)
 
 			if (response.status === 200) {
 				const { success, data } = await response.json()
 
 				if (success) {
+					setFontsCss(data.fonts_css || '')
 					setTypographyList({
 						...data.fonts,
 						system: {
@@ -352,7 +351,7 @@ const TypographyModal = ({
 							return (
 								<animated.div style={props} key={currentView}>
 									<FontsList
-										typographyList={typographyList}
+										fontsCss={fontsCss}
 										searchTerm={searchTerm}
 										linearFontsList={linearFontsList}
 										currentView={`${currentView}:${previousView}`}

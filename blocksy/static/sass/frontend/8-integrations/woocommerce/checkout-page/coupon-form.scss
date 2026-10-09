@@ -16,8 +16,8 @@
 		}
 	}
 
-	// .button {
-	// 	width: 100%;
-	// 	min-width: 100%;
-	// }
+	button {
+		--theme-button-padding: 0 20px;
+		--theme-button-min-height: var(--theme-form-field-height, 40px);
+	}
 }

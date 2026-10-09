@@ -6,7 +6,17 @@ class FontsManager {
 	private $matching_fonts_collection = [];
 
 	public function get_all_fonts() {
+		/**
+		 * Filters the typography font sources and their preview CSS.
+		 *
+		 * @since 1.6.11
+		 * @since 2.1.59 Added the fonts_css key for shared preview CSS.
+		 *
+		 * @param array $sources Font source descriptors and the fonts_css string.
+		 */
 		return apply_filters('blocksy_typography_font_sources', [
+			'fonts_css' => '',
+
 			'system' => [
 				'type' => 'system',
 				'families' => $this->get_system_fonts(),

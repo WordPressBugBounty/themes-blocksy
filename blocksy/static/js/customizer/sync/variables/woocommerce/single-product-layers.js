@@ -1,5 +1,6 @@
 import { responsiveClassesFor, updateAndSaveEl } from '../../../sync'
 import { typographyOption } from '../typography'
+import { maybePromoteScalarValueIntoResponsive } from '@creative-themes/customizer-sync-helpers/dist/promote-into-responsive'
 
 const collectVariablesForLayers = (v) => {
 	let variables = []
@@ -192,6 +193,12 @@ const collectVariablesForLayers = (v) => {
 		}
 
 		if (layer.id === 'product_add_to_cart') {
+			const buttonWidth = maybePromoteScalarValueIntoResponsive(
+				layer.add_to_cart_button_width ||
+					wp.customize('add_to_cart_button_width')?.() ||
+					'100%'
+			)
+
 			const labelEl = document.querySelector(
 				`${selectorsMap[layer.id]} .ct-module-title`
 			)
@@ -208,11 +215,22 @@ const collectVariablesForLayers = (v) => {
 
 				{
 					selector: `${selectorsMap[layer.id]} > .cart`,
-					variable: 'theme-button-max-width',
+					variable: 'theme-button-flex',
 					responsive: true,
 					unit: '',
 					extractValue: () => {
-						return layer.add_to_cart_button_width
+						return Object.fromEntries(
+							['desktop', 'tablet', 'mobile'].map((device) => {
+								const width = buttonWidth[device]
+
+								return [
+									device,
+								!isNaN(width) || `${width}`.endsWith('%')
+										? parseFloat(width) / 100
+										: `0 1 ${width}`,
+								]
+							})
+						)
 					},
 				},
 
@@ -225,8 +243,8 @@ const collectVariablesForLayers = (v) => {
 						return (
 							layer.add_to_cart_button_height || {
 								mobile: 40,
-								tablet: 55,
-								desktop: 55,
+								tablet: 50,
+								desktop: 50,
 							}
 						)
 					},

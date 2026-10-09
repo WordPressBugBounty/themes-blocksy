@@ -1,44 +1,40 @@
 @use "../../../../1-helpers/functions";
 
 .quantity[data-type="type-2"] {
-	width: var(--quantity-width, 130px);
+	width: var(--quantity-width, 120px);
+
+	--theme-form-field-border-width: 1px;
+	--quantity-icon-size: min(calc(var(--quantity-height, 55px) / 5.5), 10px);
+	--quantity-button-size: min(calc(var(--quantity-height, 55px) / 1.8), 28px);
+	--quantity-button-offset: min(calc((var(--quantity-height, 55px) - var(--quantity-button-size)) / 2), 9%);
 
 	input[type="number"] {
 		padding-block: 0px;
-		padding-inline: calc(var(--quantity-height, 55px) / 1.8 + 9%);
-
-		--theme-form-field-border-width: 1px;
+		padding-inline: calc(var(--quantity-button-size) + var(--quantity-button-offset));
 	}
 
-	.ct-increase, 
-	.ct-decrease {
-		top: calc(50% - var(--quantity-height, 55px) / 3.6);
-		width: calc(var(--quantity-height, 55px) / 1.8);
-		height: calc(var(--quantity-height, 55px) / 1.8);
-		border-radius: var(--theme-form-field-border-radius, 3px);
+	:is(.ct-increase, .ct-decrease) {
+		top: calc(50% - var(--quantity-button-size) / 2);
+		width: var(--quantity-button-size);
+		height: var(--quantity-button-size);
+		border-radius: calc(var(--theme-form-field-border-radius, 3px) * 0.6);
 
-		--quantity-initial-color: transparent;
+		
+		&:not(:hover) {
+			background: transparent;
+		}
 
-		&:before {
-			margin-top: 2px;
-			font-size: calc(var(--quantity-height, 55px) / 5.5);
+		.ct-quantity-type-1 {
+			display: none;
 		}
 	}
 
 	.ct-increase {
-		inset-inline-end: 9%;
-
-		&:before {
-			content: '\e909';
-		}
+		inset-inline-end: var(--quantity-button-offset);
 	}
 
 	.ct-decrease {
-		inset-inline-start: 9%;
-
-		&:before {
-			content: '\e90a';
-		}
+		inset-inline-start: var(--quantity-button-offset);
 	}
 }
 

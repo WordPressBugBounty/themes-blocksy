@@ -14,11 +14,8 @@ fieldset .wc-stripe-elements-field,
 	border-color: var(--theme-form-field-border-initial-color);
 	border-radius: var(--has-classic-forms, var(--theme-form-field-border-radius, 3px));
 	background-color: var(--has-classic-forms, var(--theme-form-field-background-initial-color));
-	transition: color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-				outline 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-				border-color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-				background-color 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
+	transition: 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	transition-property: color, outline, border-color, background-color;
 
 	outline: max(2px, var(--theme-form-field-border-width, 1px)) solid transparent;
 	outline-offset: calc(var(--theme-form-field-border-width, 1px) * -1);

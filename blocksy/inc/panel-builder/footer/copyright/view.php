@@ -14,6 +14,31 @@ $class = trim($class . ' ' . blocksy_visibility_classes(blocksy_default_akg(
 
 $theme = blocksy_get_wp_theme();
 
+$copyright_text = blocksy_default_akg(
+	'copyright_text',
+	$atts,
+	/**
+	 * Filters the default footer copyright text used when no
+	 * custom copyright value is set.
+	 *
+	 * @since 1.8.65
+	 *
+	 * @param string $default The default copyright text.
+	 */
+	apply_filters(
+		'blocksy:footer:copyright:default-value',
+		__(
+			'Copyright &copy; {current_year} - WordPress Theme by {theme_author}',
+			'blocksy'
+		)
+	)
+);
+
+$translated_copyright_text = blocksy_translate_dynamic(
+	$copyright_text,
+	'footer:' . $section_id . ':copyright:copyright_text'
+);
+
 $text = str_replace(
 	'{current_year}',
 	date("Y"),
@@ -27,28 +52,7 @@ $text = str_replace(
 	 */
 	apply_filters(
 		'blocksy:footer:copyright:value',
-		blocksy_translate_dynamic(
-			blocksy_default_akg(
-				'copyright_text',
-				$atts,
-				/**
-				 * Filters the default footer copyright text used when no
-				 * custom copyright value is set.
-				 *
-				 * @since 1.8.65
-				 *
-				 * @param string $default The default copyright text.
-				 */
-				apply_filters(
-					'blocksy:footer:copyright:default-value',
-					__(
-						'Copyright &copy; {current_year} - WordPress Theme by {theme_author}',
-						'blocksy'
-					)
-				)
-			),
-			'footer:' . $section_id . ':copyright:copyright_text'
-		)
+		$translated_copyright_text
 	)
 );
 
@@ -71,6 +75,7 @@ $text = do_shortcode(blocksy_sanitize_html_for_display([
 		$text
 	),
 	'context' => 'block',
+	'trusted' => $translated_copyright_text === $copyright_text,
 ]));
 
 ?>

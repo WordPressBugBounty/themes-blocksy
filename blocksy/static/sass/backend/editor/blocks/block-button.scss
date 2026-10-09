@@ -12,7 +12,8 @@
 	min-height: var(--theme-button-min-height);
 	border-radius: var(--theme-button-border-radius, 3px);
 	border: var(--theme-button-border);
-	transition: all 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	transition: 0.12s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	transition-property: color, background-color, border-color, opacity, transform;
 
 	// alignment
 	&.has-text-align-left {

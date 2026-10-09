@@ -43,7 +43,7 @@ form.cart {
 
 	> * {
 		order: var(--item-order, 5);
-		width: var(--item-width, 100%);
+		flex: var(--item-flex, 0 1 auto);
 	}
 
 	.quantity {
@@ -65,8 +65,15 @@ form.cart {
 	--theme-button-padding: 5px 20px;
 
 	.single_add_to_cart_button {
-		flex: 1;
 		--item-order: 2;
+
+		@include functions.media-breakpoint-up (sm) {
+			--item-flex: var(--theme-button-flex, 1);
+		}
+
+		@include functions.media-breakpoint-down (xs) {
+			--item-flex: 1;
+		}
 	}
 
 	.added_to_cart {
@@ -77,12 +84,17 @@ form.cart {
 		--theme-button-background-hover-color: rgba(224,229,235,1);
 
 		@include functions.media-breakpoint-up (sm) {
-			flex: 1;
+			--item-flex: var(--theme-button-flex, 1);
+		}
+
+		@include functions.media-breakpoint-down (xs) {
+			--item-flex: 0 1 100%;
 		}
 	}
 
-
-	:is(.single_add_to_cart_button, .added_to_cart) {
-		max-width: var(--theme-button-max-width);
+	@include functions.media-breakpoint-up (sm) {
+		&:has(> .added_to_cart) {
+			--theme-button-flex: 1;
+		}
 	}
 }

@@ -151,14 +151,26 @@ foreach ($woo_single_layout as $layer) {
 		);
 
 		if ($add_to_cart_button_width !== '100%') {
+			$add_to_cart_button_width = blocksy_expand_responsive_value(
+				$add_to_cart_button_width
+			);
+			$add_to_cart_button_flex = [];
+
+			foreach (['desktop', 'tablet', 'mobile'] as $device) {
+				$width = $add_to_cart_button_width[$device];
+				$add_to_cart_button_flex[$device] = is_numeric($width) || substr((string) $width, -1) === '%'
+					? floatval($width) / 100
+					: '0 1 ' . $width;
+			}
+
 			blocksy_output_responsive([
 				'css' => $css,
 				'tablet_css' => $tablet_css,
 				'mobile_css' => $mobile_css,
 				'selector' => $selectors_map[$layer['id']] . ' > .cart',
-				'variableName' => 'theme-button-max-width',
+				'variableName' => 'theme-button-flex',
 				'unit' => '',
-				'value' => $add_to_cart_button_width,
+				'value' => $add_to_cart_button_flex,
 			]);
 		}
 
@@ -167,8 +179,8 @@ foreach ($woo_single_layout as $layer) {
 			$layer,
 			blocksy_get_theme_mod('add_to_cart_button_height', [
 				'mobile' => 40,
-				'tablet' => 55,
-				'desktop' => 55,
+				'tablet' => 50,
+				'desktop' => 50,
 			])
 		);
 

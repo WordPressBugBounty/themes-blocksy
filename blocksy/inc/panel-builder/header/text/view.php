@@ -38,17 +38,22 @@ if ($panel_type === 'header') {
 
 $class .= ' ' . blocksy_visibility_classes($visibility);
 
+$header_text = blocksy_default_akg(
+	'header_text',
+	$atts,
+	__('Sample text', 'blocksy')
+);
+
+$translated_header_text = blocksy_translate_dynamic(
+	$header_text,
+	'header:' . $section_id . ':' . $item_id . ':header_text'
+);
+
 $text = do_shortcode(
 	blocksy_sanitize_html_for_display([
-		'html' => blocksy_translate_dynamic(
-			blocksy_default_akg(
-				'header_text',
-				$atts,
-				__('Sample text', 'blocksy')
-			),
-			'header:' . $section_id . ':' . $item_id . ':header_text'
-		),
+		'html' => $translated_header_text,
 		'context' => 'block',
+		'trusted' => $translated_header_text === $header_text,
 	])
 );
 
