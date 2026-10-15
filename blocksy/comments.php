@@ -10,27 +10,29 @@
  * @package Blocksy
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- template scope, included by comments_template()
+
 if ( post_password_required() ) {
 	return;
 }
 
-$entity_singular = 'comment';
-$entity_plural = 'comments';
-
-$commenter = wp_get_current_commenter();
-
 $prefix = blocksy_manager()->screen->get_prefix();
 
-$comments_position = blocksy_get_theme_mod($prefix . '_comments_position', 'below');
+$comments_position = blocksy_get_theme_mod( $prefix . '_comments_position', 'below' );
 
-do_action('blocksy:comments:before');
+/**
+ * Fires before the comments area is rendered.
+ *
+ * @since 1.7.52
+ */
+do_action( 'blocksy:comments:before' );
 
-$html_atts = [
+$html_atts = array(
 	'class' => 'ct-comments',
-	'id' => 'comments'
-];
+	'id'    => 'comments',
+);
 
-if (blocksy_get_theme_mod(
+if ( blocksy_get_theme_mod(
 	$prefix . '_comments_containment',
 	'separated'
 ) === 'contained'
@@ -38,11 +40,11 @@ if (blocksy_get_theme_mod(
 	$html_atts['class'] .= ' is-width-constrained';
 }
 
-$deep_link_args = [
+$deep_link_args = array(
 	'prefix' => $prefix,
 	'suffix' => $prefix . '_has_comments',
 	'return' => 'array',
-];
+);
 
 $html_atts = array_merge(
 	$html_atts,
@@ -54,38 +56,56 @@ $html_atts = array_merge(
 ?>
 
 
-<div <?php echo blocksy_attr_to_html($html_atts); ?>>
-	<?php do_action('blocksy:comments:top'); ?>
+<div <?php echo blocksy_attr_to_html( $html_atts ); ?>>
+	<?php
+	/**
+	 * Fires at the top of the comments area.
+	 *
+	 * @since 1.7.52
+	 */
+	do_action( 'blocksy:comments:top' );
+	?>
 
-	<?php if ( have_comments() ) : 
-		$label_tag = blocksy_get_theme_mod($prefix . '_comments_heading_tag', 'h3');
+	<?php
+	if ( have_comments() ) :
+		$label_tag = blocksy_validate_html_tag(
+			array(
+				'tag'     => blocksy_get_theme_mod( $prefix . '_comments_heading_tag' ),
+				'allowed' => 'headings',
+				'default' => 'h3',
+			)
+		);
 		?>
-		<<?php echo esc_html($label_tag); ?> class="ct-comments-title">
+		<<?php echo esc_html( $label_tag ); ?> class="ct-comments-title">
 			<?php comments_number( esc_html__( 'No comments yet', 'blocksy' ), __( 'One comment', 'blocksy' ), __( '% Comments', 'blocksy' ) ); ?>
-		</<?php echo esc_html($label_tag); ?>>
+		</<?php echo esc_html( $label_tag ); ?>>
 	<?php endif; // have_comments() ?>
 
-	<?php if ( $comments_position === 'above' ) comment_form(); ?>
+	<?php
+	if ( 'above' === $comments_position ) {
+		comment_form();
+	}
+	?>
 
 	<?php if ( have_comments() ) : ?>
 		<ol class="ct-comment-list">
 			<?php
 				wp_list_comments(
-					[
-						'short_ping'  => true,
-						'avatar_size' => 100,
-						'callback' => 'blocksy_custom_comment_template',
+					array(
+						'short_ping'   => true,
+						'avatar_size'  => 100,
+						'callback'     => 'blocksy_custom_comment_template',
 						'end-callback' => function () {
 							echo '</li>';
-						}
-					]
+						},
+					)
 				);
 			?>
 		</ol>
 
 		<?php
 		// Are there comments to navigate through?
-		if (get_comment_pages_count() > 1 && get_option('page_comments')) :
+		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
 			?>
 			<nav class="ct-comment-navigation-container">
 				<h4 class="screen-reader-text section-heading">
@@ -104,7 +124,7 @@ $html_atts = array_merge(
 			</nav>
 		<?php endif; // Check for comment navigation ?>
 
-		<?php if (! comments_open() && get_comments_number()) : ?>
+		<?php if ( ! comments_open() && get_comments_number() ) : ?>
 			<p class="no-comments">
 				<?php esc_html_e( 'Comments are closed.', 'blocksy' ); ?>
 			</p>
@@ -112,10 +132,28 @@ $html_atts = array_merge(
 
 	<?php endif; // have_comments() ?>
 
-	<?php if ( $comments_position === 'below' ) comment_form(); ?>
+	<?php
+	if ( 'below' === $comments_position ) {
+		comment_form();
+	}
+	?>
 
-	<?php do_action('blocksy:comments:bottom'); ?>
+	<?php
+	/**
+	 * Fires at the bottom of the comments area.
+	 *
+	 * @since 1.7.52
+	 */
+	do_action( 'blocksy:comments:bottom' );
+	?>
 
 </div>
 
-<?php do_action('blocksy:comments:after'); ?>
+<?php
+/**
+ * Fires after the comments area is rendered.
+ *
+ * @since 1.7.52
+ */
+do_action( 'blocksy:comments:after' );
+?>

@@ -1,42 +1,36 @@
-:root {
+body {
 	color: var(--theme-text-color);
+}
 
-	// link color
-	a {
-		color: var(--theme-link-initial-color);
+h1 {
+	color: var(--theme-heading-color, var(--theme-heading-1-color, var(--theme-headings-color)));
+}
 
-		&:hover {
-			color: var(--theme-link-hover-color);
-		}
-	}
+h2 {
+	color: var(--theme-heading-color, var(--theme-heading-2-color, var(--theme-headings-color)));
+}
 
-	// heading color
-	// .editor-post-title__input {
-	// 	color: var(--theme-headings-color);
-	// }
+h3 {
+	color: var(--theme-heading-color, var(--theme-heading-3-color, var(--theme-headings-color)));
+}
 
-	h1 {
-		color: var(--theme-heading-color, var(--theme-heading-1-color, var(--theme-headings-color)));
-	}
+h4 {
+	color: var(--theme-heading-color, var(--theme-heading-4-color, var(--theme-headings-color)));
+}
 
-	h2 {
-		color: var(--theme-heading-color, var(--theme-heading-2-color, var(--theme-headings-color)));
-	}
+h5 {
+	color: var(--theme-heading-color, var(--theme-heading-5-color, var(--theme-headings-color)));
+}
 
-	h3 {
-		color: var(--theme-heading-color, var(--theme-heading-3-color, var(--theme-headings-color)));
-	}
+h6 {
+	color: var(--theme-heading-color, var(--theme-heading-6-color, var(--theme-headings-color)));
+}
 
-	h4 {
-		color: var(--theme-heading-color, var(--theme-heading-4-color, var(--theme-headings-color)));
-	}
+a {
+	color: var(--theme-link-initial-color);
 
-	h5 {
-		color: var(--theme-heading-color, var(--theme-heading-5-color, var(--theme-headings-color)));
-	}
-
-	h6 {
-		color: var(--theme-heading-color, var(--theme-heading-6-color, var(--theme-headings-color)));
+	&:hover {
+		color: var(--theme-link-hover-color);
 	}
 }
 

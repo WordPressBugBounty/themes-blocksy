@@ -1,11 +1,11 @@
 <?php
 
 class Blocksy_Screen_Manager {
-	private $prefixes = [];
+	private $prefixes               = array();
 	private $shortcode_tag_callback = null;
 
 	public function wipe_caches() {
-		$this->prefixes = [];
+		$this->prefixes = array();
 	}
 
 	public function uses_woo_default_template() {
@@ -15,30 +15,30 @@ class Blocksy_Screen_Manager {
 		 * Treat product filtering requests as being default woo templates.
 		 */
 		if (
-			isset($_POST['action'])
+			isset( $_POST['action'] )
 			&&
-			strpos($_POST['action'], 'prdctfltr') !== false
+			strpos( $_POST['action'], 'prdctfltr' ) !== false
 		) {
 			return true;
 		}
 
-		if ($blocksy_is_quick_view) {
+		if ( $blocksy_is_quick_view ) {
 			return true;
 		}
 
 		global $blocksy_is_floating_cart;
 
-		if ($blocksy_is_floating_cart) {
+		if ( $blocksy_is_floating_cart ) {
 			return true;
 		}
 
-		if (! function_exists('WC')) {
+		if ( ! function_exists( 'WC' ) ) {
 			return false;
 		}
 
 		$current_template = blocksy_manager()->get_current_template();
 
-		if (! $current_template) {
+		if ( ! $current_template ) {
 			return false;
 		}
 
@@ -50,6 +50,14 @@ class Blocksy_Screen_Manager {
 			get_template_directory()
 		) !== false;
 
+		/**
+		 * Filters whether the current template counts as a default WooCommerce template.
+		 *
+		 * @since 1.8.8
+		 *
+		 * @param bool   $result           Whether the template comes from WooCommerce or the theme.
+		 * @param string $current_template Path of the template being rendered.
+		 */
 		return apply_filters(
 			'blocksy:woocommerce:general:default-template-used',
 			$result,
@@ -57,34 +65,37 @@ class Blocksy_Screen_Manager {
 		);
 	}
 
-	public function get_prefix($args = []) {
-		$args = wp_parse_args($args, [
-			'allowed_prefixes' => null,
-			'default_prefix' => null
-		]);
+	public function get_prefix( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'allowed_prefixes' => null,
+				'default_prefix'   => null,
+			)
+		);
 
-		$args_key = md5(json_encode($args));
+		$args_key = md5( json_encode( $args ) );
 
-		if (! isset($this->prefixes[$args_key])) {
-			$this->prefixes[$args_key] = $this->compute_prefix($args);
+		if ( ! isset( $this->prefixes[ $args_key ] ) ) {
+			$this->prefixes[ $args_key ] = $this->compute_prefix( $args );
 		}
 
-		return $this->prefixes[$args_key];
+		return $this->prefixes[ $args_key ];
 	}
 
-	public function get_prefix_addition($args = []) {
-		$prefix = $this->get_prefix($args);
+	public function get_prefix_addition( $args = array() ) {
+		$prefix = $this->get_prefix( $args );
 
 		if (
-			$prefix === 'elementor_library_single'
+			'elementor_library_single' === $prefix
 			||
-			$prefix === 'jet-woo-builder_single'
+			'jet-woo-builder_single' === $prefix
 			||
-			$prefix === 'brizy_template_single'
+			'brizy_template_single' === $prefix
 			||
-			$prefix === 'ct_content_block_single'
+			'ct_content_block_single' === $prefix
 			||
-			$prefix === 'ct_product_tab_archive'
+			'ct_product_tab_archive' === $prefix
 		) {
 			return ':preview-mode';
 		}
@@ -92,23 +103,27 @@ class Blocksy_Screen_Manager {
 		return '';
 	}
 
-	public function process_allowed_prefixes($actual_prefix, $args = []) {
-		$args = wp_parse_args($args, [
-			'actual_prefix' => null,
-			'allowed_prefixes' => null,
-			'default_prefix' => null
-		]);
+	public function process_allowed_prefixes( $actual_prefix, $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'actual_prefix'    => null,
+				'allowed_prefixes' => null,
+				'default_prefix'   => null,
+			)
+		);
 
 		if (
 			! $actual_prefix
 			|| (
 				$args['allowed_prefixes'] && ! in_array(
 					$actual_prefix,
-					$args['allowed_prefixes']
-				) && strpos($actual_prefix, '_archive') === false
+					$args['allowed_prefixes'],
+					true
+				) && strpos( $actual_prefix, '_archive' ) === false
 			)
 		) {
-			if (! $args['default_prefix']) {
+			if ( ! $args['default_prefix'] ) {
 				return '';
 			}
 
@@ -118,36 +133,36 @@ class Blocksy_Screen_Manager {
 		return $actual_prefix;
 	}
 
-	public function get_single_prefixes($args = []) {
-		$result = ['single_blog_post', 'single_page'];
+	public function get_single_prefixes( $args = array() ) {
+		$result = array( 'single_blog_post', 'single_page' );
 
 		$args = wp_parse_args(
 			$args,
-			[
-				'has_bbpress' => false,
+			array(
+				'has_bbpress'     => false,
 				'has_buddy_press' => false,
-				'has_woocommerce' => false
-			]
+				'has_woocommerce' => false,
+			)
 		);
 
 		$custom_post_types = blocksy_manager()
 			->post_types
 			->get_supported_post_types();
 
-		foreach ($custom_post_types as $cpt) {
+		foreach ( $custom_post_types as $cpt ) {
 			$result[] = $cpt . '_single';
 		}
 
-		if ($args['has_woocommerce']) {
+		if ( $args['has_woocommerce'] ) {
 			$result[] = 'product';
 		}
 
-		if (class_exists('Tribe__Events__Main')) {
+		if ( class_exists( 'Tribe__Events__Main' ) ) {
 			$result[] = 'tribe_events_single';
 			$result[] = 'tribe_events_archive';
 		}
 
-		if (class_exists('Visual_Portfolio')) {
+		if ( class_exists( 'Visual_Portfolio' ) ) {
 			$result[] = 'vs_portfolio_single';
 			$result[] = 'vs_portfolio_archive';
 		}
@@ -155,92 +170,92 @@ class Blocksy_Screen_Manager {
 		return $result;
 	}
 
-	public function get_admin_prefix($post_type) {
-		if ($post_type === 'post') {
+	public function get_admin_prefix( $post_type ) {
+		if ( 'post' === $post_type ) {
 			return 'single_blog_post';
 		}
 
-		if ($post_type === 'page') {
+		if ( 'page' === $post_type ) {
 			return 'single_page';
 		}
 
 		return $post_type . '_single';
 	}
 
-	public function get_archive_prefixes($args = []) {
+	public function get_archive_prefixes( $args = array() ) {
 		$args = wp_parse_args(
 			$args,
-			[
-				'has_blog' => true,
+			array(
+				'has_blog'        => true,
 				'has_woocommerce' => false,
-				'has_categories' => false,
-				'has_author' => false,
-				'has_search' => false
-			]
+				'has_categories'  => false,
+				'has_author'      => false,
+				'has_search'      => false,
+			)
 		);
 
-		$result = [];
+		$result = array();
 
-		if ($args['has_blog']) {
+		if ( $args['has_blog'] ) {
 			$result[] = 'blog';
 		}
 
-		if ($args['has_categories']) {
+		if ( $args['has_categories'] ) {
 			$result[] = 'categories';
 		}
 
-		if ($args['has_author']) {
+		if ( $args['has_author'] ) {
 			$result[] = 'author';
 		}
 
-		if ($args['has_search']) {
+		if ( $args['has_search'] ) {
 			$result[] = 'search';
 		}
 
-		if ($args['has_woocommerce'] && function_exists('is_product')) {
+		if ( $args['has_woocommerce'] && function_exists( 'is_product' ) ) {
 			$result[] = 'woo_categories';
 		}
 
 		$custom_post_types = blocksy_manager()->post_types->get_supported_post_types();
 
-		foreach ($custom_post_types as $cpt) {
+		foreach ( $custom_post_types as $cpt ) {
 			$result[] = $cpt . '_archive';
 		}
 
 		return $result;
 	}
 
-	public function get_archive_prefixes_with_human_labels($args = []) {
-		$prefixes = $this->get_archive_prefixes($args);
+	public function get_archive_prefixes_with_human_labels( $args = array() ) {
+		$prefixes = $this->get_archive_prefixes( $args );
 
-		$result = [];
+		$result = array();
 
-		$labels = [
-			'blog' => __('Blog', 'blocksy'),
-			'categories' => __('Categories', 'blocksy'),
-			'author' => __('Author', 'blocksy'),
-			'search' => __('Search', 'blocksy'),
-			'woo_categories' => __('WooCommerce Categories', 'blocksy'),
-		];
+		$labels = array(
+			'blog'           => __( 'Blog', 'blocksy' ),
+			'categories'     => __( 'Categories', 'blocksy' ),
+			'author'         => __( 'Author', 'blocksy' ),
+			'search'         => __( 'Search', 'blocksy' ),
+			'woo_categories' => __( 'WooCommerce Categories', 'blocksy' ),
+		);
 
-		foreach ($prefixes as $prefix) {
-			if (isset($labels[$prefix])) {
-				$result[] = [
-					'key' => $prefix,
-					'label' => $labels[$prefix],
-					'group' => __('Archives', 'blocksy')
-				];
+		foreach ( $prefixes as $prefix ) {
+			if ( isset( $labels[ $prefix ] ) ) {
+				$result[] = array(
+					'key'   => $prefix,
+					'label' => $labels[ $prefix ],
+					'group' => __( 'Archives', 'blocksy' ),
+				);
 			} else {
-				$maybe_cpt = str_replace('_archive', '', $prefix);
+				$maybe_cpt = str_replace( '_archive', '', $prefix );
 
-				$post_type_object = get_post_type_object($maybe_cpt);
+				$post_type_object = get_post_type_object( $maybe_cpt );
 
-				if ($post_type_object) {
-					$result[] = [
-						'key' => $prefix,
+				if ( $post_type_object ) {
+					$result[] = array(
+						'key'   => $prefix,
 						'label' => $post_type_object->labels->name,
-						'group' => __('Archives', 'blocksy')
-					];
+						'group' => __( 'Archives', 'blocksy' ),
+					);
 				}
 			}
 		}
@@ -248,35 +263,35 @@ class Blocksy_Screen_Manager {
 		return $result;
 	}
 
-	public function get_single_prefixes_with_human_labels($args = []) {
-		$prefixes = $this->get_single_prefixes($args);
+	public function get_single_prefixes_with_human_labels( $args = array() ) {
+		$prefixes = $this->get_single_prefixes( $args );
 
-		$result = [];
+		$result = array();
 
-		$labels = [
-			'single_blog_post' => __('Posts', 'blocksy'),
-			'single_page' => __('Pages', 'blocksy'),
-			'product' => __('Products', 'blocksy')
-		];
+		$labels = array(
+			'single_blog_post' => __( 'Posts', 'blocksy' ),
+			'single_page'      => __( 'Pages', 'blocksy' ),
+			'product'          => __( 'Products', 'blocksy' ),
+		);
 
-		foreach ($prefixes as $prefix) {
-			if (isset($labels[$prefix])) {
-				$result[] = [
-					'key' => $prefix,
-					'label' => $labels[$prefix],
-					'group' => __('Singulars', 'blocksy')
-				];
+		foreach ( $prefixes as $prefix ) {
+			if ( isset( $labels[ $prefix ] ) ) {
+				$result[] = array(
+					'key'   => $prefix,
+					'label' => $labels[ $prefix ],
+					'group' => __( 'Singulars', 'blocksy' ),
+				);
 			} else {
-				$maybe_cpt = str_replace('_single', '', $prefix);
+				$maybe_cpt = str_replace( '_single', '', $prefix );
 
-				$post_type_object = get_post_type_object($maybe_cpt);
+				$post_type_object = get_post_type_object( $maybe_cpt );
 
-				if ($post_type_object) {
-					$result[] = [
-						'key' => $prefix,
+				if ( $post_type_object ) {
+					$result[] = array(
+						'key'   => $prefix,
 						'label' => $post_type_object->labels->name,
-						'group' => __('Singulars', 'blocksy')
-					];
+						'group' => __( 'Singulars', 'blocksy' ),
+					);
 				}
 			}
 		}
@@ -284,27 +299,30 @@ class Blocksy_Screen_Manager {
 		return $result;
 	}
 
-	private function compute_prefix($args = []) {
-		$args = wp_parse_args($args, [
-			'allowed_prefixes' => null,
-			'default_prefix' => null
-		]);
+	private function compute_prefix( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'allowed_prefixes' => null,
+				'default_prefix'   => null,
+			)
+		);
 
-		if (function_exists('is_lifterlms') && is_lifterlms()) {
+		if ( function_exists( 'is_lifterlms' ) && is_lifterlms() ) {
 			return 'lms';
 		}
 
 		$actual_prefix = null;
 
 		if (
-			function_exists('is_bbpress') && (
+			function_exists( 'is_bbpress' ) && (
 				get_post_type() === 'forum'
 				||
 				get_post_type() === 'topic'
 				||
 				get_post_type() === 'reply'
 				||
-				get_query_var('post_type') === 'forum'
+				get_query_var( 'post_type' ) === 'forum'
 				||
 				bbp_is_topic_tag()
 				||
@@ -316,58 +334,60 @@ class Blocksy_Screen_Manager {
 			$actual_prefix = 'bbpress_single';
 		}
 
-		if (function_exists('is_buddypress') && (
+		if ( function_exists( 'is_buddypress' ) && (
 			is_buddypress()
-		)) {
+		) ) {
 			$actual_prefix = 'buddypress_single';
 		}
 
-		if (get_post_type() === 'jet-woo-builder') {
-			$actual_prefix  = 'jet-woo-builder_single';
+		if ( get_post_type() === 'jet-woo-builder' ) {
+			$actual_prefix = 'jet-woo-builder_single';
 		}
 
-		if (blocksy_is_page([
-			'shop_is_page' => false,
-			'blog_is_page' => false
-		]) || is_single() && ! is_tax()) {
-			if (is_single()) {
+		if ( blocksy_is_page(
+			array(
+				'shop_is_page' => false,
+				'blog_is_page' => false,
+			)
+		) || is_single() && ! is_tax() ) {
+			if ( is_single() ) {
 				$post_type = blocksy_manager()->post_types->is_supported_post_type();
 
-				if ($post_type) {
+				if ( $post_type ) {
 					$actual_prefix = $post_type . '_single';
 				}
 			}
 
-			if (! $actual_prefix) {
+			if ( ! $actual_prefix ) {
 				$actual_prefix = blocksy_is_page() ? 'single_page' : 'single_blog_post';
 			}
 		}
 
-		if (get_post_type() === 'elementor_library') {
-			$actual_prefix  = 'elementor_library_single';
+		if ( get_post_type() === 'elementor_library' ) {
+			$actual_prefix = 'elementor_library_single';
 		}
 
-		if (get_post_type() === 'brizy_template') {
-			$actual_prefix  = 'brizy_template_single';
+		if ( get_post_type() === 'brizy_template' ) {
+			$actual_prefix = 'brizy_template_single';
 		}
 
-		if (get_post_type() === 'ct_content_block') {
+		if ( get_post_type() === 'ct_content_block' ) {
 			$actual_prefix = 'ct_content_block_single';
 		}
 
-		if (get_post_type() === 'ct_product_tab') {
+		if ( get_post_type() === 'ct_product_tab' ) {
 			$actual_prefix = 'ct_product_tab_single';
 		}
 
-		if (get_post_type() === 'ct_size_guide') {
+		if ( get_post_type() === 'ct_size_guide' ) {
 			$actual_prefix = 'ct_size_guide_single';
 		}
 
-		if (get_post_type() === 'ct_thank_you_page') {
+		if ( get_post_type() === 'ct_thank_you_page' ) {
 			$actual_prefix = 'ct_thank_you_page_single';
 		}
 
-		if (function_exists('is_product_category') && ! is_author()) {
+		if ( function_exists( 'is_product_category' ) && ! is_author() ) {
 			$tax_obj = get_queried_object();
 
 			if (
@@ -382,17 +402,17 @@ class Blocksy_Screen_Manager {
 				(
 					is_tax()
 					&&
-					function_exists( 'taxonomy_is_product_attribute')
+					function_exists( 'taxonomy_is_product_attribute' )
 					&&
 					$tax_obj
 					&&
-					taxonomy_is_product_attribute($tax_obj->taxonomy)
+					taxonomy_is_product_attribute( $tax_obj->taxonomy )
 				)
 			) {
 				$actual_prefix = 'woo_categories';
 			}
 
-			if (is_product()) {
+			if ( is_product() ) {
 				$actual_prefix = 'product';
 			}
 		}
@@ -414,12 +434,12 @@ class Blocksy_Screen_Manager {
 
 			$prefix_for_post_type = 'categories';
 
-			if ($post_type) {
+			if ( $post_type ) {
 				$prefix_for_post_type = $post_type . '_archive';
 			}
 
-			if (is_tax() || is_category() || is_tag()) {
-				if (get_queried_object_id()) {
+			if ( is_tax() || is_category() || is_tag() ) {
+				if ( get_queried_object_id() ) {
 					$actual_prefix = $prefix_for_post_type;
 				}
 			} else {
@@ -427,10 +447,10 @@ class Blocksy_Screen_Manager {
 			}
 		}
 
-		if (is_home()) {
+		if ( is_home() ) {
 			$post_type = blocksy_manager()->post_types->is_supported_post_type();
 
-			if ($post_type) {
+			if ( $post_type ) {
 				$actual_prefix = $post_type . '_archive';
 			} else {
 				$actual_prefix = 'blog';
@@ -438,7 +458,7 @@ class Blocksy_Screen_Manager {
 		}
 
 		if (
-			class_exists('\EventKoi\Init')
+			class_exists( '\EventKoi\Init' )
 			&&
 			(
 				get_post_type() === 'eventkoi_event'
@@ -450,41 +470,41 @@ class Blocksy_Screen_Manager {
 		}
 
 		if (
-			class_exists('\EventKoi\Init')
+			class_exists( '\EventKoi\Init' )
 			&&
-			is_tax('event_cal')
+			is_tax( 'event_cal' )
 		) {
 			$actual_prefix = 'eventkoi_event_archive';
 		}
 
 		if (
-			class_exists('Visual_Portfolio')
+			class_exists( 'Visual_Portfolio' )
 			&&
 			get_post_type() === 'portfolio'
 		) {
 			$actual_prefix = 'vs_portfolio_single';
 		}
 
-		if (class_exists('Visual_Portfolio')) {
-			$vp_settings = get_option('vp_general');
-			
+		if ( class_exists( 'Visual_Portfolio' ) ) {
+			$vp_settings = get_option( 'vp_general' );
+
 			if (
 				(
-					isset($vp_settings['portfolio_archive_page'])
+					isset( $vp_settings['portfolio_archive_page'] )
 					&&
-					intval($vp_settings['portfolio_archive_page']) === get_the_ID()
+					intval( $vp_settings['portfolio_archive_page'] ) === get_the_ID()
 				)
 				||
-				is_tax('portfolio_category')
+				is_tax( 'portfolio_category' )
 				||
-				is_tax('portfolio_tag')
+				is_tax( 'portfolio_tag' )
 			) {
 				$actual_prefix = 'vs_portfolio_archive';
 			}
 		}
 
 		if (
-			class_exists('Tribe__Events__Main')
+			class_exists( 'Tribe__Events__Main' )
 			&&
 			tribe_is_event()
 		) {
@@ -492,14 +512,14 @@ class Blocksy_Screen_Manager {
 		}
 
 		if (
-			class_exists('Tribe__Events__Main')
+			class_exists( 'Tribe__Events__Main' )
 			&&
 			(
 				tribe_is_event()
 				||
-				is_singular('tribe_event_series')
+				is_singular( 'tribe_event_series' )
 				||
-				is_singular('tribe_organizer')
+				is_singular( 'tribe_organizer' )
 				||
 				tribe_is_venue()
 			)
@@ -508,71 +528,91 @@ class Blocksy_Screen_Manager {
 		}
 
 		if (
-			class_exists('Tribe__Events__Main')
+			class_exists( 'Tribe__Events__Main' )
 			&&
 			(
 				tribe_is_events_home()
 				||
 				tribe_is_showing_all()
 				||
-				is_tax('tec_venue_category')
+				is_tax( 'tec_venue_category' )
 				||
-				is_post_type_archive('tribe_events')
+				is_post_type_archive( 'tribe_events' )
 			)
 		) {
 			$actual_prefix = 'tribe_events_archive';
 		}
 
-		$actual_post_type = get_query_var('post_type');
+		$actual_post_type = get_query_var( 'post_type' );
 
-		if (empty($actual_post_type) && isset($_GET['ct_post_type'])) {
-			$actual_post_type = explode(':', $_GET['ct_post_type']);
+		if ( empty( $actual_post_type ) && isset( $_GET['ct_post_type'] ) ) {
+			$actual_post_type = explode( ':', $_GET['ct_post_type'] );
 		}
 
-		if (is_search()) {
+		if ( is_search() ) {
 			$actual_prefix = 'search';
 
 			if (
-				is_array($actual_post_type)
+				is_array( $actual_post_type )
 				&&
-				count($actual_post_type) === 1
+				count( $actual_post_type ) === 1
 				&&
-				$actual_post_type[0] !== 'page'
+				'page' !== $actual_post_type[0]
 			) {
-				if ($actual_post_type[0] === 'post') {
+				if ( 'post' === $actual_post_type[0] ) {
 					$actual_prefix = 'blog';
 				}
 
 				$post_type = blocksy_manager()->post_types->is_supported_post_type();
 
-				if ($post_type) {
+				if ( $post_type ) {
 					$actual_prefix = $post_type . '_archive';
 				}
 			}
 		}
 
-		if (is_author()) {
+		if ( is_author() ) {
 			$actual_prefix = 'author';
 		}
 
-		if (isset($_GET['blocksy_prefix'])) {
-			$actual_prefix = $_GET['blocksy_prefix'];
+		if ( isset( $_GET['blocksy_prefix'] ) ) {
+			$requested_prefix = sanitize_key( wp_unslash( $_GET['blocksy_prefix'] ) );
+
+			$known_prefixes = array_merge(
+				$this->get_archive_prefixes(
+					array(
+						'has_woocommerce' => true,
+						'has_categories'  => true,
+						'has_author'      => true,
+						'has_search'      => true,
+					)
+				),
+				$this->get_single_prefixes(
+					array(
+						'has_woocommerce' => true,
+					)
+				)
+			);
+
+			if ( in_array( $requested_prefix, $known_prefixes, true ) ) {
+				$actual_prefix = $requested_prefix;
+			}
 		}
 
-		return $this->process_allowed_prefixes($actual_prefix, $args);
+		return $this->process_allowed_prefixes( $actual_prefix, $args );
 	}
 
 	public function is_product() {
 		global $wp_query;
 
-		if (! function_exists('is_product')) {
+		if ( ! function_exists( 'is_product' ) ) {
 			return false;
 		}
 
-		$post_type = $wp_query->get('post_type');
+		$post_type = $wp_query->get( 'post_type' );
 
-		if (! is_array($post_type)) {
-			$post_type = [$post_type];
+		if ( ! is_array( $post_type ) ) {
+			$post_type = array( $post_type );
 		}
 
 		$object = get_queried_object();
@@ -580,18 +620,18 @@ class Blocksy_Screen_Manager {
 		return is_product() || (
 			$wp_query->is_single
 			&&
-			in_array('product', $post_type)
+			in_array( 'product', $post_type, true )
 		) || (
 			$object
 			&&
-			isset($object->post_content)
+			isset( $object->post_content )
 			&&
-			has_shortcode($object->post_content, 'product_page')
+			has_shortcode( $object->post_content, 'product_page' )
 		);
 	}
 
-	public function on_product_shortcode_rendered($cb = null) {
-		if (! $cb) {
+	public function on_product_shortcode_rendered( $cb = null ) {
+		if ( ! $cb ) {
 			return;
 		}
 
@@ -599,14 +639,14 @@ class Blocksy_Screen_Manager {
 
 		add_filter(
 			'do_shortcode_tag',
-			[$this, '_do_shortcode_tag_filter'],
+			array( $this, '_do_shortcode_tag_filter' ),
 			10,
 			3
 		);
 	}
 
-	public function _do_shortcode_tag_filter($output, $tag, $attr) {
-		if (! $this->shortcode_tag_callback) {
+	public function _do_shortcode_tag_filter( $output, $tag, $attr ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- do_shortcode_tag filter signature
+		if ( ! $this->shortcode_tag_callback ) {
 			return $output;
 		}
 
@@ -629,7 +669,7 @@ class Blocksy_Screen_Manager {
 			||
 			'product_page' === $tag
 		) {
-			$cb($tag);
+			$cb( $tag );
 		}
 
 		/*
@@ -643,24 +683,24 @@ class Blocksy_Screen_Manager {
 		return $output;
 	}
 
-	public function compute_post_type_for_prefix($prefix) {
+	public function compute_post_type_for_prefix( $prefix ) {
 		$post_type = 'post';
 
-		if ($prefix === 'product') {
+		if ( 'product' === $prefix ) {
 			$post_type = 'product';
 		}
 
-		if ($prefix === 'single_page') {
+		if ( 'single_page' === $prefix ) {
 			$post_type = 'page';
 		}
 
-		$post_types = [];
+		$post_types = array();
 
-		if (blocksy_manager()) {
+		if ( blocksy_manager() ) {
 			$post_types = blocksy_manager()->post_types->get_supported_post_types();
 		}
 
-		foreach ($post_types as $single_post_type) {
+		foreach ( $post_types as $single_post_type ) {
 			if (
 				$prefix === $single_post_type . '_archive'
 				||
@@ -677,19 +717,19 @@ class Blocksy_Screen_Manager {
 /**
  * Treat non-posts home page as a simple page.
  */
-if (! function_exists('blocksy_is_page')) {
-	function blocksy_is_page($args = []) {
+if ( ! function_exists( 'blocksy_is_page' ) ) {
+	function blocksy_is_page( $args = array() ) {
 		$args = wp_parse_args(
 			$args,
-			[
+			array(
 				'shop_is_page' => true,
-				'blog_is_page' => true
-			]
+				'blog_is_page' => true,
+			)
 		);
 
 		static $static_result = null;
 
-		if ($static_result !== null) {
+		if ( null !== $static_result ) {
 		}
 
 		$result = (
@@ -700,24 +740,26 @@ if (! function_exists('blocksy_is_page')) {
 				&&
 				! is_front_page()
 			) || is_page() || (
-				$args['shop_is_page'] && function_exists('is_shop') && is_shop()
+				$args['shop_is_page'] && function_exists( 'is_shop' ) && is_shop()
 			) || is_attachment()
 		);
 
-		if ($result) {
-			$post_id = strval(get_the_ID());
+		if ( $result ) {
+			$post_id = strval( get_the_ID() );
 
-			$maybe_special_post_id = blocksy_get_special_post_id([
-				'search_pages' => true
-			]);
+			$maybe_special_post_id = blocksy_get_special_post_id(
+				array(
+					'search_pages' => true,
+				)
+			);
 
-			if ($maybe_special_post_id !== null) {
+			if ( null !== $maybe_special_post_id ) {
 				$post_id = $maybe_special_post_id;
 			}
 
 			$static_result = $post_id;
 
-			if ($post_id === '0') {
+			if ( '0' === $post_id ) {
 				return true;
 			}
 
@@ -729,30 +771,33 @@ if (! function_exists('blocksy_is_page')) {
 	}
 }
 
-function blocksy_get_special_post_id($args = []) {
-	$args = wp_parse_args($args, [
-		'search_pages' => false,
+function blocksy_get_special_post_id( $args = array() ) {
+	$args = wp_parse_args(
+		$args,
+		array(
+			'search_pages'  => false,
 
-		// 'global' | 'local'
-		'context' => 'global',
+			// 'global' | 'local'
+			'context'       => 'global',
 
-		'block_context' => null
-	]);
+			'block_context' => null,
+		)
+	);
 
 	$special_post_id = null;
 
-	if ($args['context'] === 'global' && is_home() && ! is_front_page()) {
-		$special_post_id = get_option('page_for_posts');
+	if ( 'global' === $args['context'] && is_home() && ! is_front_page() ) {
+		$special_post_id = get_option( 'page_for_posts' );
 	}
 
 	if (
-		$args['context'] === 'global'
+		'global' === $args['context']
 		&&
-		function_exists('is_shop')
+		function_exists( 'is_shop' )
 		&&
 		is_shop()
 	) {
-		$special_post_id = get_option('woocommerce_shop_page_id');
+		$special_post_id = get_option( 'woocommerce_shop_page_id' );
 	}
 
 	// Sometimes, a page is a page even if the global post is replaced
@@ -765,9 +810,9 @@ function blocksy_get_special_post_id($args = []) {
 	if (
 		$args['search_pages']
 		&&
-		get_post_type(get_the_ID()) !== 'page'
+		get_post_type( get_the_ID() ) !== 'page'
 		&&
-		get_post_type(get_queried_object_id()) === 'page'
+		get_post_type( get_queried_object_id() ) === 'page'
 	) {
 		$special_post_id = get_queried_object_id();
 	}
@@ -779,9 +824,9 @@ function blocksy_get_special_post_id($args = []) {
 	// If current page uses a fake page for the global post, we need to check
 	// the queried object to see if it's a page.
 	if (
-		intval(get_the_ID()) === 0
+		intval( get_the_ID() ) === 0
 		&&
-		intval(get_queried_object_id()) !== intval(get_the_ID())
+		intval( get_queried_object_id() ) !== intval( get_the_ID() )
 		// &&
 		// get_post_type() === 'page'
 	) {
@@ -790,17 +835,17 @@ function blocksy_get_special_post_id($args = []) {
 
 	// This happens for Gutenberg block - Woocommerce single product block
 	if (
-		$args['context'] === 'local'
+		'local' === $args['context']
 		&&
 		$args['block_context']
 		&&
-		isset($args['block_context']['postId'])
+		isset( $args['block_context']['postId'] )
 	) {
 		$special_post_id = $args['block_context']['postId'];
 	}
 
-	if ($special_post_id !== null) {
-		return intval($special_post_id);
+	if ( null !== $special_post_id ) {
+		return intval( $special_post_id );
 	}
 
 	return $special_post_id;

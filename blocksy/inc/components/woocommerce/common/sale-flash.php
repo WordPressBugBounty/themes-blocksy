@@ -2,50 +2,54 @@
 
 add_filter(
 	'woocommerce_sale_flash',
-	function ($text, $post, $product) {
+	function ( $text, $post, $product ) {
 
-		if (strpos($text, '<span class="onsale">') === false) {
+		if ( strpos( $text, '<span class="onsale">' ) === false ) {
 			return $text;
 		}
-		
+
 		$text = blocksy_get_theme_mod(
 			'sale_badge_default_value',
-			__('SALE', 'blocksy')
+			__( 'SALE', 'blocksy' )
 		);
 
 		$default_text = $text;
 
-		if (blocksy_get_theme_mod('sale_badge_value', 'default') === 'custom') {
-			$text = blocksy_get_theme_mod('sale_badge_custom_value', '-{value}%');
+		if ( blocksy_get_theme_mod( 'sale_badge_value', 'default' ) === 'custom' ) {
+			$text = blocksy_sanitize_html_for_display(
+				array(
+					'html' => blocksy_get_theme_mod( 'sale_badge_custom_value', '-{value}%' ),
+				)
+			);
 
-			if ($product->is_type('variable')) {
-				$percentages = [];
+			if ( $product->is_type( 'variable' ) ) {
+				$percentages = array();
 
 				$prices = $product->get_variation_prices();
 
-				foreach($prices['price'] as $key => $price) {
-					if ($prices['regular_price'][$key] !== $price) {
+				foreach ( $prices['price'] as $key => $price ) {
+					if ( $prices['regular_price'][ $key ] !== $price ) {
 						$percentages[] = round(
 							100 - (
-								$prices['sale_price'][$key] / $prices['regular_price'][$key] * 100
+								$prices['sale_price'][ $key ] / $prices['regular_price'][ $key ] * 100
 							)
 						);
 					}
 				}
 
-				if (empty($percentages)) {
+				if ( empty( $percentages ) ) {
 					$percentages[] = 0;
 				}
 
-				$percentage = max($percentages);
+				$percentage = max( $percentages );
 			} else {
 				$regular_price = (float) $product->get_regular_price();
-				$sale_price = (float) $product->get_sale_price();
+				$sale_price    = (float) $product->get_sale_price();
 
 				$percentage = 0;
 
-				if ($regular_price > 0) {
-					$percentage = round(100 - ($sale_price / $regular_price * 100));
+				if ( $regular_price > 0 ) {
+					$percentage = round( 100 - ( $sale_price / $regular_price * 100 ) );
 				}
 			}
 
@@ -55,21 +59,20 @@ add_filter(
 				$text
 			);
 
-			if ($product->is_type('grouped')) {
+			if ( $product->is_type( 'grouped' ) ) {
 				$text = $default_text;
 			}
 		}
 
 		return blocksy_html_tag(
 			'span',
-			[
-				'class' => 'onsale',
-				'data-shape' => blocksy_get_theme_mod('sale_badge_shape', 'type-2')
-			],
+			array(
+				'class'      => 'onsale',
+				'data-shape' => blocksy_get_theme_mod( 'sale_badge_shape', 'type-2' ),
+			),
 			$text
 		);
 	},
 	10,
 	3
 );
-

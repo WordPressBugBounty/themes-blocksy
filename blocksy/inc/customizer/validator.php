@@ -1,40 +1,8 @@
 <?php
 
-if (! function_exists('blocksy_validate_color')) {
-	function blocksy_validate_color($color) {
-		/**
-		 * Allow hex colors
-		 */
-		if (sanitize_hex_color($color)) {
-			return $color;
-		}
-
-		/**
-		 * Allow rgb* colors
-		 */
-		if (strpos($color, 'rgb') !== false) {
-			return $color;
-		}
-
-		/**
-		 * Allow var(--global) values
-		 */
-		if (strlen($color) > 2 && substr($color, 0, 6) === "var(--") {
-			return $color;
-		}
-
-		// Allow CT_CSS_SKIP_RULE values
-		if (strpos($color, 'CT_CSS_SKIP_RULE') !== false) {
-			return $color;
-		}
-
-		return null;
-	}
-}
-
-if (! function_exists('blocksy_validate_single_slider')) {
-	function blocksy_validate_single_slider($value) {
-		if (! intval($value) && intval($value) !== 0) {
+if ( ! function_exists( 'blocksy_validate_single_slider' ) ) {
+	function blocksy_validate_single_slider( $value ) {
+		if ( ! intval( $value ) && intval( $value ) !== 0 ) {
 			return null;
 		}
 
@@ -42,93 +10,93 @@ if (! function_exists('blocksy_validate_single_slider')) {
 	}
 }
 
-if (! function_exists('blocksy_validate_for')) {
-	function blocksy_validate_for($option, $input) {
+if ( ! function_exists( 'blocksy_validate_for' ) ) {
+	function blocksy_validate_for( $option, $input ) {
 		if (
-			$option['type'] === 'ct-header-builder'
+			'ct-header-builder' === $option['type']
 			||
-			$option['type'] === 'ct-footer-builder'
+			'ct-footer-builder' === $option['type']
 		) {
-			return blocksy_sanitize_builder_value($option, $input);
+			return blocksy_sanitize_builder_value( $option, $input );
 		}
 
 		if (
-			$option['type'] === 'ct-switch'
+			'ct-switch' === $option['type']
 			||
-			$option['type'] === 'ct-panel'
+			'ct-panel' === $option['type']
 		) {
-			$allowed_values = ['yes', 'no'];
+			$allowed_values = array( 'yes', 'no' );
 
-			if (isset($option['behavior']) && $option['behavior'] === 'bool') {
-				$allowed_values = [true, false];
+			if ( isset( $option['behavior'] ) && 'bool' === $option['behavior'] ) {
+				$allowed_values = array( true, false );
 			}
 
-			if (in_array($input, $allowed_values, true)) {
+			if ( in_array( $input, $allowed_values, true ) ) {
 				return $input;
 			}
 
 			return $option['value'];
 		}
 
-		if ($option['type'] === 'text' || $option['type'] === 'textarea') {
-			return wp_kses_post($input);
+		if ( 'text' === $option['type'] || 'textarea' === $option['type'] ) {
+			return wp_kses_post( $input );
 		}
 
-		if ($option['type'] === 'ct-color-picker') {
-			if (! is_array($input)) {
+		if ( 'ct-color-picker' === $option['type'] ) {
+			if ( ! is_array( $input ) ) {
 				return $option['value'];
 			}
 
-			foreach ($input as $single_color) {
-				if (! isset($single_color['color'])) {
+			foreach ( $input as $single_color ) {
+				if ( ! isset( $single_color['color'] ) ) {
 					return $option['value'];
 				}
 
-				if (! blocksy_validate_color($single_color['color'])) {
+				if ( ! blocksy_validate_color( $single_color['color'] ) ) {
 					return $option['value'];
 				}
 			}
 		}
 
 		if (
-			$option['type'] === 'ct-select'
+			'ct-select' === $option['type']
 			||
-			$option['type'] === 'ct-image-picker'
+			'ct-image-picker' === $option['type']
 			||
-			$option['type'] === 'ct-radio'
+			'ct-radio' === $option['type']
 		) {
-			if (! in_array(
+			if ( ! in_array(
 				$input,
 				array_reduce(
-					blocksy_ordered_keys($option['choices']),
-					function ($current, $item) {
-						return array_merge($current, [$item['key']]);
+					blocksy_ordered_keys( $option['choices'] ),
+					function ( $current, $item ) {
+						return array_merge( $current, array( $item['key'] ) );
 					},
-					[]
+					array()
 				),
 				true
-			)) {
+			) ) {
 				return $option['value'];
 			}
 		}
 
 		if (
-			$option['type'] === 'ct-checkboxes'
+			'ct-checkboxes' === $option['type']
 			||
-			$option['type'] === 'ct-visibility'
+			'ct-visibility' === $option['type']
 		) {
-			foreach ($input as $key => $value) {
+			foreach ( $input as $key => $value ) {
 				if (
-					! is_bool($value)
+					! is_bool( $value )
 					||
 					! in_array(
 						$key,
 						array_reduce(
-							blocksy_ordered_keys($option['choices']),
-							function ($current, $item) {
-								return array_merge($current, [$item['key']]);
+							blocksy_ordered_keys( $option['choices'] ),
+							function ( $current, $item ) {
+								return array_merge( $current, array( $item['key'] ) );
 							},
-							[]
+							array()
 						),
 						true
 					)
@@ -138,16 +106,16 @@ if (! function_exists('blocksy_validate_for')) {
 			}
 		}
 
-		if ($option['type'] === 'ct-number') {
-			if (isset($option['responsive']) && $option['responsive']) {
-				$values_to_validate = ['desktop', 'tablet', 'mobile'];
+		if ( 'ct-number' === $option['type'] ) {
+			if ( isset( $option['responsive'] ) && $option['responsive'] ) {
+				$values_to_validate = array( 'desktop', 'tablet', 'mobile' );
 
-				foreach (blocksy_expand_responsive_value($input) as $single_key => $single_value) {
-					if (! in_array($single_key, $values_to_validate)) {
+				foreach ( blocksy_expand_responsive_value( $input ) as $single_key => $single_value ) {
+					if ( ! in_array( $single_key, $values_to_validate, true ) ) {
 						continue;
 					}
 
-					if (! is_numeric($single_value)) {
+					if ( ! is_numeric( $single_value ) ) {
 						return $option['value'];
 					}
 				}
@@ -155,26 +123,26 @@ if (! function_exists('blocksy_validate_for')) {
 				return $input;
 			}
 
-			if (! is_numeric($input)) {
+			if ( ! is_numeric( $input ) ) {
 				return $option['value'];
 			}
 
 			return max(
-				intval($option['min']),
-				min(intval($option['max']), intval($input))
+				intval( $option['min'] ),
+				min( intval( $option['max'] ), intval( $input ) )
 			);
 		}
 
-		if ($option['type'] === 'ct-slider') {
-			if (isset($option['responsive']) && $option['responsive']) {
-				$values_to_validate = ['desktop', 'tablet', 'mobile'];
+		if ( 'ct-slider' === $option['type'] ) {
+			if ( isset( $option['responsive'] ) && $option['responsive'] ) {
+				$values_to_validate = array( 'desktop', 'tablet', 'mobile' );
 
-				foreach (blocksy_expand_responsive_value($input) as $single_key => $single_value) {
-					if (! in_array($single_key, $values_to_validate)) {
+				foreach ( blocksy_expand_responsive_value( $input ) as $single_key => $single_value ) {
+					if ( ! in_array( $single_key, $values_to_validate, true ) ) {
 						continue;
 					}
 
-					if (! blocksy_validate_single_slider($single_value)) {
+					if ( ! blocksy_validate_single_slider( $single_value ) ) {
 						return $option['value'];
 					}
 				}
@@ -183,21 +151,21 @@ if (! function_exists('blocksy_validate_for')) {
 			}
 
 			if (
-				is_array($input)
+				is_array( $input )
 				||
-				! blocksy_validate_single_slider($input)
+				! blocksy_validate_single_slider( $input )
 			) {
 				return $option['value'];
 			}
 		}
 
-		if ($option['type'] === 'ct-image-uploader') {
+		if ( 'ct-image-uploader' === $option['type'] ) {
 			if (
-				!is_array($input)
+				! is_array( $input )
 				||
-				! isset($input['attachment_id'])
+				! isset( $input['attachment_id'] )
 				||
-				! wp_attachment_is_image($input['attachment_id'])
+				! wp_attachment_is_image( $input['attachment_id'] )
 			) {
 				return $option['value'];
 			}
@@ -207,18 +175,18 @@ if (! function_exists('blocksy_validate_for')) {
 	}
 }
 
-if (! function_exists('blocksy_include_sanitizer')) {
-	function blocksy_include_sanitizer($option) {
-		if (! isset($option['setting'])) {
+if ( ! function_exists( 'blocksy_include_sanitizer' ) ) {
+	function blocksy_include_sanitizer( $option ) {
+		if ( ! isset( $option['setting'] ) ) {
 			return $option;
 		}
 
-		if (isset($option['setting']['sanitize_callback'])) {
+		if ( isset( $option['setting']['sanitize_callback'] ) ) {
 			return $option;
 		}
 
-		$option['setting']['sanitize_callback'] = function ($input, $setting) use ($option) {
-			return blocksy_validate_for($option, $input);
+		$option['setting']['sanitize_callback'] = function ( $input ) use ( $option ) {
+			return blocksy_validate_for( $option, $input );
 		};
 
 		return $option;

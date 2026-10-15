@@ -13,28 +13,28 @@
 //
 // When the $raii object goes out of scope, the callback will be called
 // automatically.
-function blocksy_raii($callback) {
-	return new \Blocksy\RaiiPattern($callback);
+function blocksy_raii( $callback ) {
+	return new \Blocksy\RaiiPattern( $callback );
 }
 
-function blocksy_assert_args($args, $fields = []) {
-	foreach ($fields as $single_field) {
+function blocksy_assert_args( $args, $fields = array() ) {
+	foreach ( $fields as $single_field ) {
 		if (
-			! isset($args[$single_field])
+			! isset( $args[ $single_field ] )
 			||
-			! $args[$single_field]
+			! $args[ $single_field ]
 		) {
-			throw new Error($single_field . ' missing in args!');
+			throw new Error( $single_field . ' missing in args!' );
 		}
 	}
 }
 
-function blocksy_sync_whole_page($args = []) {
+function blocksy_sync_whole_page( $args = array() ) {
 	$args = wp_parse_args(
 		$args,
-		[
-			'prefix_custom' => ''
-		]
+		array(
+			'prefix_custom' => '',
+		)
 	);
 
 	$selector = 'main#main';
@@ -55,26 +55,26 @@ function blocksy_sync_whole_page($args = []) {
 	return apply_filters(
 		'blocksy:customizer:sync:whole-page',
 		array_merge(
-			[
-				'selector' => $selector,
+			array(
+				'selector'            => $selector,
 				'container_inclusive' => true,
-				'render' => function () {
+				'render'              => function () {
 					echo blocksy_replace_current_template();
-				}
-			],
+				},
+			),
 			$args
 		)
 	);
 }
 
-function blocksy_get_with_percentage($id, $value) {
-	$val = blocksy_get_theme_mod($id, $value);
+function blocksy_get_with_percentage( $id, $value ) {
+	$val = blocksy_get_theme_mod( $id, $value );
 
-	if (strpos($value, '%') !== false && is_numeric($val)) {
+	if ( strpos( $value, '%' ) !== false && is_numeric( $val ) ) {
 		$val .= '%';
 	}
 
-	return str_replace('%%', '%', $val);
+	return str_replace( '%%', '%', $val );
 }
 
 /**
@@ -82,25 +82,25 @@ function blocksy_get_with_percentage($id, $value) {
  *
  * @param array  $args Menu args.
  */
-if (! function_exists('blocksy_link_to_menu_editor')) {
-	function blocksy_link_to_menu_editor($args) {
-		if (! current_user_can('manage_options')) {
+if ( ! function_exists( 'blocksy_link_to_menu_editor' ) ) {
+	function blocksy_link_to_menu_editor( $args ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
 		// see wp-includes/nav-menu-template.php for available arguments
 		// phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-		extract($args);
+		extract( $args );
 
-		$output = '<a class="ct-create-menu" href="' . admin_url('nav-menus.php') . '" target="_blank">' . $before . __('You don\'t have a menu yet, please create one here &rarr;', 'blocksy') . $after . '</a>';
+		$output = '<a class="ct-create-menu" href="' . admin_url( 'nav-menus.php' ) . '" target="_blank">' . $before . __( 'You don\'t have a menu yet, please create one here &rarr;', 'blocksy' ) . $after . '</a>'; // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 
-		if (! empty($container)) {
-			$output = "<$container>$output</$container>";
+		if ( ! empty( $container ) ) {
+			$output = "<$container>$output</$container>"; // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 		}
 
-		if ($echo) {
+		if ( $echo ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo wp_kses_post($output);
+			echo wp_kses_post( $output );
 		}
 
 		return $output;
@@ -123,22 +123,22 @@ function blocksy_get_variables_from_file(
 	array $_set_variables = array()
 ) {
 	// phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-	extract($_set_variables, EXTR_REFS);
-	unset($_set_variables);
+	extract( $_set_variables, EXTR_REFS );
+	unset( $_set_variables );
 
-	if (is_file($file_path)) {
+	if ( is_file( $file_path ) ) {
 		$blocksy_fatal_containment = blocksy_start_fatal_containment();
 
 		try {
 			require $file_path;
-		} catch (\Throwable $e) {
-			blocksy_handle_contained_fatal($e, $file_path, $blocksy_fatal_containment);
+		} catch ( \Throwable $e ) {
+			blocksy_handle_contained_fatal( $e, $file_path, $blocksy_fatal_containment );
 		}
 	}
 
-	foreach ($_extract_variables as $variable_name => $default_value) {
-		if (isset($$variable_name) ) {
-			$_extract_variables[$variable_name] = $$variable_name;
+	foreach ( $_extract_variables as $variable_name => $default_value ) {
+		if ( isset( $$variable_name ) ) {
+			$_extract_variables[ $variable_name ] = $$variable_name;
 		}
 	}
 
@@ -158,19 +158,19 @@ function blocksy_get_variables_from_file(
  *
  * @return string HTML.
  */
-if (! function_exists('blocksy_render_view')) {
+if ( ! function_exists( 'blocksy_render_view' ) ) {
 	function blocksy_render_view(
 		$file_path,
-		$view_variables = [],
+		$view_variables = array(),
 		$default_value = ''
 	) {
-		if (! is_file($file_path)) {
+		if ( ! is_file( $file_path ) ) {
 			return $default_value;
 		}
 
 		// phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-		extract($view_variables, EXTR_REFS);
-		unset($view_variables);
+		extract( $view_variables, EXTR_REFS );
+		unset( $view_variables );
 
 		ob_start();
 
@@ -178,9 +178,9 @@ if (! function_exists('blocksy_render_view')) {
 
 		try {
 			require $file_path;
-		} catch (\Throwable $e) {
+		} catch ( \Throwable $e ) {
 			ob_end_clean();
-			blocksy_handle_contained_fatal($e, $file_path, $blocksy_fatal_containment);
+			blocksy_handle_contained_fatal( $e, $file_path, $blocksy_fatal_containment );
 			return $default_value;
 		}
 
@@ -200,9 +200,9 @@ if (! function_exists('blocksy_render_view')) {
  *
  * @return void
  */
-function blocksy_render_view_e($file_path, $view_variables = [], $default_value = '') {
+function blocksy_render_view_e( $file_path, $view_variables = array(), $default_value = '' ) {
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo blocksy_render_view($file_path, $view_variables, $default_value);
+	echo blocksy_render_view( $file_path, $view_variables, $default_value );
 }
 
 /**
@@ -213,13 +213,13 @@ function blocksy_render_view_e($file_path, $view_variables = [], $default_value 
  * @return array Containment state.
  */
 function blocksy_start_fatal_containment() {
-	if (! Blocksy_Manager::$instance) {
-		return [];
+	if ( ! Blocksy_Manager::$instance ) {
+		return array();
 	}
 
-	return [
+	return array(
 		'lazy_zone_depth' => blocksy_manager()->lazy_loading->zone_depth(),
-	];
+	);
 }
 
 /**
@@ -228,9 +228,9 @@ function blocksy_start_fatal_containment() {
  *
  * @param array $containment Containment state.
  */
-function blocksy_restore_fatal_containment($containment) {
-	if (isset($containment['lazy_zone_depth'])) {
-		blocksy_manager()->lazy_loading->restore_zone_depth($containment['lazy_zone_depth']);
+function blocksy_restore_fatal_containment( $containment ) {
+	if ( isset( $containment['lazy_zone_depth'] ) ) {
+		blocksy_manager()->lazy_loading->restore_zone_depth( $containment['lazy_zone_depth'] );
 	}
 }
 
@@ -254,9 +254,9 @@ function blocksy_restore_fatal_containment($containment) {
  * @param array      $containment State from blocksy_start_fatal_containment(),
  *                                taken before the file was loaded.
  */
-if (! function_exists('blocksy_handle_contained_fatal')) {
-	function blocksy_handle_contained_fatal(\Throwable $e, $context = '', $containment = []) {
-		blocksy_restore_fatal_containment($containment);
+if ( ! function_exists( 'blocksy_handle_contained_fatal' ) ) {
+	function blocksy_handle_contained_fatal( \Throwable $e, $context = '', $containment = array() ) {
+		blocksy_restore_fatal_containment( $containment );
 
 		blocksy_debug_log(
 			sprintf(
@@ -282,10 +282,10 @@ if (! function_exists('blocksy_handle_contained_fatal')) {
 		 */
 		$should_rethrow = apply_filters(
 			'blocksy:theme:contained-fatal:rethrow',
-			defined('WP_DEBUG') && WP_DEBUG
+			defined( 'WP_DEBUG' ) && WP_DEBUG
 		);
 
-		if ($should_rethrow) {
+		if ( $should_rethrow ) {
 			throw $e;
 		}
 	}
@@ -302,10 +302,10 @@ function blocksy_get_wp_theme() {
 	 *
 	 * @param WP_Theme $theme The resolved theme object.
 	 */
-	return apply_filters('blocksy_get_wp_theme', wp_get_theme());
+	return apply_filters( 'blocksy_get_wp_theme', wp_get_theme() );
 }
 
-if (! function_exists('blocksy_get_wp_parent_theme')) {
+if ( ! function_exists( 'blocksy_get_wp_parent_theme' ) ) {
 	function blocksy_get_wp_parent_theme() {
 		/**
 		 * Filters the theme object Blocksy reports as its own.
@@ -317,16 +317,16 @@ if (! function_exists('blocksy_get_wp_parent_theme')) {
 		 *
 		 * @param WP_Theme $theme The resolved theme object.
 		 */
-		return apply_filters('blocksy_get_wp_theme', wp_get_theme(get_template()));
+		return apply_filters( 'blocksy_get_wp_theme', wp_get_theme( get_template() ) );
 	}
 }
 
 function blocksy_current_url() {
 	static $url = null;
 
-	if ($url === null) {
-		if (is_multisite() && !(defined('SUBDOMAIN_INSTALL') && SUBDOMAIN_INSTALL)) {
-			switch_to_blog(1);
+	if ( null === $url ) {
+		if ( is_multisite() && ! is_subdomain_install() ) {
+			switch_to_blog( 1 );
 			$url = home_url();
 			restore_current_blog();
 		} else {
@@ -334,15 +334,15 @@ function blocksy_current_url() {
 		}
 
 		//Remove the "//" before the domain name
-		$url = ltrim(preg_replace('/^[^:]+:\/\//', '//', $url), '/');
+		$url = ltrim( preg_replace( '/^[^:]+:\/\//', '//', $url ), '/' );
 
 		//Remove the ulr subdirectory in case it has one
-		$split = explode('/', $url);
+		$split = explode( '/', $url );
 
 		//Remove end slash
-		$url = rtrim($split[0], '/');
+		$url = rtrim( $split[0], '/' );
 
-		$request_uri = blocksy_akg('REQUEST_URI', $_SERVER, '');
+		$request_uri = blocksy_akg( 'REQUEST_URI', $_SERVER, '' );
 
 		/**
 		 * Filters the request URI used to build the current URL.
@@ -356,24 +356,24 @@ function blocksy_current_url() {
 			$request_uri
 		);
 
-		$url .= '/' . ltrim($request_uri, '/');
+		$url .= '/' . ltrim( $request_uri, '/' );
 
-		$url = set_url_scheme('//' . $url); // https fix
+		$url = set_url_scheme( '//' . $url ); // https fix
 	}
 
 	return $url;
 }
 
-if (! function_exists('blocksy_get_all_image_sizes')) {
+if ( ! function_exists( 'blocksy_get_all_image_sizes' ) ) {
 	function blocksy_get_all_image_sizes() {
-		$titles = [
-			'thumbnail' => __('Thumbnail', 'blocksy'),
-			'medium' => __('Medium', 'blocksy'),
-			'medium_large' => __('Medium Large', 'blocksy'),
-			'large' => __('Large', 'blocksy'),
-			'full' => __('Full Size', 'blocksy'),
-			'woocommerce_thumbnail' => __('WooCommerce Thumbnail', 'blocksy'),
-			'woocommerce_single' => __('WooCommerce Single', 'blocksy'),
+		$titles = array(
+			'thumbnail'                     => __( 'Thumbnail', 'blocksy' ),
+			'medium'                        => __( 'Medium', 'blocksy' ),
+			'medium_large'                  => __( 'Medium Large', 'blocksy' ),
+			'large'                         => __( 'Large', 'blocksy' ),
+			'full'                          => __( 'Full Size', 'blocksy' ),
+			'woocommerce_thumbnail'         => __( 'WooCommerce Thumbnail', 'blocksy' ),
+			'woocommerce_single'            => __( 'WooCommerce Single', 'blocksy' ),
 			'woocommerce_gallery_thumbnail' => __(
 				'WooCommerce Gallery Thumbnail',
 				'blocksy'
@@ -381,20 +381,20 @@ if (! function_exists('blocksy_get_all_image_sizes')) {
 			'woocommerce_archive_thumbnail' => __(
 				'WooCommerce Archive Thumbnail',
 				'blocksy'
-			)
-		];
+			),
+		);
 
 		$all_sizes = get_intermediate_image_sizes();
 
-		$result = [
-			'full' => __('Full Size', 'blocksy')
-		];
+		$result = array(
+			'full' => __( 'Full Size', 'blocksy' ),
+		);
 
-		foreach ($all_sizes as $single_size) {
-			if (isset($titles[$single_size])) {
-				$result[$single_size] = $titles[$single_size];
+		foreach ( $all_sizes as $single_size ) {
+			if ( isset( $titles[ $single_size ] ) ) {
+				$result[ $single_size ] = $titles[ $single_size ];
 			} else {
-				$result[$single_size] = $single_size;
+				$result[ $single_size ] = $single_size;
 			}
 		}
 
@@ -415,7 +415,7 @@ if (! function_exists('blocksy_get_all_image_sizes')) {
  *
  * @return void
  */
-function blocksy_debug_log($message, $object = null) {
+function blocksy_debug_log( $message, $object = null ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.objectFound
 	/**
 	 * Fires for every theme debug log message.
 	 *
@@ -427,96 +427,115 @@ function blocksy_debug_log($message, $object = null) {
 	 * @param string $message The log message.
 	 * @param mixed  $object  Optional context (e.g. a \Throwable). Default null.
 	 */
-	do_action('blocksy:theme:debug-log', $message, $object);
+	do_action( 'blocksy:theme:debug-log', $message, $object );
 
-	if (is_null($object)) {
-		error_log($message);
+	if ( is_null( $object ) ) {
+		error_log( $message );
 	} else {
-		error_log($message . ': ' . print_r($object, true));
+		error_log( $message . ': ' . print_r( $object, true ) );
 	}
 }
 
 // Save-time only. Never call on stored content at render, use
 // blocksy_sanitize_html_for_display() there.
-function blocksy_sanitize_user_html($html, $args = []) {
-	$args = wp_parse_args($args, [
-		'context' => 'block',
-	]);
+function blocksy_sanitize_user_html( $html, $args = array() ) {
+	$args = wp_parse_args(
+		$args,
+		array(
+			'context' => 'block',
+		)
+	);
 
-	if (current_user_can('unfiltered_html')) {
+	if ( current_user_can( 'unfiltered_html' ) ) {
 		return $html;
 	}
 
-	if (! is_string($html)) {
+	if ( ! is_string( $html ) ) {
 		return '';
 	}
 
-	return blocksy_sanitize_html_for_display([
-		'html' => $html,
-		'context' => $args['context'],
-	]);
+	return blocksy_sanitize_html_for_display(
+		array(
+			'html'    => $html,
+			'context' => $args['context'],
+		)
+	);
 }
 
-if (! function_exists('blocksy_sanitize_builder_value')) {
-	function blocksy_sanitize_builder_value($option, $input) {
-		if (! isset($input['sections'])) {
+if ( ! function_exists( 'blocksy_validate_color' ) ) {
+	function blocksy_validate_color( $color ) {
+		if (
+			! is_string( $color )
+			||
+			! preg_match( '/^(?!.*url\()[\w#%.-]+(\([\w#%(),. \/-]*\))?$/Di', $color )
+		) {
+			return null;
+		}
+
+		return $color;
+	}
+}
+
+if ( ! function_exists( 'blocksy_sanitize_builder_value' ) ) {
+	function blocksy_sanitize_builder_value( $option, $input ) {
+		if ( ! isset( $input['sections'] ) ) {
 			return $input;
 		}
 
-		foreach ($input['sections'] as $key => $section) {
-			if (! isset($section['items'])) {
+		foreach ( $input['sections'] as $key => $section ) {
+			if ( ! isset( $section['items'] ) ) {
 				continue;
 			}
 
-			$html_fields = [
-				'text' => ['header_text'],
-				'copyright' => ['copyright_text'],
-				'trigger' => ['trigger_label'],
-				'search' => ['search_label'],
-				'offcanvas' => ['offcanvas_heading'],
-				'button' => [
+			$html_fields = array(
+				'text'      => array( 'header_text' ),
+				'copyright' => array( 'copyright_text' ),
+				'trigger'   => array( 'trigger_label' ),
+				'search'    => array( 'search_label' ),
+				'offcanvas' => array( 'offcanvas_heading' ),
+				'button'    => array(
 					'header_button_text',
-					'header_button_secondary_text'
-				],
-				'cart' => ['cart_total_label'],
-				'logo' => ['blogname', 'blogdescription']
-			];
+					'header_button_secondary_text',
+				),
+				'cart'      => array( 'cart_total_label' ),
+				'logo'      => array( 'blogname', 'blogdescription' ),
+			);
 
-			foreach ($section['items'] as $item_key => $item) {
-				if (! isset($item['id'])) {
+			foreach ( $section['items'] as $item_key => $item ) {
+				if ( ! isset( $item['id'] ) ) {
 					continue;
 				}
 
-				$original_id = explode('~', $item['id'])[0];
+				$original_id = explode( '~', $item['id'] )[0];
 
 				if (
-					! isset($html_fields[$original_id])
+					! isset( $html_fields[ $original_id ] )
 					||
-					! isset($item['values'])
+					! isset( $item['values'] )
 				) {
 					continue;
 				}
 
-				foreach ($html_fields[$original_id] as $html_field) {
-					if (! isset($item['values'][$html_field])) {
+				foreach ( $html_fields[ $original_id ] as $html_field ) {
+					if ( ! isset( $item['values'][ $html_field ] ) ) {
 						continue;
 					}
 
-					if (is_array($item['values'][$html_field])) {
-						$item['values'][$html_field] = array_map(
+					if ( is_array( $item['values'][ $html_field ] ) ) {
+						$item['values'][ $html_field ] = array_map(
 							'blocksy_sanitize_user_html',
-							$item['values'][$html_field]
+							$item['values'][ $html_field ]
 						);
 
 						continue;
 					}
 
-					$item['values'][$html_field] = blocksy_sanitize_user_html(
-						$item['values'][$html_field]
+					$item['values'][ $html_field ] = blocksy_sanitize_user_html(
+						$item['values'][ $html_field ]
 					);
 				}
 
-				$input['sections'][$key]['items'][$item_key] = $item;
+				$input['sections'][ $key ]['items'][ $item_key ] = $item;
 			}
 		}
 
@@ -524,8 +543,96 @@ if (! function_exists('blocksy_sanitize_builder_value')) {
 	}
 }
 
-function blocksy_output_html_safely($html) {
-	return do_shortcode($html);
+if ( ! function_exists( 'blocksy_sanitize_layers_html_fields' ) ) {
+	function blocksy_sanitize_layers_html_fields( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'value'  => array(),
+
+				// Layer id => list of HTML value keys. A string key holds a
+				// nested list of items and maps to the HTML keys of each item.
+				'fields' => array(),
+			)
+		);
+
+		$value = $args['value'];
+
+		if ( ! is_array( $value ) ) {
+			return $value;
+		}
+
+		foreach ( $value as $layer_key => $layer ) {
+			if (
+				! is_array( $layer )
+				||
+				! isset( $layer['id'] )
+				||
+				! is_string( $layer['id'] )
+				||
+				! isset( $args['fields'][ $layer['id'] ] )
+			) {
+				continue;
+			}
+
+			foreach ( $args['fields'][ $layer['id'] ] as $list_key => $html_field ) {
+				if ( is_array( $html_field ) ) {
+					if (
+						! isset( $layer[ $list_key ] )
+						||
+						! is_array( $layer[ $list_key ] )
+					) {
+						continue;
+					}
+
+					foreach ( $layer[ $list_key ] as $item_key => $item ) {
+						foreach ( $html_field as $item_field ) {
+							if (
+								! isset( $item[ $item_field ] )
+								||
+								! is_string( $item[ $item_field ] )
+							) {
+								continue;
+							}
+
+							$layer[ $list_key ][ $item_key ][ $item_field ] = blocksy_sanitize_user_html(
+								$item[ $item_field ]
+							);
+						}
+					}
+
+					continue;
+				}
+
+				if ( ! isset( $layer[ $html_field ] ) ) {
+					continue;
+				}
+
+				if ( is_array( $layer[ $html_field ] ) ) {
+					$layer[ $html_field ] = array_map(
+						'blocksy_sanitize_user_html',
+						$layer[ $html_field ]
+					);
+
+					continue;
+				}
+
+				if ( is_string( $layer[ $html_field ] ) ) {
+					$layer[ $html_field ] = blocksy_sanitize_user_html(
+						$layer[ $html_field ]
+					);
+				}
+			}
+
+			$value[ $layer_key ] = $layer;
+		}
+
+		return $value;
+	}
+}
+
+function blocksy_output_html_safely( $html ) {
+	return do_shortcode( $html );
 
 	// Dont use wp_filter_post_kses() as it is very unstable as far as slashes go.
 	// Just call wp_kses() directly.
@@ -552,9 +659,12 @@ function blocksy_get_pricing_links() {
 	 *     @type string $compare-plans URL of the free versus pro comparison table.
 	 * }
 	 */
-	return apply_filters('blocksy:modal:pricing-links', [
-		'pricing' => 'https://creativethemes.com/blocksy/pricing/',
-		'premium' => 'https://creativethemes.com/blocksy/premium/',
-		'compare-plans' => 'https://creativethemes.com/blocksy/pricing/#comparison-free-vs-pro'
-	]);
+	return apply_filters(
+		'blocksy:modal:pricing-links',
+		array(
+			'pricing'       => 'https://creativethemes.com/blocksy/pricing/',
+			'premium'       => 'https://creativethemes.com/blocksy/premium/',
+			'compare-plans' => 'https://creativethemes.com/blocksy/pricing/#comparison-free-vs-pro',
+		)
+	);
 }

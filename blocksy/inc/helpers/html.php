@@ -1,7 +1,7 @@
 <?php
 
-function blocksy_safe_antispambot($string_with_email) {
-	$mail_parts = wp_parse_url($string_with_email);
+function blocksy_safe_antispambot( $string_with_email ) {
+	$mail_parts = wp_parse_url( $string_with_email );
 
 	// No reason in trying to obfuscate if there is no email passed in the
 	// mailto: link.
@@ -10,25 +10,25 @@ function blocksy_safe_antispambot($string_with_email) {
 	// to only prefill the subject or body of the email via the link.
 	//
 	// Example: mailto:?subject=Hello%20world
-	if (! isset($mail_parts['path'])) {
+	if ( ! isset( $mail_parts['path'] ) ) {
 		return $string_with_email;
 	}
 
-	$mail_parts['path'] = antispambot($mail_parts['path']);
+	$mail_parts['path'] = antispambot( $mail_parts['path'] );
 
-	$result = [];
+	$result = array();
 
-	if (! empty($mail_parts['scheme'])) {
+	if ( ! empty( $mail_parts['scheme'] ) ) {
 		$result[] = $mail_parts['scheme'] . ':';
 	}
 
 	$result[] = $mail_parts['path'];
 
-	if (! empty($mail_parts['query'])) {
+	if ( ! empty( $mail_parts['query'] ) ) {
 		$result[] = '?' . $mail_parts['query'];
 	}
 
-	return implode('', $result);
+	return implode( '', $result );
 }
 
 /**
@@ -38,25 +38,25 @@ function blocksy_safe_antispambot($string_with_email) {
  *
  * @return string 'href="/" title="Test"'
  */
-if (! function_exists('blocksy_attr_to_html')) {
-	function blocksy_attr_to_html(array $attr_array) {
+if ( ! function_exists( 'blocksy_attr_to_html' ) ) {
+	function blocksy_attr_to_html( array $attr_array ) {
 		$html_attr = '';
 
-		foreach ($attr_array as $attr_name => $attr_val) {
-			if (false === $attr_val) {
+		foreach ( $attr_array as $attr_name => $attr_val ) {
+			if ( false === $attr_val ) {
 				continue;
 			}
 
-			$html_attr .= $attr_name . '="' . esc_attr($attr_val) . '" ';
+			$html_attr .= $attr_name . '="' . esc_attr( $attr_val ) . '" ';
 		}
 
-		return trim($html_attr);
+		return trim( $html_attr );
 	}
 }
 
-function blocksy_attr_to_html_e(array $attr_array) {
+function blocksy_attr_to_html_e( array $attr_array ) {
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo blocksy_attr_to_html($attr_array);
+	echo blocksy_attr_to_html( $attr_array );
 }
 
 /**
@@ -68,26 +68,26 @@ function blocksy_attr_to_html_e(array $attr_array) {
  *
  * @return string The tag's html
  */
-if (! function_exists('blocksy_html_tag')) {
-	function blocksy_html_tag($tag, $attr = [], $end = false) {
-		if (! is_string($attr)) {
-			$attr = blocksy_attr_to_html($attr);
+if ( ! function_exists( 'blocksy_html_tag' ) ) {
+	function blocksy_html_tag( $tag, $attr = array(), $end = false ) {
+		if ( ! is_string( $attr ) ) {
+			$attr = blocksy_attr_to_html( $attr );
 		}
 
-		if (strpos($tag, ' ') !== false) {
-			$tag = explode(' ', $tag)[0];
+		if ( strpos( $tag, ' ' ) !== false ) {
+			$tag = explode( ' ', $tag )[0];
 		}
 
 		$html = '<' . $tag;
 
-		if (! empty($attr)) {
+		if ( ! empty( $attr ) ) {
 			$html .= ' ' . $attr;
 		}
 
-		if (true === $end) {
+		if ( true === $end ) {
 			// <script></script>
 			$html .= '></' . $tag . '>';
-		} elseif (false === $end) {
+		} elseif ( false === $end ) {
 			// <br>
 			$html .= '>';
 		} else {
@@ -99,15 +99,61 @@ if (! function_exists('blocksy_html_tag')) {
 	}
 }
 
-function blocksy_html_tag_e($tag, $attr = [], $end = false) {
+/**
+ * Validate a tag name against an allow-list.
+ *
+ * @param array $args {
+ *     @type string $tag     Tag name to validate.
+ *     @type array  $allowed Allowed tag names.
+ * }
+ *
+ * @return string|null The tag when allowed, null otherwise.
+ */
+if ( ! function_exists( 'blocksy_validate_html_tag' ) ) {
+	function blocksy_validate_html_tag( $args ) {
+		$presets = array(
+			'headings'      => array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ),
+			'headings_text' => array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span' ),
+		);
+
+		$args = wp_parse_args(
+			$args,
+			array(
+				'tag'     => '',
+				'allowed' => 'headings',
+				'default' => null,
+			)
+		);
+
+		$allowed = $args['allowed'];
+
+		if ( is_string( $allowed ) && isset( $presets[ $allowed ] ) ) {
+			$allowed = $presets[ $allowed ];
+		}
+
+		if (
+			! is_array( $allowed )
+			||
+			! is_string( $args['tag'] )
+			||
+			! in_array( $args['tag'], $allowed, true )
+		) {
+			return $args['default'];
+		}
+
+		return $args['tag'];
+	}
+}
+
+function blocksy_html_tag_e( $tag, $attr = array(), $end = false ) {
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo blocksy_html_tag($tag, $attr, $end);
+	echo blocksy_html_tag( $tag, $attr, $end );
 }
 
 // Keep in parity with blocksy_companion_parse_attributes_string() in the
 // companion (framework/helpers/helpers.php) and its matching test file.
-function blocksy_parse_html_attributes($input) {
-	$result = [];
+function blocksy_parse_html_attributes( $input ) {
+	$result = array();
 
 	preg_match_all(
 		'/([a-zA-Z0-9_-]+)=([\'"])(.*?)\2/',
@@ -116,44 +162,57 @@ function blocksy_parse_html_attributes($input) {
 		PREG_SET_ORDER
 	);
 
-	foreach ($matches as $match) {
-		$result[$match[1]] = $match[3];
+	foreach ( $matches as $match ) {
+		$result[ $match[1] ] = $match[3];
 	}
 
-	$stripped = preg_replace('/([a-zA-Z0-9_-]+)=([\'"])(.*?)\2/', '', $input);
+	$stripped = preg_replace( '/([a-zA-Z0-9_-]+)=([\'"])(.*?)\2/', '', $input );
 
-	$stripped = preg_replace('/([a-zA-Z0-9_-]+)=([^\s]+)/', '', $stripped);
+	$stripped = preg_replace( '/([a-zA-Z0-9_-]+)=([^\s]+)/', '', $stripped );
 
-	preg_match_all('/\b([a-zA-Z0-9_-]+)\b/', $stripped, $bool_matches);
+	preg_match_all( '/\b([a-zA-Z0-9_-]+)\b/', $stripped, $bool_matches );
 
-	foreach ($bool_matches[1] as $key) {
-		if (! array_key_exists($key, $result)) {
-			$result[$key] = '';
+	foreach ( $bool_matches[1] as $key ) {
+		if ( ! array_key_exists( $key, $result ) ) {
+			$result[ $key ] = '';
 		}
 	}
 
-	foreach ($result as $name => $value) {
-		if (stripos($name, 'on') === 0) {
-			unset($result[$name]);
+	foreach ( $result as $name => $value ) {
+		if ( stripos( $name, 'on' ) === 0 ) {
+			unset( $result[ $name ] );
 		}
 	}
 
 	return $result;
 }
 
-function blocksy_sanitize_html_for_display($args = []) {
-	$args = wp_parse_args($args, [
-		'html' => '',
-		'context' => 'block',
+function blocksy_is_allowed_custom_attribute_name( $name ) {
+	$name = strtolower( $name );
 
-		// The value already went through blocksy_sanitize_user_html() on save.
-		'trusted' => false,
-	]);
+	if ( in_array( $name, array( 'id', 'class', 'title', 'role', 'lang', 'dir' ), true ) ) {
+		return true;
+	}
+
+	return preg_match( '/^(data|aria)-[a-z0-9_-]+$/', $name ) === 1;
+}
+
+function blocksy_sanitize_html_for_display( $args = array() ) {
+	$args = wp_parse_args(
+		$args,
+		array(
+			'html'    => '',
+			'context' => 'block',
+
+			// The value already went through blocksy_sanitize_user_html() on save.
+			'trusted' => false,
+		)
+	);
 
 	if (
-		! is_string($args['html'])
+		! is_string( $args['html'] )
 		||
-		$args['html'] === ''
+		'' === $args['html']
 		||
 		$args['trusted']
 	) {
@@ -173,27 +232,27 @@ function blocksy_sanitize_html_for_display($args = []) {
 	 */
 	$allowed_tags = apply_filters(
 		'blocksy:display-html:allowed-tags',
-		wp_kses_allowed_html('post'),
+		wp_kses_allowed_html( 'post' ),
 		$args['context']
 	);
 
-	return wp_kses($args['html'], $allowed_tags);
+	return wp_kses( $args['html'], $allowed_tags );
 }
 
-function blocksy_get_sanitized_inline_svg($file) {
-	if (! $file || ! file_exists($file)) {
+function blocksy_get_sanitized_inline_svg( $file ) {
+	if ( ! $file || ! file_exists( $file ) ) {
 		return null;
 	}
 
-	$check = wp_check_filetype($file, ['svg' => 'image/svg+xml']);
+	$check = wp_check_filetype( $file, array( 'svg' => 'image/svg+xml' ) );
 
-	if ($check['ext'] !== 'svg') {
+	if ( 'svg' !== $check['ext'] ) {
 		return null;
 	}
 
-	$svg = file_get_contents($file);
+	$svg = file_get_contents( $file );
 
-	if (! is_string($svg) || $svg === '') {
+	if ( ! is_string( $svg ) || '' === $svg ) {
 		return null;
 	}
 
@@ -212,11 +271,15 @@ function blocksy_get_sanitized_inline_svg($file) {
 	 *     @type string $svg Raw SVG markup.
 	 * }
 	 */
-	$svg = apply_filters('blocksy:svg:sanitize-inline', null, [
-		'svg' => $svg,
-	]);
+	$svg = apply_filters(
+		'blocksy:svg:sanitize-inline',
+		null,
+		array(
+			'svg' => $svg,
+		)
+	);
 
-	if (! is_string($svg) || strpos(ltrim($svg), '<svg') !== 0) {
+	if ( ! is_string( $svg ) || strpos( ltrim( $svg ), '<svg' ) !== 0 ) {
 		return null;
 	}
 

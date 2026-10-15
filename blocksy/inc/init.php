@@ -6,463 +6,470 @@
  *
  * @package Blocksy
  */
-add_action('after_setup_theme', function () {
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support('automatic-feed-links');
-	add_theme_support('responsive-embeds');
+add_action(
+	'after_setup_theme',
+	function () {
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
+		add_theme_support( 'responsive-embeds' );
 
-	add_theme_support('html5', ['script', 'style']);
+		add_theme_support( 'html5', array( 'script', 'style' ) );
 
-	remove_theme_support('block-templates');
+		remove_theme_support( 'block-templates' );
 
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support('title-tag');
-	add_theme_support('custom-logo');
-	add_theme_support('lifterlms-sidebars');
-	add_theme_support('boostify-header-footer');
+		/*
+		* Let WordPress manage the document title.
+		* By adding theme support, we declare that this theme does not use a
+		* hard-coded <title> tag in the document head, and expect WordPress to
+		* provide it for us.
+		*/
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'custom-logo' );
+		add_theme_support( 'lifterlms-sidebars' );
+		add_theme_support( 'boostify-header-footer' );
 
-	if (blocksy_get_theme_mod('breadcrumbs_source', 'default') === 'rankmath') {
-		add_theme_support('rank-math-breadcrumbs');
-	}
+		if ( blocksy_get_theme_mod( 'breadcrumbs_source', 'default' ) === 'rankmath' ) {
+			add_theme_support( 'rank-math-breadcrumbs' );
+		}
 
-	add_theme_support('fl-theme-builder-headers');
-	add_theme_support('fl-theme-builder-footers');
-	add_theme_support('fl-theme-builder-parts');
+		add_theme_support( 'fl-theme-builder-headers' );
+		add_theme_support( 'fl-theme-builder-footers' );
+		add_theme_support( 'fl-theme-builder-parts' );
 
-	add_theme_support('editor-styles');
-	add_editor_style('static/bundle/editor-styles.min.css');
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'static/bundle/editor-styles.min.css' );
 
-	$gutenberg_colors = [];
+		$gutenberg_colors = array();
 
-	foreach (blocksy_manager()->colors->get_color_palette() as $key => $palette) {
-		$gutenberg_colors[] = [
-			'name' => $palette['title'],
-			'slug' => $palette['slug'],
-			'color' => 'var(--' . $palette['variable'] . ', ' . $palette['color'] . ')'
-		];
-	}
+		foreach ( blocksy_manager()->colors->get_color_palette() as $palette ) {
+			$gutenberg_colors[] = array(
+				'name'  => $palette['title'],
+				'slug'  => $palette['slug'],
+				'color' => 'var(--' . $palette['variable'] . ', ' . $palette['color'] . ')',
+			);
+		}
 
-	add_theme_support(
-		'editor-color-palette',
+		add_theme_support(
+			'editor-color-palette',
+			/**
+			* Filters the block editor color palette registered by the theme.
+			*
+			* @since 1.8.0
+			*
+			* @param array $gutenberg_colors List of color palette definitions.
+			*/
+			apply_filters( 'blocksy:editor-color-palette', $gutenberg_colors )
+		);
+
+		add_theme_support(
+			'editor-gradient-presets',
+			/**
+			* Filters the block editor gradient presets registered by the theme.
+			*
+			* @since 1.8.21
+			*
+			* @param array $gradients     List of gradient preset definitions.
+			* @param array $color_palette The theme color palette.
+			*/
+			apply_filters(
+				'blocksy:editor-gradient-presets',
+				array(
+					array(
+						'name'     => 'Vivid cyan blue to vivid purple',
+						'gradient' => 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
+						'slug'     => 'vivid-cyan-blue-to-vivid-purple',
+					),
+
+					array(
+						'name'     => 'Light green cyan to vivid green cyan',
+						'gradient' => 'linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%)',
+						'slug'     => 'light-green-cyan-to-vivid-green-cyan',
+					),
+
+					array(
+						'name'     => 'Luminous vivid amber to luminous vivid orange',
+						'gradient' => 'linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%)',
+						'slug'     => 'luminous-vivid-amber-to-luminous-vivid-orange',
+					),
+
+					array(
+						'name'     => 'Luminous vivid orange to vivid red',
+						'gradient' => 'linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%)',
+						'slug'     => 'luminous-vivid-orange-to-vivid-red',
+					),
+
+					array(
+						'name'     => 'Cool to warm spectrum',
+						'gradient' => 'linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%)',
+						'slug'     => 'cool-to-warm-spectrum',
+					),
+
+					array(
+						'name'     => 'Blush light purple',
+						'gradient' => 'linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%)',
+						'slug'     => 'blush-light-purple',
+					),
+
+					array(
+						'name'     => 'Blush bordeaux',
+						'gradient' => 'linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%)',
+						'slug'     => 'blush-bordeaux',
+					),
+
+					array(
+						'name'     => 'Luminous dusk',
+						'gradient' => 'linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%)',
+						'slug'     => 'luminous-dusk',
+					),
+
+					array(
+						'name'     => 'Pale ocean',
+						'gradient' => 'linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%)',
+						'slug'     => 'pale-ocean',
+					),
+
+					array(
+						'name'     => 'Electric grass',
+						'gradient' => 'linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%)',
+						'slug'     => 'electric-grass',
+					),
+
+					array(
+						'name'     => 'Midnight',
+						'gradient' => 'linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%)',
+						'slug'     => 'midnight',
+					),
+
+					array(
+						'name'     => 'Juicy Peach',
+						'gradient' => 'linear-gradient(to right, #ffecd2 0%, #fcb69f 100%)',
+						'slug'     => 'juicy-peach',
+					),
+
+					array(
+						'name'     => 'Young Passion',
+						'gradient' => 'linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%)',
+						'slug'     => 'young-passion',
+					),
+
+					array(
+						'name'     => 'True Sunset',
+						'gradient' => 'linear-gradient(to right, #fa709a 0%, #fee140 100%)',
+						'slug'     => 'true-sunset',
+					),
+
+					array(
+						'name'     => 'Morpheus Den',
+						'gradient' => 'linear-gradient(to top, #30cfd0 0%, #330867 100%)',
+						'slug'     => 'morpheus-den',
+					),
+
+					array(
+						'name'     => 'Plum Plate',
+						'gradient' => 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+						'slug'     => 'plum-plate',
+					),
+
+					array(
+						'name'     => 'Aqua Splash',
+						'gradient' => 'linear-gradient(15deg, #13547a 0%, #80d0c7 100%)',
+						'slug'     => 'aqua-splash',
+					),
+
+					array(
+						'name'     => 'Love Kiss',
+						'gradient' => 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)',
+						'slug'     => 'love-kiss',
+					),
+
+					array(
+						'name'     => 'New Retrowave',
+						'gradient' => 'linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%)',
+						'slug'     => 'new-retrowave',
+					),
+
+					array(
+						'name'     => 'Plum Bath',
+						'gradient' => 'linear-gradient(to top, #cc208e 0%, #6713d2 100%)',
+						'slug'     => 'plum-bath',
+					),
+
+					array(
+						'name'     => 'High Flight',
+						'gradient' => 'linear-gradient(to right, #0acffe 0%, #495aff 100%)',
+						'slug'     => 'high-flight',
+					),
+
+					array(
+						'name'     => 'Teen Party',
+						'gradient' => 'linear-gradient(135deg, #FF057C 0%, #8D0B93 50%, #321575 100%)',
+						'slug'     => 'teen-party',
+					),
+
+					array(
+						'name'     => 'Fabled Sunset',
+						'gradient' => 'linear-gradient(135deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)',
+						'slug'     => 'fabled-sunset',
+					),
+
+					array(
+						'name'     => 'Arielle Smile',
+						'gradient' => 'radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%)',
+						'slug'     => 'arielle-smile',
+					),
+
+					array(
+						'name'     => 'Itmeo Branding',
+						'gradient' => 'linear-gradient(180deg, #2af598 0%, #009efd 100%)',
+						'slug'     => 'itmeo-branding',
+					),
+
+					array(
+						'name'     => 'Deep Blue',
+						'gradient' => 'linear-gradient(to right, #6a11cb 0%, #2575fc 100%)',
+						'slug'     => 'deep-blue',
+					),
+
+					array(
+						'name'     => 'Strong Bliss',
+						'gradient' => 'linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%)',
+						'slug'     => 'strong-bliss',
+					),
+
+					array(
+						'name'     => 'Sweet Period',
+						'gradient' => 'linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)',
+						'slug'     => 'sweet-period',
+					),
+
+					array(
+						'name'     => 'Purple Division',
+						'gradient' => 'linear-gradient(to top, #7028e4 0%, #e5b2ca 100%)',
+						'slug'     => 'purple-division',
+					),
+
+					array(
+						'name'     => 'Cold Evening',
+						'gradient' => 'linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%)',
+						'slug'     => 'cold-evening',
+					),
+
+					array(
+						'name'     => 'Mountain Rock',
+						'gradient' => 'linear-gradient(to right, #868f96 0%, #596164 100%)',
+						'slug'     => 'mountain-rock',
+					),
+
+					array(
+						'name'     => 'Desert Hump',
+						'gradient' => 'linear-gradient(to top, #c79081 0%, #dfa579 100%)',
+						'slug'     => 'desert-hump',
+					),
+
+					array(
+						'name'     => 'Eternal Constance',
+						'gradient' => 'linear-gradient(to top, #09203f 0%, #537895 100%)',
+						'slug'     => 'ethernal-constance',
+					),
+
+					array(
+						'name'     => 'Happy Memories',
+						'gradient' => 'linear-gradient(300deg, #ff5858 0%, #f09819 100%)',
+						'slug'     => 'happy-memories',
+					),
+
+					array(
+						'name'     => 'Grown Early',
+						'gradient' => 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)',
+						'slug'     => 'grown-early',
+					),
+
+					array(
+						'name'     => 'Morning Salad',
+						'gradient' => 'linear-gradient(135deg, #B7F8DB 0%, #50A7C2 100%)',
+						'slug'     => 'morning-salad',
+					),
+
+					array(
+						'name'     => 'Night Call',
+						'gradient' => 'linear-gradient(135deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)',
+						'slug'     => 'night-call',
+					),
+
+					array(
+						'name'     => 'Mind Crawl',
+						'gradient' => 'linear-gradient(135deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%)',
+						'slug'     => 'mind-crawl',
+					),
+
+					array(
+						'name'     => 'Angel Care',
+						'gradient' => 'linear-gradient(135deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%)',
+						'slug'     => 'angel-care',
+					),
+
+					array(
+						'name'     => 'Juicy Cake',
+						'gradient' => 'linear-gradient(to top, #e14fad 0%, #f9d423 100%)',
+						'slug'     => 'juicy-cake',
+					),
+
+					array(
+						'name'     => 'Rich Metal',
+						'gradient' => 'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
+						'slug'     => 'rich-metal',
+					),
+
+					array(
+						'name'     => 'Mole Hall',
+						'gradient' => 'linear-gradient(340deg, #616161 0%, #9bc5c3 100%)',
+						'slug'     => 'mole-hall',
+					),
+
+					array(
+						'name'     => 'Cloudy Knoxville',
+						'gradient' => 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+						'slug'     => 'cloudy-knoxville',
+					),
+
+					array(
+						'name'     => 'Very light gray to cyan bluish gray',
+						'gradient' => 'linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%)',
+						'slug'     => 'very-light-gray-to-cyan-bluish-gray',
+					),
+
+					array(
+						'name'     => 'Soft Grass',
+						'gradient' => 'linear-gradient(to top, #c1dfc4 0%, #deecdd 100%)',
+						'slug'     => 'soft-grass',
+					),
+
+					array(
+						'name'     => 'Saint Petersburg',
+						'gradient' => 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+						'slug'     => 'saint-petersburg',
+					),
+
+					array(
+						'name'     => 'Everlasting Sky',
+						'gradient' => 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
+						'slug'     => 'everlasting-sky',
+					),
+
+					array(
+						'name'     => 'Kind Steel',
+						'gradient' => 'linear-gradient(340deg, #e9defa 0%, #fbfcdb 100%)',
+						'slug'     => 'kind-steel',
+					),
+
+					array(
+						'name'     => 'Over Sun',
+						'gradient' => 'linear-gradient(60deg, #abecd6 0%, #fbed96 100%)',
+						'slug'     => 'over-sun',
+					),
+
+					array(
+						'name'     => 'Premium White',
+						'gradient' => 'linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%)',
+						'slug'     => 'premium-white',
+					),
+
+					array(
+						'name'     => 'Clean Mirror',
+						'gradient' => 'linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)',
+						'slug'     => 'clean-mirror',
+					),
+
+					array(
+						'name'     => 'Wild Apple',
+						'gradient' => 'linear-gradient(to top, #d299c2 0%, #fef9d7 100%)',
+						'slug'     => 'wild-apple',
+					),
+
+					array(
+						'name'     => 'Snow Again',
+						'gradient' => 'linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)',
+						'slug'     => 'snow-again',
+					),
+
+					array(
+						'name'     => 'Confident Cloud',
+						'gradient' => 'linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%)',
+						'slug'     => 'confident-cloud',
+					),
+
+					array(
+						'name'     => 'Glass Water',
+						'gradient' => 'linear-gradient(to top, #dfe9f3 0%, white 100%)',
+						'slug'     => 'glass-water',
+					),
+
+					array(
+						'name'     => 'Perfect White',
+						'gradient' => 'linear-gradient(135deg, #E3FDF5 0%, #FFE6FA 100%)',
+						'slug'     => 'perfect-white',
+					),
+				),
+				blocksy_manager()->colors->get_color_palette()
+			)
+		);
+
+		// remove_theme_support('widgets-block-editor');
+
+		/*
+		* Enable support for Post Thumbnails on posts and pages.
+		*
+		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		*/
+		add_theme_support( 'post-thumbnails' );
+
+		add_post_type_support( 'page', 'excerpt' );
+
+		$all_menus = array();
+
+		$all_menus['footer']      = esc_html__( 'Footer Menu', 'blocksy' );
+		$all_menus['menu_1']      = esc_html__( 'Header Menu 1', 'blocksy' );
+		$all_menus['menu_2']      = esc_html__( 'Header Menu 2', 'blocksy' );
+		$all_menus['menu_mobile'] = esc_html__( 'Mobile Menu', 'blocksy' );
+
 		/**
-		 * Filters the block editor color palette registered by the theme.
+		 * Filters the list of nav menu locations registered by the theme.
 		 *
 		 * @since 1.8.0
 		 *
-		 * @param array $gutenberg_colors List of color palette definitions.
+		 * @param array $all_menus Map of menu location slug => label.
 		 */
-		apply_filters('blocksy:editor-color-palette', $gutenberg_colors)
-	);
+		$all_menus = apply_filters( 'blocksy:register_nav_menus:input', $all_menus );
 
-	add_theme_support(
-		'editor-gradient-presets',
-		/**
-		 * Filters the block editor gradient presets registered by the theme.
-		 *
-		 * @since 1.8.21
-		 *
-		 * @param array $gradients     List of gradient preset definitions.
-		 * @param array $color_palette The theme color palette.
-		 */
-		apply_filters('blocksy:editor-gradient-presets', [
-			[
-				'name' => 'Vivid cyan blue to vivid purple',
-				'gradient' => 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
-				'slug' => 'vivid-cyan-blue-to-vivid-purple',
-			],
+		// This theme uses wp_nav_menu in one location.
+		if ( ! empty( $all_menus ) ) {
+			register_nav_menus( $all_menus );
+		}
 
-			[
-				'name' => 'Light green cyan to vivid green cyan',
-				'gradient' => 'linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%)',
-				'slug' => 'light-green-cyan-to-vivid-green-cyan',
-			],
+		/*
+		* Switch default core markup for search form, comment form, and comments
+		* to output valid HTML5.
+		*/
+		add_theme_support(
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'navigation-widgets',
+			)
+		);
 
-			[
-				'name' => 'Luminous vivid amber to luminous vivid orange',
-				'gradient' => 'linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%)',
-				'slug' => 'luminous-vivid-amber-to-luminous-vivid-orange',
-			],
+		// Registers support for Gutenberg wide images
+		add_theme_support( 'align-wide' );
 
-			[
-				'name' => 'Luminous vivid orange to vivid red',
-				'gradient' => 'linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%)',
-				'slug' => 'luminous-vivid-orange-to-vivid-red',
-			],
-
-			[
-				'name' => 'Cool to warm spectrum',
-				'gradient' => 'linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%)',
-				'slug' => 'cool-to-warm-spectrum',
-			],
-
-			[
-				'name' => 'Blush light purple',
-				'gradient' => 'linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%)',
-				'slug' => 'blush-light-purple',
-			],
-
-			[
-				'name' => 'Blush bordeaux',
-				'gradient' => 'linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%)',
-				'slug' => 'blush-bordeaux',
-			],
-
-			[
-				'name' => 'Luminous dusk',
-				'gradient' => 'linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%)',
-				'slug' => 'luminous-dusk',
-			],
-
-			[
-				'name' => 'Pale ocean',
-				'gradient' => 'linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%)',
-				'slug' => 'pale-ocean',
-			],
-
-			[
-				'name' => 'Electric grass',
-				'gradient' => 'linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%)',
-				'slug' => 'electric-grass',
-			],
-
-			[
-				'name' => 'Midnight',
-				'gradient' => 'linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%)',
-				'slug' => 'midnight',
-			],
-
-			[
-				'name' => 'Juicy Peach',
-				'gradient' => 'linear-gradient(to right, #ffecd2 0%, #fcb69f 100%)',
-				'slug' => 'juicy-peach',
-			],
-
-			[
-				'name' => 'Young Passion',
-				'gradient' => 'linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%)',
-				'slug' => 'young-passion',
-			],
-
-			[
-				'name' => 'True Sunset',
-				'gradient' => 'linear-gradient(to right, #fa709a 0%, #fee140 100%)',
-				'slug' => 'true-sunset',
-			],
-
-			[
-				'name' => 'Morpheus Den',
-				'gradient' => 'linear-gradient(to top, #30cfd0 0%, #330867 100%)',
-				'slug' => 'morpheus-den',
-			],
-
-			[
-				'name' => 'Plum Plate',
-				'gradient' => 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-				'slug' => 'plum-plate',
-			],
-
-			[
-				'name' => 'Aqua Splash',
-				'gradient' => 'linear-gradient(15deg, #13547a 0%, #80d0c7 100%)',
-				'slug' => 'aqua-splash',
-			],
-
-			[
-				'name' => 'Love Kiss',
-				'gradient' => 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)',
-				'slug' => 'love-kiss',
-			],
-
-			[
-				'name' => 'New Retrowave',
-				'gradient' => 'linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%)',
-				'slug' => 'new-retrowave',
-			],
-
-			[
-				'name' => 'Plum Bath',
-				'gradient' => 'linear-gradient(to top, #cc208e 0%, #6713d2 100%)',
-				'slug' => 'plum-bath',
-			],
-
-			[
-				'name' => 'High Flight',
-				'gradient' => 'linear-gradient(to right, #0acffe 0%, #495aff 100%)',
-				'slug' => 'high-flight',
-			],
-
-			[
-				'name' => 'Teen Party',
-				'gradient' => 'linear-gradient(135deg, #FF057C 0%, #8D0B93 50%, #321575 100%)',
-				'slug' => 'teen-party',
-			],
-
-			[
-				'name' => 'Fabled Sunset',
-				'gradient' => 'linear-gradient(135deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)',
-				'slug' => 'fabled-sunset',
-			],
-
-			[
-				'name' => 'Arielle Smile',
-				'gradient' => 'radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%)',
-				'slug' => 'arielle-smile',
-			],
-
-			[
-				'name' => 'Itmeo Branding',
-				'gradient' => 'linear-gradient(180deg, #2af598 0%, #009efd 100%)',
-				'slug' => 'itmeo-branding',
-			],
-
-			[
-				'name' => 'Deep Blue',
-				'gradient' => 'linear-gradient(to right, #6a11cb 0%, #2575fc 100%)',
-				'slug' => 'deep-blue',
-			],
-
-			[
-				'name' => 'Strong Bliss',
-				'gradient' => 'linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%)',
-				'slug' => 'strong-bliss',
-			],
-
-			[
-				'name' => 'Sweet Period',
-				'gradient' => 'linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)',
-				'slug' => 'sweet-period',
-			],
-
-			[
-				'name' => 'Purple Division',
-				'gradient' => 'linear-gradient(to top, #7028e4 0%, #e5b2ca 100%)',
-				'slug' => 'purple-division',
-			],
-
-			[
-				'name' => 'Cold Evening',
-				'gradient' => 'linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%)',
-				'slug' => 'cold-evening',
-			],
-
-			[
-				'name' => 'Mountain Rock',
-				'gradient' => 'linear-gradient(to right, #868f96 0%, #596164 100%)',
-				'slug' => 'mountain-rock',
-			],
-
-			[
-				'name' => 'Desert Hump',
-				'gradient' => 'linear-gradient(to top, #c79081 0%, #dfa579 100%)',
-				'slug' => 'desert-hump',
-			],
-
-			[
-				'name' => 'Eternal Constance',
-				'gradient' => 'linear-gradient(to top, #09203f 0%, #537895 100%)',
-				'slug' => 'ethernal-constance',
-			],
-
-			[
-				'name' => 'Happy Memories',
-				'gradient' => 'linear-gradient(300deg, #ff5858 0%, #f09819 100%)',
-				'slug' => 'happy-memories',
-			],
-
-			[
-				'name' => 'Grown Early',
-				'gradient' => 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)',
-				'slug' => 'grown-early',
-			],
-
-			[
-				'name' => 'Morning Salad',
-				'gradient' => 'linear-gradient(135deg, #B7F8DB 0%, #50A7C2 100%)',
-				'slug' => 'morning-salad',
-			],
-
-			[
-				'name' => 'Night Call',
-				'gradient' => 'linear-gradient(135deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)',
-				'slug' => 'night-call',
-			],
-
-			[
-				'name' => 'Mind Crawl',
-				'gradient' => 'linear-gradient(135deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%)',
-				'slug' => 'mind-crawl',
-			],
-
-			[
-				'name' => 'Angel Care',
-				'gradient' => 'linear-gradient(135deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%)',
-				'slug' => 'angel-care',
-			],
-
-			[
-				'name' => 'Juicy Cake',
-				'gradient' => 'linear-gradient(to top, #e14fad 0%, #f9d423 100%)',
-				'slug' => 'juicy-cake',
-			],
-
-			[
-				'name' => 'Rich Metal',
-				'gradient' => 'linear-gradient(to right, #d7d2cc 0%, #304352 100%)',
-				'slug' => 'rich-metal',
-			],
-
-			[
-				'name' => 'Mole Hall',
-				'gradient' => 'linear-gradient(340deg, #616161 0%, #9bc5c3 100%)',
-				'slug' => 'mole-hall',
-			],
-
-			[
-				'name' => 'Cloudy Knoxville',
-				'gradient' => 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
-				'slug' => 'cloudy-knoxville',
-			],
-
-			[
-				'name' => 'Very light gray to cyan bluish gray',
-				'gradient' => 'linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%)',
-				'slug' => 'very-light-gray-to-cyan-bluish-gray',
-			],
-
-			[
-				'name' => 'Soft Grass',
-				'gradient' => 'linear-gradient(to top, #c1dfc4 0%, #deecdd 100%)',
-				'slug' => 'soft-grass',
-			],
-
-			[
-				'name' => 'Saint Petersburg',
-				'gradient' => 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-				'slug' => 'saint-petersburg',
-			],
-
-			[
-				'name' => 'Everlasting Sky',
-				'gradient' => 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
-				'slug' => 'everlasting-sky',
-			],
-
-			[
-				'name' => 'Kind Steel',
-				'gradient' => 'linear-gradient(340deg, #e9defa 0%, #fbfcdb 100%)',
-				'slug' => 'kind-steel',
-			],
-
-			[
-				'name' => 'Over Sun',
-				'gradient' => 'linear-gradient(60deg, #abecd6 0%, #fbed96 100%)',
-				'slug' => 'over-sun',
-			],
-
-			[
-				'name' => 'Premium White',
-				'gradient' => 'linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%)',
-				'slug' => 'premium-white',
-			],
-
-			[
-				'name' => 'Clean Mirror',
-				'gradient' => 'linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)',
-				'slug' => 'clean-mirror',
-			],
-
-			[
-				'name' => 'Wild Apple',
-				'gradient' => 'linear-gradient(to top, #d299c2 0%, #fef9d7 100%)',
-				'slug' => 'wild-apple',
-			],
-
-			[
-				'name' => 'Snow Again',
-				'gradient' => 'linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)',
-				'slug' => 'snow-again',
-			],
-
-			[
-				'name' => 'Confident Cloud',
-				'gradient' => 'linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%)',
-				'slug' => 'confident-cloud',
-			],
-
-			[
-				'name' => 'Glass Water',
-				'gradient' => 'linear-gradient(to top, #dfe9f3 0%, white 100%)',
-				'slug' => 'glass-water',
-			],
-
-			[
-				'name' => 'Perfect White',
-				'gradient' => 'linear-gradient(135deg, #E3FDF5 0%, #FFE6FA 100%)',
-				'slug' => 'perfect-white',
-			],
-		], blocksy_manager()->colors->get_color_palette())
-	);
-
-	// remove_theme_support('widgets-block-editor');
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
-	add_theme_support('post-thumbnails');
-
-	add_post_type_support('page', 'excerpt');
-
-	$all_menus = [];
-
-	$all_menus['footer'] = esc_html__('Footer Menu', 'blocksy');
-	$all_menus['menu_1'] = esc_html__('Header Menu 1', 'blocksy');
-	$all_menus['menu_2'] = esc_html__('Header Menu 2', 'blocksy');
-	$all_menus['menu_mobile'] = esc_html__('Mobile Menu', 'blocksy');
-
-	/**
-	 * Filters the list of nav menu locations registered by the theme.
-	 *
-	 * @since 1.8.0
-	 *
-	 * @param array $all_menus Map of menu location slug => label.
-	 */
-	$all_menus = apply_filters('blocksy:register_nav_menus:input', $all_menus);
-
-	// This theme uses wp_nav_menu in one location.
-	if (! empty($all_menus)) {
-		register_nav_menus($all_menus);
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support( 'header-footer-elementor' );
 	}
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support(
-		'html5',
-		[
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-			'navigation-widgets',
-		]
-	);
-
-	// Registers support for Gutenberg wide images
-	add_theme_support('align-wide');
-
-	// Add theme support for selective refresh for widgets.
-	add_theme_support('customize-selective-refresh-widgets');
-	add_theme_support('header-footer-elementor');
-});
+);
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -471,22 +478,26 @@ add_action('after_setup_theme', function () {
  *
  * @global int $content_width
  */
-add_action('after_setup_theme', function () {
-	// This variable is intended to be overruled from themes.
-	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
+add_action(
+	'after_setup_theme',
+	function () {
+		// This variable is intended to be overruled from themes.
+		// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	/**
-	 * Filters the theme content width in pixels.
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param int $content_width The content width in pixels.
-	 */
-	$GLOBALS['content_width'] = apply_filters(
-		'blocksy_content_width',
-		blocksy_get_theme_mod('maxSiteWidth', 1290)
-	);
-}, 0);
+		/**
+		 * Filters the theme content width in pixels.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param int $content_width The content width in pixels.
+		 */
+		$GLOBALS['content_width'] = apply_filters(
+			'blocksy_content_width',
+			blocksy_get_theme_mod( 'maxSiteWidth', 1290 )
+		);
+	},
+	0
+);
 
 /**
  * Register widget area.
@@ -496,18 +507,24 @@ add_action('after_setup_theme', function () {
 add_action(
 	'widgets_init',
 	function () {
-		$sidebar_title_tag = blocksy_get_theme_mod('widgets_title_wrapper', 'h3');
+		$sidebar_title_tag = blocksy_validate_html_tag(
+			array(
+				'tag'     => blocksy_get_theme_mod( 'widgets_title_wrapper' ),
+				'allowed' => array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span' ),
+				'default' => 'h3',
+			)
+		);
 
 		register_sidebar(
-			[
-				'name' => esc_html__( 'Main Sidebar', 'blocksy' ),
-				'id' => 'sidebar-1',
-				'description' => esc_html__( 'Add widgets here.', 'blocksy' ),
+			array(
+				'name'          => esc_html__( 'Main Sidebar', 'blocksy' ),
+				'id'            => 'sidebar-1',
+				'description'   => esc_html__( 'Add widgets here.', 'blocksy' ),
 				'before_widget' => '<div class="ct-widget is-layout-flow %2$s" id="%1$s">',
-				'after_widget' => '</div>',
-				'before_title' => '<' . $sidebar_title_tag . ' class="widget-title">',
-				'after_title' => '</' . $sidebar_title_tag . '>',
-			]
+				'after_widget'  => '</div>',
+				'before_title'  => '<' . $sidebar_title_tag . ' class="widget-title">',
+				'after_title'   => '</' . $sidebar_title_tag . '>',
+			)
 		);
 
 		/**
@@ -517,20 +534,20 @@ add_action(
 		 *
 		 * @param string $sidebar_title_tag The HTML tag used for widget titles.
 		 */
-		do_action('blocksy:widgets_init', $sidebar_title_tag);
+		do_action( 'blocksy:widgets_init', $sidebar_title_tag );
 
 		$number_of_sidebars = 6;
 
-		for ($i = 1; $i <= $number_of_sidebars; $i++) {
+		for ( $i = 1; $i <= $number_of_sidebars; $i++ ) {
 			register_sidebar(
-				[
-					'id' => 'ct-footer-sidebar-' . $i,
-					'name' => esc_html__('Footer Widget Area ', 'blocksy') . $i,
+				array(
+					'id'            => 'ct-footer-sidebar-' . $i,
+					'name'          => esc_html__( 'Footer Widget Area ', 'blocksy' ) . $i,
 					'before_widget' => '<div class="ct-widget is-layout-flow %2$s" id="%1$s">',
-					'after_widget' => '</div>',
-					'before_title' => '<' . $sidebar_title_tag . ' class="widget-title">',
-					'after_title' => '</' . $sidebar_title_tag . '>',
-				]
+					'after_widget'  => '</div>',
+					'before_title'  => '<' . $sidebar_title_tag . ' class="widget-title">',
+					'after_title'   => '</' . $sidebar_title_tag . '>',
+				)
 			);
 		}
 	}
@@ -625,13 +642,13 @@ require get_template_directory() . '/inc/integrations/coauthors.php';
 require get_template_directory() . '/inc/integrations/disqus.php';
 require get_template_directory() . '/inc/integrations/wpc-variations-table.php';
 
-if (function_exists('flrt_get_option')) {
+if ( function_exists( 'flrt_get_option' ) ) {
 	require get_template_directory() . '/inc/integrations/filter-everything.php';
 }
 
 require get_template_directory() . '/inc/integrations/filter-everything.php';
 
-if (function_exists('get_rocket_cdn_url')) {
+if ( function_exists( 'get_rocket_cdn_url' ) ) {
 	require get_template_directory() . '/inc/integrations/wprocket.php';
 }
 
@@ -655,44 +672,51 @@ require get_template_directory() . '/admin/helpers/all.php';
  *
  * @since 1.8.7
  */
-do_action('blocksy:customizer:load:before');
+do_action( 'blocksy:customizer:load:before' );
 
 global $wp_customize;
 
-if (isset($wp_customize)) {
+if ( isset( $wp_customize ) ) {
 	require get_template_directory() . '/inc/customizer/init.php';
 }
 
-if (is_admin()) {
+if ( is_admin() ) {
 	require get_template_directory() . '/admin/init.php';
 }
 
 
-if (!is_admin()) {
-	add_filter('script_loader_tag', function ($tag, $handle) {
-		$scripts = apply_filters('blocksy-async-scripts-handles', [
-		]);
+if ( ! is_admin() ) {
+	add_filter(
+		'script_loader_tag',
+		function ( $tag, $handle ) {
+			$scripts = apply_filters(
+				'blocksy-async-scripts-handles',
+				array()
+			);
 
-		if (in_array($handle, $scripts)) {
-			return str_replace('<script ', '<script async ', $tag);
-		}
+			if ( in_array( $handle, $scripts, true ) ) {
+				return str_replace( '<script ', '<script async ', $tag );
+			}
 
-		return $tag;
-
-		// if the unique handle/name of the registered script has 'async' in it
-		if (strpos($handle, 'async') !== false) {
-			// return the tag with the async attribute
-			return str_replace( '<script ', '<script async ', $tag );
-		} else if (
-			// if the unique handle/name of the registered script has 'defer' in it
-			strpos($handle, 'defer') !== false
-		) {
-			// return the tag with the defer attribute
-			return str_replace( '<script ', '<script defer ', $tag );
-		} else {
 			return $tag;
-		}
-	}, 10, 2);
+
+			// if the unique handle/name of the registered script has 'async' in it
+			if ( strpos( $handle, 'async' ) !== false ) {
+				// return the tag with the async attribute
+				return str_replace( '<script ', '<script async ', $tag );
+			} elseif (
+			// if the unique handle/name of the registered script has 'defer' in it
+			strpos( $handle, 'defer' ) !== false
+			) {
+				// return the tag with the defer attribute
+				return str_replace( '<script ', '<script defer ', $tag );
+			} else {
+				return $tag;
+			}
+		},
+		10,
+		2
+	);
 }
 
 Blocksy_Manager::instance();
@@ -700,6 +724,6 @@ Blocksy_Manager::instance();
 // Just temporary stub
 class Blocksy_Fonts_Manager {
 	public function get_googgle_fonts() {
-		return [];
+		return array();
 	}
 }

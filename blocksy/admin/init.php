@@ -9,7 +9,7 @@
 require_once get_template_directory() . '/admin/dashboard/plugins/ct-plugin-manager.php';
 require_once get_template_directory() . '/admin/helpers/jed-locale-data.php';
 
-if (is_admin() && defined('DOING_AJAX') && DOING_AJAX) {
+if ( is_admin() && defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 	require_once get_template_directory() . '/admin/dashboard/api.php';
 	require_once get_template_directory() . '/admin/dashboard/plugins/ct-plugin-manager.php';
 	require_once get_template_directory() . '/admin/dashboard/plugins/plugins-api.php';
@@ -19,7 +19,7 @@ require get_template_directory() . '/admin/dashboard/core.php';
 require get_template_directory() . '/admin/blocks-editor.php';
 
 require get_template_directory() . '/admin/notices/templates.php';
-if (defined('DOING_AJAX') && DOING_AJAX) {
+if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 	require get_template_directory() . '/admin/notices/api.php';
 }
 
@@ -40,7 +40,7 @@ add_action(
 		if (
 			$current_screen->id
 			&&
-			strpos($current_screen->id, 'forminator') !== false
+			strpos( $current_screen->id, 'forminator' ) !== false
 		) {
 			return;
 		}
@@ -50,45 +50,48 @@ add_action(
 		wp_register_script(
 			'ct-events',
 			get_template_directory_uri() . '/static/bundle/events.js',
-			[],
-			$theme->get('Version'),
+			array(),
+			$theme->get( 'Version' ),
 			true
 		);
 
-		$deps = apply_filters('blocksy-options-scripts-dependencies', [
-			// 'underscore',
-			'react',
-			'react-dom',
-			'wp-element',
-			'wp-date',
-			'wp-i18n',
-			'ct-events',
-			'wp-media-utils',
+		$deps = apply_filters(
+			'blocksy-options-scripts-dependencies',
+			array(
+				// 'underscore',
+				'react',
+				'react-dom',
+				'wp-element',
+				'wp-date',
+				'wp-i18n',
+				'ct-events',
+				'wp-media-utils',
 			// 'wp-polyfill'
-		]);
+			)
+		);
 
 		global $wp_customize;
 
-		if (! isset($wp_customize)) {
-			if ($current_screen->base !== 'edit') {
+		if ( ! isset( $wp_customize ) ) {
+			if ( 'edit' !== $current_screen->base ) {
 				$deps[] = 'wp-components';
 			}
 
 			if (
-				$current_screen->base === 'nav-menus'
+				'nav-menus' === $current_screen->base
 				||
-				$current_screen->base === 'edit-tags'
+				'edit-tags' === $current_screen->base
 				||
-				$current_screen->base === 'term'
+				'term' === $current_screen->base
 				||
 				(
-					$current_screen->base === 'post'
+					'post' === $current_screen->base
 					&&
 					$current_screen->is_block_editor
 				)
 				||
 				(
-					$current_screen->base === 'widgets'
+					'widgets' === $current_screen->base
 					&&
 					$current_screen->is_block_editor
 				)
@@ -101,16 +104,16 @@ add_action(
 				'ct-options-scripts',
 				get_template_directory_uri() . '/static/bundle/options.js',
 				$deps,
-				$theme->get('Version')
+				$theme->get( 'Version' )
 			);
 
-			$styles_deps = [];
+			$styles_deps = array();
 
 			if (
-				$current_screen->base === 'nav-menus'
+				'nav-menus' === $current_screen->base
 				||
 				(
-					$current_screen->base === 'post'
+					'post' === $current_screen->base
 					&&
 					$current_screen->is_block_editor
 				)
@@ -122,68 +125,66 @@ add_action(
 				'ct-options-styles',
 				get_template_directory_uri() . '/static/bundle/options.min.css',
 				$styles_deps,
-				$theme->get('Version')
+				$theme->get( 'Version' )
 			);
 		}
 
-		$locale_data_ct = blocksy_get_jed_locale_data('blocksy');
+		$locale_data_ct = blocksy_get_jed_locale_data( 'blocksy' );
 
 		wp_add_inline_script(
 			'wp-i18n',
-			'wp.i18n.setLocaleData( ' . wp_json_encode($locale_data_ct) . ', "blocksy" );'
+			'wp.i18n.setLocaleData( ' . wp_json_encode( $locale_data_ct ) . ', "blocksy" );'
 		);
 
-
-		if (is_rtl()) {
+		if ( is_rtl() ) {
 			wp_enqueue_style(
 				'ct-options-rtl-styles',
 				get_template_directory_uri() . '/static/bundle/options-rtl.min.css',
-				['ct-options-styles'],
-				$theme->get('Version')
+				array( 'ct-options-styles' ),
+				$theme->get( 'Version' )
 			);
 		}
 
-		$gradients = [];
+		$gradients = array();
 
 		if (
-			get_theme_support('editor-gradient-presets')
+			get_theme_support( 'editor-gradient-presets' )
 			&&
-			isset(get_theme_support('editor-gradient-presets')[0])
+			isset( get_theme_support( 'editor-gradient-presets' )[0] )
 		) {
-			$gradients = get_theme_support('editor-gradient-presets')[0];
+			$gradients = get_theme_support( 'editor-gradient-presets' )[0];
 		}
 
-		if (function_exists('wp_get_global_settings')) {
-			if (isset(wp_get_global_settings()['color']['gradients']['theme'])) {
+		if ( function_exists( 'wp_get_global_settings' ) ) {
+			if ( isset( wp_get_global_settings()['color']['gradients']['theme'] ) ) {
 				$gradients = wp_get_global_settings()['color']['gradients']['theme'];
 			}
 		}
 
-		$localize_data = [
-			'conditions_override' => blocksy_manager()->get_conditions_overrides(),
-			'theme_version' => $theme->get('Version'),
-			'current_palette' => blocksy_manager()->colors->get_color_palette(),
-			'gradients' => $gradients,
-			'is_dev_mode' => !! (
-				defined('BLOCKSY_DEVELOPMENT_MODE')
+		$localize_data = array(
+			'conditions_override'           => blocksy_manager()->get_conditions_overrides(),
+			'theme_version'                 => $theme->get( 'Version' ),
+			'current_palette'               => blocksy_manager()->colors->get_color_palette(),
+			'gradients'                     => $gradients,
+			'is_dev_mode'                   => ! ! (
+				defined( 'BLOCKSY_DEVELOPMENT_MODE' )
 				&&
 				BLOCKSY_DEVELOPMENT_MODE
 			),
-			'nonce' => wp_create_nonce('ct-ajax-nonce'),
-			'dashboard_actions_nonce' => wp_create_nonce('ct-dashboard'),
-			'public_url' => get_template_directory_uri() . '/static/bundle/',
-			'static_public_url' => get_template_directory_uri() . '/static/',
+			'nonce'                         => wp_create_nonce( 'ct-ajax-nonce' ),
+			'public_url'                    => get_template_directory_uri() . '/static/bundle/',
+			'static_public_url'             => get_template_directory_uri() . '/static/',
 			'dismissed_google_fonts_notice' => get_option(
 				'dismissed-blocksy_google_fonts_notice',
 				'no'
 			) === 'yes',
-			'ajax_url' => admin_url('admin-ajax.php'),
-			'rest_url' => get_rest_url(),
-			'customizer_url' => admin_url('/customize.php?autofocus'),
-			'product_name' => blocksy_get_wp_theme()->get('Name'),
-			'customizer_sync' => [
-				'svg_patterns' => blocksy_get_patterns_svgs_list()
-			],
+			'ajax_url'                      => admin_url( 'admin-ajax.php' ),
+			'rest_url'                      => get_rest_url(),
+			'customizer_url'                => admin_url( '/customize.php?autofocus' ),
+			'product_name'                  => blocksy_get_wp_theme()->get( 'Name' ),
+			'customizer_sync'               => array(
+				'svg_patterns' => blocksy_get_patterns_svgs_list(),
+			),
 			/**
 			 * Filters the metaboxes data exposed to the block editor.
 			 *
@@ -194,19 +195,32 @@ add_action(
 			 *
 			 * @param array $metaboxes_data Metaboxes data. Default empty array.
 			 */
-			'gutenberg_metaboxes_data' => apply_filters(
+			'gutenberg_metaboxes_data'      => apply_filters(
 				'blocksy:gutenberg-metaboxes-data',
-				[]
+				array()
 			),
-			'backend_dynamic_styles_urls' => blocksy_backend_dynamic_styles_urls(),
-			'can_install_plugins' => current_user_can('install_plugins') ? "yes" : "no",
-		];
+			'backend_dynamic_styles_urls'   => blocksy_backend_dynamic_styles_urls(),
+			'can_install_plugins'           => current_user_can( 'install_plugins' ) ? 'yes' : 'no',
+		);
 
 		$block_editor_data = blocksy_get_block_editor_data();
 
-		if (! empty($block_editor_data)) {
+		if ( ! empty( $block_editor_data ) ) {
 			$localize_data['block_editor_data'] = $block_editor_data;
 		}
+
+		/**
+		 * Filters the data localized as `ct_localizations` for the admin
+		 * options scripts.
+		 *
+		 * @since 2.1.60
+		 *
+		 * @param array $localize_data Localized data.
+		 */
+		$localize_data = apply_filters(
+			'blocksy:admin:localizations',
+			$localize_data
+		);
 
 		wp_localize_script(
 			'ct-options-scripts',
@@ -216,4 +230,3 @@ add_action(
 	},
 	50
 );
-

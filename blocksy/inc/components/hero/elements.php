@@ -1,9 +1,10 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable -- view scope, variables come from blocksy_render_view()
 
 $prefix = blocksy_manager()->screen->get_prefix();
 
-if (function_exists('tutor_utils') && $prefix === 'courses_single') {
-	if (tutor_utils()->is_enrolled()) {
+if ( function_exists( 'tutor_utils' ) && 'courses_single' === $prefix ) {
+	if ( tutor_utils()->is_enrolled() ) {
 		tutor_course_enrolled_lead_info();
 	} else {
 		tutor_course_lead_info();
@@ -14,32 +15,32 @@ if (function_exists('tutor_utils') && $prefix === 'courses_single') {
 
 $is_page = blocksy_is_page();
 
-$default_hero_elements = [];
+$default_hero_elements = array();
 
-$default_hero_elements[] = [
-	'id' => 'custom_title',
-	'enabled' => $prefix !== 'product',
-];
+$default_hero_elements[] = array(
+	'id'      => 'custom_title',
+	'enabled' => 'product' !== $prefix,
+);
 
-if (! function_exists('tutor_utils') && $prefix !== 'courses_archive') {
-	$default_hero_elements[] = [
-		'id' => 'custom_description',
-		'enabled' => $prefix !== 'product',
-	];
+if ( ! function_exists( 'tutor_utils' ) && 'courses_archive' !== $prefix ) {
+	$default_hero_elements[] = array(
+		'id'      => 'custom_description',
+		'enabled' => 'product' !== $prefix,
+	);
 }
 
 if (
 	(
 		is_singular() || is_author()
 	) && ! (
-		function_exists('is_bbpress') && (
+		function_exists( 'is_bbpress' ) && (
 			get_post_type() === 'forum'
 			||
 			get_post_type() === 'topic'
 			||
 			get_post_type() === 'reply'
 			||
-			get_query_var('post_type') === 'forum'
+			get_query_var( 'post_type' ) === 'forum'
 			||
 			bbp_is_topic_tag()
 			||
@@ -47,25 +48,25 @@ if (
 			||
 			is_bbpress()
 		)
-	) && ! (get_post_type() === 'elementor_library')
+	) && ! ( get_post_type() === 'elementor_library' )
 ) {
-	$default_hero_elements[] = [
-		'id' => 'custom_meta',
-		'enabled' => ! $is_page && $prefix !== 'product',
-	];
+	$default_hero_elements[] = array(
+		'id'      => 'custom_meta',
+		'enabled' => ! $is_page && 'product' !== $prefix,
+	);
 }
 
-if (is_author()) {
-	$default_hero_elements[] = [
-		'id' => 'author_social_channels',
+if ( is_author() ) {
+	$default_hero_elements[] = array(
+		'id'      => 'author_social_channels',
 		'enabled' => true,
-	];
+	);
 }
 
-$default_hero_elements[] = [
-	'id' => 'breadcrumbs',
-	'enabled' => $prefix === 'product',
-];
+$default_hero_elements[] = array(
+	'id'      => 'breadcrumbs',
+	'enabled' => 'product' === $prefix,
+);
 
 $hero_elements = blocksy_akg_or_customizer(
 	'hero_elements',
@@ -73,18 +74,18 @@ $hero_elements = blocksy_akg_or_customizer(
 	$default_hero_elements
 );
 
-$meta_indexes = [
-	'first' => null,
-	'second' => null
-];
+$meta_indexes = array(
+	'first'  => null,
+	'second' => null,
+);
 
-foreach ($hero_elements as $index => $single_hero_element) {
-	if (! isset($single_hero_element['enabled'])) {
+foreach ( $hero_elements as $index => $single_hero_element ) {
+	if ( ! isset( $single_hero_element['enabled'] ) ) {
 		continue;
 	}
 
-	if ($single_hero_element['id'] === 'custom_meta') {
-		if ($meta_indexes['first'] === null) {
+	if ( 'custom_meta' === $single_hero_element['id'] ) {
+		if ( null === $meta_indexes['first'] ) {
 			$meta_indexes['first'] = $index;
 		} else {
 			$meta_indexes['second'] = $index;
@@ -92,12 +93,12 @@ foreach ($hero_elements as $index => $single_hero_element) {
 	}
 }
 
-foreach ($hero_elements as $index => $single_hero_element) {
-	if (! isset($single_hero_element['enabled'])) {
+foreach ( $hero_elements as $index => $single_hero_element ) {
+	if ( ! isset( $single_hero_element['enabled'] ) ) {
 		continue;
 	}
 
-	if (! $single_hero_element['enabled']) {
+	if ( ! $single_hero_element['enabled'] ) {
 		continue;
 	}
 
@@ -109,7 +110,7 @@ foreach ($hero_elements as $index => $single_hero_element) {
 	 *
 	 * @since 1.7.10
 	 */
-	do_action('blocksy:hero:' . $single_hero_element['id'] . ':before');
+	do_action( 'blocksy:hero:' . $single_hero_element['id'] . ':before' );
 
 	/**
 	 * Fires while a single hero element is rendered.
@@ -118,33 +119,35 @@ foreach ($hero_elements as $index => $single_hero_element) {
 	 *
 	 * @param array $single_hero_element The hero element configuration.
 	 */
-	do_action('blocksy:hero:element:render', $single_hero_element);
+	do_action( 'blocksy:hero:element:render', $single_hero_element );
 
-	if ($single_hero_element['id'] === 'breadcrumbs') {
+	if ( 'breadcrumbs' === $single_hero_element['id'] ) {
 		$breadcrumbs_builder = new \Blocksy\BreadcrumbsBuilder();
 
-		echo $breadcrumbs_builder->render([
-			'class' => blocksy_visibility_classes(
-				blocksy_akg(
-					'breadcrumbs_visibility',
-					$single_hero_element,
-					[
-						'desktop' => true,
-						'tablet' => true,
-						'mobile' => true,
-					]
-				)
+		echo $breadcrumbs_builder->render(
+			array(
+				'class' => blocksy_visibility_classes(
+					blocksy_akg(
+						'breadcrumbs_visibility',
+						$single_hero_element,
+						array(
+							'desktop' => true,
+							'tablet'  => true,
+							'mobile'  => true,
+						)
+					)
+				),
 			)
-		]);
+		);
 	}
 
-	if ($single_hero_element['id'] === 'custom_title') {
+	if ( 'custom_title' === $single_hero_element['id'] ) {
 		$has_author_avatar = false;
 
 		if (
-			blocksy_akg('has_author_avatar', $single_hero_element, 'yes') === 'yes'
+			blocksy_akg( 'has_author_avatar', $single_hero_element, 'yes' ) === 'yes'
 		) {
-			if (is_author()) {
+			if ( is_author() ) {
 				$has_author_avatar = true;
 			}
 		}
@@ -153,7 +156,7 @@ foreach ($hero_elements as $index => $single_hero_element) {
 
 		$has_category_label_default = 'yes';
 
-		if ($prefix === 'courses_archive' && function_exists('tutor')) {
+		if ( 'courses_archive' === $prefix && function_exists( 'tutor' ) ) {
 			$has_category_label_default = 'no';
 		}
 
@@ -163,33 +166,35 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			$has_category_label_default
 		);
 
-		if (function_exists('is_woocommerce') && is_woocommerce()) {
+		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
 			$has_category_label = 'no';
 		}
 
 		if (
 			(
-				is_singular() || blocksy_is_page() || $prefix === 'bbpress_single'
+				is_singular() || blocksy_is_page() || 'bbpress_single' === $prefix
 			) && ! is_search()
 		) {
-			if (! $post_id) {
+			if ( ! $post_id ) {
 				$post_id = get_the_ID();
 			}
 
-			if (! empty(get_the_title($post_id))) {
-				$title = get_the_title($post_id);
+			if ( ! empty( get_the_title( $post_id ) ) ) {
+				$title = get_the_title( $post_id );
 			}
 		} else {
-			if (! is_search()) {
-				if (! empty(get_the_archive_title())) {
-					$archive_title_renderer = new \Blocksy\ArchiveTitleRenderer([
-						'has_label' => $has_category_label === 'yes'
-					]);
+			if ( ! is_search() ) {
+				if ( ! empty( get_the_archive_title() ) ) {
+					$archive_title_renderer = new \Blocksy\ArchiveTitleRenderer(
+						array(
+							'has_label' => 'yes' === $has_category_label,
+						)
+					);
 
 					$title = $archive_title_renderer->get_the_archive_title();
 				}
 
-				if (is_author()) {
+				if ( is_author() ) {
 					$title = blocksy_get_the_author_meta(
 						'display_name',
 						blocksy_get_author_id()
@@ -207,26 +212,33 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			}
 		}
 
-		if (is_home() && is_front_page()) {
-			$title = blocksy_translate_dynamic(blocksy_akg(
-				'title',
-				$single_hero_element,
-				(
-					function_exists('is_shop') && is_shop()
-				) ? __('Products', 'blocksy') : __('Home', 'blocksy')
-			), $prefix . '_hero_custom_title');
+		if ( is_home() && is_front_page() ) {
+			$title = blocksy_sanitize_html_for_display(
+				array(
+					'html' => blocksy_translate_dynamic(
+						blocksy_akg(
+							'title',
+							$single_hero_element,
+							(
+							function_exists( 'is_shop' ) && is_shop()
+							) ? __( 'Products', 'blocksy' ) : __( 'Home', 'blocksy' )
+						),
+						$prefix . '_hero_custom_title'
+					),
+				)
+			);
 		}
 
 		// woocommerce_page_title gives plain text title, without any html tags.
 		// Thus, we need to call it before we wrap the title in a tag.
-		if (function_exists('is_woocommerce') && is_woocommerce()) {
-			$title = apply_filters('woocommerce_page_title', $title);
+		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
+			$title = apply_filters( 'woocommerce_page_title', $title ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WooCommerce core filter
 		}
 
-		if (! empty($title)) {
-			$title_attrs = [
-				'class' => 'page-title'
-			];
+		if ( ! empty( $title ) ) {
+			$title_attrs = array(
+				'class' => 'page-title',
+			);
 
 			$custom_attribute = blocksy_akg(
 				'custom_attribute',
@@ -234,44 +246,55 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				''
 			);
 
-			if (! empty($custom_attribute)) {
-				foreach (blocksy_parse_html_attributes($custom_attribute) as $attr_name => $attr_value) {
-					$title_attrs[$attr_name] = str_replace(
+			if ( ! empty( $custom_attribute ) ) {
+				foreach ( blocksy_parse_html_attributes( $custom_attribute ) as $attr_name => $attr_value ) {
+					if ( ! blocksy_is_allowed_custom_attribute_name( $attr_name ) ) {
+						continue;
+					}
+
+					$title_attrs[ $attr_name ] = str_replace(
 						'{title}',
-						strip_tags($title),
+						strip_tags( $title ),
 						$attr_value
 					);
 				}
 			}
 
-			$heading_tag = blocksy_akg('heading_tag', $single_hero_element, 'h1');
-
-			if (! in_array($heading_tag, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], true)) {
-				$heading_tag = 'h1';
-			}
+			$heading_tag = blocksy_validate_html_tag(
+				array(
+					'tag'     => blocksy_akg( 'heading_tag', $single_hero_element ),
+					'allowed' => 'headings',
+					'default' => 'h1',
+				)
+			);
 
 			$title = blocksy_html_tag(
 				$heading_tag,
 				array_merge(
 					$title_attrs,
-					blocksy_schema_org_definitions('headline', [
-						'array' => true
-					])
+					blocksy_schema_org_definitions(
+						'headline',
+						array(
+							'array' => true,
+						)
+					)
 				),
 				$title
 			);
 		}
 
-		if (is_author()) {
+		if ( is_author() ) {
 			echo '<div class="ct-author-name">';
 		}
 
-		if ($has_author_avatar) {
-			$avatar_size = intval(blocksy_akg(
-				'author_avatar_size',
-				$single_hero_element,
-				'60'
-			)) * 2;
+		if ( $has_author_avatar ) {
+			$avatar_size = intval(
+				blocksy_akg(
+					'author_avatar_size',
+					$single_hero_element,
+					'60'
+				)
+			) * 2;
 
 			$title = blocksy_simple_image(
 				/**
@@ -283,21 +306,21 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				 */
 				apply_filters(
 					'blocksy:hero:title:author:author-avatar-url',
-					blocksy_get_avatar_url(['size' => $avatar_size])
+					blocksy_get_avatar_url( array( 'size' => $avatar_size ) )
 				),
-				[
-					'tag_name' => 'span',
+				array(
+					'tag_name'     => 'span',
 					'aspect_ratio' => false,
-					'suffix' => 'static',
-					'img_atts' => [
-						'width' => $avatar_size / 2,
+					'suffix'       => 'static',
+					'img_atts'     => array(
+						'width'  => $avatar_size / 2,
 						'height' => $avatar_size / 2,
-						'style' => 'height:' . (
-							intval($avatar_size) / 2
+						'style'  => 'height:' . (
+							intval( $avatar_size ) / 2
 						) . 'px',
-						'alt' => blocksy_get_avatar_alt_for(blocksy_get_the_author_meta('ID'))
-					],
-				]
+						'alt'    => blocksy_get_avatar_alt_for( blocksy_get_the_author_meta( 'ID' ) ),
+					),
+				)
 			) . $title;
 		}
 
@@ -306,72 +329,74 @@ foreach ($hero_elements as $index => $single_hero_element) {
 		 *
 		 * @since 1.7.17
 		 */
-		do_action('blocksy:hero:title:before');
+		do_action( 'blocksy:hero:title:before' );
 		echo $title;
 		/**
 		 * Fires after the hero title is printed.
 		 *
 		 * @since 1.7.17
 		 */
-		do_action('blocksy:hero:title:after');
+		do_action( 'blocksy:hero:title:after' );
 
-		if (is_author()) {
+		if ( is_author() ) {
 			echo '</div>';
 		}
 	}
 
-	if ($single_hero_element['id'] === 'custom_description') {
-		$description = '';
+	if ( 'custom_description' === $single_hero_element['id'] ) {
+		$description       = '';
 		$description_class = 'page-description';
 
 		$description_class .= ' ' . blocksy_visibility_classes(
 			blocksy_akg(
 				'description_visibility',
 				$single_hero_element,
-				[
+				array(
 					'desktop' => true,
-					'tablet' => true,
-					'mobile' => false,
-				]
+					'tablet'  => true,
+					'mobile'  => false,
+				)
 			)
 		);
 
 		if (
 			(
-				is_singular() || $is_page || $prefix === 'bbpress_single'
+				is_singular() || $is_page || 'bbpress_single' === $prefix
 			) && ! is_search()
 		) {
-			if (! $post_id) {
+			if ( ! $post_id ) {
 				$post_id = $is_page ? $is_page : get_the_ID();
 			}
 
-			if (function_exists('is_woocommerce') && is_shop()) {
+			if ( function_exists( 'is_woocommerce' ) && is_shop() ) {
 				ob_start();
 				woocommerce_taxonomy_archive_description();
 				woocommerce_product_archive_description();
 				$description = ob_get_clean();
 			}
 
-			if (has_excerpt($post_id)) {
-				$description = blocksy_entry_excerpt([
-					'length' => 40,
-					'class' => $description_class,
-					'post_id' => $post_id
-				]);
+			if ( has_excerpt( $post_id ) ) {
+				$description = blocksy_entry_excerpt(
+					array(
+						'length'  => 40,
+						'class'   => $description_class,
+						'post_id' => $post_id,
+					)
+				);
 			}
 		} else {
-			if (! is_search()) {
+			if ( ! is_search() ) {
 				if (
 					! is_author()
 					&&
-					! empty(get_the_archive_description())
+					! empty( get_the_archive_description() )
 				) {
 					$description = '<div class="' . $description_class . '">' . get_the_archive_description() . '</div>';
 				}
 
-				if (is_author()) {
-					if (! empty(trim(blocksy_get_the_author_meta('description', blocksy_get_author_id())))) {
-						$description = '<div class="' . $description_class . '">' . wp_kses_post(blocksy_get_the_author_meta('description', blocksy_get_author_id())) . '</div>';
+				if ( is_author() ) {
+					if ( ! empty( trim( blocksy_get_the_author_meta( 'description', blocksy_get_author_id() ) ) ) ) {
+						$description = '<div class="' . $description_class . '">' . wp_kses_post( blocksy_get_the_author_meta( 'description', blocksy_get_author_id() ) ) . '</div>';
 					}
 				}
 			} else {
@@ -386,10 +411,10 @@ foreach ($hero_elements as $index => $single_hero_element) {
 					get_search_query()
 				);
 
-				if (! have_posts()) {
-					// translators: %s are the opening and closing of the html tags
+				if ( ! have_posts() ) {
 					$description = blocksy_safe_sprintf(
-						__('%sSorry, but nothing matched your search terms. Please try again with some different keywords.%s', 'blocksy'),
+						// translators: %1$s and %2$s are the opening and closing of the html tags
+						__( '%1$sSorry, but nothing matched your search terms. Please try again with some different keywords.%2$s', 'blocksy' ),
 						'<div class="' . $description_class . '">',
 						'</div>'
 					);
@@ -397,19 +422,28 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			}
 		}
 
-		if (is_home() && is_front_page()) {
-			if (! empty(blocksy_akg(
-				'description',
-				$single_hero_element,
-				''
-			))) {
-				$description = '<div class="' . $description_class . '">' . blocksy_translate_dynamic(blocksy_akg(
+		if ( is_home() && is_front_page() ) {
+			if ( ! empty(
+				blocksy_akg(
 					'description',
 					$single_hero_element,
-					(
-						function_exists('is_shop') && is_shop()
-					) ? __('This is where you can add new products to your store.', 'blocksy') : ''
-				), $prefix . '_hero_custom_description') . '</div>';
+					''
+				)
+			) ) {
+				$description = '<div class="' . $description_class . '">' . blocksy_sanitize_html_for_display(
+					array(
+						'html' => blocksy_translate_dynamic(
+							blocksy_akg(
+								'description',
+								$single_hero_element,
+								(
+								function_exists( 'is_shop' ) && is_shop()
+								) ? __( 'This is where you can add new products to your store.', 'blocksy' ) : ''
+							),
+							$prefix . '_hero_custom_description'
+						),
+					)
+				) . '</div>';
 			}
 		}
 
@@ -418,43 +452,45 @@ foreach ($hero_elements as $index => $single_hero_element) {
 		 *
 		 * @since 1.8.21
 		 */
-		do_action('blocksy:hero:description:before');
+		do_action( 'blocksy:hero:description:before' );
 		echo $description;
 		/**
 		 * Fires after the hero description is printed.
 		 *
 		 * @since 1.8.21
 		 */
-		do_action('blocksy:hero:description:after');
+		do_action( 'blocksy:hero:description:after' );
 	}
 
-	if ($single_hero_element['id'] === 'author_social_channels') {
-		if (is_author()) {
-			blocksy_author_social_channels([
-				'new_tab' => blocksy_akg(
-					'link_target',
-					$single_hero_element,
-					'no'
-				) === 'yes',
+	if ( 'author_social_channels' === $single_hero_element['id'] ) {
+		if ( is_author() ) {
+			blocksy_author_social_channels(
+				array(
+					'new_tab'  => blocksy_akg(
+						'link_target',
+						$single_hero_element,
+						'no'
+					) === 'yes',
 
-				'nofollow' => blocksy_akg(
-					'link_nofollow',
-					$single_hero_element,
-					'no'
-				) === 'yes'
-			]);
+					'nofollow' => blocksy_akg(
+						'link_nofollow',
+						$single_hero_element,
+						'no'
+					) === 'yes',
+				)
+			);
 		}
 	}
 
-	if ($single_hero_element['id'] === 'custom_meta') {
+	if ( 'custom_meta' === $single_hero_element['id'] ) {
 		$author_page_meta_elements = blocksy_akg(
 			'page_meta_elements',
 			$single_hero_element,
-			[
-				'joined' => true,
+			array(
+				'joined'         => true,
 				'articles_count' => true,
-				'comments' => true
-			]
+				'comments'       => true,
+			)
 		);
 
 		$meta_type = blocksy_akg(
@@ -471,14 +507,14 @@ foreach ($hero_elements as $index => $single_hero_element) {
 
 		$force_icons = false;
 
-		$attr = [];
+		$attr = array();
 
 		if (
-			$meta_indexes['first'] !== null
+			null !== $meta_indexes['first']
 			&&
-			$meta_indexes['second'] !== null
+			null !== $meta_indexes['second']
 		) {
-			if ($index === $meta_indexes['first']) {
+			if ( $index === $meta_indexes['first'] ) {
 				/**
 				 * Fires before the first hero meta element group is rendered.
 				 *
@@ -487,10 +523,10 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				 *
 				 * @since 1.8.62
 				 */
-				do_action('blocksy:hero:' . $single_hero_element['id'] . ':first:before');
+				do_action( 'blocksy:hero:' . $single_hero_element['id'] . ':first:before' );
 			}
 
-			if ($index === $meta_indexes['second']) {
+			if ( $index === $meta_indexes['second'] ) {
 				/**
 				 * Fires before the second hero meta element group is rendered.
 				 *
@@ -499,72 +535,69 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				 *
 				 * @since 1.8.62
 				 */
-				do_action('blocksy:hero:' . $single_hero_element['id'] . ':second:before');
+				do_action( 'blocksy:hero:' . $single_hero_element['id'] . ':second:before' );
 			}
 		}
 
 		if (
-			$meta_indexes['first'] !== null
+			null !== $meta_indexes['first']
 			&&
-			$meta_indexes['second'] !== null
+			null !== $meta_indexes['second']
 		) {
-			if ($index === $meta_indexes['first']) {
+			if ( $index === $meta_indexes['first'] ) {
 				// $attr['data-id'] = 'first';
 			}
 
-			if ($index === $meta_indexes['second']) {
+			if ( $index === $meta_indexes['second'] ) {
 				$attr['data-id'] = 'second';
 			}
 		}
 
-		if (is_author()) {
-			blocksy_author_meta_elements([
-				'value' => $author_page_meta_elements,
-				'attr' => $attr
-			]);
+		if ( is_author() ) {
+			blocksy_author_meta_elements(
+				array(
+					'value' => $author_page_meta_elements,
+					'attr'  => $attr,
+				)
+			);
 		}
-
-		$has_meta_label = blocksy_akg(
-			'has_meta_label',
-			$single_hero_element,
-			'no'
-		) === 'yes';
-
 
 		$single_meta_elements = null;
 
-		if (is_singular() || $is_page) {
+		if ( is_singular() || $is_page ) {
 			$single_meta_elements = blocksy_akg(
 				'meta_elements',
 				$single_hero_element,
-				blocksy_post_meta_defaults([
-					[
-						'id' => 'author',
-						'has_author_avatar' => 'yes',
-						'enabled' => true
-					],
+				blocksy_post_meta_defaults(
+					array(
+						array(
+							'id'                => 'author',
+							'has_author_avatar' => 'yes',
+							'enabled'           => true,
+						),
 
-					[
-						'id' => 'post_date',
-						'enabled' => true
-					],
+						array(
+							'id'      => 'post_date',
+							'enabled' => true,
+						),
 
-					[
-						'id' => 'comments',
-						'enabled' => true
-					],
+						array(
+							'id'      => 'comments',
+							'enabled' => true,
+						),
 
-					[
-						'id' => 'categories',
-						'enabled' => true
-					],
-				])
+						array(
+							'id'      => 'categories',
+							'enabled' => true,
+						),
+					)
+				)
 			);
 
 			$has_term_accent_color = 'yes';
 
-			foreach ($single_meta_elements as $single_meta_element) {
-				if ($single_meta_element['id'] === 'categories') {
+			foreach ( $single_meta_elements as $single_meta_element ) {
+				if ( 'categories' === $single_meta_element['id'] ) {
 					$has_term_accent_color = blocksy_akg(
 						'has_term_accent_color',
 						$single_meta_element,
@@ -585,15 +618,15 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				$attr
 			);
 
-			$meta_input = [
-				'attr' => $attr,
-				'meta_type' => $meta_type,
+			$meta_input = array(
+				'attr'         => $attr,
+				'meta_type'    => $meta_type,
 				'meta_divider' => $meta_divider,
-				'force_icons' => $force_icons,
-				'prefix' => $prefix . '_hero_meta'
-			];
+				'force_icons'  => $force_icons,
+				'prefix'       => $prefix . '_hero_meta',
+			);
 
-			if ($has_term_accent_color === 'no') {
+			if ( 'no' === $has_term_accent_color ) {
 				$meta_input['has_term_class'] = false;
 			}
 
@@ -602,15 +635,15 @@ foreach ($hero_elements as $index => $single_hero_element) {
 			 * Function blocksy_post_meta() used here escapes the value properly.
 			 * Mainly because the function outputs SVG.
 			 */
-			echo blocksy_post_meta($single_meta_elements, $meta_input);
+			echo blocksy_post_meta( $single_meta_elements, $meta_input );
 		}
 
 		if (
-			$meta_indexes['first'] !== null
+			null !== $meta_indexes['first']
 			&&
-			$meta_indexes['second'] !== null
+			null !== $meta_indexes['second']
 		) {
-			if ($index === $meta_indexes['first']) {
+			if ( $index === $meta_indexes['first'] ) {
 				/**
 				 * Fires after the first hero meta element group is rendered.
 				 *
@@ -619,10 +652,10 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				 *
 				 * @since 1.8.62
 				 */
-				do_action('blocksy:hero:' . $single_hero_element['id'] . ':first:after');
+				do_action( 'blocksy:hero:' . $single_hero_element['id'] . ':first:after' );
 			}
 
-			if ($index === $meta_indexes['second']) {
+			if ( $index === $meta_indexes['second'] ) {
 				/**
 				 * Fires after the second hero meta element group is rendered.
 				 *
@@ -631,7 +664,7 @@ foreach ($hero_elements as $index => $single_hero_element) {
 				 *
 				 * @since 1.8.62
 				 */
-				do_action('blocksy:hero:' . $single_hero_element['id'] . ':second:after');
+				do_action( 'blocksy:hero:' . $single_hero_element['id'] . ':second:after' );
 			}
 		}
 	}
@@ -644,5 +677,5 @@ foreach ($hero_elements as $index => $single_hero_element) {
 	 *
 	 * @since 1.7.10
 	 */
-	do_action('blocksy:hero:' . $single_hero_element['id'] . ':after');
+	do_action( 'blocksy:hero:' . $single_hero_element['id'] . ':after' );
 }

@@ -1,3 +1,11 @@
+2.1.60: 2026-10-15
+- Improvement: Block editor - make theme typography and colors easier to override with block styles
+- Improvement: Customizer - improve handling of custom labels and colors
+- Improvement: Dashboard - improve validation of admin requests
+- Improvement: Imports - improve handling of imported post options
+- Improvement: Post Options - improve permission checks when editing posts
+- Improvement: WooCommerce - improve validation for wishlist, waitlist and reviews
+
 2.1.59: 2026-10-08
 - Improvement: Cart & checkout page - match coupon input and button heights and properly align validation messages
 - Improvement: Custom Fonts and Local Google Fonts - make sure font settings are properly sanitized and only administrators can manage extensions

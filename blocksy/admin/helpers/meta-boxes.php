@@ -2,16 +2,17 @@
 
 class Blocksy_Meta_Boxes {
 	public function __construct() {
-		add_action('init', [$this, 'init_taxonomies'], 999);
+		add_action( 'init', array( $this, 'init_taxonomies' ), 999 );
 
-		add_action('load-post.php', [$this, 'init_metabox']);
-		add_action('load-post-new.php', [$this, 'init_metabox']);
+		add_action( 'load-post.php', array( $this, 'init_metabox' ) );
+		add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
 
+		add_filter( 'wp_import_post_meta', array( $this, 'sanitize_imported_post_meta' ) );
 	}
 
 	public function init_metabox() {
-		add_action('add_meta_boxes', [$this, 'setup_meta_box']);
-		add_action('save_post', [$this, 'save_meta_box']);
+		add_action( 'add_meta_boxes', array( $this, 'setup_meta_box' ) );
+		add_action( 'save_post', array( $this, 'save_meta_box' ) );
 	}
 
 	public function init_taxonomies() {
@@ -24,12 +25,12 @@ class Blocksy_Meta_Boxes {
 		 */
 		$post_types = apply_filters(
 			'blocksy:editor:post_types_for_rest_field',
-			['post', 'page']
+			array( 'post', 'page' )
 		);
 
 		$custom_post_types = blocksy_manager()->post_types->get_supported_post_types();
 
-		foreach ($custom_post_types as $single_custom_post_type) {
+		foreach ( $custom_post_types as $single_custom_post_type ) {
 			$post_types[] = $single_custom_post_type;
 		}
 
@@ -37,45 +38,51 @@ class Blocksy_Meta_Boxes {
 			$post_types,
 			'blocksy_meta',
 			array(
-				'get_callback' => function ($object) {
-					return blocksy_get_post_options($object['id']);
+				'schema'          => array(
+					'type'    => 'object',
+					'context' => array( 'edit' ),
+				),
+				'get_callback'    => function ( $prepared_post ) {
+					return blocksy_get_post_options( $prepared_post['id'] );
 				},
-				'update_callback' => function ($value, $object) {
-					$post_id = $object->ID;
+				'update_callback' => function ( $value, $post ) {
+					$post_id = $post->ID;
 
-					$value = blocksy_sanitize_post_meta_options($value);
+					$value = blocksy_sanitize_post_meta_options( $value );
 
 					$descriptor = blocksy_manager()
 						->dynamic_css
-						->maybe_set_single_post_styles_descriptor([
-							'post_id' => $post_id,
-							'atts' => $value,
-							'check_empty' => true
-						]);
+						->maybe_set_single_post_styles_descriptor(
+							array(
+								'post_id'     => $post_id,
+								'atts'        => $value,
+								'check_empty' => true,
+							)
+						);
 
-					if ($descriptor) {
+					if ( $descriptor ) {
 						$value['styles_descriptor'] = $descriptor;
 					} else {
-						unset($value['styles_descriptor']);
+						unset( $value['styles_descriptor'] );
 					}
 
-					if (! empty($value)) {
+					if ( ! empty( $value ) ) {
 						update_post_meta(
 							$post_id,
 							'blocksy_post_meta_options',
 							$value
 						);
 					}
-				}
+				},
 			)
 		);
 	}
 
 	public function setup_meta_box() {
 		// Get all public posts.
-		$post_types = get_post_types(['public' => true]);
+		$post_types = get_post_types( array( 'public' => true ) );
 
-		foreach ($post_types as $type) {
+		foreach ( $post_types as $type ) {
 			/**
 			 * Filters the Blocksy metabox options for a post type.
 			 *
@@ -84,9 +91,9 @@ class Blocksy_Meta_Boxes {
 			 * @param array|null $options   Metabox option definitions, or null for none.
 			 * @param string     $post_type Post type slug.
 			 */
-			$options = apply_filters('blocksy_post_meta_options', null, $type);
+			$options = apply_filters( 'blocksy_post_meta_options', null, $type );
 
-			if (! $options) {
+			if ( ! $options ) {
 				continue;
 			}
 
@@ -94,14 +101,14 @@ class Blocksy_Meta_Boxes {
 				'blocksy_settings_meta_box',
 				blocksy_safe_sprintf(
 					// Translators: %s is the theme name.
-					__('%s Settings', 'blocksy'),
-					__('Blocksy', 'blocksy')
+					__( '%s Settings', 'blocksy' ),
+					__( 'Blocksy', 'blocksy' )
 				),
-				function ($post) {
-					$values = get_post_meta($post->ID, 'blocksy_post_meta_options');
+				function ( $post ) {
+					$values = get_post_meta( $post->ID, 'blocksy_post_meta_options' );
 
-					if (empty($values)) {
-						$values = [[]];
+					if ( empty( $values ) ) {
+						$values = array( array() );
 					}
 
 					/**
@@ -115,10 +122,10 @@ class Blocksy_Meta_Boxes {
 					$options = apply_filters(
 						'blocksy_post_meta_options',
 						null,
-						get_post_type($post)
+						get_post_type( $post )
 					);
 
-					if (! $options) {
+					if ( ! $options ) {
 						return;
 					}
 
@@ -127,19 +134,19 @@ class Blocksy_Meta_Boxes {
 					 * Function blocksy_output_options_panel() used here escapes the value properly.
 					 */
 					echo blocksy_output_options_panel(
-						[
-							'options' => $options,
-							'values' => $values[0],
-							'id_prefix' => 'ct-post-meta-options',
+						array(
+							'options'     => $options,
+							'values'      => $values[0],
+							'id_prefix'   => 'ct-post-meta-options',
 							'name_prefix' => 'blocksy_post_meta_options',
-							'attr' => [
+							'attr'        => array(
 								'class' => 'ct-meta-box',
-								'data-disable-reverse-button' => 'yes'
-							]
-						]
+								'data-disable-reverse-button' => 'yes',
+							),
+						)
 					);
 
-					wp_nonce_field(basename(__FILE__), 'blocksy_settings_meta_box');
+					wp_nonce_field( basename( __FILE__ ), 'blocksy_settings_meta_box' );
 				},
 				$type,
 				'normal',
@@ -148,44 +155,86 @@ class Blocksy_Meta_Boxes {
 		}
 	}
 
-	public function save_meta_box($post_id) {
+	public function save_meta_box( $post_id ) {
 		// Checks save status.
-		$is_autosave = wp_is_post_autosave($post_id);
-		$is_revision = wp_is_post_revision($post_id);
+		$is_autosave = wp_is_post_autosave( $post_id );
+		$is_revision = wp_is_post_revision( $post_id );
 
-		$is_valid_nonce = !! (
-			isset($_POST['blocksy_settings_meta_box']) && wp_verify_nonce(
+		$is_valid_nonce = ! ! (
+			isset( $_POST['blocksy_settings_meta_box'] ) && wp_verify_nonce(
 				sanitize_text_field(
-					wp_unslash($_POST['blocksy_settings_meta_box'])
+					wp_unslash( $_POST['blocksy_settings_meta_box'] )
 				),
-				basename(__FILE__)
+				basename( __FILE__ )
 			)
 		);
 
-		if ($is_autosave || $is_revision || !$is_valid_nonce) {
+		if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
 			return;
 		}
 
-		$values = [];
+		if (
+			! isset( $_POST['post_ID'] )
+			||
+			absint( $_POST['post_ID'] ) !== (int) $post_id
+			||
+			! current_user_can( 'edit_post', $post_id )
+		) {
+			return;
+		}
 
-		if (isset($_POST['blocksy_post_meta_options'][blocksy_post_name()])) {
+		$values = array();
+
+		if ( isset( $_POST['blocksy_post_meta_options'][ blocksy_post_name() ] ) ) {
 			$values = json_decode(
 				wp_unslash(
-					$_POST['blocksy_post_meta_options'][blocksy_post_name()]
+					$_POST['blocksy_post_meta_options'][ blocksy_post_name() ]
 				),
 				true
 			);
 		}
 
-		$values = blocksy_sanitize_post_meta_options($values);
+		$values = blocksy_sanitize_post_meta_options( $values );
 
-		if (! empty($values)) {
+		if ( ! empty( $values ) ) {
 			update_post_meta(
 				$post_id,
 				'blocksy_post_meta_options',
 				$values
 			);
 		}
+	}
+
+	public function sanitize_imported_post_meta( $post_meta ) {
+		$result = array();
+
+		foreach ( $post_meta as $meta ) {
+			if ( 'blocksy_post_meta_options' !== $meta['key'] ) {
+				$result[] = $meta;
+				continue;
+			}
+
+			$value = $meta['value'];
+
+			if ( is_serialized( $value ) ) {
+				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
+				$value = unserialize( $value, array( 'allowed_classes' => false ) );
+			}
+
+			if (
+				! is_array( $value )
+				||
+				false !== strpos( wp_json_encode( $value ), '__PHP_Incomplete_Class' )
+			) {
+				continue;
+			}
+
+			$meta['value'] = blocksy_sanitize_post_meta_options( $value );
+
+			$result[] = $meta;
+		}
+
+		return $result;
 	}
 }
 

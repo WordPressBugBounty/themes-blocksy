@@ -1,25 +1,24 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable -- include scope, variables come from blocksy_theme_get_dynamic_styles()
 
-blocksy_theme_get_dynamic_styles([
-	'name' => 'admin/editor-background',
-	'css' => $css,
-	'mobile_css' => $mobile_css,
-	'tablet_css' => $tablet_css,
-	'context' => $context,
-	'chunk' => 'admin'
-]);
+blocksy_theme_get_dynamic_styles(
+	array(
+		'name'       => 'admin/editor-background',
+		'css'        => $css,
+		'mobile_css' => $mobile_css,
+		'tablet_css' => $tablet_css,
+		'context'    => $context,
+		'chunk'      => 'admin',
+	)
+);
 
 $post_type = get_current_screen()->post_type;
 
-$post_id = null;
+$post_id = blocksy_get_editor_post_id();
 
-if (isset($_GET['post']) && $_GET['post']) {
-	$post_id = $_GET['post'];
-}
+$prefix = blocksy_manager()->screen->get_admin_prefix( $post_type );
 
-$prefix = blocksy_manager()->screen->get_admin_prefix($post_type);
-
-$post_atts = blocksy_get_post_options($post_id);
+$post_atts = blocksy_get_post_options( $post_id );
 
 $page_structure = blocksy_default_akg(
 	'page_structure_type',
@@ -30,13 +29,13 @@ $page_structure = blocksy_default_akg(
 $content_block_atts = null;
 
 $has_content_block_structure = 'no';
-$template_type = null;
+$template_type               = null;
 
-if ($post_type === 'ct_content_block') {
+if ( 'ct_content_block' === $post_type ) {
 	$default_content_block_structure = 'yes';
-	$template_type = get_post_meta($post_id, 'template_type', true);
+	$template_type                   = get_post_meta( $post_id, 'template_type', true );
 
-	if ($template_type === 'hook' || $template_type === 'popup') {
+	if ( 'hook' === $template_type || 'popup' === $template_type ) {
 		$default_content_block_structure = 'no';
 	}
 
@@ -47,23 +46,25 @@ if ($post_type === 'ct_content_block') {
 	);
 }
 
-$maybe_matching_template = blocksy_manager()->companion->get_content_block_that_matches([
-	'template_type' => 'single',
-	'template_subtype' => 'canvas',
-	'match_conditions_strategy' => $prefix
-]);
+$maybe_matching_template = blocksy_manager()->companion->get_content_block_that_matches(
+	array(
+		'template_type'             => 'single',
+		'template_subtype'          => 'canvas',
+		'match_conditions_strategy' => $prefix,
+	)
+);
 
-if ($maybe_matching_template) {
-	$content_block_atts = blocksy_get_post_options($maybe_matching_template);
+if ( $maybe_matching_template ) {
+	$content_block_atts = blocksy_get_post_options( $maybe_matching_template );
 }
 
-if ($page_structure === 'default') {
+if ( 'default' === $page_structure ) {
 	$page_structure = blocksy_get_theme_mod(
 		$prefix . '_structure',
-		($prefix === 'single_blog_post') ? 'type-3' : 'type-4'
+		( 'single_blog_post' === $prefix ) ? 'type-3' : 'type-4'
 	);
 
-	if ($content_block_atts) {
+	if ( $content_block_atts ) {
 		$page_structure = blocksy_default_akg(
 			'content_block_structure',
 			$content_block_atts,
@@ -72,8 +73,8 @@ if ($page_structure === 'default') {
 	}
 }
 
-if ($post_type === 'ct_content_block') {
-	if ($has_content_block_structure === 'yes') {
+if ( 'ct_content_block' === $post_type ) {
+	if ( 'yes' === $has_content_block_structure ) {
 		$page_structure = blocksy_default_akg(
 			'content_block_structure',
 			$post_atts,
@@ -82,7 +83,7 @@ if ($post_type === 'ct_content_block') {
 	}
 }
 
-if ($page_structure === 'type-4') {
+if ( 'type-4' === $page_structure ) {
 	$css->put(
 		'.editor-styles-wrapper',
 		'--theme-block-max-width: var(--theme-normal-container-max-width)'
@@ -104,60 +105,66 @@ if ($page_structure === 'type-4') {
 	);
 }
 
-$source = [
-	'strategy' => $post_atts
-];
+$source = array(
+	'strategy' => $post_atts,
+);
 
-if (blocksy_default_akg(
-	'content_style_source',
-	$post_atts,
-	'inherit'
-) === 'inherit' && $post_type !== 'ct_content_block') {
-	$source = [
-		'prefix' => $prefix,
-		'strategy' => 'customizer'
-	];
+if (
+	'inherit' === blocksy_default_akg(
+		'content_style_source',
+		$post_atts,
+		'inherit'
+	)
+	&&
+	'ct_content_block' !== $post_type
+) {
+	$source = array(
+		'prefix'   => $prefix,
+		'strategy' => 'customizer',
+	);
 
-	if ($content_block_atts) {
-		$source = [
-			'strategy' => $content_block_atts
-		];
+	if ( $content_block_atts ) {
+		$source = array(
+			'strategy' => $content_block_atts,
+		);
 	}
 }
 
 $has_boxed = blocksy_akg_or_customizer(
 	'content_style',
 	$source,
-	blocksy_get_content_style_default($prefix)
+	blocksy_get_content_style_default( $prefix )
 );
 
-if ($post_type === 'ct_content_block') {
-	$template_subtype = blocksy_akg('template_subtype', $post_atts, 'card');
+if ( 'ct_content_block' === $post_type ) {
+	$template_subtype = blocksy_akg( 'template_subtype', $post_atts, 'card' );
 
 	if (
-		$has_content_block_structure !== 'yes'
+		'yes' !== $has_content_block_structure
 		||
-		$template_type === 'archive' && $template_subtype === 'card'
+		'archive' === $template_type && 'card' === $template_subtype
 	) {
-		$has_boxed = blocksy_get_content_style_default($prefix);
+		$has_boxed = blocksy_get_content_style_default( $prefix );
 	}
 }
 
-blocksy_theme_get_dynamic_styles([
-	'name' => 'admin/content-area-styles',
-	'css' => $css,
-	'mobile_css' => $mobile_css,
-	'tablet_css' => $tablet_css,
-	'context' => $context,
-	'chunk' => 'admin',
-	'has_boxed' => $has_boxed,
-	'source' => $source,
-]);
+blocksy_theme_get_dynamic_styles(
+	array(
+		'name'       => 'admin/content-area-styles',
+		'css'        => $css,
+		'mobile_css' => $mobile_css,
+		'tablet_css' => $tablet_css,
+		'context'    => $context,
+		'chunk'      => 'admin',
+		'has_boxed'  => $has_boxed,
+		'source'     => $source,
+	)
+);
 
 // form styles
-$forms_type = blocksy_get_theme_mod('forms_type', 'classic-forms');
+$forms_type = blocksy_get_theme_mod( 'forms_type', 'classic-forms' );
 
-if ($forms_type === 'classic-forms') {
+if ( 'classic-forms' === $forms_type ) {
 	$css->put(
 		'.editor-styles-wrapper',
 		'--has-classic-forms: var(--true)'
@@ -179,121 +186,129 @@ if ($forms_type === 'classic-forms') {
 	);
 }
 
-blocksy_output_colors([
-	'value' => blocksy_get_theme_mod('formTextColor'),
-	'default' => [
-		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-		'focus' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-	],
-	'css' => $css,
-	'variables' => [
-		'default' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-text-initial-color'
-		],
+blocksy_output_colors(
+	array(
+		'value'     => blocksy_get_theme_mod( 'formTextColor' ),
+		'default'   => array(
+			'default' => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+			'focus'   => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+		),
+		'css'       => $css,
+		'variables' => array(
+			'default' => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-text-initial-color',
+			),
 
-		'focus' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-text-focus-color'
-		],
-	],
-]);
+			'focus'   => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-text-focus-color',
+			),
+		),
+	)
+);
 
-$formFontSize = blocksy_get_theme_mod('formFontSize', 16);
+$form_font_size = blocksy_get_theme_mod( 'formFontSize', 16 );
 
-if ($formFontSize !== 16) {
-	$css->put('.editor-styles-wrapper', '--theme-form-font-size: ' . $formFontSize . 'px');
+if ( 16 !== $form_font_size ) {
+	$css->put( '.editor-styles-wrapper', '--theme-form-font-size: ' . $form_font_size . 'px' );
 }
 
-blocksy_output_colors([
-	'value' => blocksy_get_theme_mod('formBackgroundColor'),
-	'default' => [
-		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword() ],
-		'focus' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword() ],
-	],
-	'css' => $css,
-	'variables' => [
-		'default' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-field-background-initial-color'
-		],
+blocksy_output_colors(
+	array(
+		'value'     => blocksy_get_theme_mod( 'formBackgroundColor' ),
+		'default'   => array(
+			'default' => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword() ),
+			'focus'   => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword() ),
+		),
+		'css'       => $css,
+		'variables' => array(
+			'default' => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-field-background-initial-color',
+			),
 
-		'focus' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-field-background-focus-color'
-		],
-	],
-]);
+			'focus'   => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-field-background-focus-color',
+			),
+		),
+	)
+);
 
-$formInputHeight = blocksy_get_theme_mod( 'formInputHeight', 40 );
+$form_input_height = blocksy_get_theme_mod( 'formInputHeight', 40 );
 
-if ($formInputHeight !== 40) {
-	$css->put( '.editor-styles-wrapper', '--theme-form-field-height: ' . $formInputHeight . 'px' );
+if ( 40 !== $form_input_height ) {
+	$css->put( '.editor-styles-wrapper', '--theme-form-field-height: ' . $form_input_height . 'px' );
 }
 
-$formFieldBorderRadius = blocksy_get_theme_mod( 'formFieldBorderRadius', 3 );
+$form_field_border_radius = blocksy_get_theme_mod( 'formFieldBorderRadius', 3 );
 
-if ($formFieldBorderRadius !== 3) {
-	$css->put( '.editor-styles-wrapper', '--theme-form-field-border-radius: ' . $formFieldBorderRadius . 'px' );
+if ( 3 !== $form_field_border_radius ) {
+	$css->put( '.editor-styles-wrapper', '--theme-form-field-border-radius: ' . $form_field_border_radius . 'px' );
 }
 
-blocksy_output_colors([
-	'value' => blocksy_get_theme_mod('formBorderColor'),
-	'default' => [
-		'default' => [ 'color' => 'var(--theme-border-color)' ],
-		'focus' => [ 'color' => 'var(--theme-palette-color-1)' ],
-	],
-	'css' => $css,
-	'variables' => [
-		'default' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-field-border-initial-color'
-		],
+blocksy_output_colors(
+	array(
+		'value'     => blocksy_get_theme_mod( 'formBorderColor' ),
+		'default'   => array(
+			'default' => array( 'color' => 'var(--theme-border-color)' ),
+			'focus'   => array( 'color' => 'var(--theme-palette-color-1)' ),
+		),
+		'css'       => $css,
+		'variables' => array(
+			'default' => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-field-border-initial-color',
+			),
 
-		'focus' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-field-border-focus-color'
-		],
-	],
-]);
+			'focus'   => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-field-border-focus-color',
+			),
+		),
+	)
+);
 
-$formBorderSize = blocksy_get_theme_mod( 'formBorderSize', 1 );
+$form_border_size = blocksy_get_theme_mod( 'formBorderSize', 1 );
 
-if ($forms_type === 'classic-forms') {
-	if($formBorderSize !== 1) {
+if ( 'classic-forms' === $forms_type ) {
+	if ( 1 !== $form_border_size ) {
 		$css->put(
 			'.editor-styles-wrapper',
-			'--theme-form-field-border-width: ' . $formBorderSize . 'px'
+			'--theme-form-field-border-width: ' . $form_border_size . 'px'
 		);
 	}
 } else {
 	$css->put(
 		'.editor-styles-wrapper',
-		'--theme-form-field-border-width: 0 0 ' . $formBorderSize . 'px 0'
+		'--theme-form-field-border-width: 0 0 ' . $form_border_size . 'px 0'
 	);
 
 	$css->put(
 		'.editor-styles-wrapper',
-		'--form-selection-control-border-width: ' . $formBorderSize . 'px'
+		'--form-selection-control-border-width: ' . $form_border_size . 'px'
 	);
 }
 
-blocksy_output_colors([
-	'value' => blocksy_get_theme_mod('radioCheckboxColor'),
-	'default' => [
-		'default' => [ 'color' => 'var(--theme-border-color)' ],
-		'accent' => [ 'color' => 'var(--theme-palette-color-1)' ],
-	],
-	'css' => $css,
-	'variables' => [
-		'default' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-selection-field-initial-color'
-		],
+blocksy_output_colors(
+	array(
+		'value'     => blocksy_get_theme_mod( 'radioCheckboxColor' ),
+		'default'   => array(
+			'default' => array( 'color' => 'var(--theme-border-color)' ),
+			'accent'  => array( 'color' => 'var(--theme-palette-color-1)' ),
+		),
+		'css'       => $css,
+		'variables' => array(
+			'default' => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-selection-field-initial-color',
+			),
 
-		'accent' => [
-			'selector' => '.editor-styles-wrapper',
-			'variable' => 'theme-form-selection-field-active-color'
-		],
-	],
-]);
+			'accent'  => array(
+				'selector' => '.editor-styles-wrapper',
+				'variable' => 'theme-form-selection-field-active-color',
+			),
+		),
+	)
+);

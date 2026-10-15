@@ -1,4 +1,5 @@
 import { createReduxStore, register } from '@wordpress/data'
+import { getLocalizations } from '../../../editor/utils/localizations'
 
 const STORE_NAME = 'ct/color-palette-store'
 
@@ -39,7 +40,7 @@ const actions = {
 
 		yield {
 			type: 'POST_TO_SERVER',
-			url: `${window.ajaxurl}?action=blocksy_sync_custom_palettes`,
+			url: `${window.ajaxurl}?action=blocksy_sync_custom_palettes&nonce=${getLocalizations().dashboard_actions_nonce}`,
 			body: JSON.stringify({ palettes }),
 			method: 'POST',
 		}

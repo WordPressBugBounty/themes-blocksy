@@ -12,38 +12,38 @@
  *
  * @param array $args Pagination config.
  */
-if (! function_exists('blocksy_display_posts_pagination')) {
-	function blocksy_display_posts_pagination($args = []) {
+if ( ! function_exists( 'blocksy_display_posts_pagination' ) ) {
+	function blocksy_display_posts_pagination( $args = array() ) {
 		global $wp_query;
 
-		$allowed_prefixes_args = [
-			'allowed_prefixes' => [
+		$allowed_prefixes_args = array(
+			'allowed_prefixes' => array(
 				'blog',
 				'search',
-				'woo_categories'
-			],
-			'default_prefix' => 'blog'
-		];
+				'woo_categories',
+			),
+			'default_prefix'   => 'blog',
+		);
 
 		$args = wp_parse_args(
 			$args,
-			[
-				'query' => $wp_query,
-				'prefix' => blocksy_manager()->screen->get_prefix(
+			array(
+				'query'           => $wp_query,
+				'prefix'          => blocksy_manager()->screen->get_prefix(
 					$allowed_prefixes_args
 				),
 
-				'has_pagination' => '__DEFAULT__',
+				'has_pagination'  => '__DEFAULT__',
 				'pagination_type' => '__DEFAULT__',
 
-				'last_page_text' => __('No more posts to load', 'blocksy'),
-				'total_pages' => null,
-				'current_page' => null,
-				'format' => null,
-				'base' => null,
+				'last_page_text'  => __( 'No more posts to load', 'blocksy' ),
+				'total_pages'     => null,
+				'current_page'    => null,
+				'format'          => null,
+				'base'            => null,
 
-				'query_var' => ''
-			]
+				'query_var'       => '',
+			)
 		);
 
 		$args['prefix'] = blocksy_manager()->screen->process_allowed_prefixes(
@@ -51,81 +51,93 @@ if (! function_exists('blocksy_display_posts_pagination')) {
 			$allowed_prefixes_args
 		);
 
-		if ($args['has_pagination'] === '__DEFAULT__') {
+		if ( '__DEFAULT__' === $args['has_pagination'] ) {
 			$args['has_pagination'] = blocksy_get_theme_mod(
 				$args['prefix'] . '_has_pagination',
 				'yes'
 			) === 'yes';
 		}
 
-		if ($args['pagination_type'] === '__DEFAULT__') {
+		if ( '__DEFAULT__' === $args['pagination_type'] ) {
 			$args['pagination_type'] = blocksy_get_theme_mod(
 				$args['prefix'] . '_pagination_global_type',
 				'simple'
 			);
 		}
 
-		if ($args['prefix'] === 'woo_categories') {
-			$args['last_page_text'] = __('No more products to load', 'blocksy');
+		if ( ! in_array(
+			$args['pagination_type'],
+			array( 'simple', 'next_prev', 'load_more', 'infinite_scroll' ),
+			true
+		) ) {
+			$args['pagination_type'] = 'simple';
 		}
 
-		if (! $args['has_pagination']) {
+		if ( 'woo_categories' === $args['prefix'] ) {
+			$args['last_page_text'] = __( 'No more products to load', 'blocksy' );
+		}
+
+		if ( ! $args['has_pagination'] ) {
 			return '';
 		}
 
-		if (! $args['total_pages'] || ! $args['current_page']) {
-			$args['current_page'] = $args['query']->get('paged');
-			$args['total_pages'] = $args['query']->max_num_pages;
+		if ( ! $args['total_pages'] || ! $args['current_page'] ) {
+			$args['current_page'] = $args['query']->get( 'paged' );
+			$args['total_pages']  = $args['query']->max_num_pages;
 
-			$offset = $args['query']->get('offset');
+			$offset = $args['query']->get( 'offset' );
 
-			if ($offset) {
-				$totalPosts = $args['query']->found_posts;
-				$currentPage = $args['query']->get('paged');
-				$postsPerPage = $args['query']->get('posts_per_page');
-				$offsetAdjustment = $offset - ($currentPage - 1) * $postsPerPage;
+			if ( $offset ) {
+				$total_posts       = $args['query']->found_posts;
+				$current_page      = $args['query']->get( 'paged' );
+				$posts_per_page    = $args['query']->get( 'posts_per_page' );
+				$offset_adjustment = $offset - ( $current_page - 1 ) * $posts_per_page;
 
-				$args['total_pages'] = ceil(($totalPosts - $offsetAdjustment) / $postsPerPage);
+				$args['total_pages'] = ceil( ( $total_posts - $offset_adjustment ) / $posts_per_page );
 			}
 
-			if (! $args['current_page']) {
+			if ( ! $args['current_page'] ) {
 				$args['current_page'] = 1;
 			}
 		}
 
-		if ($args['total_pages'] <= 1 ) {
+		if ( $args['total_pages'] <= 1 ) {
 			return '';
 		}
 
 		// Load styles for pagination. WP Collocation mechanism will move styles
 		// to <head>.
-		wp_enqueue_style('ct-pagination-styles');
+		wp_enqueue_style( 'ct-pagination-styles' );
 
 		$button_output = '';
 
 		if (
-			$args['pagination_type'] === 'load_more'
+			'load_more' === $args['pagination_type']
 			&&
-			intval($args['current_page']) !== intval($args['total_pages'])
+			intval( $args['current_page'] ) !== intval( $args['total_pages'] )
 		) {
-			$label_button = blocksy_get_theme_mod(
-				$args['prefix'] . '_load_more_label',
-				__('Load More', 'blocksy')
+			$label_button = blocksy_sanitize_html_for_display(
+				array(
+					'html' => blocksy_get_theme_mod(
+						$args['prefix'] . '_load_more_label',
+						__( 'Load More', 'blocksy' )
+					),
+				)
 			);
 
 			$button_output = '<button class="wp-element-button ct-load-more">' . $label_button . '</button>';
 		}
 
 		if (
-			$args['pagination_type'] !== 'simple'
+			'simple' !== $args['pagination_type']
 			&&
-			$args['pagination_type'] !== 'next_prev'
+			'next_prev' !== $args['pagination_type']
 		) {
-			if (intval($args['current_page']) === intval($args['total_pages'])) {
+			if ( intval( $args['current_page'] ) === intval( $args['total_pages'] ) ) {
 				return '';
 			}
 
-			$button_output = '<div class="ct-load-more-helper">' . $button_output;
+			$button_output  = '<div class="ct-load-more-helper">' . $button_output;
 			$button_output .= '<span class="ct-ajax-loader">
 				<svg viewBox="0 0 24 24">
 					<circle cx="12" cy="12" r="10" opacity="0.2" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"/>
@@ -149,122 +161,125 @@ if (! function_exists('blocksy_display_posts_pagination')) {
 		}
 
 		$pagination_class = 'ct-pagination';
-		$divider_output = '';
+		$divider_output   = '';
 
 		$divider = blocksy_get_theme_mod(
 			$args['prefix'] . '_paginationDivider',
-			[
+			array(
 				'width' => 1,
 				'style' => 'none',
-				'color' => [
+				'color' => array(
 					'color' => 'rgba(224, 229, 235, 0.5)',
-				]
-			]
+				),
+			)
 		);
 
 		$numbers_visibility = blocksy_get_theme_mod(
 			$args['prefix'] . '_numbers_visibility',
-			[
+			array(
 				'desktop' => true,
-				'tablet' => true,
-				'mobile' => false
-			]
+				'tablet'  => true,
+				'mobile'  => false,
+			)
 		);
 
 		$arrows_visibility = blocksy_get_theme_mod(
 			$args['prefix'] . '_arrows_visibility',
-			[
+			array(
 				'desktop' => true,
-				'tablet' => true,
-				'mobile' => true
-			]
+				'tablet'  => true,
+				'mobile'  => true,
+			)
 		);
 
 		if (
-			$divider['style'] !== 'none'
+			'none' !== $divider['style']
 			&&
-			$args['pagination_type'] !== 'infinite_scroll'
+			'infinite_scroll' !== $args['pagination_type']
 		) {
 			$divider_output = 'data-divider';
 		}
 
-		$prefix = blocksy_manager()->screen->get_prefix();
-		$pagination_label = __('Posts pagination', 'blocksy');
+		$prefix           = blocksy_manager()->screen->get_prefix();
+		$pagination_label = __( 'Posts pagination', 'blocksy' );
 
-		if ($args['prefix'] === 'search') {
-			$pagination_label = __('Search results pagination', 'blocksy');
+		if ( 'search' === $args['prefix'] ) {
+			$pagination_label = __( 'Search results pagination', 'blocksy' );
 		}
 
-		if ($args['prefix'] === 'woo_categories') {
-			$pagination_label = __('Products pagination', 'blocksy');
+		if ( 'woo_categories' === $args['prefix'] ) {
+			$pagination_label = __( 'Products pagination', 'blocksy' );
 		}
 
-		if (strpos($args['prefix'], '_archive') !== false) {
-			$maybe_cpt = str_replace('_archive', '', $args['prefix']);
-			$post_type_object = get_post_type_object($maybe_cpt);
+		if ( strpos( $args['prefix'], '_archive' ) !== false ) {
+			$maybe_cpt        = str_replace( '_archive', '', $args['prefix'] );
+			$post_type_object = get_post_type_object( $maybe_cpt );
 
-			if ($post_type_object) {
+			if ( $post_type_object ) {
 				$pagination_label = blocksy_safe_sprintf(
-					__('%s pagination', 'blocksy'),
+					// translators: %s is the post type name.
+					__( '%s pagination', 'blocksy' ),
 					$post_type_object->labels->name
 				);
 			}
 		}
 
-		$deep_link_args = [];
+		$deep_link_args = array();
 
-		if (! is_singular()) {
+		if ( ! is_singular() ) {
 			$deep_link_args['suffix'] = $prefix . '_has_pagination';
 		}
 
 		$template = '
-		<nav class="' . $pagination_class . '" aria-label="' . esc_attr($pagination_label) . '" data-pagination="' . $args['pagination_type'] . '" ' . $divider_output . ' ' . blocksy_generic_get_deep_link($deep_link_args) . '>
+		<nav class="' . $pagination_class . '" aria-label="' . esc_attr( $pagination_label ) . '" data-pagination="' . esc_attr( $args['pagination_type'] ) . '" ' . $divider_output . ' ' . blocksy_generic_get_deep_link( $deep_link_args ) . '>
 			%1$s
 			%2$s
 		</nav>';
 
-		$paginate_links_args = [
-			'mid_size' => 3,
-			'end_size' => 0,
-			'type' => 'array',
-			'total' => $args['total_pages'],
-			'current' => $args['current_page'],
-			'prev_text' => '<svg width="9px" height="9px" viewBox="0 0 15 15" fill="currentColor"><path d="M10.9,15c-0.2,0-0.4-0.1-0.6-0.2L3.6,8c-0.3-0.3-0.3-0.8,0-1.1l6.6-6.6c0.3-0.3,0.8-0.3,1.1,0c0.3,0.3,0.3,0.8,0,1.1L5.2,7.4l6.2,6.2c0.3,0.3,0.3,0.8,0,1.1C11.3,14.9,11.1,15,10.9,15z"/></svg>' . __('Prev', 'blocksy'),
+		$paginate_links_args = array(
+			'mid_size'  => 3,
+			'end_size'  => 0,
+			'type'      => 'array',
+			'total'     => $args['total_pages'],
+			'current'   => $args['current_page'],
+			'prev_text' => '<svg width="9px" height="9px" viewBox="0 0 15 15" fill="currentColor"><path d="M10.9,15c-0.2,0-0.4-0.1-0.6-0.2L3.6,8c-0.3-0.3-0.3-0.8,0-1.1l6.6-6.6c0.3-0.3,0.8-0.3,1.1,0c0.3,0.3,0.3,0.8,0,1.1L5.2,7.4l6.2,6.2c0.3,0.3,0.3,0.8,0,1.1C11.3,14.9,11.1,15,10.9,15z"/></svg>' . __( 'Prev', 'blocksy' ),
 
-			'next_text' => __('Next', 'blocksy') . ' <svg width="9px" height="9px" viewBox="0 0 15 15" fill="currentColor"><path d="M4.1,15c0.2,0,0.4-0.1,0.6-0.2L11.4,8c0.3-0.3,0.3-0.8,0-1.1L4.8,0.2C4.5-0.1,4-0.1,3.7,0.2C3.4,0.5,3.4,1,3.7,1.3l6.1,6.1l-6.2,6.2c-0.3,0.3-0.3,0.8,0,1.1C3.7,14.9,3.9,15,4.1,15z"/></svg>',
-		];
+			'next_text' => __( 'Next', 'blocksy' ) . ' <svg width="9px" height="9px" viewBox="0 0 15 15" fill="currentColor"><path d="M4.1,15c0.2,0,0.4-0.1,0.6-0.2L11.4,8c0.3-0.3,0.3-0.8,0-1.1L4.8,0.2C4.5-0.1,4-0.1,3.7,0.2C3.4,0.5,3.4,1,3.7,1.3l6.1,6.1l-6.2,6.2c-0.3,0.3-0.3,0.8,0,1.1C3.7,14.9,3.9,15,4.1,15z"/></svg>',
+		);
 
-		if ($args['format']) {
+		if ( $args['format'] ) {
 			$paginate_links_args['format'] = $args['format'];
 		}
 
-		if ($args['base']) {
+		if ( $args['base'] ) {
 			$paginate_links_args['base'] = $args['base'];
 		}
 
-		if ($args['query_var']) {
+		if ( $args['query_var'] ) {
 			$paginate_links_args['format'] = '?' . $args['query_var'] . '=%#%';
 
-			if (isset($_GET[$args['query_var']])) {
-				$paginate_links_args['current'] = intval(sanitize_text_field(
-					$_GET[$args['query_var']]
-				));
+			if ( isset( $_GET[ $args['query_var'] ] ) ) {
+				$paginate_links_args['current'] = intval(
+					sanitize_text_field(
+						$_GET[ $args['query_var'] ]
+					)
+				);
 			}
 		}
 
-		$links = paginate_links($paginate_links_args);
+		$links = paginate_links( $paginate_links_args );
 
-		$arrow_links = ['', ''];
-		$proper_links = [];
+		$arrow_links  = array( '', '' );
+		$proper_links = array();
 
-		foreach ($links as $link) {
-			preg_match('/class="[^"]+"/', $link, $matches);
+		foreach ( $links as $link ) {
+			preg_match( '/class="[^"]+"/', $link, $matches );
 
-			if (count($matches) === 0) {
+			if ( count( $matches ) === 0 ) {
 				continue;
 			}
 
-			if (strpos($matches[0], 'next') !== false) {
+			if ( strpos( $matches[0], 'next' ) !== false ) {
 				$link = str_replace(
 					'page-numbers"',
 					'page-numbers" rel="next"',
@@ -272,7 +287,7 @@ if (! function_exists('blocksy_display_posts_pagination')) {
 				);
 			}
 
-			if (strpos($matches[0], 'prev') !== false) {
+			if ( strpos( $matches[0], 'prev' ) !== false ) {
 				$link = str_replace(
 					'page-numbers"',
 					'page-numbers" rel="prev"',
@@ -281,47 +296,49 @@ if (! function_exists('blocksy_display_posts_pagination')) {
 			}
 
 			if (
-				$args['pagination_type'] === 'next_prev'
+				'next_prev' === $args['pagination_type']
 				&&
-				strpos($matches[0], 'next') === false
+				strpos( $matches[0], 'next' ) === false
 				&&
-				strpos($matches[0], 'prev') === false
+				strpos( $matches[0], 'prev' ) === false
 			) {
 				continue;
 			}
 
 			if (
-				$args['pagination_type'] === 'simple'
+				'simple' === $args['pagination_type']
 				&&
 				(
-					strpos($matches[0], 'next') !== false
+					strpos( $matches[0], 'next' ) !== false
 					||
-					strpos($matches[0], 'prev') !== false
+					strpos( $matches[0], 'prev' ) !== false
 				)
 			) {
 				$link = str_replace(
 					'page-numbers',
-					trim('page-numbers ' . blocksy_visibility_classes(
-						$arrows_visibility
-					)),
+					trim(
+						'page-numbers ' . blocksy_visibility_classes(
+							$arrows_visibility
+						)
+					),
 					$link
 				);
 			}
 
 			if (
-				strpos($matches[0], 'next') !== false
+				strpos( $matches[0], 'next' ) !== false
 				||
-				strpos($matches[0], 'prev') !== false
+				strpos( $matches[0], 'prev' ) !== false
 			) {
-				$arrow_links[strpos($matches[0], 'next') !== false ? 1 : 0] = $link;
+				$arrow_links[ strpos( $matches[0], 'next' ) !== false ? 1 : 0 ] = $link;
 			} else {
 				$proper_links[] = $link;
 			}
 		}
 
-		$proper_links = join("\n", $proper_links);
+		$proper_links = join( "\n", $proper_links );
 
-		if ($args['pagination_type'] === 'simple') {
+		if ( 'simple' === $args['pagination_type'] ) {
 			$proper_links = '<div class="' . blocksy_visibility_classes(
 				$numbers_visibility
 			) . '">' . $proper_links . '</div>';

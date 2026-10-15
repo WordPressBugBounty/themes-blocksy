@@ -1,83 +1,85 @@
 <?php
 
-if (! function_exists('blocksy_get_video_data')) {
-	function blocksy_get_video_data($attachment_id) {
-		$maybe_video = [];
+if ( ! function_exists( 'blocksy_get_video_data' ) ) {
+	function blocksy_get_video_data( $attachment_id ) {
+		$maybe_video = array();
 
-		if (! $attachment_id) {
+		if ( ! $attachment_id ) {
 			return $maybe_video;
 		}
 
-		$maybe_new_video = blocksy_get_post_options($attachment_id);
+		$maybe_new_video = blocksy_get_post_options( $attachment_id );
 
-		if ($maybe_new_video) {
-			$source = blocksy_akg('media_video_source', $maybe_new_video, 'upload');
+		if ( $maybe_new_video ) {
+			$source = blocksy_akg( 'media_video_source', $maybe_new_video, 'upload' );
 
 			$maybe_video = array_intersect_key(
 				$maybe_new_video,
-				array_flip([
-					'media_video_source',
-					'media_video_event',
-					'media_video_autoplay',
-					'media_video_hover_revert',
-					'media_video_loop',
-					'media_video_player',
-					'media_video_size',
-				])
+				array_flip(
+					array(
+						'media_video_source',
+						'media_video_event',
+						'media_video_autoplay',
+						'media_video_hover_revert',
+						'media_video_loop',
+						'media_video_player',
+						'media_video_size',
+					)
+				)
 			);
 
-			if ($source === 'upload') {
-				$maybeVideoIdOrUrl = blocksy_akg(
+			if ( 'upload' === $source ) {
+				$maybe_video_id_or_url = blocksy_akg(
 					'media_video_upload',
 					$maybe_new_video,
 					''
 				);
 
-				if (empty($maybeVideoIdOrUrl)) {
-					return [];
+				if ( empty( $maybe_video_id_or_url ) ) {
+					return array();
 				}
 
-				if (is_numeric($maybeVideoIdOrUrl)) {
+				if ( is_numeric( $maybe_video_id_or_url ) ) {
 					$video_url = wp_get_attachment_url(
-						$maybeVideoIdOrUrl
+						$maybe_video_id_or_url
 					);
 
-					if (! empty($video_url)) {
+					if ( ! empty( $video_url ) ) {
 						$maybe_video['url'] = $video_url;
 					}
 				} else {
-					$maybe_video['url'] = $maybeVideoIdOrUrl;
+					$maybe_video['url'] = $maybe_video_id_or_url;
 				}
 			}
 
-			if ($source === 'youtube') {
+			if ( 'youtube' === $source ) {
 				$video_url = blocksy_akg(
 					'media_video_youtube_url',
 					$maybe_new_video,
 					''
 				);
 
-				if ( ! empty($video_url) ) {
+				if ( ! empty( $video_url ) ) {
 					if (
-						strpos($video_url, 'youtube') !== false
+						strpos( $video_url, 'youtube' ) !== false
 						||
-						strpos($video_url, 'youtu.be') !== false
+						strpos( $video_url, 'youtu.be' ) !== false
 					) {
 						$maybe_video['url'] = $video_url;
 					}
 				}
 			}
 
-			if ($source === 'vimeo') {
+			if ( 'vimeo' === $source ) {
 				$video_url = blocksy_akg(
 					'media_video_vimeo_url',
 					$maybe_new_video,
 					''
 				);
 
-				if ( ! empty($video_url) ) {
+				if ( ! empty( $video_url ) ) {
 					if (
-						strpos($video_url, 'vimeo') !== false
+						strpos( $video_url, 'vimeo' ) !== false
 					) {
 						$maybe_video['url'] = $video_url;
 					}
@@ -93,19 +95,18 @@ if (! function_exists('blocksy_get_video_data')) {
 			true
 		);
 
-		if (! empty($maybe_old_video)) {
-			$maybe_video = [
-				'url' => $maybe_old_video
-			];
+		if ( ! empty( $maybe_old_video ) ) {
+			$maybe_video = array(
+				'url' => $maybe_old_video,
+			);
 		}
 
 		return $maybe_video;
 	}
 }
 
-if (! function_exists('blocksy_has_video_element')) {
-	function blocksy_has_video_element($args) {
-		$parser = new Blocksy_Attributes_Parser();
+if ( ! function_exists( 'blocksy_has_video_element' ) ) {
+	function blocksy_has_video_element( $args ) {
 
 		$play_icon = '<span class="ct-video-indicator">
 			<svg width="40" height="40" viewBox="0 0 40 40" fill="#fff">
@@ -121,25 +122,25 @@ if (! function_exists('blocksy_has_video_element')) {
 			</svg>
 		</span>';
 
-		if (! $args['display_video']) {
+		if ( ! $args['display_video'] ) {
 			return null;
 		}
 
-		$video_data = blocksy_get_video_data($args['attachment_id']);
+		$video_data = blocksy_get_video_data( $args['attachment_id'] );
 
 		if (
-			! isset($video_data['url'])
+			! isset( $video_data['url'] )
 			||
-			empty($video_data['url'])
+			empty( $video_data['url'] )
 		) {
 			return null;
 		}
 
 		return array_merge(
 			$video_data,
-			[
+			array(
 				'icon' => $play_icon,
-			]
+			)
 		);
 	}
 }
@@ -154,26 +155,32 @@ add_action(
 	'blocksy_get_via_request_image_video_component'
 );
 function blocksy_get_via_request_image_video_component() {
-	if (! isset($_GET['media'])) {
+	if ( ! isset( $_GET['media'] ) ) {
 		wp_send_json_error();
 	}
 
-	$args = [];
+	$media_id = absint( $_GET['media'] );
 
-	if (isset($_GET['ignore_video_options'])) {
+	if ( 'attachment' !== get_post_type( $media_id ) ) {
+		wp_send_json_error();
+	}
+
+	$args = array();
+
+	if ( isset( $_GET['ignore_video_options'] ) ) {
 		$args['ignore_video_options'] = true;
 	}
 
-	$result = blocksy_get_image_video_component($_GET['media'], $args);
+	$result = blocksy_get_image_video_component( $media_id, $args );
 
-	if (empty($result)) {
+	if ( empty( $result ) ) {
 		wp_send_json_error();
 	}
 
-	$video_data = blocksy_get_video_data($_GET['media']);
+	$video_data = blocksy_get_video_data( $media_id );
 
-	$wrapper_attr = [
-		'class' => 'ct-video-container',
+	$wrapper_attr = array(
+		'class'             => 'ct-video-container',
 
 		'data-video-source' => blocksy_akg(
 			'media_video_source',
@@ -181,10 +188,10 @@ function blocksy_get_via_request_image_video_component() {
 			'upload'
 		),
 
-		'data-video-size' => 'contain'
-	];
+		'data-video-size'   => 'contain',
+	);
 
-	if (blocksy_akg('media_video_player', $video_data, 'no') === 'yes') {
+	if ( blocksy_akg( 'media_video_player', $video_data, 'no' ) === 'yes' ) {
 		$wrapper_attr['data-video-size'] = blocksy_akg(
 			'media_video_size',
 			$video_data,
@@ -193,49 +200,51 @@ function blocksy_get_via_request_image_video_component() {
 	}
 
 	if (
-		isset($video_data['url'])
+		isset( $video_data['url'] )
 		&&
-		! empty($video_data['url'])
+		! empty( $video_data['url'] )
 		&&
-		strpos($video_data['url'], 'youtube.com/shorts/') !== false
+		strpos( $video_data['url'], 'youtube.com/shorts/' ) !== false
 	) {
 		$wrapper_attr['data-video-source'] = 'youtube-shorts';
 	}
 
-	wp_send_json_success([
-		'html' => blocksy_html_tag(
-			'div',
-			$wrapper_attr,
-			$result
+	wp_send_json_success(
+		array(
+			'html' => blocksy_html_tag(
+				'div',
+				$wrapper_attr,
+				$result
+			),
 		)
-	]);
+	);
 
 	return;
 }
 
-function blocksy_get_image_video_component($media_id, $args = []) {
+function blocksy_get_image_video_component( $media_id, $args = array() ) {
 	$args = wp_parse_args(
 		$args,
-		[
+		array(
 			'ignore_video_options' => false,
-		]
+		)
 	);
 
-	if (! isset($media_id)) {
+	if ( ! isset( $media_id ) ) {
 		return '';
 	}
 
-	$video_data = blocksy_get_video_data($media_id);
+	$video_data = blocksy_get_video_data( $media_id );
 
 	if (
-		! isset($video_data['url'])
+		! isset( $video_data['url'] )
 		||
-		empty($video_data['url'])
+		empty( $video_data['url'] )
 	) {
 		return '';
 	}
 
-	$use_simple_player = blocksy_akg('media_video_player', $video_data, 'no') === 'yes';
+	$use_simple_player = blocksy_akg( 'media_video_player', $video_data, 'no' ) === 'yes';
 
 	$new_default_based_on_old_value = blocksy_akg(
 		'media_video_autoplay',
@@ -249,10 +258,10 @@ function blocksy_get_image_video_component($media_id, $args = []) {
 		$new_default_based_on_old_value
 	);
 
-	$use_autoplay = $play_event === 'autoplay' || $play_event === 'hover';
+	$use_autoplay = 'autoplay' === $play_event || 'hover' === $play_event;
 
-	if ($args['ignore_video_options']) {
-		$use_autoplay = false;
+	if ( $args['ignore_video_options'] ) {
+		$use_autoplay      = false;
 		$use_simple_player = false;
 	}
 
@@ -262,30 +271,30 @@ function blocksy_get_image_video_component($media_id, $args = []) {
 		$matches
 	);
 
-	$media_video_loop = blocksy_akg('media_video_loop', $video_data, 'no');
+	$media_video_loop = blocksy_akg( 'media_video_loop', $video_data, 'no' );
 
-	if (isset($matches[0]) && ! empty($matches[0])) {
-		$poster = wp_get_attachment_url($media_id);
+	if ( isset( $matches[0] ) && ! empty( $matches[0] ) ) {
+		$poster = wp_get_attachment_url( $media_id );
 
-		$video_attr = [
-			'poster' => $poster,
-			'controls' => !$use_simple_player,
-			'playsinline' => 1
-		];
+		$video_attr = array(
+			'poster'      => $poster,
+			'controls'    => ! $use_simple_player,
+			'playsinline' => 1,
+		);
 
 		$video_attr['autoplay'] = $use_autoplay;
-		$video_attr['muted'] = $use_autoplay;
-		$video_attr['loop'] = $media_video_loop === 'yes' ? 1 : 0;
+		$video_attr['muted']    = $use_autoplay;
+		$video_attr['loop']     = 'yes' === $media_video_loop ? 1 : 0;
 
 		$result = blocksy_html_tag(
 			'video',
 			$video_attr,
 			blocksy_html_tag(
 				'source',
-				[
-					'src' => $video_data['url'],
+				array(
+					'src'  => $video_data['url'],
 					'type' => 'video/mp4',
-				],
+				),
 				false
 			)
 		);
@@ -293,54 +302,57 @@ function blocksy_get_image_video_component($media_id, $args = []) {
 		return $result;
 	}
 
-	$embed = wp_oembed_get($video_data['url']);
+	$embed = wp_oembed_get( $video_data['url'] );
 
-	$additional_parmas = [
-		'autoplay' => $use_autoplay ? 1 : 0,
-		'controls' => ! $use_simple_player ? 1 : 0,
-		'loop' => $media_video_loop === 'yes' ? 1 : 0,
+	$additional_parmas = array(
+		'autoplay'    => $use_autoplay ? 1 : 0,
+		'controls'    => ! $use_simple_player ? 1 : 0,
+		'loop'        => 'yes' === $media_video_loop ? 1 : 0,
 		'playsinline' => 1,
-	];
+	);
 
 	if (
-		strpos($video_data['url'], 'youtube') !== false
+		strpos( $video_data['url'], 'youtube' ) !== false
 		||
-		strpos($video_data['url'], 'youtu.be') !== false
+		strpos( $video_data['url'], 'youtu.be' ) !== false
 	) {
-		if ($media_video_loop === 'yes') {
-			$id = explode('?', $video_data['url'])[1];
-			$id = str_replace('v=', '', array_reverse(explode('/', $id))[0]);
+		if ( 'yes' === $media_video_loop ) {
+			$id = explode( '?', $video_data['url'] )[1];
+			$id = str_replace( 'v=', '', array_reverse( explode( '/', $id ) )[0] );
 
-			if (strpos($video_data['url'], 'youtube.com/shorts/') === false) {
+			if ( strpos( $video_data['url'], 'youtube.com/shorts/' ) === false ) {
 				$additional_parmas['playlist'] = $id;
 			}
 		}
 
-		$additional_parmas = array_merge($additional_parmas, [
-			'enablejsapi' => 1,
-			'version' => 3,
-			'playerapiid' => 'ytplayer',
-			'mute' => $use_autoplay ? 1 : 0
-		]);
-	}
-
-	if (strpos($video_data['url'], 'vimeo') !== false) {
 		$additional_parmas = array_merge(
 			$additional_parmas,
-			[
-				'autopause' => 0,
-				'background' => $use_simple_player ? 1 : 0,
-				'muted' => $use_autoplay ? 1 : 0,
-				'transparent' => 0
-			]
+			array(
+				'enablejsapi' => 1,
+				'version'     => 3,
+				'playerapiid' => 'ytplayer',
+				'mute'        => $use_autoplay ? 1 : 0,
+			)
 		);
 	}
 
-	$src_param = [];
+	if ( strpos( $video_data['url'], 'vimeo' ) !== false ) {
+		$additional_parmas = array_merge(
+			$additional_parmas,
+			array(
+				'autopause'   => 0,
+				'background'  => $use_simple_player ? 1 : 0,
+				'muted'       => $use_autoplay ? 1 : 0,
+				'transparent' => 0,
+			)
+		);
+	}
 
-	preg_match('/src=["](.*?)["]/', $embed, $src_param);
+	$src_param = array();
 
-	if (isset($src_param[1]) && ! empty($src_param[1])) {
+	preg_match( '/src=["](.*?)["]/', $embed, $src_param );
+
+	if ( isset( $src_param[1] ) && ! empty( $src_param[1] ) ) {
 		$embed = str_replace(
 			$src_param[1],
 			add_query_arg(
@@ -353,4 +365,3 @@ function blocksy_get_image_video_component($media_id, $args = []) {
 
 	return $embed;
 }
-

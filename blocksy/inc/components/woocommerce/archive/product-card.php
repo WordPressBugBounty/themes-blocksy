@@ -1,9 +1,9 @@
 <?php
 
-add_filter(
+add_action(
 	'wp_before_load_template',
-	function ($template_name) {
-		if (strpos($template_name, 'woocommerce/templates/content-product.php') === false) {
+	function ( $template_name ) {
+		if ( strpos( $template_name, 'woocommerce/templates/content-product.php' ) === false ) {
 			return;
 		}
 
@@ -13,10 +13,10 @@ add_filter(
 	1
 );
 
-add_filter(
+add_action(
 	'wp_after_load_template',
-	function ($template_name) {
-		if (strpos($template_name, 'woocommerce/templates/content-product.php') === false) {
+	function ( $template_name ) {
+		if ( strpos( $template_name, 'woocommerce/templates/content-product.php' ) === false ) {
 			return;
 		}
 
@@ -27,7 +27,7 @@ add_filter(
 		 *
 		 * @since 2.1.5
 		 */
-		do_action('blocksy:woocommerce:product-card:before');
+		do_action( 'blocksy:woocommerce:product-card:before' );
 
 		echo $result;
 
@@ -36,13 +36,13 @@ add_filter(
 		 *
 		 * @since 2.1.5
 		 */
-		do_action('blocksy:woocommerce:product-card:after');
+		do_action( 'blocksy:woocommerce:product-card:after' );
 	},
 	1,
 	1
 );
 
-function blocksy_template_loop_product_thumbnail($attr) {
+function blocksy_template_loop_product_thumbnail( $attr ) {
 	global $product;
 
 	/**
@@ -60,44 +60,49 @@ function blocksy_template_loop_product_thumbnail($attr) {
 	 */
 	$loop_product_thumbnail_descriptor = apply_filters(
 		'blocksy:woocommerce:product-card:thumbnail:descriptor',
-		[
-			'container_attr' => [],
-			'gallery_images' => null
-		]
+		array(
+			'container_attr' => array(),
+			'gallery_images' => null,
+		)
 	);
 
-	if (! $loop_product_thumbnail_descriptor['gallery_images']) {
-		$loop_product_thumbnail_descriptor['gallery_images'] = blocksy_product_get_gallery_images($product);
+	if ( ! $loop_product_thumbnail_descriptor['gallery_images'] ) {
+		$loop_product_thumbnail_descriptor['gallery_images'] = blocksy_product_get_gallery_images( $product );
 	}
 
-	echo '<figure ' . blocksy_attr_to_html($loop_product_thumbnail_descriptor['container_attr']) . '>';
+	echo '<figure ' . blocksy_attr_to_html( $loop_product_thumbnail_descriptor['container_attr'] ) . '>';
 
 	/**
 	 * Fires at the start of a product card thumbnail, inside the figure element.
 	 *
 	 * @since 1.8.0
 	 */
-	do_action('blocksy:woocommerce:product-card:thumbnail:start');
+	do_action( 'blocksy:woocommerce:product-card:thumbnail:start' );
 
-	$badges = [];
+	$badges = array();
 
-	$has_sale_badge = blocksy_get_theme_mod('has_sale_badge', [
-		'single' => true,
-		'archive' => true
-	]);
+	$has_sale_badge = blocksy_get_theme_mod(
+		'has_sale_badge',
+		array(
+			'single'  => true,
+			'archive' => true,
+		)
+	);
 
-	if ($has_sale_badge['archive']) {
+	if ( $has_sale_badge['archive'] ) {
 		ob_start();
 		woocommerce_show_product_loop_sale_flash();
 		$badges[] = ob_get_clean();
 	}
 
-	if (! $product->is_in_stock()) {
-		$maybe_stock_badge = blocksy_get_woo_out_of_stock_badge([
-			'location' => 'archive'
-		]);
+	if ( ! $product->is_in_stock() ) {
+		$maybe_stock_badge = blocksy_get_woo_out_of_stock_badge(
+			array(
+				'location' => 'archive',
+			)
+		);
 
-		if ($maybe_stock_badge) {
+		if ( $maybe_stock_badge ) {
 			$badges[] = $maybe_stock_badge;
 		}
 	}
@@ -111,22 +116,22 @@ function blocksy_template_loop_product_thumbnail($attr) {
 		 *
 		 * @param array $badges List of badge HTML strings (e.g. sale, out of stock).
 		 */
-		apply_filters('blocksy:woocommerce:product-card:badges', $badges)
+		apply_filters( 'blocksy:woocommerce:product-card:badges', $badges )
 	);
-	
+
 	/**
 	 * Fires before the product card thumbnail toolbar is rendered.
 	 *
 	 * @since 2.1.19
 	 */
-	do_action('blocksy:woocommerce:product-card:toolbar:before');
+	do_action( 'blocksy:woocommerce:product-card:toolbar:before' );
 	echo blocksy_output_product_toolbar();
 	/**
 	 * Fires after the product card thumbnail toolbar is rendered.
 	 *
 	 * @since 2.1.19
 	 */
-	do_action('blocksy:woocommerce:product-card:toolbar:after');
+	do_action( 'blocksy:woocommerce:product-card:toolbar:after' );
 
 	/**
 	 * Filters the gallery images used for a product card thumbnail.
@@ -142,22 +147,22 @@ function blocksy_template_loop_product_thumbnail($attr) {
 
 	// TODO: investigate why this isn't in blocksy_product_get_gallery_images()
 	// function.
-	if ($product->get_type() === 'variation') {
+	if ( $product->get_type() === 'variation' ) {
 		$variation_main_image = $product->get_image_id();
 
-		if ($variation_main_image) {
-			if (! in_array($variation_main_image, $gallery_images)) {
+		if ( $variation_main_image ) {
+			if ( ! in_array( (int) $variation_main_image, array_map( 'intval', $gallery_images ), true ) ) {
 				$gallery_images[0] = $variation_main_image;
 			}
 
 			$gallery_images = array_merge(
-				[$variation_main_image],
-				array_diff($gallery_images, [$variation_main_image])
+				array( $variation_main_image ),
+				array_diff( $gallery_images, array( $variation_main_image ) )
 			);
 		}
 	}
 
-	$hover_value = blocksy_akg('product_image_hover', $attr, 'none');
+	$hover_value = blocksy_akg( 'product_image_hover', $attr, 'none' );
 
 	$has_archive_video_thumbnail = blocksy_akg(
 		'has_archive_video_thumbnail',
@@ -165,76 +170,80 @@ function blocksy_template_loop_product_thumbnail($attr) {
 		'no'
 	);
 
-	$html_atts = [
-		'href' => apply_filters(
-			'woocommerce_loop_product_link',
-			get_permalink($product->get_id()),
+	$html_atts = array(
+		'href'       => apply_filters(
+			'woocommerce_loop_product_link', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- third-party hook
+			get_permalink( $product->get_id() ),
 			$product
 		),
-		'aria-label' => strip_tags($product->get_name()),
-	];
+		'aria-label' => strip_tags( $product->get_name() ),
+	);
 
 	if (
-		blocksy_get_theme_mod('woo_archive_affiliate_image_link', 'no') === 'yes'
+		blocksy_get_theme_mod( 'woo_archive_affiliate_image_link', 'no' ) === 'yes'
 		&&
-		$product->is_type('external')
+		$product->is_type( 'external' )
 	) {
 		$open_in_new_tab = blocksy_get_theme_mod(
 			'woo_archive_affiliate_image_link_new_tab',
 			'no'
 		) === 'yes' ? '_blank' : '_self';
 
-		$html_atts['href'] = $product->get_product_url();
+		$html_atts['href']   = $product->get_product_url();
 		$html_atts['target'] = $open_in_new_tab;
 	}
 
-	$maybe_other_images = [];
+	$maybe_other_images = array();
 
-	if ($hover_value === 'swap') {
-		if (count($gallery_images) > 1) {
-			$maybe_other_images = array_slice($gallery_images, 1, 1);
+	if ( 'swap' === $hover_value ) {
+		if ( count( $gallery_images ) > 1 ) {
+			$maybe_other_images = array_slice( $gallery_images, 1, 1 );
 		}
 	}
 
-	$image = blocksy_media([
-		'no_image_type' => 'woo',
-		'attachment_id' => $gallery_images[0],
-		'post_id' => $product->get_id(),
-		'other_images' => $maybe_other_images,
-		'size' => 'woocommerce_archive_thumbnail',
-		'include_original_image_size' => is_customize_preview(),
-		/**
-		 * Filters the aspect ratio of a product card thumbnail.
-		 *
-		 * @since 2.0.38
-		 *
-		 * @param string $ratio      The thumbnail aspect ratio (e.g. '3/4').
-		 * @param int    $product_id The product ID.
-		 */
-		'ratio' => apply_filters(
-			'blocksy:woocommerce:product-card:thumbnail:ratio',
-			blocksy_get_woocommerce_ratio([
-				'key' => 'archive_thumbnail',
-				'cropping' => blocksy_akg(
-					'blocksy_woocommerce_archive_thumbnail_cropping',
-					$attr,
-					'predefined'
-				)
-			]),
-			$product->get_id()
-		),
-		'tag_name' => 'a',
-		'html_atts' => $html_atts,
-		'display_video' => $has_archive_video_thumbnail === 'yes',
-		'class' => $hover_value !== 'none' ? 'has-hover-effect' : '',
-	]);
+	$image = blocksy_media(
+		array(
+			'no_image_type'               => 'woo',
+			'attachment_id'               => $gallery_images[0],
+			'post_id'                     => $product->get_id(),
+			'other_images'                => $maybe_other_images,
+			'size'                        => 'woocommerce_archive_thumbnail',
+			'include_original_image_size' => is_customize_preview(),
+			/**
+			* Filters the aspect ratio of a product card thumbnail.
+			*
+			* @since 2.0.38
+			*
+			* @param string $ratio      The thumbnail aspect ratio (e.g. '3/4').
+			* @param int    $product_id The product ID.
+			*/
+			'ratio'                       => apply_filters(
+				'blocksy:woocommerce:product-card:thumbnail:ratio',
+				blocksy_get_woocommerce_ratio(
+					array(
+						'key'      => 'archive_thumbnail',
+						'cropping' => blocksy_akg(
+							'blocksy_woocommerce_archive_thumbnail_cropping',
+							$attr,
+							'predefined'
+						),
+					)
+				),
+				$product->get_id()
+			),
+			'tag_name'                    => 'a',
+			'html_atts'                   => $html_atts,
+			'display_video'               => 'yes' === $has_archive_video_thumbnail,
+			'class'                       => 'none' !== $hover_value ? 'has-hover-effect' : '',
+		)
+	);
 
 	echo apply_filters(
-		'woocommerce_product_get_image',
+		'woocommerce_product_get_image', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- third-party hook
 		$image,
 		$product,
 		'woocommerce_archive_thumbnail',
-		[],
+		array(),
 		'',
 		$image
 	);
@@ -244,13 +253,13 @@ function blocksy_template_loop_product_thumbnail($attr) {
 	 *
 	 * @since 1.7.62
 	 */
-	do_action('blocksy:woocommerce:product-card:thumbnail:end');
+	do_action( 'blocksy:woocommerce:product-card:thumbnail:end' );
 
 	echo '</figure>';
 }
 
 function blocksy_output_product_toolbar() {
-	$shop_cards_type = blocksy_get_theme_mod('shop_cards_type', 'type-1');
+	$shop_cards_type = blocksy_get_theme_mod( 'shop_cards_type', 'type-1' );
 
 	/**
 	 * Filters the product card toolbar components (an array of HTML strings).
@@ -264,26 +273,29 @@ function blocksy_output_product_toolbar() {
 	 */
 	$components = apply_filters(
 		'blocksy:options:woocommerce:archive:card-type:output_product_toolbar',
-		[]
+		array()
 	);
 
-	if (! empty($components)) {
+	if ( ! empty( $components ) ) {
 		return blocksy_html_tag(
 			'div',
-			array_merge([
-				'class' => 'ct-woo-card-extra',
-				'data-type' => $shop_cards_type === 'type-3' ? 'type-2' : 'type-1'
-			], $shop_cards_type === 'type-3' ? [
-				'data-add-to-cart' => 'auto-hide'
-			] : []),
-			implode(' ', $components)
+			array_merge(
+				array(
+					'class'     => 'ct-woo-card-extra',
+					'data-type' => 'type-3' === $shop_cards_type ? 'type-2' : 'type-1',
+				),
+				'type-3' === $shop_cards_type ? array(
+					'data-add-to-cart' => 'auto-hide',
+				) : array()
+			),
+			implode( ' ', $components )
 		);
 	}
 
 	return '';
 }
 
-function blocksy_woo_card_price($price_html) {
+function blocksy_woo_card_price( $price_html ) {
 	/**
 	 * Filters the price HTML rendered on a product card.
 	 *
@@ -303,7 +315,7 @@ function blocksy_woo_card_actions_before() {
 	 *
 	 * @since 1.8.7
 	 */
-	do_action('blocksy:woocommerce:product-card:actions:before');
+	do_action( 'blocksy:woocommerce:product-card:actions:before' );
 }
 
 function blocksy_woo_card_actions_after() {
@@ -312,455 +324,464 @@ function blocksy_woo_card_actions_after() {
 	 *
 	 * @since 1.8.7
 	 */
-	do_action('blocksy:woocommerce:product-card:actions:after');
+	do_action( 'blocksy:woocommerce:product-card:actions:after' );
 }
 
-$action_to_hook = 'wp';
+$blocksy_action_to_hook = 'wp';
 
-if (wp_doing_ajax()) {
-	$action_to_hook = 'init';
+if ( wp_doing_ajax() ) {
+	$blocksy_action_to_hook = 'init';
 }
 
 // Need to remove actions a little later when loaded in Elementor editor
 if (
-	isset($_GET['action'])
+	isset( $_GET['action'] )
 	&&
-	$_GET['action'] === 'elementor'
+	'elementor' === $_GET['action']
 ) {
-	$action_to_hook = 'elementor/editor/init';
+	$blocksy_action_to_hook = 'elementor/editor/init';
 }
 
-add_action($action_to_hook, function () {
-	remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
-	remove_action('woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10);
-	remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
-	remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
-	remove_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
-	remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
-	remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
-	remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+add_action(
+	$blocksy_action_to_hook,
+	function () {
+		remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+		remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
+		remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+		remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+		remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+		remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 
-	// Category cards
-	remove_action('woocommerce_before_subcategory_title', 'woocommerce_subcategory_thumbnail');
-	remove_action('woocommerce_before_subcategory', 'woocommerce_template_loop_category_link_open');
-	remove_action('woocommerce_shop_loop_subcategory_title', 'woocommerce_template_loop_category_title');
-	remove_action('woocommerce_after_subcategory', 'woocommerce_template_loop_category_link_close');
+		// Category cards
+		remove_action( 'woocommerce_before_subcategory_title', 'woocommerce_subcategory_thumbnail' );
+		remove_action( 'woocommerce_before_subcategory', 'woocommerce_template_loop_category_link_open' );
+		remove_action( 'woocommerce_shop_loop_subcategory_title', 'woocommerce_template_loop_category_title' );
+		remove_action( 'woocommerce_after_subcategory', 'woocommerce_template_loop_category_link_close' );
 
-	blocksy_manager()->get_hooks()->redirect_callbacks([
-		'token' => 'product_card_type_2',
-		'source' => [
+		blocksy_manager()->get_hooks()->redirect_callbacks(
+			array(
+				'token'       => 'product_card_type_2',
+				'source'      => array(
+					'woocommerce_before_shop_loop_item_title',
+					'woocommerce_shop_loop_item_title',
+				),
+				'destination' => 'blocksy:woocommerce:product-card:title:before',
+			)
+		);
+
+		blocksy_manager()->get_hooks()->redirect_callbacks(
+			array(
+				'token'       => 'product_card_type_2',
+				'source'      => array(
+					'woocommerce_after_shop_loop_item_title',
+				),
+				'destination' => 'blocksy:woocommerce:product-card:title:after',
+			)
+		);
+
+		add_action(
+			'woocommerce_shop_loop',
+			function () {
+				global $blocksy_rendering_woo_card;
+				$blocksy_rendering_woo_card = true;
+			}
+		);
+
+		add_action(
 			'woocommerce_before_shop_loop_item_title',
-			'woocommerce_shop_loop_item_title'
-		],
-		'destination' => 'blocksy:woocommerce:product-card:title:before'
-	]);
+			function () {
+				global $product;
+				global $blocksy_rendering_woo_card;
+				$default_product_layout = blocksy_get_woo_archive_layout_defaults();
 
-	blocksy_manager()->get_hooks()->redirect_callbacks([
-		'token' => 'product_card_type_2',
-		'source' => [
-			'woocommerce_after_shop_loop_item_title',
-		],
-		'destination' => 'blocksy:woocommerce:product-card:title:after'
-	]);
+				$shop_cards_type = blocksy_get_theme_mod( 'shop_cards_type', 'type-1' );
 
-	add_action(
-		'woocommerce_shop_loop',
-		function () {
-			global $blocksy_rendering_woo_card;
-			$blocksy_rendering_woo_card = true;
-		}
-	);
+				$render_layout_config = blocksy_get_theme_mod(
+					'woo_card_layout',
+					$default_product_layout
+				);
 
-	add_action(
-		'woocommerce_before_shop_loop_item_title',
-		function () {
-			global $product;
-			global $blocksy_rendering_woo_card;
-			$default_product_layout = blocksy_get_woo_archive_layout_defaults();
+				$render_layout_config = blocksy_normalize_layout(
+					$render_layout_config,
+					$default_product_layout
+				);
 
-			$shop_cards_type = blocksy_get_theme_mod('shop_cards_type', 'type-1');
+				foreach ( $render_layout_config as $layout ) {
+					if ( ! $layout['enabled'] ) {
+						continue;
+					}
 
-			$render_layout_config = blocksy_get_theme_mod(
-				'woo_card_layout',
-				$default_product_layout
-			);
+					if ( 'product_image' === $layout['id'] ) {
+						blocksy_template_loop_product_thumbnail( $layout );
+						continue;
+					}
 
-			$render_layout_config = blocksy_normalize_layout(
-				$render_layout_config,
-				$default_product_layout
-			);
+					if ( 'product_title' === $layout['id'] ) {
+						/**
+						 * Fires before the product card title is rendered.
+						 *
+						 * @since 1.7.36
+						 */
+						do_action( 'blocksy:woocommerce:product-card:title:before' );
 
-			foreach ($render_layout_config as $layout) {
-				if (! $layout['enabled'] ) {
-					continue;
-				}
+						/**
+						 * Filters the link attributes for the product card title.
+						 *
+						 * @since 2.0.1
+						 *
+						 * @param array $link_attrs {
+						 *     Title link attributes.
+						 *
+						 *     @type string $href   The product permalink.
+						 *     @type string $target The anchor target. Default '_self'.
+						 * }
+						 */
+						$link_attrs = apply_filters(
+							'blocksy:woocommerce:product-card:title:link',
+							array(
+								'href'   => get_the_permalink(),
+								'target' => '_self',
+							)
+						);
 
-				if ($layout['id'] === 'product_image') {
-					blocksy_template_loop_product_thumbnail($layout);
-					continue;
-				}
+						$title_tag = blocksy_validate_html_tag(
+							array(
+								'tag'     => blocksy_akg( 'heading_tag', $layout ),
+								'allowed' => 'headings_text',
+								'default' => 'h2',
+							)
+						);
 
-				if ($layout['id'] === 'product_title') {
+						echo blocksy_html_tag(
+							$title_tag,
+							array(
+								'class' => esc_attr(
+									apply_filters(
+										'woocommerce_product_loop_title_classes', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- third-party hook
+										'woocommerce-loop-product__title'
+									)
+								),
+							),
+							blocksy_html_tag(
+								'a',
+								array_merge(
+									array(
+										'class' => 'woocommerce-LoopProduct-link woocommerce-loop-product__link',
+									),
+									$link_attrs
+								),
+								get_the_title()
+							)
+						);
+
+						/**
+						 * Fires after the product card title is rendered.
+						 *
+						 * @since 1.7.36
+						 */
+						do_action( 'blocksy:woocommerce:product-card:title:after' );
+
+						continue;
+					}
+
+					if (
+						'type-2' !== $shop_cards_type
+						&&
+						'product_price' === $layout['id']
+					) {
+						/**
+						 * Fires before the product card price is rendered.
+						 *
+						 * @since 1.8.0
+						 */
+						do_action( 'blocksy:woocommerce:product-card:price:before' );
+
+						ob_start();
+						woocommerce_template_loop_price();
+						$default_price = ob_get_clean();
+
+						echo blocksy_woo_card_price( $default_price );
+
+						/**
+						 * Fires after the product card price is rendered.
+						 *
+						 * @since 1.8.0
+						 */
+						do_action( 'blocksy:woocommerce:product-card:price:after' );
+						continue;
+					}
+
+					if ( 'product_rating' === $layout['id'] ) {
+						ob_start();
+						woocommerce_template_loop_rating();
+						$rating_stars = ob_get_clean();
+
+						$average_rating = '';
+						$review_count   = '';
+
+						if ( $product->get_review_count() > 0 ) {
+							if ( blocksy_akg( 'average_rating', $layout, 'no' ) === 'yes' ) {
+								$average_rating = blocksy_html_tag(
+									'span',
+									array(
+										'class' => 'ct-rating-average',
+									),
+									'(' . $product->get_average_rating() . ')'
+								);
+							}
+
+							if ( blocksy_akg( 'review_count', $layout, 'no' ) === 'yes' ) {
+								$review_count = blocksy_html_tag(
+									'span',
+									array(
+										'class' => 'ct-rating-count',
+									),
+									'(' . $product->get_review_count() . ')'
+								);
+							}
+
+							echo blocksy_html_tag(
+								'div',
+								array(
+									'class' => 'ct-woo-card-rating',
+								),
+								$rating_stars . $review_count . $average_rating
+							);
+						}
+						continue;
+					}
+
+					if ( 'product_meta' === $layout['id'] ) {
+						$style = isset( $layout['style'] ) ? $layout['style'] : 'simple';
+
+						echo blocksy_post_meta(
+							array(
+								array(
+									'id'       => 'categories',
+									'enabled'  => true,
+									'style'    => $style,
+									'taxonomy' => blocksy_akg( 'taxonomy', $layout, 'product_cat' ),
+								),
+							),
+							array(
+								'attr' => array(
+									'data-id' => blocksy_akg( '__id', $layout, 'default' ),
+								),
+							)
+						);
+
+						continue;
+					}
+
+					if ( 'product_desc' === $layout['id'] ) {
+						echo blocksy_entry_excerpt(
+							array(
+								'length' => blocksy_akg(
+									'excerpt_length',
+									$layout,
+									'40'
+								),
+								'source' => blocksy_default_akg(
+									'excerpt_source',
+									$layout,
+									'excerpt'
+								),
+							)
+						);
+						continue;
+					}
+
+					if ( 'product_stock' === $layout['id'] ) {
+						echo blocksy_html_tag(
+							'div',
+							array(
+								'class' => 'ct-woo-card-stock',
+							),
+							wc_get_stock_html( $product )
+						);
+
+						continue;
+					}
+
+					if (
+						'type-1' === $shop_cards_type
+						&&
+						'product_add_to_cart' === $layout['id']
+					) {
+						$auto_hide       = blocksy_akg( 'auto_hide_button', $layout, 'yes' );
+						$equal_alignment = blocksy_akg( 'button_equal_alignment', $layout, 'yes' );
+
+						$html_atts = array();
+
+						if ( 'yes' === $auto_hide ) {
+							$html_atts['data-add-to-cart'] = 'auto-hide';
+						}
+
+						if ( 'yes' === $equal_alignment ) {
+							$html_atts['data-alignment'] = 'equal';
+						}
+
+						blocksy_woo_card_actions_before();
+						echo '<div class="ct-woo-card-actions" ' . blocksy_attr_to_html( $html_atts ) . '>';
+						woocommerce_template_loop_add_to_cart();
+						echo '</div>';
+						blocksy_woo_card_actions_after();
+						continue;
+					}
+
+					if (
+						'type-2' === $shop_cards_type
+						&&
+						'product_add_to_cart_and_price' === $layout['id']
+					) {
+						blocksy_woo_card_actions_before();
+						echo '<div class="ct-woo-card-actions" data-add-to-cart="auto-hide">';
+
+						ob_start();
+						woocommerce_template_loop_price();
+						$default_price = ob_get_clean();
+
+						echo blocksy_woo_card_price( $default_price );
+
+						woocommerce_template_loop_add_to_cart();
+						echo '</div>';
+						blocksy_woo_card_actions_after();
+						continue;
+					}
+
+					$blocksy_rendering_woo_card = true;
 					/**
-					 * Fires before the product card title is rendered.
-					 *
-					 * @since 1.7.36
-					 */
-					do_action('blocksy:woocommerce:product-card:title:before');
-
-					/**
-					 * Filters the link attributes for the product card title.
+					 * Fires when a custom (non-core) product card layer is rendered.
 					 *
 					 * @since 2.0.1
 					 *
-					 * @param array $link_attrs {
-					 *     Title link attributes.
-					 *
-					 *     @type string $href   The product permalink.
-					 *     @type string $target The anchor target. Default '_self'.
-					 * }
+					 * @param array $layout The layer definition being rendered.
 					 */
-					$link_attrs = apply_filters(
-						'blocksy:woocommerce:product-card:title:link',
-						[
-							'href' => get_the_permalink(),
-							'target' => '_self'
-						]
-					);
-
-					echo blocksy_html_tag(
-						blocksy_akg('heading_tag', $layout, 'h2'),
-						[
-							'class' => esc_attr(
-								apply_filters(
-									'woocommerce_product_loop_title_classes',
-									'woocommerce-loop-product__title'
-									)
-								),
-						],
-						blocksy_html_tag(
-							'a',
-							array_merge(
-								[
-									'class' => 'woocommerce-LoopProduct-link woocommerce-loop-product__link',
-								],
-								$link_attrs
-							),
-							get_the_title()
-						)
-					);
-
-					/**
-					 * Fires after the product card title is rendered.
-					 *
-					 * @since 1.7.36
-					 */
-					do_action('blocksy:woocommerce:product-card:title:after');
-
-					continue;
+					do_action( 'blocksy:woocommerce:product-card:custom:layer', $layout );
 				}
 
-				if (
-					$shop_cards_type !== 'type-2'
-					&&
-					$layout['id'] === 'product_price'
-				) {
-					/**
-					 * Fires before the product card price is rendered.
-					 *
-					 * @since 1.8.0
-					 */
-					do_action('blocksy:woocommerce:product-card:price:before');
+				$blocksy_rendering_woo_card = false;
+			},
+			10
+		);
 
-					ob_start();
-					woocommerce_template_loop_price();
-					$default_price = ob_get_clean();
+		add_action(
+			'woocommerce_before_subcategory_title',
+			function ( $category ) {
+				$default_product_layout = blocksy_get_woo_archive_layout_defaults();
 
-					echo blocksy_woo_card_price($default_price);
+				$render_layout_config = blocksy_get_theme_mod(
+					'woo_card_layout',
+					$default_product_layout
+				);
 
-					/**
-					 * Fires after the product card price is rendered.
-					 *
-					 * @since 1.8.0
-					 */
-					do_action('blocksy:woocommerce:product-card:price:after');
-					continue;
-				}
+				$render_layout_config = blocksy_normalize_layout(
+					$render_layout_config,
+					$default_product_layout
+				);
 
-				if ($layout['id'] === 'product_rating') {
-					ob_start();
-					woocommerce_template_loop_rating();
-					$rating_stars = ob_get_clean();
+				foreach ( $render_layout_config as $layout ) {
+					if ( ! $layout['enabled'] ) {
+						continue;
+					}
 
-					$average_rating = '';
-					$review_count = '';
+					if ( 'product_image' === $layout['id'] ) {
+						$thumbnail_id = get_term_meta(
+							$category->term_id,
+							'thumbnail_id',
+							true
+						);
 
-
-					if ($product->get_review_count() > 0) {
-						if (blocksy_akg('average_rating', $layout, 'no') === 'yes') {
-							$average_rating = blocksy_html_tag(
-								'span',
-								[
-									'class' => 'ct-rating-average'
-								],
-								'(' . $product->get_average_rating() . ')'
-							);
-						}
-
-						if (blocksy_akg('review_count', $layout, 'no') === 'yes') {
-							$review_count = blocksy_html_tag(
-								'span',
-								[
-									'class' => 'ct-rating-count'
-								],
-								'(' . $product->get_review_count() . ')'
-							);
-						}
+						$hover_value = blocksy_akg( 'product_image_hover', $layout, 'none' );
 
 						echo blocksy_html_tag(
-							'div',
-							[
-								'class' => 'ct-woo-card-rating'
-							],
-							$rating_stars . $review_count . $average_rating
-						);
-					}
-					continue;
-				}
-
-				if ($layout['id'] === 'product_meta') {
-					$style = isset($layout['style']) ? $layout['style'] : 'simple';
-
-					echo blocksy_post_meta(
-						[
-							[
-								'id' => 'categories',
-								'enabled' => true,
-								'style' => $style,
-								'taxonomy' => blocksy_akg('taxonomy', $layout, 'product_cat')
-							],
-						],
-						[
-							'attr' => [
-								'data-id' => blocksy_akg('__id', $layout, 'default')
-							]
-						]
-					);
-
-					continue;
-				}
-
-				if ($layout['id'] === 'product_desc') {
-					echo blocksy_entry_excerpt([
-						'length' => blocksy_akg(
-							'excerpt_length',
-							$layout,
-							'40'
-						),
-						'source' => blocksy_default_akg(
-							'excerpt_source',
-							$layout,
-							'excerpt'
-						),
-					]);
-					continue;
-				}
-
-				if ($layout['id'] === 'product_stock') {
-					$has_managed_stock = $product->get_manage_stock();
-					$remaining_stock = $product->get_stock_quantity();
-
-					$need_to_show_for_variations = false;
-
-					if ($product->is_type('variable')) {
-						$maybe_current_variation = blocksy_manager()
-							->woocommerce
-							->retrieve_product_default_variation($product);
-
-						if ($maybe_current_variation) {
-							$has_managed_stock = $maybe_current_variation->get_manage_stock();
-							$remaining_stock = $maybe_current_variation->get_stock_quantity();
-						}
-					}
-
-					echo blocksy_html_tag(
-						'div',
-						[
-							'class' => 'ct-woo-card-stock'
-						],
-						wc_get_stock_html($product)
-					);
-
-					continue;
-				}
-
-				if (
-					$shop_cards_type === 'type-1'
-					&&
-					$layout['id'] === 'product_add_to_cart'
-				) {
-					$auto_hide = blocksy_akg('auto_hide_button', $layout, 'yes');
-					$equal_alignment = blocksy_akg('button_equal_alignment', $layout, 'yes');
-
-					$html_atts = [];
-
-					if ($auto_hide === 'yes') {
-						$html_atts['data-add-to-cart'] = 'auto-hide';
-					}
-
-					if ($equal_alignment === 'yes') {
-						$html_atts['data-alignment'] = 'equal';
-					}
-
-					blocksy_woo_card_actions_before();
-					echo '<div class="ct-woo-card-actions" ' . blocksy_attr_to_html($html_atts) . '>';
-					woocommerce_template_loop_add_to_cart();
-					echo '</div>';
-					blocksy_woo_card_actions_after();
-					continue;
-				}
-
-				if (
-					$shop_cards_type === 'type-2'
-					&&
-					$layout['id'] === 'product_add_to_cart_and_price'
-				) {
-					blocksy_woo_card_actions_before();
-					echo '<div class="ct-woo-card-actions" data-add-to-cart="auto-hide">';
-
-					ob_start();
-					woocommerce_template_loop_price();
-					$default_price = ob_get_clean();
-
-					echo blocksy_woo_card_price($default_price);
-
-					woocommerce_template_loop_add_to_cart();
-					echo '</div>';
-					blocksy_woo_card_actions_after();
-					continue;
-				}
-
-				$blocksy_rendering_woo_card = true;
-				/**
-				 * Fires when a custom (non-core) product card layer is rendered.
-				 *
-				 * @since 2.0.1
-				 *
-				 * @param array $layout The layer definition being rendered.
-				 */
-				do_action('blocksy:woocommerce:product-card:custom:layer', $layout);
-			}
-
-			$blocksy_rendering_woo_card = false;
-		},
-		10
-	);
-
-	add_action(
-		'woocommerce_before_subcategory_title',
-		function ($category) {
-			global $blocksy_rendering_woo_card;
-			$default_product_layout = blocksy_get_woo_archive_layout_defaults();
-
-			$shop_cards_type = blocksy_get_theme_mod('shop_cards_type', 'type-1');
-
-			$render_layout_config = blocksy_get_theme_mod(
-				'woo_card_layout',
-				$default_product_layout
-			);
-
-			$render_layout_config = blocksy_normalize_layout(
-				$render_layout_config,
-				$default_product_layout
-			);
-
-			foreach ($render_layout_config as $layout) {
-				if (! $layout['enabled'] ) {
-					continue;
-				}
-
-				if ($layout['id'] === 'product_image') {
-					$thumbnail_id = get_term_meta(
-						$category->term_id,
-						'thumbnail_id',
-						true
-					);
-
-					$hover_value = blocksy_akg('product_image_hover', $layout, 'none');
-
-					echo blocksy_html_tag(
-						'figure',
-						[],
-						blocksy_media([
-							'no_image_type' => 'woo',
-							'attachment_id' => $thumbnail_id,
-							'include_original_image_size' => is_customize_preview(),
-							'size' => 'woocommerce_archive_thumbnail',
-							'ratio' => blocksy_get_woocommerce_ratio([
-								'key' => 'archive_thumbnail',
-								'cropping' => blocksy_akg(
-									'blocksy_woocommerce_archive_thumbnail_cropping',
-									$layout,
-									'predefined'
+							'figure',
+							array(),
+							blocksy_media(
+								array(
+									'no_image_type' => 'woo',
+									'attachment_id' => $thumbnail_id,
+									'include_original_image_size' => is_customize_preview(),
+									'size'          => 'woocommerce_archive_thumbnail',
+									'ratio'         => blocksy_get_woocommerce_ratio(
+										array(
+											'key'      => 'archive_thumbnail',
+											'cropping' => blocksy_akg(
+												'blocksy_woocommerce_archive_thumbnail_cropping',
+												$layout,
+												'predefined'
+											),
+										)
+									),
+									'tag_name'      => 'a',
+									'html_atts'     => array(
+										'href' => get_term_link( $category, 'product_cat' ),
+									),
+									'class'         => 'none' !== $hover_value ? 'has-hover-effect' : '',
 								)
-							]),
-							'tag_name' => 'a',
-							'html_atts' => [
-								'href' => get_term_link($category, 'product_cat'),
-							],
-							'class' => $hover_value !== 'none' ? 'has-hover-effect' : '',
-						])
-					);
-
-					continue;
-				}
-
-				if ($layout['id'] === 'product_title') {
-					$category_name = esc_html($category->name);
-
-					if ($category->count > 0) {
-						$category_name .= apply_filters(
-							'woocommerce_subcategory_count_html',
-							' <mark class="count">(' . esc_html($category->count) . ')</mark>',
-							$category
+							)
 						);
+
+						continue;
 					}
 
-					echo blocksy_html_tag(
-						blocksy_akg('heading_tag', $layout, 'h2'),
-						[
-							'class' => 'woocommerce-loop-category__title',
-						],
-						blocksy_html_tag(
-							'a',
-							[
-								'href' => esc_url(
-									get_term_link($category, 'product_cat')
-								),
-								'class' => 'woocommerce-loop-product__link',
-							],
-							$category_name
-						)
-					);
+					if ( 'product_title' === $layout['id'] ) {
+						$category_name = esc_html( $category->name );
 
-					continue;
-				}
+						if ( $category->count > 0 ) {
+							$category_name .= apply_filters(
+								'woocommerce_subcategory_count_html', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- third-party hook
+								' <mark class="count">(' . esc_html( $category->count ) . ')</mark>',
+								$category
+							);
+						}
 
-				if ($layout['id'] === 'product_desc') {
-					if (! empty($category->category_description) ) {
+						$title_tag = blocksy_validate_html_tag(
+							array(
+								'tag'     => blocksy_akg( 'heading_tag', $layout ),
+								'allowed' => 'headings_text',
+								'default' => 'h2',
+							)
+						);
+
 						echo blocksy_html_tag(
-							'div',
-							[
-								'class' => 'entry-excerpt',
-							],
-							$category->category_description
+							$title_tag,
+							array(
+								'class' => 'woocommerce-loop-category__title',
+							),
+							blocksy_html_tag(
+								'a',
+								array(
+									'href'  => esc_url(
+										get_term_link( $category, 'product_cat' )
+									),
+									'class' => 'woocommerce-loop-product__link',
+								),
+								$category_name
+							)
 						);
+
+						continue;
 					}
 
-					continue;
+					if ( 'product_desc' === $layout['id'] ) {
+						if ( ! empty( $category->category_description ) ) {
+							echo blocksy_html_tag(
+								'div',
+								array(
+									'class' => 'entry-excerpt',
+								),
+								$category->category_description
+							);
+						}
+
+						continue;
+					}
 				}
 			}
-		}
-	);
-
-}, 15000);
+		);
+	},
+	15000
+);
