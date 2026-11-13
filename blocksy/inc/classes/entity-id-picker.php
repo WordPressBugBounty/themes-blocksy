@@ -153,7 +153,7 @@ class EntityIdPicker {
 			$terms_query_args['search'] = $maybe_input['search_query'];
 		}
 
-		foreach ( $taxonomies as $taxonomy ) {
+		foreach ( array_unique( $taxonomies ) as $taxonomy ) {
 			$taxonomy_object = get_taxonomy( $taxonomy );
 
 			if ( ! $taxonomy_object->public ) {
@@ -342,18 +342,21 @@ class EntityIdPicker {
 	private function with_uniq_ids( $items = array() ) {
 		$uniq_ids = array();
 
-		return array_filter(
-			$items,
-			function ( $item ) use ( &$uniq_ids ) {
-				// phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
-				if ( in_array( $item['id'], $uniq_ids ) ) {
-					return false;
+		return array_values(
+			array_filter(
+				$items,
+				function ( $item ) use ( &$uniq_ids ) {
+					$key = (string) $item['id'];
+
+					if ( isset( $uniq_ids[ $key ] ) ) {
+						return false;
+					}
+
+					$uniq_ids[ $key ] = true;
+
+					return true;
 				}
-
-				$uniq_ids[] = $item['id'];
-
-				return true;
-			}
+			)
 		);
 	}
 }

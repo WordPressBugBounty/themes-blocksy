@@ -14,8 +14,10 @@
  *
  * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 11.2.0
+ * @version 11.2.2
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable -- WooCommerce template override, hooks and variables are WooCommerce's
 
 defined( 'ABSPATH' ) || exit;
 
@@ -67,7 +69,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 							'<a role="button" href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s" data-success_message="%s"><svg class="ct-icon" width="10px" height="10px" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6,0l0,1.2H1.2v2.4h21.6V1.2h-8.4l0-1.2H9.6z M2.8,6l1.8,15.9C4.8,23.1,5.9,24,7.1,24h9.9c1.2,0,2.2-0.9,2.4-2.1L21.2,6H2.8z"></path></svg></a>',
 							esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 							/* translators: %s is the product name */
-							esc_attr( blocksy_safe_sprintf( __( 'Remove %s from cart', 'blocksy' ), wp_strip_all_tags($product_name) ) ),
+							esc_attr( blocksy_safe_sprintf( __( 'Remove %s from cart', 'blocksy' ), wp_strip_all_tags( $product_name ) ) ),
 							esc_attr( $product_id ),
 							esc_attr( $cart_item_key ),
 							esc_attr( $_product->get_sku() ),
@@ -80,34 +82,36 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 					global $blocksy_mini_cart_ratio;
 					global $blocksy_mini_cart_size;
 
-					$size_to_use = 'woocommerce_thumbnail';
+					$size_to_use  = 'woocommerce_thumbnail';
 					$ratio_to_use = '1/1';
 
-					if ($blocksy_mini_cart_size) {
+					if ( $blocksy_mini_cart_size ) {
 						$size_to_use = $blocksy_mini_cart_size;
 					}
 
-					if ($blocksy_mini_cart_ratio) {
+					if ( $blocksy_mini_cart_ratio ) {
 						$ratio_to_use = $blocksy_mini_cart_ratio;
 					}
 
 					echo apply_filters(
 						'woocommerce_cart_item_thumbnail',
-						blocksy_media([
-							'no_image_type' => 'woo',
-							'attachment_id' => $_product->get_image_id(),
-							'post_id' => $_product->get_id(),
-							'size' => $size_to_use,
-							'ratio' => $ratio_to_use,
-							'tag_name' => 'a',
-							'html_atts' => [
-								'href' => esc_url( $product_permalink )
-							],
-							'img_atts' => [
-								'loading' => 'lazy',
-								'fetchpriority' => 'low'
-							],
-						]),
+						blocksy_media(
+							array(
+								'no_image_type' => 'woo',
+								'attachment_id' => $_product->get_image_id(),
+								'post_id'       => $_product->get_id(),
+								'size'          => $size_to_use,
+								'ratio'         => $ratio_to_use,
+								'tag_name'      => 'a',
+								'html_atts'     => array(
+									'href' => esc_url( $product_permalink ),
+								),
+								'img_atts'      => array(
+									'loading'       => 'lazy',
+									'fetchpriority' => 'low',
+								),
+							)
+						),
 						$cart_item,
 						$cart_item_key
 					);
@@ -116,11 +120,11 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 					<div class="product-data">
 						<a href="<?php echo esc_url( $product_permalink ); ?>" class="product-title">
-							<?php echo wp_kses_post( $product_name ) ?>
+							<?php echo wp_kses_post( $product_name ); ?>
 						</a>
 
 						<?php echo wc_get_formatted_cart_item_data( $cart_item, false, $cart_item_name ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . blocksy_safe_sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . blocksy_safe_sprintf( '%s &times; %s', esc_html( $cart_item['quantity'] ), $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 				</li>
 				<?php
@@ -159,12 +163,13 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
 	<?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
 
-<?php else :
+	<?php
+else :
 
 	/**
 	 * Filters the custom output that replaces the empty mini cart message.
 	 *
-	 * A non-empty string is echoed instead of the cart/cart-empty.php template.
+	 * A non-empty string is echoed instead of the default empty cart message.
 	 *
 	 * @since 2.1.45
 	 *
@@ -175,13 +180,15 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 		''
 	);
 
-	if (trim($minicart_empty_custom_content) !== '') {
+	if ( trim( $minicart_empty_custom_content ) !== '' ) {
 		echo $minicart_empty_custom_content;
 	} else {
-		wc_get_template( 'cart/cart-empty.php' );
+		?>
+		<p class="woocommerce-mini-cart__empty-message"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch -- WooCommerce's own mini cart string ?></p>
+		<?php
 	}
 
-?>
+	?>
 
 <?php endif; ?>
 

@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable -- include scope, variables come from blocksy_get_variables_from_file()
 /**
  * Colors options
  *
@@ -7,346 +8,373 @@
  * @package   Blocksy
  */
 
-$options = [
-	'colors_section_options' => [
-		'type' => 'ct-options',
-		'setting' => [ 'transport' => 'postMessage' ],
-		'inner-options' => [
+$options = array( // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+	'colors_section_options' => array(
+		'type'          => 'ct-options',
+		'setting'       => array( 'transport' => 'postMessage' ),
+		'inner-options' => array(
 
-			[
-				'colorPalette' => [
-					'label' => __( 'Global Color Palette', 'blocksy' ),
-					'type'  => 'ct-color-palettes-picker',
-					'design' => 'block',
-					// translators: The interpolations addes a html link around the word.
-					'desc' => blocksy_safe_sprintf(
-						__('Learn more about palettes and colors %shere%s.', 'blocksy'),
+			array(
+				'colorPalette' => array(
+					'label'       => __( 'Global Color Palette', 'blocksy' ),
+					'type'        => 'ct-color-palettes-picker',
+					'design'      => 'block',
+					'desc'        => blocksy_safe_sprintf(
+						// translators: The interpolations addes a html link around the word.
+						__( 'Learn more about palettes and colors %shere%s.', 'blocksy' ), // phpcs:ignore WordPress.WP.I18n.UnorderedPlaceholdersText -- keeps the translated string
 						'<a href="https://creativethemes.com/blocksy/docs/general-options/colors/" target="_blank">',
 						'</a>'
 					),
-					'setting' => [ 'transport' => 'postMessage' ],
-					'predefined' => true,
-					'wrapperAttr' => [
-						'data-label' => 'heading-label'
-					],
+					'setting'     => array(
+						'transport'         => 'postMessage',
+						'sanitize_callback' => function ( $input, $setting ) {
+							return blocksy_manager()->colors->sanitize_color_palette(
+								array(
+									'palette' => $input,
+									'default' => $setting->default,
+								)
+							);
+						},
+					),
+					'predefined'  => true,
+					'wrapperAttr' => array(
+						'data-label' => 'heading-label',
+					),
 
-					'value' => [
-						'color1' => [
+					'value'       => array(
+						'color1' => array(
 							'color' => '#2872fa',
-						],
+						),
 
-						'color2' => [
+						'color2' => array(
 							'color' => '#1559ed',
-						],
+						),
 
-						'color3' => [
+						'color3' => array(
 							'color' => '#3A4F66',
-						],
+						),
 
-						'color4' => [
+						'color4' => array(
 							'color' => '#192a3d',
-						],
+						),
 
-						'color5' => [
+						'color5' => array(
 							'color' => '#e1e8ed',
-						],
+						),
 
-						'color6' => [
+						'color6' => array(
 							'color' => '#f2f5f7',
-						],
+						),
 
-						'color7' => [
+						'color7' => array(
 							'color' => '#FAFBFC',
-						],
+						),
 
-						'color8' => [
+						'color8' => array(
 							'color' => '#ffffff',
-						]
-					],
+						),
+					),
 
-					'palettes' => apply_filters('blocksy:options:colors:palette:palettes', [])
-				],
+					/**
+					 * Filters the predefined palettes offered by the global
+					 * color palette option.
+					 *
+					 * @since 2.1.16
+					 *
+					 * @param array $palettes List of palette definitions.
+					 */
+					'palettes'    => apply_filters( 'blocksy:options:colors:palette:palettes', array() ),
+				),
 
-			],
+			),
 
-			apply_filters('blocksy:options:colors:palette:after', []),
+			/**
+			 * Filters the options appended after the global color palette.
+			 *
+			 * @since 2.0.1
+			 *
+			 * @param array $options List of option definitions.
+			 */
+			apply_filters( 'blocksy:options:colors:palette:after', array() ),
 
-			blocksy_rand_md5() => [
-				'type' => 'ct-title',
+			blocksy_rand_md5() => array(
+				'type'  => 'ct-title',
 				'label' => __( 'Global Colors', 'blocksy' ),
-			],
+			),
 
-			'fontColor' => [
-				'label' => __( 'Base Text', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'fontColor'        => array(
+				'label'           => __( 'Base Text', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
+				'value'           => array(
+					'default' => array(
 						'color' => 'var(--theme-palette-color-3)',
-					],
-				],
+					),
+				),
 
-				'pickers' => [
-					[
+				'pickers'         => array(
+					array(
 						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-					],
-				],
-			],
+						'id'    => 'default',
+					),
+				),
+			),
 
-			'linkColor' => [
-				'label' => __( 'Links', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'linkColor'        => array(
+				'label'           => __( 'Links', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
+				'value'           => array(
+					'default' => array(
 						'color' => 'var(--theme-palette-color-1)',
-					],
+					),
 
-					'hover' => [
+					'hover'   => array(
 						'color' => 'var(--theme-palette-color-2)',
-					],
-				],
+					),
+				),
 
-				'pickers' => [
-					[
+				'pickers'         => array(
+					array(
 						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-					],
+						'id'    => 'default',
+					),
 
-					[
+					array(
 						'title' => __( 'Hover', 'blocksy' ),
-						'id' => 'hover',
-					],
-				],
-			],
+						'id'    => 'hover',
+					),
+				),
+			),
 
-			'selectionColor' => [
-				'label' => __( 'Text Selection', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'selectionColor'   => array(
+				'label'           => __( 'Text Selection', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
+				'value'           => array(
+					'default' => array(
 						'color' => '#ffffff',
-					],
+					),
 
-					'hover' => [
+					'hover'   => array(
 						'color' => 'var(--theme-palette-color-1)',
-					],
-				],
+					),
+				),
 
-				'pickers' => [
-					[
+				'pickers'         => array(
+					array(
 						'title' => __( 'Text', 'blocksy' ),
-						'id' => 'default',
-					],
+						'id'    => 'default',
+					),
 
-					[
+					array(
 						'title' => __( 'Background', 'blocksy' ),
-						'id' => 'hover',
-					],
-				],
-			],
+						'id'    => 'hover',
+					),
+				),
+			),
 
-			'border_color' => [
-				'label' => __( 'Borders', 'blocksy' ),
-				'type'  => 'ct-color-picker',
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+			'border_color'     => array(
+				'label'   => __( 'Borders', 'blocksy' ),
+				'type'    => 'ct-color-picker',
+				'design'  => 'inline',
+				'setting' => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
+				'value'   => array(
+					'default' => array(
 						'color' => 'var(--theme-palette-color-5)',
-					],
-				],
+					),
+				),
 
-				'pickers' => [
-					[
+				'pickers' => array(
+					array(
 						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-					],
-				],
-			],
+						'id'    => 'default',
+					),
+				),
+			),
 
-			'headingColor' => [
-				'label' => __( 'All Headings (H1 - H6)', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'headingColor'     => array(
+				'label'           => __( 'All Headings (H1 - H6)', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'divider' => 'top',
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'divider'         => 'top',
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
+				'value'           => array(
+					'default' => array(
 						'color' => 'var(--theme-palette-color-4)',
-					],
-				],
+					),
+				),
 
-				'pickers' => [
-					[
+				'pickers'         => array(
+					array(
 						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
-					],
-				],
-			],
+						'id'    => 'default',
+					),
+				),
+			),
 
-			'heading_1_color' => [
-				'label' => __( 'Heading 1 (H1)', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'heading_1_color'  => array(
+				'label'           => __( 'Heading 1 (H1)', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
+				'value'           => array(
+					'default' => array(
+						'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ),
+					),
+				),
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
+				'pickers'         => array(
+					array(
+						'title'   => __( 'Initial', 'blocksy' ),
+						'id'      => 'default',
 						'inherit' => 'var(--theme-headings-color)',
-					],
-				],
-			],
+					),
+				),
+			),
 
-			'heading_2_color' => [
-				'label' => __( 'Heading 2 (H2)', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'heading_2_color'  => array(
+				'label'           => __( 'Heading 2 (H2)', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
+				'value'           => array(
+					'default' => array(
+						'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ),
+					),
+				),
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
+				'pickers'         => array(
+					array(
+						'title'   => __( 'Initial', 'blocksy' ),
+						'id'      => 'default',
 						'inherit' => 'var(--theme-headings-color)',
-					],
-				],
-			],
+					),
+				),
+			),
 
-			'heading_3_color' => [
-				'label' => __( 'Heading 3 (H3)', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'heading_3_color'  => array(
+				'label'           => __( 'Heading 3 (H3)', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
+				'value'           => array(
+					'default' => array(
+						'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ),
+					),
+				),
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
+				'pickers'         => array(
+					array(
+						'title'   => __( 'Initial', 'blocksy' ),
+						'id'      => 'default',
 						'inherit' => 'var(--theme-headings-color)',
-					],
-				],
-			],
+					),
+				),
+			),
 
-			'heading_4_color' => [
-				'label' => __( 'Heading 4 (H4)', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'heading_4_color'  => array(
+				'label'           => __( 'Heading 4 (H4)', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
+				'value'           => array(
+					'default' => array(
+						'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ),
+					),
+				),
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
+				'pickers'         => array(
+					array(
+						'title'   => __( 'Initial', 'blocksy' ),
+						'id'      => 'default',
 						'inherit' => 'var(--theme-headings-color)',
-					],
-				],
-			],
+					),
+				),
+			),
 
-			'heading_5_color' => [
-				'label' => __( 'Heading 5 (H5)', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'heading_5_color'  => array(
+				'label'           => __( 'Heading 5 (H5)', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
+				'value'           => array(
+					'default' => array(
+						'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ),
+					),
+				),
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
+				'pickers'         => array(
+					array(
+						'title'   => __( 'Initial', 'blocksy' ),
+						'id'      => 'default',
 						'inherit' => 'var(--theme-headings-color)',
-					],
-				],
-			],
+					),
+				),
+			),
 
-			'heading_6_color' => [
-				'label' => __( 'Heading 6 (H6)', 'blocksy' ),
-				'type'  => 'ct-color-picker',
+			'heading_6_color'  => array(
+				'label'           => __( 'Heading 6 (H6)', 'blocksy' ),
+				'type'            => 'ct-color-picker',
 				'skipEditPalette' => true,
-				'design' => 'inline',
-				'setting' => [ 'transport' => 'postMessage' ],
+				'design'          => 'inline',
+				'setting'         => array( 'transport' => 'postMessage' ),
 
-				'value' => [
-					'default' => [
-						'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT'),
-					],
-				],
+				'value'           => array(
+					'default' => array(
+						'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ),
+					),
+				),
 
-				'pickers' => [
-					[
-						'title' => __( 'Initial', 'blocksy' ),
-						'id' => 'default',
+				'pickers'         => array(
+					array(
+						'title'   => __( 'Initial', 'blocksy' ),
+						'id'      => 'default',
 						'inherit' => 'var(--theme-headings-color)',
-					],
-				],
-			],
+					),
+				),
+			),
 
-			'site_background' => [
-				'label' => __( 'Site Background', 'blocksy' ),
-				'type' => 'ct-background',
-				'design' => 'block:right',
+			'site_background'  => array(
+				'label'      => __( 'Site Background', 'blocksy' ),
+				'type'       => 'ct-background',
+				'design'     => 'block:right',
 				'responsive' => true,
-				'divider' => 'top',
-				'setting' => [ 'transport' => 'postMessage' ],
-				'value' => blocksy_background_default_value([
-					'backgroundColor' => [
-						'default' => [
-							'color' => 'var(--theme-palette-color-7)'
-						],
-					],
-				])
-			],
+				'divider'    => 'top',
+				'setting'    => array( 'transport' => 'postMessage' ),
+				'value'      => blocksy_background_default_value(
+					array(
+						'backgroundColor' => array(
+							'default' => array(
+								'color' => 'var(--theme-palette-color-7)',
+							),
+						),
+					)
+				),
+			),
 
-		],
-	],
-];
+		),
+	),
+);

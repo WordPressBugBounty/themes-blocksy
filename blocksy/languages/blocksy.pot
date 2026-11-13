@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-29 19:28+0000\n"
+"POT-Creation-Date: 2026-11-12 20:38+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -287,7 +287,7 @@ msgid ""
 msgstr ""
 
 #. translators: %s is the color number.
-#: inc/classes/colors.php:589
+#: inc/classes/colors.php:630
 #: static/js/options/options/color-palettes/EditColorName.js:12
 #: static/js/options/options/color-palettes/PalettePreview.js:193
 #: static/js/options/options/color-picker/picker-modal.js:94
@@ -378,7 +378,8 @@ msgctxt "breadcrumb"
 msgid "Home"
 msgstr ""
 
-#: inc/components/gallery.php:331, inc/components/gallery.php:317
+#. translators: %s is the slide number.
+#: inc/components/gallery.php:345, inc/components/gallery.php:325
 msgid "Slide %s"
 msgstr ""
 
@@ -573,7 +574,7 @@ msgstr ""
 msgid "System Default"
 msgstr ""
 
-#: inc/customizer/init.php:63
+#: inc/customizer/init.php:65
 msgid "Core"
 msgstr ""
 
@@ -673,7 +674,7 @@ msgstr ""
 #: inc/options/single-elements/post-share-box.php:633,
 #: inc/options/single-elements/post-tags.php:68,
 #: inc/options/single-elements/related-posts.php:29,
-#: inc/options/woocommerce/archive-main.php:49,
+#: inc/options/woocommerce/archive-main.php:59,
 #: inc/options/woocommerce/card-product-elements.php:209,
 #: inc/options/woocommerce/related-upsells.php:16,
 #: inc/options/woocommerce/results-count.php:16,
@@ -686,10 +687,10 @@ msgstr ""
 #: inc/options/integrations/the-events-calendar/single.php:28,
 #: inc/options/woocommerce/general/account-page.php:19,
 #: inc/options/woocommerce/general/cart-page.php:19,
-#: inc/options/woocommerce/general/checkout-page.php:52,
+#: inc/options/woocommerce/general/checkout-page.php:55,
 #: inc/options/woocommerce/general/product-badges.php:19,
 #: inc/options/woocommerce/general/quantity-input.php:19,
-#: inc/options/woocommerce/general/store-notice.php:24,
+#: inc/options/woocommerce/general/store-notice.php:27,
 #: inc/panel-builder/footer/copyright/options.php:5,
 #: inc/panel-builder/footer/menu/options.php:33,
 #: inc/panel-builder/footer/middle-row/options.php:23,
@@ -754,7 +755,7 @@ msgstr ""
 msgid "WooCommerce"
 msgstr ""
 
-#: inc/options/customizer.php:157, inc/options/woocommerce/archive-main.php:6
+#: inc/options/customizer.php:157, inc/options/woocommerce/archive-main.php:9
 msgid "Product Archives"
 msgstr ""
 
@@ -795,7 +796,7 @@ msgstr ""
 
 #. translators: %s is the product name
 #: woocommerce/cart/cart.php:225, woocommerce/cart/cart.php:273,
-#: woocommerce/cart/mini-cart.php:70
+#: woocommerce/cart/mini-cart.php:72
 msgid "Remove %s from cart"
 msgstr ""
 
@@ -820,7 +821,7 @@ msgid "Update cart"
 msgstr ""
 
 #. translators: %s is the product name
-#: woocommerce/cart/mini-cart.php:75
+#: woocommerce/cart/mini-cart.php:77
 msgid "&ldquo;%s&rdquo; has been removed from your cart"
 msgstr ""
 
@@ -1170,7 +1171,7 @@ msgstr ""
 #: inc/options/general/page-title.php:250, inc/options/general/sidebar.php:30,
 #: inc/options/single-elements/author-box.php:44,
 #: inc/options/single-elements/post-share-box.php:176,
-#: inc/options/woocommerce/archive-main.php:66,
+#: inc/options/woocommerce/archive-main.php:84,
 #: inc/options/woocommerce/single-product-tabs.php:29,
 #: inc/options/woocommerce/general/product-badges.php:37,
 #: inc/options/woocommerce/general/quantity-input.php:49,
@@ -1187,7 +1188,7 @@ msgstr ""
 #: inc/options/general/page-title.php:255, inc/options/general/sidebar.php:35,
 #: inc/options/single-elements/author-box.php:49,
 #: inc/options/single-elements/post-share-box.php:181,
-#: inc/options/woocommerce/archive-main.php:71,
+#: inc/options/woocommerce/archive-main.php:89,
 #: inc/options/woocommerce/single-product-tabs.php:34,
 #: inc/options/woocommerce/general/product-badges.php:42,
 #: inc/options/woocommerce/general/quantity-input.php:50,
@@ -1445,7 +1446,7 @@ msgstr ""
 #: inc/options/single-elements/post-share-box.php:639,
 #: inc/options/single-elements/post-tags.php:161,
 #: inc/options/single-elements/related-posts.php:613,
-#: inc/options/woocommerce/archive-main.php:167,
+#: inc/options/woocommerce/archive-main.php:191,
 #: inc/options/woocommerce/card-product-elements.php:716,
 #: inc/options/woocommerce/related-upsells.php:144,
 #: inc/options/woocommerce/results-count.php:44,
@@ -1458,10 +1459,10 @@ msgstr ""
 #: inc/options/integrations/the-events-calendar/single.php:39,
 #: inc/options/woocommerce/general/account-page.php:74,
 #: inc/options/woocommerce/general/cart-page.php:58,
-#: inc/options/woocommerce/general/checkout-page.php:200,
+#: inc/options/woocommerce/general/checkout-page.php:219,
 #: inc/options/woocommerce/general/product-badges.php:182,
 #: inc/options/woocommerce/general/quantity-input.php:61,
-#: inc/options/woocommerce/general/store-notice.php:56,
+#: inc/options/woocommerce/general/store-notice.php:60,
 #: inc/panel-builder/footer/copyright/options.php:95,
 #: inc/panel-builder/footer/menu/options.php:145,
 #: inc/panel-builder/footer/middle-row/options.php:462,
@@ -1507,12 +1508,12 @@ msgstr ""
 
 #: inc/options/general/back-to-top.php:239,
 #: inc/options/general/back-to-top.php:268, inc/options/general/buttons.php:68,
-#: inc/options/general/buttons.php:98, inc/options/general/colors.php:94,
-#: inc/options/general/colors.php:119, inc/options/general/colors.php:174,
-#: inc/options/general/colors.php:196, inc/options/general/colors.php:217,
-#: inc/options/general/colors.php:239, inc/options/general/colors.php:261,
-#: inc/options/general/colors.php:283, inc/options/general/colors.php:305,
-#: inc/options/general/colors.php:327,
+#: inc/options/general/buttons.php:98, inc/options/general/colors.php:120,
+#: inc/options/general/colors.php:145, inc/options/general/colors.php:200,
+#: inc/options/general/colors.php:222, inc/options/general/colors.php:243,
+#: inc/options/general/colors.php:265, inc/options/general/colors.php:287,
+#: inc/options/general/colors.php:309, inc/options/general/colors.php:331,
+#: inc/options/general/colors.php:353,
 #: inc/options/general/comments-single.php:211,
 #: inc/options/general/comments-single.php:241,
 #: inc/options/general/form-elements.php:128,
@@ -1612,8 +1613,8 @@ msgstr ""
 #: inc/options/woocommerce/general/quantity-input.php:82,
 #: inc/options/woocommerce/general/quantity-input.php:117,
 #: inc/options/woocommerce/general/quantity-input.php:124,
-#: inc/options/woocommerce/general/store-notice.php:76,
-#: inc/options/woocommerce/general/store-notice.php:97,
+#: inc/options/woocommerce/general/store-notice.php:80,
+#: inc/options/woocommerce/general/store-notice.php:101,
 #: inc/panel-builder/footer/copyright/options.php:133,
 #: inc/panel-builder/footer/menu/options.php:183,
 #: inc/panel-builder/footer/middle-row/options.php:494,
@@ -1714,7 +1715,7 @@ msgstr ""
 
 #: inc/options/general/back-to-top.php:244,
 #: inc/options/general/back-to-top.php:274, inc/options/general/buttons.php:73,
-#: inc/options/general/buttons.php:103, inc/options/general/colors.php:124,
+#: inc/options/general/buttons.php:103, inc/options/general/colors.php:150,
 #: inc/options/general/comments-single.php:217,
 #: inc/options/general/comments-single.php:247,
 #: inc/options/general/page-title.php:1098,
@@ -1912,7 +1913,7 @@ msgid "Home Item"
 msgstr ""
 
 #: inc/options/general/breadcrumbs.php:151,
-#: inc/options/general/breadcrumbs.php:312, inc/options/general/colors.php:149,
+#: inc/options/general/breadcrumbs.php:312, inc/options/general/colors.php:175,
 #: inc/options/general/page-title.php:1340,
 #: inc/options/general/posts-listing.php:498,
 #: inc/options/single-elements/author-box.php:320,
@@ -2129,32 +2130,32 @@ msgstr ""
 msgid "Cards Reveal Effect"
 msgstr ""
 
-#: inc/options/general/colors.php:18
+#: inc/options/general/colors.php:19
 msgid "Global Color Palette"
 msgstr ""
 
 #. translators: The interpolations addes a html link around the word.
-#: inc/options/general/colors.php:23
+#: inc/options/general/colors.php:24
 msgid "Learn more about palettes and colors %shere%s."
 msgstr ""
 
-#: inc/options/general/colors.php:76
+#: inc/options/general/colors.php:102
 msgid "Global Colors"
 msgstr ""
 
-#: inc/options/general/colors.php:80
+#: inc/options/general/colors.php:106
 msgid "Base Text"
 msgstr ""
 
-#: inc/options/general/colors.php:101
+#: inc/options/general/colors.php:127
 msgid "Links"
 msgstr ""
 
-#: inc/options/general/colors.php:131
+#: inc/options/general/colors.php:157
 msgid "Text Selection"
 msgstr ""
 
-#: inc/options/general/colors.php:154,
+#: inc/options/general/colors.php:180,
 #: inc/options/general/posts-listing.php:488,
 #: inc/options/woocommerce/single-product-tabs.php:319,
 #: inc/options/woocommerce/general/product-badges.php:222,
@@ -2172,39 +2173,39 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
-#: inc/options/general/colors.php:161
+#: inc/options/general/colors.php:187
 msgid "Borders"
 msgstr ""
 
-#: inc/options/general/colors.php:181
+#: inc/options/general/colors.php:207
 msgid "All Headings (H1 - H6)"
 msgstr ""
 
-#: inc/options/general/colors.php:203, inc/options/general/typography.php:33
+#: inc/options/general/colors.php:229, inc/options/general/typography.php:33
 msgid "Heading 1 (H1)"
 msgstr ""
 
-#: inc/options/general/colors.php:225, inc/options/general/typography.php:44
+#: inc/options/general/colors.php:251, inc/options/general/typography.php:44
 msgid "Heading 2 (H2)"
 msgstr ""
 
-#: inc/options/general/colors.php:247, inc/options/general/typography.php:55
+#: inc/options/general/colors.php:273, inc/options/general/typography.php:55
 msgid "Heading 3 (H3)"
 msgstr ""
 
-#: inc/options/general/colors.php:269, inc/options/general/typography.php:66
+#: inc/options/general/colors.php:295, inc/options/general/typography.php:66
 msgid "Heading 4 (H4)"
 msgstr ""
 
-#: inc/options/general/colors.php:291, inc/options/general/typography.php:77
+#: inc/options/general/colors.php:317, inc/options/general/typography.php:77
 msgid "Heading 5 (H5)"
 msgstr ""
 
-#: inc/options/general/colors.php:313, inc/options/general/typography.php:88
+#: inc/options/general/colors.php:339, inc/options/general/typography.php:88
 msgid "Heading 6 (H6)"
 msgstr ""
 
-#: inc/options/general/colors.php:335
+#: inc/options/general/colors.php:361
 msgid "Site Background"
 msgstr ""
 
@@ -2729,7 +2730,7 @@ msgstr ""
 #: inc/options/posts/categories.php:19,
 #: inc/options/posts/custom-post-type-archive.php:30,
 #: inc/options/posts/custom-post-type-single.php:70,
-#: inc/options/posts/post.php:92, inc/options/woocommerce/archive-main.php:18,
+#: inc/options/posts/post.php:92, inc/options/woocommerce/archive-main.php:24,
 #: inc/options/woocommerce/single-main.php:19
 msgid "Page Title"
 msgstr ""
@@ -3039,7 +3040,7 @@ msgstr ""
 #: inc/options/meta/default.php:160, inc/options/meta/page.php:145,
 #: inc/options/meta/post.php:144,
 #: inc/options/single-elements/structure.php:114,
-#: inc/options/woocommerce/archive-main.php:150
+#: inc/options/woocommerce/archive-main.php:174
 #: static/js/options/options/background/ImagePicker.js:151
 msgid "Disabled"
 msgstr ""
@@ -3407,7 +3408,7 @@ msgstr ""
 #: inc/options/general/posts-listing.php:1668,
 #: inc/options/meta/default.php:122, inc/options/meta/page.php:107,
 #: inc/options/meta/post.php:107, inc/options/single-elements/structure.php:94,
-#: inc/options/woocommerce/archive-main.php:130
+#: inc/options/woocommerce/archive-main.php:154
 msgid "Content Area Vertical Spacing"
 msgstr ""
 
@@ -3415,7 +3416,7 @@ msgstr ""
 #: inc/options/meta/default.php:151, inc/options/meta/page.php:136,
 #: inc/options/meta/post.php:135,
 #: inc/options/single-elements/structure.php:105,
-#: inc/options/woocommerce/archive-main.php:141
+#: inc/options/woocommerce/archive-main.php:165
 msgid "Top & Bottom"
 msgstr ""
 
@@ -3423,7 +3424,7 @@ msgstr ""
 #: inc/options/meta/default.php:154, inc/options/meta/page.php:139,
 #: inc/options/meta/post.php:138,
 #: inc/options/single-elements/structure.php:108,
-#: inc/options/woocommerce/archive-main.php:144
+#: inc/options/woocommerce/archive-main.php:168
 msgid "Only Top"
 msgstr ""
 
@@ -3431,7 +3432,7 @@ msgstr ""
 #: inc/options/meta/default.php:157, inc/options/meta/page.php:142,
 #: inc/options/meta/post.php:141,
 #: inc/options/single-elements/structure.php:111,
-#: inc/options/woocommerce/archive-main.php:147
+#: inc/options/woocommerce/archive-main.php:171
 msgid "Only Bottom"
 msgstr ""
 
@@ -3440,7 +3441,7 @@ msgstr ""
 #: inc/options/meta/default.php:164, inc/options/meta/page.php:149,
 #: inc/options/meta/post.php:148,
 #: inc/options/single-elements/structure.php:118,
-#: inc/options/woocommerce/archive-main.php:154
+#: inc/options/woocommerce/archive-main.php:178
 msgid ""
 "You can customize the global spacing value in General ➝ Layout ➝ %sContent "
 "Area Spacing%s."
@@ -3448,14 +3449,14 @@ msgstr ""
 
 #: inc/options/general/posts-listing.php:1710,
 #: inc/options/single-elements/structure-design.php:21,
-#: inc/options/woocommerce/archive-main.php:171
+#: inc/options/woocommerce/archive-main.php:195
 msgid "Page Background"
 msgstr ""
 
 #. translators: placeholder here means the actual URL.
 #: inc/options/general/posts-listing.php:1725,
 #: inc/options/single-elements/structure-design.php:36,
-#: inc/options/woocommerce/archive-main.php:186
+#: inc/options/woocommerce/archive-main.php:212
 msgid ""
 "Please note, by default this option is inherited from Colors ➝ %sSite "
 "Background%s."
@@ -3537,7 +3538,7 @@ msgstr ""
 
 #: inc/options/general/sidebar.php:259,
 #: inc/options/single-elements/post-share-box.php:223,
-#: inc/options/woocommerce/general/store-notice.php:47,
+#: inc/options/woocommerce/general/store-notice.php:51,
 #: inc/panel-builder/header/logo/options.php:311
 #: static/js/options/options/ct-spacing/input.js:149
 msgid "Top"
@@ -3545,7 +3546,7 @@ msgstr ""
 
 #: inc/options/general/sidebar.php:260,
 #: inc/options/single-elements/post-share-box.php:224,
-#: inc/options/woocommerce/general/store-notice.php:48,
+#: inc/options/woocommerce/general/store-notice.php:52,
 #: inc/panel-builder/header/cart/options.php:150,
 #: inc/panel-builder/header/search/options.php:132,
 #: inc/panel-builder/header/trigger/options.php:144
@@ -3677,7 +3678,7 @@ msgstr ""
 #: inc/options/posts/custom-post-type-single.php:160,
 #: inc/options/posts/custom-post-type-single.php:182,
 #: inc/options/posts/post.php:68, inc/options/posts/post.php:122,
-#: inc/options/woocommerce/archive-main.php:199,
+#: inc/options/woocommerce/archive-main.php:225,
 #: inc/options/woocommerce/single-main.php:88
 msgid "Page Elements"
 msgstr ""
@@ -3800,7 +3801,7 @@ msgstr ""
 
 #: inc/options/pages/search-page.php:96, inc/options/posts/blog.php:99,
 #: inc/options/posts/custom-post-type-archive.php:96,
-#: inc/options/woocommerce/archive-main.php:228
+#: inc/options/woocommerce/archive-main.php:276
 msgid "Functionality Options"
 msgstr ""
 
@@ -4113,7 +4114,7 @@ msgstr ""
 
 #: inc/options/single-elements/related-posts.php:878,
 #: inc/options/woocommerce/card-product-elements.php:1304,
-#: inc/options/woocommerce/general/checkout-page.php:264,
+#: inc/options/woocommerce/general/checkout-page.php:289,
 #: inc/panel-builder/header/cart/options.php:932,
 #: inc/panel-builder/header/search/options.php:726
 msgid "Image Border Radius"
@@ -4139,87 +4140,87 @@ msgstr ""
 msgid "Content Area Padding"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:45
+#: inc/options/woocommerce/archive-main.php:55
 msgid "Shop Settings"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:83,
+#: inc/options/woocommerce/archive-main.php:103,
 #: inc/options/woocommerce/related-upsells.php:33
 msgid "Columns & Rows"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:239
+#: inc/options/woocommerce/archive-main.php:295
 msgid "Product Catalog"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:246
+#: inc/options/woocommerce/archive-main.php:302
 msgid "Shop page display"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:250,
-#: inc/options/woocommerce/archive-main.php:258,
-#: inc/options/woocommerce/archive-main.php:270,
-#: inc/options/woocommerce/archive-main.php:278
+#: inc/options/woocommerce/archive-main.php:306,
+#: inc/options/woocommerce/archive-main.php:315,
+#: inc/options/woocommerce/archive-main.php:327,
+#: inc/options/woocommerce/archive-main.php:336
 msgid "Show products"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:255
+#: inc/options/woocommerce/archive-main.php:312
 msgid "Choose what to display on the main shop page."
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:259
+#: inc/options/woocommerce/archive-main.php:316
 msgid "Show categories"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:260
+#: inc/options/woocommerce/archive-main.php:317
 msgid "Show categories & products"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:266
+#: inc/options/woocommerce/archive-main.php:323
 msgid "Category display"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:275
+#: inc/options/woocommerce/archive-main.php:333
 msgid "Choose what to display on product category pages."
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:279
+#: inc/options/woocommerce/archive-main.php:337
 msgid "Show subcategories"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:280
+#: inc/options/woocommerce/archive-main.php:338
 msgid "Show subcategories & products"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:286
+#: inc/options/woocommerce/archive-main.php:344
 msgid "Default product sorting"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:291
+#: inc/options/woocommerce/archive-main.php:349
 msgid "How should products be sorted in the catalog by default?"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:299
+#: inc/options/woocommerce/archive-main.php:359
 msgid "Default sorting (custom ordering + name)"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:300
+#: inc/options/woocommerce/archive-main.php:360
 msgid "Popularity (sales)"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:301
+#: inc/options/woocommerce/archive-main.php:361
 msgid "Average rating"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:302
+#: inc/options/woocommerce/archive-main.php:362
 msgid "Sort by most recent"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:303
+#: inc/options/woocommerce/archive-main.php:363
 msgid "Sort by price (asc)"
 msgstr ""
 
-#: inc/options/woocommerce/archive-main.php:304
+#: inc/options/woocommerce/archive-main.php:364
 msgid "Sort by price (desc)"
 msgstr ""
 
@@ -4777,99 +4778,100 @@ msgstr ""
 msgid "Cart Totals Padding"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:30
+#: inc/options/woocommerce/general/checkout-page.php:32
 msgid "No page set"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:46
+#: inc/options/woocommerce/general/checkout-page.php:49
 msgid "Checkout Page"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:58
+#: inc/options/woocommerce/general/checkout-page.php:61
 msgid "Coupon Form"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:74
+#: inc/options/woocommerce/general/checkout-page.php:83
 msgid "Highlight Required Fields"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:85
+#: inc/options/woocommerce/general/checkout-page.php:96
 msgid "Company Name Field"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:92,
-#: inc/options/woocommerce/general/checkout-page.php:110,
-#: inc/options/woocommerce/general/checkout-page.php:128
+#: inc/options/woocommerce/general/checkout-page.php:103,
+#: inc/options/woocommerce/general/checkout-page.php:122,
+#: inc/options/woocommerce/general/checkout-page.php:141
 msgid "Hidden"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:93,
-#: inc/options/woocommerce/general/checkout-page.php:111,
-#: inc/options/woocommerce/general/checkout-page.php:129
+#: inc/options/woocommerce/general/checkout-page.php:104,
+#: inc/options/woocommerce/general/checkout-page.php:123,
+#: inc/options/woocommerce/general/checkout-page.php:142
 msgid "Optional"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:94,
-#: inc/options/woocommerce/general/checkout-page.php:112,
-#: inc/options/woocommerce/general/checkout-page.php:130
+#: inc/options/woocommerce/general/checkout-page.php:105,
+#: inc/options/woocommerce/general/checkout-page.php:124,
+#: inc/options/woocommerce/general/checkout-page.php:143
 msgid "Required"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:103
+#: inc/options/woocommerce/general/checkout-page.php:115
 msgid "Address Line 2 Field"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:121
+#: inc/options/woocommerce/general/checkout-page.php:134
 msgid "Phone Field"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:139
+#: inc/options/woocommerce/general/checkout-page.php:153
 msgid "Privacy Policy Page"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:152
+#: inc/options/woocommerce/general/checkout-page.php:167
 msgid "Terms And Conditions Page"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:164
+#: inc/options/woocommerce/general/checkout-page.php:180
 msgid "Privacy policy"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:165
+#: inc/options/woocommerce/general/checkout-page.php:181
 msgid ""
 "Optionally add some text about your store privacy policy to show during "
 "checkout."
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:167
+#: inc/options/woocommerce/general/checkout-page.php:183
 msgid ""
 "Your personal data will be used to process your order, support your "
 "experience throughout this website, and for other purposes described in our "
 "[privacy_policy]."
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:180
+#: inc/options/woocommerce/general/checkout-page.php:197
 msgid "Terms and conditions"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:181
+#: inc/options/woocommerce/general/checkout-page.php:198
 msgid ""
 "Optionally add some text for the terms checkbox that customers must accept."
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:184
+#. translators: %s is the terms and conditions page placeholder.
+#: inc/options/woocommerce/general/checkout-page.php:202
 msgid "I have read and agree to the website %s"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:205
+#: inc/options/woocommerce/general/checkout-page.php:224
 msgid "Order Review Border"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:220
+#: inc/options/woocommerce/general/checkout-page.php:239
 msgid "Order Review Border Radius"
 msgstr ""
 
-#: inc/options/woocommerce/general/checkout-page.php:230
+#: inc/options/woocommerce/general/checkout-page.php:249
 msgid "Order Review Padding"
 msgstr ""
 
@@ -4946,25 +4948,25 @@ msgstr ""
 msgid "Inactive"
 msgstr ""
 
-#: inc/options/woocommerce/general/store-notice.php:13
+#: inc/options/woocommerce/general/store-notice.php:15
 msgid "Store Notice"
 msgstr ""
 
-#: inc/options/woocommerce/general/store-notice.php:31
+#: inc/options/woocommerce/general/store-notice.php:34
 msgid ""
 "This is a demo store for testing purposes &mdash; no orders shall be "
 "fulfilled."
 msgstr ""
 
-#: inc/options/woocommerce/general/store-notice.php:41
+#: inc/options/woocommerce/general/store-notice.php:45
 msgid "Notice Position"
 msgstr ""
 
-#: inc/options/woocommerce/general/store-notice.php:61
+#: inc/options/woocommerce/general/store-notice.php:65
 msgid "Notice Font Color"
 msgstr ""
 
-#: inc/options/woocommerce/general/store-notice.php:83
+#: inc/options/woocommerce/general/store-notice.php:87
 msgid "Notice Background Color"
 msgstr ""
 

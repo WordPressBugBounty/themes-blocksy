@@ -86,6 +86,42 @@ class Colors {
 		return $result;
 	}
 
+	public function sanitize_color_palette( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'palette' => array(),
+				'default' => array(),
+			)
+		);
+
+		if ( ! is_array( $args['palette'] ) ) {
+			return $args['default'];
+		}
+
+		$result = array();
+
+		foreach ( $args['palette'] as $key => $value ) {
+			if ( ! preg_match( '/^color\d+$/D', $key ) ) {
+				continue;
+			}
+
+			$color = $this->sanitize_palette_color( $value );
+
+			if ( ! $color && isset( $args['default'][ $key ] ) ) {
+				$color = $args['default'][ $key ];
+			}
+
+			if ( ! $color ) {
+				continue;
+			}
+
+			$result[ $key ] = $color;
+		}
+
+		return $result;
+	}
+
 	public function register_color_palettes() {
 		$palettes = array(
 			array(
@@ -565,7 +601,12 @@ class Colors {
 			)
 		);
 
-		$color_palette = blocksy_get_theme_mod( $args['id'], $args['default'] );
+		$color_palette = $this->sanitize_color_palette(
+			array(
+				'palette' => blocksy_get_theme_mod( $args['id'], $args['default'] ),
+				'default' => $args['default'],
+			)
+		);
 
 		$result = array();
 
@@ -624,32 +665,10 @@ class Colors {
 				continue;
 			}
 
-			if (
-				! is_array( $value )
-				||
-				! isset( $value['color'] )
-				||
-				! blocksy_validate_color( $value['color'] )
-			) {
+			$color = $this->sanitize_palette_color( $value );
+
+			if ( ! $color ) {
 				return null;
-			}
-
-			$color = array(
-				'color' => $value['color'],
-			);
-
-			if ( isset( $value['title'] ) && is_string( $value['title'] ) ) {
-				$color['title'] = sanitize_text_field( $value['title'] );
-			}
-
-			if (
-				isset( $value['variable'] )
-				&&
-				is_string( $value['variable'] )
-				&&
-				preg_match( '/^[\w-]+$/D', $value['variable'] )
-			) {
-				$color['variable'] = $value['variable'];
 			}
 
 			$result[ $key ] = $color;
@@ -662,5 +681,37 @@ class Colors {
 		}
 
 		return $result;
+	}
+
+	private function sanitize_palette_color( $value ) {
+		if (
+			! is_array( $value )
+			||
+			! isset( $value['color'] )
+			||
+			! blocksy_validate_color( $value['color'] )
+		) {
+			return null;
+		}
+
+		$color = array(
+			'color' => $value['color'],
+		);
+
+		if ( isset( $value['title'] ) && is_string( $value['title'] ) ) {
+			$color['title'] = sanitize_text_field( $value['title'] );
+		}
+
+		if (
+			isset( $value['variable'] )
+			&&
+			is_string( $value['variable'] )
+			&&
+			preg_match( '/^[\w-]+$/D', $value['variable'] )
+		) {
+			$color['variable'] = $value['variable'];
+		}
+
+		return $color;
 	}
 }

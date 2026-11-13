@@ -1,3 +1,10 @@
+2.1.62: 2026-11-12
+- Improvement: Customizer - improve option permissions, Reset Options and color palette validation
+- Improvement: Mini cart - make sure add to cart errors and the empty cart notice are displayed correctly with WooCommerce 11.3
+- Improvement: Update mini-cart template for compatibility with latest WooCommerce version
+- Improvement: WooCommerce - improve handling of product gallery and product reviews settings
+- Fix: Entity picker - correctly display and search taxonomy terms when multiple post types share the same taxonomy
+
 2.1.61: 2026-10-29
 - Improvement: About Me block - show only users with published content
 - Improvement: Cards Reveal Effect - improve staggered animations for larger groups of cards
