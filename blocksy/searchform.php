@@ -191,6 +191,8 @@ if ( $has_taxonomy_filter ) {
 		}
 	}
 
+	$taxonomy_terms = array();
+
 	foreach ( $allowed_post_types as $post_type ) {
 		$terms_els = array();
 
@@ -211,20 +213,17 @@ if ( $has_taxonomy_filter ) {
 				continue;
 			}
 
-			$terms_args = array(
-				'taxonomy'     => $tax,
-				'hide_empty'   => true,
-				'hierarchical' => false,
-				'parent'       => 0,
-			);
+			if ( ! isset( $taxonomy_terms[ $tax ] ) ) {
+				$taxonomy_terms[ $tax ] = blocksy_get_search_terms_by_parent( $tax );
+			}
 
-			$terms = get_terms( $terms_args );
+			$terms_by_parent = $taxonomy_terms[ $tax ];
 
-			if ( ! count( $terms ) ) {
+			if ( empty( $terms_by_parent[0] ) ) {
 				continue;
 			}
 
-			foreach ( $terms as $term ) {
+			foreach ( $terms_by_parent[0] as $term ) {
 				$terms_els[] = blocksy_html_tag(
 					'option',
 					array_merge(
@@ -239,7 +238,7 @@ if ( $has_taxonomy_filter ) {
 				if ( $has_taxonomy_children ) {
 					$terms_els = array_merge(
 						$terms_els,
-						blocksy_reqursive_taxonomy( $tax, $term->term_id, 0, $selected_cat )
+						blocksy_reqursive_taxonomy( $tax, $term->term_id, 0, $selected_cat, $terms_by_parent )
 					);
 				}
 			}

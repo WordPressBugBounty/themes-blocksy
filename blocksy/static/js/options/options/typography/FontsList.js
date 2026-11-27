@@ -4,7 +4,7 @@ import {
 	Component,
 	useEffect,
 	useRef,
-	useState,
+	useState
 } from '@wordpress/element'
 import classnames from 'classnames'
 import { getDefaultFonts } from './default-data'
@@ -12,7 +12,7 @@ import {
 	familyForDisplay,
 	humanizeVariations,
 	fontFamilyToCSSFamily,
-	humanizeFontSource,
+	humanizeFontSource
 } from './helpers'
 import { FixedSizeList as List } from 'react-window'
 import WebFontLoader from 'webfontloader'
@@ -20,6 +20,14 @@ import WebFontLoader from 'webfontloader'
 import { __ } from 'ct-i18n'
 
 let loadedFonts = []
+
+const fontSourceBadges = {
+	system: 'S',
+	'local-google-fonts': 'L',
+	typekit: 'A',
+	file: 'C',
+	google: 'G'
+}
 
 const loadFonts = (font_families, fontsCss) => {
 	if (fontsCss && !document.getElementById('ct-fonts-preview')) {
@@ -46,19 +54,19 @@ const loadFonts = (font_families, fontsCss) => {
 			...(googleFonts.length > 0
 				? {
 						google: {
-							families: googleFonts,
-						},
-				  }
+							families: googleFonts
+						}
+					}
 				: {}),
 			...(typekitFonts.length > 0
 				? {
 						typekit: {
-							id: typekitFonts[0].kit,
-						},
-				  }
+							id: typekitFonts[0].kit
+						}
+					}
 				: {}),
 			classes: false,
-			text: 'abcdefghijklmnopqrstuvwxyz',
+			text: 'abcdefghijklmnopqrstuvwxyz'
 		})
 	}
 }
@@ -66,7 +74,7 @@ const loadFonts = (font_families, fontsCss) => {
 const SingleFont = ({
 	data: { linearFontsList, onPickFamily, value },
 	index,
-	style,
+	style
 }) => {
 	const family = linearFontsList[index]
 
@@ -78,15 +86,17 @@ const SingleFont = ({
 				'ct-typography-single-font',
 				`ct-${family.source}`,
 				{
-					active: family.family === value.family,
+					active: family.family === value.family
 				}
 			)}
-			key={family.family}>
+			key={family.family}
+		>
 			<span className="ct-font-name">
 				<span
 					className={`ct-font-type-${family.source}`}
-					title={humanizeFontSource(family.source)}>
-					{humanizeFontSource(family.source)[0]}
+					title={humanizeFontSource(family.source)}
+				>
+					{fontSourceBadges[family.source] || family.source[0]}
 				</span>
 
 				{familyForDisplay(family.display || family.family)}
@@ -95,9 +105,10 @@ const SingleFont = ({
 			</span>
 			<span
 				style={{
-					fontFamily: fontFamilyToCSSFamily(family.family),
+					fontFamily: fontFamilyToCSSFamily(family.family)
 				}}
-				className="ct-font-preview">
+				className="ct-font-preview"
+			>
 				Simply dummy text
 			</span>
 		</div>
@@ -111,7 +122,7 @@ const FontsList = ({
 	fontsCss,
 	linearFontsList,
 	currentView,
-	searchTerm,
+	searchTerm
 }) => {
 	const listRef = useRef(null)
 	const timerRef = useRef(null)
@@ -178,10 +189,11 @@ const FontsList = ({
 			itemData={{
 				linearFontsList,
 				onPickFamily,
-				value,
+				value
 			}}
 			onItemsRendered={({ overscanStartIndex, overscanStopIndex }) => {}}
-			className="ct-typography-fonts">
+			className="ct-typography-fonts"
+		>
 			{SingleFont}
 		</List>
 	)

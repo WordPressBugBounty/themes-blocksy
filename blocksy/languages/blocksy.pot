@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12 20:38+0000\n"
+"POT-Creation-Date: 2026-11-26 20:15+0000\n"
 "Project-Id-Version: undefined\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
@@ -58,19 +58,19 @@ msgstr ""
 msgid "Select Category"
 msgstr ""
 
-#: searchform.php:294
+#: searchform.php:293
 msgid "Search button"
 msgstr ""
 
-#: searchform.php:352, searchform.php:353
+#: searchform.php:351, searchform.php:352
 msgid "Search for..."
 msgstr ""
 
-#: searchform.php:379
+#: searchform.php:378
 msgid "Search in category"
 msgstr ""
 
-#: searchform.php:469, inc/manager.php:255, inc/manager.php:258
+#: searchform.php:468, inc/manager.php:255, inc/manager.php:258
 msgid "No results"
 msgstr ""
 
@@ -276,7 +276,7 @@ msgstr ""
 msgid "We strongly recommend you to activate the"
 msgstr ""
 
-#: admin/notices/templates.php:63 admin/dashboard/static/js/screens/Home.js:338
+#: admin/notices/templates.php:63 admin/dashboard/static/js/screens/Home.js:357
 msgid "Blocksy Companion"
 msgstr ""
 
@@ -423,8 +423,8 @@ msgstr ""
 msgid "No more products to load"
 msgstr ""
 
-#: inc/components/pagination.php:123, inc/options/general/pagination.php:38,
-#: inc/options/general/pagination.php:61
+#: inc/components/pagination.php:123, inc/options/general/pagination.php:64,
+#: inc/options/general/pagination.php:87
 msgid "Load More"
 msgstr ""
 
@@ -654,7 +654,7 @@ msgstr ""
 #: inc/options/general/form-elements.php:19,
 #: inc/options/general/page-title.php:1449,
 #: inc/options/general/page-title.php:1532,
-#: inc/options/general/pagination.php:24,
+#: inc/options/general/pagination.php:50,
 #: inc/options/general/posts-listing.php:25,
 #: inc/options/general/posts-listing.php:1491,
 #: inc/options/general/sidebar.php:17,
@@ -719,7 +719,7 @@ msgid "Sidebar"
 msgstr ""
 
 #: inc/options/customizer.php:67, inc/options/general/form-elements.php:216,
-#: inc/options/general/pagination.php:145
+#: inc/options/general/pagination.php:188
 msgid "Colors"
 msgstr ""
 
@@ -1288,8 +1288,8 @@ msgstr ""
 #: inc/options/general/page-title.php:386,
 #: inc/options/general/page-title.php:603,
 #: inc/options/general/page-title.php:934,
-#: inc/options/general/pagination.php:85,
-#: inc/options/general/pagination.php:104, inc/options/general/sidebar.php:245,
+#: inc/options/general/pagination.php:114,
+#: inc/options/general/pagination.php:137, inc/options/general/sidebar.php:245,
 #: inc/options/single-elements/author-box.php:223,
 #: inc/options/single-elements/featured-image.php:122,
 #: inc/options/single-elements/post-nav.php:135,
@@ -1328,8 +1328,8 @@ msgstr ""
 #: inc/options/general/page-title.php:387,
 #: inc/options/general/page-title.php:604,
 #: inc/options/general/page-title.php:935,
-#: inc/options/general/pagination.php:86,
-#: inc/options/general/pagination.php:105, inc/options/general/sidebar.php:246,
+#: inc/options/general/pagination.php:115,
+#: inc/options/general/pagination.php:138, inc/options/general/sidebar.php:246,
 #: inc/options/single-elements/author-box.php:224,
 #: inc/options/single-elements/featured-image.php:123,
 #: inc/options/single-elements/post-nav.php:136,
@@ -1376,8 +1376,8 @@ msgstr ""
 #: inc/options/general/page-title.php:388,
 #: inc/options/general/page-title.php:605,
 #: inc/options/general/page-title.php:936,
-#: inc/options/general/pagination.php:87,
-#: inc/options/general/pagination.php:106, inc/options/general/sidebar.php:247,
+#: inc/options/general/pagination.php:116,
+#: inc/options/general/pagination.php:139, inc/options/general/sidebar.php:247,
 #: inc/options/single-elements/author-box.php:225,
 #: inc/options/single-elements/featured-image.php:124,
 #: inc/options/single-elements/post-nav.php:137,
@@ -1426,7 +1426,7 @@ msgstr ""
 #: inc/options/general/form-elements.php:100,
 #: inc/options/general/page-title.php:1455,
 #: inc/options/general/page-title.php:1559,
-#: inc/options/general/pagination.php:133,
+#: inc/options/general/pagination.php:176,
 #: inc/options/general/posts-listing.php:804,
 #: inc/options/general/posts-listing.php:1705,
 #: inc/options/general/sidebar.php:269,
@@ -1529,8 +1529,8 @@ msgstr ""
 #: inc/options/general/page-title.php:1221,
 #: inc/options/general/page-title.php:1256,
 #: inc/options/general/page-title.php:1287,
-#: inc/options/general/pagination.php:212,
-#: inc/options/general/pagination.php:242,
+#: inc/options/general/pagination.php:255,
+#: inc/options/general/pagination.php:285,
 #: inc/options/general/posts-listing.php:846,
 #: inc/options/general/posts-listing.php:918,
 #: inc/options/general/posts-listing.php:965,
@@ -1723,8 +1723,8 @@ msgstr ""
 #: inc/options/general/page-title.php:1165,
 #: inc/options/general/page-title.php:1262,
 #: inc/options/general/page-title.php:1293,
-#: inc/options/general/pagination.php:218,
-#: inc/options/general/pagination.php:248,
+#: inc/options/general/pagination.php:261,
+#: inc/options/general/pagination.php:291,
 #: inc/options/general/posts-listing.php:876,
 #: inc/options/general/posts-listing.php:971,
 #: inc/options/general/posts-listing.php:1007,
@@ -2016,7 +2016,7 @@ msgstr ""
 #: inc/options/general/buttons.php:50,
 #: inc/options/general/form-elements.php:112,
 #: inc/options/general/form-elements.php:262,
-#: inc/options/general/pagination.php:196,
+#: inc/options/general/pagination.php:239,
 #: inc/options/single-elements/post-nav.php:186,
 #: inc/options/woocommerce/card-product-elements.php:742,
 #: inc/options/woocommerce/card-product-elements.php:822,
@@ -2110,7 +2110,7 @@ msgstr ""
 
 #: inc/options/general/buttons.php:145,
 #: inc/options/general/form-elements.php:84,
-#: inc/options/general/pagination.php:281,
+#: inc/options/general/pagination.php:23,
 #: inc/options/general/posts-listing.php:1459,
 #: inc/options/general/sidebar.php:480,
 #: inc/options/single-elements/author-box.php:506,
@@ -2644,7 +2644,7 @@ msgstr ""
 
 #: inc/options/general/meta.php:246, inc/options/general/meta.php:299,
 #: inc/options/general/meta.php:336, inc/options/general/meta.php:397,
-#: inc/options/general/pagination.php:58
+#: inc/options/general/pagination.php:84
 msgid "Label"
 msgstr ""
 
@@ -3054,42 +3054,42 @@ msgid ""
 "Options will appear here only if you will set Custom in Page Title option."
 msgstr ""
 
-#: inc/options/general/pagination.php:13, inc/options/pages/author-page.php:60,
+#: inc/options/general/pagination.php:37, inc/options/pages/author-page.php:60,
 #: inc/options/pages/search-page.php:64, inc/options/posts/blog.php:67,
 #: inc/options/posts/categories.php:53,
 #: inc/options/posts/custom-post-type-archive.php:64
 msgid "Pagination"
 msgstr ""
 
-#: inc/options/general/pagination.php:29
+#: inc/options/general/pagination.php:55
 msgid "Pagination Type"
 msgstr ""
 
-#: inc/options/general/pagination.php:36
+#: inc/options/general/pagination.php:62
 msgid "Standard"
 msgstr ""
 
-#: inc/options/general/pagination.php:37
+#: inc/options/general/pagination.php:63
 msgid "Next/Prev"
 msgstr ""
 
-#: inc/options/general/pagination.php:39
+#: inc/options/general/pagination.php:65
 msgid "Infinite Scroll"
 msgstr ""
 
-#: inc/options/general/pagination.php:74
+#: inc/options/general/pagination.php:100
 msgid "Numbers Visibility"
 msgstr ""
 
-#: inc/options/general/pagination.php:92
+#: inc/options/general/pagination.php:122
 msgid "Arrows Visibility"
 msgstr ""
 
-#: inc/options/general/pagination.php:118
+#: inc/options/general/pagination.php:152
 msgid "Pagination Top Spacing"
 msgstr ""
 
-#: inc/options/general/pagination.php:165, inc/options/general/sidebar.php:361,
+#: inc/options/general/pagination.php:208, inc/options/general/sidebar.php:361,
 #: inc/panel-builder/footer/middle-row/options.php:559,
 #: inc/panel-builder/header/cart/options.php:777,
 #: inc/panel-builder/header/cart/options.php:858,
@@ -3102,15 +3102,15 @@ msgstr ""
 msgid "Text Initial"
 msgstr ""
 
-#: inc/options/general/pagination.php:171
+#: inc/options/general/pagination.php:214
 msgid "Text Active"
 msgstr ""
 
-#: inc/options/general/pagination.php:178
+#: inc/options/general/pagination.php:221
 msgid "Accent"
 msgstr ""
 
-#: inc/options/general/pagination.php:226,
+#: inc/options/general/pagination.php:269,
 #: inc/options/general/posts-listing.php:1194,
 #: inc/panel-builder/header/button/options.php:692,
 #: inc/panel-builder/header/button/options.php:721,
@@ -3119,7 +3119,7 @@ msgstr ""
 msgid "Button Color"
 msgstr ""
 
-#: inc/options/general/pagination.php:266,
+#: inc/options/general/pagination.php:310,
 #: inc/options/general/posts-listing.php:578,
 #: inc/options/general/sidebar.php:438,
 #: inc/options/woocommerce/single-product-elements.php:562,
@@ -6189,130 +6189,135 @@ msgstr ""
 msgid "Released on %s"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:126
+#: admin/dashboard/static/js/screens/Home.js:100
+msgid "Typography Options"
+msgstr ""
+
+#: admin/dashboard/static/js/screens/Home.js:103
+msgid ""
+"Choose fonts and adjust text sizes, weights and spacing across your site."
+msgstr ""
+
+#: admin/dashboard/static/js/screens/Home.js:132
 msgid "Header Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:129
+#: admin/dashboard/static/js/screens/Home.js:135
 msgid ""
 "Configure the header to your liking with an easy to use drag and drop "
 "builder."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:156
+#: admin/dashboard/static/js/screens/Home.js:164
 msgid "Footer Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:159
+#: admin/dashboard/static/js/screens/Home.js:167
 msgid ""
 "Arrange your footer in a way that actually makes sense with our drag and "
 "drop builder."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:186
+#: admin/dashboard/static/js/screens/Home.js:196
 msgid "Blog Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:189
+#: admin/dashboard/static/js/screens/Home.js:199
 msgid ""
 "Adjust your blog roll options in a single place and make it stand out in the "
 "crowd."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:216
+#: admin/dashboard/static/js/screens/Home.js:228
 msgid "Posts Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:219
-msgid "Set the footer type, number of columns, spacing and colors."
+#: admin/dashboard/static/js/screens/Home.js:231
+msgid "Customize the layout, sidebar and elements shown on individual posts."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:248
+#: admin/dashboard/static/js/screens/Home.js:262
 msgid "Page Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:251
+#: admin/dashboard/static/js/screens/Home.js:265
 msgid "Set the page container width, spacing, sidebar and more."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:278
+#: admin/dashboard/static/js/screens/Home.js:294
 msgid "Sidebar Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:281
+#: admin/dashboard/static/js/screens/Home.js:297
 msgid ""
 "Change the sidebar behaviour and style with a nice set of options that come "
 "in handy."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:29
+#: admin/dashboard/static/js/screens/Home.js:30
 msgid "Documentation"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:302
+#: admin/dashboard/static/js/screens/Home.js:320
 msgid "Customize"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:314
+#: admin/dashboard/static/js/screens/Home.js:332
 msgid "Need help or advice?"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:342
+#: admin/dashboard/static/js/screens/Home.js:361
 msgid ""
 "By downloading and installing this plugin you will have access to demo "
 "templates, extensions and a lot more stunning features."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:375
+#: admin/dashboard/static/js/screens/Home.js:395
 #: static/js/notification/Notification.js:123
 msgid "Installing & activating..."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:380
+#: admin/dashboard/static/js/screens/Home.js:400
 #: static/js/notification/Notification.js:125
 msgid "Install Blocksy Companion"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:385
+#: admin/dashboard/static/js/screens/Home.js:405
 #: static/js/notification/Notification.js:127
 msgid "Activate Blocksy Companion"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:389
+#: admin/dashboard/static/js/screens/Home.js:409
 #: static/js/notification/Notification.js:128
 msgid "Blocksy Companion active!"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:406
+#: admin/dashboard/static/js/screens/Home.js:427
 msgid "Blocksy Child Theme"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:410
+#: admin/dashboard/static/js/screens/Home.js:431
 msgid ""
 "By using a child theme you can modify any file without the fear of breaking "
 "something in the parent theme."
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:420
+#: admin/dashboard/static/js/screens/Home.js:442
 msgid "Download now"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:62
+#: admin/dashboard/static/js/screens/Home.js:64
 msgid "Customizer Shortcuts"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:66
+#: admin/dashboard/static/js/screens/Home.js:68
 msgid "Color Options"
 msgstr ""
 
-#: admin/dashboard/static/js/screens/Home.js:69
+#: admin/dashboard/static/js/screens/Home.js:71
 msgid ""
 "Manage the colour palette, as well as setting colours for different elements "
 "of the website."
-msgstr ""
-
-#: admin/dashboard/static/js/screens/Home.js:96
-msgid "Typography Options"
 msgstr ""
 
 #: admin/dashboard/static/js/screens/RecommendedPlugins.js:113
@@ -7117,7 +7122,7 @@ msgstr ""
 msgid "Line Height"
 msgstr ""
 
-#: static/js/options/options/typography/FontsList.js:94
+#: static/js/options/options/typography/FontsList.js:104
 msgid "Variable"
 msgstr ""
 

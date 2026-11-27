@@ -52,7 +52,7 @@ div.quantity {
 		}
 	}
 
-	&.hidden {
-		display: none;
+	&:has(input.qty[type="hidden"]) {
+		display: none !important;
 	}
 }

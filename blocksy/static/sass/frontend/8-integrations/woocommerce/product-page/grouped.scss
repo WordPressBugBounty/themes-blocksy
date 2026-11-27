@@ -19,7 +19,9 @@ form.grouped_form {
 	.woocommerce-grouped-product-list-item__quantity {
 		width: 4em;
 		font-size: 14px;
-		--quantity-height: 45px;
+		--theme-button-min-height: 40px;
+		--theme-button-padding: 5px 20px;
+		--quantity-height: 40px;
 
 		.quantity[data-type='type-1'] {
 			--quantity-width: 70px;
@@ -27,6 +29,10 @@ form.grouped_form {
 
 		.quantity[data-type='type-2'] {
 			--quantity-width: 90px;
+		}
+
+		.button {
+			white-space: nowrap;
 		}
 	}
 
@@ -53,6 +59,11 @@ form.grouped_form {
 			order: initial;
 			margin-inline-end: 5px;
 			margin-inline-start: 0;
+		}
+
+		.stock {
+			margin: 0;
+			font-size: 14px;
 		}
 	}
 

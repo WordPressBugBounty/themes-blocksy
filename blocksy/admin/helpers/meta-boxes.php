@@ -221,10 +221,14 @@ class Blocksy_Meta_Boxes {
 				$value = unserialize( $value, array( 'allowed_classes' => false ) );
 			}
 
+			$json = wp_json_encode( $value );
+
 			if (
 				! is_array( $value )
 				||
-				false !== strpos( wp_json_encode( $value ), '__PHP_Incomplete_Class' )
+				false === $json
+				||
+				false !== strpos( $json, '__PHP_Incomplete_Class' )
 			) {
 				continue;
 			}

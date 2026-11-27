@@ -4,6 +4,16 @@
 @use 'contact-info';
 @use 'dynamic-data';
 
+.ct-searching {
+	.ct-search-button-content {
+		opacity: 0;
+	}
+
+	.ct-ajax-loader {
+		opacity: 1;
+	}
+}
+
 
 .ct-widget {
 

@@ -23,7 +23,8 @@ const DocumentationButton = ({ href = '' }) => {
 				width="14px"
 				height="14px"
 				viewBox="0 0 24 24"
-				fill="currentColor">
+				fill="currentColor"
+			>
 				<path d="M23 2.1h-6.6c-1.8 0-3.4.9-4.4 2.3C11 3 9.4 2.1 7.6 2.1H1c-.6 0-1 .4-1 1v16.5c0 .6.4 1 1 1h7.7c1.3 0 2.3 1 2.3 2.3 0 .6.4 1 1 1s1-.4 1-1c0-1.3 1-2.3 2.3-2.3H23c.6 0 1-.4 1-1V3.1c0-.6-.4-1-1-1zM11 19.3c-.7-.4-1.5-.7-2.3-.7H2V4.1h5.6c1.9 0 3.4 1.5 3.4 3.4v11.8zm11-.7h-6.7c-.8 0-1.6.2-2.3.7V7.5c0-1.9 1.5-3.4 3.4-3.4H22v14.5z" />
 			</svg>
 			{__('Documentation', 'blocksy')}
@@ -57,7 +58,8 @@ const Home = () => {
 
 			<div
 				className="ct-dashboard-home-container"
-				data-columns={supportSections.length === 0 ? '1' : '2'}>
+				data-columns={supportSections.length === 0 ? '1' : '2'}
+			>
 				<section>
 					<h4>{__('Customizer Shortcuts', 'blocksy')}</h4>
 
@@ -79,12 +81,14 @@ const Home = () => {
 									href={`${
 										ctDashboardLocalizations.customizer_url
 									}${encodeURI(`[section]=color`)}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -97,7 +101,7 @@ const Home = () => {
 
 							<p>
 								{__(
-									'Set the footer type, number of columns, spacing and colors.',
+									'Choose fonts and adjust text sizes, weights and spacing across your site.',
 									'blocksy'
 								)}
 							</p>
@@ -109,12 +113,14 @@ const Home = () => {
 									href={`${
 										ctDashboardLocalizations.customizer_url
 									}${encodeURI('[section]=typography')}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -139,12 +145,14 @@ const Home = () => {
 									href={`${
 										ctDashboardLocalizations.customizer_url
 									}${encodeURI(`[section]=header`)}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -169,12 +177,14 @@ const Home = () => {
 									href={`${
 										ctDashboardLocalizations.customizer_url
 									}${encodeURI('[section]=footer')}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -199,12 +209,14 @@ const Home = () => {
 									href={`${
 										ctDashboardLocalizations.customizer_url
 									}${encodeURI(`[section]=blog_posts`)}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -217,7 +229,7 @@ const Home = () => {
 
 							<p>
 								{__(
-									'Set the footer type, number of columns, spacing and colors.',
+									'Customize the layout, sidebar and elements shown on individual posts.',
 									'blocksy'
 								)}
 							</p>
@@ -231,12 +243,14 @@ const Home = () => {
 									}${encodeURI(
 										'[section]=single_blog_posts'
 									)}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -261,12 +275,14 @@ const Home = () => {
 									href={`${
 										ctDashboardLocalizations.customizer_url
 									}${encodeURI('[section]=single_pages')}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -291,12 +307,14 @@ const Home = () => {
 									href={`${
 										ctDashboardLocalizations.customizer_url
 									}${encodeURI('[section]=sidebar')}`}
-									target="_blank">
+									target="_blank"
+								>
 									<svg
 										width="15px"
 										height="15px"
 										viewBox="0 0 24 24"
-										fill="currentColor">
+										fill="currentColor"
+									>
 										<path d="M4 11c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v7c0 .6.4 1 1 1zM12 11c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1s1-.4 1-1v-9c0-.6-.4-1-1-1zM20 13c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1s-1 .4-1 1v9c0 .6.4 1 1 1zM7 13H1c-.6 0-1 .4-1 1s.4 1 1 1h2v6c0 .6.4 1 1 1s1-.4 1-1v-6h2c.6 0 1-.4 1-1s-.4-1-1-1zM15 7h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v4H9c-.6 0-1 .4-1 1s.4 1 1 1h6c.6 0 1-.4 1-1s-.4-1-1-1zM23 15h-6c-.6 0-1 .4-1 1s.4 1 1 1h2v4c0 .6.4 1 1 1s1-.4 1-1v-4h2c.6 0 1-.4 1-1s-.4-1-1-1z" />
 									</svg>
 									{__('Customize', 'blocksy')}
@@ -331,7 +349,8 @@ const Home = () => {
 										width="16"
 										height="16"
 										fill="currentColor"
-										viewBox="0 0 20 20">
+										viewBox="0 0 20 20"
+									>
 										<path d="M3.1,0c-0.4,0-0.8,0.2-1,0.6L0.2,3.9C0.1,4.1,0,4.2,0,4.4v13.3C0,19,1,20,2.2,20h15.6c1.2,0,2.2-1,2.2-2.2V4.4c0-0.2-0.1-0.4-0.2-0.6l-1.9-3.3c-0.2-0.3-0.6-0.6-1-0.6H3.1z M3.7,2.2h12.6l1.3,2.2H2.4L3.7,2.2z M2.2,6.7h15.6v11.1H2.2V6.7zM8.9,8.3v3.3H5.6l4.4,4.4l4.4-4.4h-3.3V8.3H8.9z"></path>
 									</svg>
 
@@ -370,7 +389,8 @@ const Home = () => {
 
 											setIsLoading(false)
 										})
-									}}>
+									}}
+								>
 									{isLoading
 										? __(
 												'Installing & activating...',
@@ -399,7 +419,8 @@ const Home = () => {
 										width="16"
 										height="16"
 										fill="currentColor"
-										viewBox="0 0 20 20">
+										viewBox="0 0 20 20"
+									>
 										<path d="M3.1,0c-0.4,0-0.8,0.2-1,0.6L0.2,3.9C0.1,4.1,0,4.2,0,4.4v13.3C0,19,1,20,2.2,20h15.6c1.2,0,2.2-1,2.2-2.2V4.4c0-0.2-0.1-0.4-0.2-0.6l-1.9-3.3c-0.2-0.3-0.6-0.6-1-0.6H3.1z M3.7,2.2h12.6l1.3,2.2H2.4L3.7,2.2z M2.2,6.7h15.6v11.1H2.2V6.7zM8.9,8.3v3.3H5.6l4.4,4.4l4.4-4.4h-3.3V8.3H8.9z"></path>
 									</svg>
 
@@ -416,7 +437,8 @@ const Home = () => {
 								<a
 									className="ct-button"
 									href={child_download_link}
-									target="_blank">
+									target="_blank"
+								>
 									{__('Download now', 'blocksy')}
 								</a>
 							</li>

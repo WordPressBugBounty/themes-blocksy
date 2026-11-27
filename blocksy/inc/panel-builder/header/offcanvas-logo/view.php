@@ -1,22 +1,26 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable, VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedUnsetVariable -- view scope, variables come from blocksy_render_view()
 
 $default_logo = blocksy_expand_responsive_value(
-	blocksy_default_akg('custom_logo', $atts, blocksy_get_theme_mod('custom_logo', ''))
+	blocksy_default_akg( 'custom_logo', $atts, blocksy_get_theme_mod( 'custom_logo', '' ) )
 );
 
 $custom_logo_id = '';
 
-if (! empty($default_logo[$device])) {
-	$custom_logo_id = $default_logo[$device];
+if ( ! empty( $default_logo[ $device ] ) ) {
+	$custom_logo_id = $default_logo[ $device ];
 }
 
-$logo_type_classes = apply_filters("blocksy:{$panel_type}:logo:img:class", [
-	'default_logo' => '',
-	'transparent_state_logo' => '',
-	'sticky_state_logo' => '',
-	'dark_mode_logo' => '',
-	'offcanvas_logo' => ''
-]);
+$logo_type_classes = apply_filters(
+	"blocksy:{$panel_type}:logo:img:class",
+	array(
+		'default_logo'           => '',
+		'transparent_state_logo' => '',
+		'sticky_state_logo'      => '',
+		'dark_mode_logo'         => '',
+		'offcanvas_logo'         => '',
+	)
+);
 
 /**
  * Filters the additional logo images rendered next to the offcanvas logo.
@@ -32,24 +36,27 @@ $logo_type_classes = apply_filters("blocksy:{$panel_type}:logo:img:class", [
  */
 $additional_logos = apply_filters(
 	'blocksy:panel-builder:offcanvas-logo:additional-logos',
-	[],
+	array(),
 	$atts,
 	$device,
 	$panel_type,
 	$logo_type_classes
 );
 
-if ($custom_logo_id) {
-	$custom_logo_attr = [
-		'class' => trim(
-			implode(' ', [
-				'default-logo',
-				$logo_type_classes['offcanvas_logo']
-			])
+if ( $custom_logo_id ) {
+	$custom_logo_attr = array(
+		'class'   => trim(
+			implode(
+				' ',
+				array(
+					'default-logo',
+					$logo_type_classes['offcanvas_logo'],
+				)
+			)
 		),
 		'loading' => false,
 		// 'itemprop' => 'logo',
-	];
+	);
 
 	/**
 	 * If the logo alt attribute is empty, get the site title and explicitly
@@ -61,8 +68,8 @@ if ($custom_logo_id) {
 		true
 	);
 
-	if (empty($custom_logo_attr['alt'])) {
-		$custom_logo_attr['alt'] = get_bloginfo('name', 'display');
+	if ( empty( $custom_logo_attr['alt'] ) ) {
+		$custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
 	}
 
 	$image_logo_html = wp_get_attachment_image(
@@ -72,30 +79,28 @@ if ($custom_logo_id) {
 		$custom_logo_attr
 	);
 
-	$inline_svg_logos = blocksy_akg('inline_svg_logos', $atts, 'no');
+	$inline_svg_logos = blocksy_akg( 'inline_svg_logos', $atts, 'no' );
 
-	if ($inline_svg_logos === 'yes') {
+	if ( 'yes' === $inline_svg_logos ) {
 		$svg = blocksy_get_sanitized_inline_svg(
-			get_attached_file($custom_logo_id)
+			get_attached_file( $custom_logo_id )
 		);
 
-		if ($svg !== null) {
+		if ( null !== $svg ) {
 			$parser = new Blocksy_Attributes_Parser();
 
 			$svg_logo_attr = $custom_logo_attr;
 
-			unset($svg_logo_attr['loading'], $svg_logo_attr['fetchpriority']);
 			$svg_logo_attr['aria-label'] = $svg_logo_attr['alt'];
-			$svg_logo_attr['role'] = 'img';
-			unset($svg_logo_attr['alt']);
+			$svg_logo_attr['role']       = 'img';
+			unset( $svg_logo_attr['alt'] );
 
-			foreach ($svg_logo_attr as $svg_attr => $svg_attr_value) {
+			foreach ( $svg_logo_attr as $svg_attr => $svg_attr_value ) {
 				$svg = $parser->add_attribute_to_images_with_tag(
 					$svg,
 					$svg_attr,
 					$svg_attr_value,
-					'svg',
-					false
+					'svg'
 				);
 			}
 
@@ -103,7 +108,7 @@ if ($custom_logo_id) {
 		}
 	}
 
-	foreach ($additional_logos as $additional_logo) {
+	foreach ( $additional_logos as $additional_logo ) {
 		$custom_logo_attr['class'] = $additional_logo['class'];
 
 		$additional_logo_html = wp_get_attachment_image(
@@ -113,28 +118,26 @@ if ($custom_logo_id) {
 			$custom_logo_attr
 		);
 
-		if ($inline_svg_logos === 'yes') {
+		if ( 'yes' === $inline_svg_logos ) {
 			$svg = blocksy_get_sanitized_inline_svg(
-				get_attached_file($additional_logo['id'])
+				get_attached_file( $additional_logo['id'] )
 			);
 
-			if ($svg !== null) {
+			if ( null !== $svg ) {
 				$parser = new Blocksy_Attributes_Parser();
 
 				$svg_logo_attr = $custom_logo_attr;
 
-				unset($svg_logo_attr['loading'], $svg_logo_attr['fetchpriority']);
 				$svg_logo_attr['aria-label'] = $svg_logo_attr['alt'];
-				$svg_logo_attr['role'] = 'img';
-				unset($svg_logo_attr['alt']);
+				$svg_logo_attr['role']       = 'img';
+				unset( $svg_logo_attr['alt'] );
 
-				foreach ($svg_logo_attr as $svg_attr => $svg_attr_value) {
+				foreach ( $svg_logo_attr as $svg_attr => $svg_attr_value ) {
 					$svg = $parser->add_attribute_to_images_with_tag(
 						$svg,
 						$svg_attr,
 						$svg_attr_value,
-						'svg',
-						false
+						'svg'
 					);
 				}
 
@@ -154,22 +157,22 @@ $href = esc_url(
 	 *
 	 * @param string $url URL the offcanvas logo links to. Default the home page URL.
 	 */
-	apply_filters('blocksy:header:offcanvas-logo:url', home_url('/'))
+	apply_filters( 'blocksy:header:offcanvas-logo:url', home_url( '/' ) )
 );
 
 $old_data_id = $attr['data-id'];
-unset($attr['data-id']);
+unset( $attr['data-id'] );
 
-$attr['href'] = $href;
-$attr['class'] = 'site-logo-container';
-$attr['data-id'] = $old_data_id;
-$attr['rel'] = 'home';
+$attr['href']     = $href;
+$attr['class']    = 'site-logo-container';
+$attr['data-id']  = $old_data_id;
+$attr['rel']      = 'home';
 $attr['itemprop'] = 'url';
 
 ?>
 
-<a <?php echo blocksy_attr_to_html($attr) ?>>
-	<?php if ($custom_logo_id) { ?>
+<a <?php echo blocksy_attr_to_html( $attr ); ?>>
+	<?php if ( $custom_logo_id ) { ?>
 		<?php echo $image_logo_html; ?>
 	<?php } ?>
 </a>

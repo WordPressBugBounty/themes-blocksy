@@ -9,8 +9,6 @@ import { whenTransitionEnds } from './helpers/when-transition-ends'
 
 import { getRequestUrl } from './search/get-request-url'
 
-let alreadyRunning = false
-
 const productPricesAndStatusCache = {}
 
 const decodeHTMLEntities = (string) => {
@@ -19,39 +17,25 @@ const decodeHTMLEntities = (string) => {
 }
 
 const store = {}
-let controller = null
-
-const cachedFetch = (url, nonce = '') => {
-	if (controller) {
-		controller.abort('New request')
-		controller = null
-	}
-
-	if (store[url]) {
-		return new Promise((resolve) => {
-			resolve(store[url])
-			store[url] = store[url].clone()
+const cachedFetch = async (url, { nonce = '', signal } = {}) => {
+	if (!store[url]) {
+		const response = await fetch(url, {
+			signal,
+			headers: nonce ? { 'X-WP-Nonce': nonce } : {}
 		})
+
+		if (!response.ok) {
+			throw new Error(`Search request failed: ${response.status}`)
+		}
+
+		const data = await response.json()
+		store[url] = { data, total: response.headers.get('X-WP-Total') }
 	}
 
-	if ('AbortController' in window) {
-		controller = new AbortController()
+	return {
+		...store[url],
+		data: JSON.parse(JSON.stringify(store[url].data))
 	}
-
-	return fetch(url, {
-		signal: controller.signal,
-		headers: nonce
-			? {
-					'X-WP-Nonce': nonce
-				}
-			: {}
-	}).then((response) => {
-		store[url] = response.clone()
-
-		controller = null
-
-		return response
-	})
 }
 
 const debounce = (fn, wait) => {
@@ -108,7 +92,8 @@ const getPreviewElFor = ({
 						class: classnames({
 							['ct-media-container']: true
 						})
-					}}>
+					}}
+				>
 					<img
 						{...{
 							src: sizes.thumbnail
@@ -213,7 +198,18 @@ export const mount = (formEl, args = {}) => {
 		return
 	}
 
+	let activeRequest = null
+
+	const cancelRequest = () => {
+		activeRequest?.controller?.abort()
+		activeRequest = null
+		formEl.classList.remove('ct-searching')
+		setLoaderState(formEl, { enabled: false })
+	}
+
 	let listener = debounce(async (e) => {
+		cancelRequest()
+
 		document.removeEventListener('click', clickOutsideHandler)
 		document.addEventListener('click', clickOutsideHandler)
 
@@ -235,6 +231,12 @@ export const mount = (formEl, args = {}) => {
 			}
 		}
 
+		const request = {
+			controller:
+				'AbortController' in window ? new AbortController() : null
+		}
+		activeRequest = request
+
 		formEl.classList.add('ct-searching')
 		setLoaderState(formEl, { enabled: true })
 
@@ -245,21 +247,24 @@ export const mount = (formEl, args = {}) => {
 		})
 
 		const maybeNonce = formEl.querySelector('.ct-live-results-nonce')
+		const fetchOptions = {
+			nonce: maybeNonce ? maybeNonce.value : '',
+			signal: request.controller?.signal
+		}
 
 		try {
-			const response = await cachedFetch(
+			const { data: posts, total } = await cachedFetch(
 				requestUrl,
-				maybeNonce ? maybeNonce.value : ''
+				fetchOptions
 			)
 
-			let totalAmountOfPosts = parseInt(
-				response.headers.get('X-WP-Total'),
-				10
-			)
+			let totalAmountOfPosts = parseInt(total, 10)
 
 			await loadStyle(ct_localizations.dynamic_styles.search_lazy)
 
-			const posts = await response.json()
+			if (activeRequest !== request) {
+				return
+			}
 
 			const liveResultsConfig = formEl.dataset.liveResults || ''
 			const shouldShowProductPrice =
@@ -269,7 +274,12 @@ export const mount = (formEl, args = {}) => {
 
 			if (shouldShowProductPrice || shouldShowProductStatus) {
 				const onlyProducts = posts.filter(
-					(p) => p.subtype === 'product'
+					(p) =>
+						p.subtype === 'product' &&
+						((shouldShowProductPrice &&
+							typeof p.product_price !== 'string') ||
+							(shouldShowProductStatus &&
+								typeof p.product_status !== 'boolean'))
 				)
 
 				const maybeAllCached = onlyProducts.every(
@@ -296,12 +306,14 @@ export const mount = (formEl, args = {}) => {
 						requestRestUrl.searchParams.append(key, value)
 					})
 
-					const productsResponse = await cachedFetch(
+					const { data: products } = await cachedFetch(
 						requestRestUrl.toString(),
-						maybeNonce ? maybeNonce.value : ''
+						fetchOptions
 					)
 
-					const products = await productsResponse.json()
+					if (activeRequest !== request) {
+						return
+					}
 
 					products.forEach((product) => {
 						productPricesAndStatusCache[product.id] = {
@@ -319,30 +331,32 @@ export const mount = (formEl, args = {}) => {
 					const matchedProduct = productPricesAndStatusCache[post.id]
 
 					if (matchedProduct) {
-						if (shouldShowProductPrice) {
+						if (
+							shouldShowProductPrice &&
+							typeof post.product_price !== 'string'
+						) {
 							post.product_price = matchedProduct.price_html || ''
 						}
 
-						if (shouldShowProductStatus) {
-							post.product_status = matchedProduct?.is_in_stock
-								? ct_localizations
-										.search_live_stock_status_texts.instock
-								: ct_localizations
-										.search_live_stock_status_texts
-										.outofstock
+						if (
+							shouldShowProductStatus &&
+							typeof post.product_status !== 'boolean'
+						) {
+							post.product_status = matchedProduct.is_in_stock
 						}
 					}
+
+					post.product_status =
+						shouldShowProductStatus &&
+						typeof post.product_status === 'boolean'
+							? ct_localizations.search_live_stock_status_texts[
+									post.product_status
+										? 'instock'
+										: 'outofstock'
+								]
+							: ''
 				})
 			}
-
-			if (alreadyRunning) {
-				return
-			}
-
-			alreadyRunning = true
-
-			formEl.classList.remove('ct-searching')
-			setLoaderState(formEl, { enabled: false })
 
 			let itHadSearchResultsBefore =
 				!!formEl.querySelector('.ct-search-results')
@@ -390,7 +404,8 @@ export const mount = (formEl, args = {}) => {
 						id={searchResultsId}
 						class="ct-search-results"
 						role="listbox"
-						aria-label={ct_localizations.search_live_results}>
+						aria-label={ct_localizations.search_live_results}
+					>
 						{posts
 							.filter((post) => post?.id)
 							.map((post) =>
@@ -412,7 +427,8 @@ export const mount = (formEl, args = {}) => {
 										/QUERY_STRING/,
 										e.target.value
 									)
-								}}>
+								}}
+							>
 								{ct_localizations.show_more_text}
 							</a>
 						) : (
@@ -464,15 +480,16 @@ export const mount = (formEl, args = {}) => {
 					}
 				}
 			}
-
-			alreadyRunning = false
 		} catch (error) {
-			// Ignore aborts
-			if (error.message === 'New request') {
-				return
+			if (activeRequest === request) {
+				console.error('Error fetching search results', error)
 			}
-
-			console.error('Error fetching search results', error)
+		} finally {
+			if (activeRequest === request) {
+				activeRequest = null
+				formEl.classList.remove('ct-searching')
+				setLoaderState(formEl, { enabled: false })
+			}
 		}
 	}, 300)
 
@@ -488,6 +505,7 @@ export const mount = (formEl, args = {}) => {
 			// First ESC: close results and clear input
 			e.preventDefault()
 			e.stopPropagation()
+			cancelRequest()
 			closeResults({ announce: true })
 			maybeEl.value = ''
 		}

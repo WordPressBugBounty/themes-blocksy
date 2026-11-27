@@ -3,7 +3,7 @@ import {
 	getOptionFor,
 	responsiveClassesFor,
 	watchOptionsWithPrefix,
-	applyPrefixFor,
+	applyPrefixFor
 } from './helpers'
 
 const prefix = getPrefixFor({
@@ -12,9 +12,9 @@ const prefix = getPrefixFor({
 		'search',
 		'author',
 		'categories',
-		'woo_categories',
+		'woo_categories'
 	],
-	default_prefix: 'blog',
+	default_prefix: 'blog'
 })
 
 const optionPrefix = ['author', 'categories'].includes(prefix) ? 'blog' : prefix
@@ -25,7 +25,7 @@ watchOptionsWithPrefix({
 		`${optionPrefix}_load_more_label`,
 		`${optionPrefix}_paginationDivider`,
 		`${optionPrefix}_numbers_visibility`,
-		`${optionPrefix}_arrows_visibility`,
+		`${optionPrefix}_arrows_visibility`
 	],
 
 	render: () => {
@@ -66,7 +66,7 @@ watchOptionsWithPrefix({
 
 			el.dataset.divider = ''
 		})
-	},
+	}
 })
 
 export const getPaginationVariables = () => ({
@@ -74,22 +74,36 @@ export const getPaginationVariables = () => ({
 		selector: applyPrefixFor('.ct-pagination', prefix),
 		variable: 'spacing',
 		responsive: true,
-		unit: '',
+		unit: ''
 	},
 
 	[`${optionPrefix}_paginationDivider`]: {
 		selector: applyPrefixFor('.ct-pagination[data-divider]', prefix),
 		variable: 'pagination-divider',
 		type: 'border',
-		skip_none: true,
+		skip_none: true
 	},
 
-	[`${optionPrefix}_pagination_border_radius`]: {
-		selector: applyPrefixFor('.ct-pagination', prefix),
-		type: 'spacing',
-		variable: 'theme-button-border-radius',
-		emptyValue: 4,
-	},
+	[`${optionPrefix}_pagination_border_radius`]: [
+		{
+			selector: applyPrefixFor(
+				'.ct-pagination:is([data-pagination="simple"], [data-pagination="next_prev"])',
+				prefix
+			),
+			type: 'spacing',
+			variable: 'theme-border-radius',
+			emptyValue: 4
+		},
+		{
+			selector: applyPrefixFor(
+				'.ct-pagination[data-pagination="load_more"]',
+				prefix
+			),
+			type: 'spacing',
+			variable: 'theme-button-border-radius',
+			emptyValue: 4
+		}
+	],
 
 	[`${optionPrefix}_simplePaginationFontColor`]: [
 		{
@@ -98,7 +112,7 @@ export const getPaginationVariables = () => ({
 				prefix
 			),
 			variable: 'theme-text-color',
-			type: 'color:default',
+			type: 'color:default'
 		},
 
 		{
@@ -107,7 +121,7 @@ export const getPaginationVariables = () => ({
 				prefix
 			),
 			variable: 'theme-text-active-color',
-			type: 'color:active',
+			type: 'color:active'
 		},
 
 		{
@@ -116,35 +130,35 @@ export const getPaginationVariables = () => ({
 				prefix
 			),
 			variable: 'theme-link-hover-color',
-			type: 'color:hover',
-		},
+			type: 'color:hover'
+		}
 	],
 
 	[`${optionPrefix}_paginationButtonText`]: [
 		{
 			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-text-initial-color',
-			type: 'color:default',
+			type: 'color:default'
 		},
 
 		{
 			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-text-hover-color',
-			type: 'color:hover',
-		},
+			type: 'color:hover'
+		}
 	],
 
 	[`${optionPrefix}_paginationButton`]: [
 		{
 			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-background-initial-color',
-			type: 'color:default',
+			type: 'color:default'
 		},
 
 		{
 			selector: applyPrefixFor('[data-pagination="load_more"]', prefix),
 			variable: 'theme-button-background-hover-color',
-			type: 'color:hover',
-		},
-	],
+			type: 'color:hover'
+		}
+	]
 })

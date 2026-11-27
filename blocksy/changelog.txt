@@ -1,3 +1,14 @@
+2.1.63: 2026-11-26
+- Improvement: Images - validate the posts slider ratio and image attribute values
+- Improvement: Imports - skip Blocksy options that cannot be fully checked
+- Improvement: Live search - load WooCommerce results faster when showing product prices or stock status
+- Improvement: Preserve the page’s scroll position when navigating back or forward in Safari on iOS
+- Improvement: Single product - prevent quantity buttons from appearing without a quantity field after selecting a variation
+- Improvement: Typography - correctly display font source badges in the Customizer across languages
+- Improvement: WooCommerce grouped products - keep child product buttons at a consistent height with single-line labels
+- Fix: Pagination module - correctly apply the Border Radius option to page numbers and Next/Prev links
+- Fix: Search - correctly display parent categories in the “Taxonomy Filter” dropdown when only their subcategories contain products
+
 2.1.62: 2026-11-12
 - Improvement: Customizer - improve option permissions, Reset Options and color palette validation
 - Improvement: Mini cart - make sure add to cart errors and the empty cart notice are displayed correctly with WooCommerce 11.3

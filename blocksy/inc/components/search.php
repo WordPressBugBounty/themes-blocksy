@@ -35,26 +35,59 @@ class SearchModifications {
 			'ct_featured_media',
 			array(
 				'get_callback' => function ( $post, $field_name, $request ) {
+					if ( 'post' !== $request['type'] || ! blocksy_is_post_viewable( array( 'post' => $post['id'] ) ) ) {
+						return null;
+					}
+
 					$image_id = get_post_thumbnail_id( $post['id'] );
 
 					if ( ! $image_id ) {
 						return null;
 					}
 
-					$image = get_post( $image_id );
+					$image = wp_get_attachment_image_src( $image_id, 'full' );
 
 					if ( ! $image ) {
 						return null;
 					}
 
-					$controller = new \WP_REST_Attachments_Controller( 'attachment' );
+					$metadata   = wp_get_attachment_metadata( $image_id );
+					$image_size = 'full';
 
-					$attachment = $controller->prepare_item_for_response(
-						$image,
-						$request
+					if ( isset( $metadata['sizes']['thumbnail'] ) ) {
+						$image_size = 'thumbnail';
+					} else {
+						$smallest_width = PHP_INT_MAX;
+
+						foreach ( $metadata['sizes'] ?? array() as $size => $size_data ) {
+							if ( $size_data['width'] < $smallest_width ) {
+								$image_size     = $size;
+								$smallest_width = $size_data['width'];
+							}
+						}
+
+						if ( $image[1] < $smallest_width ) {
+							$image_size = 'full';
+						}
+					}
+
+					$image = wp_get_attachment_image_src( $image_id, $image_size );
+
+					if ( ! $image ) {
+						return null;
+					}
+
+					return array(
+						'source_url'    => wp_get_attachment_url( $image_id ),
+						'media_details' => array(
+							'sizes' => array(
+								$image_size => array(
+									'width'      => $image[1],
+									'source_url' => $image[0],
+								),
+							),
+						),
 					);
-
-					return $attachment->data;
 				},
 			)
 		);

@@ -1,113 +1,134 @@
 <?php
 
 function blocksy_main_attr() {
-	$attrs = [
-		'id' => 'main',
+	$attrs = array(
+		'id'    => 'main',
 		'class' => 'site-main',
-		'tabindex' => '-1',
-	];
+	);
 
-	if (blocksy_has_schema_org_markup()) {
+	if ( blocksy_has_schema_org_markup() ) {
 		$attrs['class'] .= ' hfeed';
 	}
 
-	return blocksy_attr_to_html(array_merge(
-		apply_filters('blocksy:main:attr', $attrs),
-		blocksy_schema_org_definitions('creative_work', [
-			'array' => true
-		]))
+	return blocksy_attr_to_html(
+		array_merge(
+			/**
+			 * Filters the attributes of the main content element.
+			 *
+			 * @since 1.7.56
+			 *
+			 * @param array $attrs Attributes of the `#main` element, keyed by attribute name.
+			 */
+			apply_filters( 'blocksy:main:attr', $attrs ),
+			blocksy_schema_org_definitions(
+				'creative_work',
+				array(
+					'array' => true,
+				)
+			)
+		)
 	);
 }
 
-add_filter('body_class', function ($classes) {
-	// if (blocksy_get_theme_mod('has_passepartout', 'no') === 'yes') {
-	// 	$classes[] = 'ct-passepartout';
-	// };
+add_filter(
+	'body_class',
+	function ( $classes ) {
+		// if (blocksy_get_theme_mod('has_passepartout', 'no') === 'yes') {
+		//  $classes[] = 'ct-passepartout';
+		// };
 
-	// $classes[] = 'ct-loading';
+		// $classes[] = 'ct-loading';
 
-	if (! $classes || ! is_array($classes)) {
-		$classes = [];
-	}
-
-	if (function_exists('is_product_category')) {
-		if (is_product_category() || is_product_tag()) {
-			$classes[] = 'woocommerce-archive';
+		if ( ! $classes || ! is_array( $classes ) ) {
+			$classes = array();
 		}
-	}
 
+		if ( function_exists( 'is_product_category' ) ) {
+			if ( is_product_category() || is_product_tag() ) {
+				$classes[] = 'woocommerce-archive';
+			}
+		}
 
-	if (in_array('elementor-default', $classes)) {
-		$current_template = blocksy_manager()->get_current_template();
+		if ( in_array( 'elementor-default', $classes, true ) ) {
+			$current_template = blocksy_manager()->get_current_template();
 
-		if (
+			if (
 			$current_template
 			&&
-			strpos($current_template, 'elementor') !== false
+			strpos( $current_template, 'elementor' ) !== false
 			&&
 			is_singular()
 			&&
-			class_exists('\ElementorPro\Modules\ThemeBuilder\Module')
-		) {
-			$location_documents = \ElementorPro\Modules\ThemeBuilder\Module::instance()
-				->get_conditions_manager()
-				->get_documents_for_location(
-					'single'
-				);
+			class_exists( '\ElementorPro\Modules\ThemeBuilder\Module' )
+			) {
+				$location_documents = \ElementorPro\Modules\ThemeBuilder\Module::instance()
+					->get_conditions_manager()
+					->get_documents_for_location(
+						'single'
+					);
 
-			$first_key = key($location_documents);
+				$first_key = key( $location_documents );
 
-			if (! empty($location_documents)) {
-				$theme_document = $location_documents[$first_key];
+				if ( ! empty( $location_documents ) ) {
+						$theme_document = $location_documents[ $first_key ];
 
-				$document_page_template = $theme_document->get_settings('page_template');
+						$document_page_template = $theme_document->get_settings( 'page_template' );
 
-				if (empty($document_page_template)) {
+					if ( empty( $document_page_template ) ) {
+						$classes[] = 'ct-elementor-default-template';
+					}
+				}
+			} else {
+				if (
+					! in_array( 'elementor-template-canvas', $classes, true )
+				&&
+					! in_array( 'elementor-template-full-width', $classes, true )
+				) {
 					$classes[] = 'ct-elementor-default-template';
 				}
 			}
-		} else {
-			if (
-				! in_array('elementor-template-canvas', $classes)
-				&&
-				! in_array('elementor-template-full-width', $classes)
-			) {
-				$classes[] = 'ct-elementor-default-template';
-			}
 		}
-	}
 
-	return $classes;
-}, 999999);
+		return $classes;
+	},
+	999999
+);
 
-if (! function_exists('blocksy_html_attr')) {
+if ( ! function_exists( 'blocksy_html_attr' ) ) {
 	function blocksy_html_attr() {
-		$attrs = [];
+		$attrs = array();
 
-		$attrs = apply_filters('blocksy:general:html-attr', $attrs);
+		/**
+		 * Filters the attributes added to the `<html>` element.
+		 *
+		 * @since 2.0.1
+		 *
+		 * @param array $attrs Attributes keyed by attribute name. Default empty array.
+		 */
+		$attrs = apply_filters( 'blocksy:general:html-attr', $attrs );
 
-		if (empty($attrs)) {
+		if ( empty( $attrs ) ) {
 			return '';
 		}
 
-		return ' ' . blocksy_attr_to_html($attrs);
+		return ' ' . blocksy_attr_to_html( $attrs );
 	}
 }
 
-if (! function_exists('blocksy_body_attr')) {
+if ( ! function_exists( 'blocksy_body_attr' ) ) {
 	function blocksy_body_attr() {
-		$attrs = [];
+		$attrs = array();
 
-		if (blocksy_get_theme_mod('has_passepartout', 'no') === 'yes') {
+		if ( blocksy_get_theme_mod( 'has_passepartout', 'no' ) === 'yes' ) {
 			$attrs['data-frame'] = 'default';
-		};
+		}
 
-		$attrs['data-prefix'] = esc_attr(blocksy_manager()->screen->get_prefix() . blocksy_manager()->screen->get_prefix_addition());
+		$attrs['data-prefix'] = esc_attr( blocksy_manager()->screen->get_prefix() . blocksy_manager()->screen->get_prefix_addition() );
 
-		if (is_customize_preview()) {
-			$prefix_custom = [];
+		if ( is_customize_preview() ) {
+			$prefix_custom = array();
 
-			if (is_singular()) {
+			if ( is_singular() ) {
 				$atts = blocksy_get_post_options();
 
 				$maybe_hero_strategy = blocksy_get_page_title_source();
@@ -115,7 +136,7 @@ if (! function_exists('blocksy_body_attr')) {
 				if (
 					$maybe_hero_strategy
 					&&
-					$maybe_hero_strategy['strategy'] !== 'customizer'
+					'customizer' !== $maybe_hero_strategy['strategy']
 				) {
 					$prefix_custom[] = 'hero';
 				}
@@ -126,7 +147,7 @@ if (! function_exists('blocksy_body_attr')) {
 					'default'
 				);
 
-				if ($default_page_structure !== 'default') {
+				if ( 'default' !== $default_page_structure ) {
 					$prefix_custom[] = 'single-structure';
 				}
 
@@ -136,7 +157,7 @@ if (! function_exists('blocksy_body_attr')) {
 					'inherit'
 				);
 
-				if ($default_content_style !== 'inherit') {
+				if ( 'inherit' !== $default_content_style ) {
 					$prefix_custom[] = 'content-style';
 				}
 
@@ -146,74 +167,102 @@ if (! function_exists('blocksy_body_attr')) {
 					'inherit'
 				);
 
-				if ($vertical_spacing_source !== 'inherit') {
+				if ( 'inherit' !== $vertical_spacing_source ) {
 					$prefix_custom[] = 'vertical-spacing';
 				}
 			}
 
-			if (! empty($prefix_custom)) {
-				$attrs['data-prefix-custom'] = implode(':', $prefix_custom);
+			if ( ! empty( $prefix_custom ) ) {
+				$attrs['data-prefix-custom'] = implode( ':', $prefix_custom );
 			}
 		}
 
 		global $blocksy_has_default_header;
 
-		if ($blocksy_has_default_header) {
+		if ( $blocksy_has_default_header ) {
+			/**
+			 * Filters the `data-header` attribute of the `<body>` element.
+			 *
+			 * @since 1.8.0
+			 *
+			 * @param string $header_id Short id of the header rendered on the current page.
+			 */
 			$attrs['data-header'] = apply_filters(
 				'blocksy:general:body-header-attr',
-				substr(str_replace(
-					'ct-custom-',
-					'',
-					blocksy_manager()->header_builder->get_current_section_id()
-				), 0, 6)
+				substr(
+					str_replace(
+						'ct-custom-',
+						'',
+						blocksy_manager()->header_builder->get_current_section_id()
+					),
+					0,
+					6
+				)
 			);
 		}
 
-		if (blocksy_manager()->footer_builder->enabled_on_this_page()) {
-			$attrs['data-footer'] = substr(str_replace(
-				'ct-custom-',
-				'',
-				blocksy_manager()->footer_builder->get_current_section_id()
-			), 0, 6);
+		if ( blocksy_manager()->footer_builder->enabled_on_this_page() ) {
+			$attrs['data-footer'] = substr(
+				str_replace(
+					'ct-custom-',
+					'',
+					blocksy_manager()->footer_builder->get_current_section_id()
+				),
+				0,
+				6
+			);
 		}
 
 		$footer_render = new Blocksy_Footer_Builder_Render();
-		$footer_atts = $footer_render->get_current_section()['settings'];
+		$footer_atts   = $footer_render->get_current_section()['settings'];
 
-		$reveal_result = [];
+		$reveal_result = array();
 
-		if (blocksy_default_akg(
+		if ( blocksy_default_akg(
 			'has_reveal_effect/desktop',
 			$footer_atts,
 			false
-		)) {
+		) ) {
 			$reveal_result[] = 'desktop';
 		}
 
-		if (blocksy_default_akg(
+		if ( blocksy_default_akg(
 			'has_reveal_effect/tablet',
 			$footer_atts,
 			false
-		)) {
+		) ) {
 			$reveal_result[] = 'tablet';
 		}
 
-		if (blocksy_default_akg(
+		if ( blocksy_default_akg(
 			'has_reveal_effect/mobile',
 			$footer_atts,
 			false
-		)) {
+		) ) {
 			$reveal_result[] = 'mobile';
 		}
 
-		if (count($reveal_result) > 0 && isset($attrs['data-footer'])) {
+		if ( count( $reveal_result ) > 0 && isset( $attrs['data-footer'] ) ) {
 			$attrs['data-footer'] .= ':reveal';
 		}
 
-		$attrs = apply_filters('blocksy:general:body-attr', $attrs);
+		/**
+		 * Filters the attributes of the `<body>` element.
+		 *
+		 * @since 2.0.1
+		 *
+		 * @param array $attrs Attributes keyed by attribute name.
+		 */
+		$attrs = apply_filters( 'blocksy:general:body-attr', $attrs );
 
-		return blocksy_attr_to_html(array_merge([
-			'data-link' => blocksy_get_theme_mod('content_link_type', 'type-2'),
-		], $attrs, blocksy_schema_org_definitions('single', ['array' => true])));
+		return blocksy_attr_to_html(
+			array_merge(
+				array(
+					'data-link' => blocksy_get_theme_mod( 'content_link_type', 'type-2' ),
+				),
+				$attrs,
+				blocksy_schema_org_definitions( 'single', array( 'array' => true ) )
+			)
+		);
 	}
 }

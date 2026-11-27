@@ -44,33 +44,6 @@ add_filter(
 	3
 );
 
-add_filter(
-	'woocommerce_quantity_input_args',
-	function ( $args, $product ) {
-		global $blocksy_quantity_args;
-		$blocksy_quantity_args = $args;
-
-		if ( ! isset( $blocksy_quantity_args['min_value'] ) ) {
-			$blocksy_quantity_args['min_value'] = 0;
-		}
-
-		if ( ! isset( $blocksy_quantity_args['max_value'] ) ) {
-			$blocksy_quantity_args['max_value'] = $product->get_max_purchase_quantity();
-		}
-
-		$blocksy_quantity_args['min_value'] = max( $blocksy_quantity_args['min_value'], 0 );
-		$blocksy_quantity_args['max_value'] = 0 < $blocksy_quantity_args['max_value'] ? $blocksy_quantity_args['max_value'] : '';
-
-		if ( '' !== $blocksy_quantity_args['max_value'] && $blocksy_quantity_args['max_value'] < $blocksy_quantity_args['min_value'] ) {
-			$blocksy_quantity_args['max_value'] = $blocksy_quantity_args['min_value'];
-		}
-
-		return $args;
-	},
-	10,
-	2
-);
-
 add_action(
 	'woocommerce_before_quantity_input_field',
 	function () {
@@ -268,16 +241,8 @@ add_action(
 
 			$final_quantity_look = 'class="quantity"';
 
-			global $blocksy_quantity_args;
-
-			$args = $blocksy_quantity_args;
-
-			if ( $args['max_value'] && $args['min_value'] === $args['max_value'] ) {
-				$final_quantity_look = 'class="quantity hidden"';
-			} else {
-				if ( blocksy_get_theme_mod( 'has_custom_quantity', 'yes' ) === 'yes' ) {
-					$final_quantity_look .= ' data-type="' . blocksy_get_theme_mod( 'quantity_type', 'type-2' ) . '"';
-				}
+			if ( blocksy_get_theme_mod( 'has_custom_quantity', 'yes' ) === 'yes' ) {
+				$final_quantity_look .= ' data-type="' . blocksy_get_theme_mod( 'quantity_type', 'type-2' ) . '"';
 			}
 
 			echo str_replace(

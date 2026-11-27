@@ -1,139 +1,159 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable -- include scope, variables come from blocksy_theme_get_dynamic_styles()
 
 $option_prefix = $prefix;
 
 // Author and categories pagination settings are the same as blog pagination settings
-if ($prefix === 'author' || $prefix === 'categories') {
+if ( 'author' === $prefix || 'categories' === $prefix ) {
 	$option_prefix = 'blog';
 }
 
-$paginationSpacing = blocksy_get_theme_mod($option_prefix . '_paginationSpacing', '60px');
+$pagination_spacing = blocksy_get_theme_mod( $option_prefix . '_paginationSpacing', '60px' );
 
-if ($paginationSpacing !== '60px') {
-	blocksy_output_responsive([
-		'css' => $css,
-		'tablet_css' => $tablet_css,
-		'mobile_css' => $mobile_css,
-		'selector' => blocksy_prefix_selector('.ct-pagination', $prefix),
-		'variableName' => 'spacing',
-		'value' => $paginationSpacing,
-		'unit' => '',
-		'previousUnit' => 'px',
-	]);
+if ( '60px' !== $pagination_spacing ) {
+	blocksy_output_responsive(
+		array(
+			'css'          => $css,
+			'tablet_css'   => $tablet_css,
+			'mobile_css'   => $mobile_css,
+			'selector'     => blocksy_prefix_selector( '.ct-pagination', $prefix ),
+			'variableName' => 'spacing',
+			'value'        => $pagination_spacing,
+			'unit'         => '',
+			'previousUnit' => 'px',
+		)
+	);
 }
 
-blocksy_output_border([
-	'css' => $css,
-	'selector' => blocksy_prefix_selector('.ct-pagination[data-divider]', $prefix),
-	'variableName' => 'pagination-divider',
-	'value' => blocksy_get_theme_mod($option_prefix . '_paginationDivider'),
-	'default' => [
-		'width' => 1,
-		'style' => 'none',
-		'color' => [
-			'color' => 'rgba(224, 229, 235, 0.5)',
-		],
-	],
-	'skip_none' => true
-]);
-
-blocksy_output_spacing([
-	'css' => $css,
-	'tablet_css' => $tablet_css,
-	'mobile_css' => $mobile_css,
-	'selector' => blocksy_prefix_selector('.ct-pagination', $prefix),
-	'property' => 'theme-button-border-radius',
-	'value' => blocksy_get_theme_mod(
-		$option_prefix . '_pagination_border_radius',
-		blocksy_spacing_value()
-	),
-	'empty_value' => 4,
-]);
-
-
-blocksy_output_colors([
-	'value' => blocksy_get_theme_mod($option_prefix . '_simplePaginationFontColor', []),
-	'default' => [
-		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-		'active' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-		'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-	],
-	'css' => $css,
-	'variables' => [
-		'default' => [
-			'selector' => blocksy_prefix_selector(
-				'[data-pagination="simple"], [data-pagination="next_prev"]',
-				$prefix
+blocksy_output_border(
+	array(
+		'css'          => $css,
+		'selector'     => blocksy_prefix_selector( '.ct-pagination[data-divider]', $prefix ),
+		'variableName' => 'pagination-divider',
+		'value'        => blocksy_get_theme_mod( $option_prefix . '_paginationDivider' ),
+		'default'      => array(
+			'width' => 1,
+			'style' => 'none',
+			'color' => array(
+				'color' => 'rgba(224, 229, 235, 0.5)',
 			),
-			'variable' => 'theme-text-color'
-		],
+		),
+		'skip_none'    => true,
+	)
+);
 
-		'active' => [
-			'selector' => blocksy_prefix_selector(
-				'[data-pagination="simple"]',
-				$prefix
-			),
-			'variable' => 'theme-text-active-color'
-		],
+$pagination_border_radius = blocksy_get_theme_mod(
+	$option_prefix . '_pagination_border_radius',
+	blocksy_spacing_value()
+);
 
-		'hover' => [
-			'selector' => blocksy_prefix_selector(
-				'[data-pagination="simple"], [data-pagination="next_prev"]',
-				$prefix
-			),
-			'variable' => 'theme-link-hover-color'
-		],
-	],
-]);
+foreach ( array(
+	'.ct-pagination:is([data-pagination="simple"], [data-pagination="next_prev"])' => 'theme-border-radius',
+	'.ct-pagination[data-pagination="load_more"]' => 'theme-button-border-radius',
+) as $selector => $property ) {
+	blocksy_output_spacing(
+		array(
+			'css'         => $css,
+			'tablet_css'  => $tablet_css,
+			'mobile_css'  => $mobile_css,
+			'selector'    => blocksy_prefix_selector( $selector, $prefix ),
+			'property'    => $property,
+			'value'       => $pagination_border_radius,
+			'empty_value' => 4,
+		)
+	);
+}
 
-blocksy_output_colors([
-	'value' => blocksy_get_theme_mod($option_prefix . '_paginationButtonText', []),
-	'default' => [
-		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-		'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-	],
-	'css' => $css,
-	'variables' => [
-		'default' => [
-			'selector' => blocksy_prefix_selector(
-				'[data-pagination="load_more"]',
-				$prefix
-			),
-			'variable' => 'theme-button-text-initial-color'
-		],
 
-		'hover' => [
-			'selector' => blocksy_prefix_selector(
-				'[data-pagination="load_more"]',
-				$prefix
+blocksy_output_colors(
+	array(
+		'value'     => blocksy_get_theme_mod( $option_prefix . '_simplePaginationFontColor', array() ),
+		'default'   => array(
+			'default' => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+			'active'  => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+			'hover'   => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+		),
+		'css'       => $css,
+		'variables' => array(
+			'default' => array(
+				'selector' => blocksy_prefix_selector(
+					'[data-pagination="simple"], [data-pagination="next_prev"]',
+					$prefix
+				),
+				'variable' => 'theme-text-color',
 			),
-			'variable' => 'theme-button-text-hover-color'
-		],
-	],
-]);
 
-blocksy_output_colors([
-	'value' => blocksy_get_theme_mod($option_prefix . '_paginationButton', []),
-	'default' => [
-		'default' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-		'hover' => [ 'color' => Blocksy_Css_Injector::get_skip_rule_keyword('DEFAULT') ],
-	],
-	'css' => $css,
-	'variables' => [
-		'default' => [
-			'selector' => blocksy_prefix_selector(
-				'[data-pagination="load_more"]',
-				$prefix
+			'active'  => array(
+				'selector' => blocksy_prefix_selector(
+					'[data-pagination="simple"]',
+					$prefix
+				),
+				'variable' => 'theme-text-active-color',
 			),
-			'variable' => 'theme-button-background-initial-color'
-		],
 
-		'hover' => [
-			'selector' => blocksy_prefix_selector(
-				'[data-pagination="load_more"]',
-				$prefix
+			'hover'   => array(
+				'selector' => blocksy_prefix_selector(
+					'[data-pagination="simple"], [data-pagination="next_prev"]',
+					$prefix
+				),
+				'variable' => 'theme-link-hover-color',
 			),
-			'variable' => 'theme-button-background-hover-color'
-		],
-	],
-]);
+		),
+	)
+);
+
+blocksy_output_colors(
+	array(
+		'value'     => blocksy_get_theme_mod( $option_prefix . '_paginationButtonText', array() ),
+		'default'   => array(
+			'default' => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+			'hover'   => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+		),
+		'css'       => $css,
+		'variables' => array(
+			'default' => array(
+				'selector' => blocksy_prefix_selector(
+					'[data-pagination="load_more"]',
+					$prefix
+				),
+				'variable' => 'theme-button-text-initial-color',
+			),
+
+			'hover'   => array(
+				'selector' => blocksy_prefix_selector(
+					'[data-pagination="load_more"]',
+					$prefix
+				),
+				'variable' => 'theme-button-text-hover-color',
+			),
+		),
+	)
+);
+
+blocksy_output_colors(
+	array(
+		'value'     => blocksy_get_theme_mod( $option_prefix . '_paginationButton', array() ),
+		'default'   => array(
+			'default' => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+			'hover'   => array( 'color' => Blocksy_Css_Injector::get_skip_rule_keyword( 'DEFAULT' ) ),
+		),
+		'css'       => $css,
+		'variables' => array(
+			'default' => array(
+				'selector' => blocksy_prefix_selector(
+					'[data-pagination="load_more"]',
+					$prefix
+				),
+				'variable' => 'theme-button-background-initial-color',
+			),
+
+			'hover'   => array(
+				'selector' => blocksy_prefix_selector(
+					'[data-pagination="load_more"]',
+					$prefix
+				),
+				'variable' => 'theme-button-background-hover-color',
+			),
+		),
+	)
+);
